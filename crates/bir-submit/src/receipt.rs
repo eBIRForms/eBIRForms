@@ -80,14 +80,14 @@ pub fn key_id(jws: &str) -> Option<String> {
     header["kid"].as_str().map(str::to_owned)
 }
 
-/// Checks the signature against `jwks`, then that the receipt is for
-/// `xml_sha256` (hex) and, when given, ticket `jti`.
-pub fn verify(
-    jwks: &Value,
+/// Checks a compact EdDSA JWS of type `typ` against `keys` (matched by
+/// `kid`) and answers its payload bytes. Receipts and the egress list both
+/// use it.
+pub(crate) fn verify_compact(
+    keys: &[(String, VerifyingKey)],
+    typ: &str,
     jws: &str,
-    xml_sha256: &str,
-    jti: Option<&str>,
-) -> Result<Receipt, ReceiptError> {
+) -> Result<Vec<u8>, ReceiptError> {
     let mut parts = jws.split('.');
     let (Some(header), Some(payload), Some(signature), None) =
         (parts.next(), parts.next(), parts.next(), parts.next())
@@ -101,11 +101,10 @@ pub fn verify(
     };
     let header: Value =
         serde_json::from_slice(&decode(header)?).map_err(|_| ReceiptError::Malformed)?;
-    if header["alg"] != "EdDSA" || header["typ"] != TYP {
+    if header["alg"] != "EdDSA" || header["typ"] != typ {
         return Err(ReceiptError::Malformed);
     }
     let kid = header["kid"].as_str().ok_or(ReceiptError::Malformed)?;
-    let keys = keys(jwks);
     let (_, key) = keys
         .iter()
         .find(|(id, _)| id == kid)
@@ -115,8 +114,19 @@ pub fn verify(
     let input = &jws[..jws.rfind('.').expect("three parts")];
     key.verify(input.as_bytes(), &signature)
         .map_err(|_| ReceiptError::Signature)?;
-    let receipt: Receipt =
-        serde_json::from_slice(&decode(payload)?).map_err(|_| ReceiptError::Malformed)?;
+    decode(payload)
+}
+
+/// Checks the signature against `jwks`, then that the receipt is for
+/// `xml_sha256` (hex) and, when given, ticket `jti`.
+pub fn verify(
+    jwks: &Value,
+    jws: &str,
+    xml_sha256: &str,
+    jti: Option<&str>,
+) -> Result<Receipt, ReceiptError> {
+    let payload = verify_compact(&keys(jwks), TYP, jws)?;
+    let receipt: Receipt = serde_json::from_slice(&payload).map_err(|_| ReceiptError::Malformed)?;
     if !receipt.xml_sha256.eq_ignore_ascii_case(xml_sha256) {
         return Err(ReceiptError::XmlMismatch);
     }

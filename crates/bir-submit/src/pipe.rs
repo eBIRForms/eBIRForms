@@ -1,7 +1,7 @@
 //! The app's end of the relay pipe: a dumb byte forwarder.
 //!
 //! The server sends `open` for a host and port; the app connects only if
-//! the [`AllowList`] permits it, then copies bytes both ways without
+//! the signed [`EgressList`] permits it, then copies bytes both ways without
 //! looking at them. Everything that passes is TLS or SSH ciphertext, or
 //! the dispatcher's wrapped fields: the BIR secrets and the SSH session
 //! stay on the server. One WebSocket carries every stream. Text frames are
@@ -18,7 +18,7 @@ use tokio::net::TcpStream;
 use tokio::sync::mpsc;
 use tokio_tungstenite::tungstenite::Message;
 
-use crate::allow::AllowList;
+use crate::egress::EgressList;
 
 const CONNECT_TIMEOUT: Duration = Duration::from_secs(10);
 
@@ -62,7 +62,7 @@ pub enum Ended {
 }
 
 /// Forwards until the server's `result` or the socket ends.
-pub async fn serve<S>(socket: S, allowed: &AllowList) -> Ended
+pub async fn serve<S>(socket: S, allowed: &EgressList) -> Ended
 where
     S: Stream<Item = Result<Message, tokio_tungstenite::tungstenite::Error>>
         + futures_util::Sink<Message, Error = tokio_tungstenite::tungstenite::Error>
@@ -90,10 +90,12 @@ where
             Message::Text(text) => match serde_json::from_str::<Control>(&text) {
                 Ok(Control::Open { stream, host, port }) => {
                     let answer = if !allowed.permits(&host, port) {
-                        tracing::warn!("relay: refused {host}:{port}, not a BIR server");
+                        tracing::warn!(
+                            "relay: refused {host}:{port}, not on the signed egress list"
+                        );
                         Control::Refused {
                             stream,
-                            reason: format!("{host}:{port} is not a BIR server"),
+                            reason: format!("{host}:{port} is not on the signed egress list"),
                         }
                     } else {
                         match tokio::time::timeout(

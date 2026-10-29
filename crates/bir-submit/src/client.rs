@@ -8,8 +8,8 @@ use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
 use tokio_tungstenite::tungstenite::client::IntoClientRequest;
 
-use crate::allow::AllowList;
 use crate::device::{self, DeviceKey, HEADER_DEVICE, hex};
+use crate::egress::{self, EgressList};
 use crate::pipe::{self, Ended};
 use crate::receipt::{self, Receipt};
 use crate::seal::{self, SealingKey};
@@ -29,7 +29,9 @@ pub struct SubmitConfig {
     pub client_id: String,
     /// Shown on the account site's device list.
     pub device_name: String,
-    pub allow: AllowList,
+    /// Egress public keys (base64url) the signed list must verify with:
+    /// [`egress::pinned_keys`] unless a test or lab sets its own.
+    pub egress_keys: Vec<String>,
 }
 
 impl SubmitConfig {
@@ -51,7 +53,7 @@ impl SubmitConfig {
             server_url: url.trim_end_matches('/').to_owned(),
             client_id: CLIENT_ID.to_owned(),
             device_name: format!("Buwiz on {}", std::env::consts::OS),
-            allow: AllowList::bir(),
+            egress_keys: egress::pinned_keys(),
         }
     }
 }
@@ -538,9 +540,30 @@ impl Submitter {
         }
     }
 
+    /// The server's egress list, checked against the pinned keys. Without
+    /// a valid one there is no send.
+    pub async fn egress_list(&self) -> Result<EgressList, ClientError> {
+        let response = self
+            .http
+            .get(self.url("/.well-known/buwiz-egress.json"))
+            .send()
+            .await?;
+        if !response.status().is_success() {
+            return Err(ClientError::Other(format!(
+                "Can't send: the server has no signed egress list ({}).",
+                response.status()
+            )));
+        }
+        let text = response.text().await?;
+        let jws = text.trim().trim_matches('"');
+        egress::verify(&self.config.egress_keys, jws, device::now())
+            .map_err(|error| ClientError::Other(format!("Can't send: {error}.")))
+    }
+
     /// Everything a send needs before the return itself: a live sign-in,
-    /// a registered device and the server's keys.
+    /// a registered device, the server's keys and a valid egress list.
     pub async fn ready(&self) -> Result<(), ClientError> {
+        self.egress_list().await?;
         self.ensure_device().await?;
         self.sealing_key(false).await?;
         self.jwks(false).await?;
@@ -559,6 +582,9 @@ impl Submitter {
         ))[..40]
             .to_owned();
         let not_sent = |error: ClientError| SendError::NotSent(error.to_string());
+        // No valid egress list, no ticket: nothing is spent on a send that
+        // could not leave this computer.
+        self.egress_list().await.map_err(not_sent)?;
 
         let ticket = match self
             .signed(
@@ -651,9 +677,10 @@ impl Submitter {
         }
     }
 
-    /// Opens the relay WebSocket for a submission and forwards, within the
-    /// allow-list, until the server's result.
+    /// Opens the relay WebSocket for a submission and forwards, only to the
+    /// hosts of the verified egress list, until the server's result.
     pub async fn relay(&self, relay_path: &str) -> Result<Ended, ClientError> {
+        let egress = self.egress_list().await?;
         let device_id = self.ensure_device().await?;
         let key = self.device_key()?;
         let session = self.live_session(false).await?;
@@ -684,7 +711,7 @@ impl Submitter {
                 },
                 other => ClientError::Network(other.to_string()),
             })?;
-        Ok(pipe::serve(socket, &self.config.allow).await)
+        Ok(pipe::serve(socket, &egress).await)
     }
 }
 
