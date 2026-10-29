@@ -146,11 +146,18 @@ forwards bytes:
 
 The app:
 
-- **connects only to BIR's own hosts.** The list is fixed in
-  `crates/bir-submit/src/allow.rs` as SHA-256 digests of `host:port`, so
-  the source names no host. A destination is allowed only when the digest
-  of what the relay asked for is on the list; anything else gets
-  `refused`. The relay can't use your computer as a general proxy.
+- **connects only to the hosts on a signed egress list.** Before it opens
+  the pipe, the app fetches `GET /.well-known/buwiz-egress.json`: a compact
+  JWS (`alg: EdDSA`, `typ: buwiz-egress+jwt`, `kid`) over
+  `{"hosts": ["host:port", …], "iat", "exp"}`. The list is signed offline
+  with an egress key the relay never holds; the relay only serves it. The
+  app checks the signature against the public key pinned in
+  `crates/bir-submit/src/egress.rs` (`EGRESS_KEYS`, filled at release;
+  `BUWIZ_EGRESS_KEYS` overrides it for tests and lab servers), the type and
+  the expiry, then allows exactly those `host:port` pairs. Anything else
+  gets `refused`. Without a valid list there is no send. The source names
+  no host, and even a compromised relay can't use your computer as a
+  general proxy.
 - forwards bytes unchanged. It never terminates TLS or SSH, so all it sees
   is ciphertext.
 - keeps the socket open until `result`.

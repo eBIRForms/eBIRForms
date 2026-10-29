@@ -54,7 +54,10 @@ is in [RELAY-PROTOCOL.md](RELAY-PROTOCOL.md). In short:
 - **Traffic leaves from your own connection.** The upload travels through
   your device, so BIR sees your connection, as with eBIRForms. The app only
   passes encrypted bytes along. It never sees the login, and it connects only
-  to BIR's own hosts: a fixed list in the source, kept as hashes.
+  to the hosts on an egress list signed offline with a key the relay never
+  holds. The app pins that key's public half and refuses any other list, an
+  expired one, or none at all, so even a compromised relay can't turn your
+  device into a proxy.
 - **You get a signed receipt.** The sender signs a receipt (EdDSA) that
   includes a hash of the exact file you sent. The app checks the signature and
   the hash before it marks the return **Sent**.
