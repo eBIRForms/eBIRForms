@@ -753,7 +753,7 @@ impl Database {
     }
 
     /// Atomically revalidate and claim the exact queued generation right
-    /// before PUT. The worker opens the SFTP session first, so a connect or
+    /// before PUT. The worker opens the upload session first, so a connect or
     /// login failure stays unclaimed.
     pub fn claim_queued_queueable<F: QueueableForm>(
         &self,

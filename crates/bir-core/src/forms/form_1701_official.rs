@@ -35,7 +35,7 @@ use super::{FilingPeriod, FormValidator};
 use crate::official_xml::{official_amount, parse_official_amount};
 
 pub const FORM_1701_LAYOUT_ID: &str = "1701-v2018";
-/// Official `formType` and PROD SFTP folder (`ftpTargetFolder.PROD['1701v2018']`).
+/// Official `formType` (`1701v2018`).
 pub const FORM_1701_FORM_TYPE: &str = "1701v2018";
 
 const P: &str = "frm1701:";

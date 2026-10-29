@@ -749,7 +749,7 @@ impl QueueableForm for Form1800Draft {
         vec![Self::penalty_declaration()]
     }
     const FORM_CODE: &'static str = "1800";
-    /// Official `formType` and SFTP folder (`ftpTargetFolder.PROD['1800v2018']`).
+    /// Official `formType` (`1800v2018`).
     const FORM_TYPE: &'static str = "1800v2018";
     const LAYOUT_ID: &'static str = FORM_1800_FORM_ID;
 

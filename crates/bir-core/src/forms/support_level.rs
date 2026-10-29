@@ -185,7 +185,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "2553",
         revision: "1999",
-        // `form_id` is the official formType and PROD SFTP folder. The submit
+        // `form_id` is the official formType and PROD upload folder. The submit
         // plaintext is the official layout replayed through the full page
         // runtime; queueing goes through the generic `QueueableForm` path.
         form_id: "2553",
@@ -209,7 +209,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1604F",
         revision: "2018",
-        // Official formType and PROD SFTP folder (`ftpTargetFolder.PROD`).
+        // Official formType, which is also its upload folder.
         // Exact submit plaintext via the official layout; generic queue.
         form_id: "1604F",
         capabilities: FormCapabilities {
@@ -230,7 +230,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1604C",
         revision: "2018",
-        // Official formType and PROD SFTP folder (`ftpTargetFolder.PROD`).
+        // Official formType, which is also its upload folder.
         // Exact submit plaintext via the official layout; generic queue.
         form_id: "1604C",
         capabilities: FormCapabilities {
@@ -251,7 +251,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1604E",
         revision: "2018",
-        // Official formType and PROD SFTP folder (`ftpTargetFolder.PROD`).
+        // Official formType, which is also its upload folder.
         // Exact submit plaintext via the official layout; generic queue.
         form_id: "1604Ev2018",
         capabilities: FormCapabilities {
@@ -272,7 +272,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "0619E",
         revision: "2018",
-        // Official formType and PROD SFTP folder. Queueing goes through the
+        // Official formType and PROD upload folder. Queueing goes through the
         // generic `QueueableForm` path with the official layout.
         form_id: "0619E",
         capabilities: FormCapabilities {
@@ -291,7 +291,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "0619F",
         revision: "2018",
-        // Official formType and PROD SFTP folder. Queueing goes through the
+        // Official formType and PROD upload folder. Queueing goes through the
         // generic `QueueableForm` path with the official layout.
         form_id: "0619F",
         capabilities: FormCapabilities {
@@ -310,7 +310,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "0605",
         revision: "1999",
-        // Official formType and PROD SFTP folder; queued through the generic
+        // Official formType and PROD upload folder; queued through the generic
         // `QueueableForm` path with the official layout plus the Item 6/8
         // popup radios the page adds.
         form_id: "0605",
@@ -330,7 +330,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1701Q",
         revision: "2018",
-        // Official formType and PROD SFTP folder. Queueing goes through the
+        // Official formType and PROD upload folder. Queueing goes through the
         // generic `QueueableForm` path with the official layout.
         form_id: "1701Qv2018",
         capabilities: FormCapabilities {
@@ -367,7 +367,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1701",
         revision: "2018",
-        // Official formType and PROD SFTP folder; queued through the generic
+        // Official formType and PROD upload folder; queued through the generic
         // `QueueableForm` path with the official submit layout.
         form_id: "1701v2018",
         capabilities: FormCapabilities {
@@ -386,7 +386,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1702RT",
         revision: "2018C",
-        // Official formType and PROD SFTP folder. Queueing goes through the
+        // Official formType and PROD upload folder. Queueing goes through the
         // generic `QueueableForm` path with the official layout.
         form_id: "1702RTv2018C",
         capabilities: FormCapabilities {
@@ -405,7 +405,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1702MX",
         revision: "2018C",
-        // Official formType and PROD SFTP folder. Queueing goes through the
+        // Official formType and PROD upload folder. Queueing goes through the
         // generic `QueueableForm` path (four base pages; the mandatory
         // attachments are not supported).
         form_id: "1702MXv2018C",
@@ -425,7 +425,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1606",
         revision: "2018",
-        // Official formType and PROD SFTP folder; submit plaintext replayed
+        // Official formType and PROD upload folder; submit plaintext replayed
         // through the full page runtime, queued on the generic path.
         form_id: "1606",
         capabilities: FormCapabilities {
@@ -446,7 +446,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1600VT",
         revision: "2018",
-        // Official formType and PROD SFTP folder; submit plaintext replayed
+        // Official formType and PROD upload folder; submit plaintext replayed
         // through the full page runtime, queued on the generic path.
         form_id: "1600VTv2018",
         capabilities: FormCapabilities {
@@ -467,7 +467,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1600PT",
         revision: "2018",
-        // Official formType and PROD SFTP folder; submit plaintext replayed
+        // Official formType and PROD upload folder; submit plaintext replayed
         // through the full page runtime, queued on the generic path.
         form_id: "1600PTv2018",
         capabilities: FormCapabilities {
@@ -488,7 +488,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1600WP",
         revision: "2010",
-        // Official formType and PROD SFTP folder; submit plaintext replayed
+        // Official formType and PROD upload folder; submit plaintext replayed
         // through the full page runtime, queued on the generic path.
         form_id: "1600WP",
         capabilities: FormCapabilities {
@@ -509,7 +509,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1601EQ",
         revision: "2018",
-        // `form_id` is the official formType and PROD SFTP folder; queueing
+        // `form_id` is the official formType and PROD upload folder; queueing
         // goes through the generic `QueueableForm` path.
         form_id: "1601EQ",
         // Print preview uses the 2019 sheet; print map joins fields by printed label.
@@ -531,7 +531,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1601FQ",
         revision: "2018",
-        // `form_id` is the official formType and PROD SFTP folder; queueing
+        // `form_id` is the official formType and PROD upload folder; queueing
         // goes through the generic `QueueableForm` path.
         form_id: "1601FQ",
         // Print preview uses the 2020 sheet; print map joins fields by printed label.
@@ -553,7 +553,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1603Q",
         revision: "2018",
-        // `form_id` is the official formType and PROD SFTP folder; queueing
+        // `form_id` is the official formType and PROD upload folder; queueing
         // goes through the generic `QueueableForm` path.
         form_id: "1603Qv2018",
         capabilities: FormCapabilities {
@@ -574,7 +574,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1602Q",
         revision: "2018",
-        // `form_id` is the official formType and PROD SFTP folder; queueing
+        // `form_id` is the official formType and PROD upload folder; queueing
         // goes through the generic `QueueableForm` path.
         form_id: "1602Qv2018",
         // Print preview uses the 2019 sheet; print map joins fields by printed label.
@@ -596,7 +596,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "2552",
         revision: "2018",
-        // Official formType and PROD SFTP folder; queued through the generic
+        // Official formType and PROD upload folder; queued through the generic
         // `QueueableForm` path with the official layout replayed exactly.
         form_id: "2552v2018",
         // Editor: views::form_2552_view; print preview fills the
@@ -619,7 +619,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "2550M",
         revision: "2007",
-        // Official formType and PROD SFTP folder; every schedule (1–8) is
+        // Official formType and PROD upload folder; every schedule (1–8) is
         // modelled and replayed byte for byte.
         form_id: "2550M",
         // Editor: views::form_2550m_view; print preview fills the
@@ -642,7 +642,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1706",
         revision: "2018",
-        // Official formType and PROD SFTP folder; queued on the generic path.
+        // Official formType and PROD upload folder; queued on the generic path.
         form_id: "1706",
         capabilities: FormCapabilities {
             typed_model: true,
@@ -662,7 +662,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1707",
         revision: "2021",
-        // Official formType and PROD SFTP folder; queued on the generic path.
+        // Official formType and PROD upload folder; queued on the generic path.
         form_id: "1707v2021",
         capabilities: FormCapabilities {
             typed_model: true,
@@ -682,7 +682,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1707A",
         revision: "2021",
-        // Official formType and PROD SFTP folder; queued on the generic path.
+        // Official formType and PROD upload folder; queued on the generic path.
         form_id: "1707Av2021",
         capabilities: FormCapabilities {
             typed_model: true,
@@ -702,7 +702,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1800",
         revision: "2018",
-        // Official formType and PROD SFTP folder; queued on the generic path.
+        // Official formType and PROD upload folder; queued on the generic path.
         form_id: "1800v2018",
         capabilities: FormCapabilities {
             typed_model: true,
@@ -722,7 +722,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1801",
         revision: "2018",
-        // Official formType and PROD SFTP folder; queued on the generic path.
+        // Official formType and PROD upload folder; queued on the generic path.
         form_id: "1801v2018",
         capabilities: FormCapabilities {
             typed_model: true,
@@ -742,7 +742,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "2000",
         revision: "2018",
-        // `form_id` is the official formType and PROD SFTP folder; the submit plaintext replays the official layout and queueing uses the generic `QueueableForm` path.
+        // `form_id` is the official formType and PROD upload folder; the submit plaintext replays the official layout and queueing uses the generic `QueueableForm` path.
         form_id: "2000v2018",
         capabilities: FormCapabilities {
             typed_model: true,
@@ -762,7 +762,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "2000OT",
         revision: "2018",
-        // `form_id` is the official formType and PROD SFTP folder; the submit plaintext replays the official layout and queueing uses the generic `QueueableForm` path.
+        // `form_id` is the official formType and PROD upload folder; the submit plaintext replays the official layout and queueing uses the generic `QueueableForm` path.
         form_id: "2000OTv2018",
         capabilities: FormCapabilities {
             typed_model: true,
@@ -782,7 +782,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "2200S",
         revision: "2018",
-        // `form_id` is the official formType and PROD SFTP folder; the submit plaintext replays the official layout and queueing uses the generic `QueueableForm` path.
+        // `form_id` is the official formType and PROD upload folder; the submit plaintext replays the official layout and queueing uses the generic `QueueableForm` path.
         form_id: "2200S",
         capabilities: FormCapabilities {
             typed_model: true,
@@ -802,7 +802,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "2200C",
         revision: "2018",
-        // `form_id` is the official formType and PROD SFTP folder; the submit plaintext replays the official layout and queueing uses the generic `QueueableForm` path.
+        // `form_id` is the official formType and PROD upload folder; the submit plaintext replays the official layout and queueing uses the generic `QueueableForm` path.
         form_id: "2200Cv2018",
         capabilities: FormCapabilities {
             typed_model: true,
@@ -823,8 +823,8 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
         code: "2200AN",
         revision: "2018",
         // `form_id` is the official formType. Queueing stays off:
-        // ftpTargetFolder.PROD has no '2200ANv2018' folder (getFtpFolder
-        // returns undefined), so the SFTP target is unconfirmed.
+        // eBIRForms has no upload folder for '2200ANv2018' (its upload
+        // folder is undefined), so the upload target is unconfirmed.
         form_id: "2200ANv2018",
         capabilities: FormCapabilities {
             typed_model: true,
@@ -845,9 +845,9 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
         code: "2200M",
         revision: "2018",
         // `form_id` is the official formType (filename segment). PROD
-        // `ftpTargetFolder` has no `2200Mv2018` key; see form_2200m.
-        // Queueing stays off: ftpTargetFolder.PROD has no '2200Mv2018' folder
-        // (getFtpFolder returns undefined), so the SFTP target is unconfirmed.
+        // eBIRForms has no upload folder for `2200Mv2018`; see form_2200m.
+        // Queueing stays off: eBIRForms has no upload folder for '2200Mv2018'
+        // (its upload folder is undefined), so the upload target is unconfirmed.
         form_id: "2200Mv2018",
         // The desktop editor is views::form_2200m_view; print preview fills the
         // two-page frozen 2200m-2018 sheet through its writer-cells map.
@@ -870,8 +870,8 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
         code: "2200P",
         revision: "2020",
         // `form_id` is the official formType (filename segment).
-        // Queueing stays off: ftpTargetFolder.PROD has no '2200Pv2020' folder
-        // (getFtpFolder returns undefined), so the SFTP target is unconfirmed.
+        // Queueing stays off: eBIRForms has no upload folder for '2200Pv2020'
+        // (its upload folder is undefined), so the upload target is unconfirmed.
         form_id: "2200Pv2020",
         // The desktop editor is views::form_2200p_view.
         capabilities: FormCapabilities {
@@ -893,8 +893,8 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
         code: "2200A",
         revision: "2020",
         // `form_id` is the official formType (filename segment).
-        // Queueing stays off: ftpTargetFolder.PROD has no '2200Av2020' folder
-        // (getFtpFolder returns undefined), so the SFTP target is unconfirmed.
+        // Queueing stays off: eBIRForms has no upload folder for '2200Av2020'
+        // (its upload folder is undefined), so the upload target is unconfirmed.
         form_id: "2200Av2020",
         // The desktop editor is views::form_2200a_view.
         capabilities: FormCapabilities {
@@ -937,7 +937,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1701MS",
         revision: "2024",
-        // Official formType and PROD SFTP folder. The submit plaintext is the
+        // Official formType and PROD upload folder. The submit plaintext is the
         // official layout (radios, check boxes and the name) replayed through
         // the full page runtime; queueing uses the generic path.
         form_id: "1701MS",
@@ -959,7 +959,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1702Q",
         revision: "2018C",
-        // Official formType and PROD SFTP folder. The submit plaintext is the
+        // Official formType and PROD upload folder. The submit plaintext is the
         // official layout replayed through the full page runtime; queueing
         // uses the generic path.
         form_id: "1702Qv2018C",
@@ -981,7 +981,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1701A",
         revision: "2018",
-        // Official formType and PROD SFTP folder. The submit plaintext is the
+        // Official formType and PROD upload folder. The submit plaintext is the
         // official layout replayed through the full page runtime; queueing
         // uses the generic path.
         form_id: "1701A",
@@ -1003,7 +1003,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1700",
         revision: "2018",
-        // Official formType and PROD SFTP folder. The submit plaintext is the
+        // Official formType and PROD upload folder. The submit plaintext is the
         // official layout replayed through the full page runtime; queueing
         // uses the generic path.
         form_id: "1700v2018",
@@ -1025,7 +1025,7 @@ pub const FORM_CAPABILITY_REGISTRY: &[FormCapabilityRecord] = &[
     FormCapabilityRecord {
         code: "1702EX",
         revision: "2018C",
-        // Official formType and PROD SFTP folder. The submit plaintext is the
+        // Official formType and PROD upload folder. The submit plaintext is the
         // official layout replayed through the full page runtime; queueing
         // uses the generic path.
         form_id: "1702EXv2018C",
@@ -1220,7 +1220,7 @@ mod tests {
         assert_eq!(queue_authorized_form_type_id("2550Q"), Some("2550Qv2024"));
         assert!(!can_queue_for_submission("9999"), "9999 must fail closed");
         assert_eq!(queue_authorized_form_type_id("9999"), None);
-        // No PROD ftpTargetFolder key for these formTypes: queueing stays off.
+        // No upload folder for these formTypes: queueing stays off.
         for code in ["2200AN", "2200M", "2200P", "2200A"] {
             assert!(!can_queue_for_submission(code), "{code} must not queue");
             assert_eq!(queue_authorized_form_type_id(code), None, "{code}");

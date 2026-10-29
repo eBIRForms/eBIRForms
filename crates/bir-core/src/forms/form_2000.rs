@@ -1445,7 +1445,7 @@ impl QueueableForm for Form2000Draft {
         vec![Self::penalty_declaration()]
     }
     const FORM_CODE: &'static str = "2000";
-    /// Official `formType` and PROD SFTP folder (`ftpTargetFolder.PROD['2000v2018']`).
+    /// Official `formType` (`2000v2018`).
     const FORM_TYPE: &'static str = "2000v2018";
     const LAYOUT_ID: &'static str = FORM_2000_FORM_ID;
 

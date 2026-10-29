@@ -47,7 +47,7 @@ use super::{FilingPeriod, FormValidator};
 
 /// Rule-package id of the official layout.
 pub const FORM_1702RT_LAYOUT_ID: &str = "1702rt-v2018c";
-/// Official `formType` and PROD SFTP folder (`ftpTargetFolder.PROD['1702RTv2018C']`).
+/// Official `formType` (`1702RTv2018C`).
 pub const FORM_1702RT_FORM_TYPE: &str = "1702RTv2018C";
 
 const P: &str = "frm1702RT:";

@@ -1258,7 +1258,7 @@ impl Form2551QDraft {
         }
     }
 
-    /// Transition: Queued → Submitted (called by background cron after successful SFTP PUT).
+    /// Transition: Queued → Submitted (called by background cron after successful upload).
     pub fn transition_to_submitted(&mut self, filename: String) {
         assert!(
             matches!(self.status, FilingStatus::Queued),

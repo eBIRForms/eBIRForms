@@ -1210,7 +1210,7 @@ impl Database {
     /// UI cancel/requeue) are rejected until the worker finishes the claim.
     ///
     /// After PUT is marked started, the claim is fail-closed (no lease retry).
-    /// The worker claims after the SFTP session is open and immediately
+    /// The worker claims after the upload session is open and immediately
     /// before PUT. A process crash after PUT start (or a PUT error) leaves an
     /// unknown network outcome: BIR may or may not have received the return.
     /// Automatically clearing or retrying that claim could file a duplicate
@@ -2341,7 +2341,7 @@ impl Database {
     }
 
     /// Atomically revalidate and claim the exact queued 1601C generation
-    /// immediately before PUT. The worker opens the SFTP session first so a
+    /// immediately before PUT. The worker opens the upload session first so a
     /// connect/login failure stays unclaimed.
     #[allow(clippy::too_many_arguments)]
     pub fn claim_queued_1601c_submission(
@@ -5664,7 +5664,7 @@ mod tests {
 
     #[test]
     fn email_poll_confirms_a_2551q_whose_bir_stamp_precedes_the_local_submitted_time() {
-        // Live 22 October 2026: BIR stamps the file when the SFTP PUT lands
+        // Live 22 October 2026: BIR stamps the file when the upload lands
         // and prints only the minute ("11:58 AM"), while the row turns
         // Submitted after PUT returns (11:58:xx). Comparing the receipt to
         // `submitted_at` ignored both confirmations on every poll, so the

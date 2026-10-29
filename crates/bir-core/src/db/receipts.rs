@@ -205,7 +205,7 @@ impl Database {
             .from_local_datetime(&receipt_naive)
             .single()
             .ok_or_else(|| DbError::Other("Receipt received timestamp is ambiguous".to_string()))?;
-        // BIR stamps the file when the SFTP PUT lands (minute precision);
+        // BIR stamps the file when the upload lands (minute precision);
         // `submitted_at` is written after PUT returns. Floor on the queue
         // time, as 1601C does, or a same-minute receipt is ignored forever.
         let authorized_at = draft

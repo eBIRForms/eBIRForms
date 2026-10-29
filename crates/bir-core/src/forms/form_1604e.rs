@@ -576,8 +576,8 @@ impl QueueableForm for Form1604eDraft {
         self.to_print_field_map()
     }
     const FORM_CODE: &'static str = "1604E";
-    /// Official `formType` and SFTP folder
-    /// (`ftpTargetFolder.PROD['1604Ev2018']`).
+    /// Official `formType`
+    /// (`1604Ev2018`).
     const FORM_TYPE: &'static str = "1604Ev2018";
     const LAYOUT_ID: &'static str = FORM_1604E_FORM_ID;
 

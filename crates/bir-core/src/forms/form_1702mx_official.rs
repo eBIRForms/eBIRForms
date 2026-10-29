@@ -26,7 +26,7 @@ use super::{FilingPeriod, FormValidator};
 
 /// Rule-package id of the official layout.
 pub const FORM_1702MX_LAYOUT_ID: &str = "1702mx-v2018c";
-/// Official `formType` and PROD SFTP folder (`ftpTargetFolder.PROD['1702MXv2018C']`).
+/// Official `formType` (`1702MXv2018C`).
 pub const FORM_1702MX_FORM_TYPE: &str = "1702MXv2018C";
 
 /// Item 5 alternative ATCs (`drpPg1I5ATCR2` option values, page order).

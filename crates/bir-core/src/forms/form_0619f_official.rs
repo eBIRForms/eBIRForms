@@ -21,7 +21,7 @@ use crate::official_xml::{js_escape, js_unescape, official_amount, parse_officia
 
 /// Rule-package id of the official layout.
 pub const FORM_0619F_LAYOUT_ID: &str = "0619f-v2018";
-/// Official `formType` and PROD SFTP folder (`ftpTargetFolder.PROD['0619F']`).
+/// Official `formType` (`0619F`).
 pub const FORM_0619F_FORM_TYPE: &str = "0619F";
 
 /// `saveXML` alert (0619f-save-010) for a month that already has a filed return

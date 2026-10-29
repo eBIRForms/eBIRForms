@@ -28,7 +28,7 @@ use crate::official_xml::{official_amount, parse_official_amount};
 
 /// Rule-package id of the official layout.
 pub const FORM_0605_LAYOUT_ID: &str = "0605-v2003";
-/// Official `formType` and PROD SFTP folder (`ftpTargetFolder.PROD['0605']`).
+/// Official `formType` (`0605`).
 pub const FORM_0605_FORM_TYPE: &str = "0605";
 
 /// Item 8 tax types in `xml/taxTypeCodes.xml` order (`TaxTypeCode<n>` is n = index + 1).

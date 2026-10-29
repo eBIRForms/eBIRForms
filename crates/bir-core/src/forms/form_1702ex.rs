@@ -1799,7 +1799,7 @@ impl QueueableForm for Form1702ExDraft {
         self.to_print_field_map()
     }
     const FORM_CODE: &'static str = "1702EX";
-    /// Official `formType` and SFTP folder (`ftpTargetFolder.PROD['1702EXv2018C']`).
+    /// Official `formType` (`1702EXv2018C`).
     const FORM_TYPE: &'static str = "1702EXv2018C";
     const LAYOUT_ID: &'static str = FORM_1702EX_FORM_ID;
 
