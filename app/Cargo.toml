@@ -16,7 +16,8 @@ default-members = ["."]
 bir-app-core = { path = "../crates/bir-app-core" }
 nsh-core = { path = "../nsh/crates/nsh-core" }
 nsh-base = { path = "../nsh/crates/nsh-base" }
-nsh-engine = { path = "../nsh/crates/nsh-engine" }
+# No default features: the UI is native nsh, so no QuickJS VM (AGENTS.md).
+nsh-engine = { path = "../nsh/crates/nsh-engine", default-features = false }
 ra-jit-live = { path = "../blaze/crates/ra-jit-live" }
 env_logger = "0.11"
 # Today and yesterday for the date chips (already in the lock through bir-core).
