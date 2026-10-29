@@ -25,6 +25,13 @@ log = "0.4"
 
 [target.'cfg(target_os = "macos")'.dependencies]
 nsh-platform-macos = { path = "../nsh/crates/nsh-platform-macos", default-features = false }
+# The print preview's PDF (WKWebView createPDF) and the save / open / print
+# panels: AppKit, WebKit and PDFKit through objc2, as nsh reaches them.
+objc2 = "0.6.5"
+objc2-foundation = { version = "0.3.2", default-features = false, features = ["std", "NSString", "NSURL", "NSData", "NSArray", "NSGeometry"] }
+block2 = "0.6.2"
+dispatch2 = "0.3.1"
+thiserror = "2"
 
 # iOS (the simulator): nsh's UIKit backend and its release runner, with no
 # JS runtime. `ios.sh` builds the `buwiz` binary for
@@ -32,6 +39,12 @@ nsh-platform-macos = { path = "../nsh/crates/nsh-platform-macos", default-featur
 [target.'cfg(target_os = "ios")'.dependencies]
 nsh-platform-ios = { path = "../nsh/crates/nsh-platform-ios", default-features = false }
 nsh-ios-app = { path = "../nsh/crates/nsh-ios-app", default-features = false }
+# Printing: UIKit's print dialog, PDF context and share sheet, WebKit's
+# print formatter, through objc2.
+objc2 = "0.6.5"
+objc2-foundation = { version = "0.3.2", default-features = false, features = ["std", "NSString", "NSURL", "NSData", "NSArray", "NSGeometry"] }
+dispatch2 = "0.3.1"
+thiserror = "2"
 
 [features]
 # Scripted UI checks: nsh's gpui-agent control plane (local, token-guarded,

@@ -8,15 +8,25 @@
 
 mod hot;
 mod icons;
+#[cfg(target_os = "ios")]
+mod ios_print;
+#[cfg(target_os = "macos")]
+mod mac;
 pub mod live;
 pub mod mobile;
 mod screens;
 mod session;
 mod store;
 mod theme;
+mod typing;
 mod widgets;
 
 use nsh_core::prelude::*;
+
+/// bir-print's `PdfSink`, for the platform runners' PDF makers.
+pub mod bir_print_sink {
+    pub use bir_app_core::bir_print::pdf_sink::PdfSink;
+}
 
 pub const APP_NAME: &str = "Buwiz";
 pub const APP_ID: &str = "com.buwiz.oss";
@@ -49,13 +59,28 @@ pub fn App() -> impl IntoElement {
             store::ThemePref::System => Appearance::System,
         });
     });
-    // Esc closes the tax-profile panel (it has no close button).
+    // Esc closes the tax-profile panel (it has no close button); ⌘K opens
+    // the command palette.
     on_key("escape", |_| live::store().panel_open.set(false));
+    on_key("mod+k", |_| {
+        let st = live::store();
+        if !crate::mobile::phone() {
+            st.palette_open.update(|o| *o = !*o);
+        }
+    });
     // Android's back: a sheet closes first, then the page stack pops; at
     // Home the system takes it (the app goes to the background).
     on_back_press(|| {
         let st = live::store();
-        if st.form.row_edit.get_untracked().is_some() {
+        if st.confirm_delete.get_untracked().is_some() {
+            st.confirm_delete.set(None);
+        } else if st.start_sheet.get_untracked().is_some() {
+            st.start_sheet.set(None);
+        } else if st.search_open.get_untracked() {
+            st.search_open.set(false);
+        } else if st.form.payee.get_untracked().is_some() {
+            st.form.payee.set(None);
+        } else if st.form.row_edit.get_untracked().is_some() {
             st.form.row_edit.set(None);
         } else if st.form.schedule_page.get_untracked().is_some() {
             st.form.schedule_page.set(None);

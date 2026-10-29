@@ -48,6 +48,17 @@ pub(crate) enum SaveState {
     Failed,
 }
 
+/// How a return is opened.
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub(crate) enum How {
+    /// The stored return for the period, or a new one.
+    Open,
+    /// A new amended return of a filed one.
+    Amend,
+    /// A Form library sample: typed in, printed, never saved.
+    Sample,
+}
+
 /// An item's place in the layout: (part, item).
 pub(crate) type ItemId = (usize, usize);
 
@@ -213,6 +224,13 @@ pub(crate) struct FormSession {
     pub schedule_page: Signal<Option<ItemId>>,
     pub added_rows: Signal<BTreeMap<ItemId, usize>>,
     pub explain: Signal<Option<ItemId>>,
+    /// Boxes opened with Edit on this return (penalties, profile boxes):
+    /// sent to every fill as `unlocked`; their edits stay on this return.
+    pub unlocked: Signal<BTreeSet<String>>,
+    /// A Form library sample is open (nothing saves).
+    pub sample: Signal<bool>,
+    /// The saved-payee picker: for an item's TIN, or a schedule row's.
+    pub payee: Signal<Option<(ItemId, Option<usize>)>>,
     /// Boxes whose last edit the form refused, with a count that changes
     /// each time: the box shows the return's value again, never the
     /// refused text.
@@ -264,6 +282,9 @@ impl FormSession {
             schedule_page: signal(None),
             added_rows: signal(BTreeMap::new()),
             explain: signal(None),
+            payee: signal(None),
+            unlocked: signal(BTreeSet::new()),
+            sample: signal(false),
             reverted: signal((0, Vec::new())),
             inner: RefCell::new(Inner::default()),
             token: Cell::new(0),
@@ -350,13 +371,14 @@ impl FormSession {
         if self.off.with(|off| off.contains_key(key)) {
             return true;
         }
+        let opened = self.unlocked.with(|u| u.contains(key));
         let penalty = self.penalties.with(|parties| {
-            parties.iter().find(|p| p.keys.iter().any(|k| k == key)).map(|p| !p.applies || !p.edited)
+            parties.iter().find(|p| p.keys.iter().any(|k| k == key)).map(|p| !p.applies || !(p.edited || opened))
         });
         if let Some(locked) = penalty {
             return locked;
         }
-        self.locks.with(|locks| locks.contains_key(key))
+        !opened && self.locks.with(|locks| locks.contains_key(key))
     }
 
     pub(crate) fn reason(&self, key: &str) -> String {
@@ -371,6 +393,24 @@ impl FormSession {
 
     /// Open (or start) the return for `params` and show it.
     pub(crate) fn open(&'static self, params: OpenReturn, title: String) {
+        self.open_as(params, title, How::Open);
+    }
+
+    /// Open the filed return's amendment.
+    pub(crate) fn amend(&'static self) {
+        if let Some(form) = self.form() {
+            let title = format!("{} · amended", form.layout.code);
+            self.open_as(form.params.clone(), title, How::Amend);
+        }
+    }
+
+    /// Open a Form library sample of `code` for the selected branch.
+    pub(crate) fn open_sample(&'static self, tin: String, code: String) {
+        let params = OpenReturn { tin, form_code: code.clone(), year: bir_app_core::display::current_year(), period: 0, key: None };
+        self.open_as(params, format!("{code} · sample"), How::Sample);
+    }
+
+    pub(crate) fn open_as(&'static self, params: OpenReturn, title: String, how: How) {
         let token = self.token.get() + 1;
         self.token.set(token);
         let same_form = self.form().is_some_and(|f| f.params.form_code == params.form_code);
@@ -387,7 +427,11 @@ impl FormSession {
             let p = params.clone();
             let opened = call(move |app| {
                 let layout = app.form_layout(&p.form_code)?;
-                let opened = app.open_return(&p)?;
+                let opened = match how {
+                    How::Open => app.open_return(&p)?,
+                    How::Amend => app.amend_return(&p)?,
+                    How::Sample => app.sample_return(&p.tin, &p.form_code)?,
+                };
                 let due = due_date(app, &p);
                 Ok((layout, opened, due))
             })
@@ -402,6 +446,12 @@ impl FormSession {
                         self.open_parts.set(BTreeSet::from([0]));
                     }
                     self.take_opened(&form, opened);
+                    self.sample.set(how == How::Sample);
+                    if how == How::Amend {
+                        // An amendment is new: it saves at once as a draft.
+                        self.unsaved.set(true);
+                        self.autosave();
+                    }
                     self.due.set(due);
                     self.doc.set(FormDoc::Open(form));
                 }
@@ -440,6 +490,8 @@ impl FormSession {
             self.schedule_page.set(None);
             self.added_rows.set(BTreeMap::new());
             self.explain.set(None);
+            self.payee.set(None);
+            self.unlocked.set(BTreeSet::new());
             self.inputs.borrow_mut().clear();
             self.rows.borrow_mut().clear();
             self.set_values(opened.values);
@@ -522,8 +574,9 @@ impl FormSession {
         let code = form.params.form_code.clone();
         let sent = edits.clone();
         let to_fill = edits.clone();
+        let unlocked: Vec<String> = self.unlocked.get_untracked().into_iter().collect();
         let answer = call(move |app| {
-            let filled = app.fill(&code, &draft, &to_fill, &[])?;
+            let filled = app.fill(&code, &draft, &to_fill, &unlocked)?;
             let checked = app.validate(&code, &filled.draft)?;
             Ok((filled, checked))
         })
@@ -745,7 +798,7 @@ impl FormSession {
     /// and it is still the open one; saves never overlap a fill.
     async fn save_pending(&'static self, form: &Arc<OpenForm>) {
         self.wait_idle().await;
-        if !self.unsaved.get() || self.token.get() != form.token || !self.editable.get_untracked() {
+        if !self.unsaved.get() || self.token.get() != form.token || !self.editable.get_untracked() || self.sample.get_untracked() {
             return;
         }
         // An action (queue, print) saves on its own.
@@ -829,8 +882,8 @@ impl FormSession {
             self.busy.set(None);
             match answer {
                 Ok(_) => {
-                    store().notify(NoticeTone::Success, "Queued for sending.");
-                    store().reload_returns();
+                    store().notify(NoticeTone::Success, "Queued. It sends when you're online.");
+                    store().reload_lists();
                     self.reopen();
                 }
                 Err(why) => store().notify(NoticeTone::Danger, format!("Not queued: {why}")),
@@ -847,7 +900,7 @@ impl FormSession {
             match answer {
                 Ok(()) => {
                     store().notify(NoticeTone::Info, "Taken off the queue: an editable draft again.");
-                    store().reload_returns();
+                    store().reload_lists();
                     self.reopen();
                 }
                 Err(why) => store().notify(NoticeTone::Danger, format!("Still queued: {why}")),
@@ -855,11 +908,20 @@ impl FormSession {
         });
     }
 
-    /// Fill the print sheet, write it to a temp file and open it in the
-    /// system browser (P4b replaces this with an in-app preview).
+    /// Fill the print sheet and show it in the print preview.
     pub(crate) fn print(&'static self) {
         task(async move {
             let Some((form, draft)) = self.settled("Printing…").await else { return };
+            if self.sample.get_untracked() {
+                let code = form.params.form_code.clone();
+                let answer = call(move |app| app.print_sample_html(&code, &draft)).await;
+                self.busy.set(None);
+                match answer {
+                    Ok(printed) => crate::screens::preview::show(printed, &form.params.form_code),
+                    Err(error) => store().notify(NoticeTone::Danger, format!("Could not print: {error}")),
+                }
+                return;
+            }
             let draft = if self.editable.get_untracked() {
                 match self.ensure_saved(&form, draft).await {
                     Some(draft) => draft,
@@ -872,25 +934,19 @@ impl FormSession {
                 draft
             };
             let code = form.params.form_code.clone();
-            let answer = call(move |app| {
-                let printed = app.print_html(&code, &draft)?;
-                let stamp = std::time::SystemTime::now()
-                    .duration_since(std::time::UNIX_EPOCH)
-                    .map_or(0, |d| d.as_millis());
-                let path = std::env::temp_dir().join(format!("buwiz-{code}-{stamp}.html"));
-                std::fs::write(&path, printed.html)
-                    .map_err(|error| bir_app_core::AppError::Call(format!("could not write {}: {error}", path.display())))?;
-                open_in_browser(&path)
-                    .map_err(|error| bir_app_core::AppError::Call(format!("could not open {}: {error}", path.display())))?;
-                Ok(path)
-            })
-            .await;
+            let answer = call(move |app| app.print_html(&code, &draft)).await;
             self.busy.set(None);
             match answer {
-                Ok(_) => store().notify(NoticeTone::Info, "The print sheet opened in your browser."),
+                Ok(printed) => crate::screens::preview::show(printed, &form.params.form_code),
                 Err(error) => store().notify(NoticeTone::Danger, format!("Could not print: {error}")),
             }
         });
+    }
+
+    /// Open `keys` for typing on this return (Edit penalties, Edit a
+    /// profile box): their edits stay on this return.
+    pub(crate) fn unlock(&self, keys: impl IntoIterator<Item = String>) {
+        self.unlocked.update(|u| u.extend(keys));
     }
 
     /// The filer left `item`: its messages show from now on.
@@ -921,16 +977,6 @@ impl FormSession {
             }
         });
     }
-}
-
-#[cfg(target_os = "macos")]
-fn open_in_browser(path: &std::path::Path) -> std::io::Result<()> {
-    std::process::Command::new("open").arg(path).status().map(drop)
-}
-
-#[cfg(not(target_os = "macos"))]
-fn open_in_browser(path: &std::path::Path) -> std::io::Result<()> {
-    std::process::Command::new("xdg-open").arg(path).status().map(drop)
 }
 
 /// The items that opened with something typed in (not a zero, a blank or

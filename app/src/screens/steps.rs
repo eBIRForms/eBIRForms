@@ -116,13 +116,15 @@ pub(crate) fn item_hidden(st: &FormSession, form: &OpenForm, id: ItemId) -> bool
     if st.off.with(|off| keys.iter().all(|k| off.contains_key(k))) {
         return true;
     }
-    if st.penalties.with(|parties| keys.iter().all(|k| parties.iter().any(|p| p.keys.contains(k)))) {
+    if st.penalties.with(|parties| keys.iter().all(|k| parties.iter().any(|p| p.keys.contains(k)))) && !st.unlocked.with(|u| keys.iter().any(|k| u.contains(k))) {
         return true;
     }
     !item.is_schedule()
         && st.locks.with(|locks| {
             item.fields.iter().all(|f| {
-                !f.computed && (st.profile.with(|p| p.contains(&f.key)) || locks.get(&f.key).is_some_and(|why| written_by_app(why)))
+                !f.computed
+                    && !st.unlocked.with(|u| u.contains(&f.key))
+                    && (st.profile.with(|p| p.contains(&f.key)) || locks.get(&f.key).is_some_and(|why| written_by_app(why)))
             })
         })
 }
@@ -228,6 +230,9 @@ pub(crate) enum Step {
 }
 
 pub(crate) fn next_step(st: &FormSession, form: &OpenForm) -> Step {
+    if st.sample.get() {
+        return Step::Done("Sample".to_owned());
+    }
     if !st.editable.get() {
         return Step::Done(st.status.get());
     }
