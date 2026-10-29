@@ -6,10 +6,14 @@
 //! [`live::init`] anchors the app's store under the root owner so the
 //! whole model survives remounts.
 
+#[cfg(any(windows, target_os = "linux", target_os = "macos"))]
+mod desktop;
 mod hot;
 mod icons;
 #[cfg(target_os = "ios")]
 mod ios_print;
+#[cfg(target_os = "linux")]
+mod linux;
 #[cfg(target_os = "macos")]
 mod mac;
 pub mod live;
@@ -20,6 +24,8 @@ mod store;
 mod theme;
 mod typing;
 mod widgets;
+#[cfg(windows)]
+mod windows;
 
 use nsh_core::prelude::*;
 

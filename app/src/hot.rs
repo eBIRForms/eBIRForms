@@ -33,6 +33,10 @@ fn traffic_lights() -> f32 {
             return bar.left.0;
         }
     }
+    // Windows and Linux keep the system's title bar: no lights in ours.
+    if cfg!(any(windows, target_os = "linux")) {
+        return 0.0;
+    }
     66.0
 }
 

@@ -46,6 +46,26 @@ objc2-foundation = { version = "0.3.2", default-features = false, features = ["s
 dispatch2 = "0.3.1"
 thiserror = "2"
 
+# Windows: nsh's Win32 / Direct2D backend (web views on WebView2), and
+# WebView2's PrintToPdf plus the shell's file dialogs and print verb for
+# the print preview and Settings (`src/windows.rs`).
+[target.'cfg(windows)'.dependencies]
+nsh-platform-windows = { path = "../nsh/crates/nsh-platform-windows", default-features = false }
+webview2-com = "0.39"
+windows = { version = "0.62", features = [
+  "Win32_Foundation",
+  "Win32_System_Com",
+  "Win32_UI_Shell",
+  "Win32_UI_Shell_Common",
+  "Win32_UI_WindowsAndMessaging",
+] }
+
+# Linux: nsh's GTK 4 backend with WebKitGTK 6.0 web views, and WebKitGTK's
+# print operation plus GTK's file dialogs (`src/linux.rs`).
+[target.'cfg(target_os = "linux")'.dependencies]
+nsh-platform-linux = { path = "../nsh/crates/nsh-platform-linux", default-features = false, features = ["webview"] }
+webkit6 = "0.6"
+
 [features]
 # Scripted UI checks: nsh's gpui-agent control plane (local, token-guarded,
 # and only when `GPUI_AGENT=1` is set at launch). Off in normal builds.
