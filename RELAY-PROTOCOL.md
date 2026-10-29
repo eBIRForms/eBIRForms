@@ -105,14 +105,39 @@ and works once.
 
 ## 4. Seal and submit
 
-The Sender's public key is at `GET /.well-known/buwiz-hpke.json`:
+Before it asks for a ticket, the app fetches the **relay trust list**,
+`GET /.well-known/buwiz-trust.json`: a compact JWS (`alg: EdDSA`,
+`typ: buwiz-trust+jwt`, `kid`) over
+
+```json
+{"hosts": ["host:port", …],
+ "sealing_keys": [{"kid": "…", "kem": "DHKEM(X25519, HKDF-SHA256)", "kdf": "HKDF-SHA256",
+                   "aead": "ChaCha20Poly1305", "public_key": "<base64url>"}],
+ "receipt_keys": [{"kty": "OKP", "crv": "Ed25519", "kid": "…", "x": "<base64url>"}],
+ "iat": 1767225600, "exp": 1798761600}
+```
+
+The list is signed **offline** with a trust key the relay never holds; the
+relay only serves it. The app checks the signature against the public key
+pinned in `crates/bir-submit/src/trust.rs` (`TRUST_KEYS`, filled at
+release; tests and lab set `SubmitConfig::trust_keys` in code, and debug or
+`lab`-feature builds also read `BUWIZ_TRUST_KEYS`), the type and the
+expiry. Without a valid list there is no send. The list decides three
+things, so a compromised relay can change none of them: where the pipe may
+connect (section 5), which key a return is sealed to, and which keys sign
+receipts (section 7).
+
+The relay names the Sender's current sealing key at
+`GET /.well-known/buwiz-hpke.json`:
 
 ```json
 {"keys": [{"kid": "…", "kem": "DHKEM(X25519, HKDF-SHA256)", "kdf": "HKDF-SHA256",
            "aead": "ChaCha20Poly1305", "public_key": "<base64url, 32 bytes>"}]}
 ```
 
-The app seals the XML with HPKE (RFC 9180) base mode with that suite,
+The app uses it only if the trust list carries the same `kid` with the
+same key; otherwise it seals nothing and asks for no ticket. It seals the
+XML with HPKE (RFC 9180) base mode with that suite,
 `info = "buwiz-submission-v1:" + jti` and an empty `aad`. Then it posts:
 
 ```http
@@ -146,18 +171,10 @@ forwards bytes:
 
 The app:
 
-- **connects only to the hosts on a signed egress list.** Before it opens
-  the pipe, the app fetches `GET /.well-known/buwiz-egress.json`: a compact
-  JWS (`alg: EdDSA`, `typ: buwiz-egress+jwt`, `kid`) over
-  `{"hosts": ["host:port", …], "iat", "exp"}`. The list is signed offline
-  with an egress key the relay never holds; the relay only serves it. The
-  app checks the signature against the public key pinned in
-  `crates/bir-submit/src/egress.rs` (`EGRESS_KEYS`, filled at release;
-  `BUWIZ_EGRESS_KEYS` overrides it for tests and lab servers), the type and
-  the expiry, then allows exactly those `host:port` pairs. Anything else
-  gets `refused`. Without a valid list there is no send. The source names
-  no host, and even a compromised relay can't use your computer as a
-  general proxy.
+- **connects only to the hosts on the relay trust list** (section 4): it
+  allows exactly those `host:port` pairs, and anything else gets
+  `refused`. The source names no host, and even a compromised relay can't
+  use your computer as a general proxy.
 - forwards bytes unchanged. It never terminates TLS or SSH, so all it sees
   is ciphertext.
 - keeps the socket open until `result`.
@@ -184,8 +201,9 @@ Before anything reaches the network, the Sender:
 ## 7. Receipts
 
 A receipt is a compact JWS (`alg: EdDSA`, `typ: buwiz-receipt+jwt`) signed
-by the Sender. The app verifies it with the key from
-`GET /.well-known/jwks.json` (matched by `kid`), then checks that
+by the Sender. The app verifies it only with the receipt keys of the relay
+trust list (matched by `kid`; `GET /.well-known/jwks.json` is for older
+clients and is not trusted), then checks that
 `xml_sha256` is the hash of the XML it sent and `jti` is the ticket it
 used. Only then is the return **Sent**.
 

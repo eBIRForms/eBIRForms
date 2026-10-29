@@ -33,10 +33,13 @@ source, and `scripts/verify.sh` also checks the built binaries.
 When you press **Send**, the app talks to the Buwiz relay. The full protocol
 is in [RELAY-PROTOCOL.md](RELAY-PROTOCOL.md). In short:
 
-- **You sign in once per device.** The app makes a device key (Ed25519) and
-  keeps it in the system key store. Every send request is signed with it, so a
-  stolen access token alone can't file a return. You can revoke a device from
-  your account.
+- **You sign in once per device.** The app makes a device key (Ed25519).
+  It keeps the key and your sign-in tokens in the operating system's key
+  store (Keychain, Credential Manager, Secret Service). On Android, and on
+  Linux without a Secret Service, there is no such store: they go to a file
+  that only your user can read, in the app's private data directory. Every
+  send request is signed with the key, so a stolen access token alone can't
+  file a return. You can revoke a device from your account.
 - **You can only file for a TIN you own.** A TIN becomes active on your
   account after you upload its BIR Form 2303 and a person reviews it. Each TIN
   has one owner.
@@ -45,8 +48,10 @@ is in [RELAY-PROTOCOL.md](RELAY-PROTOCOL.md). In short:
   period, a hash of the file, and the confirmation email). It expires after
   five minutes and works once.
 - **The return is sealed for the sender only.** The app encrypts the return
-  to the sender's public key (HPKE, RFC 9180). The part of the relay that
-  checks your account can't read it.
+  to the sender's public key (HPKE, RFC 9180), and takes that key only from
+  a trust list signed offline with a key the relay never holds (see below).
+  The part of the relay that checks your account can't read the return, and
+  can't make the app seal to a key of its own.
 - **The sender checks everything again.** It opens the envelope, checks the
   file against the ticket, encrypts it the way eBIRForms does, and uploads it.
   It accepts only BIR's pinned host key, so nothing in between can pose as
@@ -54,13 +59,13 @@ is in [RELAY-PROTOCOL.md](RELAY-PROTOCOL.md). In short:
 - **Traffic leaves from your own connection.** The upload travels through
   your device, so BIR sees your connection, as with eBIRForms. The app only
   passes encrypted bytes along. It never sees the login, and it connects only
-  to the hosts on an egress list signed offline with a key the relay never
-  holds. The app pins that key's public half and refuses any other list, an
-  expired one, or none at all, so even a compromised relay can't turn your
-  device into a proxy.
+  to the hosts on the signed trust list. The app pins the trust key's public
+  half and refuses any other list, an expired one, or none at all, so even a
+  compromised relay can't turn your device into a proxy.
 - **You get a signed receipt.** The sender signs a receipt (EdDSA) that
-  includes a hash of the exact file you sent. The app checks the signature and
-  the hash before it marks the return **Sent**.
+  includes a hash of the exact file you sent. The app checks the signature,
+  only against the receipt keys in the signed trust list, and the hash before
+  it marks the return **Sent**, so the relay can't forge a receipt.
 
 ### What we don't claim
 
