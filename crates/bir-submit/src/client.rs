@@ -262,7 +262,8 @@ impl Submitter {
     }
 
     /// One poll of the sign-in [`Self::start_sign_in`] began. On approval
-    /// the tokens are stored and the device key registered.
+    /// the tokens are stored and the device key registered (or, on a server
+    /// that can't register it yet, left for the first send).
     pub async fn poll_sign_in(&self) -> Result<PollOutcome, ClientError> {
         let Some((code, _)) = self.pending.lock().expect("pending").clone() else {
             return Ok(PollOutcome::Expired);
@@ -300,7 +301,12 @@ impl Submitter {
             session.email = me["email"].as_str().map(str::to_owned);
             self.save_session(&session)?;
         }
-        self.ensure_device().await?;
+        // Register the device key now when the server can; if it can't yet
+        // (a server without device keys), the first signed request does it.
+        // Sign-in itself has succeeded either way.
+        if let Err(error) = self.ensure_device().await {
+            tracing::warn!("device key not registered at sign-in: {error}");
+        }
         Ok(PollOutcome::SignedIn)
     }
 
@@ -758,5 +764,69 @@ mod tests {
             "http://127.0.0.1:9"
         );
         unsafe { std::env::remove_var("BUWIZ_SERVER_URL") };
+    }
+
+    /// A server without device keys (no `/api/devices`, as before v2) still
+    /// signs the app in; the key registers before the first send instead.
+    #[tokio::test]
+    async fn sign_in_succeeds_when_the_server_cannot_register_devices() {
+        use std::io::{BufRead, BufReader, Read, Write};
+        let listener = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
+        let addr = listener.local_addr().unwrap();
+        let server = std::thread::spawn(move || {
+            let mut paths = Vec::new();
+            for stream in listener.incoming().take(4) {
+                let mut stream = stream.unwrap();
+                let mut reader = BufReader::new(stream.try_clone().unwrap());
+                let mut line = String::new();
+                reader.read_line(&mut line).unwrap();
+                let path = line.split_whitespace().nth(1).unwrap_or_default().to_owned();
+                let mut length = 0;
+                loop {
+                    let mut header = String::new();
+                    reader.read_line(&mut header).unwrap();
+                    if header.trim().is_empty() {
+                        break;
+                    }
+                    if let Some(value) = header.to_ascii_lowercase().strip_prefix("content-length:") {
+                        length = value.trim().parse().unwrap_or(0);
+                    }
+                }
+                let mut body = vec![0; length];
+                reader.read_exact(&mut body).unwrap();
+                let (status, json) = match path.as_str() {
+                    "/auth/device/start" => (
+                        "200 OK",
+                        r#"{"device_code":"d","user_code":"ABCD-EFGH","verification_uri":"http://x/device","verification_uri_complete":"http://x/device?code=ABCD-EFGH","expires_in":600,"interval":1}"#,
+                    ),
+                    "/auth/device/poll" => ("200 OK", r#"{"access_token":"a","refresh_token":"r","expires_in":3600}"#),
+                    "/me" => ("200 OK", r#"{"email":"juana@example.com"}"#),
+                    _ => ("404 Not Found", r#"{"error":{"code":"not_found","message":"no such route"}}"#),
+                };
+                write!(
+                    stream,
+                    "HTTP/1.1 {status}\r\ncontent-type: application/json\r\ncontent-length: {}\r\nconnection: close\r\n\r\n{json}",
+                    json.len()
+                )
+                .unwrap();
+                paths.push(path);
+            }
+            paths
+        });
+        let dir = tempfile::tempdir().unwrap();
+        let config = SubmitConfig {
+            server_url: format!("http://{addr}"),
+            client_id: CLIENT_ID.into(),
+            device_name: "test".into(),
+            trust_keys: Vec::new(),
+        };
+        let submitter = Submitter::new(config, Box::new(crate::secrets::FileStore::new(dir.path().to_owned())));
+        submitter.start_sign_in().await.unwrap();
+        assert_eq!(submitter.poll_sign_in().await.unwrap(), PollOutcome::SignedIn);
+        assert_eq!(
+            submitter.sign_in_status(),
+            SignInStatus::SignedIn { email: Some("juana@example.com".into()) }
+        );
+        assert_eq!(server.join().unwrap(), ["/auth/device/start", "/auth/device/poll", "/me", "/api/devices"]);
     }
 }
