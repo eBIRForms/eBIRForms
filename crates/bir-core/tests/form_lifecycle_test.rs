@@ -52,7 +52,6 @@ fn test_full_form_lifecycle() {
             is_government_withholding_entity: false,
             registration_activity_status: Default::default(),
             is_archived: false,
-            profile_pin_hash: None,
             email_tracking_enabled: false,
             test_notification_enabled: false,
             profile_versions: vec![],

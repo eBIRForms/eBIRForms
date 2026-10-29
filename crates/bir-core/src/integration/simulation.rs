@@ -146,7 +146,6 @@ mod tests {
             is_top_withholding_agent: false,
             is_government_withholding_entity: false,
             registration_activity_status: Default::default(),
-            profile_pin_hash: None,
         }
     }
 

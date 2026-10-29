@@ -1,5 +1,5 @@
 use crate::db::{Database, DbError, Submission};
-use crate::profile::{ProfileCredentials, TaxpayerProfile};
+use crate::profile::TaxpayerProfile;
 use std::fs;
 use std::io::Read;
 use std::path::Path;
@@ -122,18 +122,12 @@ pub fn import_profile_data(db: &Database, import_file: &Path) -> Result<(), DbEr
             migrate_profile_json(&mut profile_value, export_version)?;
             let mut profile: TaxpayerProfile = serde_json::from_value(profile_value)?;
             let tin = profile.tin.full();
-            // The file's row id and credentials are never used. An id names a
-            // row in the database that wrote the file; here it can be another
+            // The file's row id is never used. It names a row in the
+            // database that wrote the file; here it can be another
             // taxpayer's row, which the save would overwrite, re-keying that
-            // taxpayer's records onto this TIN. Credentials stay with the
-            // database they were set in. Both come from this database's row with
-            // the same TIN, or are none when there is no such row.
-            let (id, credentials) = match db.get_profile_by_tin(&tin)? {
-                Some(mut stored) => (stored.id, stored.take_credentials()),
-                None => (None, ProfileCredentials::default()),
-            };
-            profile.id = id;
-            profile.put_credentials(credentials);
+            // taxpayer's records onto this TIN. It comes from this database's
+            // row with the same TIN, or is none when there is no such row.
+            profile.id = db.get_profile_by_tin(&tin)?.and_then(|stored| stored.id);
             db.save_profile(profile)?;
 
             // 2. Read submissions.json — deduplicate via (tin, form_type, period, submitted_at)
@@ -380,7 +374,6 @@ mod tests {
             profile_versions: vec![],
             compliance_source_mode: Default::default(),
             per_year_forms: Default::default(),
-            profile_pin_hash: None,
             tax_classification: None,
             eopt_tier: None,
             is_bmbe: false,
@@ -468,7 +461,6 @@ mod tests {
             profile_versions: vec![],
             compliance_source_mode: Default::default(),
             per_year_forms: Default::default(),
-            profile_pin_hash: None,
             tax_classification: None,
             eopt_tier: None,
             is_bmbe: false,
@@ -563,7 +555,6 @@ mod tests {
             profile_versions: vec![],
             compliance_source_mode: Default::default(),
             per_year_forms: Default::default(),
-            profile_pin_hash: None,
             tax_classification: None,
             eopt_tier: None,
             is_bmbe: false,
@@ -669,7 +660,6 @@ mod tests {
             profile_versions: vec![],
             compliance_source_mode: Default::default(),
             per_year_forms: Default::default(),
-            profile_pin_hash: None,
             tax_classification: None,
             eopt_tier: None,
             is_bmbe: false,
@@ -732,20 +722,12 @@ mod tests {
         assert!((1, 0, 0) < (1, 0, 1));
     }
 
-    // ---------- an archive's row id and credentials are never used ----------
+    // ---------- an archive's row id is never used ----------
 
-    use crate::profile::PROFILE_CREDENTIAL_KEYS;
     use std::collections::BTreeMap;
 
     const TIN_Y: &str = "11122233300000";
     const TIN_X: &str = "44455566600000";
-
-    /// Distinctive values this database stores, in `PROFILE_CREDENTIAL_KEYS`
-    /// order, so a leak or an overwrite cannot pass unnoticed.
-    const STORED_CREDENTIALS: [&str; 1] = ["stored-pin-hash-H6N3"];
-
-    /// What a crafted archive carries, in the same order.
-    const FORGED_CREDENTIALS: [&str; 1] = ["forged-pin-hash-B5G2"];
 
     /// A profile for the 14-digit `tin`.
     fn branch_profile(full_name: &str, tin: &str) -> TaxpayerProfile {
@@ -769,19 +751,6 @@ mod tests {
         .expect("profile fixture")
     }
 
-    fn set_credentials(profile: &mut TaxpayerProfile, values: [&str; 1]) {
-        profile.profile_pin_hash = Some(values[0].to_string());
-    }
-
-    /// `tin`'s five stored credentials, in `PROFILE_CREDENTIAL_KEYS` order.
-    fn stored_credentials(db: &Database, tin: &str) -> [Option<String>; 1] {
-        let mut profile = db
-            .get_profile_by_tin(tin)
-            .unwrap()
-            .expect("a stored profile");
-        [profile.profile_pin_hash.take()]
-    }
-
     /// Write a zip archive holding `entries` as (name, contents).
     fn write_archive(path: &Path, entries: &[(&str, String)]) {
         let mut zip = zip::ZipWriter::new(fs::File::create(path).unwrap());
@@ -793,14 +762,10 @@ mod tests {
         zip.finish().unwrap();
     }
 
-    /// A crafted profile archive: `profile` with the five forged credentials
-    /// and the row id `id`.
+    /// A crafted profile archive: `profile` with the row id `id`.
     fn crafted_archive(path: &Path, profile: &TaxpayerProfile, id: i64) {
         let mut record = serde_json::to_value(profile).unwrap();
         record["id"] = serde_json::json!(id);
-        for (key, value) in PROFILE_CREDENTIAL_KEYS.into_iter().zip(FORGED_CREDENTIALS) {
-            record[key] = serde_json::json!(value);
-        }
         let manifest = serde_json::json!({ "export_version": env!("CARGO_PKG_VERSION") });
         write_archive(
             path,
@@ -811,39 +776,14 @@ mod tests {
         );
     }
 
-    /// No forged value is stored where a credential can live: a profile row
-    /// or a taxpayer's PIN and authenticator. A
-    /// failure names the key, never the value.
-    fn assert_no_forged_value(db: &Database) {
-        let column = |sql: &str| -> Vec<String> {
-            let mut statement = db.conn.prepare(sql).unwrap();
-            statement
-                .query_map([], |row| row.get::<_, String>(0))
-                .unwrap()
-                .map(Result::unwrap)
-                .collect()
-        };
-        let stored = [
-            column("SELECT data_json FROM profiles"),
-            column("SELECT COALESCE(pin_hash, '') FROM taxpayers"),
-        ]
-        .concat();
-        for row in &stored {
-            for (key, value) in PROFILE_CREDENTIAL_KEYS.into_iter().zip(FORGED_CREDENTIALS) {
-                assert!(!row.contains(value), "the database stored the forged {key}");
-            }
-        }
-    }
-
-    /// An archive for a TIN this database has: the row keeps its own five
-    /// credentials and its own row id, whether the file names that row's id
-    /// or one that names no row here, and takes the file's other fields.
+    /// An archive for a TIN this database has: the row keeps its own row
+    /// id, whether the file names that row's id or one that names no row
+    /// here, and takes the file's other fields.
     #[test]
-    fn an_import_keeps_the_stored_rows_credentials_and_id() {
+    fn an_import_keeps_the_stored_rows_id() {
         let dir = tempdir().unwrap();
         let db = Database::open_ephemeral().unwrap();
-        let mut stored = branch_profile("Stored Name", TIN_Y);
-        set_credentials(&mut stored, STORED_CREDENTIALS);
+        let stored = branch_profile("Stored Name", TIN_Y);
         let row_id = db.save_profile(stored).unwrap().id.expect("a row id");
 
         for (round, file_id) in [row_id, 4242].into_iter().enumerate() {
@@ -858,40 +798,8 @@ mod tests {
                 imported.full_name, name,
                 "the file's other fields are stored"
             );
-            drop(imported);
-            for ((key, value), expected) in PROFILE_CREDENTIAL_KEYS
-                .into_iter()
-                .zip(stored_credentials(&db, TIN_Y))
-                .zip(STORED_CREDENTIALS)
-            {
-                assert!(
-                    value.as_deref() == Some(expected),
-                    "the import changed the stored {key}"
-                );
-            }
-            assert_no_forged_value(&db);
         }
         assert_eq!(db.list_profiles().unwrap().len(), 1, "no second row");
-    }
-
-    /// An archive for a TIN this database lacks: the new row stores none of
-    /// the file's five credentials, imported once or twice.
-    #[test]
-    fn an_import_for_a_new_tin_stores_no_credential() {
-        let dir = tempdir().unwrap();
-        let db = Database::open_ephemeral().unwrap();
-        let archive = dir.path().join("crafted.zip");
-        crafted_archive(&archive, &branch_profile("New Taxpayer", TIN_X), 4242);
-        for _ in 0..2 {
-            import_profile_data(&db, &archive).unwrap();
-            for (key, value) in PROFILE_CREDENTIAL_KEYS
-                .into_iter()
-                .zip(stored_credentials(&db, TIN_X))
-            {
-                assert!(value.is_none(), "a new profile stored a {key}");
-            }
-            assert_no_forged_value(&db);
-        }
     }
 
     /// The regression test for a data-corruption bug. The file's `id`
@@ -980,10 +888,9 @@ mod tests {
     }
 
     /// Export, then import into a fresh database: every profile field
-    /// matches except the row id, which is the new database's own, and the
-    /// five credentials, which are none.
+    /// matches except the row id, which is the new database's own.
     #[test]
-    fn a_round_trip_keeps_every_profile_field_but_the_id_and_credentials() {
+    fn a_round_trip_keeps_every_profile_field_but_the_id() {
         use crate::profile::{
             ComplianceSourceMode, EoptTier, ExciseTaxCategory, IncomeTaxElection,
             TaxClassification, TaxElectionHistory,
@@ -1021,7 +928,6 @@ mod tests {
         profile.withholds_final = true;
         profile.is_top_withholding_agent = true;
         profile.compliance_source_mode = ComplianceSourceMode::TemporalSuggestion;
-        set_credentials(&mut profile, STORED_CREDENTIALS);
         assert_eq!(source.save_profile(profile).unwrap().id, Some(2));
 
         let archive = dir.path().join("round-trip.zip");
@@ -1029,10 +935,9 @@ mod tests {
         let target = Database::open_ephemeral().unwrap();
         import_profile_data(&target, &archive).unwrap();
 
-        // Records without the credentials, so a failure prints none.
         let comparable = |db: &Database| -> serde_json::Value {
-            let mut profile = db.get_profile_by_tin(TIN_X).unwrap().expect("the profile");
-            let mut record = profile.record_without_credentials().unwrap();
+            let profile = db.get_profile_by_tin(TIN_X).unwrap().expect("the profile");
+            let mut record = serde_json::to_value(&profile).unwrap();
             record.as_object_mut().unwrap().remove("id");
             record
         };
@@ -1043,13 +948,6 @@ mod tests {
         );
         let imported = target.get_profile_by_tin(TIN_X).unwrap().unwrap();
         assert_eq!(imported.id, Some(1), "the import is this database's row");
-        drop(imported);
-        for (key, value) in PROFILE_CREDENTIAL_KEYS
-            .into_iter()
-            .zip(stored_credentials(&target, TIN_X))
-        {
-            assert!(value.is_none(), "the round trip stored a {key}");
-        }
     }
 
     /// The Settings all-profiles backup puts each profile under

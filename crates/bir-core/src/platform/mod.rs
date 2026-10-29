@@ -18,3 +18,8 @@ pub use windows::*;
 mod linux;
 #[cfg(target_os = "linux")]
 pub use linux::*;
+
+#[cfg(any(target_os = "ios", target_os = "android"))]
+mod mobile;
+#[cfg(any(target_os = "ios", target_os = "android"))]
+pub use mobile::*;

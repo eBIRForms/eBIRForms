@@ -372,7 +372,6 @@ mod tests {
             is_top_withholding_agent: false,
             is_government_withholding_entity: false,
             registration_activity_status: Default::default(),
-            profile_pin_hash: None,
         };
         let mut draft = Form2551QDraft::new_from_profile(&profile, 2026, 1);
         draft.tin = "000123453000".to_string();

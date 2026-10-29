@@ -519,7 +519,6 @@ mod tests {
             excise_tax_categories: Vec::new(),
             tax_elections: Vec::new(),
             is_archived: false,
-            profile_pin_hash: None,
             email_tracking_enabled: false,
             test_notification_enabled: false,
             has_employees: false,

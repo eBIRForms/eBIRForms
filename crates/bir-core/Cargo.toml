@@ -22,7 +22,6 @@ regex = { workspace = true }
 urlencoding = { workspace = true }
 chrono = { workspace = true }
 sha2 = { workspace = true }
-zeroize = { workspace = true }
 tokio = { workspace = true }
 rusqlite = { workspace = true }
 thiserror = { workspace = true }
@@ -62,6 +61,19 @@ rusqlite = { workspace = true, features = ["bundled-sqlcipher-vendored-openssl"]
 # db::get_or_create_master_key_keyring falls back to bir_key.txt.
 [target.'cfg(target_os = "linux")'.dependencies]
 keyring = { workspace = true, features = ["sync-secret-service", "crypto-rust"] }
+
+# iOS: the keychain through `keyring` (Security.framework); SQLCipher uses
+# CommonCrypto there, so no OpenSSL is linked.
+[target.'cfg(target_os = "ios")'.dependencies]
+keyring = { workspace = true, features = ["apple-native"] }
+
+# Android: no keyring backend exists, so the master key lives in
+# `bir_key.txt` in the app's private data directory (`db::mod`); `keyring`
+# is here for its error type only and is never called. Android has no
+# system OpenSSL for SQLCipher to link: build one in, as on Windows.
+[target.'cfg(target_os = "android")'.dependencies]
+keyring = { workspace = true }
+rusqlite = { workspace = true, features = ["bundled-sqlcipher-vendored-openssl"] }
 
 [dev-dependencies]
 insta = "1"

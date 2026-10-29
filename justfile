@@ -11,6 +11,18 @@ run:
 dev:
     cd app && ./dev.sh
 
+# Open the app in the iOS simulator (default iPhone 17 Pro; `just ios "iPhone 17e"`)
+ios device="iPhone 17 Pro":
+    cd app && ./ios.sh "{{device}}"
+
+# The iOS simulator with live patching (needs ra-jit and cargo-watch)
+ios-dev device="iPhone 17 Pro":
+    cd app && ./ios-dev.sh "{{device}}"
+
+# Build the APK and run it on the Android emulator (starts one if none runs)
+android:
+    cd app && ./android.sh
+
 # Build the app
 build:
     cd app && RUSTC_WRAPPER= cargo build

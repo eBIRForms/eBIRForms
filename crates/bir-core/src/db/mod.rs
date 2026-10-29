@@ -320,14 +320,6 @@ pub enum DbError {
         .0.display()
     )]
     LiveDatabaseInUse(PathBuf),
-    /// Exporting a profile whose taxpayer has a PIN, without it. The text is
-    /// the refusal a caller surfaces as-is.
-    #[error("This profile's PIN is required to export it.")]
-    PinRequired,
-    /// The PIN given for a profile export is not the taxpayer's. The text is
-    /// the refusal a caller surfaces as-is.
-    #[error("Wrong PIN.")]
-    PinMismatch,
 }
 
 // =========================================================================
@@ -679,7 +671,13 @@ impl Database {
             #[cfg(target_os = "macos")]
             return Self::get_or_create_master_key_macos();
 
-            #[cfg(not(target_os = "macos"))]
+            // Android has no keyring backend (keyring's mock would hand back
+            // a key that dies with the process): the key file in the app's
+            // private data directory, which only this app can read.
+            #[cfg(target_os = "android")]
+            return Self::get_or_create_master_key_file_fallback();
+
+            #[cfg(not(any(target_os = "macos", target_os = "android")))]
             return Self::get_or_create_master_key_keyring();
         }
     }
@@ -708,7 +706,12 @@ impl Database {
             #[cfg(target_os = "macos")]
             return Self::get_existing_master_key_macos();
 
-            #[cfg(not(target_os = "macos"))]
+            #[cfg(target_os = "android")]
+            return Self::read_fallback_key_file().ok_or_else(|| {
+                DbError::Other("Existing SQLCipher master key was not available: no bir_key.txt".into())
+            });
+
+            #[cfg(not(any(target_os = "macos", target_os = "android")))]
             return Self::get_existing_master_key_keyring();
         }
     }
@@ -726,7 +729,7 @@ impl Database {
         .map_err(DbError::KeychainCli)
     }
 
-    #[cfg(all(not(target_os = "macos"), not(test)))]
+    #[cfg(all(not(any(target_os = "macos", target_os = "android")), not(test)))]
     fn get_existing_master_key_keyring() -> Result<String, DbError> {
         let keyring_error = match keyring::Entry::new("com.ebir.rust", "sqlcipher_master_key") {
             Ok(entry) => match entry.get_password() {
@@ -788,7 +791,7 @@ impl Database {
     /// database was encrypted with. On a headless Linux box with no Secret
     /// Service on D-Bus, `get_password` fails with `PlatformFailure`, which
     /// routes to the file fallback instead of refusing to start.
-    #[cfg(not(target_os = "macos"))]
+    #[cfg(not(any(target_os = "macos", target_os = "android")))]
     fn get_or_create_master_key_keyring() -> Result<String, DbError> {
         use keyring::Entry;
         use tracing::info;
@@ -1424,7 +1427,7 @@ mod keychain_miss_tests {
 }
 
 /// Outcome of reading the SQLCipher master key from the OS credential store.
-#[cfg(not(target_os = "macos"))]
+#[cfg(not(any(target_os = "macos", target_os = "android")))]
 #[derive(Debug, PartialEq, Eq)]
 enum KeyringRead {
     Found(String),
@@ -1433,7 +1436,7 @@ enum KeyringRead {
     Refuse(String),
 }
 
-#[cfg(not(target_os = "macos"))]
+#[cfg(not(any(target_os = "macos", target_os = "android")))]
 fn classify_keyring_read(result: Result<String, keyring::Error>) -> KeyringRead {
     match result {
         Ok(hex_key) => KeyringRead::Found(hex_key),
@@ -1588,7 +1591,6 @@ mod tests {
             is_top_withholding_agent: false,
             is_government_withholding_entity: false,
             registration_activity_status: Default::default(),
-            profile_pin_hash: None,
         };
 
         db.save_profile(profile).expect("Failed to save profile");

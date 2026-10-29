@@ -1,0 +1,21 @@
+[package]
+name = "buwiz-android"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+publish = false
+
+# The app's `libnsh.so`: nsh's Android runtime with the app's root, which
+# `com.longbridge.nsh.AppActivity` runs. No JS runtime is linked.
+[lib]
+name = "buwiz_android"
+path = "lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+buwiz = { path = ".." }
+nsh-core = { path = "../../nsh/crates/nsh-core" }
+nsh-base = { path = "../../nsh/crates/nsh-base" }
+
+[target.'cfg(target_os = "android")'.dependencies]
+nsh-platform-android = { path = "../../nsh/crates/nsh-platform-android", default-features = false }

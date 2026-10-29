@@ -6,8 +6,11 @@ license = "MIT"
 publish = false
 
 # Its own workspace, as in rox: `cargo ra-jit` builds and patches this
-# crate from `app/`.
+# crate from `app/`. `android` is the Android library (`libnsh.so`), built
+# only by `android.sh`; a plain `cargo build` here builds the app.
 [workspace]
+members = [".", "android"]
+default-members = ["."]
 
 [dependencies]
 bir-app-core = { path = "../crates/bir-app-core" }
@@ -16,10 +19,24 @@ nsh-base = { path = "../nsh/crates/nsh-base" }
 nsh-engine = { path = "../nsh/crates/nsh-engine" }
 ra-jit-live = { path = "../blaze/crates/ra-jit-live" }
 env_logger = "0.11"
+# Today and yesterday for the date chips (already in the lock through bir-core).
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
 log = "0.4"
 
 [target.'cfg(target_os = "macos")'.dependencies]
 nsh-platform-macos = { path = "../nsh/crates/nsh-platform-macos", default-features = false }
+
+# iOS (the simulator): nsh's UIKit backend and its release runner, with no
+# JS runtime. `ios.sh` builds the `buwiz` binary for
+# aarch64-apple-ios-sim and packs it as an app.
+[target.'cfg(target_os = "ios")'.dependencies]
+nsh-platform-ios = { path = "../nsh/crates/nsh-platform-ios", default-features = false }
+nsh-ios-app = { path = "../nsh/crates/nsh-ios-app", default-features = false }
+
+[features]
+# Scripted UI checks: nsh's gpui-agent control plane (local, token-guarded,
+# and only when `GPUI_AGENT=1` is set at launch). Off in normal builds.
+agent = ["nsh-platform-macos/gpui-agent"]
 
 [lib]
 name = "buwiz"

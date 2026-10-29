@@ -4484,12 +4484,23 @@ fn screen_form_fill(arguments: &HostArguments) -> HostResult {
         .ok_or_else(|| host_error("edits must be an object of key -> value"))?;
     let editable = agent::identity(kind, &draft).map_err(host_error)?.status == FilingStatus::Draft;
     let edits: Map<String, Value> = edits.iter().map(|(k, v)| (k.clone(), to_json(v))).collect();
-    let unlocked = unlocked_argument(arguments, 3);
+    let mut unlocked = unlocked_argument(arguments, 3);
+    // A profile box the profile leaves blank is the filer's to fill on the
+    // return, as the open shows it (unlocked, empty): its edit is kept, and
+    // reported in `profile_blank` so the app can write it back to the
+    // profile. A profile box with a value stays refused.
+    let profile_blank = if editable && sample.is_none() { blank_profile_edits(kind, &draft, &edits, &unlocked) } else { BTreeSet::new() };
+    unlocked.extend(profile_blank.iter().cloned());
     // A sample's period is set with `screen_form_sample_period`, never by a
     // fill: every writer here keeps the period locked.
     let before = draft.clone();
     let signature = penalty_signature(kind, &draft);
     let rejected = apply_screen_edits(kind, &mut draft, &edits, editable, &unlocked)?;
+    let profile_blank: Vec<String> = profile_blank
+        .into_iter()
+        .filter(|key| !rejected.contains_key(key))
+        .filter(|key| edits.get(key).and_then(Value::as_str).is_some_and(|v| !v.trim().is_empty()))
+        .collect();
     if editable {
         // An added 2550Q row needs a stable row ID before it is saved; the
         // same step opening a draft runs.
@@ -4556,6 +4567,7 @@ fn screen_form_fill(arguments: &HostArguments) -> HostResult {
         "values": values,
         "options": options,
         "rejected": rejected,
+        "profile_blank": profile_blank,
         "penalties": penalty_groups,
         "pools": pool_texts,
         "blank": sample.as_ref().map(|mark| mark.blank.clone()),
@@ -4572,6 +4584,40 @@ fn screen_form_fill(arguments: &HostArguments) -> HostResult {
 /// Apply the page's edits to `draft` the one way both the draft fill and the
 /// live print preview use, so the preview never prints a different answer
 /// than the page shows. Returns the rejected keys with their reasons.
+/// The profile boxes among `edits` (not already `unlocked`) that the
+/// taxpayer's stored profile leaves blank: the return's profile values are
+/// read fresh, as "Use profile values" reads them.
+fn blank_profile_edits(kind: AgentFormKind, draft: &Value, edits: &Map<String, Value>, unlocked: &BTreeSet<String>) -> BTreeSet<String> {
+    let def = kind.definition();
+    let wanted: Vec<&String> = edits
+        .keys()
+        .filter(|key| !unlocked.contains(*key))
+        .filter(|key| def.box_def(key).is_some_and(|entry| agent::is_profile_box(&def, entry)))
+        .collect();
+    if wanted.is_empty() {
+        return BTreeSet::new();
+    }
+    let Ok(identity) = agent::identity(kind, draft) else { return BTreeSet::new() };
+    let profile = with_database(|db| {
+        let profile = db
+            .get_profile_by_tin(&identity.tin)
+            .map_err(|error| host_error(error.to_string()))?
+            .ok_or_else(|| host_error(format!("no taxpayer profile with TIN {}", identity.tin)))?;
+        // The profile's boxes do not depend on the period.
+        load_draft(db, kind, &profile, identity.taxable_year, 1, true, None).map_err(host_error)
+    });
+    let Ok(mut from_profile) = profile else { return BTreeSet::new() };
+    if agent::compute(kind, &mut from_profile).is_err() {
+        return BTreeSet::new();
+    }
+    let Ok(values) = values_json(kind, &from_profile) else { return BTreeSet::new() };
+    wanted
+        .into_iter()
+        .filter(|key| values.get(key.as_str()).and_then(Value::as_str).is_none_or(|v| v.trim().is_empty()))
+        .cloned()
+        .collect()
+}
+
 /// `unlocked`: profile boxes the page has open, opened with Edit or left
 /// blank by the profile (a radio by its own key or its item's group box);
 /// their edits stay on this return.

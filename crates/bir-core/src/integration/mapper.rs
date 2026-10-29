@@ -367,7 +367,6 @@ mod tests {
             business_start_date: NaiveDate::from_ymd_opt(2020, 1, 1),
             birth_date: None,
             is_archived: false,
-            profile_pin_hash: None,
             email_tracking_enabled: false,
             test_notification_enabled: false,
             profile_versions: vec![],

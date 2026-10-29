@@ -5,7 +5,7 @@ use std::path::{Path, PathBuf};
 use zip::write::SimpleFileOptions;
 
 /// Write `tin`'s profile archive. Like every profile archive it carries no
-/// credential and no profile row id (see `write_profile_to_zip`).
+/// profile row id (see `write_profile_to_zip`).
 pub fn export_profile_data(db: &Database, tin: &str, export_file: &Path) -> Result<(), DbError> {
     write_profile_zip(db, tin, export_file)
 }
@@ -33,7 +33,7 @@ fn write_profile_zip(db: &Database, tin: &str, export_file: &Path) -> Result<(),
 }
 
 /// Write every profile's archive under `Profiles/<tin>/`, each without
-/// credentials or row ids, as [`export_profile_data`] writes one.
+/// row ids, as [`export_profile_data`] writes one.
 pub fn export_all_profiles_data(db: &Database, export_file: &Path) -> Result<(), DbError> {
     let file = fs::File::create(export_file)?;
     let mut zip = zip::ZipWriter::new(file);
@@ -53,8 +53,7 @@ pub fn export_all_profiles_data(db: &Database, export_file: &Path) -> Result<(),
 
 /// One profile's archive entries under `base_dir`.
 ///
-/// A profile export carries no credentials: profile.json has none of the
-/// five credential keys. Nor does it carry the profile's row id, which
+/// A profile export does not carry the profile's row id, which
 /// names a row in this database and means nothing
 /// in another. The full database backup ([`export_database_zip`]) is a
 /// whole-database copy by design and keeps everything.
@@ -73,9 +72,9 @@ fn write_profile_to_zip<W: Write + std::io::Seek>(
     zip.start_file(format!("{}manifest.json", base_dir), options)?;
     zip.write_all(serde_json::to_string_pretty(&manifest)?.as_bytes())?;
 
-    // 1. Profile JSON, without the credentials and the row id
-    if let Some(mut profile) = db.get_profile_by_tin(tin)? {
-        let mut record = profile.record_without_credentials()?;
+    // 1. Profile JSON, without the row id
+    if let Some(profile) = db.get_profile_by_tin(tin)? {
+        let mut record = serde_json::to_value(&profile)?;
         if let Some(fields) = record.as_object_mut() {
             fields.remove("id");
         }
@@ -306,15 +305,11 @@ mod tests {
         assert_eq!(value, "preserved");
     }
 
-    // ---------- a profile export carries no credential and no row id ----------
+    // ---------- a profile export carries no row id ----------
 
-    use crate::profile::{PROFILE_CREDENTIAL_KEYS, TaxpayerProfile};
+    use crate::profile::TaxpayerProfile;
 
     const TIN: &str = "12345678800000";
-
-    /// Distinctive values stored on the profile, in `PROFILE_CREDENTIAL_KEYS`
-    /// order.
-    const PROFILE_SECRETS: [&str; 1] = ["export-pin-hash-H6N3"];
 
     /// Every entry of the archive at `path`, as (name, contents).
     fn archive_entries(path: &Path) -> Vec<(String, Vec<u8>)> {
@@ -329,13 +324,7 @@ mod tests {
             .collect()
     }
 
-    fn contains(haystack: &[u8], needle: &str) -> bool {
-        haystack
-            .windows(needle.len())
-            .any(|window| window == needle.as_bytes())
-    }
-
-    /// `TIN`'s profile as the export tests write it: credentials unset.
+    /// `TIN`'s profile as the export tests write it.
     fn export_sample() -> TaxpayerProfile {
         serde_json::from_value(serde_json::json!({
             "id": null,
@@ -352,16 +341,12 @@ mod tests {
         .unwrap()
     }
 
-    /// Both profile exports write profile.json without the five credential
-    /// keys and without `id`, and no stored secret in any entry's name or
-    /// bytes. A failure names the entry and the key, never a value.
+    /// Both profile exports write profile.json without `id`.
     #[test]
-    fn a_profile_export_carries_no_credential_and_no_row_id() {
+    fn a_profile_export_carries_no_row_id() {
         let directory = tempfile::tempdir().unwrap();
         let db = Database::open_ephemeral().unwrap();
-        let mut profile = export_sample();
-        profile.profile_pin_hash = Some(PROFILE_SECRETS[0].to_string());
-        db.save_profile(profile).unwrap();
+        db.save_profile(export_sample()).unwrap();
 
         let single = directory.path().join("profile.zip");
         export_profile_data(&db, TIN, &single).unwrap();
@@ -370,14 +355,6 @@ mod tests {
 
         for (archive, base) in [(single, String::new()), (all, format!("Profiles/{TIN}/"))] {
             let entries = archive_entries(&archive);
-            for (name, contents) in &entries {
-                for (key, secret) in PROFILE_CREDENTIAL_KEYS.into_iter().zip(PROFILE_SECRETS) {
-                    assert!(
-                        !name.contains(secret) && !contains(contents, secret),
-                        "{name} carries the stored {key}"
-                    );
-                }
-            }
             let entry = |file: &str| -> serde_json::Value {
                 let name = format!("{base}{file}");
                 let (_, contents) = entries
@@ -387,12 +364,7 @@ mod tests {
                 serde_json::from_slice(contents).unwrap()
             };
             let profile = entry("profile.json");
-            for key in PROFILE_CREDENTIAL_KEYS.into_iter().chain(["id"]) {
-                assert!(
-                    profile.get(key).is_none(),
-                    "{base}profile.json has the {key} key"
-                );
-            }
+            assert!(profile.get("id").is_none(), "{base}profile.json has the id key");
             assert_eq!(profile["full_name"], "Export Sample Corp");
             assert!(
                 !entries

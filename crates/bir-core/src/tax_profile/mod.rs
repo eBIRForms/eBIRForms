@@ -76,13 +76,6 @@ pub fn reject_reserved_tin_root(root: &str) -> Result<(), TaxProfileError> {
     }
 }
 
-/// A taxpayer's PIN hash: one per taxpayer (TIN root), shared by every
-/// branch. (The authenticator secret went with D18.)
-#[derive(Debug, Clone, Default, PartialEq, Eq)]
-pub struct TaxpayerCredentials {
-    pub pin_hash: Option<String>,
-}
-
 /// A 9-digit TIN root, or an error naming the bad input.
 pub fn parse_tin_root(raw: &str) -> Result<String, TaxProfileError> {
     let root: String = raw.chars().filter(|ch| !matches!(ch, '-' | ' ')).collect();

@@ -2629,7 +2629,6 @@ mod tests {
             atc_codes: vec![],
             excise_tax_categories: vec![],
             tax_elections: vec![],
-            profile_pin_hash: None,
             has_employees: false,
             is_dormant: false,
             has_single_employer: false,

@@ -453,10 +453,6 @@ pub struct TaxpayerProfile {
     #[serde(default)]
     pub is_archived: bool,
 
-    /// Profile specific 4-digit PIN hash
-    #[serde(default)]
-    pub profile_pin_hash: Option<String>,
-
     // Email Tracking Settings
     /// Master toggle — whether automatic BIR receipt checking is enabled.
     #[serde(default)]
@@ -1221,95 +1217,6 @@ impl TaxProfileVersion {
     }
 }
 
-/// The serialized keys of a profile's credentials, in the order
-/// [`ProfileCredentials`] holds them: the PIN hash. (The authenticator
-/// secret and the inbox password and tokens went with D18.)
-///
-/// Each is host state with a writer of its own. A profile record that
-/// leaves the host has none of these keys: the shell's page reads profiles
-/// without them, and a profile export writes none of them. A profile import
-/// never stores the file's.
-pub const PROFILE_CREDENTIAL_KEYS: [&str; 1] = ["profile_pin_hash"];
-
-/// A profile's credentials while they are out of it, in
-/// [`PROFILE_CREDENTIAL_KEYS`] order.
-///
-/// They are moved, never copied: [`TaxpayerProfile::take_credentials`]
-/// moves them out and [`TaxpayerProfile::put_credentials`] moves them into
-/// a profile, so whichever profile ends up holding them has the only copy
-/// and wipes it when it drops. A value still held here is wiped when this
-/// drops. There is no `Clone` or `Debug`, so no copy or log line can carry
-/// one.
-#[derive(Default)]
-pub struct ProfileCredentials([Option<String>; 1]);
-
-impl Drop for ProfileCredentials {
-    fn drop(&mut self) {
-        wipe(&mut self.0);
-    }
-}
-
-/// Overwrite every credential in `values`, in place.
-fn wipe<'a>(values: impl IntoIterator<Item = &'a mut Option<String>>) {
-    use zeroize::Zeroize;
-    for value in values.into_iter().flatten() {
-        value.zeroize();
-    }
-}
-
-impl TaxpayerProfile {
-    /// The profile's credentials, in [`PROFILE_CREDENTIAL_KEYS`] order.
-    /// Taking, putting and wiping all go through this one list.
-    fn credential_fields(&mut self) -> [&mut Option<String>; 1] {
-        [&mut self.profile_pin_hash]
-    }
-
-    /// Move the profile's credentials out, leaving it none.
-    pub fn take_credentials(&mut self) -> ProfileCredentials {
-        ProfileCredentials(self.credential_fields().map(Option::take))
-    }
-
-    /// Move `credentials` in, in place of the profile's own, which are
-    /// wiped. Putting [`ProfileCredentials::default`] clears them.
-    pub fn put_credentials(&mut self, mut credentials: ProfileCredentials) {
-        for (field, value) in self.credential_fields().into_iter().zip(&mut credentials.0) {
-            std::mem::swap(field, value);
-        }
-        // `credentials` now holds the replaced values and wipes them as it
-        // drops.
-    }
-
-    /// The profile as a JSON record without the credential keys (removed,
-    /// not written as null). The values are out of the profile while the
-    /// record is built, so none can leave even under a key
-    /// [`PROFILE_CREDENTIAL_KEYS`] does not name, and back in before this
-    /// returns.
-    pub fn record_without_credentials(&mut self) -> serde_json::Result<serde_json::Value> {
-        let credentials = self.take_credentials();
-        let record = serde_json::to_value(&*self);
-        self.put_credentials(credentials);
-        let mut record = record?;
-        if let Some(fields) = record.as_object_mut() {
-            for key in PROFILE_CREDENTIAL_KEYS {
-                fields.remove(key);
-            }
-        }
-        Ok(record)
-    }
-
-    /// Overwrite every credential the profile holds, in place. `Drop` runs
-    /// this.
-    fn wipe_credentials(&mut self) {
-        wipe(self.credential_fields());
-    }
-}
-
-impl Drop for TaxpayerProfile {
-    fn drop(&mut self) {
-        self.wipe_credentials();
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -1341,39 +1248,6 @@ mod tests {
         assert_eq!(profile.tracking_mailbox(), Some("flat@example.com"));
         profile.email = "  ".into();
         assert_eq!(profile.tracking_mailbox(), None);
-    }
-
-    /// The wipe `Drop` runs overwrites the PIN hash.
-    #[test]
-    fn the_drop_wipe_covers_every_credential() {
-        let mut profile = test_profile();
-        profile.profile_pin_hash = Some("wipe-pin-hash-H6N3".into());
-        profile.wipe_credentials();
-        assert!(
-            profile.profile_pin_hash.as_deref() == Some(""),
-            "profile_pin_hash was not wiped"
-        );
-    }
-
-    /// `record_without_credentials` leaves out the PIN hash key and value;
-    /// `take_credentials` leaves none behind and `put_credentials` moves it.
-    #[test]
-    fn the_credential_helpers_move_the_named_fields() {
-        let mut profile = test_profile();
-        profile.profile_pin_hash = Some("keys-pin-hash-H6N3".into());
-        let without = profile.record_without_credentials().unwrap();
-        assert!(without.get("profile_pin_hash").is_none());
-        assert!(!without.to_string().contains("keys-pin-hash-H6N3"));
-        let taken = profile.take_credentials();
-        assert!(profile.profile_pin_hash.is_none());
-        let mut other = test_profile();
-        other.put_credentials(taken);
-        assert_eq!(
-            other.profile_pin_hash.as_deref(),
-            Some("keys-pin-hash-H6N3")
-        );
-        other.put_credentials(ProfileCredentials::default());
-        assert!(other.profile_pin_hash.is_none());
     }
 
     fn confirmed_version(

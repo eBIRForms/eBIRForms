@@ -151,84 +151,26 @@ fn get_profile_by_tin(
         .ok_or_else(|| HostError::new(format!("no taxpayer profile with TIN {tin}")))
 }
 
-/// A profile as the page receives it: the record without the credential
-/// keys (removed, not sent as null), built by bir-core's
-/// `TaxpayerProfile::record_without_credentials`, which keeps the values out
-/// of the profile while the record is built.
-///
-/// A profile's five credentials (bir-core's `PROFILE_CREDENTIAL_KEYS`) are
-/// host state: the page can neither read them nor set or clear them through
-/// the profile verbs. Each keeps its own host writer instead: the inbox
-/// verbs (`set_inbox_app_password`, the Google grant's persist and
-/// disconnect) for the app password and the tokens; the authenticator verbs
-/// (`set_taxpayer_totp`, `set_profile_totp`, `set_admin_totp`) for a TOTP
-/// secret; and the PIN verbs (`set_taxpayer_pin`, `set_profile_pin`,
-/// `set_admin_pin`, `setup_helpdesk`, `change_to_helpdesk`) for a PIN. The
-/// authenticator and PIN verbs store theirs on the taxpayer (the help desk
-/// admin's in settings), never on a profile. A TOTP secret or PIN hash still
-/// on a profile row moves onto its taxpayer at the next launch when the
-/// taxpayer has none (bir-core's `migrate_v22_taxpayer_credentials`), so one
-/// the page could set would become the taxpayer's.
-fn redacted_profile(mut profile: bir_core::profile::TaxpayerProfile) -> HostResult {
-    profile
-        .record_without_credentials()
-        .map(json)
-        .map_err(db_error)
+/// A profile as the page receives it.
+fn profile_record(profile: bir_core::profile::TaxpayerProfile) -> HostResult {
+    serde_json::to_value(&profile).map(json).map_err(db_error)
 }
 
-/// `save_profile` never stores a client's credentials, as
-/// [`keep_stored_trigger_flag`] never stores a client's trigger fields: all
-/// five are taken from the stored row the save writes, or cleared when there
-/// is none. So a page round trip of a redacted profile keeps a stored
-/// password or PIN hash, and no TOTP secret or PIN hash from the page
-/// reaches a row the next launch would move onto the taxpayer. The row is
-/// found the way [`Database::save_profile`] finds it: the one with the
-/// client's `id` (a TIN change re-keys that row), else the one with the
-/// client's TIN.
-fn keep_stored_credentials(
-    db: &Database,
-    profile: &mut bir_core::profile::TaxpayerProfile,
-) -> Result<(), HostError> {
-    let by_tin = db
-        .get_profile_by_tin(&profile.tin.full())
-        .map_err(db_error)?;
-    let mut stored = match profile.id {
-        // bir-core looks rows up by TIN only, so the list is read just when
-        // the id is not the row with this TIN (a TIN change).
-        Some(id) if !by_tin.as_ref().is_some_and(|row| row.id == Some(id)) => db
-            .list_profiles()
-            .map_err(db_error)?
-            .into_iter()
-            .find(|row| row.id == Some(id))
-            .or(by_tin),
-        _ => by_tin,
-    };
-    let credentials = stored
-        .as_mut()
-        .map(bir_core::profile::TaxpayerProfile::take_credentials)
-        .unwrap_or_default();
-    profile.put_credentials(credentials);
-    Ok(())
-}
-
-/// The stored profile for `tin`, without its credentials.
+/// The stored profile for `tin`.
 fn profile_detail(arguments: &HostArguments) -> HostResult {
     let tin = arguments.string(0)?;
-    with_database(|db| redacted_profile(get_profile_by_tin(db, tin)?))
+    with_database(|db| profile_record(get_profile_by_tin(db, tin)?))
 }
 
-/// Save the page's profile. Its credentials are settled from the stored row
-/// ([`keep_stored_credentials`]); the answer is the saved profile without
-/// them.
+/// Save the page's profile; the answer is the saved profile.
 fn save_profile(arguments: &HostArguments) -> HostResult {
-    let mut profile: bir_core::profile::TaxpayerProfile =
+    let profile: bir_core::profile::TaxpayerProfile =
         serde_json::from_value(to_json(arguments.value(0)?))
             .map_err(|error| HostError::new(format!("profile payload: {error}")))?;
     with_database(|db| {
-        keep_stored_credentials(db, &mut profile)?;
         db.save_profile(profile)
             .map_err(|error| HostError::new(error.to_string()))
-            .and_then(redacted_profile)
+            .and_then(profile_record)
     })
 }
 
@@ -240,7 +182,7 @@ fn set_profile_archived(arguments: &HostArguments) -> HostResult {
         profile.is_archived = archived;
         db.save_profile(profile)
             .map_err(|error| HostError::new(error.to_string()))
-            .and_then(redacted_profile)
+            .and_then(profile_record)
     })
 }
 

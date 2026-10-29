@@ -50,17 +50,46 @@ const POLL: Duration = Duration::from_millis(25);
 /// remounts. `store()` anchors the model while that owner is current, so
 /// its signals live as long as the app.
 pub(crate) fn init() {
+    // A new engine (Android remakes its activity, and with it the engine,
+    // on some configuration changes) gets a new store: the old one's
+    // signals belong to the engine that is gone. A patch remount never
+    // comes here, so it keeps the store.
+    let slot = store_slot();
+    slot.set(Box::leak(Box::new(Store::new())) as *const Store as usize);
     store().load_catalog();
+    store().open_database();
 }
 
-/// The one model the whole process has — every patch generation reads and
-/// writes the same signals, so the open return survives remounts, not
-/// just values.
-pub(crate) fn store() -> &'static Store {
-    let at = ra_jit_live::anchor("buwiz.store", || {
-        Box::leak(Box::new(Store::new())) as *const Store as usize
+/// Where the current store's address is kept: anchored, so every patch
+/// generation reads the same slot.
+fn store_slot() -> &'static std::cell::Cell<usize> {
+    let at = ra_jit_live::anchor("buwiz.store.slot", || {
+        Box::leak(Box::new(std::cell::Cell::new(0usize))) as *const std::cell::Cell<usize> as usize
     });
+    // SAFETY: the anchor holds the address of a leaked `Cell<usize>`, made
+    // once and never freed; only the engine thread touches it.
+    unsafe { &*(at as *const std::cell::Cell<usize>) }
+}
+
+/// The one model the engine has — every patch generation reads and writes
+/// the same signals, so the open return survives remounts, not just
+/// values.
+pub(crate) fn store() -> &'static Store {
+    let at = store_slot().get();
+    assert!(at != 0, "live::init makes the store before anything reads it");
+    // SAFETY: `init` stores the address of a leaked `Store`, never freed.
     unsafe { &*(at as *const Store) }
+}
+
+/// The opened database, kept for the whole process: a new engine (and
+/// store) takes it over instead of opening the file again, which the
+/// owner lock of the first opening would refuse.
+pub(crate) fn database() -> &'static std::sync::Mutex<Option<std::sync::Arc<bir_app_core::BirApp>>> {
+    let at = ra_jit_live::anchor("buwiz.database", || {
+        Box::leak(Box::new(std::sync::Mutex::new(None::<std::sync::Arc<bir_app_core::BirApp>>))) as *const _ as usize
+    });
+    // SAFETY: the anchor holds the address of a leaked mutex, made once.
+    unsafe { &*(at as *const std::sync::Mutex<Option<std::sync::Arc<bir_app_core::BirApp>>>) }
 }
 
 thread_local! {

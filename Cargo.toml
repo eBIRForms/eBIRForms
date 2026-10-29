@@ -33,7 +33,6 @@ regex = "1"
 urlencoding = "2.1"
 chrono = { version = "0.4", features = ["serde"] }
 sha2 = "0.10"
-zeroize = { version = "1", features = ["derive"] }
 tokio = { version = "1", features = ["full"] }
 rusqlite = { version = "0.32", features = ["bundled-sqlcipher"] }
 thiserror = "2"

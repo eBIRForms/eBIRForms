@@ -9,9 +9,12 @@ mod app;
 mod bir_module;
 mod dashboard_module;
 mod database;
+pub mod display;
 pub mod host;
+mod schema;
 mod screen_form_module;
 mod tax_profile_module;
 
 pub use app::*;
+pub use schema::*;
 pub use {bir_core, bir_print, bir_submit};

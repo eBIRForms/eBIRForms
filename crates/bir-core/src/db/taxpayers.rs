@@ -29,7 +29,7 @@ use crate::tax_profile::{
     is_head_office_code, normalize_branch_code, parse_tin_root, resolve_facts,
     validate_template_fields,
 };
-use crate::tax_profile::{TaxpayerCredentials, reject_reserved_tin_root};
+use crate::tax_profile::reject_reserved_tin_root;
 
 type Result<T> = std::result::Result<T, TaxProfileError>;
 
@@ -1026,56 +1026,6 @@ impl Database {
         load_taxpayer(&self.conn, &root)?.ok_or_else(|| TaxProfileError::NotFound(root))
     }
 
-    /// The taxpayer's PIN hash (one per TIN root, shared by every branch).
-    pub fn taxpayer_credentials(&self, tin_root: &str) -> Result<TaxpayerCredentials> {
-        let root = parse_tin_root(tin_root)?;
-        self.conn
-            .query_row(
-                "SELECT pin_hash FROM taxpayers WHERE tin_root = ?1",
-                [&root],
-                |row| {
-                    Ok(TaxpayerCredentials {
-                        pin_hash: row.get(0)?,
-                    })
-                },
-            )
-            .optional()?
-            .ok_or_else(|| {
-                TaxProfileError::NotFound(format!(
-                    "No taxpayer with TIN {}",
-                    format_tin_root(&root)
-                ))
-            })
-    }
-
-    /// Set (`Some`) or clear (`None`) the taxpayer's PIN hash.
-    pub fn set_taxpayer_pin_hash(&self, tin_root: &str, pin_hash: Option<&str>) -> Result<()> {
-        self.set_taxpayer_credential(tin_root, "pin_hash", pin_hash)
-    }
-
-    fn set_taxpayer_credential(
-        &self,
-        tin_root: &str,
-        column: &'static str,
-        value: Option<&str>,
-    ) -> Result<()> {
-        let root = parse_tin_root(tin_root)?;
-        let updated = self.conn.execute(
-            &format!(
-                "UPDATE taxpayers SET {column} = ?2, updated_at = datetime('now')
-                 WHERE tin_root = ?1"
-            ),
-            params![root, value],
-        )?;
-        if updated == 0 {
-            return Err(TaxProfileError::NotFound(format!(
-                "No taxpayer with TIN {}",
-                format_tin_root(&root)
-            )));
-        }
-        Ok(())
-    }
-
     /// Archive or unarchive a taxpayer: the `is_archived` flag of every
     /// branch profile. Only that key of `data_json` is edited.
     pub fn set_taxpayer_archived(&self, tin_root: &str, archived: bool) -> Result<()> {
@@ -1971,27 +1921,6 @@ mod tests {
             "TIN 000-000-000 is reserved for the help desk admin."
         );
         assert!(db.get_taxpayer(ROOT).unwrap().is_some());
-    }
-
-    #[test]
-    fn credentials_are_stored_once_on_the_taxpayer_and_follow_a_tin_move() {
-        let db = db_with_taxpayer(TaxpayerType::Individual);
-        add_branch(&db, "00001", &[]);
-        assert_eq!(
-            db.taxpayer_credentials(ROOT).unwrap(),
-            TaxpayerCredentials::default()
-        );
-        db.set_taxpayer_pin_hash(ROOT, Some("hash")).unwrap();
-        for branch in db.get_taxpayer(ROOT).unwrap().unwrap().branches {
-            let profile = db.get_profile(&branch.tin).unwrap().unwrap();
-            assert_eq!(profile.profile_pin_hash, None);
-        }
-        db.move_taxpayer_tin(ROOT, "987654321").unwrap();
-        let moved = db.taxpayer_credentials("987654321").unwrap();
-        assert_eq!(moved.pin_hash.as_deref(), Some("hash"));
-        db.set_taxpayer_pin_hash("987654321", None).unwrap();
-        assert_eq!(db.taxpayer_credentials("987654321").unwrap().pin_hash, None);
-        assert!(db.set_taxpayer_pin_hash(ROOT, Some("x")).is_err());
     }
 
     #[test]

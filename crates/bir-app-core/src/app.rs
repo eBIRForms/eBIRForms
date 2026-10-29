@@ -92,6 +92,18 @@ pub struct PenaltyParty {
     pub applies: bool,
 }
 
+impl PenaltyParty {
+    /// Surcharge + interest + compromise, from the return's values, as
+    /// decimal text (`1,234.50`).
+    pub fn total(&self, values: &BTreeMap<String, String>) -> String {
+        crate::display::sum_amounts(
+            self.keys
+                .iter()
+                .map(|key| values.get(key).map_or("", String::as_str)),
+        )
+    }
+}
+
 /// A choice of a drop-down box.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FieldOption {
@@ -126,8 +138,28 @@ pub struct OpenedReturn {
     pub penalties: Vec<PenaltyParty>,
     #[serde(default)]
     pub errors: Vec<FieldError>,
-    /// Everything else the old page read (`blank`, `needs`, `whys`, `off`,
-    /// `notes`, ...), untyped for now.
+    /// Boxes switched off by another answer, key -> what they need
+    /// (`Needs Civil Status = Married`).
+    #[serde(default)]
+    pub off: BTreeMap<String, String>,
+    /// Why a locked box cannot be typed into, in the filer's words.
+    #[serde(default)]
+    pub lock_notes: BTreeMap<String, String>,
+    /// Why a box stays blank (`whys`), or what it waits for (`waits`).
+    #[serde(default)]
+    pub whys: BTreeMap<String, String>,
+    #[serde(default)]
+    pub waits: BTreeMap<String, String>,
+    /// Boxes filled from the tax profile.
+    #[serde(default)]
+    pub profile: Vec<String>,
+    /// A pooled text (an address spread over boxes), first key -> text.
+    #[serde(default)]
+    pub pools: BTreeMap<String, String>,
+    #[serde(default)]
+    pub submitted_at: Option<String>,
+    /// Everything else the old page read (`blank`, `needs`, `notes`, ...),
+    /// untyped for now.
     #[serde(flatten)]
     pub extra: Map<String, Value>,
 }
@@ -142,8 +174,19 @@ pub struct FilledReturn {
     /// Edits the form refused, key -> why.
     #[serde(default)]
     pub rejected: BTreeMap<String, String>,
+    /// Profile boxes the profile leaves blank that this edit filled on the
+    /// return: the app may write them back to the taxpayer profile.
+    #[serde(default)]
+    pub profile_blank: Vec<String>,
     #[serde(default)]
     pub penalties: Vec<PenaltyParty>,
+    #[serde(default)]
+    pub pools: BTreeMap<String, String>,
+    /// Boxes this edit locked (`Some(why)`) or opened (`None`).
+    #[serde(default)]
+    pub relocks: BTreeMap<String, Option<String>>,
+    #[serde(default)]
+    pub relock_notes: BTreeMap<String, Option<String>>,
     #[serde(flatten)]
     pub extra: Map<String, Value>,
 }
@@ -158,7 +201,11 @@ pub struct ValidatedReturn {
     #[serde(default)]
     pub off: BTreeMap<String, String>,
     #[serde(default)]
+    pub options: BTreeMap<String, Vec<FieldOption>>,
+    #[serde(default)]
     pub penalties: Vec<PenaltyParty>,
+    #[serde(default)]
+    pub pools: BTreeMap<String, String>,
     #[serde(flatten)]
     pub extra: Map<String, Value>,
 }
@@ -371,6 +418,16 @@ pub struct TaxpayerUpdate {
     pub taxpayer_type: Option<String>,
 }
 
+/// A place in [`BirApp::places`]: a ZIP area and its RDO, or an RDO alone.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct Place {
+    pub label: String,
+    pub city: String,
+    pub zip: String,
+    pub rdo_code: String,
+    pub rdo_name: String,
+}
+
 /// One return in the submission queue.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct QueuedReturn {
@@ -494,6 +551,19 @@ impl BirApp {
         self.call("screen_form_schema", vec![form_code.into()])
     }
 
+    /// One form's on-screen layout, typed, without its hidden boxes.
+    /// Compiled-in data; the first read parses the schema, so call it off
+    /// the UI thread.
+    pub fn form_layout(&self, form_code: &str) -> AppResult<crate::FormLayout> {
+        let schema = self.form_schema(form_code)?;
+        serde_json::from_value::<crate::FormLayout>(schema)
+            .map(crate::FormLayout::without_hidden)
+            .map_err(|error| AppError::Shape {
+                function: "screen_form_schema".into(),
+                message: error.to_string(),
+            })
+    }
+
     /// A blank Form library sample of `form_code` for `tin`; it becomes a
     /// return once its period is set and it is saved.
     pub fn sample_return(&self, tin: &str, form_code: &str) -> AppResult<OpenedReturn> {
@@ -606,6 +676,55 @@ impl BirApp {
     pub fn update_taxpayer(&self, tin_root: &str, update: &TaxpayerUpdate) -> AppResult<Taxpayer> {
         let input = serde_json::to_value(update).unwrap_or_default();
         self.call_as("update_taxpayer", vec![tin_root.into(), input])
+    }
+
+    /// Every place a taxpayer registers in, for one search: each ZIP code
+    /// with its area and the RDO whose name matches it (when one does),
+    /// then each RDO on its own.
+    pub fn places() -> Vec<Place> {
+        let rdos = bir_core::reference::get_all_rdos();
+        let mut out: Vec<Place> = Vec::new();
+        for entry in bir_core::reference::get_all_zipcodes() {
+            let Some((zip, area)) = entry.split_once(" - ") else { continue };
+            // The RDO whose name shares a place word with the ZIP area
+            // (`Pasig CPO` and `East Pasig`): a word of four letters or more
+            // that is not "city" or a post-office suffix.
+            let words = |text: &str| -> Vec<String> {
+                text.to_lowercase()
+                    .split(|c: char| !c.is_alphanumeric())
+                    .filter(|w| w.len() >= 4 && !["city", "town", "south", "north", "east", "west", "proper"].contains(w))
+                    .map(str::to_owned)
+                    .collect()
+            };
+            let area_words = words(area);
+            let rdo = rdos.iter().find(|r| words(&r.description).iter().any(|w| area_words.contains(w)));
+            out.push(Place {
+                label: format!("{area} · {zip}"),
+                city: area.trim().to_owned(),
+                zip: zip.trim().to_owned(),
+                rdo_code: rdo.map(|r| r.code.clone()).unwrap_or_default(),
+                rdo_name: rdo.map(|r| r.description.clone()).unwrap_or_default(),
+            });
+        }
+        for r in rdos {
+            out.push(Place {
+                label: format!("RDO {} · {}", r.code, r.description),
+                city: r.description.split(',').next().unwrap_or("").trim().to_owned(),
+                zip: String::new(),
+                rdo_code: r.code,
+                rdo_name: r.description,
+            });
+        }
+        out
+    }
+
+    /// Write `value` into one fact of a branch (`email`, `rdo_code`,
+    /// `registered_address`, `zip_code`, `phone`): a profile box the filer
+    /// filled on a return ([`FilledReturn::profile_blank`]) goes back to the
+    /// profile so later forms prefill it.
+    pub fn set_branch_fact(&self, tin: &str, fact: &str, value: &str) -> AppResult<()> {
+        let input = serde_json::json!({ "fields": { fact: value } });
+        self.call("update_branch", vec![tin.into(), input]).map(drop)
     }
 
     // -------------------------------------------------------------- queue
