@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Buwiz
+GenericName=Tax return filer
+Comment=Fill, check and print Philippine BIR tax returns offline
+Exec=buwiz
+Icon=com.buwiz.oss
+Terminal=false
+Categories=Office;Finance;
+StartupWMClass=com.buwiz.oss
