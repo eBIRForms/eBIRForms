@@ -372,9 +372,18 @@ fn form_list(form: Arc<OpenForm>, list: ElementRef, content: ElementRef, heads: 
         }))
         .child(form_errors())
         .child(penalties_panel());
-    scroll_bench(form.clone(), list, move || mounted.with(|m| m.len()) == rows.with(Vec::len));
+    let bench = scroll_bench(form.clone(), list, move || mounted.with(|m| m.len()) == rows.with(Vec::len));
     let row_form = form.clone();
-    scroll().element_ref(&list).flex_1().child(
+    let scroller = scroll().element_ref(&list).flex_1();
+    // The bench reads back where the list really got to.
+    let scroller = match bench {
+        Some(reading) => scroller.on_scroll(move |e: &ScrollEvent| {
+            let (far, _, events) = reading.get_untracked();
+            reading.set((far.max(e.offset.y.0), e.content_size.height.0 - e.size.height.0, events + 1));
+        }),
+        None => scroller,
+    };
+    scroller.child(
         view()
             .element_ref(&content)
             .px(px(24.0))
@@ -392,13 +401,19 @@ fn form_list(form: Arc<OpenForm>, list: ElementRef, content: ElementRef, heads: 
     )
 }
 
+/// What the scroll bench reads back from the list: the furthest offset it
+/// reported, how far it could scroll, and how many scroll events came.
+type BenchReading = Signal<(f32, f32, u32)>;
+
 /// `BUWIZ_SCROLL_BENCH=<points per frame>` (a measurement hook, off
 /// otherwise): once the form shows, open every part and scroll to the
-/// bottom and back three times at that speed.
-fn scroll_bench(form: Arc<OpenForm>, list: ElementRef, settled: impl Fn() -> bool + 'static) {
+/// bottom and back three times at that speed. When it runs, the reading
+/// the list's scroll events feed.
+fn scroll_bench(form: Arc<OpenForm>, list: ElementRef, settled: impl Fn() -> bool + 'static) -> Option<BenchReading> {
     let Some(speed) = std::env::var("BUWIZ_SCROLL_BENCH").ok().and_then(|v| v.parse::<f32>().ok()).filter(|v| *v > 0.0) else {
-        return;
+        return None;
     };
+    let reading: BenchReading = crate::live::keep("scroll_bench", || (0.0, 0.0, 0));
     let st = session();
     // A window on a workspace no one is looking at is a hidden window:
     // without this the system naps the app and its frames slow to a crawl.
@@ -410,33 +425,40 @@ fn scroll_bench(form: Arc<OpenForm>, list: ElementRef, settled: impl Fn() -> boo
     set_timeout(std::time::Duration::from_millis(800), move || {
         st.open_parts.set(all);
         log::warn!(target: "nsh::jank", "---- scroll bench {code} {speed}pt/frame ----");
-        fn step(list: ElementRef, y: f32, dir: f32, legs: u32, speed: f32) {
+        fn step(list: ElementRef, reading: BenchReading, y: f32, dir: f32, legs: u32, speed: f32) {
             request_animation_frame(move |_| {
                 list.scroll_to_offset(px(y.max(0.0)), false);
-                let (y, dir, legs) = if y > 40000.0 { (y, -1.0, legs + 1) } else if y <= 0.0 && dir < 0.0 { (0.0, 1.0, legs + 1) } else { (y, dir, legs) };
+                // Turn at the bottom the list reports (until it has, a
+                // bound past any form's length).
+                let bottom = reading.get_untracked().1;
+                let bottom = if bottom > 0.0 { bottom } else { 60000.0 };
+                let (y, dir, legs) = if y >= bottom { (bottom, -1.0, legs + 1) } else if y <= 0.0 && dir < 0.0 { (0.0, 1.0, legs + 1) } else { (y, dir, legs) };
                 if legs < 6 {
-                    step(list, y + dir * speed, dir, legs, speed);
+                    step(list, reading, y + dir * speed, dir, legs, speed);
                 } else {
-                    log::warn!(target: "nsh::jank", "==== bench end ====");
+                    let (far, max, events) = reading.get_untracked();
+                    log::warn!(target: "nsh::jank", "==== bench end ==== reached {far:.0}pt of {max:.0}pt, {events} scroll events");
                 }
             });
         }
         // Scroll once every row is mounted, and the schedule tables (which
         // add their rows a few per frame after their item mounts) are full:
         // the list must stay settled for a while before scrolling starts.
-        fn when_settled(list: ElementRef, speed: f32, settled: std::rc::Rc<dyn Fn() -> bool>, calm: u32) {
+        fn when_settled(list: ElementRef, reading: BenchReading, speed: f32, settled: std::rc::Rc<dyn Fn() -> bool>, calm: u32) {
             set_timeout(std::time::Duration::from_millis(200), move || {
                 let calm = if settled() { calm + 1 } else { 0 };
                 if calm >= 4 {
+                    reading.set((0.0, 0.0, 0));
                     log::warn!(target: "nsh::jank", "---- mounted; scrolling ----");
-                    step(list, 0.0, 1.0, 0, speed);
+                    step(list, reading, 0.0, 1.0, 0, speed);
                 } else {
-                    when_settled(list, speed, settled, calm);
+                    when_settled(list, reading, speed, settled, calm);
                 }
             });
         }
-        when_settled(list, speed, settled.clone(), 0);
+        when_settled(list, reading, speed, settled.clone(), 0);
     });
+    Some(reading)
 }
 
 /// A part's header row: a card top, closed into a full card while the part
