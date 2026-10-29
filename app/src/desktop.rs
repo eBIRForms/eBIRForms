@@ -28,16 +28,19 @@ pub(crate) use crate::linux::{SheetPdf, open_panel, print_pdf, save_panel};
 #[cfg(target_os = "macos")]
 pub(crate) use crate::mac::{WebKitPdf as SheetPdf, open_panel, print_pdf, save_panel};
 
-/// Why a PDF could not be made.
+/// Why a PDF could not be made (macOS has its own, in `mac.rs`).
+#[cfg(any(target_os = "windows", target_os = "linux"))]
 #[derive(Debug)]
 pub(crate) struct PdfError(pub String);
 
+#[cfg(any(target_os = "windows", target_os = "linux"))]
 impl std::fmt::Display for PdfError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.write_str(&self.0)
     }
 }
 
+#[cfg(any(target_os = "windows", target_os = "linux"))]
 impl std::error::Error for PdfError {}
 
 /// A paper size and its (uniform) margin, in PDF points.
