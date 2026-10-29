@@ -465,6 +465,7 @@ impl Store {
                 }
                 self.reminders.set(reminders.as_deref() != Some("off"));
             }
+            #[cfg(debug_assertions)]
             send_hooks(self);
         });
     }
@@ -868,7 +869,8 @@ fn launch_hooks(st: &'static Store) {
 /// where no relay runs): `BUWIZ_SENDING=<form>`, `BUWIZ_SEND_FAIL=<form>`
 /// (the relay's `tin_not_active`), `BUWIZ_SENT=<form>` (with a demo
 /// receipt) and `BUWIZ_SEND_UNKNOWN=<form>` move that form's queued
-/// returns there.
+/// returns there. Debug builds only: a release build never fakes a send.
+#[cfg(debug_assertions)]
 fn send_hooks(st: &'static Store) {
     let var = |name: &str| std::env::var(name).ok().filter(|v| !v.is_empty());
     let wants: Vec<(String, bir_app_core::SendStage)> = [

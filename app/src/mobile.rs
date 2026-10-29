@@ -27,7 +27,9 @@ pub fn prepare() {
     // `launch.env` beside the database: `BUWIZ_*` launch hooks (and a
     // scratch `BIR_DATABASE_PATH` / `BIR_DB_KEY` for a test run), one
     // `NAME=value` a line, for a launcher that cannot pass the environment
-    // (Android's `am start`; `adb shell run-as` writes it). Read once.
+    // (Android's `am start`; `adb shell run-as` writes it). Read once, and
+    // in debug builds only: a release build takes nothing from the file.
+    #[cfg(debug_assertions)]
     if let Ok(text) = std::fs::read_to_string(dir.join("launch.env")) {
         for line in text.lines() {
             if let Some((name, value)) = line.trim().split_once('=')
