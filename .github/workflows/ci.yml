@@ -51,6 +51,8 @@ jobs:
     name: app (windows)
     runs-on: windows-latest
     env:
+      CARGO_PROFILE_DEV_DEBUG: "0"
+      CARGO_INCREMENTAL: "0"
       # QuickJS (nsh-js) is C: bindgen needs libclang, which the image's LLVM has.
       LIBCLANG_PATH: C:\Program Files\LLVM\bin
     steps:
@@ -86,7 +88,14 @@ jobs:
   app-ubuntu:
     name: app (ubuntu)
     runs-on: ubuntu-latest
+    env:
+      # No debug info and no incremental state: the debug and release
+      # targets together otherwise fill the runner's disk (ld bus error).
+      CARGO_PROFILE_DEV_DEBUG: "0"
+      CARGO_INCREMENTAL: "0"
     steps:
+      # Room for two targets: drop the image's unused SDKs.
+      - run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL && df -h /
       - uses: actions/checkout@v4
         with:
           submodules: recursive
