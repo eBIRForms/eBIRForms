@@ -69,7 +69,10 @@ if selected V1; then
         hits=""
         for b in "${bins[@]}"; do
             [ -f "$b" ] || { hits+="missing $b; "; continue; }
-            found=$(strings -a "$b" | grep -i -E 'passphrase|tindispatcher|birgovph|ebf2\.bir|\bsftp\b' | grep -v -i -E 'passphrase_free|no passphrase' | head -3)
+            # No exceptions: any passphrase or SFTP text at all, and BIR's
+            # dispatcher and upload hosts. (The printed forms' footer names
+            # BIR's public website, so the bare domain is not on the list.)
+            found=$(strings -a "$b" | grep -i -E 'passphrase|tindispatcher|dispatcher\.php|birgovph|ebf2\.bir|ws2\.bir|s[f]tp' | head -3)
             [ -n "$found" ] && hits+="$b: $(echo "$found" | tr '\n' '|'); "
         done
         [ -z "$hits" ] && pass V1 "tree clean; ${#bins[@]} binaries carry no BIR secret strings" || fail V1 "$hits"
@@ -102,19 +105,24 @@ fi
 
 # ---- V4 ---------------------------------------------------------------------
 DESKTOP_SCREENS="home library form form-schedule profile-panel new-taxpayer filings queue calendar taxpayers settings palette print-preview"
-PHONE_SCREENS="home forms filings calendar form outline choice-sheet long-list-search schedule row-page new-taxpayer taxpayer-sheet start-return sent failed print-preview search settings"
+PHONE_SCREENS="home forms filings calendar form outline choice-sheet long-list-search schedule row-page new-taxpayer taxpayer-sheet start-return sent failed print-preview search settings queue"
 if selected V4; then
-    src=$(newest_src); missing=""; stale=""; n=0
+    src=$(newest_src); missing=""; stale=""; unchecked=""; n=0
     for kind in desktop phone; do
         list=$DESKTOP_SCREENS; [ $kind = phone ] && list=$PHONE_SCREENS
         for s in $list; do for t in light dark; do
             f="$EVIDENCE/$kind-$s-$t.png"; n=$((n + 1))
             if [ ! -s "$f" ]; then missing+="$kind-$s-$t "
-            elif [ "$(stat -f '%m' "$f")" -lt "$src" ]; then stale+="$kind-$s-$t "; fi
+            elif [ "$(stat -f '%m' "$f")" -lt "$src" ]; then stale+="$kind-$s-$t "
+            # evidence.sh's own check: not blank, and OCR found the screen's
+            # text, recorded against this exact file's hash.
+            elif ! grep -q -F "ok $kind-$s-$t.png $(shasum -a 256 "$f" | cut -d' ' -f1) " "$EVIDENCE/checks.txt" 2>/dev/null; then
+                unchecked+="$kind-$s-$t "
+            fi
         done; done
     done
-    if [ -z "$missing$stale" ]; then pass V4 "$n screenshots present and newer than app/src"
-    else fail V4 "missing: ${missing:-none} | stale: ${stale:-none}"; fi
+    if [ -z "$missing$stale$unchecked" ]; then pass V4 "$n screenshots present, newer than app/src, each checked (not blank, screen text found)"
+    else fail V4 "missing: ${missing:-none} | stale: ${stale:-none} | unchecked: ${unchecked:-none}"; fi
 fi
 
 # ---- V5 ---------------------------------------------------------------------
@@ -128,8 +136,12 @@ if selected V5; then
         # count those between "mounted; scrolling" and "bench end".
         over=$(awk '/mounted; scrolling/{on=1;next} /bench end/{on=0} on && match($0,/frame [0-9]+(\.[0-9]+)?ms/){ms=substr($0,RSTART+6,RLENGTH-8); if (ms+0 > 8.3) n++} END{print n+0}' "$log")
         ended=$(grep -c 'bench end' "$log")
-        if [ "$ended" -lt 1 ]; then fail V5 "bench never finished"
-        elif [ "$over" -eq 0 ]; then pass V5 "1702RT expand-all scroll: 0 frames over 8.3 ms at 120 Hz"
+        # Each run must really have scrolled: the list's own scroll events
+        # reached (within 5%) the bottom of a long form, many times over.
+        short=$(awk '/bench end/{ if (match($0,/reached [0-9]+pt of [0-9]+pt, [0-9]+ scroll events/)) { split(substr($0,RSTART,RLENGTH),a,/[^0-9]+/); far=a[2]; max=a[3]; ev=a[4]; if (max < 5000 || far < 0.95*max || ev < 200) n++ } else n++ } END{print n+0}' "$log")
+        if [ "$ended" -lt 2 ]; then fail V5 "bench finished $ended of 2 runs (40 and 160 pt/frame)"
+        elif [ "$short" -gt 0 ]; then fail V5 "$short run(s) did not scroll the whole form (see 'reached' in $log)"
+        elif [ "$over" -eq 0 ]; then pass V5 "1702RT expand-all scroll: 0 frames over 8.3 ms at 120 Hz, both runs scrolled the whole form"
         else fail V5 "$over scroll frames over 8.3 ms"; fi
     fi
 fi
