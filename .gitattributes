@@ -1,0 +1,3 @@
+# Golden and fixture text compares byte for byte: LF on every OS (a
+# Windows checkout would otherwise turn them CRLF).
+*.txt text eol=lf
