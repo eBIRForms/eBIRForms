@@ -29,8 +29,9 @@ NSH_JAVA=../nsh/crates/nsh-platform-android/java
 # Buwiz's own Java (the activity, printing and its PDF provider).
 APP_JAVA=android/java
 
-# 1. The library. OpenSSL (for SQLCipher) is built from source with the
-#    NDK's clang, so it has to be on PATH as well as named for cargo.
+# 1. The library. SQLCipher and its crypto, LibTomCrypt (no OpenSSL:
+#    crates/sqlcipher-tomcrypt), are compiled with the NDK's clang, named
+#    for cargo's `cc` here.
 export ANDROID_NDK_HOME="$NDK" ANDROID_NDK_ROOT="$NDK" PATH="$TC:$PATH"
 export CC_aarch64_linux_android="$TC/${TRIPLE}${MIN_SDK}-clang"
 export AR_aarch64_linux_android="$TC/llvm-ar"

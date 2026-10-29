@@ -9,8 +9,9 @@ members = [
     "crates/bir-print",
     "crates/bir-app-core",
     "crates/bir-submit",
+    "crates/sqlcipher-tomcrypt",
 ]
-exclude = ["app", "nsh", "blaze"]
+exclude = ["app", "nsh", "blaze", "crates/sqlcipher-tomcrypt/compat"]
 
 [workspace.package]
 version = "0.1.0"
@@ -34,7 +35,11 @@ urlencoding = "2.1"
 chrono = { version = "0.4", features = ["serde"] }
 sha2 = "0.10"
 tokio = { version = "1", features = ["full"] }
-rusqlite = { version = "0.32", features = ["bundled-sqlcipher"] }
+# SQLCipher's build is chosen per target in bir-core's Cargo.toml: bundled
+# (CommonCrypto on Apple, OpenSSL elsewhere), or on Android the LibTomCrypt
+# build in crates/sqlcipher-tomcrypt. No features here, so none unify into
+# the Android build.
+rusqlite = { version = "0.32" }
 thiserror = "2"
 anyhow = "1"
 tracing = "0.1"
