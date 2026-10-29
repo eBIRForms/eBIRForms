@@ -32,7 +32,7 @@ pub(super) fn session() -> &'static FormSession {
 }
 
 /// A monospace family for tags and amounts.
-pub(super) fn mono() -> &'static str {
+pub(crate) fn mono() -> &'static str {
     if os() == Os::Android { "monospace" } else { "Menlo" }
 }
 
@@ -63,7 +63,7 @@ fn jump_pad() -> f32 {
 
 /// Scroll the form to `id` (opening its part) and draw attention to it;
 /// `focus`: then focus its first box that takes typing.
-pub(super) fn jump_to(id: ItemId, focus: bool) {
+pub(crate) fn jump_to(id: ItemId, focus: bool) {
     let st = session();
     if !st.open_parts.with_untracked(|o| o.contains(&id.0)) {
         st.open_parts.update(|o| {
@@ -400,6 +400,10 @@ fn scroll_bench(form: Arc<OpenForm>, list: ElementRef, settled: impl Fn() -> boo
         return;
     };
     let st = session();
+    // A window on a workspace no one is looking at is a hidden window:
+    // without this the system naps the app and its frames slow to a crawl.
+    #[cfg(target_os = "macos")]
+    crate::mac::hold_off_app_nap("scroll bench");
     let all: std::collections::BTreeSet<usize> = (0..form.layout.parts.len()).collect();
     let code = form.params.form_code.clone();
     let settled: std::rc::Rc<dyn Fn() -> bool> = std::rc::Rc::new(settled);
@@ -417,18 +421,21 @@ fn scroll_bench(form: Arc<OpenForm>, list: ElementRef, settled: impl Fn() -> boo
                 }
             });
         }
-        // Scroll once every row is mounted.
-        fn when_settled(list: ElementRef, speed: f32, settled: std::rc::Rc<dyn Fn() -> bool>) {
+        // Scroll once every row is mounted, and the schedule tables (which
+        // add their rows a few per frame after their item mounts) are full:
+        // the list must stay settled for a while before scrolling starts.
+        fn when_settled(list: ElementRef, speed: f32, settled: std::rc::Rc<dyn Fn() -> bool>, calm: u32) {
             set_timeout(std::time::Duration::from_millis(200), move || {
-                if settled() {
+                let calm = if settled() { calm + 1 } else { 0 };
+                if calm >= 4 {
                     log::warn!(target: "nsh::jank", "---- mounted; scrolling ----");
                     step(list, 0.0, 1.0, 0, speed);
                 } else {
-                    when_settled(list, speed, settled);
+                    when_settled(list, speed, settled, calm);
                 }
             });
         }
-        when_settled(list, speed, settled.clone());
+        when_settled(list, speed, settled.clone(), 0);
     });
 }
 

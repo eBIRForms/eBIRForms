@@ -6,6 +6,7 @@ mod filings;
 pub(crate) use filings::delete_dialog as filings_delete_dialog;
 mod form;
 pub(crate) use form::focus_nth;
+pub(crate) use form::mono as form_mono;
 mod home;
 mod library;
 pub(crate) mod palette;
@@ -150,4 +151,35 @@ pub(crate) fn welcome() -> impl IntoElement {
                         .child(button("Add your first taxpayer", Variant::Primary, || false, move || st.new_taxpayer_open.set(true))),
                 ),
         )
+}
+
+/// `BUWIZ_PICK` (a launch hook): open the open form's first short-choice
+/// sheet (`choice`), long-list search (`list`), schedule (`schedule`) or
+/// first schedule row (`row`).
+pub(crate) fn pick_on_launch(pick: &str) {
+    use phone_fields::{Kind, kind_of};
+    let st = &store().form;
+    let Some(form) = st.form() else { return };
+    let ids = untracked(|| steps::shown_items(st, &form));
+    let want = |k: Kind| match pick {
+        "choice" => k == Kind::ShortChoice,
+        "list" => matches!(k, Kind::LongList | Kind::Place),
+        _ => k == Kind::Schedule,
+    };
+    let Some(id) = ids.into_iter().find(|id| form.item(*id).is_some_and(|item| want(kind_of(item, &item.fields)))) else {
+        log::warn!("BUWIZ_PICK={pick}: no such item on {}", form.layout.code);
+        return;
+    };
+    if !crate::mobile::phone() {
+        form::jump_to(id, false);
+        return;
+    }
+    match pick {
+        "schedule" => st.schedule_page.set(Some(id)),
+        "row" => {
+            st.schedule_page.set(Some(id));
+            st.row_edit.set(Some((id, 0)));
+        }
+        _ => st.picker.set(Some(id)),
+    }
 }

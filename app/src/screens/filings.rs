@@ -13,7 +13,9 @@ use nsh_core::prelude::*;
 use crate::icons::Icon;
 use crate::live::store;
 use crate::screens::{Route, content, page_title, preview};
-use crate::store::{FilingsFilter, Loaded, SendState};
+use bir_app_core::{ErrorAction, SendStage, plain_send_error};
+
+use crate::store::{FilingsFilter, Loaded};
 use crate::theme;
 use crate::widgets::{Variant, button, button_sm, chip, code_text, empty_row, list_group, list_row, name_cell, section_title, segmented, status_tone};
 
@@ -26,12 +28,35 @@ pub(crate) fn branch_rows() -> Vec<ReturnRow> {
     }
 }
 
-/// A return's status with its local send state (tracked).
+/// A return's status with where it is on its way to BIR (tracked).
 pub(crate) fn shown_status(r: &ReturnRow) -> String {
-    match store().send_state_of(r.id) {
-        Some(SendState::Sending) => "Sending".to_owned(),
-        Some(SendState::Failed(_)) => "Failed".to_owned(),
-        None => r.status.clone(),
+    match store().send_stage_of(r.id) {
+        Some(SendStage::Sending) => "Sending".to_owned(),
+        Some(SendStage::Failed { .. }) => "Failed".to_owned(),
+        Some(SendStage::NeedsAttention { .. }) => "Needs attention".to_owned(),
+        Some(SendStage::Sent { receipt: Some(rc), .. }) if rc.is_test() => "Sent (test)".to_owned(),
+        _ => r.status.clone(),
+    }
+}
+
+/// The line under a return in a send list: where it is, in plain words.
+pub(crate) fn stage_line(stage: Option<&SendStage>) -> String {
+    match stage {
+        None | Some(SendStage::Queued { .. }) => "Waiting to send. It goes by itself when you're online and signed in.".to_owned(),
+        Some(SendStage::Sending) => "Sending to BIR now…".to_owned(),
+        Some(SendStage::Failed { reason, .. }) => plain_send_error(reason).text,
+        Some(SendStage::NeedsAttention { .. }) => "BIR may already have this return. Check for BIR's confirmation email before you do anything else.".to_owned(),
+        Some(SendStage::GaveUp { reason }) => format!("Not sent after five tries: {} Open it and queue it again.", plain_send_error(reason).text),
+        Some(SendStage::Sent { receipt, at }) => {
+            let when = at.as_deref().and_then(|a| a.get(..10)).map(crate::screens::steps::short_date).unwrap_or_default();
+            match receipt {
+                Some(rc) if rc.is_test() => format!("Test send {when}: the relay only simulated it (nothing reached BIR) · receipt {}", rc.jti.clone().unwrap_or_default()),
+                Some(rc) => format!("Sent {when} · receipt {}", rc.jti.clone().unwrap_or_default()),
+                None => format!("Sent {when}"),
+            }
+        }
+        Some(SendStage::Confirmed { .. }) => "Sent, and BIR's confirmation is recorded.".to_owned(),
+        Some(SendStage::Paid) => "Sent and paid.".to_owned(),
     }
 }
 
@@ -200,8 +225,9 @@ fn queue_page() -> impl IntoElement {
         view()
             .gap(px(4.0))
             .child(page_title("Send queue"))
-            .child(text("Queued returns send by themselves, oldest first, when you're online. Every taxpayer's returns are here.").text_size(px(13.0)).text_color(theme::FG2))
-            .child(view().h(px(20.0)))
+            .child(text("Queued returns send by themselves, oldest first, when you're online and signed in. Every taxpayer's returns are here.").text_size(px(13.0)).text_color(theme::FG2))
+            .child(sign_in_band())
+            .child(view().h(px(12.0)))
             .child(section_title("Waiting to send", true))
             .child(list_group().child(when(move || waiting2().is_empty(), move || {
                 view()
@@ -213,26 +239,50 @@ fn queue_page() -> impl IntoElement {
                     .child(button_sm("Open Filings", Variant::Secondary, None, || false, move || st.go(Route::Filings)))
             })).child(each(waiting, |r| r.id, |r, index| queue_row(r.get_untracked(), index))))
             .child(section_title("Sent", false))
-            .child(list_group().child(when(move || sent2().is_empty(), || empty_row("Sent returns show here, each with BIR's receipt."))).child(each(sent, |r| r.id, |r, index| crate::screens::home::return_row(r.get_untracked(), index)))),
+            .child(list_group().child(when(move || sent2().is_empty(), || empty_row("Sent returns show here, each with BIR's receipt."))).child(each(sent, |r| r.id, |r, index| sent_row(r.get_untracked(), index)))),
     )
 }
 
-/// A queued return: where it is (and why it failed), Retry, Cancel.
+/// Signed out: a band saying the queue waits, with Sign in.
+fn sign_in_band() -> impl IntoElement {
+    let st = store();
+    when(move || matches!(st.sign_in.get(), crate::store::SignIn::SignedOut | crate::store::SignIn::Pending { .. } | crate::store::SignIn::Starting), move || {
+        view()
+            .mt(px(16.0))
+            .p(px(14.0))
+            .flex_row()
+            .items_center()
+            .gap(px(12.0))
+            .rounded(px(theme::R_CARD))
+            .bg(theme::ACCENT_SOFT)
+            .child(text("You're signed out. Queued returns wait here until you sign in to send.").flex_1().text_size(px(13.0)).text_color(theme::FG))
+            .child(button_sm("Sign in to send", Variant::Primary, None, || false, move || {
+                st.go(Route::Settings);
+                if matches!(st.sign_in.get_untracked(), crate::store::SignIn::SignedOut) {
+                    st.sign_in_start();
+                }
+            }))
+    })
+}
+
+/// A queued return: where it is (the server's reason when it failed),
+/// Retry for a failed send, Sign in when that is what it waits for,
+/// Cancel while nothing is in flight. One that needs attention is never
+/// resent from here.
 fn queue_row(r: ReturnRow, index: ReadSignal<usize>) -> impl IntoElement {
     let st = store();
     let id = r.id;
-    let state = move || st.send_state_of(id);
+    let stage = move || st.send_stage_of(id);
     let (open, cancel) = (r.clone(), r.clone());
-    let line = {
-        let who = format!("{} · queued {}", r.taxpayer_name, crate::screens::steps::short_date(r.updated_at.get(..10).unwrap_or(&r.updated_at)));
-        move || match state() {
-            Some(SendState::Failed(why)) => why,
-            Some(SendState::Sending) => "Sending to BIR now…".to_owned(),
-            None => format!("{who} · sends when you're online"),
-        }
+    let line = move || stage_line(stage().as_ref());
+    let failed = move || matches!(stage(), Some(SendStage::Failed { .. }));
+    let alarm = move || matches!(stage(), Some(SendStage::Failed { .. } | SendStage::NeedsAttention { .. }));
+    let busy = move || matches!(stage(), Some(SendStage::Sending | SendStage::NeedsAttention { .. }));
+    let action = move || match stage() {
+        Some(SendStage::Failed { reason, .. }) => plain_send_error(&reason).action,
+        _ => ErrorAction::None,
     };
-    let failed = move || matches!(state(), Some(SendState::Failed(_)));
-    let sending = move || matches!(state(), Some(SendState::Sending));
+    let signed_out = move || matches!(st.sign_in.get(), crate::store::SignIn::SignedOut);
     list_row(index)
         .cursor_pointer()
         .hover(|s| s.bg(theme::HOVER))
@@ -243,20 +293,56 @@ fn queue_row(r: ReturnRow, index: ReadSignal<usize>) -> impl IntoElement {
             view()
                 .flex_1()
                 .min_w(px(0.0))
-                .child(text(format!("{} · {}", r.form_code, r.period_label)).text_size(px(13.0)).font_weight(FontWeight::MEDIUM).text_color(theme::FG).truncate())
-                .child(text(line).text_size(px(12.0)).text_color(move || if failed() { theme::DANGER } else { theme::FG2 }).truncate()),
+                .child(text(format!("{} · {} · {}", r.form_code, r.period_label, r.taxpayer_name)).text_size(px(13.0)).font_weight(FontWeight::MEDIUM).text_color(theme::FG).truncate())
+                .child(text(line).text_size(px(12.0)).text_color(move || if alarm() { theme::DANGER } else { theme::FG2 }).number_of_lines(2u32)),
         )
-        .child(each(move || vec![match state() {
-            Some(SendState::Failed(_)) => "Failed",
-            Some(SendState::Sending) => "Sending",
-            None => "Queued",
+        .child(each(move || vec![match stage() {
+            Some(SendStage::Failed { .. }) => "Failed",
+            Some(SendStage::Sending) => "Sending",
+            Some(SendStage::NeedsAttention { .. }) => "Needs attention",
+            _ => "Queued",
         }], |s| *s, |s, _| {
             let label = s.get_untracked();
-            chip(label, status_tone(label))
+            chip(label, if label == "Needs attention" { crate::widgets::Tone::Danger } else { status_tone(label) })
         }))
-        .child(when(failed, move || button_sm("Retry", Variant::Secondary, None, || false, move || st.retry(id))))
-        .child(when(move || !sending(), move || {
+        .child(when(move || action() == ErrorAction::SignIn || (signed_out() && !busy()), move || {
+            button_sm("Sign in", Variant::Secondary, None, || false, move || {
+                st.go(Route::Settings);
+                st.sign_in_start();
+            })
+        }))
+        .child(when(failed, move || button_sm("Retry", Variant::Secondary, None, || false, move || st.retry(id)).label("Retry")))
+        .child(when(move || !busy(), move || {
             let cancel = cancel.clone();
             button_sm("Cancel", Variant::Ghost, None, || false, move || st.cancel_queued(cancel.clone()))
         }))
+}
+
+/// A sent return in the queue's Sent list: the receipt it came back with.
+fn sent_row(r: ReturnRow, index: ReadSignal<usize>) -> impl IntoElement {
+    let st = store();
+    let id = r.id;
+    let open = r.clone();
+    let print = r.clone();
+    let status = move || shown_status(&r);
+    let (name, period, code) = (open.form_code.clone(), open.period_label.clone(), open.form_code.clone());
+    let who = open.taxpayer_name.clone();
+    list_row(index)
+        .cursor_pointer()
+        .hover(|s| s.bg(theme::HOVER))
+        .on_press(move || st.open_row(&open))
+        .label(format!("{name} · {period}"))
+        .child(code_text(code))
+        .child(
+            view()
+                .flex_1()
+                .min_w(px(0.0))
+                .child(text(format!("{name} · {period} · {who}")).text_size(px(13.0)).font_weight(FontWeight::MEDIUM).text_color(theme::FG).truncate())
+                .child(text(move || stage_line(st.send_stage_of(id).as_ref())).text_size(px(12.0)).text_color(theme::FG2).truncate()),
+        )
+        .child(each(move || vec![status()], |s| s.clone(), |s, _| {
+            let s = s.get_untracked();
+            chip(s.clone(), status_tone(&s))
+        }))
+        .child(button_sm("Print", Variant::Ghost, Some(Icon::Printer), || false, move || preview::print_row(print.clone())))
 }

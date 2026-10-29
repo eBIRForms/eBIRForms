@@ -179,7 +179,7 @@ pub(crate) fn status_tone(status: &str) -> Tone {
     match status {
         "Draft" => Tone::Accent,
         "Queued" | "Sending" => Tone::Warning,
-        "Failed" => Tone::Danger,
+        "Failed" | "Needs attention" => Tone::Danger,
         "Not started" => Tone::Neutral,
         _ => Tone::Success,
     }

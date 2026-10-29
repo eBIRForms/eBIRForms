@@ -1,0 +1,12 @@
+[package]
+name = "compat-libtomcrypt"
+description = "Writes and reads databases with the SQLCipher Android ships (crates/sqlcipher-tomcrypt), opened as bir-core opens them."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+# As bir-core's Android section.
+rusqlite = { version = "0.32", features = ["sqlcipher", "modern_sqlite"] }
+sqlcipher-tomcrypt = { path = "../..", features = ["any-target"] }

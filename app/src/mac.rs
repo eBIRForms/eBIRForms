@@ -302,3 +302,20 @@ pub(crate) fn open_panel(ext: &'static str) -> Option<PathBuf> {
     });
     rx.recv().ok().flatten()
 }
+
+/// Keep the system from napping the app (timers coalesced, frames slowed)
+/// while its window is hidden, for a measurement that must run at full
+/// rate; held until the process ends.
+pub(crate) fn hold_off_app_nap(reason: &str) {
+    // NSActivityUserInitiated | NSActivityLatencyCritical.
+    const OPTIONS: u64 = 0x00FF_FFFF | 0xFF_0000_0000;
+    let reason = NSString::from_str(reason);
+    // SAFETY: NSProcessInfo's documented API; the token is kept (leaked) so
+    // the activity lasts for the process.
+    unsafe {
+        let Some(class) = AnyClass::get(c"NSProcessInfo") else { return };
+        let info: Retained<AnyObject> = msg_send![class, processInfo];
+        let token: Option<Retained<AnyObject>> = msg_send![&info, beginActivityWithOptions: OPTIONS, reason: &*reason];
+        std::mem::forget(token);
+    }
+}

@@ -9,7 +9,7 @@ use nsh_core::prelude::*;
 
 use crate::live::store;
 use crate::screens::{content, page_title};
-use crate::store::{NoticeTone, ThemePref, call, task};
+use crate::store::{NoticeTone, SignIn, ThemePref, call, task};
 use crate::theme;
 use crate::widgets::{CLEAR, Variant, button_sm, list_group, section_title, segmented};
 
@@ -121,6 +121,61 @@ fn row(title: &'static str, line: impl IntoReactive<SharedString>, first: bool, 
         .child(control)
 }
 
+/// Sending: signed out, "Sign in to send" (the device flow: the code big,
+/// the sign-in page in the browser, polled until done); signed in, the
+/// account and Sign out.
+fn sending_section() -> impl IntoElement {
+    let st = store();
+    let phone = crate::mobile::phone();
+    list_group().child(each(
+        move || vec![st.sign_in.get()],
+        |s| format!("{s:?}"),
+        move |s, _| match s.get_untracked() {
+            SignIn::Unknown | SignIn::Starting => row("Sending", "Getting ready…", true, view()).into_element(),
+            SignIn::SignedOut => row(
+                "Sign in to send",
+                "Returns you queue send through your Buwiz account. Until you sign in they wait in the queue.",
+                true,
+                action("Sign in to send", move || st.sign_in_start()),
+            )
+            .into_element(),
+            SignIn::SignedIn { email } => row(
+                "Signed in",
+                email.unwrap_or_else(|| "Your Buwiz account".to_owned()),
+                true,
+                action("Sign out", move || st.sign_out()),
+            )
+            .into_element(),
+            SignIn::Pending { user_code, uri, uri_complete } => view()
+                .p(px(16.0))
+                .gap(px(10.0))
+                .child(text("Approve this code on your Buwiz account").text_size(px(if phone { 15.0 } else { 13.0 })).font_weight(FontWeight::MEDIUM).text_color(theme::FG))
+                .child(text(user_code).text_size(px(34.0)).font_weight(FontWeight::BOLD).font_family(crate::screens::form_mono()).text_color(theme::FG).label("Sign-in code"))
+                .child(text(format!("Open {uri} and enter the code, or open the page with the code already filled in. This page waits until you approve it.")).text_size(px(12.0)).text_color(theme::FG2))
+                .child(
+                    view()
+                        .flex_row()
+                        .flex_wrap()
+                        .gap(px(8.0))
+                        .child(action("Open the sign-in page", move || {
+                            let _ = open_url(&uri_complete);
+                        }))
+                        .child(button_sm("Cancel", Variant::Ghost, None, || false, move || st.sign_in_cancel())),
+                )
+                .into_element(),
+        },
+    ))
+}
+
+/// A row's action: a text button on a phone, a small button on desktop.
+fn action(label: &'static str, act: impl Fn() + 'static) -> AnyElement {
+    if crate::mobile::phone() {
+        text(label).h(px(44.0)).text_size(px(15.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::ACCENT).cursor_pointer().label(label).on_press(act).into_element()
+    } else {
+        button_sm(label, Variant::Secondary, None, || false, act).label(label).into_element()
+    }
+}
+
 pub(crate) fn screen() -> impl IntoElement {
     let st = store();
     let phone = crate::mobile::phone();
@@ -143,7 +198,9 @@ pub(crate) fn screen() -> impl IntoElement {
             .gap(px(4.0))
             .child(when(!phone, || page_title("Settings")))
             .child(when(!phone, || view().h(px(16.0))))
-            .child(section_title("Look", true))
+            .child(section_title("Sending", true))
+            .child(sending_section())
+            .child(section_title("Look", false))
             .child(list_group().child(row(
                 "Appearance",
                 theme_line,

@@ -20,7 +20,9 @@ use crate::icons::{Icon, icon};
 use crate::live::store;
 use crate::screens::home::{greeting, late_penalty, open_deadline, open_status};
 use crate::screens::{Route, library, preview, welcome};
-use crate::store::{Catalog, Db, FilingsFilter, Loaded, SendState, days_until, today};
+use bir_app_core::{ErrorAction, SendStage, plain_send_error};
+
+use crate::store::{Catalog, Db, FilingsFilter, Loaded, days_until, today};
 use crate::theme;
 use crate::widgets::{CLEAR, Tone, chip, peso, status_tone};
 
@@ -96,12 +98,15 @@ fn row_line(r: &ReturnRow) -> String {
         -1 => "yesterday".to_owned(),
         _ => crate::screens::steps::short_date(edited),
     };
-    match store().send_state_of(r.id) {
-        Some(SendState::Failed(why)) => format!("Not accepted: {why}"),
-        Some(SendState::Sending) => "Sending now…".to_owned(),
-        None => match r.status.as_str() {
+    match store().send_stage_of(r.id) {
+        Some(SendStage::Failed { reason, .. }) => plain_send_error(&reason).text,
+        Some(SendStage::Sending) => "Sending now…".to_owned(),
+        Some(SendStage::NeedsAttention { .. }) => "Check BIR's confirmation email".to_owned(),
+        Some(SendStage::GaveUp { .. }) => "Not sent after five tries".to_owned(),
+        Some(SendStage::Sent { receipt: Some(rc), .. }) if rc.is_test() => format!("Test send {when}"),
+        _ => match r.status.as_str() {
             "Draft" => format!("Draft · edited {when}"),
-            "Queued" => "Waiting for internet".to_owned(),
+            "Queued" => "Waiting to send".to_owned(),
             _ => format!("Sent {when}"),
         },
     }
@@ -513,13 +518,14 @@ fn month_grid(rows: impl Fn() -> Vec<DeadlineRow> + 'static) -> impl IntoElement
 /// A queued, sent or failed return: where it is, the one thing to do.
 pub(crate) fn status_page() -> impl IntoElement {
     let st = store();
-    each(move || vec![(st.status_of.get().map(|r| (r.id, r.status.clone())), st.status_of.get().and_then(|r| st.send_state_of(r.id)).map(|s| format!("{s:?}")))], |k| k.clone(), move |_, _| {
+    each(move || vec![(st.status_of.get().map(|r| (r.id, r.status.clone())), st.status_of.get().and_then(|r| st.send_stage_of(r.id)).map(|s| format!("{s:?}")))], |k| k.clone(), move |_, _| {
         let Some(r) = st.status_of.get_untracked() else {
             return text("Nothing to show.").m(px(24.0)).into_element();
         };
-        match st.send_state_of(r.id) {
-            Some(SendState::Failed(why)) => failed_page(r, why).into_element(),
-            _ => timeline_page(r).into_element(),
+        match st.send_stage_of(r.id) {
+            Some(SendStage::Failed { reason, .. } | SendStage::GaveUp { reason }) => failed_page(r, reason, false).into_element(),
+            Some(SendStage::NeedsAttention { reason }) => failed_page(r, reason, true).into_element(),
+            stage => timeline_page(r, stage).into_element(),
         }
     })
 }
@@ -557,17 +563,34 @@ fn page_bar(small: String, bold: &'static str, glyph: Icon, tone: u8, act: impl 
         )
 }
 
-fn timeline_page(r: ReturnRow) -> impl IntoElement {
+fn timeline_page(r: ReturnRow, stage: Option<SendStage>) -> impl IntoElement {
     let st = store();
     let queued = r.status == "Queued";
-    let sending = matches!(st.send_state_of(r.id), Some(SendState::Sending));
+    let sending = matches!(stage, Some(SendStage::Sending));
     let edited = crate::screens::steps::short_date(r.updated_at.get(..10).unwrap_or(&r.updated_at));
+    let sent_line = match &stage {
+        Some(SendStage::Sent { .. }) => crate::screens::filings::stage_line(stage.as_ref()),
+        _ => format!("Sent {edited}"),
+    };
+    let signed_out = matches!(st.sign_in.get_untracked(), crate::store::SignIn::SignedOut);
     // (title, line, done)
     let steps: Vec<(&str, String, bool)> = vec![
         ("Checked", "No problems found".to_owned(), true),
         ("Queued", edited.clone(), true),
-        ("Sent to BIR", if sending { "Sending now…".to_owned() } else if queued { "When you're online".to_owned() } else { format!("Sent {edited}") }, !queued),
-        ("BIR email", "Arrives in your inbox. Print it for your records.".to_owned(), !queued && r.status != "Sent"),
+        (
+            "Sent to BIR",
+            if sending {
+                "Sending now…".to_owned()
+            } else if queued && signed_out {
+                "Waiting for you to sign in to send".to_owned()
+            } else if queued {
+                "When you're online".to_owned()
+            } else {
+                sent_line
+            },
+            !queued,
+        ),
+        ("BIR email", "Arrives in your inbox. Print it for your records.".to_owned(), matches!(stage, Some(SendStage::Confirmed { .. } | SendStage::Paid))),
     ];
     let mut list = view().gap(px(0.0));
     let n = steps.len();
@@ -656,13 +679,27 @@ fn secondary(label: &'static str, act: impl Fn() + 'static) -> impl IntoElement 
         .child(text(label).text_size(px(15.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::FG))
 }
 
-fn failed_page(r: ReturnRow, why: String) -> impl IntoElement {
+/// A send that failed (nothing reached BIR) or needs attention (BIR may
+/// have it): the reason in plain words and the one thing to do.
+fn failed_page(r: ReturnRow, raw: String, attention: bool) -> impl IntoElement {
     let st = store();
-    let tin_problem = why.to_lowercase().contains("tin");
-    let next = if tin_problem {
-        "Check the TIN in your tax profile, then send it again. Your answers are kept."
+    let plain = plain_send_error(&raw);
+    let (title, why, next) = if attention {
+        (
+            "BIR may already have this return",
+            "The connection ended while it was being sent, so Buwiz can't tell whether BIR got it.".to_owned(),
+            "Check your email for BIR's confirmation before you do anything else. Buwiz won't send it again by itself.",
+        )
     } else {
-        "Open the return, fix what it says, then send it again. Your answers are kept."
+        (
+            "This return wasn't sent",
+            plain.text.clone(),
+            match plain.action {
+                ErrorAction::ClaimTin => "Claim the TIN on your account page, then send it again. Your answers are kept.",
+                ErrorAction::SignIn => "Sign in, and it sends by itself. Your answers are kept.",
+                ErrorAction::None => "It tries again by itself. You can also send it again now. Your answers are kept.",
+            },
+        )
     };
     let id = r.id;
     let open = r.clone();
@@ -681,22 +718,27 @@ fn failed_page(r: ReturnRow, why: String) -> impl IntoElement {
                             .gap(px(6.0))
                             .rounded(px(16.0))
                             .bg(theme::DANGER_SOFT)
-                            .child(text("BIR didn't accept this return").text_size(px(17.0)).font_weight(FontWeight::BOLD).text_color(theme::DANGER))
+                            .child(text(title).text_size(px(17.0)).font_weight(FontWeight::BOLD).text_color(theme::DANGER))
                             .child(text(why).text_size(px(14.0)).text_color(theme::FG)),
                     )
                     .child(heading("What to do"))
                     .child(text(next).text_size(px(15.0)).text_color(theme::FG))
-                    .child(view().flex_row().gap(px(10.0)).child(secondary("Send again", move || {
-                        st.retry(id);
-                        st.back();
-                    })).child(secondary("Open the return", move || st.open_row(&open)))),
+                    .child(when(!attention && plain.action == ErrorAction::None, move || view().flex_row().gap(px(10.0)).child(secondary("Send again", move || st.retry(id)))))
+                    .child(view().flex_row().gap(px(10.0)).child(secondary("Open the return", move || st.open_row(&open)))),
             ),
         )
-        .child(if tin_problem {
-            page_bar("Fix · Filer".to_owned(), "Open tax profile", Icon::ArrowRight, 0, move || st.profile_open.set(true)).into_element()
-        } else {
-            let open = r.clone();
-            page_bar("Fix · the return".to_owned(), "Open the return", Icon::ArrowRight, 0, move || st.open_row(&open)).into_element()
+        .child(match (attention, plain.action) {
+            (true, _) => {
+                let print = r.clone();
+                page_bar(format!("BIR Form {} · {}", r.form_code, r.period_label), "Print the return", Icon::Printer, 0, move || preview::print_row(print.clone())).into_element()
+            }
+            (false, ErrorAction::SignIn) => page_bar("Fix · Sign in".to_owned(), "Sign in to send", Icon::ArrowRight, 2, move || {
+                st.go(Route::Settings);
+                st.sign_in_start();
+            })
+            .into_element(),
+            (false, ErrorAction::ClaimTin) => page_bar("Fix · TIN".to_owned(), "Check the TIN in your profile", Icon::ArrowRight, 0, move || st.profile_open.set(true)).into_element(),
+            (false, ErrorAction::None) => page_bar("It tries again by itself".to_owned(), "Send again now", Icon::Send, 2, move || st.retry(id)).into_element(),
         })
 }
 

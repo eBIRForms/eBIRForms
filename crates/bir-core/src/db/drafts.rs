@@ -3138,6 +3138,35 @@ impl Database {
             .and_then(|json| serde_json::from_str(&json).ok()))
     }
 
+    /// The status column and the stored JSON of the saved return `draft_id`.
+    pub fn draft_status_and_json(&self, draft_id: i64) -> Result<Option<(String, String)>, DbError> {
+        Ok(self
+            .conn
+            .query_row(
+                "SELECT status, data_json FROM form_drafts WHERE id = ?1",
+                params![draft_id],
+                |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)),
+            )
+            .optional()?)
+    }
+
+    /// Replace the stored JSON (and status column) of `draft_id`, but only
+    /// while the row still holds `expected_json`: a write that raced the
+    /// queue worker changes nothing. Whether the row was written.
+    pub fn replace_draft_json_if_unchanged(
+        &self,
+        draft_id: i64,
+        expected_json: &str,
+        status: &str,
+        json: &str,
+    ) -> Result<bool, DbError> {
+        Ok(self.conn.execute(
+            "UPDATE form_drafts SET status = ?1, data_json = ?2, updated_at = datetime('now')
+             WHERE id = ?3 AND data_json = ?4",
+            params![status, json, draft_id, expected_json],
+        )? == 1)
+    }
+
     /// The trigger date the saved as-needed return `draft_id` holds and its
     /// due-date rule (see [`crate::forms::event_trigger::event_trigger_from_json`]).
     /// `None` when the row is gone, the form is not as needed, or the return

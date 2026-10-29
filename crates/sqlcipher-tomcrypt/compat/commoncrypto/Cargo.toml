@@ -1,0 +1,12 @@
+[package]
+name = "compat-commoncrypto"
+description = "Writes and reads databases through bir-core, with the SQLCipher macOS ships (bundled, CommonCrypto)."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+# test-support: the raw connection, for the marker table.
+bir-core = { path = "../../../bir-core", features = ["test-support"] }
+rusqlite = { version = "0.32", features = ["bundled-sqlcipher"] }

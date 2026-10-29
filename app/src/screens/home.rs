@@ -99,11 +99,7 @@ pub(crate) fn return_row(r: ReturnRow, index: ReadSignal<usize>) -> impl IntoEle
     let compact = move || window().width.0 < 640.0;
     let row = r.clone();
     let row2 = r.clone();
-    let status = st.send_state_of(r.id).map(|s| match s {
-        crate::store::SendState::Sending => "Sending".to_owned(),
-        crate::store::SendState::Failed(_) => "Failed".to_owned(),
-    });
-    let status = status.unwrap_or_else(|| r.status.clone());
+    let status = crate::screens::filings::shown_status(&r);
     let edited = crate::screens::steps::short_date(r.updated_at.get(..10).unwrap_or(&r.updated_at));
     list_row(index)
         .cursor_pointer()
