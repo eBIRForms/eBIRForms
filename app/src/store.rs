@@ -395,7 +395,16 @@ impl Store {
             let pick = std::env::var("BUWIZ_PICK").ok().filter(|v| !v.is_empty());
             if focus.is_some() || flag("BUWIZ_OUTLINE") || pick.is_some() {
                 self.owner.run(|| {
-                    set_timeout(Duration::from_millis(2500), move || {
+                    // A loaded machine can take seconds to load the form:
+                    // wait for it, then let its rows mount.
+                    task(async move {
+                        for _ in 0..120 {
+                            if untracked(|| store().form.form().is_some()) {
+                                break;
+                            }
+                            timer(Duration::from_millis(250)).await;
+                        }
+                        timer(Duration::from_millis(1500)).await;
                         let st = store();
                         if flag("BUWIZ_OUTLINE") {
                             st.form.outline_open.set(true);

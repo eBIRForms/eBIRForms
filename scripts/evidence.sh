@@ -8,7 +8,7 @@
 # - Each screen opens through the app's BUWIZ_* launch hooks.
 # - Desktop: the app's window goes to AeroSpace workspace 3 for as long as
 #   the app runs, `screencapture -l <window>` takes it.
-# - Phone: the iOS simulator (iPhone 17 Pro) is booted at the start and shut
+# - Phone: its own iOS simulator ("Buwiz Evidence") is booted at the start and shut
 #   down at the end (Simulator quit); `xcrun simctl io <udid> screenshot`.
 # - Each shot must not be blank and must show the text its screen is known
 #   by (Vision OCR, scripts/ocr.swift); a failed check fails the script.
@@ -26,7 +26,9 @@ TMP=$(mktemp -d)
 KEY=0000000000000000000000000000000000000000000000000000000000000000
 WHICH=${1:-all}
 FAILED=""
-DEVICE_NAME="iPhone 17 Pro"
+# A simulator of its own (an iPhone 17 Pro, made on first use), so the
+# script never boots, wipes or wedges a device someone else uses.
+DEVICE_NAME="${BUWIZ_SIM:-Buwiz Evidence}"
 UDID=""
 APP_PID=""
 
@@ -55,13 +57,26 @@ fresh_db() {
 }
 
 # check <png> <expected text>: not blank, and the text is on it.
+# Each result goes to checks.txt (verify.sh V4 reads it): "ok <file>
+# <sha256> <text>" for a shot that passed. A shot that fails is renamed
+# <name>.failed.png, so no failed shot keeps the name V4 looks for.
 check() {
-    local png=$1 want=$2 sd
-    if [ ! -s "$png" ]; then FAILED+=" $(basename "$png"):missing"; return; fi
-    sd=$(magick "$png" -colorspace Gray -format '%[fx:standard_deviation]' info: 2>/dev/null || echo 0)
-    if awk -v s="$sd" 'BEGIN{exit !(s < 0.02)}'; then FAILED+=" $(basename "$png"):blank"; return; fi
-    if ! "$TMP/ocr" "$png" | cut -f2- | grep -qiF -- "$want"; then
-        FAILED+=" $(basename "$png"):no-'$want'"
+    local png=$1 want=$2 sd name why=""
+    name=$(basename "$png")
+    if [ ! -s "$png" ]; then
+        why=missing
+    else
+        sd=$(magick "$png" -colorspace Gray -format '%[fx:standard_deviation]' info: 2>/dev/null || echo 0)
+        if awk -v s="$sd" 'BEGIN{exit !(s < 0.02)}'; then why=blank
+        elif ! "$TMP/ocr" "$png" | cut -f2- | grep -qiF -- "$want"; then why="no-'$want'"; fi
+    fi
+    if [ -n "$why" ]; then
+        FAILED+=" $name:$why"
+        [ -f "$png" ] && mv "$png" "${png%.png}.failed.png"
+        echo "FAIL $name $why" >>"$TMP/checks"
+    else
+        rm -f "${png%.png}.failed.png"
+        echo "ok $name $(shasum -a 256 "$png" | cut -d' ' -f1) $want" >>"$TMP/checks"
     fi
 }
 
@@ -146,7 +161,7 @@ PHONE=(
     "form|BUWIZ_OPEN=1701Q:2026:3|Return details"
     "outline|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_OUTLINE=1|Tax still due"
     "choice-sheet|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_PICK=choice|Single Proprietor"
-    "long-list-search|BUWIZ_OPEN=1601EQ:2026:3 BUWIZ_PICK=list|Search"
+    "long-list-search|BUWIZ_OPEN=1606:2026:3 BUWIZ_PICK=list|province or RDO|20"
     "schedule|BUWIZ_OPEN=1601C:2026:10 BUWIZ_PICK=schedule|Add"
     "row-page|BUWIZ_OPEN=1601C:2026:10 BUWIZ_PICK=row|Delete row"
     "new-taxpayer|BUWIZ_SHEET=new-taxpayer|Registered name"
@@ -155,7 +170,8 @@ PHONE=(
     "sent|BUWIZ_STATUS=sent|Where it is"
     "failed|BUWIZ_STATUS=failed|wasn't sent"
     "print-preview|BUWIZ_PRINT=1701Q|Print or save as PDF"
-    "search|BUWIZ_SHEET=search|Cancel"
+    "search|BUWIZ_SHEET=search|Cancel|20"
+    "queue|BUWIZ_ROUTE=queue|Send queue"
     "settings|BUWIZ_ROUTE=settings|Sign in to send"
 )
 
@@ -168,9 +184,24 @@ phone_shot() {
     { echo "BIR_DB_KEY=$KEY"; echo "BUWIZ_THEME=$theme"; for kv in $hooks; do echo "$kv"; done; } >"$dir/launch.env"
     xcrun simctl ui "$UDID" appearance "$theme" 2>/dev/null || true
     xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
-    xcrun simctl launch "$UDID" com.buwiz.oss >/dev/null
+    # A wedged simulator never answers a launch: fail the shot, don't hang.
+    if ! timeout 180 xcrun simctl launch "$UDID" com.buwiz.oss >/dev/null; then
+        FAILED+=" phone-$name-$theme.png:launch"
+        return
+    fi
     sleep "$wait"
-    xcrun simctl io "$UDID" screenshot "$png" >/dev/null 2>&1
+    rm -f "$png"
+    # The simulator writes the file itself, and macOS may not let it write
+    # to an external volume: shoot into $TMP, then move it. A just-booted
+    # simulator may not have its display yet: try again, for up to a minute.
+    for _ in 1 2 3 4 5 6 7 8 9 10 11 12; do
+        if xcrun simctl io "$UDID" screenshot "$TMP/shot.png" >/dev/null 2>"$TMP/shot.err"; then
+            mv "$TMP/shot.png" "$png"
+            break
+        fi
+        sleep 5
+    done
+    [ -s "$png" ] || sed 's/^/  simctl: /' "$TMP/shot.err" >&2
     check "$png" "$want"
     echo "phone-$name-$theme"
 }
@@ -178,6 +209,10 @@ phone_shot() {
 if [ "$WHICH" = all ] || [ "$WHICH" = phone ]; then
     (cd app && cargo build -q --locked --target aarch64-apple-ios-sim)
     UDID=$(xcrun simctl list devices available | grep -F "$DEVICE_NAME (" | head -1 | sed -E 's/.*\(([0-9A-F-]+)\).*/\1/')
+    if [ -z "$UDID" ]; then
+        runtime=$(xcrun simctl list runtimes -j | python3 -c 'import json,sys; print([r for r in json.load(sys.stdin)["runtimes"] if r["platform"]=="iOS" and r["isAvailable"]][-1]["identifier"])')
+        UDID=$(xcrun simctl create "$DEVICE_NAME" "iPhone 17 Pro" "$runtime")
+    fi
     xcrun simctl boot "$UDID" 2>/dev/null || true
     xcrun simctl bootstatus "$UDID" -b >/dev/null
     # The app bundle, as app/ios.sh packs it.
@@ -196,6 +231,12 @@ if [ "$WHICH" = all ] || [ "$WHICH" = phone ]; then
     done
     xcrun simctl ui "$UDID" appearance light 2>/dev/null || true
 fi
+
+# Merge this run's results into checks.txt: a retaken shot replaces its line.
+touch "$OUT/checks.txt" "$TMP/checks"
+awk 'NR==FNR{new[$2]=$0; next} !($2 in new)' "$TMP/checks" "$OUT/checks.txt" >"$TMP/merged"
+cat "$TMP/checks" >>"$TMP/merged"
+sort -k2 "$TMP/merged" >"$OUT/checks.txt"
 
 if [ -n "$FAILED" ]; then
     echo "evidence: checks failed:$FAILED" >&2
