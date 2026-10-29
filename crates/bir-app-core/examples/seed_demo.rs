@@ -4,7 +4,7 @@
 //! `BIR_DATABASE_PATH=/tmp/x.db BIR_DB_KEY=<64 hex> cargo run -p bir-app-core --example seed_demo`
 //!
 //! `-- --full` adds what screenshots need: the forms Juana files (so the
-//! calendar has deadlines), drafts, a saved payee, and four queued 1601C
+//! calendar has deadlines), drafts, a saved payee, and five queued 1601C
 //! returns left Queued, Sending, Failed (the relay's `tin_not_active`) and
 //! Sent (with a demo receipt).
 
@@ -66,7 +66,7 @@ fn seed_returns(app: &BirApp, tin: &str) -> Result<(), Box<dyn std::error::Error
 
     let layout = app.form_layout("1601C")?;
     let mut ids = Vec::new();
-    for month in [6i64, 7, 8, 9] {
+    for month in [6i64, 7, 8, 9, 10] {
         let opened = open("1601C", 2026, month)?;
         let mut edits = BTreeMap::new();
         edits.insert("frm1601c:TaxWithheld_1".to_string(), FieldValue::Tick(true));
@@ -94,6 +94,15 @@ fn seed_returns(app: &BirApp, tin: &str) -> Result<(), Box<dyn std::error::Error
         },
     )?;
     app.demo_set_send_stage(ids[2], &SendStage::Sending)?;
-    println!("seeded drafts and 1601C returns: sent {}, failed {}, sending {}, queued {}", ids[0], ids[1], ids[2], ids[3]);
+    app.demo_set_send_stage(
+        ids[4],
+        &SendStage::NeedsAttention {
+            reason: "The connection broke during the upload, so BIR may have the file. Check your email for BIR's confirmation before you send it again.".into(),
+        },
+    )?;
+    println!(
+        "seeded drafts and 1601C returns: sent {}, failed {}, sending {}, queued {}, needs attention {}",
+        ids[0], ids[1], ids[2], ids[3], ids[4]
+    );
     Ok(())
 }

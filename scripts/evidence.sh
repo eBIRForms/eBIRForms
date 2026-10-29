@@ -42,6 +42,10 @@ cleanup() {
 }
 trap cleanup EXIT
 
+# What the shots are of: a hash of every app/src source, taken before the
+# builds below (verify.sh V4 requires it to match the current sources).
+SRC=$(find app/src -type f -name '*.rs' | LC_ALL=C sort | xargs shasum -a 256 | shasum -a 256 | cut -c1-16)
+
 # ---- the seeded database ---------------------------------------------------
 cargo build -q --locked -p bir-app-core --example seed_demo
 BIR_DATABASE_PATH="$TMP/seed/bir_data.db" BIR_DB_KEY=$KEY cargo run -q --locked -p bir-app-core --example seed_demo -- --full
@@ -58,7 +62,7 @@ fresh_db() {
 
 # check <png> <expected text>: not blank, and the text is on it.
 # Each result goes to checks.txt (verify.sh V4 reads it): "ok <file>
-# <sha256> <text>" for a shot that passed. A shot that fails is renamed
+# <sha256> src=<app/src hash> <text>" for a shot that passed. A shot that fails is renamed
 # <name>.failed.png, so no failed shot keeps the name V4 looks for.
 check() {
     local png=$1 want=$2 sd name why=""
@@ -76,7 +80,7 @@ check() {
         echo "FAIL $name $why" >>"$TMP/checks"
     else
         rm -f "${png%.png}.failed.png"
-        echo "ok $name $(shasum -a 256 "$png" | cut -d' ' -f1) $want" >>"$TMP/checks"
+        echo "ok $name $(shasum -a 256 "$png" | cut -d' ' -f1) src=$SRC $want" >>"$TMP/checks"
     fi
 }
 
@@ -96,6 +100,7 @@ DESKTOP=(
     "settings|BUWIZ_ROUTE=settings|Sign in to send"
     "palette|BUWIZ_SHEET=palette|Go to"
     "print-preview|BUWIZ_PRINT=1701Q|Quarterly Income Tax|22"
+    "delete-confirm|BUWIZ_ROUTE=filings BUWIZ_SHEET=delete|Delete"
 )
 
 # Whether screen $1 is in this run (ONLY lists screens; empty: all).
@@ -172,6 +177,12 @@ PHONE=(
     "print-preview|BUWIZ_PRINT=1701Q|Print or save as PDF"
     "search|BUWIZ_SHEET=search|Cancel|20"
     "queue|BUWIZ_ROUTE=queue|Send queue"
+    "queued|BUWIZ_STATUS=queued|Queued"
+    "sending|BUWIZ_STATUS=sending|Sending"
+    "attention|BUWIZ_STATUS=attention|confirmation"
+    "how-sheet|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_PICK=how|worked out|20"
+    "payee-picker|BUWIZ_OPEN=1707:2026:3 BUWIZ_PICK=payee|payee|20"
+    "delete-confirm|BUWIZ_ROUTE=filings BUWIZ_SHEET=delete|Delete"
     "settings|BUWIZ_ROUTE=settings|Sign in to send"
 )
 

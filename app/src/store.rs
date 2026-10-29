@@ -763,10 +763,11 @@ pub(crate) fn open_of(row: &ReturnRow) -> bir_app_core::OpenReturn {
 /// - `BUWIZ_STATUS=<form>|sent|failed|sending|queued|attention`: the page of
 ///   that return (a form's first that left Draft, or the first in that
 ///   send stage)
-/// - with `BUWIZ_OPEN`: `BUWIZ_PICK=choice|list|schedule|row` opens the
-///   form's first short-choice sheet, long-list search, schedule (the
-///   phone's schedule page; the desktop scrolls to the table) or the first
-///   schedule row's page
+/// - with `BUWIZ_OPEN`: `BUWIZ_PICK=choice|list|schedule|row|how|payee`
+///   opens the form's first short-choice sheet, long-list search, schedule
+///   (the phone's schedule page; the desktop scrolls to the table), the
+///   first schedule row's page, the first computed row's "how it's worked
+///   out" sheet, or the first TIN item's saved-payee picker
 /// - `BUWIZ_SWIPE=1`: the first Filings row swiped open
 /// - `BUWIZ_PRINT=<form>`: print preview of that form's first return;
 ///   `BUWIZ_PRINT_DIALOG=1|share` then opens the print dialog or share sheet

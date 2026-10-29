@@ -37,6 +37,8 @@ selected() { [ ${#SELECTED[@]} -eq 0 ] || [[ " ${SELECTED[*]} " == *" $1 "* ]]; 
 # The newest modification time under app/src, in seconds: evidence older
 # than this was taken of code that has since changed.
 newest_src() { find app/src -type f -name '*.rs' -exec stat -f '%m' {} + | sort -n | tail -1; }
+# A hash of every app/src source; evidence.sh and bench-scroll.sh record it.
+src_hash() { find app/src -type f -name '*.rs' | LC_ALL=C sort | xargs shasum -a 256 | shasum -a 256 | cut -c1-16; }
 
 android_build() {
     local sdk="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-$HOME/Library/Android/sdk}}"
@@ -69,16 +71,17 @@ if selected V1; then
         hits=""
         for b in "${bins[@]}"; do
             [ -f "$b" ] || { hits+="missing $b; "; continue; }
-            # No exceptions: any passphrase text at all, BIR's dispatcher and
-            # upload hosts, and S-F-T-P as a word or identifier part (sftp,
-            # _sftp, russh_sftp, SftpSession, BIR_SFTP_*), stricter than a
-            # word match. Run-on rodata such as "https"+"ftp" or "_MSFT"+
-            # "PHYSICAL" is not an identifier. (The printed forms' footer
-            # names BIR's public website, so the bare domain is not listed.)
+            # Any passphrase or SFTP text at all (substring, any case), BIR's
+            # dispatcher by name (tin/bir + dispatch, a dispatcher URL, host or
+            # .php) and BIR's upload hosts. The only exceptions are two exact
+            # run-on strings in third-party rodata, neutralised by name: nsh's
+            # link-protocol list ("...https"+"ftpcid...") and Vulkan's
+            # "_MSFT"+"PHYSICAL...". (The printed forms' footer names BIR's
+            # public website, so the bare domain is not on the list.)
             text="$LOGS/strings-$(basename "$(dirname "$(dirname "$b")")")-$(basename "$b").txt"
             strings -a "$b" >"$text"
-            found=$( { grep -i -E 'passphrase|tindispatcher|dispatcher\.php|birgovph|ebf2\.bir|ws2\.bir' "$text"; \
-                grep -E '(^|[^A-Za-z])[Ss][Ff][Tt][Pp]|Sftp|SFTP([^A-Z]|$)|sftp([_:-]|$)|_sftp' "$text"; } | head -3)
+            found=$(sed -e 's/httpsftpcid/http-s-ftp-cid/g' -e 's/_MSFTPHYSICAL/_MSFT_PHYSICAL/g' "$text" \
+                | grep -i -E 'passphrase|(tin|bir)[_-]?dispatch|dispatcher[_-]?(url|host)|dispatcher\.php|birgovph|ebf2\.bir|ws2\.bir|sftp' | head -3)
             [ -n "$found" ] && hits+="$b: $(echo "$found" | tr '\n' '|'); "
         done
         [ -z "$hits" ] && pass V1 "tree clean; ${#bins[@]} binaries carry no BIR secret strings" || fail V1 "$hits"
@@ -95,13 +98,22 @@ if selected V3; then
     run v3-test cargo test --locked --workspace || why+="cargo test --workspace failed ($LOGS/v3-test.log); "
     grep -q 'cargo test' .github/workflows/ci.yml || why+="CI does not run cargo test; "
     if git rev-parse -q --verify "$BASE" >/dev/null; then
-        count() { git grep -h -E "$1" "$2" -- '*.rs' ':!nsh' ':!blaze' 2>/dev/null | wc -l | tr -d ' '; }
-        count_wt() { grep -r -h -E "$1" --include='*.rs' crates app/src app/android 2>/dev/null | wc -l | tr -d ' '; }
+        # Attribute lines that are code, not comments ("// #[test]" counts for nothing).
+        count() { git grep -h -E "$1" "$2" -- '*.rs' ':!nsh' ':!blaze' 2>/dev/null | grep -v -E '^[[:space:]]*//' | wc -l | tr -d ' '; }
+        count_wt() { grep -r -h -E "$1" --include='*.rs' crates app/src app/android 2>/dev/null | grep -v -E '^[[:space:]]*//' | wc -l | tr -d ' '; }
         t0=$(count '#\[(tokio::)?test' "$BASE"); t1=$(count_wt '#\[(tokio::)?test')
         i0=$(count '#\[ignore' "$BASE"); i1=$(count_wt '#\[ignore')
         [ "$t1" -ge "$t0" ] || why+="tests went from $t0 to $t1; "
         [ "$i1" -le "$i0" ] || why+="#[ignore] went from $i0 to $i1; "
-        deleted=$(git diff --name-status "$BASE" -- 'crates/*/tests/*' | awk '$1=="D"{print $2}' | head -3)
+        # A file deleted since the base that held tests, anywhere; and any
+        # deleted file under a tests/ directory (fixtures, goldens).
+        deleted=""
+        for f in $(git diff --name-only --diff-filter=D "$BASE" -- ':!nsh' ':!blaze'); do
+            case "$f" in
+                */tests/*) deleted+="$f " ;;
+                *.rs) git show "$BASE:$f" 2>/dev/null | grep -q -E '#\[(tokio::)?test|#\[cfg\(test\)\]' && deleted+="$f " ;;
+            esac
+        done
         [ -z "$deleted" ] || why+="deleted test files: $deleted; "
     else
         why+="base $BASE not found (git fetch); "
@@ -110,10 +122,10 @@ if selected V3; then
 fi
 
 # ---- V4 ---------------------------------------------------------------------
-DESKTOP_SCREENS="home library form form-schedule profile-panel new-taxpayer filings queue calendar taxpayers settings palette print-preview"
-PHONE_SCREENS="home forms filings calendar form outline choice-sheet long-list-search schedule row-page new-taxpayer taxpayer-sheet start-return sent failed print-preview search settings queue"
+DESKTOP_SCREENS="home library form form-schedule profile-panel new-taxpayer filings queue calendar taxpayers settings palette print-preview delete-confirm"
+PHONE_SCREENS="home forms filings calendar form outline choice-sheet long-list-search schedule row-page new-taxpayer taxpayer-sheet start-return sent failed print-preview search settings queue queued sending attention how-sheet payee-picker delete-confirm"
 if selected V4; then
-    src=$(newest_src); missing=""; stale=""; unchecked=""; n=0
+    src=$(newest_src); cur=$(src_hash); missing=""; stale=""; unchecked=""; n=0
     for kind in desktop phone; do
         list=$DESKTOP_SCREENS; [ $kind = phone ] && list=$PHONE_SCREENS
         for s in $list; do for t in light dark; do
@@ -122,12 +134,12 @@ if selected V4; then
             elif [ "$(stat -f '%m' "$f")" -lt "$src" ]; then stale+="$kind-$s-$t "
             # evidence.sh's own check: not blank, and OCR found the screen's
             # text, recorded against this exact file's hash.
-            elif ! grep -q -F "ok $kind-$s-$t.png $(shasum -a 256 "$f" | cut -d' ' -f1) " "$EVIDENCE/checks.txt" 2>/dev/null; then
+            elif ! grep -q -F "ok $kind-$s-$t.png $(shasum -a 256 "$f" | cut -d' ' -f1) src=$cur " "$EVIDENCE/checks.txt" 2>/dev/null; then
                 unchecked+="$kind-$s-$t "
             fi
         done; done
     done
-    if [ -z "$missing$stale$unchecked" ]; then pass V4 "$n screenshots present, newer than app/src, each checked (not blank, screen text found)"
+    if [ -z "$missing$stale$unchecked" ]; then pass V4 "$n screenshots of the current app/src ($cur), each checked (not blank, screen text found)"
     else fail V4 "missing: ${missing:-none} | stale: ${stale:-none} | unchecked: ${unchecked:-none}"; fi
 fi
 
@@ -137,6 +149,7 @@ if selected V5; then
     if [ ! -s "$log" ]; then fail V5 "no bench log; run scripts/bench-scroll.sh"
     elif [ "$(stat -f '%m' "$log")" -lt "$(newest_src)" ]; then fail V5 "bench log is older than app/src; rerun scripts/bench-scroll.sh"
     elif ! grep -q 'refresh 120' "$log"; then fail V5 "bench did not run at 120 Hz"
+    elif ! grep -q -x "src $(src_hash)" "$log"; then fail V5 "bench measured other app/src sources; rerun scripts/bench-scroll.sh"
     else
         # nsh logs each over-budget frame as "frame 9.1ms (budget 8.3ms): ...";
         # count those between "mounted; scrolling" and "bench end".

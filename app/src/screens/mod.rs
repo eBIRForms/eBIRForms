@@ -164,6 +164,8 @@ pub(crate) fn pick_on_launch(pick: &str) {
     let want = |k: Kind| match pick {
         "choice" => k == Kind::ShortChoice,
         "list" => matches!(k, Kind::LongList | Kind::Place),
+        "how" => k == Kind::Computed,
+        "payee" => k == Kind::Tin,
         _ => k == Kind::Schedule,
     };
     let Some(id) = ids.into_iter().find(|id| form.item(*id).is_some_and(|item| want(kind_of(item, &item.fields)))) else {
@@ -180,6 +182,8 @@ pub(crate) fn pick_on_launch(pick: &str) {
             st.schedule_page.set(Some(id));
             st.row_edit.set(Some((id, 0)));
         }
+        "how" => st.explain.set(Some(id)),
+        "payee" => st.payee.set(Some((id, None))),
         _ => st.picker.set(Some(id)),
     }
 }

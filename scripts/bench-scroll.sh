@@ -30,6 +30,8 @@ if echo "$rates" | grep -qv '^120'; then
     exit 1
 fi
 
+# The sources the bench measures (verify.sh V5 requires a match).
+SRC=$(find app/src -type f -name '*.rs' | LC_ALL=C sort | xargs shasum -a 256 | shasum -a 256 | cut -c1-16)
 cargo build -q --locked -p bir-app-core --example seed_demo
 cargo run -q --locked -p bir-app-core --example seed_demo
 (cd app && cargo build -q --locked --release)
@@ -56,6 +58,7 @@ for speed in 40 160; do
 done
 {
     echo "refresh 120"
+    echo "src $SRC"
     echo "commit $(git rev-parse --short HEAD) $(git diff --quiet -- app/src || echo '+uncommitted')"
     echo "date $(date -u +%FT%TZ)"
 } >>"$OUT"
