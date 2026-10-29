@@ -11,7 +11,7 @@
 //! Below the re-exports: the page geometry and small helpers the OS
 //! modules share, testable without a display.
 
-// The screens wire these in; until then some go unused on a given OS.
+// The shared helpers serve Windows and Linux; macOS uses only the re-exports.
 #![cfg_attr(not(test), allow(dead_code, unused_imports))]
 
 use std::path::{Path, PathBuf};
@@ -25,8 +25,8 @@ pub(crate) use crate::windows::{SheetPdf, open_panel, print_pdf, save_panel};
 #[cfg(target_os = "linux")]
 pub(crate) use crate::linux::{SheetPdf, open_panel, print_pdf, save_panel};
 
-// TODO(P6 merge): macOS arm, once app/src/mac.rs is on this branch:
-// #[cfg(target_os = "macos")] pub(crate) use crate::mac::{WebKitPdf as SheetPdf, open_panel, print_pdf, save_panel};
+#[cfg(target_os = "macos")]
+pub(crate) use crate::mac::{WebKitPdf as SheetPdf, open_panel, print_pdf, save_panel};
 
 /// Why a PDF could not be made.
 #[derive(Debug)]

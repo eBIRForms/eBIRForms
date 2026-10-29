@@ -15,29 +15,29 @@ use crate::widgets::{CLEAR, Variant, button_sm, list_group, section_title, segme
 
 const THEMES: [ThemePref; 3] = [ThemePref::System, ThemePref::Light, ThemePref::Dark];
 
-/// Where a backup goes: the save panel on macOS; on a phone the app's own
+/// Where a backup goes: the save panel on the desktops; on a phone the app's own
 /// files, dated.
 fn backup_target() -> Option<PathBuf> {
     let name = format!("Buwiz backup {}.zip", crate::store::today());
-    #[cfg(target_os = "macos")]
+    #[cfg(any(target_os = "macos", windows, target_os = "linux"))]
     {
-        crate::mac::save_panel(&name, "zip")
+        crate::desktop::save_panel(&name, "zip")
     }
-    #[cfg(not(target_os = "macos"))]
+    #[cfg(not(any(target_os = "macos", windows, target_os = "linux")))]
     {
         let db = std::env::var_os("BIR_DATABASE_PATH").map(PathBuf::from)?;
         Some(db.parent()?.join(name))
     }
 }
 
-/// The backup to restore: the open panel on macOS; on a phone the newest
+/// The backup to restore: the open panel on the desktops; on a phone the newest
 /// backup in the app's files.
 fn restore_source() -> Option<PathBuf> {
-    #[cfg(target_os = "macos")]
+    #[cfg(any(target_os = "macos", windows, target_os = "linux"))]
     {
-        crate::mac::open_panel("zip")
+        crate::desktop::open_panel("zip")
     }
-    #[cfg(not(target_os = "macos"))]
+    #[cfg(not(any(target_os = "macos", windows, target_os = "linux")))]
     {
         let db = std::env::var_os("BIR_DATABASE_PATH").map(PathBuf::from)?;
         let dir = db.parent()?.to_path_buf();

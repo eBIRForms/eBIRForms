@@ -1,8 +1,9 @@
 //! The print preview: the filled BIR sheets (bir-print's static HTML) in a
 //! web view, the one place AGENTS.md allows one, with Print and Save as
-//! PDF. On macOS both go through [`crate::mac::WebKitPdf`], bir-print's
-//! `PdfSink` over WKWebView `createPDF`; elsewhere, and when that fails, the
-//! sheet opens in the browser (the fallback P4a had).
+//! PDF. On the desktops both go through [`crate::desktop::SheetPdf`],
+//! bir-print's `PdfSink` over the OS web view (WKWebView, WebView2,
+//! WebKitGTK); when that fails, the sheet opens in the browser (the
+//! fallback P4a had).
 
 use bir_app_core::{PrintedReturn, ReturnRow};
 use nsh_core::prelude::*;
@@ -29,12 +30,12 @@ fn pdf_hook(p: Preview) {
     let Some(out) = std::env::var("BUWIZ_PDF_OUT").ok().filter(|v| !v.is_empty()) else { return };
     task(async move {
         let made = blocking(move || -> Result<Vec<u8>, String> {
-            #[cfg(target_os = "macos")]
+            #[cfg(any(target_os = "macos", windows, target_os = "linux"))]
             {
                 use bir_app_core::bir_print::pdf_sink::PdfSink as _;
-                crate::mac::WebKitPdf { form_code: p.form_code.clone() }.html_to_pdf(&p.html).map_err(|e| e.to_string())
+                crate::desktop::SheetPdf { form_code: p.form_code.clone() }.html_to_pdf(&p.html).map_err(|e| e.to_string())
             }
-            #[cfg(not(target_os = "macos"))]
+            #[cfg(not(any(target_os = "macos", windows, target_os = "linux")))]
             {
                 crate::mobile::printer().ok_or("no printer")?.html_to_pdf(&p.html)
             }
@@ -116,21 +117,21 @@ fn act_now(act: Act, p: &Preview) -> Result<Option<String>, String> {
             _ => printer.print(&p.html, &p.title).map(|()| None).map_err(|e| format!("Could not print: {e}")),
         };
     }
-    #[cfg(target_os = "macos")]
+    #[cfg(any(target_os = "macos", windows, target_os = "linux"))]
     {
         use bir_app_core::bir_print::pdf_sink::PdfSink as _;
         if act != Act::Browser {
-            let sink = crate::mac::WebKitPdf { form_code: p.form_code.clone() };
+            let sink = crate::desktop::SheetPdf { form_code: p.form_code.clone() };
             let pdf = sink.html_to_pdf(&p.html);
             match (act, pdf) {
                 (Act::Print, Ok(bytes)) => {
                     let path = std::env::temp_dir().join(format!("{}.pdf", file_stem(&p.title)));
                     std::fs::write(&path, bytes).map_err(|e| format!("Could not write the PDF: {e}"))?;
-                    crate::mac::print_pdf(&path).map_err(|e| format!("Could not print: {e}"))?;
+                    crate::desktop::print_pdf(&path).map_err(|e| format!("Could not print: {e}"))?;
                     return Ok(None);
                 }
                 (Act::SavePdf, Ok(bytes)) => {
-                    let Some(path) = crate::mac::save_panel(&format!("{}.pdf", file_stem(&p.title)), "pdf") else { return Ok(None) };
+                    let Some(path) = crate::desktop::save_panel(&format!("{}.pdf", file_stem(&p.title)), "pdf") else { return Ok(None) };
                     std::fs::write(&path, bytes).map_err(|e| format!("Could not save the PDF: {e}"))?;
                     return Ok(Some(format!("Saved {}.", path.file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_default())));
                 }
@@ -151,7 +152,11 @@ fn open_in_browser(p: &Preview) -> Result<Option<String>, String> {
     std::fs::write(&path, &p.html).map_err(|e| format!("Could not write the sheet: {e}"))?;
     #[cfg(target_os = "macos")]
     let opened = std::process::Command::new("open").arg(&path).status();
-    #[cfg(not(target_os = "macos"))]
+    #[cfg(windows)]
+    let opened = std::process::Command::new("explorer").arg(&path).status();
+    #[cfg(target_os = "linux")]
+    let opened = std::process::Command::new("xdg-open").arg(&path).status();
+    #[cfg(not(any(target_os = "macos", windows, target_os = "linux")))]
     let opened: std::io::Result<std::process::ExitStatus> = Err(std::io::Error::other("no browser"));
     match opened {
         Ok(_) => Ok(Some("The print sheet opened in your browser.".to_owned())),
