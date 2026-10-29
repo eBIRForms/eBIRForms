@@ -5,12 +5,13 @@
 # that ran over budget. The result is internal/evidence/bench-1702rt.log.
 #
 # It uses a throwaway database with the demo taxpayer, puts the window on
-# AeroSpace workspace 3, and quits the app it started. macOS only.
+# AeroSpace workspace $BUWIZ_WORKSPACE (2), and quits the app it started. macOS only.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 export RUSTC_WRAPPER=
 
 OUT=internal/evidence/bench-1702rt.log
+WORKSPACE="${BUWIZ_WORKSPACE:-2}"
 TMP=$(mktemp -d)
 mkdir -p internal/evidence
 export BIR_DATABASE_PATH="$TMP/bir_data.db"
@@ -46,7 +47,7 @@ for speed in 40 160; do
     for _ in $(seq 1 240); do
         if [ $moved = 0 ]; then
             id=$(aerospace list-windows --all --format '%{window-id}|%{app-pid}' 2>/dev/null | awk -F'|' -v p="$pid" '$2==p{print $1; exit}')
-            [ -n "$id" ] && aerospace move-node-to-workspace --window-id "$id" 3 && moved=1
+            [ -n "$id" ] && aerospace move-node-to-workspace --window-id "$id" "$WORKSPACE" && moved=1
         fi
         grep -q 'bench end' "$log" 2>/dev/null && break
         kill -0 "$pid" 2>/dev/null || break

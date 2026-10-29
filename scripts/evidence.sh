@@ -6,7 +6,7 @@
 #   (000-123-453-00000), drafts, and 1601C returns left Queued, Sending,
 #   Failed and Sent.
 # - Each screen opens through the app's BUWIZ_* launch hooks.
-# - Desktop: the app's window goes to AeroSpace workspace 3 for as long as
+# - Desktop: the app's window goes to AeroSpace workspace $BUWIZ_WORKSPACE (2) for as long as
 #   the app runs, `screencapture -l <window>` takes it.
 # - Phone: its own iOS simulator ("Buwiz Evidence") is booted at the start and shut
 #   down at the end (Simulator quit); `xcrun simctl io <udid> screenshot`.
@@ -20,6 +20,8 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 export RUSTC_WRAPPER=
 ROOT=$(pwd)
+# The AeroSpace workspace the app's windows run on while they are shot.
+WORKSPACE="${BUWIZ_WORKSPACE:-2}"
 OUT=$ROOT/internal/evidence
 mkdir -p "$OUT"
 TMP=$(mktemp -d)
@@ -116,14 +118,14 @@ desktop_shot() {
     env BIR_DATABASE_PATH="$TMP/desk/bir_data.db" BIR_DB_KEY=$KEY BUWIZ_THEME=$theme BUWIZ_OFFSCREEN=1 $hooks \
         "$ROOT/app/target/debug/buwiz" >"$TMP/desk.out" 2>&1 &
     APP_PID=$!
-    # Every window of the app goes to workspace 3, for as long as it runs,
+    # Every window of the app goes to the test workspace, for as long as it runs,
     # floating (so it keeps its own size whatever else shares the space).
     (
         while kill -0 "$APP_PID" 2>/dev/null; do
             aerospace list-windows --all --format '%{window-id}|%{app-pid}|%{workspace}' 2>/dev/null |
-                awk -F'|' -v p="$APP_PID" '$2==p && $3!="3"{print $1}' |
+                awk -F'|' -v p="$APP_PID" -v w="$WORKSPACE" '$2==p && $3!=w{print $1}' |
                 while read -r id; do
-                    aerospace move-node-to-workspace --window-id "$id" 3
+                    aerospace move-node-to-workspace --window-id "$id" "$WORKSPACE"
                     aerospace layout floating --window-id "$id" 2>/dev/null || true
                 done
             sleep 0.2
