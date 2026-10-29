@@ -13,8 +13,10 @@ pub mod display;
 pub mod host;
 mod schema;
 mod screen_form_module;
+mod submit;
 mod tax_profile_module;
 
 pub use app::*;
 pub use schema::*;
+pub use submit::SERVER_URL_SETTING;
 pub use {bir_core, bir_print, bir_submit};

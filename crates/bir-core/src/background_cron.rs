@@ -360,6 +360,44 @@ pub trait SubmissionTransport: Send + Sync {
         filename: &'a str,
         payload: &'a [u8],
     ) -> Pin<Box<dyn Future<Output = Result<(), TransportError>> + Send + 'a>>;
+
+    /// [`Self::store_session`] that also says whether a failure reached BIR
+    /// and hands back the receipt. The default knows neither, so every
+    /// failure counts as [`StoreFailure::MaybeSent`]. Queueable forms use
+    /// this; 1601C and 2551Q still call [`Self::store_session`].
+    fn store_session_reported<'a>(
+        &'a self,
+        session: Self::Session,
+        filename: &'a str,
+        payload: &'a [u8],
+    ) -> Pin<Box<dyn Future<Output = Result<StoreReport, StoreFailure>> + Send + 'a>> {
+        Box::pin(async move {
+            self.store_session(session, filename, payload)
+                .await
+                .map(|()| StoreReport::default())
+                .map_err(StoreFailure::MaybeSent)
+        })
+    }
+}
+
+/// What a transport learned from a PUT that worked.
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
+pub struct StoreReport {
+    /// The submission service's signed receipt, kept on the return.
+    pub receipt: Option<String>,
+    /// Nothing reached BIR: the far side only simulated the PUT.
+    pub dry_run: bool,
+}
+
+/// A PUT that did not end in a receipt.
+#[derive(Debug, thiserror::Error)]
+pub enum StoreFailure {
+    /// Nothing reached BIR: the queue retries with backoff.
+    #[error("{0}")]
+    NotSent(TransportError),
+    /// BIR may have the return: it is never sent again automatically.
+    #[error("{0}")]
+    MaybeSent(TransportError),
 }
 
 async fn process_queued_1601c_with_transport<T: SubmissionTransport>(
@@ -939,10 +977,12 @@ async fn process_queued_queueable<F: QueueableForm, T: SubmissionTransport>(
     }
 
     match transport
-        .store_session(session, &filename, payload.as_bytes())
+        .store_session_reported(session, &filename, payload.as_bytes())
         .await
     {
-        Ok(()) => {
+        Ok(report) => {
+            let dry_run = dry_run || report.dry_run;
+            draft.lifecycle_mut().submission_receipt = report.receipt;
             if dry_run {
                 info!(
                     "Cron: dry run: simulated submission of queued {} {} (nothing sent to BIR)",
@@ -992,11 +1032,43 @@ async fn process_queued_queueable<F: QueueableForm, T: SubmissionTransport>(
                 }
             }
         }
-        Err(_) => {
+        Err(StoreFailure::NotSent(error)) => {
             warn!(
-                "Cron: {} PUT ended after the network claim; outcome is unknown and support-assisted manual reconciliation is required",
-                F::FORM_CODE
+                "Cron: {} {} was not sent; retrying later: {}",
+                F::FORM_CODE,
+                draft.period_code(),
+                error
             );
+            if let Ok(db_guard) = db.lock()
+                && let Err(db_error) = db_guard.fail_claimed_queueable_not_sent::<F>(
+                    draft.tin(),
+                    draft.taxable_year(),
+                    draft.period_column(),
+                    &claim_token,
+                    format!("Not sent (nothing reached BIR): {error}"),
+                )
+            {
+                warn!(
+                    "Cron: could not record the failed {} send: {db_error}",
+                    F::FORM_CODE
+                );
+            }
+        }
+        Err(StoreFailure::MaybeSent(error)) => {
+            warn!(
+                "Cron: {} PUT ended after the network claim; outcome is unknown and support-assisted manual reconciliation is required: {}",
+                F::FORM_CODE,
+                error
+            );
+            if let Ok(db_guard) = db.lock() {
+                let _ = db_guard.note_claimed_queueable_outcome_unknown::<F>(
+                    draft.tin(),
+                    draft.taxable_year(),
+                    draft.period_column(),
+                    &claim_token,
+                    format!("Needs attention: {error}"),
+                );
+            }
         }
     }
 }

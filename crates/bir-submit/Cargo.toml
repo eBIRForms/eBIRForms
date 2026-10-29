@@ -7,3 +7,33 @@ license.workspace = true
 publish.workspace = true
 
 [dependencies]
+bir-core.workspace = true
+base64 = "0.22"
+ed25519-dalek = "2"
+futures-util = { version = "0.3", default-features = false, features = ["sink", "std"] }
+hpke = { version = "0.15", default-features = false, features = ["alloc", "getrandom", "x25519", "chacha"] }
+rand = "0.10.1"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+thiserror.workspace = true
+tokio = { workspace = true }
+tokio-tungstenite = { version = "0.27", features = ["rustls-tls-webpki-roots"] }
+tracing.workspace = true
+url = "2"
+
+# The OS credential store for the sign-in tokens and the device key, with
+# the same backends bir-core uses for its database key. Android has none:
+# the secrets go to a file in the app's private data dir instead.
+[target.'cfg(any(target_os = "macos", target_os = "ios"))'.dependencies]
+keyring = { workspace = true, features = ["apple-native"] }
+
+[target.'cfg(target_os = "windows")'.dependencies]
+keyring = { workspace = true, features = ["windows-native"] }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+keyring = { workspace = true, features = ["sync-secret-service", "crypto-rust"] }
+
+[dev-dependencies]
+tempfile = "3"

@@ -39,6 +39,11 @@ pub struct SubmissionLifecycle {
     /// queued before this field existed.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub submitted_payload: Option<String>,
+    /// The submission service's signed receipt for the send that made this
+    /// return Sent (a compact JWS; `bir-submit` verifies it). Absent on
+    /// returns sent before receipts existed and on transports without one.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub submission_receipt: Option<String>,
 
     /// SHA-256 over the exact reviewed field map when the user queued the
     /// return. Every later step must reproduce it.
@@ -115,6 +120,7 @@ impl Default for SubmissionLifecycle {
             submission_filename: None,
             receipt_id: None,
             submitted_payload: None,
+            submission_receipt: None,
             queued_submission_fingerprint: None,
             queue_authorization: None,
             submission_claim_token: None,
