@@ -111,7 +111,9 @@ pub enum ClientError {
     SignedOut,
     #[error("could not reach the Buwiz server: {0}")]
     Network(String),
-    #[error("{message}")]
+    /// The server's sentence, with its code in brackets so the app can
+    /// tell `tin_not_active` and the like apart.
+    #[error("{message} ({code})")]
     Server {
         status: u16,
         code: String,

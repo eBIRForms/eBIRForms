@@ -10,6 +10,7 @@ mod bir_module;
 mod dashboard_module;
 mod database;
 mod filer;
+mod sending;
 pub mod display;
 pub mod host;
 mod schema;
@@ -19,6 +20,7 @@ mod tax_profile_module;
 
 pub use app::*;
 pub use filer::*;
+pub use sending::*;
 pub use schema::*;
-pub use submit::SERVER_URL_SETTING;
+pub use submit::{SERVER_URL_SETTING, block_on, set_sending_paused};
 pub use {bir_core, bir_print, bir_submit};
