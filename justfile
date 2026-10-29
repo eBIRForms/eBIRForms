@@ -43,3 +43,7 @@ secrets:
 # Pull the submodules to the commits this repo records
 submodules:
     git submodule update --init
+
+# The finish line: one PASS/FAIL per criterion (`just verify V1 V3` for some)
+verify *criteria:
+    ./scripts/verify.sh {{criteria}}
