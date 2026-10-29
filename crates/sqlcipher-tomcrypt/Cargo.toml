@@ -1,0 +1,17 @@
+[package]
+name = "sqlcipher-tomcrypt"
+description = "SQLCipher with its LibTomCrypt crypto provider, as the static `libsqlcipher.a` that rusqlite's `sqlcipher` feature links. Android uses it, so no OpenSSL is linked there."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+build = "build.rs"
+
+[features]
+# Build the library on any target, not only Android: the compatibility
+# check (`compat/`) runs the LibTomCrypt build on the host.
+any-target = []
+
+[build-dependencies]
+cc = "1.2"
+sqlcipher-src = "=419.0.6"

@@ -1,0 +1,14 @@
+# The SQLCipher file-compatibility check (`check.sh`): two programs, one per
+# SQLCipher build, that write and read each other's databases. They can't
+# share a process (both export the SQLite API), so each is its own package,
+# built on its own with `-p`, and this is its own workspace, outside the
+# root one.
+[workspace]
+resolver = "2"
+members = ["commoncrypto", "libtomcrypt"]
+
+[workspace.package]
+version = "0.0.0"
+edition = "2024"
+license = "MIT"
+publish = false

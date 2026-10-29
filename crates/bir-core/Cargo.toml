@@ -35,6 +35,11 @@ hex = "0.4.3"
 zip = { version = "2", default-features = false, features = ["deflate", "time"] }
 uuid = { version = "1.23.1", features = ["v4"] }
 
+# SQLCipher, bundled with the platform's crypto (CommonCrypto on macOS and
+# iOS, OpenSSL on Windows and Linux) everywhere but Android.
+[target.'cfg(not(target_os = "android"))'.dependencies]
+rusqlite = { workspace = true, features = ["bundled-sqlcipher"] }
+
 [target.'cfg(unix)'.dependencies]
 libc = "0.2"
 
@@ -69,11 +74,15 @@ keyring = { workspace = true, features = ["apple-native"] }
 
 # Android: no keyring backend exists, so the master key lives in
 # `bir_key.txt` in the app's private data directory (`db::mod`); `keyring`
-# is here for its error type only and is never called. Android has no
-# system OpenSSL for SQLCipher to link: build one in, as on Windows.
+# is here for its error type only and is never called. SQLCipher uses its
+# LibTomCrypt provider (crates/sqlcipher-tomcrypt), so no OpenSSL is linked:
+# rusqlite's non-bundled `sqlcipher` links that crate's `libsqlcipher.a`, and
+# `modern_sqlite` gives it the bundled bindings `bundled-sqlcipher` has.
+# `crates/sqlcipher-tomcrypt/compat/check.sh` proves the files compatible.
 [target.'cfg(target_os = "android")'.dependencies]
 keyring = { workspace = true }
-rusqlite = { workspace = true, features = ["bundled-sqlcipher-vendored-openssl"] }
+rusqlite = { workspace = true, features = ["sqlcipher", "modern_sqlite"] }
+sqlcipher-tomcrypt = { path = "../sqlcipher-tomcrypt" }
 
 [dev-dependencies]
 insta = "1"
