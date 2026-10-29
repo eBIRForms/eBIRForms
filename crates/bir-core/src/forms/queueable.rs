@@ -179,7 +179,7 @@ impl SubmissionLifecycle {
             self.status
         );
         let now = chrono::Utc::now().to_rfc3339();
-        self.status = FilingStatus::Submitted;
+        self.status = FilingStatus::Sent;
         self.submitted_at = Some(now.clone());
         self.submission_filename = Some(filename);
         self.submission_attempts = 0;
@@ -197,8 +197,8 @@ impl SubmissionLifecycle {
         filename: Option<String>,
     ) {
         assert!(
-            matches!(self.status, FilingStatus::Submitted),
-            "Cannot confirm form in {:?} status - must be Submitted",
+            matches!(self.status, FilingStatus::Sent),
+            "Cannot confirm form in {:?} status - must be Sent",
             self.status
         );
         self.status = FilingStatus::Confirmed;
@@ -553,7 +553,7 @@ pub trait QueueableForm: Clone + Serialize + DeserializeOwned + Send + Sync + 's
 pub fn can_user_revert(status: &FilingStatus) -> bool {
     matches!(
         status,
-        FilingStatus::Queued | FilingStatus::Submitted | FilingStatus::Confirmed
+        FilingStatus::Queued | FilingStatus::Sent | FilingStatus::Confirmed
     )
 }
 
@@ -1058,7 +1058,7 @@ mod tests {
     fn only_queued_submitted_and_confirmed_returns_may_be_reverted_by_the_user() {
         assert!(!can_user_revert(&FilingStatus::Draft));
         assert!(can_user_revert(&FilingStatus::Queued));
-        assert!(can_user_revert(&FilingStatus::Submitted));
+        assert!(can_user_revert(&FilingStatus::Sent));
         assert!(can_user_revert(&FilingStatus::Confirmed));
         assert!(!can_user_revert(&FilingStatus::Paid));
     }

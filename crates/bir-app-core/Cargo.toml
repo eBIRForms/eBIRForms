@@ -10,3 +10,13 @@ publish.workspace = true
 bir-core.workspace = true
 bir-print.workspace = true
 bir-submit.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+chrono.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+tokio.workspace = true
+zip = { version = "2", default-features = false, features = ["deflate", "time"] }
+
+[dev-dependencies]
+tempfile = "3"

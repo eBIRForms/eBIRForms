@@ -124,13 +124,7 @@ mod tests {
             birth_date: None,
             is_archived: false,
             email_tracking_enabled: false,
-            email_auth_method: Default::default(),
-            imap_email: None,
-            imap_host: None,
             test_notification_enabled: false,
-            imap_app_password: None,
-            oauth_access_token: None,
-            oauth_refresh_token: None,
             profile_versions: vec![],
             compliance_source_mode: Default::default(),
             per_year_forms: Default::default(),
@@ -153,7 +147,6 @@ mod tests {
             is_government_withholding_entity: false,
             registration_activity_status: Default::default(),
             profile_pin_hash: None,
-            totp_secret: None,
         }
     }
 

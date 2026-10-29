@@ -50,6 +50,9 @@ security-framework = "3"
 # makes the existing database unreadable and gets it quarantined.
 [target.'cfg(target_os = "windows")'.dependencies]
 keyring = { workspace = true, features = ["windows-native"] }
+# Windows has no system OpenSSL for SQLCipher to link: build one in (needs
+# Perl, which the MSVC toolchain installs alongside Git for Windows).
+rusqlite = { workspace = true, features = ["bundled-sqlcipher-vendored-openssl"] }
 
 # sync-secret-service is required for the same reason as windows-native above:
 # without a backend feature keyring 3.x uses its in-memory mock and the master

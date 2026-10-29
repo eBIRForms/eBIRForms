@@ -52,7 +52,7 @@ pub enum CalendarPlacement {
 /// cannot be read is never silently treated as settled.
 pub fn payment_required(status: &FilingStatus, amount_payable: Option<f64>) -> bool {
     match status {
-        FilingStatus::Submitted | FilingStatus::Confirmed => match amount_payable {
+        FilingStatus::Sent | FilingStatus::Confirmed => match amount_payable {
             Some(amount) if amount.is_finite() => amount > 0.0,
             _ => true,
         },
@@ -68,7 +68,7 @@ pub fn status_chip_label(status: &FilingStatus, amount_payable: Option<f64>) -> 
     match status {
         FilingStatus::Draft => "Draft",
         FilingStatus::Queued => "Queued",
-        FilingStatus::Submitted => "Submitted",
+        FilingStatus::Sent => "Sent",
         FilingStatus::Confirmed => "Confirmed",
         FilingStatus::Paid => "Paid",
     }
@@ -210,9 +210,9 @@ mod tests {
         let due = amount_payable_from_json("1601C", &json);
         assert_eq!(due, Some(0.0));
 
-        let status = FilingStatus::Submitted;
+        let status = FilingStatus::Sent;
         assert!(!payment_required(&status, due));
-        assert_eq!(status_chip_label(&status, due), "Submitted");
+        assert_eq!(status_chip_label(&status, due), "Sent");
         for today in [before_deadline(), after_deadline()] {
             assert_eq!(
                 calendar_placement(Some(&status), due, deadline(), today),
@@ -234,9 +234,9 @@ mod tests {
 
     #[test]
     fn overpaid_filed_return_needs_no_payment() {
-        let status = FilingStatus::Submitted;
+        let status = FilingStatus::Sent;
         assert!(!payment_required(&status, Some(-250.0)));
-        assert_eq!(status_chip_label(&status, Some(-250.0)), "Submitted");
+        assert_eq!(status_chip_label(&status, Some(-250.0)), "Sent");
     }
 
     #[test]
@@ -245,7 +245,7 @@ mod tests {
         let due = amount_payable_from_json("1601C", &json);
         assert_eq!(due, Some(1500.0));
 
-        for status in [FilingStatus::Submitted, FilingStatus::Confirmed] {
+        for status in [FilingStatus::Sent, FilingStatus::Confirmed] {
             assert!(payment_required(&status, due));
             assert_eq!(status_chip_label(&status, due), MARK_AS_PAID_LABEL);
             for today in [before_deadline(), after_deadline()] {
@@ -261,12 +261,12 @@ mod tests {
     fn unreadable_amount_keeps_asking_for_payment() {
         assert_eq!(amount_payable_from_json("1601C", "not json"), None);
         assert_eq!(
-            status_chip_label(&FilingStatus::Submitted, None),
+            status_chip_label(&FilingStatus::Sent, None),
             MARK_AS_PAID_LABEL
         );
         assert_eq!(
             calendar_placement(
-                Some(&FilingStatus::Submitted),
+                Some(&FilingStatus::Sent),
                 None,
                 deadline(),
                 before_deadline()
@@ -341,7 +341,7 @@ mod tests {
         let statuses = [
             Some(FilingStatus::Draft),
             Some(FilingStatus::Queued),
-            Some(FilingStatus::Submitted),
+            Some(FilingStatus::Sent),
             Some(FilingStatus::Confirmed),
             Some(FilingStatus::Paid),
         ];

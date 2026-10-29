@@ -650,7 +650,7 @@ fn active_codes(conn: &Connection, tin: &str, year: u16) -> Result<Vec<String>> 
 
 /// Every table keyed by a full TIN (`column` holds root + branch code).
 /// `profiles` and `taxpayers` are handled separately by the TIN move.
-const TIN_KEYED_TABLES: [(&str, &str); 12] = [
+const TIN_KEYED_TABLES: [(&str, &str); 9] = [
     ("form_drafts", "tin"),
     ("per_year_forms", "tin"),
     ("form_templates", "tin"),
@@ -660,9 +660,6 @@ const TIN_KEYED_TABLES: [(&str, &str); 12] = [
     ("amendment_snapshots", "tin"),
     ("penalties_cache", "tin"),
     ("app_alerts", "tin"),
-    ("data_providers", "profile_tin"),
-    ("profile_calendar_links", "profile_tin"),
-    ("profile_calendar_events", "profile_tin"),
 ];
 
 fn root_matches(column: &str) -> String {
@@ -1029,18 +1026,16 @@ impl Database {
         load_taxpayer(&self.conn, &root)?.ok_or_else(|| TaxProfileError::NotFound(root))
     }
 
-    /// The taxpayer's PIN hash and authenticator secret (one pair per TIN
-    /// root, shared by every branch).
+    /// The taxpayer's PIN hash (one per TIN root, shared by every branch).
     pub fn taxpayer_credentials(&self, tin_root: &str) -> Result<TaxpayerCredentials> {
         let root = parse_tin_root(tin_root)?;
         self.conn
             .query_row(
-                "SELECT pin_hash, totp_secret FROM taxpayers WHERE tin_root = ?1",
+                "SELECT pin_hash FROM taxpayers WHERE tin_root = ?1",
                 [&root],
                 |row| {
                     Ok(TaxpayerCredentials {
                         pin_hash: row.get(0)?,
-                        totp_secret: row.get(1)?,
                     })
                 },
             )
@@ -1056,11 +1051,6 @@ impl Database {
     /// Set (`Some`) or clear (`None`) the taxpayer's PIN hash.
     pub fn set_taxpayer_pin_hash(&self, tin_root: &str, pin_hash: Option<&str>) -> Result<()> {
         self.set_taxpayer_credential(tin_root, "pin_hash", pin_hash)
-    }
-
-    /// Set (`Some`) or clear (`None`) the taxpayer's authenticator secret.
-    pub fn set_taxpayer_totp_secret(&self, tin_root: &str, secret: Option<&str>) -> Result<()> {
-        self.set_taxpayer_credential(tin_root, "totp_secret", secret)
     }
 
     fn set_taxpayer_credential(
@@ -1626,7 +1616,7 @@ impl Database {
             .ok_or_else(|| TaxProfileError::NotFound(format!("No return with id {draft_id}")))?;
         if !matches!(
             super::drafts::filing_status_from_db(&status),
-            FilingStatus::Submitted | FilingStatus::Confirmed | FilingStatus::Paid
+            FilingStatus::Sent | FilingStatus::Confirmed | FilingStatus::Paid
         ) {
             return Err(TaxProfileError::Invalid(format!(
                 "Return {draft_id} has not been filed ({status}); only a filed return can become a template"
@@ -1703,7 +1693,7 @@ impl Database {
         let draft: Value = serde_json::from_str(&row.data_json)?;
         let fields = snapshot_setup_answers(kinds, &draft);
         let source = match super::drafts::filing_status_from_db(&row.status) {
-            FilingStatus::Submitted | FilingStatus::Confirmed | FilingStatus::Paid => {
+            FilingStatus::Sent | FilingStatus::Confirmed | FilingStatus::Paid => {
                 TemplateSource::Filed { draft_id }
             }
             FilingStatus::Draft | FilingStatus::Queued => TemplateSource::Return { draft_id },
@@ -1992,16 +1982,13 @@ mod tests {
             TaxpayerCredentials::default()
         );
         db.set_taxpayer_pin_hash(ROOT, Some("hash")).unwrap();
-        db.set_taxpayer_totp_secret(ROOT, Some("SECRET")).unwrap();
         for branch in db.get_taxpayer(ROOT).unwrap().unwrap().branches {
             let profile = db.get_profile(&branch.tin).unwrap().unwrap();
             assert_eq!(profile.profile_pin_hash, None);
-            assert_eq!(profile.totp_secret, None);
         }
         db.move_taxpayer_tin(ROOT, "987654321").unwrap();
         let moved = db.taxpayer_credentials("987654321").unwrap();
         assert_eq!(moved.pin_hash.as_deref(), Some("hash"));
-        assert_eq!(moved.totp_secret.as_deref(), Some("SECRET"));
         db.set_taxpayer_pin_hash("987654321", None).unwrap();
         assert_eq!(db.taxpayer_credentials("987654321").unwrap().pin_hash, None);
         assert!(db.set_taxpayer_pin_hash(ROOT, Some("x")).is_err());

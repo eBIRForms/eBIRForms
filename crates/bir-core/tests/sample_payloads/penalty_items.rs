@@ -445,7 +445,7 @@ pub fn check<F: QueueableForm>(sample: fn() -> F, deadline: Deadline) {
 
     // ---- Submitted, Confirmed and Paid returns never recompute.
     for status in [
-        FilingStatus::Submitted,
+        FilingStatus::Sent,
         FilingStatus::Confirmed,
         FilingStatus::Paid,
     ] {

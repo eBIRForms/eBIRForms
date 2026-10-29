@@ -174,7 +174,7 @@ impl Database {
         };
 
         // Only confirm forms that are currently in Submitted status
-        if !matches!(draft.status, FilingStatus::Submitted) {
+        if !matches!(draft.status, FilingStatus::Sent) {
             return Ok(ReceiptConfirmationOutcome::Ignored);
         }
         let receipt_id = receipt.id.ok_or_else(|| {
@@ -243,7 +243,7 @@ impl Database {
             None => return Ok(ReceiptConfirmationOutcome::Ignored),
         };
 
-        if !matches!(draft.status, FilingStatus::Submitted) {
+        if !matches!(draft.status, FilingStatus::Sent) {
             return Ok(ReceiptConfirmationOutcome::Ignored);
         }
         let receipt_id = receipt.id.ok_or_else(|| {

@@ -1266,7 +1266,7 @@ impl Form2551QDraft {
             self.status
         );
         let now = chrono::Utc::now();
-        self.status = FilingStatus::Submitted;
+        self.status = FilingStatus::Sent;
         self.submitted_at = Some(now.to_rfc3339());
         self.submission_filename = Some(filename);
         self.submission_attempts = 0;
@@ -1287,8 +1287,8 @@ impl Form2551QDraft {
         filename: Option<String>,
     ) {
         assert!(
-            matches!(self.status, FilingStatus::Submitted),
-            "Cannot confirm form in {:?} status — must be Submitted",
+            matches!(self.status, FilingStatus::Sent),
+            "Cannot confirm form in {:?} status — must be Sent",
             self.status
         );
         self.status = FilingStatus::Confirmed;
@@ -2545,7 +2545,11 @@ mod tests {
         let mut draft = make_draft(500_000.0, 0.0, 2026, 3);
         draft.apply_penalty_profile(&test_profile(), &[]);
         assert_eq!(draft.penalty_due_date, Some(day(10, 26)));
-        assert_eq!(penalties_on(&draft, day(10, 26)), 0.0, "paid on the deadline");
+        assert_eq!(
+            penalties_on(&draft, day(10, 26)),
+            0.0,
+            "paid on the deadline"
+        );
         assert!(penalties_on(&draft, day(10, 27)) > 0.0, "a day late");
 
         let moved = crate::calendar_rules::DeadlineOverride {
@@ -2563,7 +2567,11 @@ mod tests {
         };
         draft.apply_penalty_profile(&test_profile(), std::slice::from_ref(&moved));
         assert_eq!(draft.penalty_due_date, Some(day(11, 3)));
-        assert_eq!(penalties_on(&draft, day(11, 3)), 0.0, "paid on the moved deadline");
+        assert_eq!(
+            penalties_on(&draft, day(11, 3)),
+            0.0,
+            "paid on the moved deadline"
+        );
         assert!(penalties_on(&draft, day(11, 4)) > 0.0, "a day after it");
 
         // A fiscal quarter has no Calendar row: its own date.
@@ -2572,7 +2580,11 @@ mod tests {
         fiscal.year_end_month = 6;
         fiscal.apply_penalty_profile(&test_profile(), std::slice::from_ref(&moved));
         assert_eq!(fiscal.penalty_due_date, None);
-        assert_eq!(fiscal.filing_deadline(), Some(day(4, 27)), "Q3 of a June year ends in March");
+        assert_eq!(
+            fiscal.filing_deadline(),
+            Some(day(4, 27)),
+            "Q3 of a June year ends in March"
+        );
 
         // Past Draft, the reviewed date stays.
         let mut queued = draft.clone();
@@ -2604,13 +2616,7 @@ mod tests {
             birth_date: None,
             is_archived: false,
             email_tracking_enabled: false,
-            email_auth_method: Default::default(),
-            imap_email: None,
-            imap_host: None,
             test_notification_enabled: false,
-            imap_app_password: None,
-            oauth_access_token: None,
-            oauth_refresh_token: None,
             profile_versions: vec![],
             compliance_source_mode: Default::default(),
             per_year_forms: Default::default(),
@@ -2624,7 +2630,6 @@ mod tests {
             excise_tax_categories: vec![],
             tax_elections: vec![],
             profile_pin_hash: None,
-            totp_secret: None,
             has_employees: false,
             is_dormant: false,
             has_single_employer: false,

@@ -538,7 +538,7 @@ impl Form1601CDraft {
             self.status
         );
         let now = chrono::Utc::now().to_rfc3339();
-        self.status = FilingStatus::Submitted;
+        self.status = FilingStatus::Sent;
         self.submitted_at = Some(now.clone());
         self.submission_filename = Some(filename);
         self.submission_attempts = 0;
@@ -559,8 +559,8 @@ impl Form1601CDraft {
         filename: Option<String>,
     ) {
         assert!(
-            matches!(self.status, FilingStatus::Submitted),
-            "Cannot confirm form in {:?} status - must be Submitted",
+            matches!(self.status, FilingStatus::Sent),
+            "Cannot confirm form in {:?} status - must be Sent",
             self.status
         );
         self.status = FilingStatus::Confirmed;
@@ -1981,7 +1981,7 @@ mod tests {
         );
         assert!(filed.3 > 0.0);
         for status in [
-            FilingStatus::Submitted,
+            FilingStatus::Sent,
             FilingStatus::Confirmed,
             FilingStatus::Paid,
         ] {

@@ -377,7 +377,7 @@ fn form_1701_penalty_items_follow_the_shared_model() {
 
     // Filed returns never recompute.
     for status in [
-        FilingStatus::Submitted,
+        FilingStatus::Sent,
         FilingStatus::Confirmed,
         FilingStatus::Paid,
     ] {

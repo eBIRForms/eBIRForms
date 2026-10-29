@@ -1,0 +1,1477 @@
+{
+ "c": "1700",
+ "id": "1700-v2013",
+ "s": "1700-2018",
+ "g": 1,
+ "t": "Annual Income Tax Return (Purely Compensation)",
+ "rev": "2018",
+ "freq": "Annual",
+ "pages": 2,
+ "n": 296,
+ "_evidence": "BIR Form 1700 January 2018 (ENCS), the revision the model (crates/bir-core/src/forms/form_1700.rs), its upload and the printed sheet use. Keys: the upload layout crates/bir-core/data/official-xml/1700-v2013.json (generated from BIR-Form1700v2018.hta; the id is only a lookup key) plus the add-more popup rows 4_<n> that Form1700Draft::official_layout splices in. Item numbers and captions: html-frozen/1700-2018/index.html. Part IV Details of Payment (Items 38-41) is left out: the model does not keep it. Built by tmp/bir-123/build_1700_screen.py; the rules corpus (rules/forms/1700-v2013, the 2013 package) is untouched.",
+ "parts": [
+  {
+   "n": "Page 1",
+   "items": [
+    {
+     "no": "1",
+     "l": "For the Year (YYYY)",
+     "p": 1,
+     "f": [
+      {
+       "l": "Year",
+       "t": "int",
+       "k": "frm1700:txtPg1I1Year",
+       "r": 1,
+       "m": 4
+      }
+     ]
+    },
+    {
+     "no": "2",
+     "l": "Amended Return?",
+     "p": 1,
+     "f": [
+      {
+       "l": "Yes",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I2AmendedYes"
+      },
+      {
+       "l": "No",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I2AmendedNo"
+      }
+     ]
+    },
+    {
+     "no": "3",
+     "l": "Alphanumeric Tax Code (ATC)",
+     "p": 1,
+     "f": [
+      {
+       "l": "ATC",
+       "t": "text",
+       "k": "frm1700:txtPg1I3ATC",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "",
+     "l": "Line of business",
+     "p": 1,
+     "f": [
+      {
+       "l": "Line of business",
+       "t": "hidden",
+       "k": "frm1700:txtLOB"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": "Part I · Background Information on Taxpayer/Filer",
+   "items": [
+    {
+     "no": "4",
+     "l": "Taxpayer Identification Number (TIN)",
+     "p": 1,
+     "f": [
+      {
+       "l": "TIN (1-3)",
+       "t": "text",
+       "k": "frm1700:txtPg1I4TIN1",
+       "r": 1,
+       "m": 3
+      },
+      {
+       "l": "TIN (4-6)",
+       "t": "text",
+       "k": "frm1700:txtPg1I4TIN2",
+       "r": 1,
+       "m": 3
+      },
+      {
+       "l": "TIN (7-9)",
+       "t": "text",
+       "k": "frm1700:txtPg1I4TIN3",
+       "r": 1,
+       "m": 3
+      },
+      {
+       "l": "Branch code",
+       "t": "text",
+       "k": "frm1700:txtPg1I4BranchCode",
+       "r": 1,
+       "m": 5
+      }
+     ]
+    },
+    {
+     "no": "5",
+     "l": "RDO Code",
+     "p": 1,
+     "f": [
+      {
+       "l": "RDO Code",
+       "t": "text",
+       "k": "frm1700:txtRDOCode",
+       "r": 1,
+       "m": 3
+      }
+     ]
+    },
+    {
+     "no": "6",
+     "l": "Taxpayer Type",
+     "p": 1,
+     "f": [
+      {
+       "l": "Employee (Regular Rates)",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I6TaxpayerTypeE",
+       "r": 1
+      },
+      {
+       "l": "NRANETB (25%)",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I6TaxpayerTypeN",
+       "r": 1
+      }
+     ]
+    },
+    {
+     "no": "7",
+     "l": "Taxpayer's Name (Last Name, First Name, Middle Name)",
+     "p": 1,
+     "f": [
+      {
+       "l": "Taxpayer's Name",
+       "t": "text",
+       "k": "frm1700:txtPg1I7TaxpayerName",
+       "r": 1
+      }
+     ]
+    },
+    {
+     "no": "8",
+     "l": "Registered Address",
+     "p": 1,
+     "f": [
+      {
+       "l": "Registered Address",
+       "t": "text",
+       "k": "frm1700:txtPg1I8Address",
+       "r": 1
+      },
+      {
+       "l": "Registered Address (continued)",
+       "t": "hidden",
+       "k": "frm1700:txtPg1I8Address2"
+      }
+     ]
+    },
+    {
+     "no": "8A",
+     "l": "ZIP Code",
+     "p": 1,
+     "f": [
+      {
+       "l": "ZIP Code",
+       "t": "text",
+       "k": "frm1700:txtPg1I8AZipCode",
+       "r": 1,
+       "m": 4
+      }
+     ]
+    },
+    {
+     "no": "9",
+     "l": "Date of Birth (MM/DD/YYYY)",
+     "p": 1,
+     "f": [
+      {
+       "l": "Date of Birth",
+       "t": "date",
+       "k": "frm1700:txtPg1I9BirthDate",
+       "r": 1,
+       "m": 10
+      }
+     ]
+    },
+    {
+     "no": "10",
+     "l": "Email Address",
+     "p": 1,
+     "f": [
+      {
+       "l": "Email Address",
+       "t": "email",
+       "k": "frm1700:txtPg1I10Email"
+      }
+     ]
+    },
+    {
+     "no": "11",
+     "l": "Citizenship",
+     "p": 1,
+     "f": [
+      {
+       "l": "Citizenship",
+       "t": "text",
+       "k": "frm1700:txtPg1I11Citizenship",
+       "r": 1
+      }
+     ]
+    },
+    {
+     "no": "12",
+     "l": "Claiming Foreign Tax Credits?",
+     "p": 1,
+     "f": [
+      {
+       "l": "Yes",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I12ForeignTaxCreditsYes",
+       "r": 1
+      },
+      {
+       "l": "No",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I12ForeignTaxCreditsNo",
+       "r": 1
+      }
+     ]
+    },
+    {
+     "no": "13",
+     "l": "Foreign Tax Number, if applicable",
+     "p": 1,
+     "f": [
+      {
+       "l": "Foreign Tax Number",
+       "t": "text",
+       "k": "frm1700:txtPg1I13ForeignTaxNumber"
+      }
+     ]
+    },
+    {
+     "no": "14",
+     "l": "Contact Number (Landline/Cellphone No.)",
+     "p": 1,
+     "f": [
+      {
+       "l": "Contact Number",
+       "t": "phone",
+       "k": "frm1700:txtPg1I14TelNum"
+      }
+     ]
+    },
+    {
+     "no": "15",
+     "l": "Civil Status",
+     "p": 1,
+     "f": [
+      {
+       "l": "Single",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I15CivilStatusS",
+       "r": 1
+      },
+      {
+       "l": "Married",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I15CivilStatusM",
+       "r": 1
+      },
+      {
+       "l": "Legally Separated",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I15CivilStatusLS",
+       "r": 1
+      },
+      {
+       "l": "Widow/er",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I15CivilStatusW",
+       "r": 1
+      }
+     ]
+    },
+    {
+     "no": "16",
+     "l": "If married, spouse has income?",
+     "p": 1,
+     "f": [
+      {
+       "l": "Yes",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I16SpouseHasIncomeY"
+      },
+      {
+       "l": "No",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I16SpouseHasIncomeN"
+      }
+     ]
+    },
+    {
+     "no": "17",
+     "l": "Filing Status",
+     "p": 1,
+     "f": [
+      {
+       "l": "Joint Filing",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I17FilingStatusJ"
+      },
+      {
+       "l": "Separate Filing",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I17FilingStatusS"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": "Part II · Background Information on Spouse",
+   "items": [
+    {
+     "no": "18",
+     "l": "Spouse's TIN",
+     "p": 1,
+     "f": [
+      {
+       "l": "Spouse's TIN (1-3)",
+       "t": "text",
+       "k": "frm1700:txtPg1I18STIN1",
+       "m": 3
+      },
+      {
+       "l": "Spouse's TIN (4-6)",
+       "t": "text",
+       "k": "frm1700:txtPg1I18STIN2",
+       "m": 3
+      },
+      {
+       "l": "Spouse's TIN (7-9)",
+       "t": "text",
+       "k": "frm1700:txtPg1I18STIN3",
+       "m": 3
+      },
+      {
+       "l": "Branch code",
+       "t": "text",
+       "k": "frm1700:txtPg1I18SBranchCode",
+       "m": 5
+      }
+     ]
+    },
+    {
+     "no": "19",
+     "l": "RDO Code",
+     "p": 1,
+     "f": [
+      {
+       "l": "Spouse's RDO Code",
+       "t": "text",
+       "k": "frm1700:txtSpouseRDOCode",
+       "m": 3
+      }
+     ]
+    },
+    {
+     "no": "20",
+     "l": "Taxpayer Type",
+     "p": 1,
+     "f": [
+      {
+       "l": "Employee (Regular Rates)",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I20SpouseTaxpayerTypeE"
+      },
+      {
+       "l": "NRANETB (25%)",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I20SpouseTaxpayerTypeN"
+      }
+     ]
+    },
+    {
+     "no": "21",
+     "l": "Spouse's Name (Last Name, First Name, Middle Name)",
+     "p": 1,
+     "f": [
+      {
+       "l": "Spouse's Name",
+       "t": "text",
+       "k": "frm1700:txtPg1I21SpouseName"
+      }
+     ]
+    },
+    {
+     "no": "22",
+     "l": "Contact Number",
+     "p": 1,
+     "f": [
+      {
+       "l": "Spouse's Contact Number",
+       "t": "phone",
+       "k": "frm1700:txtPg1I22TSpouseTelNum"
+      }
+     ]
+    },
+    {
+     "no": "23",
+     "l": "Citizenship",
+     "p": 1,
+     "f": [
+      {
+       "l": "Spouse's Citizenship",
+       "t": "text",
+       "k": "frm1700:txtPg1I23SpouseCitizenship"
+      }
+     ]
+    },
+    {
+     "no": "24",
+     "l": "Claiming Foreign Tax Credits?",
+     "p": 1,
+     "f": [
+      {
+       "l": "Yes",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I24SpouseForeignTaxCreditsYes"
+      },
+      {
+       "l": "No",
+       "t": "radio",
+       "k": "frm1700:rdoPg1I24SpouseForeignTaxCreditsNo"
+      }
+     ]
+    },
+    {
+     "no": "25",
+     "l": "Foreign Tax Number (if applicable)",
+     "p": 1,
+     "f": [
+      {
+       "l": "Spouse's Foreign Tax Number",
+       "t": "text",
+       "k": "frm1700:txtPg1I25SpouseForeignTaxNumber"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": "Part III · Total Tax Payable",
+   "items": [
+    {
+     "no": "26",
+     "l": "Tax Due (Either from Part V.A Item 47A/B OR Part V.B 53A/B)",
+     "p": 1,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg1I26A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg1I26B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "27",
+     "l": "Less: Total Tax Credits/Payments (From Part V.C Item 58A/B)",
+     "p": 1,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg1I27A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg1I27B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "28",
+     "l": "Net Tax Payable/(Overpayment) (Item 26 Less Item 27) (From Part V Item 59A/B)",
+     "p": 1,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg1I28A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg1I28B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "29",
+     "l": "Less: Portion of Tax Payable Allowed for 2nd Installment to be paid on or before October 15 (50% or less of Item 26)",
+     "p": 1,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg1I29A"
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg1I29B"
+      }
+     ]
+    },
+    {
+     "no": "30",
+     "l": "Amount of Tax Payable/(Overpayment) (Item 28 Less Item 29)",
+     "p": 1,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg1I30A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg1I30B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "31",
+     "l": "Add: Penalties – Surcharge",
+     "p": 1,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg1I32A"
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg1I32B"
+      }
+     ]
+    },
+    {
+     "no": "32",
+     "l": "Interest",
+     "p": 1,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg1I31A"
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg1I31B"
+      }
+     ]
+    },
+    {
+     "no": "33",
+     "l": "Compromise",
+     "p": 1,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg1I33A"
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg1I33B"
+      }
+     ]
+    },
+    {
+     "no": "34",
+     "l": "Total Penalties (Sum of Items 31 to 33)",
+     "p": 1,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg1I34A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg1I34B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "35",
+     "l": "Total Amount Payable/(Overpayment) (Sum of Items 30 and 34)",
+     "p": 1,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg1I35A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg1I35B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "36",
+     "l": "Aggregate Amount Payable/(Overpayment) (Sum of Items 35A and 35B)",
+     "p": 1,
+     "f": [
+      {
+       "l": "Aggregate Amount Payable",
+       "t": "money",
+       "k": "frm1700:txtPg1I36",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "37",
+     "l": "Number of Attachments",
+     "p": 1,
+     "f": [
+      {
+       "l": "Number of Attachments",
+       "t": "int",
+       "k": "frm1700:txtPg1I37NumberOfAttachments",
+       "m": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": "Part V · Computation of Tax",
+   "items": [
+    {
+     "no": "",
+     "l": "TIN (page 2)",
+     "p": 2,
+     "f": [
+      {
+       "l": "TIN (1-3)",
+       "t": "hidden",
+       "k": "frm1700:txtPg2TIN1"
+      },
+      {
+       "l": "TIN (4-6)",
+       "t": "hidden",
+       "k": "frm1700:txtPg2TIN2"
+      },
+      {
+       "l": "TIN (7-9)",
+       "t": "hidden",
+       "k": "frm1700:txtPg2TIN3"
+      },
+      {
+       "l": "Branch code",
+       "t": "hidden",
+       "k": "frm1700:txtPg2BranchCode"
+      }
+     ]
+    },
+    {
+     "no": "",
+     "l": "Taxpayer's Last Name (page 2)",
+     "p": 2,
+     "f": [
+      {
+       "l": "Taxpayer's Last Name",
+       "t": "hidden",
+       "k": "frm1700:txtPg2TaxpayerName"
+      }
+     ]
+    },
+    {
+     "no": "42",
+     "l": "Part V.A – Subject to Graduated Rates: Gross Compensation Income (From Schedule 1 Item 5Ac/5Bc)",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I42A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I42B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "43",
+     "l": "Less: Non-Taxable / Exempt Compensation",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I43A"
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I43B"
+      }
+     ]
+    },
+    {
+     "no": "44",
+     "l": "Gross Taxable Compensation Income (Item 42 Less Item 43)",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I44A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I44B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "45",
+     "l": "Add: Other Taxable Non-Business/Non-Profession Income",
+     "p": 2,
+     "f": [
+      {
+       "l": "(specify)",
+       "t": "text",
+       "k": "frm1700:txtPg2I45Desc"
+      },
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I45A"
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I45B"
+      }
+     ]
+    },
+    {
+     "no": "46",
+     "l": "Total Taxable Income (Sum of Items 44 and 45)",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I46A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I46B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "47",
+     "l": "Tax Due [Item 46 x Applicable Income Tax Rate] (To Part III Item 26)",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I47A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I47B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "48",
+     "l": "Part V.B – Subject to 25% Flat Rate for NRANETB: Gross Compensation Income (From Schedule 1 Item 5Ad/5Bd)",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I48A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I48B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "49",
+     "l": "Less: Non-Taxable/Exempt Compensation",
+     "p": 2,
+     "f": [
+      {
+       "l": "(please specify)",
+       "t": "text",
+       "k": "frm1700:txtPg2I49Desc"
+      },
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I49A"
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I49B"
+      }
+     ]
+    },
+    {
+     "no": "50",
+     "l": "Gross Taxable Compensation Income (Item 48 Less Item 49)",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I50A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I50B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "51",
+     "l": "Add: Other Taxable Income",
+     "p": 2,
+     "f": [
+      {
+       "l": "(please specify)",
+       "t": "text",
+       "k": "frm1700:txtPg2I51Desc"
+      },
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I51A"
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I51B"
+      }
+     ]
+    },
+    {
+     "no": "52",
+     "l": "Total Taxable Income (Sum of Items 50 and 51)",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I52A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I52B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "53",
+     "l": "Tax Due (Item 52 x 25% Flat Rate) (To Part III Item 26)",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I53A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I53B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "54",
+     "l": "Part V.C – Tax Credits/Payments: Tax Withheld per BIR Form No. 2316 (From Schedule 1 Item 5Ae/5Be)",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I54A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I54B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "55",
+     "l": "Tax Paid in Return Previously Filed, if this is an Amended Return",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I55A"
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I55B"
+      }
+     ]
+    },
+    {
+     "no": "56",
+     "l": "Foreign Tax Credits, if applicable",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I56A"
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I56B"
+      }
+     ]
+    },
+    {
+     "no": "57",
+     "l": "Other Tax Credits/Payments",
+     "p": 2,
+     "f": [
+      {
+       "l": "(specify)",
+       "t": "text",
+       "k": "frm1700:txtPg2I57Desc"
+      },
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I57A"
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I57B"
+      }
+     ]
+    },
+    {
+     "no": "58",
+     "l": "Total Tax Credits/Payments (Sum of Items 54 to 57) (To Part III Item 27)",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I58A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I58B",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "59",
+     "l": "Net Tax Payable/(Overpayment) (Either Item 47 OR Item 53 Less Item 58) (To Part III Item 28)",
+     "p": 2,
+     "f": [
+      {
+       "l": "A) Taxpayer/Filer",
+       "t": "money",
+       "k": "frm1700:txtPg2I59A",
+       "c": 1
+      },
+      {
+       "l": "B) Spouse",
+       "t": "money",
+       "k": "frm1700:txtPg2I59B",
+       "c": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": "Part VI · Schedule 1 – Gross Compensation Income and Tax Withheld",
+   "items": [
+    {
+     "no": "1-4",
+     "l": "Schedule 1 – Gross Compensation Income and Tax Withheld: one row per employer, marked for the Taxpayer or the Spouse",
+     "p": 2,
+     "cols": [
+      {
+       "l": "Taxpayer",
+       "t": "radio"
+      },
+      {
+       "l": "Spouse",
+       "t": "radio"
+      },
+      {
+       "l": "a. Name of Employer",
+       "t": "text"
+      },
+      {
+       "l": "Name (line 2)",
+       "t": "text"
+      },
+      {
+       "l": "b. TIN (1-3)",
+       "t": "text"
+      },
+      {
+       "l": "TIN (4-6)",
+       "t": "text"
+      },
+      {
+       "l": "TIN (7-9)",
+       "t": "text"
+      },
+      {
+       "l": "Branch code",
+       "t": "text"
+      },
+      {
+       "l": "c. Regular/graduated rates",
+       "t": "money"
+      },
+      {
+       "l": "d. 25% flat rate",
+       "t": "money"
+      },
+      {
+       "l": "e. Tax Withheld",
+       "t": "money"
+      }
+     ],
+     "rows": 4,
+     "keys": [
+      [
+       "frm1700:rdoPg2I1PartVIEmployeeT",
+       "frm1700:rdoPg2I1PartVIEmployeeS",
+       "frm1700:txtPg2I1PartVIEmployerName1",
+       "frm1700:txtPg2I1PartVIEmployerName2",
+       "frm1700:txtPg2I1PartVIEmployerTIN1",
+       "frm1700:txtPg2I1PartVIEmployerTIN2",
+       "frm1700:txtPg2I1PartVIEmployerTIN3",
+       "frm1700:txtPg2I1PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_1REG",
+       "frm1700:txtPg2ISched1d_1CIFR",
+       "frm1700:txtPg2ISched1e_1TW"
+      ],
+      [
+       "frm1700:rdoPg2I2PartVIEmployeeT",
+       "frm1700:rdoPg2I2PartVIEmployeeS",
+       "frm1700:txtPg2I2PartVIEmployerName1",
+       "frm1700:txtPg2I2PartVIEmployerName2",
+       "frm1700:txtPg2I2PartVIEmployerTIN1",
+       "frm1700:txtPg2I2PartVIEmployerTIN2",
+       "frm1700:txtPg2I2PartVIEmployerTIN3",
+       "frm1700:txtPg2I2PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_2REG",
+       "frm1700:txtPg2ISched1d_2CIFR",
+       "frm1700:txtPg2ISched1e_2TW"
+      ],
+      [
+       "frm1700:rdoPg2I3PartVIEmployeeT",
+       "frm1700:rdoPg2I3PartVIEmployeeS",
+       "frm1700:txtPg2I3PartVIEmployerName1",
+       "frm1700:txtPg2I3PartVIEmployerName2",
+       "frm1700:txtPg2I3PartVIEmployerTIN1",
+       "frm1700:txtPg2I3PartVIEmployerTIN2",
+       "frm1700:txtPg2I3PartVIEmployerTIN3",
+       "frm1700:txtPg2I3PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_3REG",
+       "frm1700:txtPg2ISched1d_3CIFR",
+       "frm1700:txtPg2ISched1e_3TW"
+      ],
+      [
+       "frm1700:rdoPg2I4PartVIEmployeeT",
+       "frm1700:rdoPg2I4PartVIEmployeeS",
+       "frm1700:txtPg2I4PartVIEmployerName1",
+       "frm1700:txtPg2I4PartVIEmployerName2",
+       "frm1700:txtPg2I4PartVIEmployerTIN1",
+       "frm1700:txtPg2I4PartVIEmployerTIN2",
+       "frm1700:txtPg2I4PartVIEmployerTIN3",
+       "frm1700:txtPg2I4PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_4REG",
+       "frm1700:txtPg2ISched1d_4CIFR",
+       "frm1700:txtPg2ISched1e_4TW"
+      ]
+     ]
+    },
+    {
+     "no": "4",
+     "l": "Item 4 (add more...): more than four employers. Row 4_1 is the employer in Item 4; Item 4 then reads OTHERS with these rows' subtotal",
+     "p": 2,
+     "cols": [
+      {
+       "l": "Taxpayer",
+       "t": "radio"
+      },
+      {
+       "l": "Spouse",
+       "t": "radio"
+      },
+      {
+       "l": "a. Name of Employer",
+       "t": "text"
+      },
+      {
+       "l": "Name (line 2)",
+       "t": "text"
+      },
+      {
+       "l": "b. TIN (1-3)",
+       "t": "text"
+      },
+      {
+       "l": "TIN (4-6)",
+       "t": "text"
+      },
+      {
+       "l": "TIN (7-9)",
+       "t": "text"
+      },
+      {
+       "l": "Branch code",
+       "t": "text"
+      },
+      {
+       "l": "c. Regular/graduated rates",
+       "t": "money"
+      },
+      {
+       "l": "d. 25% flat rate",
+       "t": "money"
+      },
+      {
+       "l": "e. Tax Withheld",
+       "t": "money"
+      }
+     ],
+     "rows": 12,
+     "keys": [
+      [
+       "frm1700:rdoPg2I4_1PartVIEmployeeT",
+       "frm1700:rdoPg2I4_1PartVIEmployeeS",
+       "frm1700:txtPg2I4_1PartVIEmployerName1",
+       "frm1700:txtPg2I4_1PartVIEmployerName2",
+       "frm1700:txtPg2I4_1PartVIEmployerTIN1",
+       "frm1700:txtPg2I4_1PartVIEmployerTIN2",
+       "frm1700:txtPg2I4_1PartVIEmployerTIN3",
+       "frm1700:txtPg2I4_1PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_4_1REG",
+       "frm1700:txtPg2ISched1d_4_1CIFR",
+       "frm1700:txtPg2ISched1e_4_1TW"
+      ],
+      [
+       "frm1700:rdoPg2I4_2PartVIEmployeeT",
+       "frm1700:rdoPg2I4_2PartVIEmployeeS",
+       "frm1700:txtPg2I4_2PartVIEmployerName1",
+       "frm1700:txtPg2I4_2PartVIEmployerName2",
+       "frm1700:txtPg2I4_2PartVIEmployerTIN1",
+       "frm1700:txtPg2I4_2PartVIEmployerTIN2",
+       "frm1700:txtPg2I4_2PartVIEmployerTIN3",
+       "frm1700:txtPg2I4_2PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_4_2REG",
+       "frm1700:txtPg2ISched1d_4_2CIFR",
+       "frm1700:txtPg2ISched1e_4_2TW"
+      ],
+      [
+       "frm1700:rdoPg2I4_3PartVIEmployeeT",
+       "frm1700:rdoPg2I4_3PartVIEmployeeS",
+       "frm1700:txtPg2I4_3PartVIEmployerName1",
+       "frm1700:txtPg2I4_3PartVIEmployerName2",
+       "frm1700:txtPg2I4_3PartVIEmployerTIN1",
+       "frm1700:txtPg2I4_3PartVIEmployerTIN2",
+       "frm1700:txtPg2I4_3PartVIEmployerTIN3",
+       "frm1700:txtPg2I4_3PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_4_3REG",
+       "frm1700:txtPg2ISched1d_4_3CIFR",
+       "frm1700:txtPg2ISched1e_4_3TW"
+      ],
+      [
+       "frm1700:rdoPg2I4_4PartVIEmployeeT",
+       "frm1700:rdoPg2I4_4PartVIEmployeeS",
+       "frm1700:txtPg2I4_4PartVIEmployerName1",
+       "frm1700:txtPg2I4_4PartVIEmployerName2",
+       "frm1700:txtPg2I4_4PartVIEmployerTIN1",
+       "frm1700:txtPg2I4_4PartVIEmployerTIN2",
+       "frm1700:txtPg2I4_4PartVIEmployerTIN3",
+       "frm1700:txtPg2I4_4PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_4_4REG",
+       "frm1700:txtPg2ISched1d_4_4CIFR",
+       "frm1700:txtPg2ISched1e_4_4TW"
+      ],
+      [
+       "frm1700:rdoPg2I4_5PartVIEmployeeT",
+       "frm1700:rdoPg2I4_5PartVIEmployeeS",
+       "frm1700:txtPg2I4_5PartVIEmployerName1",
+       "frm1700:txtPg2I4_5PartVIEmployerName2",
+       "frm1700:txtPg2I4_5PartVIEmployerTIN1",
+       "frm1700:txtPg2I4_5PartVIEmployerTIN2",
+       "frm1700:txtPg2I4_5PartVIEmployerTIN3",
+       "frm1700:txtPg2I4_5PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_4_5REG",
+       "frm1700:txtPg2ISched1d_4_5CIFR",
+       "frm1700:txtPg2ISched1e_4_5TW"
+      ],
+      [
+       "frm1700:rdoPg2I4_6PartVIEmployeeT",
+       "frm1700:rdoPg2I4_6PartVIEmployeeS",
+       "frm1700:txtPg2I4_6PartVIEmployerName1",
+       "frm1700:txtPg2I4_6PartVIEmployerName2",
+       "frm1700:txtPg2I4_6PartVIEmployerTIN1",
+       "frm1700:txtPg2I4_6PartVIEmployerTIN2",
+       "frm1700:txtPg2I4_6PartVIEmployerTIN3",
+       "frm1700:txtPg2I4_6PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_4_6REG",
+       "frm1700:txtPg2ISched1d_4_6CIFR",
+       "frm1700:txtPg2ISched1e_4_6TW"
+      ],
+      [
+       "frm1700:rdoPg2I4_7PartVIEmployeeT",
+       "frm1700:rdoPg2I4_7PartVIEmployeeS",
+       "frm1700:txtPg2I4_7PartVIEmployerName1",
+       "frm1700:txtPg2I4_7PartVIEmployerName2",
+       "frm1700:txtPg2I4_7PartVIEmployerTIN1",
+       "frm1700:txtPg2I4_7PartVIEmployerTIN2",
+       "frm1700:txtPg2I4_7PartVIEmployerTIN3",
+       "frm1700:txtPg2I4_7PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_4_7REG",
+       "frm1700:txtPg2ISched1d_4_7CIFR",
+       "frm1700:txtPg2ISched1e_4_7TW"
+      ],
+      [
+       "frm1700:rdoPg2I4_8PartVIEmployeeT",
+       "frm1700:rdoPg2I4_8PartVIEmployeeS",
+       "frm1700:txtPg2I4_8PartVIEmployerName1",
+       "frm1700:txtPg2I4_8PartVIEmployerName2",
+       "frm1700:txtPg2I4_8PartVIEmployerTIN1",
+       "frm1700:txtPg2I4_8PartVIEmployerTIN2",
+       "frm1700:txtPg2I4_8PartVIEmployerTIN3",
+       "frm1700:txtPg2I4_8PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_4_8REG",
+       "frm1700:txtPg2ISched1d_4_8CIFR",
+       "frm1700:txtPg2ISched1e_4_8TW"
+      ],
+      [
+       "frm1700:rdoPg2I4_9PartVIEmployeeT",
+       "frm1700:rdoPg2I4_9PartVIEmployeeS",
+       "frm1700:txtPg2I4_9PartVIEmployerName1",
+       "frm1700:txtPg2I4_9PartVIEmployerName2",
+       "frm1700:txtPg2I4_9PartVIEmployerTIN1",
+       "frm1700:txtPg2I4_9PartVIEmployerTIN2",
+       "frm1700:txtPg2I4_9PartVIEmployerTIN3",
+       "frm1700:txtPg2I4_9PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_4_9REG",
+       "frm1700:txtPg2ISched1d_4_9CIFR",
+       "frm1700:txtPg2ISched1e_4_9TW"
+      ],
+      [
+       "frm1700:rdoPg2I4_10PartVIEmployeeT",
+       "frm1700:rdoPg2I4_10PartVIEmployeeS",
+       "frm1700:txtPg2I4_10PartVIEmployerName1",
+       "frm1700:txtPg2I4_10PartVIEmployerName2",
+       "frm1700:txtPg2I4_10PartVIEmployerTIN1",
+       "frm1700:txtPg2I4_10PartVIEmployerTIN2",
+       "frm1700:txtPg2I4_10PartVIEmployerTIN3",
+       "frm1700:txtPg2I4_10PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_4_10REG",
+       "frm1700:txtPg2ISched1d_4_10CIFR",
+       "frm1700:txtPg2ISched1e_4_10TW"
+      ],
+      [
+       "frm1700:rdoPg2I4_11PartVIEmployeeT",
+       "frm1700:rdoPg2I4_11PartVIEmployeeS",
+       "frm1700:txtPg2I4_11PartVIEmployerName1",
+       "frm1700:txtPg2I4_11PartVIEmployerName2",
+       "frm1700:txtPg2I4_11PartVIEmployerTIN1",
+       "frm1700:txtPg2I4_11PartVIEmployerTIN2",
+       "frm1700:txtPg2I4_11PartVIEmployerTIN3",
+       "frm1700:txtPg2I4_11PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_4_11REG",
+       "frm1700:txtPg2ISched1d_4_11CIFR",
+       "frm1700:txtPg2ISched1e_4_11TW"
+      ],
+      [
+       "frm1700:rdoPg2I4_12PartVIEmployeeT",
+       "frm1700:rdoPg2I4_12PartVIEmployeeS",
+       "frm1700:txtPg2I4_12PartVIEmployerName1",
+       "frm1700:txtPg2I4_12PartVIEmployerName2",
+       "frm1700:txtPg2I4_12PartVIEmployerTIN1",
+       "frm1700:txtPg2I4_12PartVIEmployerTIN2",
+       "frm1700:txtPg2I4_12PartVIEmployerTIN3",
+       "frm1700:txtPg2I4_12PartVIEmployerBranchCode",
+       "frm1700:txtPg2ISched1c_4_12REG",
+       "frm1700:txtPg2ISched1d_4_12CIFR",
+       "frm1700:txtPg2ISched1e_4_12TW"
+      ]
+     ]
+    },
+    {
+     "no": "4",
+     "l": "Item 4 (add more...) subtotal",
+     "p": 2,
+     "f": [
+      {
+       "l": "c. Regular/Graduated Rates",
+       "t": "money",
+       "k": "frm1700:txtPg2Pt6I4SubtotalC",
+       "c": 1
+      },
+      {
+       "l": "d. 25% Flat Rate",
+       "t": "money",
+       "k": "frm1700:txtPg2Pt6I4SubtotalD",
+       "c": 1
+      },
+      {
+       "l": "e. Tax Withheld",
+       "t": "money",
+       "k": "frm1700:txtPg2Pt6I4SubtotalE",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "5A",
+     "l": "Gross Compensation Income and Total Tax Withheld for TAXPAYER (To Part V Items 42A/48A and 54A)",
+     "p": 2,
+     "f": [
+      {
+       "l": "c. Regular/Graduated Rates",
+       "t": "money",
+       "k": "frm1700:txtPg2ISched1c_5AREG",
+       "c": 1
+      },
+      {
+       "l": "d. 25% Flat Rate",
+       "t": "money",
+       "k": "frm1700:txtPg2ISched1d_5ACIFR",
+       "c": 1
+      },
+      {
+       "l": "e. Tax Withheld",
+       "t": "money",
+       "k": "frm1700:txtPg2ISched1e_5ATW",
+       "c": 1
+      }
+     ]
+    },
+    {
+     "no": "5B",
+     "l": "Gross Compensation Income and Total Tax Withheld for SPOUSE (To Part V Items 42B/48B and 54B)",
+     "p": 2,
+     "f": [
+      {
+       "l": "c. Regular/Graduated Rates",
+       "t": "money",
+       "k": "frm1700:txtPg2ISched1c_5BREG",
+       "c": 1
+      },
+      {
+       "l": "d. 25% Flat Rate",
+       "t": "money",
+       "k": "frm1700:txtPg2ISched1d_5BCIFR",
+       "c": 1
+      },
+      {
+       "l": "e. Tax Withheld",
+       "t": "money",
+       "k": "frm1700:txtPg2ISched1e_5BTW",
+       "c": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "stats": {
+  "items": 64,
+  "paper_labels": 64
+ },
+ "q": 1.0
+}

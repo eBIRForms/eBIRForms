@@ -126,8 +126,6 @@ pub struct AppAlert {
 /// Stable `kind` keys. Centralised so recording and resolving cannot drift apart —
 /// a mismatch would leave an alert on screen forever after the cause was fixed.
 pub mod kinds {
-    /// Google rejected the OAuth refresh token; email polling is not working.
-    pub const GOOGLE_OAUTH_REFRESH_FAILED: &str = "google_oauth_refresh_failed";
     /// A profile row could not be deserialized and was skipped from the list.
     pub const PROFILE_ROW_UNREADABLE: &str = "profile_row_unreadable";
     /// The "test notification" heartbeat a profile can switch on. Recorded as
@@ -270,6 +268,9 @@ impl Database {
 mod tests {
     use super::*;
 
+    /// An alert kind for these tests only.
+    const TEST_KIND: &str = "test_alert";
+
     const TIN_A: &str = "111456789000";
     const TIN_B: &str = "222456789000";
 
@@ -277,10 +278,10 @@ mod tests {
         Database::open_in_memory_for_tests().expect("in-memory db")
     }
 
-    fn record_oauth_failure(db: &Database, tin: Option<&str>) {
+    fn record_test_alert(db: &Database, tin: Option<&str>) {
         db.record_alert(
             tin,
-            kinds::GOOGLE_OAUTH_REFRESH_FAILED,
+            TEST_KIND,
             AlertSeverity::Error,
             "Gmail connection needs attention",
             "invalid_grant: Token has been expired or revoked.",
@@ -296,7 +297,7 @@ mod tests {
     fn repeated_reports_collapse_into_one_row_with_a_count() {
         let db = db();
         for _ in 0..500 {
-            record_oauth_failure(&db, Some(TIN_A));
+            record_test_alert(&db, Some(TIN_A));
         }
 
         let alerts = db.list_active_alerts(Some(TIN_A)).unwrap();
@@ -307,9 +308,9 @@ mod tests {
     #[test]
     fn first_seen_is_preserved_while_last_seen_advances() {
         let db = db();
-        record_oauth_failure(&db, Some(TIN_A));
+        record_test_alert(&db, Some(TIN_A));
         let first = db.list_active_alerts(Some(TIN_A)).unwrap()[0].clone();
-        record_oauth_failure(&db, Some(TIN_A));
+        record_test_alert(&db, Some(TIN_A));
         let again = db.list_active_alerts(Some(TIN_A)).unwrap()[0].clone();
 
         assert_eq!(
@@ -322,7 +323,7 @@ mod tests {
     #[test]
     fn alerts_are_scoped_to_their_profile() {
         let db = db();
-        record_oauth_failure(&db, Some(TIN_A));
+        record_test_alert(&db, Some(TIN_A));
 
         assert_eq!(db.list_active_alerts(Some(TIN_A)).unwrap().len(), 1);
         assert!(
@@ -336,7 +337,7 @@ mod tests {
     #[test]
     fn application_wide_alerts_show_under_every_profile() {
         let db = db();
-        record_oauth_failure(&db, None);
+        record_test_alert(&db, None);
 
         for tin in [Some(TIN_A), Some(TIN_B), None] {
             assert_eq!(
@@ -353,7 +354,7 @@ mod tests {
     fn app_wide_alerts_deduplicate_despite_null_tin() {
         let db = db();
         for _ in 0..10 {
-            record_oauth_failure(&db, None);
+            record_test_alert(&db, None);
         }
 
         let alerts = db.list_active_alerts(None).unwrap();
@@ -371,8 +372,8 @@ mod tests {
     #[test]
     fn no_filter_shows_profile_scoped_alerts_too() {
         let db = db();
-        record_oauth_failure(&db, Some(TIN_A));
-        record_oauth_failure(&db, Some(TIN_B));
+        record_test_alert(&db, Some(TIN_A));
+        record_test_alert(&db, Some(TIN_B));
         db.record_alert(
             None,
             kinds::PROFILE_ROW_UNREADABLE,
@@ -400,7 +401,7 @@ mod tests {
         assert_eq!(
             db.record_alert(
                 Some(TIN_A),
-                kinds::GOOGLE_OAUTH_REFRESH_FAILED,
+                TEST_KIND,
                 AlertSeverity::Error,
                 "t",
                 "d",
@@ -415,7 +416,7 @@ mod tests {
             assert_eq!(
                 db.record_alert(
                     Some(TIN_A),
-                    kinds::GOOGLE_OAUTH_REFRESH_FAILED,
+                    TEST_KIND,
                     AlertSeverity::Error,
                     "t",
                     "d",
@@ -428,12 +429,11 @@ mod tests {
         }
 
         // Dismissed, then it comes back: that IS news again.
-        db.resolve_alert(Some(TIN_A), kinds::GOOGLE_OAUTH_REFRESH_FAILED)
-            .unwrap();
+        db.resolve_alert(Some(TIN_A), TEST_KIND).unwrap();
         assert_eq!(
             db.record_alert(
                 Some(TIN_A),
-                kinds::GOOGLE_OAUTH_REFRESH_FAILED,
+                TEST_KIND,
                 AlertSeverity::Error,
                 "t",
                 "d",
@@ -457,7 +457,7 @@ mod tests {
     #[test]
     fn distinct_kinds_stay_separate() {
         let db = db();
-        record_oauth_failure(&db, Some(TIN_A));
+        record_test_alert(&db, Some(TIN_A));
         db.record_alert(
             Some(TIN_A),
             kinds::PROFILE_ROW_UNREADABLE,
@@ -474,9 +474,8 @@ mod tests {
     #[test]
     fn resolving_removes_it_from_the_active_list() {
         let db = db();
-        record_oauth_failure(&db, Some(TIN_A));
-        db.resolve_alert(Some(TIN_A), kinds::GOOGLE_OAUTH_REFRESH_FAILED)
-            .unwrap();
+        record_test_alert(&db, Some(TIN_A));
+        db.resolve_alert(Some(TIN_A), TEST_KIND).unwrap();
 
         assert!(db.list_active_alerts(Some(TIN_A)).unwrap().is_empty());
     }
@@ -487,12 +486,11 @@ mod tests {
     #[test]
     fn a_recurrence_after_resolution_reappears() {
         let db = db();
-        record_oauth_failure(&db, Some(TIN_A));
-        db.resolve_alert(Some(TIN_A), kinds::GOOGLE_OAUTH_REFRESH_FAILED)
-            .unwrap();
+        record_test_alert(&db, Some(TIN_A));
+        db.resolve_alert(Some(TIN_A), TEST_KIND).unwrap();
         assert!(db.list_active_alerts(Some(TIN_A)).unwrap().is_empty());
 
-        record_oauth_failure(&db, Some(TIN_A));
+        record_test_alert(&db, Some(TIN_A));
         let alerts = db.list_active_alerts(Some(TIN_A)).unwrap();
         assert_eq!(alerts.len(), 1, "a recurring condition must resurface");
         assert_eq!(alerts[0].occurrences, 2, "and keep its history");
@@ -501,7 +499,7 @@ mod tests {
     #[test]
     fn dismissing_by_id_hides_only_that_alert() {
         let db = db();
-        record_oauth_failure(&db, Some(TIN_A));
+        record_test_alert(&db, Some(TIN_A));
         db.record_alert(
             Some(TIN_A),
             kinds::PROFILE_ROW_UNREADABLE,
@@ -533,7 +531,7 @@ mod tests {
             AlertAction::None,
         )
         .unwrap();
-        record_oauth_failure(&db, Some(TIN_A));
+        record_test_alert(&db, Some(TIN_A));
 
         let alerts = db.list_active_alerts(Some(TIN_A)).unwrap();
         assert_eq!(alerts[0].severity, AlertSeverity::Error);
@@ -543,7 +541,7 @@ mod tests {
     #[test]
     fn severity_and_action_round_trip_through_the_database() {
         let db = db();
-        record_oauth_failure(&db, Some(TIN_A));
+        record_test_alert(&db, Some(TIN_A));
 
         let a = &db.list_active_alerts(Some(TIN_A)).unwrap()[0];
         assert_eq!(a.severity, AlertSeverity::Error);

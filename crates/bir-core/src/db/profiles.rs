@@ -355,9 +355,7 @@ pub(super) fn delete_profile_rows(tx: &rusqlite::Connection, tin: &str) -> Resul
         ("legacy_filed_returns", "tin"),
         ("form_drafts", "tin"),
         ("submission_receipts", "tin"),
-        ("data_providers", "profile_tin"),
         ("per_year_forms", "tin"),
-        ("profile_calendar_events", "profile_tin"),
         ("form_templates", "tin"),
     ] {
         if table == "legacy_filed_returns" {
@@ -406,10 +404,7 @@ impl Database {
             ("legacy_filed_returns", "tin"),
             ("form_drafts", "tin"),
             ("submission_receipts", "tin"),
-            ("data_providers", "profile_tin"),
             ("per_year_forms", "tin"),
-            ("profile_calendar_events", "profile_tin"),
-            ("profile_calendar_links", "profile_tin"),
             ("form_templates", "tin"),
         ] {
             if table == "legacy_filed_returns" {

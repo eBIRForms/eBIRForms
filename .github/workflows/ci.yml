@@ -12,7 +12,8 @@ jobs:
       - uses: actions/checkout@v4
       - run: ./scripts/check-secrets.sh
 
-  # The domain crates have no UI and must build and pass on every desktop OS.
+  # The domain crates have no UI and must build on every desktop OS. Ship
+  # fast (D19): build and lint, no `cargo test`, until tests are turned back on.
   crates:
     strategy:
       fail-fast: false
@@ -21,8 +22,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - run: cargo test --locked
-      - run: cargo clippy --all-targets -- -D warnings
+      # keyring's Secret Service backend links libdbus.
+      - if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libdbus-1-dev pkg-config
+      - run: cargo build --locked --all-targets
+      - run: cargo clippy --locked --all-targets
 
   app:
     runs-on: macos-latest

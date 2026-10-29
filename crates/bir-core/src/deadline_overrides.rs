@@ -157,12 +157,20 @@ fn period_for(code: &str, raw: &str, today: NaiveDate) -> Result<DeadlinePeriod,
             quarter: (month - 1) / 3 + 1,
         },
         (Some(Frequency::Monthly), _) => {
-            return Err(format!("{code} is filed monthly: name the month, like 2026-09"));
+            return Err(format!(
+                "{code} is filed monthly: name the month, like 2026-09"
+            ));
         }
         (Some(Frequency::Quarterly), _) => {
-            return Err(format!("{code} is filed quarterly: name the quarter, like 2026-Q3"));
+            return Err(format!(
+                "{code} is filed quarterly: name the quarter, like 2026-Q3"
+            ));
         }
-        _ => return Err(format!("{code} is filed yearly: name the tax year, like 2025")),
+        _ => {
+            return Err(format!(
+                "{code} is filed yearly: name the tax year, like 2025"
+            ));
+        }
     };
     deadline_period(period).ok_or_else(|| format!("`{raw}` is not a period of {code}"))
 }
@@ -186,9 +194,9 @@ fn is_holiday(entry: &DeadlineOverride) -> bool {
     entry.id.starts_with(SEED_ID_PREFIX)
         || entry.affected_form_codes.len() > 1
             && crate::official_holidays::OFFICIAL_HOLIDAY_YEARS
-            .iter()
-            .flat_map(|year| year.dates())
-            .any(|(date, _)| date == entry.original_deadline)
+                .iter()
+                .flat_map(|year| year.dates())
+                .any(|(date, _)| date == entry.original_deadline)
 }
 
 /// The deadlines (form and period) a stored override moves, read off the
@@ -202,7 +210,8 @@ fn periods_moved(entry: &DeadlineOverride) -> Vec<Value> {
     let mut out = Vec::new();
     for code in &entry.affected_form_codes {
         for taxable_year in (year - 1)..=year {
-            for deadline in DeadlineResolver::deadlines_for_forms(&[code.clone()], taxable_year, &[])
+            for deadline in
+                DeadlineResolver::deadlines_for_forms(&[code.clone()], taxable_year, &[])
             {
                 if !moves(entry, &deadline) {
                     continue;
@@ -290,9 +299,10 @@ fn target(
         Some(raw) => {
             let period = period_for(code, raw, today)?;
             let label = tax_period(&period).map_or_else(|| raw.to_string(), TaxPeriod::label);
-            Some(resolved(code, &period, &[]).ok_or_else(|| {
-                format!("BIR's calendar has no {code} deadline for {label}")
-            })?)
+            Some(
+                resolved(code, &period, &[])
+                    .ok_or_else(|| format!("BIR's calendar has no {code} deadline for {label}"))?,
+            )
         }
         None => None,
     };
@@ -338,16 +348,28 @@ fn own_override(entry: &DeadlineOverride, code: &str, deadline: &ResolvedTaxDead
 /// same entry, its id kept); a holiday or a BIR extension that names it
 /// stays stored and this one, saved after it, wins. The new date still
 /// moves off a weekend, as every deadline does.
-pub fn set(db: &Database, arguments: &Map<String, Value>, today: NaiveDate) -> Result<Value, String> {
+pub fn set(
+    db: &Database,
+    arguments: &Map<String, Value>,
+    today: NaiveDate,
+) -> Result<Value, String> {
     check_keys(
         arguments,
-        &["form", "period", "original_deadline", "new_deadline", "reason"],
+        &[
+            "form",
+            "period",
+            "original_deadline",
+            "new_deadline",
+            "reason",
+        ],
     )?;
     let raw = text(arguments, "form")?.ok_or("`form` is required: a form code such as 2551Q")?;
     let code = calendar_form(raw)?;
     let new_deadline = date(arguments, "new_deadline")?
         .ok_or("`new_deadline` is required: the new due date, YYYY-MM-DD")?;
-    let reason = text(arguments, "reason")?.unwrap_or(DEFAULT_REASON).to_string();
+    let reason = text(arguments, "reason")?
+        .unwrap_or(DEFAULT_REASON)
+        .to_string();
     let deadline = target(&code, arguments, today)?;
     let original = deadline
         .original_deadline_date()
@@ -413,7 +435,9 @@ pub fn remove(
         let index = overrides
             .iter()
             .position(|entry| entry.id == id)
-            .ok_or_else(|| format!("no deadline override `{id}`; list them with bir_deadline_overrides_list"))?;
+            .ok_or_else(|| {
+                format!("no deadline override `{id}`; list them with bir_deadline_overrides_list")
+            })?;
         let entry = overrides.remove(index);
         db.set_deadline_overrides(&overrides)
             .map_err(|error| error.to_string())?;
@@ -505,13 +529,33 @@ mod tests {
         let listed = list(&db, &args(json!({"year": 2026}))).unwrap();
         let entry = &listed["overrides"][0];
         assert_eq!(entry["kind"], "moved");
-        assert_eq!(entry["periods"], json!([{"form": "2551Q", "period": "2026-Q3", "label": "Q3 2026"}]));
-        assert!(list(&db, &args(json!({"year": 2025}))).unwrap()["overrides"].as_array().unwrap().is_empty());
+        assert_eq!(
+            entry["periods"],
+            json!([{"form": "2551Q", "period": "2026-Q3", "label": "Q3 2026"}])
+        );
+        assert!(
+            list(&db, &args(json!({"year": 2025}))).unwrap()["overrides"]
+                .as_array()
+                .unwrap()
+                .is_empty()
+        );
 
-        let removed = remove(&db, &args(json!({"form": "2551Q", "period": "2026-Q3"})), today).unwrap();
+        let removed = remove(
+            &db,
+            &args(json!({"form": "2551Q", "period": "2026-Q3"})),
+            today,
+        )
+        .unwrap();
         assert_eq!(removed["due"], "2026-10-26");
         assert!(db.get_deadline_overrides().is_empty());
-        assert!(remove(&db, &args(json!({"form": "2551Q", "period": "2026-Q3"})), today).is_err());
+        assert!(
+            remove(
+                &db,
+                &args(json!({"form": "2551Q", "period": "2026-Q3"})),
+                today
+            )
+            .is_err()
+        );
     }
 
     #[test]
@@ -534,14 +578,25 @@ mod tests {
             expires_at: None,
         });
         db.set_deadline_overrides(&overrides).unwrap();
-        let removed =
-            remove(&db, &args(json!({"form": "1601C", "period": "2026-09"})), day(10, 1)).unwrap();
+        let removed = remove(
+            &db,
+            &args(json!({"form": "1601C", "period": "2026-09"})),
+            day(10, 1),
+        )
+        .unwrap();
         assert_eq!(removed["due"], "2026-10-12");
         let after = db.get_deadline_overrides();
-        assert_eq!(after.len(), holidays + 1, "the holidays and the extension stay");
+        assert_eq!(
+            after.len(),
+            holidays + 1,
+            "the holidays and the extension stay"
+        );
         assert_eq!(after.last().unwrap().affected_form_codes, ["0619E"]);
         let listed = list(&db, &Map::new()).unwrap();
-        assert_eq!(listed["overrides"][0]["kind"], "moved", "moved deadlines first");
+        assert_eq!(
+            listed["overrides"][0]["kind"], "moved",
+            "moved deadlines first"
+        );
     }
 
     #[test]
@@ -549,15 +604,38 @@ mod tests {
         let db = Database::open_ephemeral().unwrap();
         let today = day(10, 26);
         let refused = |value: Value| set(&db, &args(value), today).unwrap_err();
-        assert!(refused(json!({"form": "0605", "period": "2026-09", "new_deadline": "2026-11-03"})).contains("as needed"));
-        assert!(refused(json!({"form": "9999", "period": "2026-09", "new_deadline": "2026-11-03"})).contains("no deadline"));
-        assert!(refused(json!({"form": "1601C", "period": "2026-Q3", "new_deadline": "2026-11-03"})).contains("monthly"));
-        assert!(refused(json!({"form": "1701Q", "period": "2026-Q4", "new_deadline": "2027-05-03"})).contains("no 1701Q deadline"));
-        assert!(refused(json!({"form": "2551Q", "new_deadline": "2026-11-03"})).contains("name the deadline"));
+        assert!(
+            refused(json!({"form": "0605", "period": "2026-09", "new_deadline": "2026-11-03"}))
+                .contains("as needed")
+        );
+        assert!(
+            refused(json!({"form": "9999", "period": "2026-09", "new_deadline": "2026-11-03"}))
+                .contains("no deadline")
+        );
+        assert!(
+            refused(json!({"form": "1601C", "period": "2026-Q3", "new_deadline": "2026-11-03"}))
+                .contains("monthly")
+        );
+        assert!(
+            refused(json!({"form": "1701Q", "period": "2026-Q4", "new_deadline": "2027-05-03"}))
+                .contains("no 1701Q deadline")
+        );
+        assert!(
+            refused(json!({"form": "2551Q", "new_deadline": "2026-11-03"}))
+                .contains("name the deadline")
+        );
         assert!(refused(json!({"form": "2551Q", "period": "2026-Q3", "original_deadline": "2026-10-10", "new_deadline": "2026-11-03"})).contains("not 2026-10-10"));
         assert!(refused(json!({"form": "2551Q", "period": "2026-Q3"})).contains("new_deadline"));
-        assert!(refused(json!({"form": "2551Q", "period": "2026-Q3", "new_deadline": "11/03/2026"})).contains("must be a date"));
-        assert!(refused(json!({"form": "2551Q", "period": "Q3 of 2026x", "new_deadline": "2026-11-03"})).contains("`period`"));
+        assert!(
+            refused(json!({"form": "2551Q", "period": "2026-Q3", "new_deadline": "11/03/2026"}))
+                .contains("must be a date")
+        );
+        assert!(
+            refused(
+                json!({"form": "2551Q", "period": "Q3 of 2026x", "new_deadline": "2026-11-03"})
+            )
+            .contains("`period`")
+        );
         assert!(db.get_deadline_overrides().is_empty());
     }
 }

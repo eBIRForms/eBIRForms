@@ -64,19 +64,17 @@ pub fn desktop_filter(developer_mode: bool) -> &'static str {
     }
 }
 
-/// `bir-shell` directives when `RUST_LOG` is unset.
+/// The app's directives when `RUST_LOG` is unset.
 ///
-/// `bir_core=info` keeps IMAP, confirmation-watcher, SFTP, and cron warnings.
-/// `gpui_shell::script=info` is where QuickJS `console.log` / `warn` / `error`
-/// are emitted. Unlisted targets stay at error, same as the painted filter.
+/// `bir_core=info` keeps queue and cron warnings. Unlisted targets stay at
+/// error, same as the painted filter.
 pub fn shell_filter(developer_mode: bool) -> &'static str {
-    // `panic=error` is the hook's target. Painted `bir` has no panic hook, so
-    // its directives stay as they were. A directive list with no global level
-    // leaves every other target off, same as painted `bir`.
+    // `panic=error` is the hook's target. A directive list with no global
+    // level leaves every other target off.
     if developer_mode {
-        "bir_shell=debug,bir_core=info,bir_print=debug,gpui_shell::script=debug,panic=error"
+        "buwiz=debug,bir_app_core=debug,bir_core=info,bir_print=debug,panic=error"
     } else {
-        "bir_shell=info,bir_core=info,bir_print=error,gpui_shell::script=info,panic=error"
+        "buwiz=info,bir_app_core=info,bir_core=info,bir_print=error,panic=error"
     }
 }
 
@@ -395,13 +393,13 @@ mod tests {
     }
 
     #[test]
-    fn shell_filter_keeps_core_warnings_and_script_console() {
+    fn shell_filter_keeps_core_and_app_warnings() {
         let filter = shell_filter(false);
         assert!(filter.contains("bir_core=info"));
-        assert!(filter.contains("gpui_shell::script=info"));
-        assert!(filter.contains("bir_shell=info"));
+        assert!(filter.contains("buwiz=info"));
+        assert!(filter.contains("bir_app_core=info"));
         assert!(filter.contains("panic=error"));
-        assert!(shell_filter(true).contains("gpui_shell::script=debug"));
+        assert!(shell_filter(true).contains("bir_app_core=debug"));
         assert!(EnvFilter::try_new(filter).is_ok());
         assert!(EnvFilter::try_new(shell_filter(true)).is_ok());
     }

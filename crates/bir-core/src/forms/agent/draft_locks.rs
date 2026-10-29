@@ -1573,7 +1573,7 @@ mod tests {
         #[test]
         fn a_filed_q1_locks_a_later_quarters_item_13_to_its_election() {
             for status in [
-                FilingStatus::Submitted,
+                FilingStatus::Sent,
                 FilingStatus::Confirmed,
                 FilingStatus::Paid,
             ] {
@@ -1653,14 +1653,14 @@ mod tests {
                 &db,
                 "99988877700000",
                 2026,
-                FilingStatus::Submitted,
+                FilingStatus::Sent,
                 Item13Election::EightPercent,
             );
             store_q1(
                 &db,
                 &tin(),
                 2025,
-                FilingStatus::Submitted,
+                FilingStatus::Sent,
                 Item13Election::EightPercent,
             );
             let mut q3 = draft(2026, 3);
@@ -1679,7 +1679,7 @@ mod tests {
                 &db,
                 &tin(),
                 2026,
-                FilingStatus::Submitted,
+                FilingStatus::Sent,
                 Item13Election::EightPercent,
             );
             // An editable Q1 of the same year (an amendment's copy).

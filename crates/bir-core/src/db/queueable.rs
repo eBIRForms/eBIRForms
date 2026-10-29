@@ -594,7 +594,7 @@ impl Database {
         let mut marked_amended = false;
         if matches!(
             previous_status,
-            FilingStatus::Submitted | FilingStatus::Confirmed
+            FilingStatus::Sent | FilingStatus::Confirmed
         ) {
             let lifecycle = current.lifecycle();
             let (xml, source) = sent_payload(&current);
@@ -705,7 +705,7 @@ impl Database {
         }
         if matches!(
             lifecycle.status,
-            FilingStatus::Submitted | FilingStatus::Confirmed | FilingStatus::Paid
+            FilingStatus::Sent | FilingStatus::Confirmed | FilingStatus::Paid
         ) || matches!(db_status.as_str(), "Submitted" | "Confirmed" | "Paid")
         {
             return Err(DbError::Other(format!(
@@ -902,7 +902,7 @@ impl Database {
         draft: &F,
         claim_token: &str,
     ) -> Result<i64, DbError> {
-        if !matches!(draft.lifecycle().status, FilingStatus::Submitted) {
+        if !matches!(draft.lifecycle().status, FilingStatus::Sent) {
             return Err(DbError::Other(format!(
                 "Only a Submitted {} snapshot can finish a network claim",
                 F::FORM_CODE
@@ -997,7 +997,7 @@ impl Database {
         };
         let existing: F = serde_json::from_str(&raw_json)?;
         if db_status != "Submitted"
-            || !matches!(existing.lifecycle().status, FilingStatus::Submitted)
+            || !matches!(existing.lifecycle().status, FilingStatus::Sent)
             || existing.field_map() != draft.field_map()
         {
             return Err(DbError::Other(format!(
@@ -1064,7 +1064,7 @@ impl Database {
             Some((year, period)) => {
                 let column = crate::forms::queueable::period_column(&period);
                 self.get_queueable_draft::<F>(&receipt.tin, year, column)?
-                    .filter(|draft| matches!(draft.lifecycle().status, FilingStatus::Submitted))
+                    .filter(|draft| matches!(draft.lifecycle().status, FilingStatus::Sent))
             }
             None => None,
         };
@@ -1079,7 +1079,7 @@ impl Database {
         let Some(mut draft) = draft else {
             return Ok(ReceiptConfirmationOutcome::Ignored);
         };
-        if !matches!(draft.lifecycle().status, FilingStatus::Submitted) {
+        if !matches!(draft.lifecycle().status, FilingStatus::Sent) {
             return Ok(ReceiptConfirmationOutcome::Ignored);
         }
         let receipt_id = receipt.id.ok_or_else(|| {
@@ -1336,7 +1336,7 @@ mod tests {
         let result = db
             .revert_queueable_for_amendment::<TestForm>(TIN, 2025, 6)
             .unwrap();
-        assert_eq!(result.previous_status, FilingStatus::Submitted);
+        assert_eq!(result.previous_status, FilingStatus::Sent);
         assert!(result.marked_amended);
         assert_eq!(rows(&db), vec![(id, 6, "Draft".to_string())]);
         let stored = db

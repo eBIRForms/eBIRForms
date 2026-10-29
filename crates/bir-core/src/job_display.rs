@@ -1,7 +1,6 @@
 //! Human-facing Background Tasks / job-queue titles.
 //!
-//! Machine identity stays on `Job.command` (`bir_poll_email {email}`). These
-//! strings are display names only: form + period + dashed TIN + optional email.
+//! Display names only: form + period + dashed TIN + optional email.
 
 use crate::forms::FormDraftSummary;
 use crate::naming::Tin;
@@ -43,17 +42,6 @@ impl<'a> FilingJobLabel<'a> {
             self.email,
         )
     }
-
-    pub fn confirmation_poll_name(&self) -> String {
-        format_confirmation_poll_job_name(
-            self.form_code,
-            self.taxable_year,
-            self.month,
-            self.quarter,
-            self.tin,
-            self.email,
-        )
-    }
 }
 
 /// Known email for a title parenthetical. Empty / whitespace is omitted.
@@ -87,24 +75,6 @@ pub fn format_submit_job_name(
     with_optional_email(
         format!(
             "Submit {form_code} {} for {}",
-            format_filing_period_label(taxable_year, month, quarter),
-            Tin::dashed_display(tin),
-        ),
-        email,
-    )
-}
-
-pub fn format_confirmation_poll_job_name(
-    form_code: &str,
-    taxable_year: u16,
-    month: Option<u8>,
-    quarter: Option<u8>,
-    tin: &str,
-    email: Option<&str>,
-) -> String {
-    with_optional_email(
-        format!(
-            "Waiting for {form_code} {} confirmation for {}",
             format_filing_period_label(taxable_year, month, quarter),
             Tin::dashed_display(tin),
         ),
@@ -162,36 +132,14 @@ mod tests {
     }
 
     #[test]
-    fn confirmation_title_includes_period_dashed_tin_and_email() {
-        assert_eq!(
-            format_confirmation_poll_job_name(
-                "1601C",
-                2026,
-                Some(9),
-                None,
-                "00000000000000",
-                Some("taxpayer@example.com"),
-            ),
-            "Waiting for 1601C Sep 2026 confirmation for 000-000-000-00000 (taxpayer@example.com)"
-        );
-    }
-
-    #[test]
     fn email_parenthetical_is_omitted_when_unknown() {
         assert_eq!(
             format_submit_job_name("1601C", 2026, Some(9), None, "00000000000000", None),
             "Submit 1601C Sep 2026 for 000-000-000-00000"
         );
         assert_eq!(
-            format_confirmation_poll_job_name(
-                "1601C",
-                2026,
-                Some(9),
-                None,
-                "00000000000000",
-                Some("   "),
-            ),
-            "Waiting for 1601C Sep 2026 confirmation for 000-000-000-00000"
+            format_submit_job_name("1601C", 2026, Some(9), None, "00000000000000", Some("   ")),
+            "Submit 1601C Sep 2026 for 000-000-000-00000"
         );
     }
 
@@ -246,10 +194,6 @@ mod tests {
         assert_eq!(
             label.submit_name(),
             "Submit 1601C Sep 2026 for 000-000-000-00000 (taxpayer@example.com)"
-        );
-        assert_eq!(
-            label.confirmation_poll_name(),
-            "Waiting for 1601C Sep 2026 confirmation for 000-000-000-00000 (taxpayer@example.com)"
         );
     }
 }

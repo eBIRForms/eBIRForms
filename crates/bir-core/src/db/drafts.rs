@@ -82,7 +82,7 @@ pub(super) fn filing_status_to_db(status: &FilingStatus) -> &'static str {
     match status {
         FilingStatus::Draft => "Draft",
         FilingStatus::Queued => "Queued",
-        FilingStatus::Submitted => "Submitted",
+        FilingStatus::Sent => "Submitted",
         FilingStatus::Confirmed => "Confirmed",
         FilingStatus::Paid => "Paid",
     }
@@ -91,7 +91,7 @@ pub(super) fn filing_status_to_db(status: &FilingStatus) -> &'static str {
 pub(super) fn filing_status_from_db(status: &str) -> FilingStatus {
     match status {
         "Confirmed" => FilingStatus::Confirmed,
-        "Submitted" | "Filed" => FilingStatus::Submitted,
+        "Submitted" | "Filed" => FilingStatus::Sent,
         "Paid" => FilingStatus::Paid,
         "Queued" => FilingStatus::Queued,
         _ => FilingStatus::Draft,
@@ -101,7 +101,7 @@ pub(super) fn filing_status_from_db(status: &str) -> FilingStatus {
 fn quarter_state_from_db(status: &str) -> QuarterState {
     match status {
         "Confirmed" => QuarterState::Confirmed,
-        "Submitted" | "Filed" => QuarterState::Submitted,
+        "Submitted" | "Filed" => QuarterState::Sent,
         "Paid" => QuarterState::Paid,
         "Queued" => QuarterState::Queued,
         "Draft" => QuarterState::Draft,
@@ -115,7 +115,7 @@ fn state_rank(state: &QuarterState) -> u8 {
         QuarterState::NotStarted => 0,
         QuarterState::Draft => 1,
         QuarterState::Queued => 2,
-        QuarterState::Submitted => 3,
+        QuarterState::Sent => 3,
         QuarterState::Confirmed => 4,
         QuarterState::Paid => 5,
     }
@@ -124,10 +124,7 @@ fn state_rank(state: &QuarterState) -> u8 {
 fn counts_as_started_or_filed(state: &QuarterState) -> bool {
     matches!(
         state,
-        QuarterState::Queued
-            | QuarterState::Submitted
-            | QuarterState::Confirmed
-            | QuarterState::Paid
+        QuarterState::Queued | QuarterState::Sent | QuarterState::Confirmed | QuarterState::Paid
     )
 }
 
@@ -1155,7 +1152,7 @@ impl Database {
         }
         if matches!(
             current.status,
-            FilingStatus::Submitted | FilingStatus::Confirmed | FilingStatus::Paid
+            FilingStatus::Sent | FilingStatus::Confirmed | FilingStatus::Paid
         ) || matches!(db_status.as_str(), "Submitted" | "Confirmed" | "Paid")
         {
             return Err(DbError::Other(
@@ -1336,7 +1333,7 @@ impl Database {
         draft: &Form2551QDraft,
         claim_token: &str,
     ) -> Result<i64, DbError> {
-        if !matches!(draft.status, FilingStatus::Submitted) {
+        if !matches!(draft.status, FilingStatus::Sent) {
             return Err(DbError::Other(
                 "Only a Submitted 2551Q snapshot can finish a network claim".to_string(),
             ));
@@ -1402,7 +1399,7 @@ impl Database {
             ));
         }
 
-        existing.status = FilingStatus::Submitted;
+        existing.status = FilingStatus::Sent;
         existing.submitted_at = draft.submitted_at.clone();
         if draft.submitted_payload.is_some() {
             existing.submitted_payload = draft.submitted_payload.clone();
@@ -1568,7 +1565,7 @@ impl Database {
         };
         let mut existing: Form2551QDraft = serde_json::from_str(&raw_json)?;
         if db_status != "Submitted"
-            || !matches!(existing.status, FilingStatus::Submitted)
+            || !matches!(existing.status, FilingStatus::Sent)
             || draft.to_bir_field_map() != existing.to_bir_field_map()
             || draft.queued_submission_fingerprint != existing.queued_submission_fingerprint
             || draft.submitted_at != existing.submitted_at
@@ -1876,7 +1873,7 @@ impl Database {
         Ok(self.get_2551q_draft(tin, year, 1)?.and_then(|q1| {
             matches!(
                 q1.status,
-                FilingStatus::Submitted | FilingStatus::Confirmed | FilingStatus::Paid
+                FilingStatus::Sent | FilingStatus::Confirmed | FilingStatus::Paid
             )
             .then_some(q1.item_13_election)
         }))
@@ -2290,7 +2287,7 @@ impl Database {
         }
         if matches!(
             current.status,
-            FilingStatus::Submitted | FilingStatus::Confirmed | FilingStatus::Paid
+            FilingStatus::Sent | FilingStatus::Confirmed | FilingStatus::Paid
         ) || matches!(db_status.as_str(), "Submitted" | "Confirmed" | "Paid")
         {
             return Err(DbError::Other(
@@ -2434,7 +2431,7 @@ impl Database {
         draft: &Form1601CDraft,
         claim_token: &str,
     ) -> Result<i64, DbError> {
-        if !matches!(draft.status, FilingStatus::Submitted) {
+        if !matches!(draft.status, FilingStatus::Sent) {
             return Err(DbError::Other(
                 "Only a Submitted 1601C snapshot can finish a network claim".to_string(),
             ));
@@ -2648,7 +2645,7 @@ impl Database {
         };
         let mut existing: Form1601CDraft = serde_json::from_str(&raw_json)?;
         if db_status != "Submitted"
-            || !matches!(existing.status, FilingStatus::Submitted)
+            || !matches!(existing.status, FilingStatus::Sent)
             || draft.to_bir_field_map() != existing.to_bir_field_map()
             || draft.queued_submission_fingerprint != existing.queued_submission_fingerprint
             || draft.submitted_at != existing.submitted_at
@@ -3016,7 +3013,7 @@ impl Database {
                     legacy_open_ended.insert(period);
                 }
                 Some(period) => {
-                    apply_period_state(&mut progress, monthly, period, QuarterState::Submitted);
+                    apply_period_state(&mut progress, monthly, period, QuarterState::Sent);
                 }
                 None => {}
             }
@@ -4041,7 +4038,7 @@ mod tests {
             .get_1601c_draft(&queued.tin, queued.taxable_year, queued.month)
             .unwrap()
             .unwrap();
-        assert_eq!(submitted.status, FilingStatus::Submitted);
+        assert_eq!(submitted.status, FilingStatus::Sent);
         assert_eq!(submitted.to_bir_field_map(), queued_fields);
         assert_eq!(
             submitted.submission_filename.as_deref(),
@@ -4283,7 +4280,7 @@ mod tests {
             .get_1601c_draft(&queued.tin, queued.taxable_year, queued.month)
             .unwrap()
             .unwrap();
-        assert_eq!(submitted.status, FilingStatus::Submitted);
+        assert_eq!(submitted.status, FilingStatus::Sent);
         assert!(submitted.submission_claim_token.is_none());
         assert!(
             db.release_abandoned_claimed_1601c_submission(
@@ -4935,7 +4932,7 @@ mod tests {
             (2027, FilingStatus::Draft, false),
             (2028, FilingStatus::Queued, false),
             (2029, FilingStatus::Queued, true),
-            (2030, FilingStatus::Submitted, false),
+            (2030, FilingStatus::Sent, false),
             (2031, FilingStatus::Confirmed, false),
             (2032, FilingStatus::Paid, false),
         ];
@@ -4945,7 +4942,7 @@ mod tests {
             if matches!(
                 &status,
                 FilingStatus::Queued
-                    | FilingStatus::Submitted
+                    | FilingStatus::Sent
                     | FilingStatus::Confirmed
                     | FilingStatus::Paid
             ) {
@@ -4953,7 +4950,7 @@ mod tests {
             }
             if matches!(
                 &status,
-                FilingStatus::Submitted | FilingStatus::Confirmed | FilingStatus::Paid
+                FilingStatus::Sent | FilingStatus::Confirmed | FilingStatus::Paid
             ) {
                 stored.submitted_at = Some(format!("{year}-04-25T04:00:00+00:00"));
                 stored.submission_filename = Some(stored.default_submission_filename());
@@ -5095,7 +5092,7 @@ mod tests {
         assert!(db.save_queued_2551q_draft_and_election(&queued).is_err());
 
         let mut immutable_json = editable.clone();
-        immutable_json.status = FilingStatus::Submitted;
+        immutable_json.status = FilingStatus::Sent;
         db.conn
             .execute(
                 "UPDATE form_drafts SET status = 'Draft', data_json = ?1
@@ -5476,7 +5473,7 @@ mod tests {
             .get_2551q_draft(&queued.tin, queued.taxable_year, queued.quarter)
             .unwrap()
             .unwrap();
-        assert_eq!(submitted.status, FilingStatus::Submitted);
+        assert_eq!(submitted.status, FilingStatus::Sent);
         assert_eq!(
             submitted.submission_filename.as_deref(),
             Some(expected_filename.as_str())
@@ -5710,7 +5707,7 @@ mod tests {
             .get_2551q_draft(&submitted.tin, submitted.taxable_year, submitted.quarter)
             .unwrap()
             .unwrap();
-        assert_eq!(persisted.status, FilingStatus::Submitted);
+        assert_eq!(persisted.status, FilingStatus::Sent);
         assert!(persisted.confirmed_at.is_none());
         assert!(persisted.receipt_id.is_none());
     }
@@ -5944,7 +5941,7 @@ mod tests {
                 &changed_profile,
             )
             .expect("immutable marker reconciliation should succeed");
-        assert_eq!(submitted.status, FilingStatus::Submitted);
+        assert_eq!(submitted.status, FilingStatus::Sent);
         assert_eq!(
             submitted.submission_filename.as_deref(),
             Some(submission_filename.as_str())
@@ -6449,7 +6446,7 @@ mod tests {
             "1701",
             2026,
             &FilingPeriod::Annual,
-            &FilingStatus::Submitted,
+            &FilingStatus::Sent,
             &TestDraft { value: 1 },
         )
         .unwrap();
@@ -6458,7 +6455,7 @@ mod tests {
             "0605",
             2026,
             &FilingPeriod::OpenEnded(1),
-            &FilingStatus::Submitted,
+            &FilingStatus::Sent,
             &TestDraft { value: 1 },
         )
         .unwrap();
@@ -6479,7 +6476,7 @@ mod tests {
             .get_form_filing_progress("123456789000", "0605", 2026)
             .unwrap();
 
-        assert_eq!(annual.annual_status, QuarterState::Submitted);
+        assert_eq!(annual.annual_status, QuarterState::Sent);
         assert_eq!(open_ended.open_ended_count, 1);
     }
 
@@ -6521,7 +6518,7 @@ mod tests {
         let progress = db.get_form_filing_progress(tin, "2550Q", 2026).unwrap();
         assert_eq!(progress.quarters[0], QuarterState::Draft);
         assert_eq!(progress.quarters[1], QuarterState::NotStarted);
-        assert_eq!(progress.quarters[2], QuarterState::Submitted);
+        assert_eq!(progress.quarters[2], QuarterState::Sent);
         assert_eq!(progress.quarters[3], QuarterState::NotStarted);
 
         let other_year = db.get_form_filing_progress(tin, "2550Q", 2025).unwrap();
@@ -6650,23 +6647,23 @@ mod tests {
 
         // Monthly 1601C June 2025 is filed; the 2024 record does not leak in.
         let monthly = db.get_form_filing_progress(tin, "1601C", 2025).unwrap();
-        assert_eq!(monthly.months[5], QuarterState::Submitted);
+        assert_eq!(monthly.months[5], QuarterState::Sent);
         assert_eq!(monthly.months[0], QuarterState::NotStarted);
 
         // A profile's 3-digit-branch tin resolves to the same stored rows.
         let monthly = db
             .get_form_filing_progress("123456789000", "1601C", 2025)
             .unwrap();
-        assert_eq!(monthly.months[5], QuarterState::Submitted);
+        assert_eq!(monthly.months[5], QuarterState::Sent);
 
         // Quarterly 2551Q: `2026Q1` and fiscal-year `122026Q4` both file.
         let quarterly = db.get_form_filing_progress(tin, "2551Q", 2026).unwrap();
-        assert_eq!(quarterly.quarters[0], QuarterState::Submitted);
-        assert_eq!(quarterly.quarters[3], QuarterState::Submitted);
+        assert_eq!(quarterly.quarters[0], QuarterState::Sent);
+        assert_eq!(quarterly.quarters[3], QuarterState::Sent);
         assert_eq!(quarterly.quarters[1], QuarterState::NotStarted);
 
         let annual = db.get_form_filing_progress(tin, "1701", 2025).unwrap();
-        assert_eq!(annual.annual_status, QuarterState::Submitted);
+        assert_eq!(annual.annual_status, QuarterState::Sent);
 
         // Open-ended 0605: the two same-period rows count once.
         let open_ended = db.get_form_filing_progress(tin, "0605", 2025).unwrap();
@@ -6674,7 +6671,7 @@ mod tests {
 
         // A dated monthly return (2200AN `MMDDYYYY`) files its month.
         let dated = db.get_form_filing_progress(tin, "2200AN", 2025).unwrap();
-        assert_eq!(dated.months[2], QuarterState::Submitted);
+        assert_eq!(dated.months[2], QuarterState::Sent);
 
         // A local draft does not downgrade the migrated filed state.
         db.conn
@@ -6686,7 +6683,7 @@ mod tests {
             )
             .unwrap();
         let monthly = db.get_form_filing_progress(tin, "1601C", 2025).unwrap();
-        assert_eq!(monthly.months[5], QuarterState::Submitted);
+        assert_eq!(monthly.months[5], QuarterState::Sent);
         assert_eq!(monthly.months[6], QuarterState::Draft);
     }
 

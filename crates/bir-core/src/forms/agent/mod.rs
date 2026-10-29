@@ -455,7 +455,7 @@ pub fn identity(kind: AgentFormKind, draft: &Value) -> Result<DraftIdentity, Str
 /// left the app, a Paid one, and a form with no amended-return answer.
 pub fn amended_copy(kind: AgentFormKind, draft: &Value) -> Result<Value, String> {
     let status = identity(kind, draft)?.status;
-    if !matches!(status, FilingStatus::Submitted | FilingStatus::Confirmed) {
+    if !matches!(status, FilingStatus::Sent | FilingStatus::Confirmed) {
         return Err(format!(
             "only a submitted or confirmed {} return can be amended (this one is {status:?})",
             kind.form_code()
@@ -2345,7 +2345,7 @@ mod tests {
         let id = db.save_queueable_draft(&draft).unwrap();
         // A return that reached BIR, stored the way submission leaves it.
         let mut filed: Form0619EDraft = db.get_queueable_draft(&tin, 2025, 6).unwrap().unwrap();
-        filed.lifecycle.status = FilingStatus::Submitted;
+        filed.lifecycle.status = FilingStatus::Sent;
         filed.lifecycle.submitted_at = Some("2025-07-10T01:02:03+00:00".into());
         filed.lifecycle.submission_filename = Some(filed.submission_filename());
         let filed_json = serde_json::to_string(&filed).unwrap();
@@ -2452,7 +2452,7 @@ mod tests {
 
         // A return that reached BIR: byte-for-byte.
         let mut filed = reparsed;
-        filed.lifecycle.status = FilingStatus::Submitted;
+        filed.lifecycle.status = FilingStatus::Sent;
         let filed_json = serde_json::to_value(&filed).unwrap();
         let mut as_json = filed_json.clone();
         apply_penalty_profile(
@@ -2483,7 +2483,7 @@ mod tests {
         apply_penalty_profile(q3, &mut json, &profile, std::slice::from_ref(&q3_moved)).unwrap();
         assert_eq!(json["penalty_due_date"], "2026-11-03");
         let mut filed: Form2551QDraft = serde_json::from_value(json).unwrap();
-        filed.status = FilingStatus::Submitted;
+        filed.status = FilingStatus::Sent;
         let filed_json = serde_json::to_value(&filed).unwrap();
         let mut as_json = filed_json.clone();
         apply_penalty_profile(q3, &mut as_json, &profile, &[]).unwrap();
@@ -2496,8 +2496,13 @@ mod tests {
         let typed: Form1601CDraft = serde_json::from_value(json.clone()).unwrap();
         assert_eq!(typed.penalty_due_date(), Some(day(10, 12)));
         let september_moved = moved("1601C", day(10, 10), day(10, 20));
-        apply_penalty_profile(september, &mut json, &profile, std::slice::from_ref(&september_moved))
-            .unwrap();
+        apply_penalty_profile(
+            september,
+            &mut json,
+            &profile,
+            std::slice::from_ref(&september_moved),
+        )
+        .unwrap();
         let typed: Form1601CDraft = serde_json::from_value(json).unwrap();
         assert_eq!(typed.penalty_due_date(), Some(day(10, 20)));
     }

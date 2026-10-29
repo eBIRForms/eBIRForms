@@ -314,13 +314,7 @@ mod tests {
 
     /// Distinctive values stored on the profile, in `PROFILE_CREDENTIAL_KEYS`
     /// order.
-    const PROFILE_SECRETS: [&str; 5] = [
-        "export-totp-K7Q2",
-        "export-pass-W9X4",
-        "export-access-M3R8",
-        "export-refresh-T5V1",
-        "export-pin-hash-H6N3",
-    ];
+    const PROFILE_SECRETS: [&str; 1] = ["export-pin-hash-H6N3"];
 
     /// Every entry of the archive at `path`, as (name, contents).
     fn archive_entries(path: &Path) -> Vec<(String, Vec<u8>)> {
@@ -366,13 +360,7 @@ mod tests {
         let directory = tempfile::tempdir().unwrap();
         let db = Database::open_ephemeral().unwrap();
         let mut profile = export_sample();
-        let [totp, password, access, refresh, pin_hash] =
-            PROFILE_SECRETS.map(|secret| Some(secret.to_string()));
-        profile.totp_secret = totp;
-        profile.imap_app_password = password;
-        profile.oauth_access_token = access;
-        profile.oauth_refresh_token = refresh;
-        profile.profile_pin_hash = pin_hash;
+        profile.profile_pin_hash = Some(PROFILE_SECRETS[0].to_string());
         db.save_profile(profile).unwrap();
 
         let single = directory.path().join("profile.zip");

@@ -1428,7 +1428,7 @@ where
         "TIN {}\nSent {}\nFiled under {}",
         profile.tin.formatted(),
         sent_at.format("%I:%M %p, %-d %b %Y"),
-        profile.inbox_email()
+        profile.tracking_mailbox().unwrap_or("")
     );
     if dry_run {
         title.push_str(DRY_RUN_NOTICE_SUFFIX);
@@ -2074,7 +2074,7 @@ mod tests {
     async fn process_queued_1601c_success_finalizes_exact_payload_as_sent() {
         let mut profile = test_profile();
         profile.email_tracking_enabled = true;
-        profile.imap_email = Some("receipts@example.com".to_string());
+        profile.email = "receipts@example.com".to_string();
         let queued = queued_1601c_draft(&profile);
         let db = Arc::new(Mutex::new(
             Database::open_in_memory_for_tests()
@@ -2098,7 +2098,7 @@ mod tests {
             .get_1601c_draft(&queued.tin, queued.taxable_year, queued.month)
             .expect("the submitted 1601C lookup should succeed")
             .expect("the submitted 1601C snapshot should remain persisted");
-        assert_eq!(submitted.status, FilingStatus::Submitted);
+        assert_eq!(submitted.status, FilingStatus::Sent);
         assert_eq!(submitted.to_bir_field_map(), queued.to_bir_field_map());
         assert_eq!(
             submitted.submission_filename.as_deref(),
@@ -2116,7 +2116,7 @@ mod tests {
     async fn process_queued_1601c_dry_run_submits_as_sent() {
         let mut profile = test_profile();
         profile.email_tracking_enabled = true;
-        profile.imap_email = Some("receipts@example.com".to_string());
+        profile.email = "receipts@example.com".to_string();
         let queued = queued_1601c_draft(&profile);
         let db = Arc::new(Mutex::new(
             Database::open_in_memory_for_tests()
@@ -2138,7 +2138,7 @@ mod tests {
             .get_1601c_draft(&queued.tin, queued.taxable_year, queued.month)
             .expect("the submitted 1601C lookup should succeed")
             .expect("the submitted 1601C snapshot should remain persisted");
-        assert_eq!(submitted.status, FilingStatus::Submitted);
+        assert_eq!(submitted.status, FilingStatus::Sent);
         let jobs = db
             .lock()
             .expect("the cron database should not be poisoned")
@@ -2283,7 +2283,7 @@ mod tests {
             queued.official_payload().unwrap()
         );
         let submitted = stored_test_form(&db, &queued);
-        assert_eq!(submitted.lifecycle.status, FilingStatus::Submitted);
+        assert_eq!(submitted.lifecycle.status, FilingStatus::Sent);
         assert!(submitted.lifecycle.is_unclaimed());
         assert_eq!(
             submitted.lifecycle.submission_filename.as_deref(),
@@ -2514,7 +2514,7 @@ mod tests {
             .get_1601c_draft(&queued.tin, queued.taxable_year, queued.month)
             .expect("the submitted 1601C lookup should succeed")
             .expect("the submitted 1601C snapshot should remain persisted");
-        assert_eq!(submitted.status, FilingStatus::Submitted);
+        assert_eq!(submitted.status, FilingStatus::Sent);
         assert!(submitted.submission_claim_token.is_none());
         assert!(submitted.submission_claimed_at.is_none());
     }
@@ -2598,7 +2598,7 @@ mod tests {
             .get_1601c_draft(&queued.tin, queued.taxable_year, queued.month)
             .unwrap()
             .unwrap();
-        assert_eq!(submitted.status, FilingStatus::Submitted);
+        assert_eq!(submitted.status, FilingStatus::Sent);
     }
 
     #[tokio::test]
@@ -2659,7 +2659,7 @@ mod tests {
     async fn mandatory_fixture_dry_run_transport_submits() {
         let mut profile = crate::filing_queue::mandatory_lab_1601c_profile();
         profile.email_tracking_enabled = true;
-        profile.imap_email = Some("taxpayer@example.com".to_string());
+        profile.email = "taxpayer@example.com".to_string();
         let mut queued = crate::filing_queue::mandatory_lab_1601c_draft();
         queued.transition_to_queued().unwrap();
         let db = Arc::new(Mutex::new(
@@ -2685,7 +2685,7 @@ mod tests {
             .get_1601c_draft(&queued.tin, queued.taxable_year, queued.month)
             .unwrap()
             .unwrap();
-        assert_eq!(submitted.status, FilingStatus::Submitted);
+        assert_eq!(submitted.status, FilingStatus::Sent);
         assert_eq!(submitted.tax_36_total_amount_payable, 0.0);
         assert!(
             db.lock()

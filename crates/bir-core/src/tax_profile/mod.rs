@@ -76,12 +76,11 @@ pub fn reject_reserved_tin_root(root: &str) -> Result<(), TaxProfileError> {
     }
 }
 
-/// A taxpayer's sign-in credentials: one PIN hash and one authenticator
-/// secret per taxpayer (TIN root), shared by every branch.
+/// A taxpayer's PIN hash: one per taxpayer (TIN root), shared by every
+/// branch. (The authenticator secret went with D18.)
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct TaxpayerCredentials {
     pub pin_hash: Option<String>,
-    pub totp_secret: Option<String>,
 }
 
 /// A 9-digit TIN root, or an error naming the bad input.

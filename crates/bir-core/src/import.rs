@@ -376,18 +376,11 @@ mod tests {
             birth_date: None,
             is_archived: false,
             email_tracking_enabled: false,
-            email_auth_method: crate::profile::EmailAuthMethod::AppPassword,
-            imap_email: None,
-            imap_host: None,
             test_notification_enabled: false,
-            imap_app_password: None,
-            oauth_access_token: None,
-            oauth_refresh_token: None,
             profile_versions: vec![],
             compliance_source_mode: Default::default(),
             per_year_forms: Default::default(),
             profile_pin_hash: None,
-            totp_secret: None,
             tax_classification: None,
             eopt_tier: None,
             is_bmbe: false,
@@ -471,18 +464,11 @@ mod tests {
             birth_date: None,
             is_archived: false,
             email_tracking_enabled: false,
-            email_auth_method: crate::profile::EmailAuthMethod::AppPassword,
-            imap_email: None,
-            imap_host: None,
             test_notification_enabled: false,
-            imap_app_password: None,
-            oauth_access_token: None,
-            oauth_refresh_token: None,
             profile_versions: vec![],
             compliance_source_mode: Default::default(),
             per_year_forms: Default::default(),
             profile_pin_hash: None,
-            totp_secret: None,
             tax_classification: None,
             eopt_tier: None,
             is_bmbe: false,
@@ -573,18 +559,11 @@ mod tests {
             birth_date: None,
             is_archived: false,
             email_tracking_enabled: false,
-            email_auth_method: crate::profile::EmailAuthMethod::AppPassword,
-            imap_email: None,
-            imap_host: None,
             test_notification_enabled: false,
-            imap_app_password: None,
-            oauth_access_token: None,
-            oauth_refresh_token: None,
             profile_versions: vec![],
             compliance_source_mode: Default::default(),
             per_year_forms: Default::default(),
             profile_pin_hash: None,
-            totp_secret: None,
             tax_classification: None,
             eopt_tier: None,
             is_bmbe: false,
@@ -686,18 +665,11 @@ mod tests {
             birth_date: None,
             is_archived: false,
             email_tracking_enabled: false,
-            email_auth_method: crate::profile::EmailAuthMethod::AppPassword,
-            imap_email: None,
-            imap_host: None,
             test_notification_enabled: false,
-            imap_app_password: None,
-            oauth_access_token: None,
-            oauth_refresh_token: None,
             profile_versions: vec![],
             compliance_source_mode: Default::default(),
             per_year_forms: Default::default(),
             profile_pin_hash: None,
-            totp_secret: None,
             tax_classification: None,
             eopt_tier: None,
             is_bmbe: false,
@@ -770,22 +742,10 @@ mod tests {
 
     /// Distinctive values this database stores, in `PROFILE_CREDENTIAL_KEYS`
     /// order, so a leak or an overwrite cannot pass unnoticed.
-    const STORED_CREDENTIALS: [&str; 5] = [
-        "stored-totp-K7Q2",
-        "stored-pass-W9X4",
-        "stored-access-M3R8",
-        "stored-refresh-T5V1",
-        "stored-pin-hash-H6N3",
-    ];
+    const STORED_CREDENTIALS: [&str; 1] = ["stored-pin-hash-H6N3"];
 
     /// What a crafted archive carries, in the same order.
-    const FORGED_CREDENTIALS: [&str; 5] = [
-        "forged-totp-J4P9",
-        "forged-pass-C2L6",
-        "forged-access-Z8D1",
-        "forged-refresh-Y3F7",
-        "forged-pin-hash-B5G2",
-    ];
+    const FORGED_CREDENTIALS: [&str; 1] = ["forged-pin-hash-B5G2"];
 
     /// A profile for the 14-digit `tin`.
     fn branch_profile(full_name: &str, tin: &str) -> TaxpayerProfile {
@@ -809,29 +769,17 @@ mod tests {
         .expect("profile fixture")
     }
 
-    fn set_credentials(profile: &mut TaxpayerProfile, values: [&str; 5]) {
-        let [totp, password, access, refresh, pin_hash] =
-            values.map(|value| Some(value.to_string()));
-        profile.totp_secret = totp;
-        profile.imap_app_password = password;
-        profile.oauth_access_token = access;
-        profile.oauth_refresh_token = refresh;
-        profile.profile_pin_hash = pin_hash;
+    fn set_credentials(profile: &mut TaxpayerProfile, values: [&str; 1]) {
+        profile.profile_pin_hash = Some(values[0].to_string());
     }
 
     /// `tin`'s five stored credentials, in `PROFILE_CREDENTIAL_KEYS` order.
-    fn stored_credentials(db: &Database, tin: &str) -> [Option<String>; 5] {
+    fn stored_credentials(db: &Database, tin: &str) -> [Option<String>; 1] {
         let mut profile = db
             .get_profile_by_tin(tin)
             .unwrap()
             .expect("a stored profile");
-        [
-            profile.totp_secret.take(),
-            profile.imap_app_password.take(),
-            profile.oauth_access_token.take(),
-            profile.oauth_refresh_token.take(),
-            profile.profile_pin_hash.take(),
-        ]
+        [profile.profile_pin_hash.take()]
     }
 
     /// Write a zip archive holding `entries` as (name, contents).
@@ -877,7 +825,7 @@ mod tests {
         };
         let stored = [
             column("SELECT data_json FROM profiles"),
-            column("SELECT COALESCE(pin_hash, '') || COALESCE(totp_secret, '') FROM taxpayers"),
+            column("SELECT COALESCE(pin_hash, '') FROM taxpayers"),
         ]
         .concat();
         for row in &stored {
@@ -1037,7 +985,7 @@ mod tests {
     #[test]
     fn a_round_trip_keeps_every_profile_field_but_the_id_and_credentials() {
         use crate::profile::{
-            ComplianceSourceMode, EmailAuthMethod, EoptTier, ExciseTaxCategory, IncomeTaxElection,
+            ComplianceSourceMode, EoptTier, ExciseTaxCategory, IncomeTaxElection,
             TaxClassification, TaxElectionHistory,
         };
         let date = |year, month, day| chrono::NaiveDate::from_ymd_opt(year, month, day).unwrap();
@@ -1066,9 +1014,6 @@ mod tests {
             source_form: "2551Q".into(),
         }];
         profile.email_tracking_enabled = true;
-        profile.email_auth_method = EmailAuthMethod::GoogleOAuth;
-        profile.imap_email = Some("receipts@example.com".into());
-        profile.imap_host = Some("imap.example.com".into());
         profile.test_notification_enabled = true;
         profile.has_employees = true;
         profile.withholds_compensation = true;

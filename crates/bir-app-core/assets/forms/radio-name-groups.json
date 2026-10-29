@@ -1,0 +1,1038 @@
+{
+  "1601c-v2018": {
+    "frm1601c:AmendedRtn": [
+      "frm1601c:AmendedRtn_1",
+      "frm1601c:AmendedRtn_2"
+    ],
+    "frm1601c:CatAgent": [
+      "frm1601c:CatAgent_P",
+      "frm1601c:CatAgent_G"
+    ],
+    "frm1601c:SpecialTax": [
+      "frm1601c:SpecialTax_1",
+      "frm1601c:SpecialTax_2"
+    ],
+    "frm1601c:TaxWithheld": [
+      "frm1601c:TaxWithheld_1",
+      "frm1601c:TaxWithheld_2"
+    ]
+  },
+  "2551q-v2018": {
+    "frm2551Qv2018:amendedRtn": [
+      "frm2551Qv2018:amendedRtn_1",
+      "frm2551Qv2018:amendedRtn_2"
+    ],
+    "frm2551Qv2018:forThe": [
+      "frm2551Qv2018:forThe_1",
+      "frm2551Qv2018:forThe_2"
+    ],
+    "frm2551Qv2018:overPayment": [
+      "frm2551Qv2018:overPayment1",
+      "frm2551Qv2018:overPayment2"
+    ],
+    "frm2551Qv2018:qtr": [
+      "frm2551Qv2018:qtr_1",
+      "frm2551Qv2018:qtr_2",
+      "frm2551Qv2018:qtr_3",
+      "frm2551Qv2018:qtr_4"
+    ],
+    "frm2551Qv2018:taxRate": [
+      "frm2551Qv2018:taxRate1",
+      "frm2551Qv2018:taxRate2"
+    ],
+    "frm2551Qv2018:taxTreaty": [
+      "frm2551Qv2018:taxTreaty_1",
+      "frm2551Qv2018:taxTreaty_2"
+    ]
+  },
+  "2553-v1999": {
+    "frm2552:ifoverpay": [
+      "frm2553:ifoverpay_1",
+      "frm2553:ifoverpay_2"
+    ],
+    "frm2553:itemFiscalStartMonth": [
+      "frm2553:itemFiscalStartMonth:_1",
+      "frm2553:itemFiscalStartMonth:_2"
+    ],
+    "frm2553:optAmended": [
+      "frm2553:optAmended_1",
+      "frm2553:optAmended_2"
+    ],
+    "frm2553:optQtr": [
+      "frm2553:optQtr:_1",
+      "frm2553:optQtr:_2",
+      "frm2553:optQtr:_3",
+      "frm2553:optQtr:_4"
+    ],
+    "frm2553:optTreaty": [
+      "frm2553:optTreaty_1",
+      "frm2553:optTreaty_2"
+    ]
+  },
+  "1604f-v2018": {
+    "frm1604f:amendedRtn": [
+      "frm1604f:amendedRtn_1",
+      "frm1604f:amendedRtn_2"
+    ],
+    "frm1604f:categoryAgent": [
+      "frm1604f:categoryAgent_1",
+      "frm1604f:categoryAgent_2"
+    ],
+    "frm1604f:privateAgent": [
+      "frm1604f:privateAgent_1",
+      "frm1604f:privateAgent_2"
+    ],
+    "frm1604f:taxRelief": [
+      "frm1604f:taxRelief_1",
+      "frm1604f:taxRelief_2"
+    ]
+  },
+  "1604c-v2018": {
+    "frm1604c:amendedRtn": [
+      "frm1604c:amendedRtn_1",
+      "frm1604c:amendedRtn_2"
+    ],
+    "frm1604c:categoryAgent": [
+      "frm1604c:categoryAgent_1",
+      "frm1604c:categoryAgent_2"
+    ],
+    "frm1604c:releasedOfFunds": [
+      "frm1604c:releasedOfFunds_1",
+      "frm1604c:releasedOfFunds_2"
+    ],
+    "frm1604c:topAgent": [
+      "frm1604c:topAgent_1",
+      "frm1604c:topAgent_2"
+    ]
+  },
+  "1604e-v2018": {
+    "frm1604e:AmendedRtn": [
+      "frm1604e:AmendedRtn_1",
+      "frm1604e:AmendedRtn_2"
+    ],
+    "frm1604e:TpWthldngAgnt": [
+      "frm1604e:TpWthldngAgnt_1",
+      "frm1604e:TpWthldngAgnt_2"
+    ],
+    "frm1604e:WthldngAgntCtgry": [
+      "frm1604e:WthldngAgntCtgry_1",
+      "frm1604e:WthldngAgntCtgry_2"
+    ]
+  },
+  "1606-v2018": {
+    "frm1606:SpecialLaw": [
+      "frm1606:Habitual_1",
+      "frm1606:Habitual_2"
+    ],
+    "frm1606:j_id217": [
+      "frm1606:j_id217:_1",
+      "frm1606:j_id217:_2"
+    ],
+    "frm1606:j_id252": [
+      "frm1606:j_id252:_1",
+      "frm1606:j_id252:_2"
+    ],
+    "frm1606:j_id392": [
+      "frm1606:j_id392:_1",
+      "frm1606:j_id392:_2"
+    ],
+    "frm1606:j_id393": [
+      "frm1606:j_id393:_1",
+      "frm1606:j_id393:_3",
+      "frm1606:j_id393:_5",
+      "frm1606:j_id393_8",
+      "frm1606:j_id393:_2",
+      "frm1606:j_id393:_4",
+      "frm1606:j_id393:_6"
+    ],
+    "frm1606:j_id394": [
+      "frm1606:j_id394:_1",
+      "frm1606:j_id394:_2"
+    ],
+    "frm1606:j_id395": [
+      "frm1606:j_id395:_1",
+      "frm1606:j_id395:_4",
+      "frm1606:j_id395:_2",
+      "frm1606:j_id395:_5",
+      "frm1606:j_id395:_3"
+    ],
+    "frm1606:opt28": [
+      "frm1606:opt28A",
+      "frm1606:opt28D",
+      "frm1606:opt28B",
+      "frm1606:opt28E",
+      "frm1606:opt28C"
+    ],
+    "frm1606:opt37": [
+      "frm1606:opt37:_1",
+      "frm1606:opt37:_2"
+    ],
+    "frm1606:optATC13": [
+      "frm1606:optATC13_2",
+      "frm1606:optATC13_3"
+    ],
+    "frm1606:rdTreaty": [
+      "frm1606:rdTreaty:_1",
+      "frm1606:rdTreaty:_2"
+    ]
+  },
+  "1600vt-v2018": {
+    "frm1600VT:rdoPg1I10CategoryofWthholdAgent": [
+      "frm1600VT:rdoPg1I10CategoryofWthholdAgentPriv",
+      "frm1600VT:rdoPg1I10CategoryofWthholdAgentGovt"
+    ],
+    "frm1600VT:rdoPg1I12TaxRelief": [
+      "frm1600VT:rdoPg1I12TaxReliefYes",
+      "frm1600VT:rdoPg1I12TaxReliefNo"
+    ],
+    "frm1600VT:rdoPg1I2Amended": [
+      "frm1600VT:rdoPg1I2AmendedYes",
+      "frm1600VT:rdoPg1I2AmendedNo"
+    ],
+    "frm1600VT:rdoPg1I3TaxWithheld": [
+      "frm1600VT:rdoPg1I3TaxWithheldYes",
+      "frm1600VT:rdoPg1I3TaxWithheldNo"
+    ]
+  },
+  "1600pt-v2018": {
+    "frm1600PT:rdoPg1I10CategoryofWthholdAgent": [
+      "frm1600PT:rdoPg1I10CategoryofWthholdAgentPriv",
+      "frm1600PT:rdoPg1I10CategoryofWthholdAgentGovt"
+    ],
+    "frm1600PT:rdoPg1I12TaxRelief": [
+      "frm1600PT:rdoPg1I12TaxReliefYes",
+      "frm1600PT:rdoPg1I12TaxReliefNo"
+    ],
+    "frm1600PT:rdoPg1I2Amended": [
+      "frm1600PT:rdoPg1I2AmendedYes",
+      "frm1600PT:rdoPg1I2AmendedNo"
+    ],
+    "frm1600PT:rdoPg1I3TaxWithheld": [
+      "frm1600PT:rdoPg1I3TaxWithheldYes",
+      "frm1600PT:rdoPg1I3TaxWithheldNo"
+    ]
+  },
+  "1600wp-v2010": {
+    "SchedIIAtcCde": [
+      "SchedIIAtcCde1",
+      "SchedIIAtcCde2"
+    ],
+    "frm1600WP:AmendedReturn1": [
+      "frm1600WP:AmendedReturn_1",
+      "frm1600WP:AmendedReturn_2"
+    ],
+    "frm1600WP:AnyTaxHeld": [
+      "frm1600WP:AnyTaxHeld_1",
+      "frm1600WP:AnyTaxHeld_2"
+    ],
+    "frm1600WP:CategoryAgent": [
+      "frm1600WP:CategoryAgent_P",
+      "frm1600WP:CategoryAgent_G"
+    ],
+    "frm1600WP:SpecialLaw": [
+      "frm1600WP:SpecialLaw_1",
+      "frm1600WP:SpecialLaw_2"
+    ]
+  },
+  "1601eq-v2018": {
+    "frm1601EQ:optAmend": [
+      "frm1601EQ:optAmend:Y",
+      "frm1601EQ:optAmend:N"
+    ],
+    "frm1601EQ:optCategory": [
+      "frm1601EQ:optCategory:P",
+      "frm1601EQ:optCategory:G"
+    ],
+    "frm1601EQ:optQuarter": [
+      "frm1601EQ:optQuarter:1",
+      "frm1601EQ:optQuarter:2",
+      "frm1601EQ:optQuarter:3",
+      "frm1601EQ:optQuarter:4"
+    ],
+    "frm1601EQ:optWithheld": [
+      "frm1601EQ:optWithheld:Y",
+      "frm1601EQ:optWithheld:N"
+    ]
+  },
+  "1601fq-v2018": {
+    "frm1601FQ:AmendedRtn": [
+      "frm1601FQ:AmendedRtn_1",
+      "frm1601FQ:AmendedRtn_2"
+    ],
+    "frm1601FQ:CatAgent": [
+      "frm1601FQ:CatAgent_P",
+      "frm1601FQ:CatAgent_G"
+    ],
+    "frm1601FQ:OptQuarter": [
+      "frm1601FQ:OptQuarter1",
+      "frm1601FQ:OptQuarter2",
+      "frm1601FQ:OptQuarter3",
+      "frm1601FQ:OptQuarter4"
+    ],
+    "frm1601FQ:SpecialTax": [
+      "frm1601FQ:SpecialTax_1",
+      "frm1601FQ:SpecialTax_2"
+    ],
+    "frm1601FQ:TaxWithheld": [
+      "frm1601FQ:TaxWithheld_1",
+      "frm1601FQ:TaxWithheld_2"
+    ]
+  },
+  "1603q-v2018": {
+    "frm1603:CitizenAlien": [
+      "frm1603:Citizen1",
+      "frm1603:Citizen2",
+      "frm1603:Alien1",
+      "frm1603:Alien2",
+      "frm1603:Alien3"
+    ],
+    "frm1603Q:AmendedRtn": [
+      "frm1603Q:AmendedRtn_1",
+      "frm1603Q:AmendedRtn_2"
+    ],
+    "frm1603Q:CatAgent": [
+      "frm1603Q:CatAgent_P",
+      "frm1603Q:CatAgent_G"
+    ],
+    "frm1603Q:SpecialTax": [
+      "frm1603Q:SpecialTax_1",
+      "frm1603Q:SpecialTax_2"
+    ],
+    "frm1603Q:TaxWithheld": [
+      "frm1603Q:TaxWithheld_1",
+      "frm1603Q:TaxWithheld_2"
+    ],
+    "frm1603Q:optQuarter": [
+      "frm1603Q:optQuarter1",
+      "frm1603Q:optQuarter2",
+      "frm1603Q:optQuarter3",
+      "frm1603Q:optQuarter4"
+    ]
+  },
+  "1602q-v2018": {
+    "frm1602Q:AmendedRtn": [
+      "frm1602Q:AmendedRtn1",
+      "frm1602Q:AmendedRtn2"
+    ],
+    "frm1602Q:OptCategoryAgent": [
+      "frm1602Q:OptCategoryAgent1",
+      "frm1602Q:OptCategoryAgent2"
+    ],
+    "frm1602Q:OptSpecialTax": [
+      "frm1602Q:OptSpecialTax1",
+      "frm1602Q:OptSpecialTax2"
+    ],
+    "frm1602Q:OptTaxWithheld": [
+      "frm1602Q:OptTaxWithheld1",
+      "frm1602Q:OptTaxWithheld2"
+    ],
+    "frm1602Q:OverRemittance": [
+      "frm1602Q:OverRemittance1",
+      "frm1602Q:OverRemittance2",
+      "frm1602Q:OverRemittance3"
+    ],
+    "frm1602Q:qtr": [
+      "frm1602Q:qtr_1",
+      "frm1602Q:qtr_2",
+      "frm1602Q:qtr_3",
+      "frm1602Q:qtr_4"
+    ]
+  },
+  "2552-v2018": {
+    "frm2552:rdoPg1I10TaxRelief": [
+      "frm2552:rdoPg1I10TaxReliefYes",
+      "frm2552:rdoPg1I10TaxReliefNo"
+    ],
+    "frm2552:rdoPg1I11Transaction": [
+      "frm2552:rdoPg1I11TransactionLSE",
+      "frm2552:rdoPg1I11TransactionPrimary",
+      "frm2552:rdoPg1I11TransactionSecondary"
+    ],
+    "frm2552:rdoPg1I2Amended": [
+      "frm2552:rdoPg1I2AmendedYes",
+      "frm2552:rdoPg1I2AmendedNo"
+    ],
+    "frm2552:rdoPg1Overpayment": [
+      "frm2552:rdoPg1OverpaymentRefund",
+      "frm2552:rdoPg1OverpaymentTaxCredCert"
+    ]
+  },
+  "2550m-v2007": {
+    "frm2550m:OptAmendedYN": [
+      "frm2550m:OptAmendedYN1",
+      "frm2550m:OptAmendedYN2"
+    ],
+    "frm2550m:OptSpecialTax": [
+      "frm2550m:OptSpecialTax1",
+      "frm2550m:OptSpecialTax2"
+    ]
+  },
+  "1706-v2018": {
+    "frm1706:j_id217": [
+      "frm1706:j_id217:_1",
+      "frm1706:j_id217:_2"
+    ],
+    "frm1706:j_id391": [
+      "frm1706:j_id391:_1",
+      "frm1706:j_id391:_3",
+      "frm1706:j_id391:_5",
+      "frm1706:j_id391:_8",
+      "frm1706:j_id391:_2",
+      "frm1706:j_id391:_4",
+      "frm1706:j_id391:_6"
+    ],
+    "frm1706:j_id392": [
+      "frm1706:j_id392:_1",
+      "frm1706:j_id392:_2"
+    ],
+    "frm1706:j_id393": [
+      "frm1706:j_id393:_1",
+      "frm1706:j_id393:_2"
+    ],
+    "frm1706:j_id394": [
+      "frm1706:j_id394:_1",
+      "frm1706:j_id394:_2"
+    ],
+    "frm1706:j_id395": [
+      "frm1706:j_id395:_1",
+      "frm1706:j_id395:_4",
+      "frm1706:j_id395:_2",
+      "frm1706:j_id395:_5",
+      "frm1706:j_id395:_3"
+    ],
+    "frm1706:opt30": [
+      "frm1706:opt30A",
+      "frm1706:opt30B",
+      "frm1706:opt30C",
+      "frm1706:opt30D",
+      "frm1706:opt30E",
+      "frm1706:opt30F"
+    ],
+    "frm1706:opt37": [
+      "frm1706:opt37:_1",
+      "frm1706:opt37:_2"
+    ],
+    "frm1706:opt4": [
+      "frm1706:opt4",
+      "frm1706:opt4C"
+    ],
+    "frm1706:rdTreaty": [
+      "frm1706:rdTreaty:_1",
+      "frm1706:rdTreaty:_2"
+    ]
+  },
+  "1707-v2021": {
+    "frm1707:rdoCorpo": [
+      "frm1707:rdoCorpoDomestic",
+      "frm1707:rdoCorpoForeign"
+    ],
+    "frm1707:rdoPg1I2Amended": [
+      "frm1707:rdoPg1I2AmendedYes",
+      "frm1707:rdoPg1I2AmendedNo"
+    ],
+    "frm1707:rdoPg1I3ATC": [
+      "frm1707:rdoPg1I3ATCIndiv",
+      "frm1707:rdoPg1I3ATCCorp"
+    ],
+    "frm1707:rdoPg1I8TaxRelief": [
+      "frm1707:rdoPg1I8TaxReliefYes",
+      "frm1707:rdoPg1I8TaxReliefNo"
+    ],
+    "frm1707:rdoPg1I9TransDesc": [
+      "frm1707:rdoPg1I9TransDescCash",
+      "frm1707:rdoPg1I9TransDescInstallment",
+      "frm1707:rdoPg1I9TransDescForeclosure",
+      "frm1707:rdoPg1I9TransDescOthers"
+    ]
+  },
+  "1707a-v2021": {
+    "frm1707Av2021:ATC": [
+      "frm1707Av2021:rdoI4ATCII030",
+      "frm1707Av2021:rdoI4ATCIC110"
+    ],
+    "frm1707Av2021:rdoAmended": [
+      "frm1707Av2021:rdoI2AmemdedYes",
+      "frm1707Av2021:rdoI2AmemdedNo"
+    ],
+    "frm1707Av2021:rdoI11TaxTreaty": [
+      "frm1707Av2021:rdoI11TaxTreatyYes",
+      "frm1707Av2021:rdoI11TaxTreatyNo"
+    ],
+    "frm1707Av2021:rdoYearEnded": [
+      "frm1707Av2021:rdoI1Calendar",
+      "frm1707Av2021:rdoI1Fiscal"
+    ]
+  },
+  "1800-v2018": {
+    "frm1800v2018:AmendedRtn": [
+      "frm1800v2018:AmendedRtn_1",
+      "frm1800v2018:AmendedRtn_2"
+    ],
+    "frm1800v2018:TaxTreatyYN": [
+      "frm1800v2018:TaxTreatyYN_Y",
+      "frm1800v2018:TaxTreatyYN_N"
+    ],
+    "frm1800v2018:ds106modBtn": [
+      "ds106modYes",
+      "ds106modNo"
+    ]
+  },
+  "1801-v2018": {
+    "frm1801v2018:amendedRtn": [
+      "frm1801v2018:amendedRtn_1",
+      "frm1801v2018:amendedRtn_2"
+    ],
+    "frm1801v2018:categoryNonResident": [
+      "frm1801v2018:categoryNonResident_1",
+      "frm1801v2018:categoryNonResident_2"
+    ],
+    "frm1801v2018:extGranted": [
+      "frm1801v2018:extGranted_1",
+      "frm1801v2018:extGranted_2"
+    ],
+    "frm1801v2018:fileGranted": [
+      "frm1801v2018:fileGranted_1",
+      "frm1801v2018:fileGranted_2"
+    ],
+    "frm1801v2018:freq": [
+      "frm1801v2018:freq_Mon",
+      "frm1801v2018:freq_Qtr",
+      "frm1801v2018:freq_Semi",
+      "frm1801v2018:freq_Other"
+    ],
+    "frm1801v2018:instGranted": [
+      "frm1801v2018:instGranted_1",
+      "frm1801v2018:instGranted_2"
+    ],
+    "frm1801v2018:optTreaty": [
+      "frm1801v2018:optTreaty_1",
+      "frm1801v2018:optTreaty_2"
+    ],
+    "frm1801v2018:settled": [
+      "frm1801v2018:settled_1",
+      "frm1801v2018:settled_2"
+    ]
+  },
+  "2000-v2018": {
+    "frm2000:AmendedRtn": [
+      "frm2000:AmendedRtn_1",
+      "frm2000:AmendedRtn_2"
+    ],
+    "frm2000:ds106modBtn": [
+      "ds106modYes",
+      "ds106modNo"
+    ],
+    "frm2000:ds130modBtn": [
+      "ds130modYes",
+      "ds130modNo"
+    ],
+    "frm2000:ds131modBtn": [
+      "ds131modYes",
+      "ds131modNo"
+    ],
+    "frm2000:ds132modBtn": [
+      "ds132modYes",
+      "ds132modNo"
+    ],
+    "frm2000:optMode": [
+      "frm2000:optMode_1",
+      "frm2000:optMode_2",
+      "frm2000:optMode_3"
+    ],
+    "frm2000:optParty": [
+      "frm2000:optParty_1",
+      "frm2000:optParty_2",
+      "frm2000:optParty_3"
+    ]
+  },
+  "2000ot-v2018": {
+    "frm2000OT:ATC": [
+      "frm2000OT:ATC_1",
+      "frm2000OT:ATC_2",
+      "frm2000OT:ATC_3"
+    ],
+    "frm2000OT:AmendedRtn": [
+      "frm2000OT:AmendedRtn_1",
+      "frm2000OT:AmendedRtn_2"
+    ],
+    "frm2000OT:optParty": [
+      "frm2000OT:optParty_1",
+      "frm2000OT:optParty_2"
+    ],
+    "frm2000OT:rbTransNature": [
+      "frm2000OT:rbTransNature_1",
+      "frm2000OT:rbTransNature_2",
+      "frm2000OT:rbTransNature_3"
+    ]
+  },
+  "2200s-v2018": {
+    "frm2200S:amendedRtn": [
+      "frm2200S:amendedRtn_1",
+      "frm2200S:amendedRtn_2"
+    ],
+    "frm2200S:chkPymntManner": [
+      "frm2200S:chkPymntManner_1",
+      "frm2200S:chkPymntManner_2"
+    ],
+    "frm2200S:optTreaty": [
+      "frm2200S:optTreaty_1",
+      "frm2200S:optTreaty_2"
+    ]
+  },
+  "2200c-v2018": {
+    "frm2200C:rdoPg1I12TaxRelief": [
+      "frm2200C:rdoPg1I12TaxReliefYes",
+      "frm2200C:rdoPg1I12TaxReliefNo"
+    ],
+    "frm2200C:rdoPg1I2Amended": [
+      "frm2200C:rdoPg1I2AmendedYes",
+      "frm2200C:rdoPg1I2AmendedNo"
+    ],
+    "frm2200C:rdoPg1Pt2MOP": [
+      "frm2200C:rdoPg1Pt2MOPPaymentActual",
+      "frm2200C:rdoPg1Pt2MOPPrepayment",
+      "frm2200C:rdoPg1Pt2MOPOther"
+    ]
+  },
+  "2200an-v2018": {
+    "frm2200ANv2018:AmendedRtn": [
+      "frm2200ANv2018:AmendedRtn1",
+      "frm2200ANv2018:AmendedRtn2"
+    ],
+    "frm2200ANv2018:MannerOfPayment": [
+      "frm2200ANv2018:MannerOfPayment1",
+      "frm2200ANv2018:MannerOfPayment2",
+      "frm2200ANv2018:MannerOfPayment3"
+    ],
+    "frm2200ANv2018:OptSpecialTax": [
+      "frm2200ANv2018:OptSpecialTax1",
+      "frm2200ANv2018:OptSpecialTax2"
+    ]
+  },
+  "2200m-v2018": {
+    "frm2200M:rdoPg1I12TaxRelief": [
+      "frm2200M:rdoPg1I12TaxReliefYes",
+      "frm2200M:rdoPg1I12TaxReliefNo"
+    ],
+    "frm2200M:rdoPg1I2Amended": [
+      "frm2200M:rdoPg1I2AmendedYes",
+      "frm2200M:rdoPg1I2AmendedNo"
+    ],
+    "frm2200M:rdoPg1Pt2MOP": [
+      "frm2200M:rdoPg1Pt2MOPPaymentActual",
+      "frm2200M:rdoPg1Pt2MOPPrepayment",
+      "frm2200M:rdoPg1Pt2MOPOther"
+    ]
+  },
+  "2200t-v2020": {
+    "frm2200Tv2020:amendedRtn": [
+      "frm2200Tv2020:amendedRtn_1",
+      "frm2200Tv2020:amendedRtn_2"
+    ],
+    "frm2200Tv2020:optPayment": [
+      "frm2200Tv2020:optPayment_1",
+      "frm2200Tv2020:optPayment_2",
+      "frm2200Tv2020:optPayment_3"
+    ],
+    "frm2200Tv2020:optTreaty": [
+      "frm2200Tv2020:optTreaty_1",
+      "frm2200Tv2020:optTreaty_2"
+    ]
+  },
+  "2200a-v2020": {
+    "frm2200Av2020:amendedRtn": [
+      "frm2200Av2020:amendedRtn_1",
+      "frm2200Av2020:amendedRtn_2"
+    ],
+    "frm2200Av2020:optPayment": [
+      "frm2200Av2020:optPayment_1",
+      "frm2200Av2020:optPayment_2",
+      "frm2200Av2020:optPayment_3"
+    ],
+    "frm2200Av2020:optTreaty": [
+      "frm2200Av2020:optTreaty_1",
+      "frm2200Av2020:optTreaty_2"
+    ]
+  },
+  "2200p-v2020": {
+    "frm2200P:rdoPg1I12TaxRelief": [
+      "frm2200P:rdoPg1I12TaxReliefYes",
+      "frm2200P:rdoPg1I12TaxReliefNo"
+    ],
+    "frm2200P:rdoPg1I2Amended": [
+      "frm2200P:rdoPg1I2AmendedYes",
+      "frm2200P:rdoPg1I2AmendedNo"
+    ],
+    "frm2200P:rdoPg1Pt2MOP": [
+      "frm2200P:rdoPg1Pt2MOPPaymentActual",
+      "frm2200P:rdoPg1Pt2MOPPrepayment",
+      "frm2200P:rdoPg1Pt2MOPOther"
+    ]
+  },
+  "1702q-v2018c": {},
+  "1701a-v2018": {
+    "frm1701A:optATC": [
+      "frm1701A:optATC_1",
+      "frm1701A:optATC_2",
+      "frm1701A:optATC_3",
+      "frm1701A:optATC_4"
+    ],
+    "frm1701A:optAmendedReturn": [
+      "frm1701A:optAmendedReturn_1",
+      "frm1701A:optAmendedReturn_2"
+    ],
+    "frm1701A:optCivilStatus": [
+      "frm1701A:optCivilStatus_1",
+      "frm1701A:optCivilStatus_2",
+      "frm1701A:optCivilStatus_3",
+      "frm1701A:optCivilStatus_4"
+    ],
+    "frm1701A:optFilingStatus": [
+      "frm1701A:optFilingStatus_1",
+      "frm1701A:optFilingStatus_2"
+    ],
+    "frm1701A:optForeignTaxCredits": [
+      "frm1701A:optForeignTaxCredits_1",
+      "frm1701A:optForeignTaxCredits_2"
+    ],
+    "frm1701A:optRefund": [
+      "frm1701A:optRefund_1",
+      "frm1701A:optRefund_2",
+      "frm1701A:optRefund_3"
+    ],
+    "frm1701A:optShortPeriod": [
+      "frm1701A:optShortPeriod_1",
+      "frm1701A:optShortPeriod_2"
+    ],
+    "frm1701A:optSpouseATC": [
+      "frm1701A:optSpouseATC_1",
+      "frm1701A:optSpouseATC_2",
+      "frm1701A:optSpouseATC_3",
+      "frm1701A:optSpouseATC_4"
+    ],
+    "frm1701A:optSpouseFTC": [
+      "frm1701A:optSpouseFTC_1",
+      "frm1701A:optSpouseFTC_2"
+    ],
+    "frm1701A:optSpouseIncome": [
+      "frm1701A:optSpouseIncome_1",
+      "frm1701A:optSpouseIncome_2"
+    ],
+    "frm1701A:optSpouseTaxRate": [
+      "frm1701A:optSpouseTaxRate_1",
+      "frm1701A:optSpouseTaxRate_2"
+    ],
+    "frm1701A:optSpouseTaxType": [
+      "frm1701A:optSpouseTaxType_1",
+      "frm1701A:optSpouseTaxType_2"
+    ],
+    "frm1701A:optTaxRate": [
+      "frm1701A:optTaxRate_1",
+      "frm1701A:optTaxRate_2"
+    ],
+    "frm1701A:optTaxType": [
+      "frm1701A:optTaxType_1",
+      "frm1701A:optTaxType_2"
+    ]
+  },
+  "1700-v2013": {
+    "GovorCTC": [
+      "frm1700:rdoPg1Pt2I32GovID",
+      "frm1700:rdoPg1Pt2I32CTC"
+    ],
+    "frm1700:AmendedRtn": [
+      "frm1700:AmendedRtn_1",
+      "frm1700:AmendedRtn_2"
+    ],
+    "frm1700:rdoPg1Pt1I13CivilStatusInd": [
+      "frm1700:rdoPg1Pt1I13SingleInd",
+      "frm1700:rdoPg1Pt1I13MarriedInd",
+      "frm1700:rdoPg1Pt1I13LegalSeparatedInd",
+      "frm1700:rdoPg1Pt1I13WidowerInd"
+    ],
+    "frm1700:rdoPg1Pt1I3JointFiling": [
+      "frm1700:rdoPg1Pt1I3JointFilingYes",
+      "frm1700:rdoPg1Pt1I3JointFilingNo"
+    ]
+  },
+  "1702ex-v2018c": {
+    "frm1702EX:rdoPg1I1": [
+      "frm1702EX:rdoPg1I1Calendar",
+      "frm1702EX:rdoPg1I1Fiscal"
+    ],
+    "frm1702EX:rdoPg1I3Amended": [
+      "frm1702EX:rdoPg1I3AmendedYes",
+      "frm1702EX:rdoPg1I3AmendedNo"
+    ],
+    "frm1702EX:rdoPg1I4ShortPeriod": [
+      "frm1702EX:rdoPg1I4ShortPeriodYes",
+      "frm1702EX:rdoPg1I4ShortPeriodNo"
+    ],
+    "frm1702EX:rdoPg1I5ATC": [
+      "frm1702EX:rdoPg1I5ATCR1C3",
+      "frm1702EX:rdoPg1I5ATCR2C3"
+    ],
+    "frm1702EX:rdoPg1Overpayment": [
+      "frm1702EX:rdoPg1OverpaymentRefund",
+      "frm1702EX:rdoPg1OverpaymentTCC",
+      "frm1702EX:rdoPg1OverpaymentCarryOver"
+    ],
+    "frm1702EX:rdoPg1Pt1I13MethodOfDeduc": [
+      "frm1702EX:rdoPg1Pt1I13MethodOfDeducItemized",
+      "frm1702EX:rdoPg1Pt1I13MethodOfDeducOptional"
+    ]
+  },
+  "0605-v2003": {
+    "frm0605:itemApprovedYN": [
+      "frm0605:itemApprovedYN:_1",
+      "frm0605:itemApprovedYN:_2"
+    ],
+    "frm0605:itemFiscalStartMonth": [
+      "frm0605:itemFiscalStartMonth:_1",
+      "frm0605:itemFiscalStartMonth:_2"
+    ],
+    "frm0605:itemMannerOfPayment": [
+      "frm0605:itemMannerOfPayment:_1",
+      "frm0605:itemMannerOfPayment:_2",
+      "frm0605:itemMannerOfPayment:_3",
+      "frm0605:itemMannerOfPayment:_4",
+      "frm0605:itemMannerOfPayment:_5",
+      "frm0605:itemMannerOfPaymentB:_1",
+      "frm0605:itemMannerOfPaymentB:_2"
+    ],
+    "frm0605:itemModeOfPayment": [
+      "frm0605:itemModeOfPayment:_1",
+      "frm0605:itemModeOfPayment:_2",
+      "frm0605:itemModeOfPayment:_3"
+    ],
+    "frm0605:txtClassification": [
+      "frm0605:txtClassification:_1",
+      "frm0605:txtClassification:_2"
+    ],
+    "itemQuarter": [
+      "itemQuarter_1",
+      "itemQuarter_2",
+      "itemQuarter_3",
+      "itemQuarter_4"
+    ]
+  },
+  "0619e-v2018": {
+    "frm0619E:optAmend": [
+      "frm0619E:optAmend:Y",
+      "frm0619E:optAmend:N"
+    ],
+    "frm0619E:optCategory": [
+      "frm0619E:optCategory:P",
+      "frm0619E:optCategory:G"
+    ],
+    "frm0619E:optWithheld": [
+      "frm0619E:optWithheld:Y",
+      "frm0619E:optWithheld:N"
+    ]
+  },
+  "0619f-v2018": {
+    "frm0619F:optAmend": [
+      "frm0619F:optAmend:Y",
+      "frm0619F:optAmend:N"
+    ],
+    "frm0619F:optCategory": [
+      "frm0619F:optCategory:P",
+      "frm0619F:optCategory:G"
+    ],
+    "frm0619F:optWithheld": [
+      "frm0619F:optWithheld:Y",
+      "frm0619F:optWithheld:N"
+    ]
+  },
+  "1702rt-v2018c": {
+    "frm1702RT:Pg1Pt2I21": [
+      "frm1702RT:rdoPg1Pt2I21OverpaymentRefunded",
+      "frm1702RT:rdoPg1Pt2I21OverpaymentIssued",
+      "frm1702RT:rdoPg1Pt2I21OverpaymentCarried"
+    ],
+    "frm1702RT:rdoPg1I1": [
+      "frm1702RT:rdoPg1I1Calendar",
+      "frm1702RT:rdoPg1I1Fiscal"
+    ],
+    "frm1702RT:rdoPg1I3Ammend": [
+      "frm1702RT:rdoPg1I3AmmendYes",
+      "frm1702RT:rdoPg1I3AmmendNo"
+    ],
+    "frm1702RT:rdoPg1I4ShortPeriod": [
+      "frm1702RT:rdoPg1I4ShortPeriodYes",
+      "frm1702RT:rdoPg1I4ShortPeriodNo"
+    ]
+  },
+  "1701-v2018": {
+    "frm1701:Pg3mTaxRegimeTYPE": [
+      "frm1701:rdoPg3mExemptTYPE",
+      "frm1701:rdoPg3mSpecialRateTYPE"
+    ],
+    "frm1701:chkPg2IShed1a_1": [
+      "frm1701:chkPg2IShed1a_1Taxpayer",
+      "frm1701:chkPg2IShed1a_1Spouse"
+    ],
+    "frm1701:chkPg2IShed2a_2": [
+      "frm1701:chkPg2IShed2a_2Taxpayer",
+      "frm1701:chkPg2IShed2a_2Spouse"
+    ],
+    "frm1701:rdoEditEX": [
+      "frm1701:rdoEXAttachmentTF",
+      "frm1701:rdoEXAttachmentS"
+    ],
+    "frm1701:rdoEditSP": [
+      "frm1701:rdoSPAttachmentTF",
+      "frm1701:rdoSPAttachmentS"
+    ],
+    "frm1701:rdoPg1I13ForeignTaxCredits": [
+      "frm1701:rdoPg1I13ForeignTaxCreditsYes",
+      "frm1701:rdoPg1I13ForeignTaxCreditsNo"
+    ],
+    "frm1701:rdoPg1I16CivilStatus": [
+      "frm1701:rdoPg1I16CivilStatusS",
+      "frm1701:rdoPg1I16CivilStatusM",
+      "frm1701:rdoPg1I16CivilStatusLS",
+      "frm1701:rdoPg1I16CivilStatusW"
+    ],
+    "frm1701:rdoPg1I17SpouseIncome": [
+      "frm1701:rdoPg1I17SpouseIncomeYes",
+      "frm1701:rdoPg1I17SpouseIncomeNo"
+    ],
+    "frm1701:rdoPg1I18FilingStatus": [
+      "frm1701:rdoPg1I18FilingStatusJ",
+      "frm1701:rdoPg1I18FilingStatusS"
+    ],
+    "frm1701:rdoPg1I19IncomeExempt": [
+      "frm1701:rdoPg1I19IncomeExemptYes",
+      "frm1701:rdoPg1I19IncomeExemptNo"
+    ],
+    "frm1701:rdoPg1I20IncomeSpecial": [
+      "frm1701:rdoPg1I20IncomeSpecialYes",
+      "frm1701:rdoPg1I20IncomeSpecialNo"
+    ],
+    "frm1701:rdoPg1I21AMethodDeduction": [
+      "frm1701:rdoPg1I21AMethodDeductionI",
+      "frm1701:rdoPg1I21AMethodDeductionO"
+    ],
+    "frm1701:rdoPg1I21TaxRate": [
+      "frm1701:rdoPg1I21TaxRateG",
+      "frm1701:rdoPg1I21TaxRateP"
+    ],
+    "frm1701:rdoPg1I2Amended": [
+      "frm1701:rdoPg1I2AmendedYes",
+      "frm1701:rdoPg1I2AmendedNo"
+    ],
+    "frm1701:rdoPg1I3ShortPeriod": [
+      "frm1701:rdoPg1I3ShortPeriodYes",
+      "frm1701:rdoPg1I3ShortPeriodNo"
+    ],
+    "frm1701:rdoPg1I7ATC": [
+      "frm1701:rdoPg1I7ATC_II012",
+      "frm1701:rdoPg1I7ATC_II014",
+      "frm1701:rdoPg1I7ATC_II013",
+      "frm1701:rdoPg1I7ATC_II011",
+      "frm1701:rdoPg1I7ATC_II015",
+      "frm1701:rdoPg1I7ATC_II017",
+      "frm1701:rdoPg1I7ATC_II016"
+    ],
+    "frm1701:rdoPg1Overpayment": [
+      "frm1701:rdoPg1OverpaymentRefund",
+      "frm1701:rdoPg1OverpaymentTCC",
+      "frm1701:rdoPg1OverpaymentCarryOver"
+    ],
+    "frm1701:rdoPg1m": [
+      "frm1701:rdoPg1mOption1",
+      "frm1701:rdoPg1mOption2"
+    ],
+    "frm1701:rdoPg2I10IncomeExempt": [
+      "frm1701:rdoPg2I10IncomeExemptYes",
+      "frm1701:rdoPg2I10IncomeExemptNo"
+    ],
+    "frm1701:rdoPg2I11IncomeSpecial": [
+      "frm1701:rdoPg2I11IncomeSpecialYes",
+      "frm1701:rdoPg2I11IncomeSpecialNo"
+    ],
+    "frm1701:rdoPg2I12AMethodDeduction": [
+      "frm1701:rdoPg2I12AMethodDeductionI",
+      "frm1701:rdoPg2I12AMethodDeductionO"
+    ],
+    "frm1701:rdoPg2I12TaxRate": [
+      "frm1701:rdoPg2I12TaxRateG",
+      "frm1701:rdoPg2I12TaxRateP"
+    ],
+    "frm1701:rdoPg2I4ATC": [
+      "frm1701:rdoPg2I4ATC_II012",
+      "frm1701:rdoPg2I4ATC_II014",
+      "frm1701:rdoPg2I4ATC_II013",
+      "frm1701:rdoPg2I4ATC_II011",
+      "frm1701:rdoPg2I4ATC_II015",
+      "frm1701:rdoPg2I4ATC_II017",
+      "frm1701:rdoPg2I4ATC_II016"
+    ],
+    "frm1701:rdoPg2I8ForeignTaxCredits": [
+      "frm1701:rdoPg2I8ForeignTaxCreditsYes",
+      "frm1701:rdoPg2I8ForeignTaxCreditsNo"
+    ]
+  },
+  "1702mx-v2018c": {
+    "frm1702MX:rdoPg1AttMTaxRegime": [
+      "frm1702MX:rdoPg1AttMExempt",
+      "frm1702MX:rdoPg1AttMSpecialRate"
+    ],
+    "frm1702MX:rdoPg1I1": [
+      "frm1702MX:rdoPg1I1Calendar",
+      "frm1702MX:rdoPg1I1Fiscal"
+    ],
+    "frm1702MX:rdoPg1I3Amended": [
+      "frm1702MX:rdoPg1I3AmendedYes",
+      "frm1702MX:rdoPg1I3AmendedNo"
+    ],
+    "frm1702MX:rdoPg1I4ShortPeriod": [
+      "frm1702MX:rdoPg1I4ShortPeriodYes",
+      "frm1702MX:rdoPg1I4ShortPeriodNo"
+    ],
+    "frm1702MX:rdoPg1Pt1I13MethodOfDeduc": [
+      "frm1702MX:rdoPg1Pt1I13MethodOfDeducItemized",
+      "frm1702MX:rdoPg1Pt1I13MethodOfDeducOptional"
+    ],
+    "frm1702MX:rdoPg1Pt2I21Overpayment": [
+      "frm1702MX:rdoPg1Pt2I21Refund",
+      "frm1702MX:rdoPg1Pt2I21IssueTCC",
+      "frm1702MX:rdoPg1Pt2I21CarriedOver"
+    ],
+    "frm1702MX:rdoPg2I1": [
+      "frm1702MX:InstAPg2Part4",
+      "frm1702MX:InstBPg2Part4"
+    ]
+  },
+  "2550q-v2024": {
+    "frm2550qv2024:AmendedRtn": [
+      "frm2550qv2024:amendedReturnYesNo5",
+      "frm2550qv2024:amendedReturnNo5"
+    ],
+    "frm2550qv2024:OptQuarter": [
+      "frm2550qv2024:OptQuarter1",
+      "frm2550qv2024:OptQuarter2",
+      "frm2550qv2024:OptQuarter3",
+      "frm2550qv2024:OptQuarter4"
+    ],
+    "frm2550qv2024:OptShortPrd": [
+      "frm2550qv2024:OptShortPrd1",
+      "frm2550qv2024:OptShortPrd2"
+    ],
+    "frm2550qv2024:OptTreaty": [
+      "frm2550qv2024:internationalTreatyYn",
+      "frm2550qv2024:specialRateYn"
+    ],
+    "frm2550qv2024:optAmend": [
+      "frm2550qv2024:calendarNo1",
+      "frm2550qv2024:fiscalNo1"
+    ],
+    "frm2550qv2024:taxPayerClassification": [
+      "frm2550qv2024:taxPayerClassification1",
+      "frm2550qv2024:taxPayerClassification2",
+      "frm2550qv2024:taxPayerClassification3",
+      "frm2550qv2024:taxPayerClassification4"
+    ]
+  }
+}

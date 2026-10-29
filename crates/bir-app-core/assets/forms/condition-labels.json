@@ -1,0 +1,159 @@
+{
+ "conditions": {
+  "0605": {
+   "Installment mode is selected.": "Needs item 18 = Installment",
+   "Other manner is selected.": "Needs item 17 = Others",
+   "Assessment/deficiency-tax manner is selected.": "Needs item 17 = Preliminary/Final Assessment or Accounts Receivable"
+  },
+  "0619F": {
+   "Tax type code is WB.": "Needs item 4 = Yes and item 5 tax type WB",
+   "Tax type code is WF.": "Needs item 4 = Yes and item 5 tax type WF"
+  },
+  "1600WP": {
+   "Item 4 Yes.": "Needs item 4 = Yes"
+  },
+  "1601C": {
+   "Special tax rate Yes is selected.": "Needs item 13 = Yes",
+   "Amended return Yes is selected.": "Needs Amended Return = Yes",
+   "The corresponding Schedule I row exists.": "Needs this Schedule I row"
+  },
+  "1601EQ": {
+   "Enabled only when Amended Return Yes is selected.": "Needs Amended Return = Yes",
+   "Enabled only when Item 30 is negative; choices are mutually exclusive.": "Needs item 31 below zero (an over-remittance)"
+  },
+  "1601FQ": {
+   "Enabled only when Amended Return Yes is selected.": "Needs Amended Return = Yes"
+  },
+  "1602Q": {
+   "Item 13 Yes.": "Needs item 13 = Yes",
+   "Item 28 is negative.": "Needs item 28 below zero (an over-remittance)"
+  },
+  "1604C": {
+   "frm1604c:releasedOfFunds_1 is checked.": "Needs item 11 = Yes"
+  },
+  "1604F": {
+   "frm1604f:taxRelief_1 is checked.": "Needs item 11 = Yes"
+  },
+  "1606": {
+   "Item 15 classification is Others.": "Needs Schedule 1 classification = Others",
+   "Item 19 indicates treaty or special-law relief.": "Needs item 11 = Yes",
+   "Item 20 is Exempt or Others.": "Needs Schedule 2 = Exempt or Others",
+   "Item 36 is negative.": "Needs item 18 below zero (an over-remittance)"
+  },
+  "1700": {
+   "Item 15 Civil Status is Married.": "Needs item 15 = Married",
+   "Item 15 is Married and Item 16 is Yes.": "Needs item 15 = Married and item 16 = Yes",
+   "A joint return: Item 15 Married, Item 16 Yes and Item 17 Joint Filing.": "Needs item 15 = Married, item 16 = Yes and item 17 = Joint Filing",
+   "A joint return (Items 15 to 17) and Item 24 Yes.": "Needs a joint return (items 15 to 17) and item 24 = Yes"
+  },
+  "1701": {
+   "Item 16 Civil Status is Married.": "Needs item 16 = Married",
+   "Item 16 is Married and Item 17 is Yes.": "Needs item 16 = Married and item 17 = Yes",
+   "A joint return: Item 16 Married, Item 17 Yes and Item 18 Joint Filing.": "Needs item 16 = Married, item 17 = Yes and item 18 = Joint Filing",
+   "A joint return (Items 16 to 18) and Part IV Item 8 Yes.": "Needs a joint return (items 16 to 18) and Part IV item 8 = Yes",
+   "A joint return (Items 16 to 18) and Part IV Item 12 Graduated Rates.": "Needs a joint return (items 16 to 18) and Part IV item 12 = Graduated Rates",
+   "A joint return (Items 16 to 18) and Part IV Item 4 II011, II013 or II016.": "Needs a joint return (items 16 to 18) and Part IV item 4 = II011, II013 or II016"
+  },
+  "1701A": {
+   "Item 16 Civil Status is Married.": "Needs item 16 = Married",
+   "Item 16 is Married and Item 17 is Yes.": "Needs item 16 = Married and item 17 = Yes",
+   "A joint return: Item 16 Married, Item 17 Yes and Item 18 Joint Filing.": "Needs item 16 = Married, item 17 = Yes and item 18 = Joint Filing",
+   "A joint return (Items 16 to 18) and Item 73 Yes.": "Needs a joint return (items 16 to 18) and item 73 = Yes"
+  },
+  "1701MS": {
+   "Item 4 Civil Status is Married.": "Needs item 4 = Married",
+   "A joint return: Item 4 Married and Item 5 Jointly.": "Needs item 4 = Married and item 5 = Jointly",
+   "A joint return (Items 4 and 5) and Item 12 column B Exempt or Special/Preferential Rate.": "Needs a joint return and, in column B, item 12 = Exempt or Special/Preferential Rate",
+   "A joint return (Items 4 and 5) and, in column B, Item 12 Graduated Income Tax Rates with business income at Item 11.": "Needs a joint return and, in column B, item 12 = Graduated with business income at item 11",
+   "Item 19 column A, Income Tax Due at the Special/Preferential Rate, is more than zero.": "Needs a special-rate income tax due above zero in column A",
+   "A joint return (Items 4 and 5) and Item 19 column B, Income Tax Due at the Special/Preferential Rate, is more than zero.": "Needs a joint return and a special-rate income tax due above zero in column B",
+   "A joint return (Items 4 and 5), and in column B the answers that open the same box of column A.": "Needs a joint return and, in column B, the answers that open it",
+   "Item 12 column A Exempt or Special/Preferential Rate.": "Needs item 12 = Exempt or Special/Preferential Rate in column A"
+  },
+  "1701Q": {
+   "Base spouse branch is enabled for taxpayer type Single Proprietor or Professional and disabled/reset for Estate or Trust.": "Needs item 7 = Single Proprietor or Professional",
+   "Within the spouse branch, spouse-type changes reset ATCs. Compensation Earner selects II011 and disables other ATCs; if multiple spouse types are selected, only II013 and II016 are re-enabled.": "Needs item 19 = Single Proprietor or Professional",
+   "General Edit enables Item 23. After Estate/Trust disables spouse and taxpayer type returns to Single Proprietor/Professional, enableSpouse mistakenly enables taxpayer Item 14, leaving spouse Item 23 disabled.": "Needs item 7 = Single Proprietor or Professional",
+   "Within the spouse branch, ATC selects and locks Graduated or 8%; Compensation Income disables both; multiple spouse types re-enable both.": "Needs item 20 other than II011 Compensation Income",
+   "Enabled only for spouse graduated-rate ATCs; disabled for 8% or Compensation Income. General Edit initially enables it before schedule state is restored.": "Needs item 25 = Graduated Rates",
+   "Schedule I input: enabled for the matching party under graduated rate; Items 37 and 39 additionally require Itemized deduction. On Edit, spouse B-state is incorrectly derived from taxpayer rate/method.": "Needs the graduated income tax rate",
+   "Shared description enabled by Schedule I and disabled when Schedule I is disabled; because it is shared, either party transition can overwrite the other party state.": "Needs the graduated income tax rate",
+   "Schedule II input: enabled for the matching party under 8% rate. On Edit, spouse B-state is incorrectly derived from taxpayer rate; Item 52 has additional ATC-specific behavior.": "Needs the 8% income tax rate",
+   "Shared description enabled by Schedule II and disabled when Schedule II is disabled; because it is shared, either party transition can overwrite the other party state.": "Needs the 8% income tax rate",
+   "Enabled for 8% Schedule II except taxpayer ATC II016, which forces 0.00 and disables the field.": "Needs the 8% income tax rate and an ATC other than II016",
+   "Official source disables Item 52B for spouse ATC II016 only when spouse type Compensation Earner is false; it remains enabled in the ordinary compensation-earner mixed-income case, contrary to the guide.": "Needs item 25 = 8% and item 20 other than II016",
+   "Normal ATC transitions enable this for a non-compensation spouse; Edit incorrectly enables it even with no spouse.": "Needs item 20 other than II011 Compensation Income",
+   "Enabled only when Amended Return Yes is selected.": "Needs Amended Return = Yes",
+   "Enabled only for Amended Return Yes with a nonempty spouse name.": "Needs Amended Return = Yes"
+  },
+  "1702Q": {
+   "Item 5 has an ATC.": "Needs item 5 = an ATC",
+   "Item 5 has an ATC, on a 2nd or 3rd quarter return.": "Needs item 5 = an ATC, on a 2nd or 3rd quarter return",
+   "Item 5 has an ATC and Item 12 is Itemized Deductions.": "Needs item 5 = an ATC and item 12 = Itemized Deductions",
+   "Item 5 has an ATC and Item 4 Amended Return is Yes.": "Needs item 5 = an ATC and item 4 = Yes",
+   "Both Item 5 boxes are ticked (MCIT and an ATC).": "Needs both item 5 boxes ticked (MCIT and an ATC)",
+   "Both Item 5 boxes are ticked, on a 2nd or 3rd quarter return.": "Needs both item 5 boxes ticked, on a 2nd or 3rd quarter return",
+   "Both Item 5 boxes are ticked, on a 3rd quarter return.": "Needs both item 5 boxes ticked, on a 3rd quarter return",
+   "Item 13 Yes.": "Needs item 13 = Yes",
+   "The regular income tax (Schedule 2 Item 11) is above the MCIT (Item 12).": "Needs the regular income tax above the MCIT (Schedule 2)"
+  },
+  "1706": {
+   "Item 4 indicates the applicable seller category.": "Needs item 3 = an individual seller's ATC",
+   "Item 20 indicates tax-treaty relief.": "Needs item 11 = Yes",
+   "Item 21 is Exempt or Others.": "Needs Schedule 2 = Exempt or Others",
+   "Item 36 is negative.": "Needs item 18 below zero (an over-remittance)"
+  },
+  "1800": {
+   "Item 13 Yes.": "Needs item 13 = Yes",
+   "Amended Return Yes.": "Needs Amended Return = Yes"
+  },
+  "1801": {
+   "Item 14 Yes.": "Needs item 14 = Yes",
+   "Item 15B Yes and frequency Others.": "Needs item 15D = Yes and frequency Others",
+   "Item 15D Yes.": "Needs item 15D = Yes",
+   "Amended Return Yes.": "Needs Amended Return = Yes"
+  },
+  "2000OT": {
+   "Nature is real property.": "Needs item 12 = a sale of real property",
+   "Amended Return Yes.": "Needs Amended Return = Yes"
+  },
+  "2200A": {
+   "Item 12 Yes is selected.": "Needs item 12 = Yes",
+   "Amended Return Yes is selected.": "Needs Amended Return = Yes"
+  },
+  "2200AN": {
+   "Amended Return Yes is selected.": "Needs Amended Return = Yes"
+  },
+  "2200C": {
+   "Amended Return Yes is selected.": "Needs Amended Return = Yes"
+  },
+  "2200M": {
+   "Amended Return Yes is selected.": "Needs Amended Return = Yes"
+  },
+  "2200P": {
+   "Amended Return Yes is selected.": "Needs Amended Return = Yes"
+  },
+  "2200T": {
+   "Amended return Yes is selected.": "Needs Amended Return = Yes"
+  },
+  "2553": {
+   "Item 13 Yes is selected.": "Needs item 13 = Yes",
+   "Amended return Yes is selected.": "Needs Amended Return = Yes"
+  }
+ },
+ "keys": {
+  "1701Q": {
+   "frm1701q:txt36B": "Needs item 25 = Graduated Rates",
+   "frm1701q:txt37A": "Needs the graduated income tax rate and itemized deductions",
+   "frm1701q:txt37B": "Needs item 25 = Graduated Rates and item 25A = Itemized Deduction",
+   "frm1701q:txt39A": "Needs the graduated income tax rate and itemized deductions",
+   "frm1701q:txt39B": "Needs item 25 = Graduated Rates and item 25A = Itemized Deduction",
+   "frm1701q:txt42B": "Needs item 25 = Graduated Rates",
+   "frm1701q:txt43B": "Needs item 25 = Graduated Rates",
+   "frm1701q:txt44B": "Needs item 25 = Graduated Rates",
+   "frm1701q:txt47B": "Needs item 25 = 8%",
+   "frm1701q:txt48B": "Needs item 25 = 8%",
+   "frm1701q:txt50B": "Needs item 25 = 8%"
+  }
+ }
+}

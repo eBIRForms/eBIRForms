@@ -90,16 +90,13 @@ pub use integration::{
     resolve_profile_obligations_for_year_with_global_overrides, validate_form_applicability,
     validate_payload,
 };
-pub use job_display::{
-    FilingJobLabel, format_confirmation_poll_job_name, format_filing_period_label,
-    format_submit_job_name,
-};
+pub use job_display::{FilingJobLabel, format_filing_period_label, format_submit_job_name};
 pub use naming::{Tin, iaf_filename, savefile_name};
 pub use official_import::{OfficialSavefile, parse_period_code};
 pub use profile::{
-    ComplianceSourceMode, CorDocumentRef, CorRegistrationFacts, EmailAuthMethod,
-    ManualObligationOverride, ManualObligationOverrideAction, ProfileDeadlineOverride,
-    RegisteredTaxType, ResolvedTaxProfileForYear, TaxClassification, TaxProfileResolutionIssue,
+    ComplianceSourceMode, CorDocumentRef, CorRegistrationFacts, ManualObligationOverride,
+    ManualObligationOverrideAction, ProfileDeadlineOverride, RegisteredTaxType,
+    ResolvedTaxProfileForYear, TaxClassification, TaxProfileResolutionIssue,
     TaxProfileResolutionIssueKind, TaxProfileVersion, TaxProfileVersionSource,
     TaxProfileVersionStatus, TaxpayerProfile, VatRegistrationTextClassification,
     classify_vat_registration_text,

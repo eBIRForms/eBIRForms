@@ -209,8 +209,10 @@ pub enum FilingStatus {
     #[default]
     Draft,
     Queued,
-    #[serde(alias = "Filed")]
-    Submitted,
+    /// Handed to the submission service, which returned a signed receipt
+    /// (D16). Stored as `Submitted` so existing databases read.
+    #[serde(rename = "Submitted", alias = "Sent", alias = "Filed")]
+    Sent,
     Confirmed,
     Paid,
 }
@@ -233,7 +235,7 @@ impl FormDraftSummary {
         match self.status {
             FilingStatus::Draft => QuarterState::Draft,
             FilingStatus::Queued => QuarterState::Queued,
-            FilingStatus::Submitted => QuarterState::Submitted,
+            FilingStatus::Sent => QuarterState::Sent,
             FilingStatus::Confirmed => QuarterState::Confirmed,
             FilingStatus::Paid => QuarterState::Paid,
         }
@@ -246,7 +248,7 @@ pub enum QuarterState {
     NotStarted,
     Draft,
     Queued,
-    Submitted,
+    Sent,
     Confirmed,
     Paid,
 }
@@ -302,7 +304,7 @@ impl FormFilingProgress {
             .iter()
             .filter(|q| {
                 **q == QuarterState::Queued
-                    || **q == QuarterState::Submitted
+                    || **q == QuarterState::Sent
                     || **q == QuarterState::Confirmed
                     || **q == QuarterState::Paid
             })

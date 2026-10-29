@@ -29,8 +29,8 @@ mod legacy_amendment;
 mod legacy_filed_returns;
 mod migrations;
 mod notices;
-mod profiles;
 mod post_commit;
+mod profiles;
 mod queueable;
 mod receipts;
 pub use queueable::{AmendmentBase, ClaimQueueableResult, RevertedForAmendment};
@@ -955,13 +955,10 @@ impl Database {
              DELETE FROM announcements;
              DELETE FROM bir_notices;
              DELETE FROM penalties_cache;
-             DELETE FROM profile_calendar_events;
-             DELETE FROM profile_calendar_links;
              DELETE FROM profiles;
              DELETE FROM submissions;
              DELETE FROM legacy_filed_returns;
              DELETE FROM form_drafts;
-             DELETE FROM data_providers;
              DELETE FROM submission_receipts;
              DELETE FROM job_queue;
              DELETE FROM settings;",
@@ -1507,11 +1504,29 @@ mod tests {
 
         assert!(env_master_key(|_| None).is_none());
         assert!(env_master_key(only("BIR_DB_KEY", String::new())).is_none());
-        assert_eq!(env_master_key(only("BIR_DB_KEY", key.clone())).unwrap().unwrap(), key);
-        assert_eq!(env_master_key(only("BIR_DB_KEY_FILE", path)).unwrap().unwrap(), key);
-        assert!(env_master_key(only("BIR_DB_KEY", "abc".into())).unwrap().is_err());
+        assert_eq!(
+            env_master_key(only("BIR_DB_KEY", key.clone()))
+                .unwrap()
+                .unwrap(),
+            key
+        );
+        assert_eq!(
+            env_master_key(only("BIR_DB_KEY_FILE", path))
+                .unwrap()
+                .unwrap(),
+            key
+        );
+        assert!(
+            env_master_key(only("BIR_DB_KEY", "abc".into()))
+                .unwrap()
+                .is_err()
+        );
         let missing = "/nonexistent/db.key".to_string();
-        assert!(env_master_key(only("BIR_DB_KEY_FILE", missing)).unwrap().is_err());
+        assert!(
+            env_master_key(only("BIR_DB_KEY_FILE", missing))
+                .unwrap()
+                .is_err()
+        );
     }
 
     // A mock keyring can be tricky in CI, so we might encounter issues depending on the runner.
@@ -1543,13 +1558,7 @@ mod tests {
             registered_address: "QC".into(),
             is_archived: false,
             email_tracking_enabled: false,
-            email_auth_method: crate::profile::EmailAuthMethod::AppPassword,
-            imap_email: None,
-            imap_host: None,
             test_notification_enabled: false,
-            imap_app_password: None,
-            oauth_access_token: None,
-            oauth_refresh_token: None,
             profile_versions: vec![],
             compliance_source_mode: Default::default(),
             per_year_forms: Default::default(),
@@ -1580,7 +1589,6 @@ mod tests {
             is_government_withholding_entity: false,
             registration_activity_status: Default::default(),
             profile_pin_hash: None,
-            totp_secret: None,
         };
 
         db.save_profile(profile).expect("Failed to save profile");

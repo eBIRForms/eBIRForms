@@ -286,7 +286,7 @@ impl Database {
         let mut marked_amended = false;
         if matches!(
             previous_status,
-            FilingStatus::Submitted | FilingStatus::Confirmed
+            FilingStatus::Sent | FilingStatus::Confirmed
         ) {
             let (xml, source) = sent_payload(&current);
             let period_key = current.filing_period().to_period_key();
@@ -592,7 +592,7 @@ mod tests {
         let db = Database::open_in_memory_for_tests().unwrap();
         let mut sent = submitted_2551q(false);
         sent.submitted_payload = None;
-        store(&db, &sent, &FilingStatus::Submitted, 1);
+        store(&db, &sent, &FilingStatus::Sent, 1);
         let out = db.revert_2551q_for_amendment(TIN, 2026, 1).unwrap();
         let snap = db
             .get_amendment_snapshot(out.snapshot_id.unwrap())

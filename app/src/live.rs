@@ -50,7 +50,7 @@ const POLL: Duration = Duration::from_millis(25);
 /// remounts. `store()` anchors the model while that owner is current, so
 /// its signals live as long as the app.
 pub(crate) fn init() {
-    let _ = store();
+    store().load_catalog();
 }
 
 /// The one model the whole process has — every patch generation reads and

@@ -54,32 +54,6 @@ pub enum TaxClassification {
     EstateOrTrust,
 }
 
-/// How the app authenticates to the user's mail server.
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
-pub enum EmailAuthMethod {
-    /// Standard IMAP LOGIN with an App Password stored in the encrypted DB.
-    #[default]
-    AppPassword,
-    /// Google OAuth2 PKCE flow — refresh tokens stored in the encrypted DB.
-    ///
-    /// One inbox shared across taxpayer profiles is one credential set.
-    GoogleOAuth,
-}
-
-/// Canonical inbox key for matching and the `inbox_oauth_tokens` row.
-pub fn normalize_inbox_email(email: &str) -> String {
-    email.trim().to_ascii_lowercase()
-}
-
-/// Whether two addresses name the same mailbox for OAuth / IMAP polling.
-pub fn inbox_emails_match(left: &str, right: &str) -> bool {
-    let left = left.trim();
-    let right = right.trim();
-    !left.is_empty()
-        && !right.is_empty()
-        && normalize_inbox_email(left) == normalize_inbox_email(right)
-}
-
 /// Ease of Paying Taxes (EOPT) Act Taxpayer Classification Tiers.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub enum EoptTier {
@@ -483,39 +457,14 @@ pub struct TaxpayerProfile {
     #[serde(default)]
     pub profile_pin_hash: Option<String>,
 
-    /// Profile specific TOTP secret for Authenticator apps
-    #[serde(default)]
-    pub totp_secret: Option<String>,
-
     // Email Tracking Settings
     /// Master toggle — whether automatic BIR receipt checking is enabled.
     #[serde(default)]
     pub email_tracking_enabled: bool,
-    /// Which authentication method to use (App Password or Google OAuth2).
-    #[serde(default)]
-    pub email_auth_method: EmailAuthMethod,
-    /// Email address used for IMAP login (defaults to profile email if None).
-    #[serde(default)]
-    pub imap_email: Option<String>,
-    /// IMAP server hostname (only needed for App Password mode; defaults to imap.gmail.com).
-    #[serde(default)]
-    pub imap_host: Option<String>,
 
     /// Toggle to enable/disable test OS notifications every minute.
     #[serde(default)]
     pub test_notification_enabled: bool,
-
-    /// Securely stored App Password (encrypted inside DB)
-    #[serde(default)]
-    pub imap_app_password: Option<String>,
-
-    /// Securely stored OAuth Access Token (encrypted inside DB)
-    #[serde(default)]
-    pub oauth_access_token: Option<String>,
-
-    /// Securely stored OAuth Refresh Token (encrypted inside DB)
-    #[serde(default)]
-    pub oauth_refresh_token: Option<String>,
 
     /// Whether the taxpayer has employees (determines withholding form applicability:
     /// 1601C, 1601E, 1601F, 1602, 1603, 1604CF, 1604E).
@@ -690,39 +639,11 @@ impl TaxpayerProfile {
         self.email_tracking_enabled
     }
 
-    /// Mailbox used for BIR confirmation tracking, if one is configured.
-    ///
-    /// Prefers a non-empty IMAP login, then the profile email. Empty values
-    /// are treated as unknown rather than invented.
+    /// The confirmation email on file (the profile email), if any. Empty
+    /// values are treated as unknown rather than invented.
     pub fn tracking_mailbox(&self) -> Option<&str> {
-        let imap = self
-            .imap_email
-            .as_deref()
-            .map(str::trim)
-            .filter(|email| !email.is_empty());
-        imap.or_else(|| {
-            let email = self.email.trim();
-            if email.is_empty() { None } else { Some(email) }
-        })
-    }
-
-    /// Inbox used for IMAP / Gmail OAuth login.
-    ///
-    /// Several taxpayer profiles can share one mailbox. Tokens and polling
-    /// key off this address (`imap_email`, else the taxpayer `email`), not
-    /// the profile list order.
-    pub fn inbox_email(&self) -> &str {
-        self.tracking_mailbox().unwrap_or("")
-    }
-
-    /// Whether this profile currently holds a refresh token the poller can try.
-    ///
-    /// An empty string is treated as disconnected. A non-empty value can still
-    /// be revoked at Google; reconnect must replace it rather than keep it.
-    pub fn has_usable_oauth_refresh(&self) -> bool {
-        self.oauth_refresh_token
-            .as_deref()
-            .is_some_and(|token| !token.trim().is_empty())
+        let email = self.email.trim();
+        if email.is_empty() { None } else { Some(email) }
     }
 
     /// Returns BIR form codes applicable to this taxpayer.
@@ -1300,23 +1221,17 @@ impl TaxProfileVersion {
     }
 }
 
-/// The serialized keys of a profile's five credentials, in the order
-/// [`ProfileCredentials`] holds them: the authenticator secret, the inbox
-/// app password, the Google access and refresh tokens, and the PIN hash.
+/// The serialized keys of a profile's credentials, in the order
+/// [`ProfileCredentials`] holds them: the PIN hash. (The authenticator
+/// secret and the inbox password and tokens went with D18.)
 ///
 /// Each is host state with a writer of its own. A profile record that
 /// leaves the host has none of these keys: the shell's page reads profiles
 /// without them, and a profile export writes none of them. A profile import
 /// never stores the file's.
-pub const PROFILE_CREDENTIAL_KEYS: [&str; 5] = [
-    "totp_secret",
-    "imap_app_password",
-    "oauth_access_token",
-    "oauth_refresh_token",
-    "profile_pin_hash",
-];
+pub const PROFILE_CREDENTIAL_KEYS: [&str; 1] = ["profile_pin_hash"];
 
-/// A profile's five credentials while they are out of it, in
+/// A profile's credentials while they are out of it, in
 /// [`PROFILE_CREDENTIAL_KEYS`] order.
 ///
 /// They are moved, never copied: [`TaxpayerProfile::take_credentials`]
@@ -1326,7 +1241,7 @@ pub const PROFILE_CREDENTIAL_KEYS: [&str; 5] = [
 /// drops. There is no `Clone` or `Debug`, so no copy or log line can carry
 /// one.
 #[derive(Default)]
-pub struct ProfileCredentials([Option<String>; 5]);
+pub struct ProfileCredentials([Option<String>; 1]);
 
 impl Drop for ProfileCredentials {
     fn drop(&mut self) {
@@ -1343,17 +1258,10 @@ fn wipe<'a>(values: impl IntoIterator<Item = &'a mut Option<String>>) {
 }
 
 impl TaxpayerProfile {
-    /// The profile's five credentials, in [`PROFILE_CREDENTIAL_KEYS`] order.
-    /// Taking, putting and wiping all go through this one list, so none of
-    /// the five is skipped.
-    fn credential_fields(&mut self) -> [&mut Option<String>; 5] {
-        [
-            &mut self.totp_secret,
-            &mut self.imap_app_password,
-            &mut self.oauth_access_token,
-            &mut self.oauth_refresh_token,
-            &mut self.profile_pin_hash,
-        ]
+    /// The profile's credentials, in [`PROFILE_CREDENTIAL_KEYS`] order.
+    /// Taking, putting and wiping all go through this one list.
+    fn credential_fields(&mut self) -> [&mut Option<String>; 1] {
+        [&mut self.profile_pin_hash]
     }
 
     /// Move the profile's credentials out, leaving it none.
@@ -1362,7 +1270,7 @@ impl TaxpayerProfile {
     }
 
     /// Move `credentials` in, in place of the profile's own, which are
-    /// wiped. Putting [`ProfileCredentials::default`] clears all five.
+    /// wiped. Putting [`ProfileCredentials::default`] clears them.
     pub fn put_credentials(&mut self, mut credentials: ProfileCredentials) {
         for (field, value) in self.credential_fields().into_iter().zip(&mut credentials.0) {
             std::mem::swap(field, value);
@@ -1428,93 +1336,44 @@ mod tests {
     }
 
     #[test]
-    fn tracking_mailbox_prefers_imap_and_omits_empty() {
+    fn tracking_mailbox_is_the_email_and_omits_empty() {
         let mut profile = test_profile();
         assert_eq!(profile.tracking_mailbox(), Some("flat@example.com"));
-        profile.imap_email = Some("  receipts@example.com  ".into());
-        assert_eq!(profile.tracking_mailbox(), Some("receipts@example.com"));
-        profile.imap_email = Some("   ".into());
         profile.email = "  ".into();
         assert_eq!(profile.tracking_mailbox(), None);
     }
 
-    /// The wipe `Drop` runs overwrites all five credentials, the TOTP secret
-    /// included. A failure names the field, never its value.
+    /// The wipe `Drop` runs overwrites the PIN hash.
     #[test]
     fn the_drop_wipe_covers_every_credential() {
         let mut profile = test_profile();
-        profile.totp_secret = Some("wipe-totp-K7Q2".into());
-        profile.imap_app_password = Some("wipe-pass-W9X4".into());
-        profile.oauth_access_token = Some("wipe-access-M3R8".into());
-        profile.oauth_refresh_token = Some("wipe-refresh-T5V1".into());
         profile.profile_pin_hash = Some("wipe-pin-hash-H6N3".into());
         profile.wipe_credentials();
-        for (field, value) in [
-            ("totp_secret", &profile.totp_secret),
-            ("imap_app_password", &profile.imap_app_password),
-            ("oauth_access_token", &profile.oauth_access_token),
-            ("oauth_refresh_token", &profile.oauth_refresh_token),
-            ("profile_pin_hash", &profile.profile_pin_hash),
-        ] {
-            assert!(value.as_deref() == Some(""), "{field} was not wiped");
-        }
+        assert!(
+            profile.profile_pin_hash.as_deref() == Some(""),
+            "profile_pin_hash was not wiped"
+        );
     }
 
-    /// `PROFILE_CREDENTIAL_KEYS` names the five fields in the order the
-    /// helpers move them; `record_without_credentials` leaves out every key
-    /// and value while the profile keeps all five; `take_credentials` leaves
-    /// none behind and `put_credentials` moves them, in order, in place of
-    /// another profile's. A failure names the key, never a value.
+    /// `record_without_credentials` leaves out the PIN hash key and value;
+    /// `take_credentials` leaves none behind and `put_credentials` moves it.
     #[test]
-    fn the_credential_helpers_move_the_five_named_fields() {
-        const CREDENTIALS: [&str; 5] = [
-            "keys-totp-K7Q2",
-            "keys-pass-W9X4",
-            "keys-access-M3R8",
-            "keys-refresh-T5V1",
-            "keys-pin-hash-H6N3",
-        ];
+    fn the_credential_helpers_move_the_named_fields() {
         let mut profile = test_profile();
-        profile.totp_secret = Some(CREDENTIALS[0].into());
-        profile.imap_app_password = Some(CREDENTIALS[1].into());
-        profile.oauth_access_token = Some(CREDENTIALS[2].into());
-        profile.oauth_refresh_token = Some(CREDENTIALS[3].into());
-        profile.profile_pin_hash = Some(CREDENTIALS[4].into());
-        let record = serde_json::to_value(&profile).unwrap();
-        for (key, value) in PROFILE_CREDENTIAL_KEYS.into_iter().zip(CREDENTIALS) {
-            assert!(record[key] == value, "{key} does not name its credential");
-        }
-
+        profile.profile_pin_hash = Some("keys-pin-hash-H6N3".into());
         let without = profile.record_without_credentials().unwrap();
-        let raw = without.to_string();
-        for (key, value) in PROFILE_CREDENTIAL_KEYS.into_iter().zip(CREDENTIALS) {
-            assert!(without.get(key).is_none(), "the record has the {key} key");
-            assert!(!raw.contains(value), "the record has the {key} value");
-        }
-        assert_eq!(without["full_name"], "Flat compatibility name");
-        assert!(
-            serde_json::to_value(&profile).unwrap() == record,
-            "building the record changed the profile"
-        );
-
+        assert!(without.get("profile_pin_hash").is_none());
+        assert!(!without.to_string().contains("keys-pin-hash-H6N3"));
         let taken = profile.take_credentials();
-        let emptied = serde_json::to_value(&profile).unwrap();
-        for key in PROFILE_CREDENTIAL_KEYS {
-            assert!(emptied[key].is_null(), "take left the {key}");
-        }
+        assert!(profile.profile_pin_hash.is_none());
         let mut other = test_profile();
-        other.totp_secret = Some("keys-replaced".into());
         other.put_credentials(taken);
-        let moved = serde_json::to_value(&other).unwrap();
-        for (key, value) in PROFILE_CREDENTIAL_KEYS.into_iter().zip(CREDENTIALS) {
-            assert!(moved[key] == value, "put did not move the {key}");
-        }
-
+        assert_eq!(
+            other.profile_pin_hash.as_deref(),
+            Some("keys-pin-hash-H6N3")
+        );
         other.put_credentials(ProfileCredentials::default());
-        let cleared = serde_json::to_value(&other).unwrap();
-        for key in PROFILE_CREDENTIAL_KEYS {
-            assert!(cleared[key].is_null(), "putting none left the {key}");
-        }
+        assert!(other.profile_pin_hash.is_none());
     }
 
     fn confirmed_version(
@@ -2024,25 +1883,5 @@ mod tests {
                 .map(|version| version.id.as_str()),
             Some("two")
         );
-    }
-
-    #[test]
-    fn inbox_email_prefers_imap_over_taxpayer_email() {
-        let mut profile = test_profile();
-        profile.email = "jane@example.com".to_string();
-        profile.imap_email = None;
-        assert_eq!(profile.inbox_email(), "jane@example.com");
-
-        profile.imap_email = Some("  taxpayer@example.com  ".to_string());
-        assert_eq!(profile.inbox_email(), "taxpayer@example.com");
-        assert!(inbox_emails_match(
-            profile.inbox_email(),
-            "Taxpayer@example.com"
-        ));
-        assert!(!profile.has_usable_oauth_refresh());
-        profile.oauth_refresh_token = Some("   ".to_string());
-        assert!(!profile.has_usable_oauth_refresh());
-        profile.oauth_refresh_token = Some("refresh-good".to_string());
-        assert!(profile.has_usable_oauth_refresh());
     }
 }

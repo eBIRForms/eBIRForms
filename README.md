@@ -13,7 +13,9 @@ and live code patching while you develop uses ra-jit from
 
 ## Requirements
 
-- macOS on Apple Silicon.
+- macOS on Apple Silicon for the app. The domain crates also build on
+  Windows (MSVC, with Perl for the bundled OpenSSL) and Linux
+  (`libdbus-1-dev` and `pkg-config`).
 - [rustup](https://rustup.rs). The pinned toolchain (`rust-toolchain.toml`,
   Rust 1.99.0) installs itself on the first build.
 - [just](https://github.com/casey/just) (optional, for the shortcuts below).

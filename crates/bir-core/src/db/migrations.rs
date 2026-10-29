@@ -5,7 +5,7 @@ use tracing::info;
 
 use crate::db::DbError;
 
-const CURRENT_MIGRATION_VERSION: i32 = 22;
+const CURRENT_MIGRATION_VERSION: i32 = 23;
 
 const NO_CONFIRMED_PROFILE_EVIDENCE_REASON: &str =
     "No confirmed effective profile evidence for this taxable year; review required";
@@ -189,18 +189,9 @@ pub(crate) fn migrate_database(conn: &Connection) -> Result<(), DbError> {
             value TEXT NOT NULL
         );
         ",
-        // v2: Data Providers for integrations
-        "
-        CREATE TABLE IF NOT EXISTS data_providers (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            profile_tin TEXT NOT NULL,
-            provider_id TEXT NOT NULL,
-            name TEXT NOT NULL,
-            credentials_json TEXT NOT NULL,
-            created_at TEXT NOT NULL DEFAULT (datetime('now')),
-            FOREIGN KEY (profile_tin) REFERENCES profiles(tin)
-        );
-        ",
+        // v2: created `data_providers` (integrations); dropped by v23 (D18),
+        // so a fresh database no longer creates it.
+        "SELECT 1; -- v2 marker: data providers (dropped in v23)",
         // v3: Add unique index on submissions for import deduplication.
         // Existing duplicate rows (from prior buggy imports) are cleaned up first.
         // Use COALESCE so NULL submitted_at values are treated as equal (SQLite NULL != NULL).
@@ -257,35 +248,9 @@ pub(crate) fn migrate_database(conn: &Connection) -> Result<(), DbError> {
         // v8 only checked registered_tax_types_allow_form, missing taxpayer_type,
         // VAT, deprecation, and other checks from obligation_allowed_for_version_and_profile.
         "SELECT 1; -- v9 marker: per-year forms heal (Rust-side)",
-        // v10: Google Calendar links and managed event mappings.
-        "
-        CREATE TABLE IF NOT EXISTS profile_calendar_links (
-            profile_tin TEXT PRIMARY KEY,
-            google_calendar_id TEXT NOT NULL,
-            calendar_name TEXT NOT NULL,
-            enabled INTEGER NOT NULL DEFAULT 1,
-            last_synced_at TEXT,
-            last_error TEXT,
-            created_at TEXT NOT NULL DEFAULT (datetime('now')),
-            updated_at TEXT NOT NULL DEFAULT (datetime('now')),
-            FOREIGN KEY (profile_tin) REFERENCES profiles(tin) ON DELETE CASCADE
-        );
-
-        CREATE TABLE IF NOT EXISTS profile_calendar_events (
-            profile_tin TEXT NOT NULL,
-            obligation_key TEXT NOT NULL,
-            google_event_id TEXT NOT NULL,
-            content_hash TEXT NOT NULL,
-            taxable_year INTEGER NOT NULL,
-            form_code TEXT NOT NULL,
-            period_label TEXT NOT NULL,
-            last_synced_at TEXT NOT NULL DEFAULT (datetime('now')),
-            PRIMARY KEY (profile_tin, obligation_key),
-            FOREIGN KEY (profile_tin) REFERENCES profiles(tin) ON DELETE CASCADE
-        );
-        CREATE INDEX IF NOT EXISTS idx_profile_calendar_events_tin
-            ON profile_calendar_events(profile_tin);
-        ",
+        // v10: created Google Calendar sync tables (`profile_calendar_links`,
+        // `profile_calendar_events`); dropped by v23 (D18).
+        "SELECT 1; -- v10 marker: calendar sync (dropped in v23)",
         // v11: Preserve Forms Set evidence/effective dates and fail-closed review state.
         // Columns are added by Rust below so partially upgraded legacy databases remain safe.
         "SELECT 1; -- v11 marker: Forms Set provenance and conflict state (Rust-side)",
@@ -312,17 +277,9 @@ pub(crate) fn migrate_database(conn: &Connection) -> Result<(), DbError> {
         // Nullable additive columns leave projected legacy pins fail-closed
         // until a reviewed migration supplies the omitted identity fields.
         "SELECT 1; -- v17 marker: exact form-rule revision identity (Rust-side)",
-        // v18: One Google OAuth credential set per shared inbox, so reconnect
-        // replaces the tokens the confirmation poller actually uses.
-        "
-        CREATE TABLE IF NOT EXISTS inbox_oauth_tokens (
-            email TEXT PRIMARY KEY NOT NULL,
-            imap_user TEXT NOT NULL,
-            access_token TEXT,
-            refresh_token TEXT NOT NULL,
-            updated_at TEXT NOT NULL
-        );
-        ",
+        // v18: created `inbox_oauth_tokens` (Gmail OAuth); dropped by v23
+        // (D18).
+        "SELECT 1; -- v18 marker: inbox OAuth tokens (dropped in v23)",
         // v19: Read-only copies of what BIR received, kept when a Submitted or
         // Confirmed return is reverted to Draft for an amendment.
         "SELECT 1; -- v19 marker: amendment snapshots (Rust-side)",
@@ -358,6 +315,10 @@ pub(crate) fn migrate_database(conn: &Connection) -> Result<(), DbError> {
         // `taxpayers` row instead of on each branch profile, and the app's
         // access mode (solo / helpdesk) inferred for existing installs.
         "SELECT 1; -- v22 marker: taxpayer credentials and access mode (Rust-side)",
+        // v23 (D18): drop what the email, OAuth, provider and calendar-sync
+        // code left behind: tables, `taxpayers.totp_secret`, and the profile
+        // JSON keys. Rust-side so it can heal every startup.
+        "SELECT 1; -- v23 marker: drop OAuth/IMAP/providers/calendar sync (Rust-side)",
     ];
 
     while version < CURRENT_MIGRATION_VERSION {
@@ -412,10 +373,6 @@ pub(crate) fn migrate_database(conn: &Connection) -> Result<(), DbError> {
                 migrate_v17_exact_form_rule_identity(conn)?;
             }
 
-            if version == 18 {
-                ensure_inbox_oauth_tokens_table(conn)?;
-            }
-
             if version == 19 {
                 ensure_amendment_snapshots_table(conn)?;
             }
@@ -427,6 +384,10 @@ pub(crate) fn migrate_database(conn: &Connection) -> Result<(), DbError> {
             if version == 22 {
                 migrate_v22_taxpayer_credentials(conn)?;
                 infer_v22_access_mode(conn)?;
+            }
+
+            if version == 23 {
+                migrate_v23_drop_unused(conn)?;
             }
         } else {
             break;
@@ -454,11 +415,6 @@ pub(crate) fn migrate_database(conn: &Connection) -> Result<(), DbError> {
     // exact-key component from a registry or from mutable application state.
     migrate_v17_exact_form_rule_identity(conn)?;
 
-    // Heal partially upgraded v18 databases. CREATE TABLE IF NOT EXISTS is
-    // idempotent; the poller must never keep using a sibling profile's dead
-    // refresh token after reconnect wrote a shared inbox row.
-    ensure_inbox_oauth_tokens_table(conn)?;
-
     // Heal partially upgraded v19 databases. Idempotent.
     ensure_amendment_snapshots_table(conn)?;
 
@@ -472,6 +428,80 @@ pub(crate) fn migrate_database(conn: &Connection) -> Result<(), DbError> {
     // import) onto its taxpayer. A taxpayer's own credential always wins.
     migrate_v22_taxpayer_credentials(conn)?;
 
+    // v23 is idempotent; re-running it clears keys an older build or a
+    // profile import wrote since.
+    migrate_v23_drop_unused(conn)?;
+
+    Ok(())
+}
+
+/// Tables v23 drops (D18): Gmail OAuth tokens, integration providers, and
+/// Google Calendar sync.
+const V23_DROPPED_TABLES: [&str; 4] = [
+    "inbox_oauth_tokens",
+    "data_providers",
+    "profile_calendar_links",
+    "profile_calendar_events",
+];
+
+/// Profile JSON keys v23 removes (D18): IMAP, OAuth and the authenticator.
+const V23_DROPPED_PROFILE_KEYS: [&str; 8] = [
+    "imap_email",
+    "imap_host",
+    "imap_app_password",
+    "imap_enabled",
+    "oauth_access_token",
+    "oauth_refresh_token",
+    "email_auth_method",
+    "totp_secret",
+];
+
+/// v23 (D18): drop the OAuth/IMAP/providers/calendar-sync tables, the
+/// taxpayer authenticator column, the admin authenticator setting, and the
+/// matching keys of every profile's JSON. Idempotent: each step checks
+/// before it changes anything.
+fn migrate_v23_drop_unused(conn: &Connection) -> Result<(), DbError> {
+    for table in V23_DROPPED_TABLES {
+        conn.execute_batch(&format!("DROP TABLE IF EXISTS {table};"))?;
+    }
+    if table_exists(conn, "taxpayers")? {
+        let has_totp: bool = conn
+            .query_row(
+                "SELECT 1 FROM pragma_table_info('taxpayers') WHERE name = 'totp_secret'",
+                [],
+                |_| Ok(true),
+            )
+            .optional()?
+            .unwrap_or(false);
+        if has_totp {
+            conn.execute_batch("ALTER TABLE taxpayers DROP COLUMN totp_secret;")?;
+        }
+    }
+    if table_exists(conn, "settings")? {
+        conn.execute("DELETE FROM settings WHERE key = 'app_totp_secret'", [])?;
+    }
+    if table_exists(conn, "profiles")? {
+        let paths: Vec<String> = V23_DROPPED_PROFILE_KEYS
+            .iter()
+            .map(|key| format!("'$.{key}'"))
+            .collect();
+        let present: Vec<String> = V23_DROPPED_PROFILE_KEYS
+            .iter()
+            .map(|key| format!("json_type(data_json, '$.{key}') IS NOT NULL"))
+            .collect();
+        let cleared = conn.execute(
+            &format!(
+                "UPDATE profiles SET data_json = json_remove(data_json, {})
+                 WHERE json_valid(data_json) AND ({})",
+                paths.join(", "),
+                present.join(" OR ")
+            ),
+            [],
+        )?;
+        if cleared > 0 {
+            info!("v23 migration: email/OAuth keys removed from {cleared} profiles");
+        }
+    }
     Ok(())
 }
 
@@ -504,47 +534,33 @@ fn migrate_v22_taxpayer_credentials(conn: &Connection) -> Result<(), DbError> {
         stmt.query_map([], |row| row.get::<_, String>(1))?
             .collect::<Result<std::collections::BTreeSet<_>, _>>()?
     };
-    for column in ["pin_hash", "totp_secret"] {
-        if !columns.contains(column) {
-            conn.execute(
-                &format!("ALTER TABLE taxpayers ADD COLUMN {column} TEXT"),
-                [],
-            )?;
-        }
+    if !columns.contains("pin_hash") {
+        conn.execute("ALTER TABLE taxpayers ADD COLUMN pin_hash TEXT", [])?;
     }
     if !table_exists(conn, "profiles")? {
         return Ok(());
     }
 
-    let mut lifted = 0usize;
-    for (key, column) in [
-        ("profile_pin_hash", "pin_hash"),
-        ("totp_secret", "totp_secret"),
-    ] {
-        lifted += conn.execute(
-            &format!(
-                "UPDATE taxpayers SET {column} = (
-                     SELECT json_extract(p.data_json, '$.{key}') FROM profiles p
-                     WHERE length(p.tin) >= 9 AND substr(p.tin, 1, 9) = taxpayers.tin_root
-                       AND json_valid(p.data_json)
-                       AND json_type(p.data_json, '$.{key}') = 'text'
-                       AND json_extract(p.data_json, '$.{key}') <> ''
-                     ORDER BY CASE WHEN length(p.tin) > 9
-                                    AND substr(p.tin, 10) NOT GLOB '*[^0]*'
-                               THEN 0 ELSE 1 END,
-                              p.tin
-                     LIMIT 1)
-                 WHERE {column} IS NULL"
-            ),
-            [],
-        )?;
-    }
+    let lifted = conn.execute(
+        "UPDATE taxpayers SET pin_hash = (
+             SELECT json_extract(p.data_json, '$.profile_pin_hash') FROM profiles p
+             WHERE length(p.tin) >= 9 AND substr(p.tin, 1, 9) = taxpayers.tin_root
+               AND json_valid(p.data_json)
+               AND json_type(p.data_json, '$.profile_pin_hash') = 'text'
+               AND json_extract(p.data_json, '$.profile_pin_hash') <> ''
+             ORDER BY CASE WHEN length(p.tin) > 9
+                            AND substr(p.tin, 10) NOT GLOB '*[^0]*'
+                       THEN 0 ELSE 1 END,
+                      p.tin
+             LIMIT 1)
+         WHERE pin_hash IS NULL",
+        [],
+    )?;
     let cleared = conn.execute(
         "UPDATE profiles
-         SET data_json = json_set(data_json, '$.profile_pin_hash', NULL, '$.totp_secret', NULL)
+         SET data_json = json_set(data_json, '$.profile_pin_hash', NULL)
          WHERE json_valid(data_json)
-           AND (json_type(data_json, '$.profile_pin_hash') <> 'null'
-                OR json_type(data_json, '$.totp_secret') <> 'null')",
+           AND json_type(data_json, '$.profile_pin_hash') <> 'null'",
         [],
     )?;
     if cleared > 0 {
@@ -582,7 +598,7 @@ fn infer_v22_access_mode(conn: &Connection) -> Result<(), DbError> {
         )?;
         Ok(())
     };
-    if setting("app_lock_pin_hash")?.is_some() || setting("app_totp_secret")?.is_some() {
+    if setting("app_lock_pin_hash")?.is_some() {
         put("access_mode", "helpdesk")?;
         info!("v22 migration: access mode helpdesk (admin credentials present)");
         return Ok(());
@@ -775,19 +791,6 @@ fn ensure_amendment_snapshots_table(conn: &Connection) -> Result<(), DbError> {
         );
         CREATE INDEX IF NOT EXISTS idx_amendment_snapshots_return
             ON amendment_snapshots(tin, form_code, taxable_year, period_key);",
-    )?;
-    Ok(())
-}
-
-fn ensure_inbox_oauth_tokens_table(conn: &Connection) -> Result<(), DbError> {
-    conn.execute_batch(
-        "CREATE TABLE IF NOT EXISTS inbox_oauth_tokens (
-            email TEXT PRIMARY KEY NOT NULL,
-            imap_user TEXT NOT NULL,
-            access_token TEXT,
-            refresh_token TEXT NOT NULL,
-            updated_at TEXT NOT NULL
-        );",
     )?;
     Ok(())
 }
@@ -1858,13 +1861,9 @@ mod tests {
             "job_queue",
             "settings",
             "bir_notices",
-            "data_providers",
             "per_year_forms",
-            "profile_calendar_links",
-            "profile_calendar_events",
             "form_finalizations",
             "form_rule_migrations",
-            "inbox_oauth_tokens",
             "taxpayers",
             "form_templates",
         ];
@@ -2069,39 +2068,60 @@ mod tests {
         );
     }
 
+    /// D18: an install that had the email, OAuth, provider and calendar
+    /// tables, the authenticator column and the profile keys loses them all,
+    /// and a second run changes nothing.
     #[test]
-    fn test_v18_creates_inbox_oauth_tokens_table() {
+    fn test_v23_drops_oauth_imap_provider_and_calendar_state() {
         let conn = test_conn();
-        conn.execute_batch("PRAGMA user_version = 17;").unwrap();
+        migrate_database(&conn).unwrap();
+        conn.execute_batch(
+            "CREATE TABLE inbox_oauth_tokens (email TEXT PRIMARY KEY);
+             CREATE TABLE data_providers (id INTEGER PRIMARY KEY);
+             CREATE TABLE profile_calendar_links (profile_tin TEXT PRIMARY KEY);
+             CREATE TABLE profile_calendar_events (profile_tin TEXT);
+             ALTER TABLE taxpayers ADD COLUMN totp_secret TEXT;
+             INSERT INTO settings (key, value) VALUES ('app_totp_secret', 'x');
+             INSERT INTO profiles (tin, data_json)
+                 VALUES ('00012345300000', '{\"full_name\":\"Kept\",\"imap_email\":\"a@example.com\",\"oauth_refresh_token\":\"r\",\"totp_secret\":\"t\"}');
+             PRAGMA user_version = 22;",
+        )
+        .unwrap();
+        migrate_database(&conn).unwrap();
         migrate_database(&conn).unwrap();
 
-        let exists: bool = conn
-            .query_row(
-                "SELECT 1 FROM sqlite_master WHERE type='table' AND name='inbox_oauth_tokens'",
-                [],
-                |_| Ok(true),
-            )
-            .unwrap_or(false);
-        assert!(exists, "v18 must create inbox_oauth_tokens");
-
-        let columns = {
-            let mut stmt = conn
-                .prepare("PRAGMA table_info(inbox_oauth_tokens)")
-                .unwrap();
-            stmt.query_map([], |row| row.get::<_, String>(1))
-                .unwrap()
-                .collect::<Result<std::collections::BTreeSet<_>, _>>()
-                .unwrap()
-        };
-        for column in [
-            "email",
-            "imap_user",
-            "access_token",
-            "refresh_token",
-            "updated_at",
-        ] {
-            assert!(columns.contains(column), "missing v18 column {column}");
+        for table in V23_DROPPED_TABLES {
+            assert!(
+                !table_exists(&conn, table).unwrap(),
+                "{table} was not dropped"
+            );
         }
+        let totp_column: Option<i64> = conn
+            .query_row(
+                "SELECT 1 FROM pragma_table_info('taxpayers') WHERE name = 'totp_secret'",
+                [],
+                |row| row.get(0),
+            )
+            .optional()
+            .unwrap();
+        assert_eq!(totp_column, None);
+        let setting: Option<String> = conn
+            .query_row(
+                "SELECT value FROM settings WHERE key = 'app_totp_secret'",
+                [],
+                |row| row.get(0),
+            )
+            .optional()
+            .unwrap();
+        assert_eq!(setting, None);
+        let data: String = conn
+            .query_row(
+                "SELECT data_json FROM profiles WHERE tin = '00012345300000'",
+                [],
+                |row| row.get(0),
+            )
+            .unwrap();
+        assert_eq!(data, "{\"full_name\":\"Kept\"}");
     }
 
     #[test]
@@ -2843,7 +2863,7 @@ mod tests {
             .unwrap();
         assert_eq!(v, CURRENT_MIGRATION_VERSION);
 
-        // Verify data_providers table from v2
+        // v23 (D18) drops the data_providers table v2 created.
         let has_dp: bool = conn
             .query_row(
                 "SELECT 1 FROM sqlite_master WHERE type='table' AND name='data_providers'",
@@ -2851,10 +2871,7 @@ mod tests {
                 |_| Ok(true),
             )
             .unwrap_or(false);
-        assert!(
-            has_dp,
-            "data_providers table should exist after v2 migration"
-        );
+        assert!(!has_dp, "data_providers is dropped by v23 (D18)");
 
         // Verify dedup index from v3
         let has_idx: bool = conn
@@ -2904,7 +2921,7 @@ mod tests {
             .unwrap();
         assert_eq!(v, CURRENT_MIGRATION_VERSION);
 
-        // data_providers should have been created by v2 migration
+        // v23 (D18) drops data_providers.
         let has_dp: bool = conn
             .query_row(
                 "SELECT 1 FROM sqlite_master WHERE type='table' AND name='data_providers'",
@@ -2912,10 +2929,7 @@ mod tests {
                 |_| Ok(true),
             )
             .unwrap_or(false);
-        assert!(
-            has_dp,
-            "Legacy DB should get data_providers after incremental migration"
-        );
+        assert!(!has_dp, "data_providers is dropped by v23 (D18)");
     }
 
     #[test]
@@ -3605,22 +3619,23 @@ mod tests {
 
         let creds = all_rows(
             &conn,
-            "SELECT tin_root, pin_hash, totp_secret FROM taxpayers ORDER BY tin_root",
+            "SELECT tin_root, pin_hash FROM taxpayers ORDER BY tin_root",
         );
         let some = |v: &str| Some(v.to_string());
+        // The authenticator secret is not lifted: v23 (D18) drops it.
         assert_eq!(
             creds,
             vec![
-                vec![some("111111111"), some("head-pin"), some("BRANCHSECRET")],
-                vec![some("222222222"), some("second-pin"), None],
-                vec![some("333333333"), None, None],
+                vec![some("111111111"), some("head-pin")],
+                vec![some("222222222"), some("second-pin")],
+                vec![some("333333333"), None],
             ]
         );
         let leftovers: i64 = conn
             .query_row(
                 "SELECT COUNT(*) FROM profiles
                  WHERE json_type(data_json, '$.profile_pin_hash') <> 'null'
-                    OR json_type(data_json, '$.totp_secret') <> 'null'",
+                    OR json_type(data_json, '$.totp_secret') IS NOT NULL",
                 [],
                 |row| row.get(0),
             )
@@ -3672,7 +3687,7 @@ mod tests {
         )
         .unwrap();
         conn.execute(
-            "INSERT INTO settings (key, value) VALUES ('app_totp_secret', 'ADMINSECRET')",
+            "INSERT INTO settings (key, value) VALUES ('app_lock_pin_hash', 'ADMINHASH')",
             [],
         )
         .unwrap();
@@ -3687,7 +3702,6 @@ mod tests {
         migrate_database(&conn).unwrap();
         conn.execute_batch(
             "ALTER TABLE taxpayers DROP COLUMN pin_hash;
-             ALTER TABLE taxpayers DROP COLUMN totp_secret;
              PRAGMA user_version = 21;",
         )
         .unwrap();

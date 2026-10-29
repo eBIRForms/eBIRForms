@@ -1,0 +1,6 @@
+# Boxes that are locked AND blank with no visible reason (rule: a box looks
+# disabled only when it shows its value or says what turns it on). Each is
+# a pre-existing lock of its form, left for the form's group named after
+# ` | `. Pinned by screen_form_module::tests::
+# no_box_is_locked_and_blank_without_a_reason_on_every_form: remove a line
+# when its group fixes the box; the test fails if a box is added.
