@@ -61,6 +61,8 @@ pub(crate) fn hot_area(note: Signal<String>) -> AnyElement {
         )
         .child(toast())
         .child(when(move || st.new_taxpayer_open.get(), taxpayer::new_taxpayer_dialog))
+        .child(when(move || st.confirm_delete.get().is_some(), screens::filings_delete_dialog))
+        .child(when(move || st.palette_open.get(), screens::palette::palette))
         .into_element()
 }
 
@@ -74,9 +76,12 @@ fn phone_shell() -> impl IntoElement {
         .bg(theme::SURFACE)
         .child(view().flex_1().child(each(|| vec![store().route.get()], |r| *r, |r, _| phone_page(r.get_untracked()))))
         .child(when(move || is_tab(st.route.get()), tab_bar))
-        .child(toast())
+        .child(when(move || st.start_sheet.get().is_some(), screens::phone::start_sheet))
+        .child(when(move || st.search_open.get(), screens::phone::search_sheet))
         .child(when(move || st.profile_open.get(), profile_sheet))
         .child(when(move || st.new_taxpayer_open.get(), taxpayer::new_taxpayer_dialog))
+        .child(when(move || st.confirm_delete.get().is_some(), screens::phone::delete_alert))
+        .child(toast())
 }
 
 fn phone_page(route: Route) -> AnyElement {
@@ -112,7 +117,13 @@ fn phone_page(route: Route) -> AnyElement {
                             view().w(px(36.0)).into_element()
                         })
                         .child(text(title).flex_1().text_center().text_size(px(17.0)).font_weight(FontWeight::BOLD).text_color(theme::FG))
-                        .child(profile_button()),
+                        .child(if route == Route::Preview {
+                            // The print preview shares its PDF instead.
+                            let busy = signal(false);
+                            screens::phone_form::nav_icon(Icon::Share, "Share PDF", move || screens::preview::run(screens::preview::Act::Share, busy)).into_element()
+                        } else {
+                            profile_button().into_element()
+                        }),
                 ),
         )
         .child(
@@ -121,9 +132,9 @@ fn phone_page(route: Route) -> AnyElement {
                 .pl(move || px(safe_area().left.0))
                 .pr(move || px(safe_area().right.0))
                 .child(match route {
-                    Route::Home => screens::phone_home().into_element(),
-                    Route::Filings | Route::Queue => screens::phone_filings(route == Route::Queue).into_element(),
-                    Route::Calendar => screens::phone_calendar().into_element(),
+                    Route::Home => screens::phone::home().into_element(),
+                    Route::Filings | Route::Queue => screens::phone::filings(route == Route::Queue).into_element(),
+                    Route::Calendar => screens::phone::calendar().into_element(),
                     _ => screens::screen(route),
                 }),
         )
@@ -274,7 +285,7 @@ fn title_bar() -> impl IntoElement {
             view()
                 .flex_row()
                 .gap(px(4.0))
-                .child(icon_button(Icon::Search, "Find a form", || false, move || st.go(Route::Library)))
+                .child(icon_button(Icon::Search, "Search (⌘K)", || false, move || st.palette_open.set(true)))
                 .child(icon_button(Icon::Plus, "New return", || false, move || st.go(Route::Library)))
         }));
     let right = view()
@@ -290,7 +301,7 @@ fn title_bar() -> impl IntoElement {
                     if d.get_untracked() { Icon::Sun } else { Icon::Moon },
                     "Switch light or dark",
                     || false,
-                    move || st.theme.set(if dark() { ThemePref::Light } else { ThemePref::Dark }),
+                    move || st.set_theme(if dark() { ThemePref::Light } else { ThemePref::Dark }),
                 )
             },
         ))
@@ -319,7 +330,9 @@ fn title_bar() -> impl IntoElement {
 /// the tax-profile panel. "Add a taxpayer" while there is none.
 fn context_pill() -> impl IntoElement {
     let st = store();
-    let compact = move || window().width.0 < theme::BREAK_COMPACT_PILL;
+    // Below the overlay break the title bar's left group leaves the pill too
+    // little room for the name: avatar and branch code only.
+    let compact = move || window().width.0 < theme::BREAK_OVERLAYS;
     view()
         .h(px(30.0))
         .pl(px(5.0))
@@ -395,8 +408,9 @@ fn sidebar(note: Signal<String>) -> impl IntoElement {
         (Route::Calendar, Icon::Calendar),
         (Route::Filings, Icon::FileText),
         (Route::Queue, Icon::Send),
+        (Route::Taxpayer, Icon::Users),
     ] {
-        nav = nav.child(nav_row(Some(i), route.label(), current(route), move || st.go(route)));
+        nav = nav.child(nav_row(Some(i), route.label(), current(route), move || st.go(route)).label(route.label()));
     }
     let recent = move || match (st.returns.get(), st.selected.get()) {
         (Loaded::Ready(rows), Some(sel)) => rows.into_iter().filter(|r| r.tin == sel.tin).take(5).collect::<Vec<_>>(),
@@ -422,7 +436,7 @@ fn sidebar(note: Signal<String>) -> impl IntoElement {
                             st.library_query.set(v.to_owned());
                             st.go(Route::Library);
                         })
-                        .placeholder("Search forms")
+                        .placeholder("Search forms  ⌘K")
                         .placeholder_color(|| color(theme::FG3))
                         .auto_correct(false)
                         .flex_1()
@@ -458,7 +472,7 @@ fn sidebar(note: Signal<String>) -> impl IntoElement {
             )))
         }))
         .child(view().flex_1())
-        .child(nav_row(Some(Icon::Settings), "Settings", current(Route::Settings), move || st.go(Route::Settings)))
+        .child(nav_row(Some(Icon::Settings), "Settings", current(Route::Settings), move || st.go(Route::Settings)).label("Settings"))
         .child(
             view()
                 .h(px(44.0))

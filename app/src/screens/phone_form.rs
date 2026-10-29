@@ -116,6 +116,13 @@ pub(super) fn page(form: Arc<OpenForm>) -> impl IntoElement {
                 None => view().into_element(),
             }
         }))
+        .child(each(move || vec![st.payee.get()], |p| *p, {
+            let form = form.clone();
+            move |p, _| match p.get_untracked() {
+                Some((id, row)) => super::phone_fields::payee_sheet(form.clone(), id, row).into_element(),
+                None => view().into_element(),
+            }
+        }))
         .child(each(move || vec![st.explain.get()], |p| *p, {
             let form = form.clone();
             move |p, _| match p.get_untracked() {
@@ -268,6 +275,10 @@ fn item(form: Arc<OpenForm>, id: ItemId, index: ReadSignal<usize>) -> AnyElement
     let message3 = message.clone();
     let optional = is_optional(&item);
     let no = item.no.clone();
+    // A long list says where its answer came from itself (variant D).
+    let long_list = matches!(super::phone_fields::kind_of(&item, &item.fields), super::phone_fields::Kind::LongList | super::phone_fields::Kind::Place);
+    let profile_keys = item.box_keys();
+    let from_profile = move || !long_list && st.profile.with(|p| profile_keys.iter().any(|k| p.contains(k)));
     view()
         .element_ref(&at)
         .px(px(16.0))
@@ -300,6 +311,7 @@ fn item(form: Arc<OpenForm>, id: ItemId, index: ReadSignal<usize>) -> AnyElement
                 .child(text(no).text_size(px(10.5)).font_family(mono()).text_color(theme::FG3)),
         )
         .child(value_of(form.clone(), id, &item))
+        .child(when(from_profile, || text("From your tax profile").text_size(px(12.0)).text_color(theme::FG3)))
         .child(when(move || !message().is_empty(), move || {
             text(message2.clone()).text_size(px(12.5)).font_weight(FontWeight::MEDIUM).text_color(theme::DANGER)
         }))
@@ -506,6 +518,7 @@ pub(super) fn dock(form: Arc<OpenForm>) -> impl IntoElement {
                 (small, "Queue for sending".to_owned())
             }
             Step::Done(status) if status == "Queued" => ("Sends by itself when you're online".to_owned(), "Queued".to_owned()),
+            Step::Done(status) if status == "Sample" => ("A sample from the Form library".to_owned(), "Nothing here is saved".to_owned()),
             Step::Done(status) => ("Read-only".to_owned(), status),
         }
     };

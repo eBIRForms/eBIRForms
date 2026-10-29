@@ -183,8 +183,11 @@ fn catalog() -> impl IntoElement {
                 .border_1()
                 .border_color(theme::BORDER)
                 .overflow_hidden()
-                .child(each(forms, |f| f.code.clone(), |form, index| form_row(form.get_untracked(), index))),
+                .child(each(forms.clone(), |f| f.code.clone(), |form, index| form_row(form.get_untracked(), index))),
         )
+        .child(when(move || matches!(st.catalog.get(), Catalog::Ready(_)) && forms().is_empty(), move || {
+            text(move || format!("No form matches “{}”. Try a form code like 1601C, or a word like VAT.", st.library_query.get().trim())).text_size(px(13.0)).text_color(theme::FG3)
+        }))
 }
 
 fn form_row(form: FormCatalogEntry, index: ReadSignal<usize>) -> impl IntoElement {
@@ -197,6 +200,15 @@ fn form_row(form: FormCatalogEntry, index: ReadSignal<usize>) -> impl IntoElemen
     let pick = {
         let code = code.clone();
         move || {
+            // A phone picks the period in the start-a-return sheet.
+            if crate::mobile::phone() {
+                if st.selected.get_untracked().is_some() {
+                    st.start_sheet.set(Some(code.clone()));
+                } else {
+                    st.new_taxpayer_open.set(true);
+                }
+                return;
+            }
             let now = st.library_pick.get_untracked();
             st.library_pick.set(if now.as_deref() == Some(code.as_str()) { None } else { Some(code.clone()) });
         }
@@ -272,6 +284,7 @@ fn periods(form: FormCatalogEntry) -> impl IntoElement {
         move || period_choices(&freq, st.library_year.get())
     };
     let code = form.code.clone();
+    let sample_code = form.code.clone();
     view()
         .px(px(12.0))
         .pb(px(10.0))
@@ -279,6 +292,20 @@ fn periods(form: FormCatalogEntry) -> impl IntoElement {
         .pl(px(if crate::mobile::phone() { 16.0 } else { 96.0 }))
         .gap(px(8.0))
         .bg(theme::BG)
+        .child(when(move || st.selected.get().is_some(), move || {
+            let code = sample_code.clone();
+            view()
+                .flex_row()
+                .items_center()
+                .gap(px(6.0))
+                .child(text("Sample").w(px(56.0)).text_size(px(11.0)).text_color(theme::FG2))
+                .child(button_sm("Open a sample", Variant::Ghost, None, || false, move || {
+                    if let Some(sel) = st.selected.get_untracked() {
+                        st.form.open_sample(sel.tin, code.clone());
+                    }
+                }))
+                .child(text("Type in it and print it; nothing is saved.").text_size(px(11.0)).text_color(theme::FG3))
+        }))
         .child(years)
         .child(
             view()

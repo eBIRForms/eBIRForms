@@ -8,7 +8,7 @@ use std::future::Future;
 use std::sync::Arc;
 use std::time::Duration;
 
-use bir_app_core::{AppResult, BirApp, FormCatalogEntry, ReturnFilter, ReturnRow, Taxpayer};
+use bir_app_core::{AppResult, AsNeededForm, BirApp, DeadlineRow, FormCatalogEntry, ReturnFilter, ReturnRow, Taxpayer};
 use nsh_core::prelude::*;
 
 use crate::live::store;
@@ -73,6 +73,62 @@ pub(crate) enum ThemePref {
     Dark,
 }
 
+impl ThemePref {
+    pub(crate) fn key(self) -> &'static str {
+        match self {
+            ThemePref::System => "system",
+            ThemePref::Light => "light",
+            ThemePref::Dark => "dark",
+        }
+    }
+
+    fn from_key(key: &str) -> Self {
+        match key {
+            "light" => ThemePref::Light,
+            "dark" => ThemePref::Dark,
+            _ => ThemePref::System,
+        }
+    }
+}
+
+/// Where a queued return is on its way out, as this app knows it. The
+/// transport is not wired yet (P5): nothing moves a return to Sending or
+/// Failed but a launch hook, and Retry puts it back in the queue.
+#[derive(Clone, PartialEq, Debug)]
+pub(crate) enum SendState {
+    Sending,
+    /// Why it was not accepted, in plain words.
+    Failed(String),
+}
+
+/// Which returns Filings lists.
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub(crate) enum FilingsFilter {
+    All,
+    Drafts,
+    Sending,
+    Sent,
+}
+
+impl FilingsFilter {
+    pub(crate) fn keeps(self, status: &str) -> bool {
+        match self {
+            FilingsFilter::All => true,
+            FilingsFilter::Drafts => status == "Draft",
+            FilingsFilter::Sending => status == "Queued" || status == "Sending",
+            FilingsFilter::Sent => !matches!(status, "Draft" | "Queued" | "Sending"),
+        }
+    }
+}
+
+/// A filled print sheet shown in the preview.
+#[derive(Clone, PartialEq, Debug)]
+pub(crate) struct Preview {
+    pub title: String,
+    pub form_code: String,
+    pub html: String,
+}
+
 /// The selected branch of a taxpayer, as the switcher shows it.
 #[derive(Clone, PartialEq, Debug)]
 pub(crate) struct Selected {
@@ -117,6 +173,31 @@ pub(crate) struct Store {
     pub notice: Signal<Option<Notice>>,
     /// The open return.
     pub form: FormSession,
+    /// Deadlines from 90 days back to a year ahead, every branch.
+    pub deadlines: Signal<Loaded<Vec<DeadlineRow>>>,
+    /// This year's as-needed forms, every branch.
+    pub as_needed: Signal<Loaded<Vec<AsNeededForm>>>,
+    /// Due-date reminders at launch (Settings).
+    pub reminders: Signal<bool>,
+    /// Local send states by return id ([`SendState`]).
+    pub send_state: Signal<std::collections::BTreeMap<i64, SendState>>,
+    pub filings_filter: Signal<FilingsFilter>,
+    /// The calendar lists every taxpayer, not only the selected branch.
+    pub calendar_all: Signal<bool>,
+    /// The command palette (⌘K).
+    pub palette_open: Signal<bool>,
+    /// The phone's start-a-return sheet, for a form code.
+    pub start_sheet: Signal<Option<String>>,
+    /// The phone's search over forms and filings.
+    pub search_open: Signal<bool>,
+    /// The draft the delete confirm asks about.
+    pub confirm_delete: Signal<Option<ReturnRow>>,
+    /// The return a status page shows (queued, sent, failed).
+    pub status_of: Signal<Option<ReturnRow>>,
+    /// The print preview.
+    pub preview: Signal<Option<Preview>>,
+    /// The swiped-open row of a list (one at a time).
+    pub swiped: Signal<Option<i64>>,
 }
 
 impl Store {
@@ -143,6 +224,19 @@ impl Store {
             library_year: signal(bir_app_core::display::current_year()),
             notice: signal(None),
             form: FormSession::new(),
+            deadlines: signal(Loaded::Loading),
+            as_needed: signal(Loaded::Loading),
+            reminders: signal(true),
+            send_state: signal(std::collections::BTreeMap::new()),
+            filings_filter: signal(FilingsFilter::All),
+            calendar_all: signal(false),
+            palette_open: signal(false),
+            start_sheet: signal(None),
+            search_open: signal(false),
+            confirm_delete: signal(None),
+            status_of: signal(None),
+            preview: signal(None),
+            swiped: signal(None),
         }
     }
 
@@ -227,8 +321,10 @@ impl Store {
                         *db = Some(app.clone());
                     }
                     self.db.set(Db::Ready(AppRef(app)));
+                    self.load_settings();
                     self.reload_taxpayers(None);
                     self.reload_returns();
+                    self.reload_deadlines();
                 }
                 Ok(Err(error)) => self.db.set(Db::Failed(error)),
                 Err(error) => self.db.set(Db::Failed(error.to_string())),
@@ -269,6 +365,7 @@ impl Store {
     /// screenshots and a scripted check of the simulator, where nothing
     /// else can tap.
     fn open_from_launch(&'static self) {
+        launch_hooks(self);
         static DONE: std::sync::Once = std::sync::Once::new();
         let Some(spec) = std::env::var("BUWIZ_OPEN").ok().filter(|v| !v.is_empty()) else { return };
         let Some(sel) = self.selected.get_untracked() else { return };
@@ -305,6 +402,153 @@ impl Store {
         });
     }
 
+    /// Deadlines (90 days back to a year ahead) and this year's as-needed
+    /// forms, every branch.
+    pub(crate) fn reload_deadlines(&'static self) {
+        task(async move {
+            let today = today();
+            let (from, to) = ((today - chrono::Duration::days(90)).to_string(), (today + chrono::Duration::days(366)).to_string());
+            let year = bir_app_core::display::current_year();
+            match call(move |app| Ok((app.deadlines_between(&from, &to)?, app.as_needed_forms(year)?))).await {
+                Ok((due, needed)) => {
+                    self.deadlines.set(Loaded::Ready(due));
+                    self.as_needed.set(Loaded::Ready(needed));
+                    self.remind_once();
+                }
+                Err(error) => {
+                    self.deadlines.set(Loaded::Failed(error.clone()));
+                    self.as_needed.set(Loaded::Failed(error));
+                }
+            }
+        });
+    }
+
+    /// The returns list and the deadlines, after a return changed.
+    pub(crate) fn reload_lists(&'static self) {
+        self.reload_returns();
+        self.reload_deadlines();
+    }
+
+    /// The appearance and the reminders setting, as last saved.
+    fn load_settings(&'static self) {
+        task(async move {
+            if let Ok((theme, reminders)) = call(|app| Ok((app.get_setting("ui.theme")?, app.get_setting("reminders.due")?))).await {
+                if let Some(theme) = theme {
+                    self.theme.set(ThemePref::from_key(&theme));
+                }
+                self.reminders.set(reminders.as_deref() != Some("off"));
+            }
+            send_hooks(self);
+        });
+    }
+
+    /// Pick an appearance and keep it.
+    pub(crate) fn set_theme(&'static self, pref: ThemePref) {
+        self.theme.set(pref);
+        task(async move {
+            let _ = call(move |app| app.set_setting("ui.theme", pref.key())).await;
+        });
+    }
+
+    pub(crate) fn set_reminders(&'static self, on: bool) {
+        self.reminders.set(on);
+        task(async move {
+            let _ = call(move |app| app.set_setting("reminders.due", if on { "on" } else { "off" })).await;
+        });
+    }
+
+    /// At launch, with reminders on: one note naming what is due within
+    /// three days (or late) for the selected branch.
+    fn remind_once(&'static self) {
+        static DONE: std::sync::Once = std::sync::Once::new();
+        if !self.reminders.get_untracked() {
+            return;
+        }
+        let (Loaded::Ready(rows), Some(sel)) = (self.deadlines.get_untracked(), self.selected.get_untracked()) else { return };
+        let soon: Vec<DeadlineRow> = rows
+            .into_iter()
+            .filter(|d| d.tin == sel.tin && matches!(d.status.as_str(), "Not started" | "Draft") && days_until(&d.due_date) <= 3)
+            .collect();
+        let Some(first) = soon.iter().min_by_key(|d| d.due_date.clone()).cloned() else { return };
+        DONE.call_once(|| {
+            let n = days_until(&first.due_date);
+            let when = match n {
+                0 => "today".to_owned(),
+                1 => "tomorrow".to_owned(),
+                n if n < 0 => format!("{} days late", -n),
+                n => format!("in {n} days"),
+            };
+            let more = if soon.len() > 1 { format!(" (and {} more)", soon.len() - 1) } else { String::new() };
+            self.notify(NoticeTone::Info, format!("{} · {} is due {when}{more}.", first.form_code, first.period_label));
+        });
+    }
+
+    /// The local send state of return `id`.
+    pub(crate) fn send_state_of(&self, id: i64) -> Option<SendState> {
+        self.send_state.with(|m| m.get(&id).cloned())
+    }
+
+    /// Put a failed return back in the queue.
+    pub(crate) fn retry(&'static self, id: i64) {
+        self.send_state.update(|m| {
+            m.remove(&id);
+        });
+        self.notify(NoticeTone::Success, "Back in the queue. It sends when you're online.");
+    }
+
+    /// Take a queued return back to Draft.
+    pub(crate) fn cancel_queued(&'static self, row: ReturnRow) {
+        task(async move {
+            let open = open_of(&row);
+            let code = row.form_code.clone();
+            let answer = call(move |app| {
+                let opened = app.open_return(&open)?;
+                app.cancel_queued(&code, &opened.draft)
+            })
+            .await;
+            match answer {
+                Ok(()) => {
+                    self.send_state.update(|m| {
+                        m.remove(&row.id);
+                    });
+                    self.notify(NoticeTone::Info, "Taken off the queue: an editable draft again.");
+                    self.reload_lists();
+                }
+                Err(why) => self.notify(NoticeTone::Danger, format!("Still queued: {why}")),
+            }
+        });
+    }
+
+    /// Delete a draft (after the confirm).
+    pub(crate) fn delete_draft(&'static self, row: ReturnRow) {
+        task(async move {
+            let id = row.id;
+            match call(move |app| app.delete_draft(id)).await {
+                Ok(()) => {
+                    self.notify(NoticeTone::Info, format!("{} · {} deleted.", row.form_code, row.period_label));
+                    self.reload_lists();
+                }
+                Err(why) => self.notify(NoticeTone::Danger, format!("Not deleted: {why}")),
+            }
+        });
+    }
+
+    /// Open a saved or filed return.
+    pub(crate) fn open_row(&'static self, row: &ReturnRow) {
+        self.form.open(open_of(row), format!("{} · {}", row.form_code, row.period_label));
+    }
+
+    /// Open a row of a list: a draft opens its form; a queued, sent or
+    /// failed return opens its status page on a phone.
+    pub(crate) fn open_any(&'static self, row: &ReturnRow) {
+        if crate::mobile::phone() && row.status != "Draft" {
+            self.status_of.set(Some(row.clone()));
+            self.go(Route::Status);
+        } else {
+            self.open_row(row);
+        }
+    }
+
     pub(crate) fn select(&self, tin: &str) {
         if let Loaded::Ready(list) = self.taxpayers.get_untracked() {
             self.selected.set(select_branch(&list, tin));
@@ -334,6 +578,144 @@ impl Store {
             })
         });
     }
+}
+
+/// Today where the app runs.
+pub(crate) fn today() -> chrono::NaiveDate {
+    chrono::Local::now().date_naive()
+}
+
+/// Days from today to `iso` (`YYYY-MM-DD`); negative when it is past.
+pub(crate) fn days_until(iso: &str) -> i64 {
+    chrono::NaiveDate::parse_from_str(iso, "%Y-%m-%d").map_or(0, |d| (d - today()).num_days())
+}
+
+pub(crate) fn open_of(row: &ReturnRow) -> bir_app_core::OpenReturn {
+    bir_app_core::OpenReturn { tin: row.tin.clone(), form_code: row.form_code.clone(), year: row.taxable_year, period: row.period, key: row.return_key }
+}
+
+/// Launch hooks for screenshots and scripted checks where nothing can tap
+/// (the iOS simulator; Android through `launch.env`), run once the
+/// taxpayers are read:
+///
+/// - `BUWIZ_ROUTE=home|forms|filings|queue|calendar|settings|taxpayers`
+/// - `BUWIZ_THEME=light|dark`
+/// - `BUWIZ_SHEET=start:<form>|search|delete|profile|palette` (delete: the
+///   first draft's confirm)
+/// - `BUWIZ_STATUS=<form>`: the page of that form's first return that left
+///   Draft
+/// - `BUWIZ_SWIPE=1`: the first Filings row swiped open
+/// - `BUWIZ_PRINT=<form>`: print preview of that form's first return;
+///   `BUWIZ_PRINT_DIALOG=1|share` then opens the print dialog or share sheet
+fn launch_hooks(st: &'static Store) {
+    static DONE: std::sync::Once = std::sync::Once::new();
+    let var = |name: &str| std::env::var(name).ok().filter(|v| !v.is_empty());
+    DONE.call_once(|| {
+        if let Some(theme) = var("BUWIZ_THEME") {
+            st.theme.set(ThemePref::from_key(&theme));
+        }
+        let route = var("BUWIZ_ROUTE");
+        let sheet = var("BUWIZ_SHEET");
+        let status = var("BUWIZ_STATUS");
+        let swipe = var("BUWIZ_SWIPE").is_some();
+        let print = var("BUWIZ_PRINT");
+        let dialog = var("BUWIZ_PRINT_DIALOG");
+        if route.is_none() && sheet.is_none() && status.is_none() && print.is_none() && !swipe {
+            return;
+        }
+        task(async move {
+            // The lists first.
+            for _ in 0..100 {
+                if matches!(st.returns.get_untracked(), Loaded::Ready(_)) && matches!(st.deadlines.get_untracked(), Loaded::Ready(_) | Loaded::Failed(_)) {
+                    break;
+                }
+                timer(Duration::from_millis(100)).await;
+            }
+            timer(Duration::from_millis(600)).await;
+            let rows = match st.returns.get_untracked() {
+                Loaded::Ready(rows) => rows,
+                _ => Vec::new(),
+            };
+            if let Some(route) = route {
+                let to = match route.as_str() {
+                    "forms" | "library" => Route::Library,
+                    "filings" => Route::Filings,
+                    "queue" => Route::Queue,
+                    "calendar" => Route::Calendar,
+                    "settings" => Route::Settings,
+                    "taxpayers" => Route::Taxpayer,
+                    _ => Route::Home,
+                };
+                st.go(to);
+            }
+            if swipe {
+                st.go(Route::Filings);
+                if let Some(r) = rows.iter().find(|r| r.status == "Draft") {
+                    timer(Duration::from_millis(400)).await;
+                    st.swiped.set(Some(r.id));
+                }
+            }
+            if let Some(code) = status
+                && let Some(r) = rows.iter().find(|r| r.form_code == code && r.status != "Draft")
+            {
+                st.status_of.set(Some(r.clone()));
+                st.go(Route::Status);
+            }
+            match sheet.as_deref() {
+                Some("search") => st.search_open.set(true),
+                Some("profile") => st.profile_open.set(true),
+                Some("palette") => st.palette_open.set(true),
+                Some("delete") => st.confirm_delete.set(rows.iter().find(|r| r.status == "Draft").cloned()),
+                Some(s) if s.starts_with("start:") => st.start_sheet.set(Some(s[6..].to_owned())),
+                _ => {}
+            }
+            if let Some(code) = print
+                && let Some(r) = rows.iter().find(|r| r.form_code == code)
+            {
+                crate::screens::preview::print_row(r.clone());
+                if let Some(how) = dialog {
+                    for _ in 0..100 {
+                        if st.preview.get_untracked().is_some() {
+                            break;
+                        }
+                        timer(Duration::from_millis(100)).await;
+                    }
+                    timer(Duration::from_millis(1500)).await;
+                    let act = if how == "share" { crate::screens::preview::Act::Share } else { crate::screens::preview::Act::Print };
+                    crate::screens::preview::run(act, st.owner.run(|| signal(false)));
+                }
+            }
+        });
+    });
+}
+
+/// `BUWIZ_SENDING=<form>` and `BUWIZ_SEND_FAIL=<form>` at launch: mark that
+/// form's queued returns Sending or Failed, to show those states while no
+/// transport is wired (P5).
+fn send_hooks(st: &'static Store) {
+    let sending = std::env::var("BUWIZ_SENDING").ok().filter(|v| !v.is_empty());
+    let failing = std::env::var("BUWIZ_SEND_FAIL").ok().filter(|v| !v.is_empty());
+    if sending.is_none() && failing.is_none() {
+        return;
+    }
+    task(async move {
+        for _ in 0..100 {
+            if let Loaded::Ready(rows) = st.returns.get_untracked() {
+                st.send_state.update(|m| {
+                    for r in rows.iter().filter(|r| r.status == "Queued") {
+                        if sending.as_deref() == Some(r.form_code.as_str()) {
+                            m.insert(r.id, SendState::Sending);
+                        }
+                        if failing.as_deref() == Some(r.form_code.as_str()) {
+                            m.insert(r.id, SendState::Failed("The TIN on the return doesn't match the one registered for this branch.".to_owned()));
+                        }
+                    }
+                });
+                return;
+            }
+            timer(Duration::from_millis(100)).await;
+        }
+    });
 }
 
 fn select_branch(list: &[Taxpayer], tin: &str) -> Option<Selected> {

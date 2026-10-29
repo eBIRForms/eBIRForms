@@ -19,3 +19,6 @@ nsh-base = { path = "../../nsh/crates/nsh-base" }
 
 [target.'cfg(target_os = "android")'.dependencies]
 nsh-platform-android = { path = "../../nsh/crates/nsh-platform-android", default-features = false }
+# Printing: JNI into Buwiz's Printing class.
+jni = "0.21"
+log = "0.4"

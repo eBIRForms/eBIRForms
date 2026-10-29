@@ -3113,6 +3113,15 @@ impl Database {
             .flatten())
     }
 
+    /// Delete the saved return `draft_id` while it is still a Draft; a
+    /// queued or filed return is kept. Whether a row was deleted.
+    pub fn delete_draft(&self, draft_id: i64) -> Result<bool, DbError> {
+        Ok(self.conn.execute(
+            "DELETE FROM form_drafts WHERE id = ?1 AND status = 'Draft'",
+            params![draft_id],
+        )? > 0)
+    }
+
     /// The stored JSON of the saved return `draft_id`, whatever its form:
     /// what reads a return's filing marks (`submitted_at`, `confirmed_at`,
     /// `submission_filename`) without its type. `None` when the row is gone

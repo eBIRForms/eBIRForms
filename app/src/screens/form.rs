@@ -286,8 +286,6 @@ fn open_page(form: Arc<OpenForm>) -> impl IntoElement {
 enum FormRow {
     Head(usize),
     Item(usize, usize, bool),
-    /// Row `r` of a schedule item's table (`last`: closes the part's card).
-    Cells(usize, usize, usize, bool),
 }
 
 /// The rows the list shows: every part's header, and the items of the
@@ -309,15 +307,8 @@ fn form_rows(form: &OpenForm, open: &std::collections::BTreeSet<usize>) -> Vec<F
             for (at, &ii) in shown.iter().enumerate() {
                 let item = &part.items[ii];
                 let last = at + 1 == n;
-                if item.is_schedule() {
-                    // Each table row is a list row of its own: a 40-row
-                    // schedule never mounts all at once.
-                    rows.push(FormRow::Item(pi, ii, false));
-                    let r_n = item.keys.len();
-                    rows.extend((0..r_n).map(|r| FormRow::Cells(pi, ii, r, last && r + 1 == r_n)));
-                } else {
-                    rows.push(FormRow::Item(pi, ii, last));
-                }
+                let _ = item;
+                rows.push(FormRow::Item(pi, ii, last));
             }
         }
     }
@@ -397,7 +388,6 @@ fn form_list(form: Arc<OpenForm>, list: ElementRef, content: ElementRef, heads: 
                     part_head(row_form.clone(), pi).element_ref(&at).into_element()
                 }
                 FormRow::Item(pi, ii, last) => item_cell(row_form.clone(), (pi, ii), last).into_element(),
-                FormRow::Cells(pi, ii, r, last) => cells_row(row_form.clone(), (pi, ii), r, last).into_element(),
             })),
     )
 }
@@ -467,6 +457,7 @@ fn part_head(form: Arc<OpenForm>, pi: usize) -> View {
         .rounded_t(px(theme::R_CARD))
         .rounded_b(move || px(if open() { 0.0 } else { theme::R_CARD }))
         .cursor_pointer()
+        .label(part_name(&part.name, pi))
         .active(|s| s.opacity(0.7))
         .on_press(move || st.toggle_part(pi))
         .child(each(move || vec![open()], |o| *o, |o, _| icon(if o.get_untracked() { Icon::ChevronDown } else { Icon::ChevronRight }, 16.0, || theme::FG2)))
@@ -527,7 +518,10 @@ fn toolbar(form: Arc<OpenForm>) -> impl IntoElement {
                 .gap(px(8.0))
                 .child(button_sm("Check", Variant::Ghost, Some(Icon::CircleCheck), busy, move || st.validate()))
         }))
-        .child(button_sm("Print", Variant::Secondary, Some(Icon::Printer), busy, move || st.print()))
+        .child(when(move || !st.editable.get() && !st.sample.get() && matches!(st.status.get().as_str(), "Sent" | "Submitted" | "Confirmed" | "Paid"), move || {
+            button_sm("Amend", Variant::Secondary, None, busy, move || st.amend()).label("Amend")
+        }))
+        .child(button_sm("Print", Variant::Secondary, Some(Icon::Printer), busy, move || st.print()).label("Print"))
 }
 
 fn header(form: Arc<OpenForm>) -> impl IntoElement {
@@ -548,7 +542,7 @@ fn header(form: Arc<OpenForm>) -> impl IntoElement {
                 .child(chip(
                     move || {
                         let status = st.status.get();
-                        if st.editable.get() { status } else { format!("{status} · read-only") }
+                        if st.sample.get() { "Sample · not saved".to_owned() } else if st.editable.get() { status } else { format!("{status} · read-only") }
                     },
                     Tone::Accent,
                 ))
@@ -615,7 +609,24 @@ pub(super) fn filer_card(form: Arc<OpenForm>) -> impl IntoElement {
                 .child(text(rdo).text_size(px(11.0)).font_family(mono()).text_color(theme::FG2))
                 .child(when(move || !email().is_empty(), move || text(email2.clone()).text_size(px(11.0)).text_color(theme::FG2).truncate())),
         )
-        .child(text("Change in profile").text_size(px(12.0)).text_color(theme::ACCENT))
+        .child(
+            view()
+                .items_end()
+                .gap(px(6.0))
+                .child(text("Change in profile").text_size(px(12.0)).text_color(theme::ACCENT))
+                .child(when(move || st.editable.get() && !st.profile.with(|p| p.is_empty()) && !st.profile.with(|p| st.unlocked.with(|u| p.iter().all(|k| u.contains(k)))), move || {
+                    text("Edit on this return")
+                        .text_size(px(12.0))
+                        .font_weight(FontWeight::SEMIBOLD)
+                        .text_color(theme::ACCENT)
+                        .cursor_pointer()
+                        .label("Edit on this return")
+                        .on_press(move || {
+                            st.unlock(st.profile.get_untracked());
+                            store().notify(crate::store::NoticeTone::Info, "The profile's boxes are open on this return. What you type stays here; the profile is unchanged.");
+                        })
+                })),
+        )
 }
 
 pub(super) fn p_tin(form: &OpenForm) -> String {
@@ -637,6 +648,12 @@ fn form_errors() -> impl IntoElement {
     })
 }
 
+/// Whether the filer opened the penalties with Edit (tracked).
+fn penalties_open() -> bool {
+    let st = session();
+    st.penalties.with(|p| p.iter().filter(|p| p.applies).any(|p| p.edited || st.unlocked.with(|u| p.keys.iter().any(|k| u.contains(k)))))
+}
+
 /// Surcharge, interest, compromise and their total per party the
 /// penalties apply to.
 fn penalties_panel() -> impl IntoElement {
@@ -651,8 +668,20 @@ fn penalties_panel() -> impl IntoElement {
             .border_1()
             .border_color(theme::BORDER)
             .bg(theme::SURFACE)
-            .child(text("Penalties").text_size(px(13.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::FG))
-            .child(text("Computed from the due date and the amount payable; they change as you fill the return.").text_size(px(11.0)).text_color(theme::FG2))
+            .child(
+                view()
+                    .flex_row()
+                    .items_center()
+                    .gap(px(8.0))
+                    .child(text("Penalties").flex_1().text_size(px(13.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::FG))
+                    .child(when(move || st.editable.get() && !penalties_open(), move || {
+                        button_sm("Edit penalties", Variant::Ghost, None, || false, move || {
+                            let keys: Vec<String> = st.penalties.get_untracked().into_iter().filter(|p| p.applies).flat_map(|p| p.keys).collect();
+                            st.unlock(keys);
+                        })
+                    })),
+            )
+            .child(text(move || if penalties_open() { "You're entering the penalties yourself (an amount the RDO approved, say). Type them in their items below." } else { "Computed from the due date and the amount payable; they change as you fill the return." }).text_size(px(11.0)).text_color(theme::FG2))
             .child(each(parties, |p| p.keys.clone(), move |party, index| {
                 let party = party.get_untracked();
                 let label = move || if !many() { String::new() } else if index.get() == 0 { "Taxpayer".to_owned() } else { "Spouse".to_owned() };
@@ -701,8 +730,8 @@ fn side_nav(form: Arc<OpenForm>, main: ElementRef, content: ElementRef, heads: H
             .gap(px(4.0))
             .px(px(4.0))
             .pb(px(8.0))
-            .child(button_sm("Expand all", Variant::Ghost, None, || false, move || st.open_parts.set(all.clone())))
-            .child(button_sm("Collapse all", Variant::Ghost, None, || false, move || st.open_parts.set(Default::default()))),
+            .child(button_sm("Expand all", Variant::Ghost, None, || false, move || st.open_parts.set(all.clone())).label("Expand all"))
+            .child(button_sm("Collapse all", Variant::Ghost, None, || false, move || st.open_parts.set(Default::default())).label("Collapse all")),
     );
     for (pi, part) in form.layout.parts.iter().enumerate() {
         let errors = move || st.messages.with(|m| m.iter().filter(|p| p.item.0 == pi).count());
@@ -831,7 +860,7 @@ fn item_row(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement {
                         .child(when(all_computed, || chip("Computed", Tone::Neutral))),
                 )
                 .child(each(needs, |n| n.clone(), |n, _| text(n.get_untracked()).text_size(px(11.0)).text_color(theme::FG2)))
-                .child(controls(&item))
+                .child(if item.is_schedule() { schedule_table(form.clone(), id).into_element() } else { controls(&item) })
                 .child(each(notes, |n| n.clone(), |n, _| text(n.get_untracked()).text_size(px(11.0)).text_color(theme::FG3)))
                 .child(text(message).h(px(18.0)).text_size(px(12.0)).text_color(theme::DANGER).truncate()),
         )
@@ -973,17 +1002,11 @@ fn is_tin_item(item: &LayoutItem) -> bool {
     named && (3..=5).contains(&item.fields.len()) && item.fields.iter().all(|f| f.kind == "text" || f.kind == "int")
 }
 
-/// The TIN as the paper prints it: boxes of 3-3-3-5 digits, dashes between.
+/// The TIN as one grouped control under the item's one label: a single box
+/// that takes the digits and shows them 000-000-000-00000, each part going
+/// to its own box of the form.
 fn tin_boxes(item: &LayoutItem) -> impl IntoElement {
-    let mut row = view().flex_row().items_center().gap(px(6.0));
-    for (i, f) in item.fields.iter().enumerate() {
-        if i > 0 {
-            row = row.child(text("-").text_size(px(13.0)).text_color(theme::FG3));
-        }
-        let width = if i == 3 { 76.0 } else { 58.0 };
-        row = row.child(text_box(f.key.clone(), f.kind.clone(), false, f.computed, width, f.max_len, false));
-    }
-    row
+    super::phone_fields::tin_box(item.fields.clone())
 }
 
 fn control_width(kind: &str, max_len: Option<u32>) -> f32 {
@@ -1078,9 +1101,18 @@ fn entry(key: String, kind: String, whole: bool, width: f32, max_len: Option<u32
         let key = key.clone();
         let kind = kind.clone();
         move |v: &str| {
+            let prev = typed_text.get_untracked();
             typed_text.set(v.to_owned());
             match kind.as_str() {
                 "date" => {
+                    // Slashes as the digits come, the caret after the same digit.
+                    let shown = crate::typing::slash_date(v);
+                    if shown != v {
+                        let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
+                        typed_text.set(shown.clone());
+                        at.set_selection(caret, caret);
+                    }
+                    let v = shown.as_str();
                     if let Some(date) = parse_typed_date(v) {
                         date_error.set(String::new());
                         st.edit(key.clone(), FieldValue::Text(format_form_date(date)), false);
@@ -1094,10 +1126,12 @@ fn entry(key: String, kind: String, whole: bool, width: f32, max_len: Option<u32
                     // A phone groups the thousands as they are typed.
                     if kind == "money" && crate::mobile::phone() {
                         let grouped = live_commas(&clean);
-                        let end = grouped.encode_utf16().count() as u32;
-                        typed_text.set(grouped);
-                        // The caret stays at the end of what was typed.
-                        at.set_selection(end, end);
+                        if grouped != v {
+                            // The caret stays after the digit just typed.
+                            let caret = crate::typing::caret_after(&prev, v, &grouped, |c| c.is_ascii_digit() || c == '.' || c == '-');
+                            typed_text.set(grouped);
+                            at.set_selection(caret, caret);
+                        }
                     }
                     st.edit(key.clone(), FieldValue::Text(clean), false);
                 }
@@ -1206,7 +1240,7 @@ fn entry(key: String, kind: String, whole: bool, width: f32, max_len: Option<u32
         .into_element()
 }
 
-fn locked_box(key: String, kind: String, whole: bool, computed: bool, width: f32, pool: bool) -> impl IntoElement {
+fn locked_box(key: String, kind: String, whole: bool, computed: bool, width: f32, pool: bool) -> AnyElement {
     let st = session();
     let numeric = matches!(kind.as_str(), "money" | "pct");
     let shown = {
@@ -1223,10 +1257,29 @@ fn locked_box(key: String, kind: String, whole: bool, computed: bool, width: f32
         move || shown().1
     };
     let hint2 = hint.clone();
-    let mut label = text(move || shown().0)
+    let (hint3, hint4) = (hint.clone(), hint.clone());
+    let shown_phone = shown.clone();
+    let shown = shown_phone;
+    let mut label = text({
+        let shown = shown.clone();
+        move || shown().0
+    })
         .text_size(move || px(if hint2() { 11.0 } else { 13.0 }))
         .text_color(move || if hint() { theme::FG3 } else { theme::FG })
         .truncate();
+    if crate::mobile::phone() {
+        // The kit's read-only row: the value as plain text (FG, amounts
+        // in the amount face), or why it is blank in FG3; no box.
+        let shown2 = shown.clone();
+        let mut value = text(move || shown2().0)
+            .text_size(move || px(if hint3() { 13.0 } else if numeric { 18.0 } else { 17.0 }))
+            .text_color(move || if hint4() { theme::FG3 } else { theme::FG })
+            .number_of_lines(2u32);
+        if numeric {
+            value = value.text_right().tabular_nums().font_family(amount_font());
+        }
+        return view().w_full().min_h(px(34.0)).justify_center().child(value).into_element();
+    }
     if numeric {
         label = label.text_right().tabular_nums();
     }
@@ -1238,6 +1291,7 @@ fn locked_box(key: String, kind: String, whole: bool, computed: bool, width: f32
         .rounded(px(theme::R_ROW))
         .bg(theme::BG)
         .child(label)
+        .into_element()
 }
 
 fn tick(on: impl Fn() -> bool + 'static, locked: impl Fn() -> bool + 'static) -> impl IntoElement {
@@ -1301,11 +1355,13 @@ pub(super) fn radio_group(radios: Vec<LayoutField>) -> impl IntoElement {
         let (k1, k2, k3, k4, k5) = (key.clone(), key.clone(), key.clone(), key.clone(), key.clone());
         group = group.child(
             view()
-                .h(px(28.0))
+                .min_h(px(28.0))
+                .max_w(relative(1.0))
                 .px(px(12.0))
+                .py(px(4.0))
                 .flex_row()
                 .items_center()
-                .rounded(px(theme::R_FULL))
+                .rounded(px(14.0))
                 .border_1()
                 .border_color(move || if st.is_ticked(&k2) { theme::FG2 } else { theme::BORDER_STRONG })
                 .bg(move || if st.is_ticked(&k5) { theme::SELECTED } else { theme::SURFACE })
@@ -1335,7 +1391,7 @@ pub(super) fn radio_group(radios: Vec<LayoutField>) -> impl IntoElement {
                     }
                     st.choose(edits);
                 })
-                .child(text(choice_label(f)).text_size(px(13.0)).font_weight(FontWeight::MEDIUM).text_color(move || {
+                .child(text(choice_label(f)).flex_shrink(1.0).min_w(px(0.0)).text_size(px(13.0)).font_weight(FontWeight::MEDIUM).text_color(move || {
                     if st.is_ticked(&k1) { theme::FG } else if st.is_locked(&k3, computed) { theme::FG3 } else { theme::FG2 }
                 })),
         );
@@ -1387,7 +1443,10 @@ pub(super) fn select_box(key: String, listed: Vec<FieldOption>, computed: bool, 
             let c = current();
             if c.is_empty() { st.reason(&reason_key) } else { c }
         };
-        view().w(if width > 0.0 { Length::from(px(width)) } else { Length::from(relative(1.0)) }).min_h(px(28.0)).px(px(8.0)).justify_center().rounded(px(5.0)).bg(theme::BG).child(text(shown).text_size(px(13.0)).text_color(theme::FG).truncate())
+        if crate::mobile::phone() {
+            return view().w_full().min_h(px(34.0)).justify_center().child(text(shown).text_size(px(17.0)).text_color(theme::FG).number_of_lines(2u32)).into_element();
+        }
+        view().w(if width > 0.0 { Length::from(px(width)) } else { Length::from(relative(1.0)) }).min_h(px(28.0)).px(px(8.0)).justify_center().rounded(px(5.0)).bg(theme::BG).child(text(shown).text_size(px(13.0)).text_color(theme::FG).truncate()).into_element()
     };
     let editable_view = move || {
         let current = current.clone();
@@ -1568,7 +1627,14 @@ pub(super) fn one_date(parts: DateParts) -> impl IntoElement {
                 input()
                     .value(text_sig)
                     .on_change(move |v: &str| {
-                        text_sig.set(v.to_owned());
+                        let prev = text_sig.get_untracked();
+                        let shown = crate::typing::slash_date(v);
+                        text_sig.set(shown.clone());
+                        if shown != v {
+                            let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
+                            date_at.set_selection(caret, caret);
+                        }
+                        let v = shown.as_str();
                         if let Some(date) = parse_typed_date(v) {
                             error.set(String::new());
                             write(Some(chrono_parts::split(date)));
@@ -1649,52 +1715,124 @@ pub(super) fn schedule_head(item: &LayoutItem) -> impl IntoElement {
     head
 }
 
-/// One row of a schedule table, inside its part's card.
-pub(super) fn cells_row(form: Arc<OpenForm>, id: ItemId, r: usize, last: bool) -> impl IntoElement {
+/// A column's width in the desktop table, by its kind.
+fn col_width(kind: &str, label: &str) -> f32 {
+    match kind {
+        "money" => 170.0,
+        "pct" => 90.0,
+        "int" => 110.0,
+        "date" => 140.0,
+        "radio" | "chk" => 64.0,
+        "sel" => 220.0,
+        _ => (label.chars().count() as f32 * 7.0).clamp(140.0, 240.0),
+    }
+}
+
+/// Rows a schedule table adds per display frame while it mounts.
+const TABLE_ROWS_PER_FRAME: usize = 4;
+const TABLE_ROW_H: f32 = 40.0;
+const TABLE_HEAD_H: f32 = 34.0;
+
+/// A schedule on the desktop (DESIGN_SYSTEM "Form page"): one table whose
+/// columns keep their widths and scroll sideways inside their own box, the
+/// first column (the row number or the row's label) pinned at the left. Its
+/// rows mount a few per frame, so a 40-row schedule never stalls one.
+fn schedule_table(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement {
     let st = session();
-    let item = form.item(id).expect("an item of the layout");
-    let mut row = view().flex_row().items_center().gap(px(8.0)).py(px(3.0)).pl(px(60.0)).pr(px(16.0));
-    let numbered = item.row_labels.is_none() || item.numbered != Some(false);
-    if numbered {
-        let no = (item.start.unwrap_or(1) as usize + r).to_string();
-        row = row.child(text(no).w(px(28.0)).text_size(px(12.0)).tabular_nums().text_color(theme::FG3));
-    }
-    if let Some(labels) = &item.row_labels {
-        row = row.child(text(labels.rows.get(r).cloned().unwrap_or_default()).flex_1().min_w(px(0.0)).text_size(px(12.0)).text_color(theme::FG2));
-    }
-    let keys = &item.keys[r];
-    for (ci, col) in item.cols.iter().enumerate() {
-        if col.kind == "hidden" {
-            continue;
+    let Some(item) = form.item(id).cloned() else { return view().into_element() };
+    let cols: Vec<usize> = item.cols.iter().enumerate().filter(|(_, c)| c.kind != "hidden").map(|(ci, _)| ci).collect();
+    let n = item.keys.len();
+    let mounted = signal(n.min(8));
+    fn grow(mounted: Signal<usize>, n: usize) {
+        if mounted.get_untracked() >= n {
+            return;
         }
-        let Some(key) = keys.get(ci).cloned() else { continue };
-        let cell = match col.kind.as_str() {
-            "radio" | "chk" => {
-                let (k1, k2, k3) = (key.clone(), key.clone(), key.clone());
-                let computed = col.computed;
-                view()
-                    .cursor_pointer()
-                    .on_press(move || {
-                        if !st.is_locked(&k3, computed) {
-                            let next = if st.is_ticked(&k3) { "false" } else { "true" };
-                            st.choose(vec![(k3.clone(), next.to_owned())]);
-                        }
-                    })
-                    .child(tick(move || st.is_ticked(&k1), move || st.is_locked(&k2, computed)))
-                    .into_element()
-            }
-            "sel" => select_box(key, col.options.clone(), col.computed, 0.0).into_element(),
-            kind => text_box(key, kind.to_owned(), col.whole, col.computed, 0.0, None, false).into_element(),
-        };
-        row = row.child(view().flex_1().min_w(px(0.0)).child(cell));
+        request_animation_frame(move |_| {
+            mounted.update(|m| *m = (*m + TABLE_ROWS_PER_FRAME).min(n));
+            grow(mounted, n);
+        });
     }
-    view()
-        .border_l(px(1.0))
+    grow(mounted, n);
+    let rows = move || (0..mounted.get()).collect::<Vec<usize>>();
+    let labelled = item.row_labels.is_some();
+    let numbered = item.row_labels.is_none() || item.numbered != Some(false);
+    let pin_w = if labelled { 200.0 } else { 44.0 };
+    let head_cell = |label: String, w: f32| {
+        view().w(px(w)).h(px(TABLE_HEAD_H)).px(px(8.0)).justify_center().flex_shrink(0.0).child(text(label).text_size(px(12.0)).font_weight(FontWeight::MEDIUM).text_color(theme::FG2).number_of_lines(2u32))
+    };
+    // The pinned column.
+    let pin_item = item.clone();
+    let pinned = view()
+        .w(px(pin_w))
+        .flex_shrink(0.0)
         .border_r(px(1.0))
-        .border_b(px(if last { 1.0 } else { 0.0 }))
         .border_color(theme::BORDER)
-        .rounded_b(px(if last { theme::R_CARD } else { 0.0 }))
-        .pb(px(if last { 8.0 } else { 0.0 }))
         .bg(theme::SURFACE)
-        .child(row)
+        .child(head_cell(item.row_labels.as_ref().map(|l| l.caption.clone()).unwrap_or_else(|| "#".to_owned()), pin_w))
+        .child(each(rows.clone(), |r| *r, move |r, _| {
+            let r = r.get_untracked();
+            let label = match &pin_item.row_labels {
+                Some(l) => {
+                    let name = l.rows.get(r).cloned().unwrap_or_default();
+                    if numbered { format!("{} {name}", pin_item.start.unwrap_or(1) as usize + r) } else { name }
+                }
+                None => (pin_item.start.unwrap_or(1) as usize + r).to_string(),
+            };
+            view()
+                .h(px(TABLE_ROW_H))
+                .px(px(8.0))
+                .justify_center()
+                .border_t(px(1.0))
+                .border_color(theme::BORDER)
+                .child(text(label).text_size(px(12.0)).tabular_nums().text_color(theme::FG2).number_of_lines(2u32))
+        }));
+    // The columns that scroll.
+    let total: f32 = cols.iter().map(|ci| col_width(&item.cols[*ci].kind, &item.cols[*ci].label)).sum::<f32>() + 8.0 * cols.len() as f32;
+    let mut head = view().flex_row().gap(px(8.0)).h(px(TABLE_HEAD_H));
+    for ci in &cols {
+        let c = &item.cols[*ci];
+        head = head.child(head_cell(c.label.clone(), col_width(&c.kind, &c.label)));
+    }
+    let cell_item = item.clone();
+    let cell_cols = cols.clone();
+    let body = view().w(px(total)).child(head).child(each(rows, |r| *r, move |r, _| {
+        let r = r.get_untracked();
+        let mut row = view().flex_row().items_center().gap(px(8.0)).h(px(TABLE_ROW_H)).border_t(px(1.0)).border_color(theme::BORDER);
+        let keys = cell_item.keys.get(r).cloned().unwrap_or_default();
+        for ci in &cell_cols {
+            let c = &cell_item.cols[*ci];
+            let Some(key) = keys.get(*ci).cloned() else { continue };
+            let w = col_width(&c.kind, &c.label);
+            let cell: AnyElement = match c.kind.as_str() {
+                "radio" | "chk" => {
+                    let (k1, k2, k3) = (key.clone(), key.clone(), key.clone());
+                    let computed = c.computed;
+                    view()
+                        .cursor_pointer()
+                        .on_press(move || {
+                            if !st.is_locked(&k3, computed) {
+                                let next = if st.is_ticked(&k3) { "false" } else { "true" };
+                                st.choose(vec![(k3.clone(), next.to_owned())]);
+                            }
+                        })
+                        .child(tick(move || st.is_ticked(&k1), move || st.is_locked(&k2, computed)))
+                        .into_element()
+                }
+                "sel" => select_box(key, c.options.clone(), c.computed, w).into_element(),
+                kind => text_box(key, kind.to_owned(), c.whole, c.computed, w, None, false).into_element(),
+            };
+            row = row.child(view().w(px(w)).flex_shrink(0.0).child(cell));
+        }
+        row
+    }));
+    view()
+        .flex_row()
+        .mt(px(4.0))
+        .rounded(px(theme::R_ROW))
+        .border_1()
+        .border_color(theme::BORDER)
+        .overflow_hidden()
+        .child(pinned)
+        .child(scroll().horizontal().flex_1().min_w(px(0.0)).child(view().px(px(8.0)).child(body)))
+        .into_element()
 }
