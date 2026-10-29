@@ -69,10 +69,16 @@ if selected V1; then
         hits=""
         for b in "${bins[@]}"; do
             [ -f "$b" ] || { hits+="missing $b; "; continue; }
-            # No exceptions: any passphrase or SFTP text at all, and BIR's
-            # dispatcher and upload hosts. (The printed forms' footer names
-            # BIR's public website, so the bare domain is not on the list.)
-            found=$(strings -a "$b" | grep -i -E 'passphrase|tindispatcher|dispatcher\.php|birgovph|ebf2\.bir|ws2\.bir|s[f]tp' | head -3)
+            # No exceptions: any passphrase text at all, BIR's dispatcher and
+            # upload hosts, and S-F-T-P as a word or identifier part (sftp,
+            # _sftp, russh_sftp, SftpSession, BIR_SFTP_*), stricter than a
+            # word match. Run-on rodata such as "https"+"ftp" or "_MSFT"+
+            # "PHYSICAL" is not an identifier. (The printed forms' footer
+            # names BIR's public website, so the bare domain is not listed.)
+            text="$LOGS/strings-$(basename "$(dirname "$(dirname "$b")")")-$(basename "$b").txt"
+            strings -a "$b" >"$text"
+            found=$( { grep -i -E 'passphrase|tindispatcher|dispatcher\.php|birgovph|ebf2\.bir|ws2\.bir' "$text"; \
+                grep -E '(^|[^A-Za-z])[Ss][Ff][Tt][Pp]|Sftp|SFTP([^A-Z]|$)|sftp([_:-]|$)|_sftp' "$text"; } | head -3)
             [ -n "$found" ] && hits+="$b: $(echo "$found" | tr '\n' '|'); "
         done
         [ -z "$hits" ] && pass V1 "tree clean; ${#bins[@]} binaries carry no BIR secret strings" || fail V1 "$hits"
