@@ -451,7 +451,7 @@ pub struct PrintedReturn {
 /// The app's door into bir-core: owns the database handle and the table of
 /// ported functions.
 pub struct BirApp {
-    db: DatabaseHandle,
+    pub(crate) db: DatabaseHandle,
     path: PathBuf,
     module: HostModule,
 }
