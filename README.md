@@ -9,13 +9,17 @@ and live code patching while you develop uses ra-jit from
 [blaze](https://github.com/hexuria/blaze). Both are git submodules.
 
 > Status: early. The window runs; the form screens are being ported.
-> macOS first; Windows and Linux follow.
+> macOS first; the Windows and Linux builds are new.
 
 ## Requirements
 
-- macOS on Apple Silicon for the app. The domain crates also build on
-  Windows (MSVC, with Perl for the bundled OpenSSL) and Linux
-  (`libdbus-1-dev` and `pkg-config`).
+- macOS on Apple Silicon, Windows 10/11 (x64, MSVC) or Linux (GTK 4.14+,
+  e.g. Ubuntu 24.04) for the app.
+  - Windows: Visual Studio Build Tools, Perl (for the bundled OpenSSL),
+    LLVM (set `LIBCLANG_PATH`, e.g. `C:\Program Files\LLVM\bin`) and the
+    WebView2 Runtime (built into Windows 11).
+  - Linux: `sudo apt install clang libclang-dev pkg-config libgtk-4-dev
+    libwebkitgtk-6.0-dev libdbus-1-dev`.
 - [rustup](https://rustup.rs). The pinned toolchain (`rust-toolchain.toml`,
   Rust 1.99.0) installs itself on the first build.
 - [just](https://github.com/casey/just) (optional, for the shortcuts below).
@@ -36,7 +40,8 @@ Already cloned without submodules? Run `git submodule update --init`.
 just run          # or: cd app && cargo run
 ```
 
-The first build compiles nsh and takes a few minutes. Later builds are fast.
+The same command opens the window on Windows and Linux. The first build
+compiles nsh and takes a few minutes. Later builds are fast.
 
 ## Run the tests
 
