@@ -8,8 +8,8 @@ The app is written in Rust. Its UI uses [Native Shell (nsh)](https://github.com/
 and live code patching while you develop uses ra-jit from
 [blaze](https://github.com/hexuria/blaze). Both are git submodules.
 
-> Status: early. The window runs; the form screens are being ported.
-> macOS first; the Windows and Linux builds are new.
+> Status: early. Every screen runs on macOS, iOS and Android; the Windows
+> and Linux builds are new.
 
 ## Requirements
 
@@ -42,6 +42,13 @@ just run          # or: cd app && cargo run
 
 The same command opens the window on Windows and Linux. The first build
 compiles nsh and takes a few minutes. Later builds are fast.
+
+On a phone:
+
+```sh
+just ios          # the iOS simulator (needs Xcode)
+just android      # an Android emulator or device (needs the Android SDK and NDK)
+```
 
 ## Run the tests
 
@@ -88,6 +95,7 @@ that gets patched:
 | `crates/bir-rules` | Runtime for the pinned rule sets |
 | `crates/bir-print` | Filled form sheets (HTML) and PDF output |
 | `crates/bir-submit` | Submission queue client |
+| `crates/sqlcipher-tomcrypt` | SQLCipher for Android, without OpenSSL |
 | `crates/bir-app-core` | The typed API the app calls |
 | `nsh/`, `blaze/` | Submodules: UI engine and live patching |
 
