@@ -1,0 +1,7 @@
+{
+  "name": "Buwiz",
+  "id": "com.buwiz.oss",
+  "appearance": "system",
+  "rust": ".",
+  "root": "App"
+}

@@ -1,0 +1,26 @@
+# The domain crates. The app (`app/`) is its own workspace, like rox's, so
+# `cargo ra-jit` builds and patches it from its own directory; it takes
+# these crates by path.
+[workspace]
+resolver = "2"
+members = [
+    "crates/bir-rules",
+    "crates/bir-core",
+    "crates/bir-print",
+    "crates/bir-app-core",
+    "crates/bir-submit",
+]
+exclude = ["app", "nsh", "blaze"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+publish = false
+
+[workspace.dependencies]
+bir-rules = { path = "crates/bir-rules" }
+bir-core = { path = "crates/bir-core" }
+bir-print = { path = "crates/bir-print" }
+bir-app-core = { path = "crates/bir-app-core" }
+bir-submit = { path = "crates/bir-submit" }

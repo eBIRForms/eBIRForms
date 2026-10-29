@@ -1,0 +1,4 @@
+[toolchain]
+# Same pin as rox: blaze (ra-jit) patches builds made by this compiler.
+channel = "1.99.0"
+components = ["rust-src", "rustfmt", "clippy"]

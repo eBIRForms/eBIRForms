@@ -1,0 +1,9 @@
+[package]
+name = "bir-submit"
+description = "Submission queue client: device key, tickets, sealed payloads, receipts. Holds no BIR secrets."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]

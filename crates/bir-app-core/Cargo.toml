@@ -1,0 +1,12 @@
+[package]
+name = "bir-app-core"
+description = "Typed API the app calls: one door into forms, deadlines, penalties, print and submit."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+bir-core.workspace = true
+bir-print.workspace = true
+bir-submit.workspace = true

@@ -1,0 +1,10 @@
+[package]
+name = "bir-core"
+description = "BIR forms, field validation, deadlines, penalties, local storage and IAF XML. No network."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+bir-rules.workspace = true

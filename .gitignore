@@ -1,0 +1,30 @@
+# Build output
+target/
+.nsh/
+
+# Internal: how we build, plan and track progress. Never published.
+/internal/
+
+# Local agent and editor state
+.claude/settings.local.json
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Secrets and local config. BIR protocol constants never live in this repo.
+.env
+.env.*
+!.env.example
+.keys/
+*.pem
+*.p8
+*.p12
+*.key
+
+# Local data the app writes while developing
+*.db
+*.db-shm
+*.db-wal
+bir_key.txt
+*.log
