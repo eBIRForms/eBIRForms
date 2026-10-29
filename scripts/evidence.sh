@@ -183,7 +183,7 @@ PHONE=(
     "sending|BUWIZ_STATUS=sending|Sending"
     "attention|BUWIZ_STATUS=attention|confirmation"
     "how-sheet|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_PICK=how|worked out|20"
-    "payee-picker|BUWIZ_OPEN=1707:2026:3 BUWIZ_PICK=payee|payee|20"
+    "payee-picker|BUWIZ_OPEN=1606:2026:3 BUWIZ_PICK=payee|payee|20"
     "delete-confirm|BUWIZ_ROUTE=filings BUWIZ_SHEET=delete|Delete"
     "settings|BUWIZ_ROUTE=settings|Sign in to send"
 )
