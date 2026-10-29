@@ -1,3 +1,4 @@
-# Golden and fixture text compares byte for byte: LF on every OS (a
-# Windows checkout would otherwise turn them CRLF).
-*.txt text eol=lf
+# Check files out byte for byte on every OS: the goldens and fixtures
+# (sample payloads, frozen sheets) compare exactly, and a Windows checkout
+# would otherwise turn their LF into CRLF.
+* -text
