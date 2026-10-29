@@ -5,23 +5,24 @@
 //! - [`Submitter`]: device-flow sign-in, tokens and the device key in the
 //!   OS credential store ([`secrets`]), tickets, the HPKE seal ([`seal`]),
 //!   the v2 submission, the relay pipe ([`pipe`]) limited to the hosts of
-//!   an offline-signed egress list ([`egress`]), and receipt checks
+//!   an offline-signed trust list ([`trust`]), and receipt checks
 //!   ([`receipt`]).
 //! - [`BuwizTransport`]: the queue's `SubmissionTransport`.
 //! - [`Submission`]: the small API the app calls.
 //!
 //! This crate holds no BIR protocol constant, passphrase, endpoint or SFTP
-//! code. Where the pipe may connect comes from the server's signed egress
-//! list, trusted only through a pinned public key.
+//! code. Where the pipe may connect comes from the server's signed trust
+//! list, trusted only through a pinned public key; the list also carries
+//! the only sealing and receipt keys the app accepts.
 
 pub mod client;
 pub mod device;
-pub mod egress;
 pub mod pipe;
 pub mod receipt;
 pub mod seal;
 pub mod secrets;
 pub mod transport;
+pub mod trust;
 
 use std::sync::Arc;
 

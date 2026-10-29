@@ -42,7 +42,7 @@ impl Receipt {
 pub enum ReceiptError {
     #[error("the receipt is malformed")]
     Malformed,
-    #[error("the receipt is signed by a key the server does not publish")]
+    #[error("the receipt is signed by a key not in the signed trust list")]
     UnknownKey,
     #[error("the receipt's signature is wrong")]
     Signature,
@@ -81,7 +81,7 @@ pub fn key_id(jws: &str) -> Option<String> {
 }
 
 /// Checks a compact EdDSA JWS of type `typ` against `keys` (matched by
-/// `kid`) and answers its payload bytes. Receipts and the egress list both
+/// `kid`) and answers its payload bytes. Receipts and the trust list both
 /// use it.
 pub(crate) fn verify_compact(
     keys: &[(String, VerifyingKey)],

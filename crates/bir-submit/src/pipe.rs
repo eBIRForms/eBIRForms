@@ -1,7 +1,7 @@
 //! The app's end of the relay pipe: a dumb byte forwarder.
 //!
 //! The server sends `open` for a host and port; the app connects only if
-//! the signed [`EgressList`] permits it, then copies bytes both ways without
+//! the signed [`TrustList`] permits it, then copies bytes both ways without
 //! looking at them. Everything that passes is TLS or SSH ciphertext, or
 //! the dispatcher's wrapped fields: the BIR secrets and the SSH session
 //! stay on the server. One WebSocket carries every stream. Text frames are
@@ -18,7 +18,7 @@ use tokio::net::TcpStream;
 use tokio::sync::mpsc;
 use tokio_tungstenite::tungstenite::Message;
 
-use crate::egress::EgressList;
+use crate::trust::TrustList;
 
 const CONNECT_TIMEOUT: Duration = Duration::from_secs(10);
 
@@ -62,7 +62,7 @@ pub enum Ended {
 }
 
 /// Forwards until the server's `result` or the socket ends.
-pub async fn serve<S>(socket: S, allowed: &EgressList) -> Ended
+pub async fn serve<S>(socket: S, allowed: &TrustList) -> Ended
 where
     S: Stream<Item = Result<Message, tokio_tungstenite::tungstenite::Error>>
         + futures_util::Sink<Message, Error = tokio_tungstenite::tungstenite::Error>
@@ -91,11 +91,11 @@ where
                 Ok(Control::Open { stream, host, port }) => {
                     let answer = if !allowed.permits(&host, port) {
                         tracing::warn!(
-                            "relay: refused {host}:{port}, not on the signed egress list"
+                            "relay: refused {host}:{port}, not on the signed trust list"
                         );
                         Control::Refused {
                             stream,
-                            reason: format!("{host}:{port} is not on the signed egress list"),
+                            reason: format!("{host}:{port} is not on the signed trust list"),
                         }
                     } else {
                         match tokio::time::timeout(

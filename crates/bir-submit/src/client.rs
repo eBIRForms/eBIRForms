@@ -9,11 +9,11 @@ use sha2::{Digest, Sha256};
 use tokio_tungstenite::tungstenite::client::IntoClientRequest;
 
 use crate::device::{self, DeviceKey, HEADER_DEVICE, hex};
-use crate::egress::{self, EgressList};
 use crate::pipe::{self, Ended};
-use crate::receipt::{self, Receipt};
+use crate::receipt::Receipt;
 use crate::seal::{self, SealingKey};
 use crate::secrets::SecretStore;
+use crate::trust::{self, TrustList};
 
 /// Where the server is when neither `BUWIZ_SERVER_URL` nor the setting
 /// says otherwise.
@@ -29,9 +29,9 @@ pub struct SubmitConfig {
     pub client_id: String,
     /// Shown on the account site's device list.
     pub device_name: String,
-    /// Egress public keys (base64url) the signed list must verify with:
-    /// [`egress::pinned_keys`] unless a test or lab sets its own.
-    pub egress_keys: Vec<String>,
+    /// Public keys (base64url) the signed trust list must verify with:
+    /// [`trust::pinned_keys`] unless a test or lab sets its own in code.
+    pub trust_keys: Vec<String>,
 }
 
 impl SubmitConfig {
@@ -53,7 +53,7 @@ impl SubmitConfig {
             server_url: url.trim_end_matches('/').to_owned(),
             client_id: CLIENT_ID.to_owned(),
             device_name: format!("Buwiz on {}", std::env::consts::OS),
-            egress_keys: egress::pinned_keys(),
+            trust_keys: trust::pinned_keys(),
         }
     }
 }
@@ -180,19 +180,12 @@ impl FileName {
     }
 }
 
-#[derive(Default)]
-struct Cache {
-    sealing_key: Option<SealingKey>,
-    jwks: Option<Value>,
-}
-
 /// One app's connection to buwiz-server. Cheap to share behind an `Arc`.
 pub struct Submitter {
     config: SubmitConfig,
     http: reqwest::Client,
     store: Box<dyn SecretStore>,
     pending: Mutex<Option<(DeviceCode, i64)>>,
-    cache: tokio::sync::Mutex<Cache>,
     /// Serializes token refreshes and device registration.
     session_lock: tokio::sync::Mutex<()>,
 }
@@ -209,7 +202,6 @@ impl Submitter {
             http,
             store,
             pending: Mutex::new(None),
-            cache: tokio::sync::Mutex::default(),
             session_lock: tokio::sync::Mutex::new(()),
         }
     }
@@ -486,12 +478,29 @@ impl Submitter {
         }
     }
 
-    /// The Sender's sealing key, from `/.well-known/buwiz-hpke.json`.
-    pub async fn sealing_key(&self, refresh: bool) -> Result<SealingKey, ClientError> {
-        let mut cache = self.cache.lock().await;
-        if !refresh && let Some(key) = &cache.sealing_key {
-            return Ok(key.clone());
+    /// The server's relay trust list, checked against the pinned keys.
+    /// Without a valid one there is no send.
+    pub async fn trust_list(&self) -> Result<TrustList, ClientError> {
+        let response = self
+            .http
+            .get(self.url("/.well-known/buwiz-trust.json"))
+            .send()
+            .await?;
+        if !response.status().is_success() {
+            return Err(ClientError::Other(format!(
+                "Can't send: the server has no signed trust list ({}).",
+                response.status()
+            )));
         }
+        let text = response.text().await?;
+        let jws = text.trim().trim_matches('"');
+        trust::verify(&self.config.trust_keys, jws, device::now())
+            .map_err(|error| ClientError::Other(format!("Can't send: {error}.")))
+    }
+
+    /// The Sender's sealing key: the one `/.well-known/buwiz-hpke.json`
+    /// names as current, taken only if `list` carries it.
+    pub async fn sealing_key(&self, list: &TrustList) -> Result<SealingKey, ClientError> {
         let document: Value = ok_json(
             self.http
                 .get(self.url("/.well-known/buwiz-hpke.json"))
@@ -499,74 +508,31 @@ impl Submitter {
                 .await?,
         )
         .await?;
-        let key: SealingKey = serde_json::from_value(document["keys"][0].clone())
+        let offered: SealingKey = serde_json::from_value(document["keys"][0].clone())
             .map_err(|_| ClientError::Other("the server published no sealing key".into()))?;
-        cache.sealing_key = Some(key.clone());
-        Ok(key)
+        list.sealing_key(&offered)
+            .map_err(|error| ClientError::Other(format!("Can't send: {error}.")))
     }
 
-    async fn jwks(&self, refresh: bool) -> Result<Value, ClientError> {
-        let mut cache = self.cache.lock().await;
-        if !refresh && let Some(jwks) = &cache.jwks {
-            return Ok(jwks.clone());
-        }
-        let jwks: Value = ok_json(
-            self.http
-                .get(self.url("/.well-known/jwks.json"))
-                .send()
-                .await?,
-        )
-        .await?;
-        cache.jwks = Some(jwks.clone());
-        Ok(jwks)
-    }
-
-    /// Checks a receipt against the server's published keys, fetching them
-    /// again once if the receipt names a key not seen yet.
+    /// Checks a receipt against the receipt keys of the signed trust list
+    /// only; any other key is refused.
     pub async fn verify_receipt(
         &self,
         jws: &str,
         xml_sha256: &str,
         jti: Option<&str>,
     ) -> Result<Receipt, ClientError> {
-        let jwks = self.jwks(false).await?;
-        match receipt::verify(&jwks, jws, xml_sha256, jti) {
-            Err(receipt::ReceiptError::UnknownKey) => {
-                let jwks = self.jwks(true).await?;
-                receipt::verify(&jwks, jws, xml_sha256, jti)
-                    .map_err(|error| ClientError::Other(error.to_string()))
-            }
-            other => other.map_err(|error| ClientError::Other(error.to_string())),
-        }
-    }
-
-    /// The server's egress list, checked against the pinned keys. Without
-    /// a valid one there is no send.
-    pub async fn egress_list(&self) -> Result<EgressList, ClientError> {
-        let response = self
-            .http
-            .get(self.url("/.well-known/buwiz-egress.json"))
-            .send()
-            .await?;
-        if !response.status().is_success() {
-            return Err(ClientError::Other(format!(
-                "Can't send: the server has no signed egress list ({}).",
-                response.status()
-            )));
-        }
-        let text = response.text().await?;
-        let jws = text.trim().trim_matches('"');
-        egress::verify(&self.config.egress_keys, jws, device::now())
-            .map_err(|error| ClientError::Other(format!("Can't send: {error}.")))
+        let list = self.trust_list().await?;
+        list.verify_receipt(jws, xml_sha256, jti)
+            .map_err(|error| ClientError::Other(error.to_string()))
     }
 
     /// Everything a send needs before the return itself: a live sign-in,
-    /// a registered device, the server's keys and a valid egress list.
+    /// a registered device, a valid trust list and a listed sealing key.
     pub async fn ready(&self) -> Result<(), ClientError> {
-        self.egress_list().await?;
+        let list = self.trust_list().await?;
         self.ensure_device().await?;
-        self.sealing_key(false).await?;
-        self.jwks(false).await?;
+        self.sealing_key(&list).await?;
         Ok(())
     }
 
@@ -582,9 +548,10 @@ impl Submitter {
         ))[..40]
             .to_owned();
         let not_sent = |error: ClientError| SendError::NotSent(error.to_string());
-        // No valid egress list, no ticket: nothing is spent on a send that
-        // could not leave this computer.
-        self.egress_list().await.map_err(not_sent)?;
+        // No valid trust list or listed sealing key, no ticket: nothing is
+        // spent, and nothing sealed, for a send that can't be trusted.
+        let list = self.trust_list().await.map_err(not_sent)?;
+        let sealing_key = self.sealing_key(&list).await.map_err(not_sent)?;
 
         let ticket = match self
             .signed(
@@ -608,7 +575,6 @@ impl Submitter {
                 "the server answered without a ticket".into(),
             ));
         };
-        let sealing_key = self.sealing_key(false).await.map_err(not_sent)?;
         let envelope = seal::seal(&sealing_key, jti, xml)
             .map_err(|error| SendError::NotSent(error.to_string()))?;
         let submission = match self
@@ -620,11 +586,7 @@ impl Submitter {
             .await
         {
             Ok(submission) => submission,
-            Err(error) => {
-                // The server may have rotated its sealing key.
-                let _ = self.sealing_key(true).await;
-                return Err(not_sent(error));
-            }
+            Err(error) => return Err(not_sent(error)),
         };
         let (Some(id), Some(relay_path)) =
             (submission["id"].as_str(), submission["relay_path"].as_str())
@@ -634,7 +596,7 @@ impl Submitter {
             ));
         };
 
-        let ended = self.relay(relay_path).await.map_err(not_sent)?;
+        let ended = self.relay_with(&list, relay_path).await.map_err(not_sent)?;
         let (status, error, receipt_jws) = match ended {
             Ended::Result {
                 status,
@@ -662,7 +624,7 @@ impl Submitter {
             }
         };
         match (status.as_str(), receipt_jws) {
-            ("sent" | "dry_run", Some(receipt_jws)) => match self.verify_receipt(&receipt_jws, &xml_sha256, Some(jti)).await {
+            ("sent" | "dry_run", Some(receipt_jws)) => match list.verify_receipt(&receipt_jws, &xml_sha256, Some(jti)) {
                 Ok(receipt) => Ok(Sent { submission_id: id.to_owned(), receipt_jws, receipt }),
                 Err(error) => Err(SendError::MaybeSent(format!(
                     "the server reports the return sent, but its receipt does not check out ({error}); check for BIR's confirmation email"
@@ -678,9 +640,13 @@ impl Submitter {
     }
 
     /// Opens the relay WebSocket for a submission and forwards, only to the
-    /// hosts of the verified egress list, until the server's result.
+    /// hosts of the verified trust list, until the server's result.
     pub async fn relay(&self, relay_path: &str) -> Result<Ended, ClientError> {
-        let egress = self.egress_list().await?;
+        let list = self.trust_list().await?;
+        self.relay_with(&list, relay_path).await
+    }
+
+    async fn relay_with(&self, list: &TrustList, relay_path: &str) -> Result<Ended, ClientError> {
         let device_id = self.ensure_device().await?;
         let key = self.device_key()?;
         let session = self.live_session(false).await?;
@@ -711,7 +677,7 @@ impl Submitter {
                 },
                 other => ClientError::Network(other.to_string()),
             })?;
-        Ok(pipe::serve(socket, &egress).await)
+        Ok(pipe::serve(socket, list).await)
     }
 }
 
