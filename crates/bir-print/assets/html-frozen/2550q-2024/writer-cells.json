@@ -1,0 +1,1056 @@
+{
+ "form_id": "2550q-v2024",
+ "html_slug": "2550q-2024",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page text layer) sits directly left of or above it, or the printed item number on its row. Money amounts pair the 12-slot peso comb with the 2-slot centavo comb directly right (money_joins); the 2-slot is the centavo comb for items 15-26 and Part IV 31-61. Items 1, 3, 5, 6, 13 and 14 Yes/No or option pairs take xbox_joins (box immediately left of the printed option; the first layout key of a Yes/No pair is Yes). Schedules 1, 3 and 4 print two rows each with no row number: the layout's rows (10/11, 0/1) take them in order under the column headers. Item 4 return period dates print through date_joins; item 10 over both lines, the page 2 TIN and the schedule Period Covered cells print from derived: keys of Form2550QDraft::to_print_field_map. Stamped TIN and branch combs (name=) take no join. Since #113 every value the print map carries has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm2550qv2024:selectedMonthNo2",
+   "html_id": "p1c5",
+   "printed": "2 Year Ended (MM/YYYY), MM",
+   "reason": "2-slot MM comb directly right of the \"(MM/YYYY)\" caption"
+  },
+  {
+   "writer_key": "frm2550qv2024:txtYearNo2",
+   "html_id": "p1c6",
+   "printed": "2 Year Ended (MM/YYYY), YYYY",
+   "reason": "4-slot YYYY comb right of the MM comb"
+  },
+  {
+   "writer_key": "frm2550qv2024:txtRDOCode",
+   "html_id": "p1c37",
+   "printed": "8 RDO Code",
+   "reason": "caption \"8 RDO Code\" directly left of the 3-slot comb"
+  },
+  {
+   "writer_key": "frm2550qv2024:taxpayerName",
+   "html_id": "p1c39",
+   "printed": "9 Taxpayer's Name",
+   "reason": "caption \"9 Taxpayer's Name\" directly above the 40-slot comb"
+  },
+  {
+   "writer_key": "frm2550qv2024:taxpayerZip",
+   "html_id": "p1c44",
+   "printed": "10A ZIP Code",
+   "reason": "caption \"10A ZIP Code\" directly left of the 4-slot comb"
+  },
+  {
+   "writer_key": "frm2550qv2024:taxpayerContactNumber",
+   "html_id": "p1c47",
+   "printed": "11 Contact Number",
+   "reason": "caption \"11 Contact Number\" directly above the 13-slot comb"
+  },
+  {
+   "writer_key": "frm2550qv2024:taxpayerEmailAddress",
+   "html_id": "p1c48",
+   "printed": "12 Email Address",
+   "reason": "caption \"12 Email Address\" directly above the 27-slot comb"
+  },
+  {
+   "writer_key": "frm2550qv2024:specifyInternationalTreaty",
+   "html_id": "p1c56",
+   "printed": "14A If yes, specify",
+   "reason": "caption \"If yes, specify\" directly left of the 16-slot comb"
+  },
+  {
+   "writer_key": "frm2550qv2024:Pg2TaxPayer",
+   "html_id": "p2c6",
+   "printed": "Taxpayer's Last Name / Registered Name",
+   "reason": "name line captions above the 26-slot comb"
+  },
+  {
+   "writer_key": "sched1TotalBalPrev",
+   "html_id": "p2c203",
+   "printed": "Part V Schedule 1 total, Column E",
+   "reason": "total label left; \"(Column E - To Part IV, Item 39B)\" caption"
+  },
+  {
+   "writer_key": "sched1TotalBalNext",
+   "html_id": "p2c205",
+   "printed": "Part V Schedule 1 total, Column I",
+   "reason": "total label left; \"(Column I - To Part IV, Item 52B)\" caption"
+  },
+  {
+   "writer_key": "frm2550qv2024:sched2InputTaxDirect",
+   "html_id": "p2c209",
+   "printed": "Input tax directly attributable to VAT Exempt Sale",
+   "reason": "caption directly left of the cell"
+  },
+  {
+   "writer_key": "frm2550qv2024:sched2TotalAttr",
+   "html_id": "p2c211",
+   "printed": "Total Input Tax attributable to Exempt Sale",
+   "reason": "caption directly left of the cell (To Part IV Item 53)"
+  },
+  {
+   "writer_key": "sched3TotalIncome",
+   "html_id": "p2c226",
+   "printed": "Schedule 3 Total, Column C (Income Payment)",
+   "reason": "total row, column C header \"(C) Income Payment\" above"
+  },
+  {
+   "writer_key": "sched3TotalTax",
+   "html_id": "p2c227",
+   "printed": "Schedule 3 Total, Column D",
+   "reason": "\"Total (Column D - To Part II, Item 16)\" caption directly left"
+  },
+  {
+   "writer_key": "sched4AmountPaid",
+   "html_id": "p2c245",
+   "printed": "Schedule 4 Total (To Part II, Item 17)",
+   "reason": "\"Total (To Part II, Item 17)\" caption directly left"
+  },
+  {
+   "writer_key": "derived:address_line1",
+   "html_id": "p1c41",
+   "printed": "10 Registered Address, line 1",
+   "reason": "full-width 40-slot comb under the item 10 caption; the print map breaks the address at the last space that fits"
+  },
+  {
+   "writer_key": "derived:line:address_line2",
+   "html_id": "p1c42",
+   "printed": "10 Registered Address, line 2",
+   "reason": "31-slot comb left of the ZIP Code on the second item 10 row: the rest of the address; a longer line prints whole in smaller type"
+  },
+  {
+   "writer_key": "frm2550qv2024:addSpecifyNo19",
+   "html_id": "p1c205",
+   "printed": "19 Other Credits/Payment (Specify)",
+   "reason": "the specify box on the item 19 row (input inset past the caption), left of the amount combs"
+  },
+  {
+   "writer_key": "frm2550qv2024:addSpecifyNo42",
+   "html_id": "p2c246",
+   "printed": "42 Others (Specify)",
+   "reason": "the specify box on the item 42 row, left of the amount combs"
+  },
+  {
+   "writer_key": "frm2550qv2024:addSpecifyNo47",
+   "html_id": "p2c248",
+   "printed": "47 Others (Specify)",
+   "reason": "the specify box on the item 47 row, left of the amount combs"
+  },
+  {
+   "writer_key": "frm2550qv2024:addSpecifyNo56",
+   "html_id": "p2c250",
+   "printed": "56 Others (Specify)",
+   "reason": "the specify box on the item 56 row, left of the amount combs"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN",
+   "reason": "the mixed TIN comb under the page 2 TIN caption: its nine inputs take the TIN digits (the branch slots are preprinted)"
+  },
+  {
+   "writer_key": "txtDatePurchase10",
+   "html_id": "p2c184",
+   "printed": "Schedule 1 row 1 (A) Date Purchased/Imported (MM/DD/YYYY)",
+   "reason": "the cell under the Schedule 1 (A) column header on printed row 1 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtSourceCode10",
+   "html_id": "p2c185",
+   "printed": "Schedule 1 row 1 (B) Source Code",
+   "reason": "the cell under the Schedule 1 (B) column header on printed row 1 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtDescription10",
+   "html_id": "p2c186",
+   "printed": "Schedule 1 row 1 (C) Description",
+   "reason": "the cell under the Schedule 1 (C) column header on printed row 1 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtAmountPurchase10",
+   "html_id": "p2c187",
+   "printed": "Schedule 1 row 1 (D) Amount of Purchases/Importation",
+   "reason": "the cell under the Schedule 1 (D) column header on printed row 1 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtInputTax10",
+   "html_id": "p2c188",
+   "printed": "Schedule 1 row 1 (E) Balance of Input Tax from Previous Period",
+   "reason": "the cell under the Schedule 1 (E) column header on printed row 1 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtEstimatedLife10",
+   "html_id": "p2c189",
+   "printed": "Schedule 1 row 1 (F) Estimated Life (in months)",
+   "reason": "the cell under the Schedule 1 (F) column header on printed row 1 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtRecognizedLife10",
+   "html_id": "p2c190",
+   "printed": "Schedule 1 row 1 (G) Recognized Life (Remaining Life)",
+   "reason": "the cell under the Schedule 1 (G) column header on printed row 1 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtAllowedInputTax10",
+   "html_id": "p2c191",
+   "printed": "Schedule 1 row 1 (H) Allowable Input Tax for the Period",
+   "reason": "the cell under the Schedule 1 (H) column header on printed row 1 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtBalanceInputTax10",
+   "html_id": "p2c192",
+   "printed": "Schedule 1 row 1 (I) Balance of Input Tax to be carried to Next Period",
+   "reason": "the cell under the Schedule 1 (I) column header on printed row 1 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtDatePurchase11",
+   "html_id": "p2c193",
+   "printed": "Schedule 1 row 2 (A) Date Purchased/Imported (MM/DD/YYYY)",
+   "reason": "the cell under the Schedule 1 (A) column header on printed row 2 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtSourceCode11",
+   "html_id": "p2c194",
+   "printed": "Schedule 1 row 2 (B) Source Code",
+   "reason": "the cell under the Schedule 1 (B) column header on printed row 2 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtDescription11",
+   "html_id": "p2c195",
+   "printed": "Schedule 1 row 2 (C) Description",
+   "reason": "the cell under the Schedule 1 (C) column header on printed row 2 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtAmountPurchase11",
+   "html_id": "p2c196",
+   "printed": "Schedule 1 row 2 (D) Amount of Purchases/Importation",
+   "reason": "the cell under the Schedule 1 (D) column header on printed row 2 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtInputTax11",
+   "html_id": "p2c197",
+   "printed": "Schedule 1 row 2 (E) Balance of Input Tax from Previous Period",
+   "reason": "the cell under the Schedule 1 (E) column header on printed row 2 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtEstimatedLife11",
+   "html_id": "p2c198",
+   "printed": "Schedule 1 row 2 (F) Estimated Life (in months)",
+   "reason": "the cell under the Schedule 1 (F) column header on printed row 2 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtRecognizedLife11",
+   "html_id": "p2c199",
+   "printed": "Schedule 1 row 2 (G) Recognized Life (Remaining Life)",
+   "reason": "the cell under the Schedule 1 (G) column header on printed row 2 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtAllowedInputTax11",
+   "html_id": "p2c200",
+   "printed": "Schedule 1 row 2 (H) Allowable Input Tax for the Period",
+   "reason": "the cell under the Schedule 1 (H) column header on printed row 2 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "txtBalanceInputTax11",
+   "html_id": "p2c201",
+   "printed": "Schedule 1 row 2 (I) Balance of Input Tax to be carried to Next Period",
+   "reason": "the cell under the Schedule 1 (I) column header on printed row 2 (the layout numbers the two rows 10 and 11; column E carries the input tax the Column E total sums)"
+  },
+  {
+   "writer_key": "derived:sched3_period0",
+   "html_id": "p2c217",
+   "printed": "Schedule 3 row 1 (A) Period Covered",
+   "reason": "the Period Covered cell: from-to as MM/DD/YY-MM/DD/YY (the upload carries the two dates)"
+  },
+  {
+   "writer_key": "txtNameWithHoldingAgent30",
+   "html_id": "p2c218",
+   "printed": "Schedule 3 row 1 (B) Name of Withholding Agent",
+   "reason": "the cell under the (B) header on printed row 1"
+  },
+  {
+   "writer_key": "txtIncomePayment30",
+   "html_id": "p2c219",
+   "printed": "Schedule 3 row 1 (C) Income Payment",
+   "reason": "the cell under the (C) header on printed row 1"
+  },
+  {
+   "writer_key": "txtTotalTaxWithHeld30",
+   "html_id": "p2c220",
+   "printed": "Schedule 3 row 1 (D) Total Tax Withheld",
+   "reason": "the cell under the (D) header on printed row 1"
+  },
+  {
+   "writer_key": "derived:sched3_period1",
+   "html_id": "p2c221",
+   "printed": "Schedule 3 row 2 (A) Period Covered",
+   "reason": "the Period Covered cell: from-to as MM/DD/YY-MM/DD/YY (the upload carries the two dates)"
+  },
+  {
+   "writer_key": "txtNameWithHoldingAgent31",
+   "html_id": "p2c222",
+   "printed": "Schedule 3 row 2 (B) Name of Withholding Agent",
+   "reason": "the cell under the (B) header on printed row 2"
+  },
+  {
+   "writer_key": "txtIncomePayment31",
+   "html_id": "p2c223",
+   "printed": "Schedule 3 row 2 (C) Income Payment",
+   "reason": "the cell under the (C) header on printed row 2"
+  },
+  {
+   "writer_key": "txtTotalTaxWithHeld31",
+   "html_id": "p2c224",
+   "printed": "Schedule 3 row 2 (D) Total Tax Withheld",
+   "reason": "the cell under the (D) header on printed row 2"
+  },
+  {
+   "writer_key": "derived:sched4_period0",
+   "html_id": "p2c234",
+   "printed": "Schedule 4 row 1 (A) Period Covered",
+   "reason": "the Period Covered cell: from-to as MM/DD/YY-MM/DD/YY (the upload carries the two dates)"
+  },
+  {
+   "writer_key": "txtNameOfMiller40",
+   "html_id": "p2c235",
+   "printed": "Schedule 4 row 1 (B) Name of Miller",
+   "reason": "the cell under the (B) header on printed row 1"
+  },
+  {
+   "writer_key": "txtNameOfTaxpayer40",
+   "html_id": "p2c236",
+   "printed": "Schedule 4 row 1 (C) Name of Taxpayer",
+   "reason": "the cell under the (C) header on printed row 1"
+  },
+  {
+   "writer_key": "txtOfficialReceiptNumber40",
+   "html_id": "p2c237",
+   "printed": "Schedule 4 row 1 (D) Official Receipt Number",
+   "reason": "the cell under the (D) header on printed row 1"
+  },
+  {
+   "writer_key": "txtAmountPaid40",
+   "html_id": "p2c238",
+   "printed": "Schedule 4 row 1 (E) Amount Paid",
+   "reason": "the cell under the (E) header on printed row 1"
+  },
+  {
+   "writer_key": "derived:sched4_period1",
+   "html_id": "p2c239",
+   "printed": "Schedule 4 row 2 (A) Period Covered",
+   "reason": "the Period Covered cell: from-to as MM/DD/YY-MM/DD/YY (the upload carries the two dates)"
+  },
+  {
+   "writer_key": "txtNameOfMiller41",
+   "html_id": "p2c240",
+   "printed": "Schedule 4 row 2 (B) Name of Miller",
+   "reason": "the cell under the (B) header on printed row 2"
+  },
+  {
+   "writer_key": "txtNameOfTaxpayer41",
+   "html_id": "p2c241",
+   "printed": "Schedule 4 row 2 (C) Name of Taxpayer",
+   "reason": "the cell under the (C) header on printed row 2"
+  },
+  {
+   "writer_key": "txtOfficialReceiptNumber41",
+   "html_id": "p2c242",
+   "printed": "Schedule 4 row 2 (D) Official Receipt Number",
+   "reason": "the cell under the (D) header on printed row 2"
+  },
+  {
+   "writer_key": "txtAmountPaid41",
+   "html_id": "p2c243",
+   "printed": "Schedule 4 row 2 (E) Amount Paid",
+   "reason": "the cell under the (E) header on printed row 2"
+  },
+  {
+   "writer_key": "frm2550qv2024:sched2TotalRatable",
+   "html_id": "p2c210",
+   "printed": "Schedule 2 Add: Ratable portion of Input Tax not directly attributable",
+   "reason": "the cell on the Add: Ratable portion row; the model writes ratable_input_tax under sched2TotalRatable"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm2550qv2024:excessInputTax",
+   "peso_html_id": "p1c61",
+   "cent_html_id": "p1c63",
+   "printed": "15 Net VAT Payable/(Excess Input Tax)",
+   "reason": "15 Net VAT Payable/(Excess Input Tax): 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:creditableVat",
+   "peso_html_id": "p1c66",
+   "cent_html_id": "p1c68",
+   "printed": "16 Creditable VAT Withheld",
+   "reason": "16 Creditable VAT Withheld: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:advVatPayment",
+   "peso_html_id": "p1c70",
+   "cent_html_id": "p1c72",
+   "printed": "17 Advance VAT Payments",
+   "reason": "17 Advance VAT Payments: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:vatPaidReturn",
+   "peso_html_id": "p1c74",
+   "cent_html_id": "p1c76",
+   "printed": "18 VAT paid in return previously filed",
+   "reason": "18 VAT paid in return previously filed: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:otherCreditsNo19",
+   "peso_html_id": "p1c78",
+   "cent_html_id": "p1c80",
+   "printed": "19 Other Credits/Payment",
+   "reason": "19 Other Credits/Payment: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:totalTaxCredits",
+   "peso_html_id": "p1c82",
+   "cent_html_id": "p1c84",
+   "printed": "20 Total Tax Credits/Payment",
+   "reason": "20 Total Tax Credits/Payment: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:excessCredits",
+   "peso_html_id": "p1c86",
+   "cent_html_id": "p1c88",
+   "printed": "21 Tax Still Payable/(Excess Credits)",
+   "reason": "21 Tax Still Payable/(Excess Credits): 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:surcharge",
+   "peso_html_id": "p1c90",
+   "cent_html_id": "p1c92",
+   "printed": "22 Surcharge",
+   "reason": "22 Surcharge: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:interest",
+   "peso_html_id": "p1c94",
+   "cent_html_id": "p1c96",
+   "printed": "23 Interest",
+   "reason": "23 Interest: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:compromise",
+   "peso_html_id": "p1c98",
+   "cent_html_id": "p1c100",
+   "printed": "24 Compromise",
+   "reason": "24 Compromise: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:penalties",
+   "peso_html_id": "p1c102",
+   "cent_html_id": "p1c104",
+   "printed": "25 Total Penalties",
+   "reason": "25 Total Penalties: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:totalPayable",
+   "peso_html_id": "p1c106",
+   "cent_html_id": "p1c108",
+   "printed": "26 TOTAL AMOUNT PAYABLE/(Excess Credits)",
+   "reason": "26 TOTAL AMOUNT PAYABLE/(Excess Credits): 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:vatableSales",
+   "peso_html_id": "p2c12",
+   "cent_html_id": "p2c14",
+   "printed": "31A VATable Sales",
+   "reason": "31A VATable Sales: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:outputVatSales",
+   "peso_html_id": "p2c15",
+   "cent_html_id": "p2c17",
+   "printed": "31B Output Tax (VATable Sales)",
+   "reason": "31B Output Tax (VATable Sales): 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:zeroRatedSales",
+   "peso_html_id": "p2c19",
+   "cent_html_id": "p2c21",
+   "printed": "32A Zero-Rated Sales",
+   "reason": "32A Zero-Rated Sales: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:exemptSales",
+   "peso_html_id": "p2c24",
+   "cent_html_id": "p2c26",
+   "printed": "33A Exempt Sales",
+   "reason": "33A Exempt Sales: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:totalSales",
+   "peso_html_id": "p2c28",
+   "cent_html_id": "p2c30",
+   "printed": "34A Total Sales & Output Tax Due",
+   "reason": "34A Total Sales & Output Tax Due: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:outputTaxDue",
+   "peso_html_id": "p2c31",
+   "cent_html_id": "p2c33",
+   "printed": "34B Total Sales & Output Tax Due",
+   "reason": "34B Total Sales & Output Tax Due: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:lessOutputVat",
+   "peso_html_id": "p2c35",
+   "cent_html_id": "p2c37",
+   "printed": "35B Less: Output VAT on Uncollected Receivables",
+   "reason": "35B Less: Output VAT on Uncollected Receivables: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:addOutputVat",
+   "peso_html_id": "p2c39",
+   "cent_html_id": "p2c41",
+   "printed": "36B Add: Output VAT on Recovered Uncollected Receivables",
+   "reason": "36B Add: Output VAT on Recovered Uncollected Receivables: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:totalAdjOutput",
+   "peso_html_id": "p2c43",
+   "cent_html_id": "p2c45",
+   "printed": "37B Total Adjusted Output Tax Due",
+   "reason": "37B Total Adjusted Output Tax Due: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:inputTaxCarried",
+   "peso_html_id": "p2c49",
+   "cent_html_id": "p2c51",
+   "printed": "38B Input Tax Carried Over from Previous Quarter",
+   "reason": "38B Input Tax Carried Over from Previous Quarter: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:inputTaxDeferred",
+   "peso_html_id": "p2c53",
+   "cent_html_id": "p2c55",
+   "printed": "39B Input Tax Deferred on Capital Goods",
+   "reason": "39B Input Tax Deferred on Capital Goods: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:transitionalInputTax",
+   "peso_html_id": "p2c57",
+   "cent_html_id": "p2c59",
+   "printed": "40B Transitional Input Tax",
+   "reason": "40B Transitional Input Tax: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:presumptiveInputTax",
+   "peso_html_id": "p2c61",
+   "cent_html_id": "p2c63",
+   "printed": "41B Presumptive Input Tax",
+   "reason": "41B Presumptive Input Tax: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:otherSpecify42",
+   "peso_html_id": "p2c65",
+   "cent_html_id": "p2c67",
+   "printed": "42B Others (Specify)",
+   "reason": "42B Others (Specify): 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:total43",
+   "peso_html_id": "p2c69",
+   "cent_html_id": "p2c71",
+   "printed": "43B Total (Sum of Items 38B to 42B)",
+   "reason": "43B Total (Sum of Items 38B to 42B): 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:domesticPurchase",
+   "peso_html_id": "p2c76",
+   "cent_html_id": "p2c78",
+   "printed": "44A Domestic Purchases",
+   "reason": "44A Domestic Purchases: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:domesticInputTax",
+   "peso_html_id": "p2c79",
+   "cent_html_id": "p2c81",
+   "printed": "44B Domestic Purchases, Input Tax",
+   "reason": "44B Domestic Purchases, Input Tax: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:servicesPurchase",
+   "peso_html_id": "p2c83",
+   "cent_html_id": "p2c85",
+   "printed": "45A Services Rendered by Non-Residents",
+   "reason": "45A Services Rendered by Non-Residents: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:serviceInputTax",
+   "peso_html_id": "p2c86",
+   "cent_html_id": "p2c88",
+   "printed": "45B Services Rendered by Non-Residents, Input Tax",
+   "reason": "45B Services Rendered by Non-Residents, Input Tax: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:importPurchase",
+   "peso_html_id": "p2c90",
+   "cent_html_id": "p2c92",
+   "printed": "46A Importations",
+   "reason": "46A Importations: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:importInputTax",
+   "peso_html_id": "p2c93",
+   "cent_html_id": "p2c95",
+   "printed": "46B Importations, Input Tax",
+   "reason": "46B Importations, Input Tax: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:otherSpecify47",
+   "peso_html_id": "p2c97",
+   "cent_html_id": "p2c99",
+   "printed": "47A Others (Specify)",
+   "reason": "47A Others (Specify): 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "otherSpecify47B",
+   "peso_html_id": "p2c100",
+   "cent_html_id": "p2c102",
+   "printed": "47B Others (Specify), Input Tax",
+   "reason": "47B Others (Specify), Input Tax: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:domesticPurchaseNoTax",
+   "peso_html_id": "p2c104",
+   "cent_html_id": "p2c106",
+   "printed": "48A Domestic Purchases with No Input Tax",
+   "reason": "48A Domestic Purchases with No Input Tax: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:vatExemptImports",
+   "peso_html_id": "p2c109",
+   "cent_html_id": "p2c111",
+   "printed": "49A VAT-exempt Importations",
+   "reason": "49A VAT-exempt Importations: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:totalCurPurchase",
+   "peso_html_id": "p2c113",
+   "cent_html_id": "p2c115",
+   "printed": "50A Total Current Purchases",
+   "reason": "50A Total Current Purchases: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:totalCurInputTax",
+   "peso_html_id": "p2c116",
+   "cent_html_id": "p2c118",
+   "printed": "50B Total Current Purchases/Input Tax",
+   "reason": "50B Total Current Purchases/Input Tax: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:totalAvailInputTax",
+   "peso_html_id": "p2c120",
+   "cent_html_id": "p2c122",
+   "printed": "51B Total Available Input Tax",
+   "reason": "51B Total Available Input Tax: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:importCapitalInputTax",
+   "peso_html_id": "p2c126",
+   "cent_html_id": "p2c128",
+   "printed": "52B Input Tax on Capital Goods deferred",
+   "reason": "52B Input Tax on Capital Goods deferred: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:inputTaxAttr",
+   "peso_html_id": "p2c130",
+   "cent_html_id": "p2c132",
+   "printed": "53B Input Tax Attributable to VAT Exempt Sales",
+   "reason": "53B Input Tax Attributable to VAT Exempt Sales: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:vatRefund",
+   "peso_html_id": "p2c134",
+   "cent_html_id": "p2c136",
+   "printed": "54B VAT Refund/TCC Claimed",
+   "reason": "54B VAT Refund/TCC Claimed: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:inputVatUnpaid",
+   "peso_html_id": "p2c138",
+   "cent_html_id": "p2c140",
+   "printed": "55B Input VAT on Unpaid Payables",
+   "reason": "55B Input VAT on Unpaid Payables: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:otherSpecify56",
+   "peso_html_id": "p2c142",
+   "cent_html_id": "p2c144",
+   "printed": "56B Others (Specify)",
+   "reason": "56B Others (Specify): 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:totalDeductions",
+   "peso_html_id": "p2c146",
+   "cent_html_id": "p2c148",
+   "printed": "57B Total Deductions from Input Tax",
+   "reason": "57B Total Deductions from Input Tax: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:addInputVat",
+   "peso_html_id": "p2c150",
+   "cent_html_id": "p2c152",
+   "printed": "58B Add: Input VAT on Settled Unpaid Payables",
+   "reason": "58B Add: Input VAT on Settled Unpaid Payables: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:adjDeductions",
+   "peso_html_id": "p2c154",
+   "cent_html_id": "p2c156",
+   "printed": "59B Adjusted Deductions from Input Tax",
+   "reason": "59B Adjusted Deductions from Input Tax: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:totalAllowInputTax",
+   "peso_html_id": "p2c158",
+   "cent_html_id": "p2c160",
+   "printed": "60B Total Allowable Input Tax",
+   "reason": "60B Total Allowable Input Tax: 12-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2550qv2024:netVatPayable",
+   "peso_html_id": "p2c162",
+   "cent_html_id": "p2c164",
+   "printed": "61B Net VAT Payable/(Excess Input Tax)",
+   "reason": "61B Net VAT Payable/(Excess Input Tax): 12-slot peso comb with the 2-slot centavo comb directly right"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm2550qv2024:taxPayerClassification1",
+   "html_id": "p1c50",
+   "printed": "13 Micro",
+   "reason": "box immediately left of \"Micro\""
+  },
+  {
+   "writer_key": "frm2550qv2024:calendarNo1",
+   "html_id": "p1c8",
+   "printed": "1 For the Calendar",
+   "reason": "box immediately left of \"Calendar\""
+  },
+  {
+   "writer_key": "frm2550qv2024:fiscalNo1",
+   "html_id": "p1c9",
+   "printed": "1 For the Fiscal",
+   "reason": "box immediately left of \"Fiscal\""
+  },
+  {
+   "writer_key": "frm2550qv2024:OptQuarter1",
+   "html_id": "p1c10",
+   "printed": "3 Quarter, 1st",
+   "reason": "box immediately left of \"1st\""
+  },
+  {
+   "writer_key": "frm2550qv2024:OptQuarter2",
+   "html_id": "p1c11",
+   "printed": "3 Quarter, 2nd",
+   "reason": "box immediately left of \"2nd\""
+  },
+  {
+   "writer_key": "frm2550qv2024:OptQuarter3",
+   "html_id": "p1c12",
+   "printed": "3 Quarter, 3rd",
+   "reason": "box immediately left of \"3rd\""
+  },
+  {
+   "writer_key": "frm2550qv2024:OptQuarter4",
+   "html_id": "p1c13",
+   "printed": "3 Quarter, 4th",
+   "reason": "box immediately left of \"4th\""
+  },
+  {
+   "writer_key": "frm2550qv2024:amendedReturnYesNo5",
+   "html_id": "p1c25",
+   "printed": "5 Amended Return? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm2550qv2024:amendedReturnNo5",
+   "html_id": "p1c23",
+   "printed": "5 Amended Return? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm2550qv2024:OptShortPrd1",
+   "html_id": "p1c24",
+   "printed": "6 Short Period Return? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm2550qv2024:OptShortPrd2",
+   "html_id": "p1c26",
+   "printed": "6 Short Period Return? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm2550qv2024:taxPayerClassification2",
+   "html_id": "p1c51",
+   "printed": "13 Small",
+   "reason": "box immediately left of \"Small\""
+  },
+  {
+   "writer_key": "frm2550qv2024:taxPayerClassification3",
+   "html_id": "p1c52",
+   "printed": "13 Medium",
+   "reason": "box immediately left of \"Medium\""
+  },
+  {
+   "writer_key": "frm2550qv2024:taxPayerClassification4",
+   "html_id": "p1c53",
+   "printed": "13 Large",
+   "reason": "box immediately left of \"Large\""
+  },
+  {
+   "writer_key": "frm2550qv2024:internationalTreatyYn",
+   "html_id": "p1c57",
+   "printed": "14 Yes",
+   "reason": "box immediately left of \"Yes\" (first key of the Yes/No pair)"
+  },
+  {
+   "writer_key": "frm2550qv2024:specialRateYn",
+   "html_id": "p1c58",
+   "printed": "14 No",
+   "reason": "box immediately left of \"No\" (second key of the Yes/No pair)"
+  }
+ ],
+ "date_joins": [
+  {
+   "writer_key": "frm2550qv2024:RtnPeriodFromNo4",
+   "mm_html_id": "p1c17",
+   "dd_html_id": "p1c18",
+   "yyyy_html_id": "p1c19",
+   "printed": "4 Return Period From (MM/DD/YYYY)",
+   "reason": "the first MM, DD and YYYY combs under the item 4 Return Period (MM/DD/YYYY) caption; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2550qv2024:RtnPeriodToNo4",
+   "mm_html_id": "p1c20",
+   "dd_html_id": "p1c21",
+   "yyyy_html_id": "p1c22",
+   "printed": "4 Return Period To (MM/DD/YYYY)",
+   "reason": "the second MM, DD and YYYY combs under the item 4 caption (To, right of From)"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_key": "frm2550qv2024:taxpayerAddress",
+   "reason": "prints from derived:address_line1 / derived:line:address_line2 (the print map shapes the address over both item 10 combs for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "resultOtherCreditsNo19",
+    "resultOtherCreditsNo42",
+    "resultOtherCreditsNo47",
+    "resultOtherCreditsNo56"
+   ],
+   "reason": "result control of the page's Others popup; the item amount prints from otherCreditsNo19 / otherSpecify42 / otherSpecify47 / otherSpecify56"
+  },
+  {
+   "writer_keys": [
+    "frm2550qv2024:txtPg2TIN1",
+    "frm2550qv2024:txtPg2TIN2",
+    "frm2550qv2024:txtPg2TIN3"
+   ],
+   "reason": "prints from derived:tin_digits (the print map shapes the nine TIN digits of the page 2 header for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2550qv2024:txtPg2BranchCode",
+    "frm2550qv2024:branchCode"
+   ],
+   "reason": "branch code: the page 2 TIN comb preprints the branch slots, and the page 1 branch comb is a stamped catalog cell"
+  },
+  {
+   "writer_keys": [
+    "txtDateCovered30",
+    "txtDateCovered3To0"
+   ],
+   "reason": "prints from derived:sched3_period0 (the print map shapes the from and to dates in the one Period Covered cell for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "txtDateCovered31",
+    "txtDateCovered3To1"
+   ],
+   "reason": "prints from derived:sched3_period1 (the print map shapes the from and to dates in the one Period Covered cell for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "txtDate40",
+    "txtDate4To0"
+   ],
+   "reason": "prints from derived:sched4_period0 (the print map shapes the from and to dates in the one Period Covered cell for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "txtDate41",
+    "txtDate4To1"
+   ],
+   "reason": "prints from derived:sched4_period1 (the print map shapes the from and to dates in the one Period Covered cell for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2550qv2024:sched2VatExemptSale",
+    "frm2550qv2024:sched2TotalSales",
+    "frm2550qv2024:sched2AmountInputTax"
+   ],
+   "reason": "Schedule 2 formula operand (VAT Exempt Sale / Total Sales x Input Tax not directly attributable); the sheet prints the formula as text with no cells for its operands, the result prints from sched2TotalRatable"
+  },
+  {
+   "writer_keys": [
+    "txtTotalAmountOfBalanceofInputTaxFromPrevious",
+    "txtTotalAmountOfBalanceofInputTaxToBeCarried",
+    "txtTotalAmountofIncomePayment",
+    "txtTotalAmoungOfTaxWithHeld",
+    "txtAmountPaidSched4"
+   ],
+   "reason": "the page's own copy of a schedule total; the same amount prints from sched1TotalBalPrev / sched1TotalBalNext / sched3TotalIncome / sched3TotalTax / sched4AmountPaid"
+  },
+  {
+   "writer_keys": [
+    "frm2550qv2024:txtCurrentPage",
+    "frm2550qv2024:txtMaxPage"
+   ],
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  },
+  {
+   "writer_keys": [
+    "txtEnroll",
+    "txtFinalFlag",
+    "driveSelectTPExport"
+   ],
+   "reason": "eBIRForms system field (enrolment flag, final flag, export drive, online-filing credentials), not on the paper form"
+  },
+  {
+   "writer_key": "txtEmail",
+   "reason": "duplicate of frm2550qv2024:taxpayerEmailAddress (same email), which prints in item 12"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c115",
+   "reason": "Tax agent accreditation, date of issue and expiry: no layout key on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c117",
+   "reason": "Tax agent accreditation, date of issue and expiry: no layout key on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c119",
+   "reason": "Tax agent accreditation, date of issue and expiry: no layout key on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c127",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c128",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c129",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c130",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c131",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c132",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c134",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c136",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c137",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c138",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c139",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c140",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c141",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c143",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c145",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c146",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c147",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c148",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c149",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c151",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c153",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c154",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c155",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c156",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c157",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c158",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c159",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  },
+  {
+   "html_id": "p1c161",
+   "reason": "Part III payment block (items 27-30): no layout key for this block on 2550Q; left blank"
+  }
+ ]
+}

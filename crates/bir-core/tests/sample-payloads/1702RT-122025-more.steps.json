@@ -1,0 +1,690 @@
+[
+ {
+  "call": "(function(){var o=document.getElementById.bind(document);document.getElementById=function(id){var e=o(id);if(e||id==null)return e;var l=String(id).toLowerCase();var all=document.getElementsByTagName('*');for(var i=0;i<all.length;i++){if(all[i].id&&all[i].id.toLowerCase()===l)return all[i];}for(var i=0;i<all.length;i++){var n=all[i].getAttribute&&all[i].getAttribute('name');if(n&&n.toLowerCase()===l)return all[i];}return null;};})()"
+ },
+ {
+  "call": "Array.prototype.forEach.call(document.getElementsByName('moreButton'),function(b){var r=b.parentNode.parentNode;Array.prototype.slice.call(r.childNodes).forEach(function(n){if(n.nodeType===3&&!/\\S/.test(n.nodeValue))r.removeChild(n);});})"
+ },
+ {
+  "call": "taxableYear = 25"
+ },
+ {
+  "click": "frm1702RT:rdoPg1I1Calendar"
+ },
+ {
+  "set": "frm1702RT:txtPg1I2Year",
+  "value": "25"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I6TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I6TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I6TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I6TIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702RT:txtPg2TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702RT:txtPg2TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702RT:txtPg2TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702RT:txtPg2TIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702RT:txtPg3TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702RT:txtPg3TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702RT:txtPg3TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702RT:txtPg3TIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702RT:txtPg4TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702RT:txtPg4TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702RT:txtPg4TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702RT:txtPg4TIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702RT:txtRDO",
+  "value": "039"
+ },
+ {
+  "set": "frm1702RT:drpPg1Pt1I7RDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I8Name1",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1702RT:txtPg2RegisteredName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1702RT:txtPg3RegisteredName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1702RT:txtPg4RegisteredName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I9Address1",
+  "value": "123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITY"
+ },
+ {
+  "set": "frm1702RT:txtZIP",
+  "value": "1100"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I11Contact",
+  "value": "09170000000"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I12Email",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I10",
+  "value": "01/15/2020"
+ },
+ {
+  "click": "frm1702RT:rdoPg1Pt1I13ItemizedDeduction"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I27Sales",
+  "value": "8500000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I28LessSales",
+  "value": "125000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I30LessCost",
+  "value": "4200000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I32AddOtherTaxable",
+  "value": "75500"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I5Depreciation",
+  "value": "120000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I11Rental",
+  "value": "360000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I13Salaries",
+  "value": "1500000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I15TaxesandLicenses",
+  "value": "45250"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17bProfessionalFees",
+  "value": "80000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17dC1",
+  "value": "Office supplies"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17dC2",
+  "value": "15750"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17eC1",
+  "value": "Repairs"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17eC2",
+  "value": "9000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17fC1",
+  "value": "Utilities"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17fC2",
+  "value": "12000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17gC1",
+  "value": "Insurance"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17gC2",
+  "value": "8000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17hC1",
+  "value": "Communication"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17hC2",
+  "value": "6500"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17iC1",
+  "value": "Trainings"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17iC2",
+  "value": "4000"
+ },
+ {
+  "call": "loadModalTable(document.getElementById('btnPg3Sc1I17iMore'))"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17i.2C1",
+  "value": "Expense 2"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17i.2C2",
+  "value": "2125"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17i.3C1",
+  "value": "Expense 3"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17i.3C2",
+  "value": "3125"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17i.4C1",
+  "value": "Expense 4"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17i.4C2",
+  "value": "4125"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17i.5C1",
+  "value": "Expense 5"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17i.5C2",
+  "value": "5125"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17i.6C1",
+  "value": "Expense 6"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17i.6C2",
+  "value": "6125"
+ },
+ {
+  "call": "saveModalTable(1,1); computeAllIterationsSub();computeP3Sc1I18TotalOrdinaryAllowable();"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I1C1",
+  "value": "Special deduction"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I1C2",
+  "value": "RA 9999"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I1C3",
+  "value": "50000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I2C1",
+  "value": "Second deduction"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I2C2",
+  "value": "RA 8888"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I2C3",
+  "value": "20000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I3C1",
+  "value": "Third deduction"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I3C2",
+  "value": "RA 7777"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I3C3",
+  "value": "10000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4C1",
+  "value": "Fourth deduction"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4C2",
+  "value": "RA 6666"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4C3",
+  "value": "5000"
+ },
+ {
+  "call": "loadModalTable(document.getElementById('btnPg3Sc2I4More'))"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4.2C1",
+  "value": "Deduction 2"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4.2C2",
+  "value": "RR 2-2025"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4.2C3",
+  "value": "4000"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4.3C1",
+  "value": "Deduction 3"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4.3C2",
+  "value": "RR 3-2025"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4.3C3",
+  "value": "6000"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4.4C1",
+  "value": "Deduction 4"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4.4C2",
+  "value": "RR 4-2025"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4.4C3",
+  "value": "8000"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4.5C1",
+  "value": "Deduction 5"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4.5C2",
+  "value": "RR 5-2025"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I4.5C3",
+  "value": "10000"
+ },
+ {
+  "call": "saveModalTable(1,1); computeAllIterationsSub();computeP3Sc1I18TotalOrdinaryAllowable();"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc3AI5C1",
+  "value": "2023"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc3AI5C2",
+  "value": "300000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc3AI5C3",
+  "value": "100000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc3AI5C5",
+  "value": "150000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc4I1C1",
+  "value": "2023"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc4I1C2",
+  "value": "50000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc4I1C3",
+  "value": "70000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc4I1C7",
+  "value": "20000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I42MinimumCorporate",
+  "value": "85010"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I44ExcessCredits",
+  "value": "10000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I46IncomeTaxUnderRegular",
+  "value": "300000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I48CreditableTaxWithheldFromPrevious",
+  "value": "40000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I49CreditableTaxWithheldFor4thQuarter",
+  "value": "15500"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt452SpecialTaxCredits",
+  "value": "1000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I53C1",
+  "value": "Other credit"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I53C2",
+  "value": "2500"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I54C1",
+  "value": "Other credit 2"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I54C2",
+  "value": "1000"
+ },
+ {
+  "call": "loadModalTable(document.getElementById('btnPg2Pt4I54More'))"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I54.2C1",
+  "value": "Credit 2"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I54.2C2",
+  "value": "500"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I54.3C1",
+  "value": "Credit 3"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I54.3C2",
+  "value": "750"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I54.4C1",
+  "value": "Credit 4"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I54.4C2",
+  "value": "1000"
+ },
+ {
+  "call": "saveModalTable(1,1); computeAllIterationsSub();computeP3Sc1I18TotalOrdinaryAllowable();"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt5I57SpecialAllowable",
+  "value": "12500"
+ },
+ {
+  "set": "frm1702RT:Pg2Pt4I40IncomeTaxRate",
+  "value": "25"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I1NetIncome",
+  "value": "1687075"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I2C1",
+  "value": "Non-deductible expenses"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I2C2",
+  "value": "179500"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I3C1",
+  "value": "Penalties"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I3C2",
+  "value": "2000"
+ },
+ {
+  "call": "loadModalTable(document.getElementById('btnPg4Sc5I3More'))"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I3.2C1",
+  "value": "Addition 2"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I3.2C2",
+  "value": "1400"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I3.3C1",
+  "value": "Addition 3"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I3.3C2",
+  "value": "2100"
+ },
+ {
+  "call": "saveModalTable(1,1); computeAllIterationsSub();computeP3Sc1I18TotalOrdinaryAllowable();"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I5C1",
+  "value": "Interest income subject to final tax"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I5C2",
+  "value": "50000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I6C1",
+  "value": "Dividends"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I6C2",
+  "value": "3000"
+ },
+ {
+  "call": "loadModalTable(document.getElementById('btnPg4Sc5I6More'))"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I6.2C1",
+  "value": "Exempt 2"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I6.2C2",
+  "value": "1800"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I6.3C1",
+  "value": "Exempt 3"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I6.3C2",
+  "value": "2700"
+ },
+ {
+  "call": "saveModalTable(1,1); computeAllIterationsSub();computeP3Sc1I18TotalOrdinaryAllowable();"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I7C1",
+  "value": "Special"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I7C2",
+  "value": "4000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I8C1",
+  "value": "Special 2"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I8C2",
+  "value": "1500"
+ },
+ {
+  "call": "loadModalTable(document.getElementById('btnPg4Sc5I8More'))"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I8.2C1",
+  "value": "Deduct 2"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I8.2C2",
+  "value": "600"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I8.3C1",
+  "value": "Deduct 3"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I8.3C2",
+  "value": "900"
+ },
+ {
+  "call": "addRowModalTable()"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I8.4C1",
+  "value": "Deduct 4"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I8.4C2",
+  "value": "1200"
+ },
+ {
+  "call": "saveModalTable(1,1); computeAllIterationsSub();computeP3Sc1I18TotalOrdinaryAllowable();"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt2I17Surcharge",
+  "value": "23343"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt2I18Interest",
+  "value": "4000"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt2I19Compromise",
+  "value": "1000"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt3I23DebitMemoC1",
+  "value": "Sample Bank"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt3I23DebitMemoC2",
+  "value": "12345"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt3I23DebitMemoC3Date",
+  "value": "04/15/2026"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt3I23DebitMemoC4Amount",
+  "value": "87687"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt2Signatory1",
+  "value": "President"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt2SignatoryTin1",
+  "value": "123456788000"
+ }
+]

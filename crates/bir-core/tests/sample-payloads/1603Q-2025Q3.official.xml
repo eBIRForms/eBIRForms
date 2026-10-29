@@ -1,0 +1,80 @@
+<?xml version='1.0'?>	
+            <div>frm1603Q:txtYear=2025frm1603Q:txtYear=</div>	
+            <div>frm1603Q:optQuarter1=falsefrm1603Q:optQuarter1=</div>	
+            <div>frm1603Q:optQuarter2=falsefrm1603Q:optQuarter2=</div>	
+            <div>frm1603Q:optQuarter3=truefrm1603Q:optQuarter3=</div>	
+            <div>frm1603Q:optQuarter4=falsefrm1603Q:optQuarter4=</div>	
+            <div>frm1603Q:AmendedRtn_1=falsefrm1603Q:AmendedRtn_1=</div>	
+            <div>frm1603Q:AmendedRtn_2=truefrm1603Q:AmendedRtn_2=</div>	
+            <div>frm1603Q:TaxWithheld_1=truefrm1603Q:TaxWithheld_1=</div>	
+            <div>frm1603Q:TaxWithheld_2=falsefrm1603Q:TaxWithheld_2=</div>	
+            <div>frm1603Q:txtSheets=0frm1603Q:txtSheets=</div>	
+            <div>frm1603Q:txtTIN1=123frm1603Q:txtTIN1=</div>	
+            <div>frm1603Q:txtTIN2=456frm1603Q:txtTIN2=</div>	
+            <div>frm1603Q:txtTIN3=788frm1603Q:txtTIN3=</div>	
+            <div>frm1603Q:txtBranchCode=00000frm1603Q:txtBranchCode=</div>	
+            <div>frm1603Q:rdoCode=039frm1603Q:rdoCode=</div>	
+            <div>frm1603Q:txtTaxpayerName=SAMPLE DUMMY TAXPAYERfrm1603Q:txtTaxpayerName=</div>	
+            <div>frm1603Q:txtAddress=123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITYfrm1603Q:txtAddress=</div>	
+            <div>frm1603Q:txtAddress2=frm1603Q:txtAddress2=</div>	
+            <div>frm1603Q:txtZipCode=1100frm1603Q:txtZipCode=</div>	
+            <div>frm1603Q:txtTelNum=09170000000frm1603Q:txtTelNum=</div>	
+            <div>frm1603Q:CatAgent_P=falsefrm1603Q:CatAgent_P=</div>	
+            <div>frm1603Q:CatAgent_G=truefrm1603Q:CatAgent_G=</div>	
+            <div>txtEmail=sample.taxpayer@example.comtxtEmail=</div>	
+            <div>frm1603Q:SpecialTax_1=truefrm1603Q:SpecialTax_1=</div>	
+            <div>frm1603Q:SpecialTax_2=falsefrm1603Q:SpecialTax_2=</div>	
+            <div>frm1603Q:selTreaty=3frm1603Q:selTreaty=</div>	
+            <div>frm1603Q:txtTax14=71,953.19frm1603Q:txtTax14=</div>	
+            <div>frm1603Q:txtTax15=0.00frm1603Q:txtTax15=</div>	
+            <div>frm1603Q:txt16Other=BANK REMITTANCEfrm1603Q:txt16Other=</div>	
+            <div>frm1603Q:txtTax16=1,000.51frm1603Q:txtTax16=</div>	
+            <div>frm1603Q:txtTax17=1,000.51frm1603Q:txtTax17=</div>	
+            <div>frm1603Q:txtTax18=70,952.68frm1603Q:txtTax18=</div>	
+            <div>frm1603Q:txtTax19=25.50frm1603Q:txtTax19=</div>	
+            <div>frm1603Q:txtTax20=10.00frm1603Q:txtTax20=</div>	
+            <div>frm1603Q:txtTax21=0.00frm1603Q:txtTax21=</div>	
+            <div>frm1603Q:txtTax22=35.50frm1603Q:txtTax22=</div>	
+            <div>frm1603Q:txtTax23=70,988.18frm1603Q:txtTax23=</div>	
+            <div>txtTaxAgentNo=txtTaxAgentNo=</div>	
+            <div>txtDateIssue=txtDateIssue=</div>	
+            <div>txtDateExpiry=txtDateExpiry=</div>	
+            <div>frm1603Q:txtAgency24=frm1603Q:txtAgency24=</div>	
+            <div>frm1603Q:txtNumber24=frm1603Q:txtNumber24=</div>	
+            <div>frm1603Q:txtDate24=frm1603Q:txtDate24=</div>	
+            <div>frm1603Q:txtAmount24=frm1603Q:txtAmount24=</div>	
+            <div>frm1603Q:txtAgency25=frm1603Q:txtAgency25=</div>	
+            <div>frm1603Q:txtNumber25=frm1603Q:txtNumber25=</div>	
+            <div>frm1603Q:txtDate25=frm1603Q:txtDate25=</div>	
+            <div>frm1603Q:txtAmount25=frm1603Q:txtAmount25=</div>	
+            <div>frm1603Q:txtNumber26=frm1603Q:txtNumber26=</div>	
+            <div>frm1603Q:txtDate26=frm1603Q:txtDate26=</div>	
+            <div>frm1603Q:txtAmount26=frm1603Q:txtAmount26=</div>	
+            <div>frm1603Q:txtParticular27=frm1603Q:txtParticular27=</div>	
+            <div>frm1603Q:txtAgency27=frm1603Q:txtAgency27=</div>	
+            <div>frm1603Q:txtNumber27=frm1603Q:txtNumber27=</div>	
+            <div>frm1603Q:txtDate27=frm1603Q:txtDate27=</div>	
+            <div>frm1603Q:txtAmount27=frm1603Q:txtAmount27=</div>	
+            <div>frm1603Q:txtPg2TIN1=123frm1603Q:txtPg2TIN1=</div>	
+            <div>frm1603Q:txtPg2TIN2=456frm1603Q:txtPg2TIN2=</div>	
+            <div>frm1603Q:txtPg2TIN3=788frm1603Q:txtPg2TIN3=</div>	
+            <div>frm1603Q:txtPg2BranchCode=00000frm1603Q:txtPg2BranchCode=</div>	
+            <div>frm1603Q:txtPg2TaxpayerName=SAMPLE DUMMY TAXPAYERfrm1603Q:txtPg2TaxpayerName=</div>	
+            <div>frm1603Q:Sched1:txtATC1=WF360frm1603Q:Sched1:txtATC1=</div>	
+            <div>frm1603Q:Sched1:txtValue1=100,000.01frm1603Q:Sched1:txtValue1=</div>	
+            <div>frm1603Q:Sched1:txtATC2=WF330frm1603Q:Sched1:txtATC2=</div>	
+            <div>frm1603Q:Sched1:txtValue2=54,321.10frm1603Q:Sched1:txtValue2=</div>	
+            <div>frm1603Q:Sched1:txtDivisor1=65%frm1603Q:Sched1:txtDivisor1=</div>	
+            <div>frm1603Q:Sched1:txtTaxBase1=153,846.17frm1603Q:Sched1:txtTaxBase1=</div>	
+            <div>frm1603Q:Sched1:txtTaxRate1=35%frm1603Q:Sched1:txtTaxRate1=</div>	
+            <div>frm1603Q:Sched1:txtTaxWithheld1=53,846.16frm1603Q:Sched1:txtTaxWithheld1=</div>	
+            <div>frm1603Q:Sched1:txtDivisor2=75%frm1603Q:Sched1:txtDivisor2=</div>	
+            <div>frm1603Q:Sched1:txtTaxBase2=72,428.13frm1603Q:Sched1:txtTaxBase2=</div>	
+            <div>frm1603Q:Sched1:txtTaxRate2=25%frm1603Q:Sched1:txtTaxRate2=</div>	
+            <div>frm1603Q:Sched1:txtTaxWithheld2=18,107.03frm1603Q:Sched1:txtTaxWithheld2=</div>	
+            <div>frm1603Q:Sched1:txtTotalTax=71,953.19frm1603Q:Sched1:txtTotalTax=</div>	
+            <div>frm1603Q:txtCurrentPage=1frm1603Q:txtCurrentPage=</div>	
+            <div>frm1603Q:txtMaxPage=2frm1603Q:txtMaxPage=</div>	
+            <div>frm1603Q:txtLineBus=SAMPLE CONSULTING SERVICESfrm1603Q:txtLineBus=</div>	
+            	
+            All Rights Reserved BIR 2012.0

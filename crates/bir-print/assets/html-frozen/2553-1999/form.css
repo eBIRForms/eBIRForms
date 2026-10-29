@@ -1,0 +1,23 @@
+/* 2553 rev 1999 -- form-specific rules.
+ * Shared scaffolding is in ../base.css. */
+@page { size:612pt 1008pt;margin:0 }
+@font-face { font-family:"eBIRForms Tinos";font-style:normal;font-weight:400;font-display:block;src:url("../fonts/tinos-latin-400-normal.woff2") format("woff2") }
+.fi { position:absolute;inset:0;appearance:none;-webkit-appearance:none;border:0;margin:0;padding:0;background:transparent;box-shadow:none;outline:0;border-radius:0;caret-color:#000000;text-rendering:geometricPrecision;font-family:"eBIRForms Tinos", Tinos, "Times New Roman", Times, serif;font-weight:400;font-style:normal;font-kerning:none;font-variant-ligatures:none;font-feature-settings:normal;color:#000000 }
+.fh0 { font-size:7.58pt;line-height:8.4pt;letter-spacing:0.1643pt }
+.fh1 { font-size:7.8pt;line-height:8.64pt;letter-spacing:0.1691pt }
+.fh10 { font-size:9.84pt;line-height:18.14pt;letter-spacing:0.2133pt }
+.fh11 { font-size:9.84pt;line-height:18.18pt;letter-spacing:0.2133pt }
+.fh12 { font-size:9.84pt;line-height:18.48pt;letter-spacing:0.2133pt }
+.fh13 { font-size:9.84pt;line-height:18.72pt;letter-spacing:0.2133pt }
+.fh14 { font-size:9.84pt;line-height:18.96pt;letter-spacing:0.2133pt }
+.fh15 { font-size:9.84pt;line-height:20.02pt;letter-spacing:0.2133pt }
+.fh2 { font-size:8.45pt;line-height:9.36pt;letter-spacing:0.1832pt }
+.fh3 { font-size:9.83pt;line-height:10.8968pt;letter-spacing:0.2131pt }
+.fh4 { font-size:9.84pt;line-height:16.83pt;letter-spacing:0.2133pt }
+.fh5 { font-size:9.84pt;line-height:17.21pt;letter-spacing:0.2133pt }
+.fh6 { font-size:9.84pt;line-height:17.7pt;letter-spacing:0.2133pt }
+.fh7 { font-size:9.84pt;line-height:17.94pt;letter-spacing:0.2133pt }
+.fh8 { font-size:9.84pt;line-height:18pt;letter-spacing:0.2133pt }
+.fh9 { font-size:9.84pt;line-height:18.1pt;letter-spacing:0.2133pt }
+.doc-link { position:absolute;left:0;top:0;z-index:9;font:12px/1.5 system-ui,-apple-system,sans-serif;padding:2px 8px;background:#fff;color:#0645ad;text-decoration:underline }
+@media print { .doc-link{display:none} }

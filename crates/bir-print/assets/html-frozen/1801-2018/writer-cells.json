@@ -1,0 +1,2035 @@
+{
+ "form_id": "1801-v2018",
+ "html_slug": "1801-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page text layer) sits beside or just above it. Schedule rows are matched by the printed column header and row order (layout _1 and _2 are the first and second printed rows). Amounts print the writer official text: a peso comb plus a 2-slot centavo comb, or one text cell. Booleans fill X in the box left of the printed option; Yes is the left box, No the right one. Left out: the item 1 MMDDYY comb, the TIN rows and executor TIN (mixed cells), the item 12 contact cell (caption inside the slots), item 14A specify (option code), frequency boxes (no labels in the text layer), the item 16 and 24 peso combs (mixed or mismatched cents). The Part III payment dates print through date_joins (one writer date across the MM, DD and YYYY combs). The page 2 TIN prints from derived:tin_digits (Form1801Draft::to_print_field_map). Since #113 every value the print map carries has a box or a reviewed not_joined reason (schedule rows past the second belong on an attached sheet).",
+ "joins": [
+  {
+   "writer_key": "frm1801v2018:txtSheets",
+   "html_id": "p1c7",
+   "printed": "3 No. of Sheet/s Attached",
+   "reason": "caption \"No. of Sheet/s Attached\" immediately left of this 2-slot comb"
+  },
+  {
+   "writer_key": "frm1801v2018:txtRDOCode_1",
+   "html_id": "p1c19",
+   "printed": "6 RDO Code",
+   "reason": "caption \"6 RDO Code\" directly above"
+  },
+  {
+   "writer_key": "frm1801v2018:registeredName_1",
+   "html_id": "p1c22",
+   "printed": "7 Taxpayer's Name (ESTATE of Last Name, First Name, Middle Name)",
+   "reason": "caption \"Taxpayer's Name (ESTATE of ...)\" directly above"
+  },
+  {
+   "writer_key": "frm1801v2018:registeredAddress_1",
+   "html_id": "p1c24",
+   "printed": "8 Residence of Decedent at the time of death",
+   "reason": "the only address key in the layout; caption 8 directly above"
+  },
+  {
+   "writer_key": "frm1801v2018:adminName",
+   "html_id": "p1c30",
+   "printed": "10 Name of Executor / Administrator",
+   "reason": "caption \"Name of Executor / Administrator\" directly above"
+  },
+  {
+   "writer_key": "frm1801v2018:txtEmail",
+   "html_id": "p1c35",
+   "printed": "13 Email Address",
+   "reason": "caption \"13 Email Address\" immediately left"
+  },
+  {
+   "writer_key": "frm1801v2018taxkNum",
+   "html_id": "p1c149",
+   "printed": "27 Tax Debit Memo: Number",
+   "reason": "Number column on the item 27 row"
+  },
+  {
+   "writer_key": "frm1801v2018:othersDetails",
+   "html_id": "p1c157",
+   "printed": "28 Others (Specify)",
+   "reason": "\"(Specify)\" field under the item 28 Others row"
+  },
+  {
+   "writer_key": "frm1801v2018:othersBank",
+   "html_id": "p1c158",
+   "printed": "28 Others: bank / agency",
+   "reason": "Agency column on the item 28 row"
+  },
+  {
+   "writer_key": "frm1801v2018:othersNum",
+   "html_id": "p1c159",
+   "printed": "28 Others: Number",
+   "reason": "Number column on the item 28 row"
+  },
+  {
+   "writer_key": "frm1801v2018:cashBank",
+   "html_id": "p1c131",
+   "printed": "25 Cash/Bank Debit Memo: bank",
+   "reason": "first payment row (item 25; no printed row label); bank column"
+  },
+  {
+   "writer_key": "frm1801v2018:cashNum",
+   "html_id": "p1c132",
+   "printed": "25 Cash/Bank Debit Memo: Number",
+   "reason": "Number column, item 25 row"
+  },
+  {
+   "writer_key": "frm1801v2018:checkBank",
+   "html_id": "p1c140",
+   "printed": "26 Check: bank",
+   "reason": "bank column, item 26 Check row"
+  },
+  {
+   "writer_key": "frm1801v2018:checkNum",
+   "html_id": "p1c141",
+   "printed": "26 Check: Number",
+   "reason": "Number column, item 26 row"
+  },
+  {
+   "writer_key": "frm1801v2018:registeredName_2",
+   "html_id": "p2c6",
+   "printed": "Taxpayer's Name (page 2)",
+   "reason": "caption \"Taxpayer's Name\" directly above"
+  },
+  {
+   "writer_key": "frm1801v2018:txtRealProp_A",
+   "html_id": "p2c13",
+   "printed": "Real Properties (excl. family home) A. Exclusive",
+   "reason": "column A header \"A. Exclusive\""
+  },
+  {
+   "writer_key": "frm1801v2018:txtRealProp_B",
+   "html_id": "p2c14",
+   "printed": "Real Properties (excl. family home) B. Conjugal/Communal",
+   "reason": "column B header"
+  },
+  {
+   "writer_key": "frm1801v2018:txtFam_A",
+   "html_id": "p2c19",
+   "printed": "Home (family home) A. Exclusive",
+   "reason": "column A header; family home row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtFam_B",
+   "html_id": "p2c20",
+   "printed": "Home (family home) B. Conjugal/Communal",
+   "reason": "column B header; family home row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtPersonalProp_A",
+   "html_id": "p2c25",
+   "printed": "31 Personal Properties A. Exclusive",
+   "reason": "column A; Personal Properties row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtPersonalProp_B",
+   "html_id": "p2c26",
+   "printed": "31 Personal Properties B. Conjugal/Communal",
+   "reason": "column B; Personal Properties row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtTaxable_A",
+   "html_id": "p2c31",
+   "printed": "Taxable Transfers (Schedules 2 & 2A) A. Exclusive",
+   "reason": "column A; Taxable Transfer row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtTaxable_B",
+   "html_id": "p2c32",
+   "printed": "Taxable Transfers (Schedules 2 & 2A) B. Conjugal/Communal",
+   "reason": "column B; Taxable Transfer row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtBusiness_A",
+   "html_id": "p2c37",
+   "printed": "Business Interest (Schedule 3) A. Exclusive",
+   "reason": "column A; Business Interest row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtBusiness_B",
+   "html_id": "p2c38",
+   "printed": "Business Interest (Schedule 3) B. Conjugal/Communal",
+   "reason": "column B; Business Interest row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtGrossEst_A",
+   "html_id": "p2c43",
+   "printed": "Gross Estate (items 29 to 33) A. Exclusive",
+   "reason": "column A; Gross Estate row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtGrossEst_B",
+   "html_id": "p2c44",
+   "printed": "Gross Estate (items 29 to 33) B. Conjugal/Communal",
+   "reason": "column B; Gross Estate row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtOrdDed_A",
+   "html_id": "p2c49",
+   "printed": "35 Less: Ordinary Deductions A. Exclusive",
+   "reason": "column A; Ordinary Deductions row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtOrdDed_B",
+   "html_id": "p2c50",
+   "printed": "35 Less: Ordinary Deductions B. Conjugal/Communal",
+   "reason": "column B; Ordinary Deductions row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtEstAfterDed_A",
+   "html_id": "p2c55",
+   "printed": "Estate after Ordinary Deductions A. Exclusive",
+   "reason": "column A; row after Schedule 5"
+  },
+  {
+   "writer_key": "frm1801v2018:txtEstAfterDed_B",
+   "html_id": "p2c56",
+   "printed": "Estate after Ordinary Deductions B. Conjugal/Communal",
+   "reason": "column B; row after Schedule 5"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Oct_1",
+   "html_id": "p2c97",
+   "printed": "Schedule 1 row 1 OCT/TCT/CCT No.",
+   "reason": "column header \"OCT/TCT/CCT No.\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Td_1",
+   "html_id": "p2c98",
+   "printed": "Schedule 1 row 1 Tax Declaration No.",
+   "reason": "column header \"Tax Declaration (TD) No.\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Loc_1",
+   "html_id": "p2c99",
+   "printed": "Schedule 1 row 1 Location",
+   "reason": "column header \"Location\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Lot_1",
+   "html_id": "p2c100",
+   "printed": "Schedule 1 row 1 Lot/Improvement",
+   "reason": "column header \"Lot/Improvement\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Area_1",
+   "html_id": "p2c101",
+   "printed": "Schedule 1 row 1 Area",
+   "reason": "column header \"Area\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Class_1'",
+   "html_id": "p2c102",
+   "printed": "Schedule 1 row 1 *Classification",
+   "reason": "column header \"*Classification\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Oct_2",
+   "html_id": "p2c103",
+   "printed": "Schedule 1 row 2 OCT/TCT/CCT No.",
+   "reason": "column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Td_2",
+   "html_id": "p2c104",
+   "printed": "Schedule 1 row 2 Tax Declaration No.",
+   "reason": "column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Loc_2",
+   "html_id": "p2c105",
+   "printed": "Schedule 1 row 2 Location",
+   "reason": "column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Lot_2",
+   "html_id": "p2c106",
+   "printed": "Schedule 1 row 2 Lot/Improvement",
+   "reason": "column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Area_2",
+   "html_id": "p2c107",
+   "printed": "Schedule 1 row 2 Area",
+   "reason": "column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Class_2'",
+   "html_id": "p2c108",
+   "printed": "Schedule 1 row 2 *Classification",
+   "reason": "column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Fmv_1",
+   "html_id": "p2c115",
+   "printed": "Schedule 1 continuation row 1 FMV per TD",
+   "reason": "column header \"Fair Market Value (FMV) per TD\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Zonal_1",
+   "html_id": "p2c116",
+   "printed": "Schedule 1 continuation row 1 FMV per BIR (Zonal Value)",
+   "reason": "column header \"FMV per BIR (Zonal Value)\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Exc_1",
+   "html_id": "p2c117",
+   "printed": "Schedule 1 continuation row 1 EXCLUSIVE",
+   "reason": "column header \"EXCLUSIVE\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Conj_1",
+   "html_id": "p2c118",
+   "printed": "Schedule 1 continuation row 1 CONJUGAL/COMMUNAL",
+   "reason": "column header \"CONJUGAL/COMMUNAL\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Fmv_2",
+   "html_id": "p2c119",
+   "printed": "Schedule 1 continuation row 2 FMV per TD",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Zonal_2",
+   "html_id": "p2c120",
+   "printed": "Schedule 1 continuation row 2 FMV per BIR (Zonal Value)",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Exc_2",
+   "html_id": "p2c121",
+   "printed": "Schedule 1 continuation row 2 EXCLUSIVE",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Conj_2",
+   "html_id": "p2c122",
+   "printed": "Schedule 1 continuation row 2 CONJUGAL/COMMUNAL",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Exc_Total",
+   "html_id": "p2c124",
+   "printed": "TOTAL (To Part IV Item 29) EXCLUSIVE",
+   "reason": "TOTAL row, EXCLUSIVE column"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1Conj_Total",
+   "html_id": "p2c125",
+   "printed": "TOTAL (To Part IV Item 29) CONJUGAL/COMMUNAL",
+   "reason": "TOTAL row, CONJUGAL column"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AOct_1",
+   "html_id": "p2c137",
+   "printed": "Schedule 1A row 1 OCT/TCT/CCT No.",
+   "reason": "Schedule 1A column header"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1ATd_1",
+   "html_id": "p2c138",
+   "printed": "Schedule 1A row 1 Tax Declaration No.",
+   "reason": "Schedule 1A column header"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1ALoc_1",
+   "html_id": "p2c139",
+   "printed": "Schedule 1A row 1 Location",
+   "reason": "Schedule 1A column header"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AArea_1",
+   "html_id": "p2c140",
+   "printed": "Schedule 1A row 1 Area",
+   "reason": "Schedule 1A column header"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AClass_1'",
+   "html_id": "p2c141",
+   "printed": "Schedule 1A row 1 *Classification",
+   "reason": "Schedule 1A column header"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AFmv_1",
+   "html_id": "p2c142",
+   "printed": "Schedule 1A row 1 FMV per TD",
+   "reason": "Schedule 1A column header"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AZonal_1",
+   "html_id": "p2c143",
+   "printed": "Schedule 1A row 1 FMV per BIR (Zonal Value)",
+   "reason": "Schedule 1A column header"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AExc_1",
+   "html_id": "p2c144",
+   "printed": "Schedule 1A row 1 EXCLUSIVE",
+   "reason": "Schedule 1A column header"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AConj_1",
+   "html_id": "p2c145",
+   "printed": "Schedule 1A row 1 CONJUGAL/COMMUNAL",
+   "reason": "Schedule 1A column header"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AOct_2",
+   "html_id": "p2c146",
+   "printed": "Schedule 1A row 2 OCT/TCT/CCT No.",
+   "reason": "Schedule 1A column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1ATd_2",
+   "html_id": "p2c147",
+   "printed": "Schedule 1A row 2 Tax Declaration No.",
+   "reason": "Schedule 1A column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1ALoc_2",
+   "html_id": "p2c148",
+   "printed": "Schedule 1A row 2 Location",
+   "reason": "Schedule 1A column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AArea_2",
+   "html_id": "p2c149",
+   "printed": "Schedule 1A row 2 Area",
+   "reason": "Schedule 1A column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AClass_2'",
+   "html_id": "p2c150",
+   "printed": "Schedule 1A row 2 *Classification",
+   "reason": "Schedule 1A column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AFmv_2",
+   "html_id": "p2c151",
+   "printed": "Schedule 1A row 2 FMV per TD",
+   "reason": "Schedule 1A column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AZonal_2",
+   "html_id": "p2c152",
+   "printed": "Schedule 1A row 2 FMV per BIR (Zonal Value)",
+   "reason": "Schedule 1A column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AExc_2",
+   "html_id": "p2c153",
+   "printed": "Schedule 1A row 2 EXCLUSIVE",
+   "reason": "Schedule 1A column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AConj_2",
+   "html_id": "p2c154",
+   "printed": "Schedule 1A row 2 CONJUGAL/COMMUNAL",
+   "reason": "Schedule 1A column header; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AExc_Total",
+   "html_id": "p2c156",
+   "printed": "TOTAL (To Part IV Item 30) EXCLUSIVE",
+   "reason": "Schedule 1A TOTAL row, EXCLUSIVE column"
+  },
+  {
+   "writer_key": "frm1801v2018:sched1AConj_Total",
+   "html_id": "p2c157",
+   "printed": "TOTAL (To Part IV Item 30) CONJUGAL/COMMUNAL",
+   "reason": "Schedule 1A TOTAL row, CONJUGAL column"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Corp_1",
+   "html_id": "p2c167",
+   "printed": "Schedule 2 row 1 Name of Corporation",
+   "reason": "column header \"Name of Corporation\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Class_1",
+   "html_id": "p2c168",
+   "printed": "Schedule 2 row 1 Classification (Listed/Not Listed)",
+   "reason": "column header \"Classification\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Stock_1",
+   "html_id": "p2c169",
+   "printed": "Schedule 2 row 1 Stock Certificate No.",
+   "reason": "column header \"Stock Certificate No.\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Shares_1",
+   "html_id": "p2c170",
+   "printed": "Schedule 2 row 1 No. of Shares",
+   "reason": "column header \"No. of Shares\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched2FmvPerShare_1",
+   "html_id": "p2c171",
+   "printed": "Schedule 2 row 1 FMV / Book Value per Share",
+   "reason": "column header \"FMV / Book Value per Share\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Exc_1",
+   "html_id": "p2c172",
+   "printed": "Schedule 2 row 1 EXCLUSIVE",
+   "reason": "column header \"EXCLUSIVE\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Conj_1",
+   "html_id": "p2c173",
+   "printed": "Schedule 2 row 1 CONJUGAL/COMMUNAL",
+   "reason": "column header \"CONJUGAL/COMMUNAL\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Corp_2",
+   "html_id": "p2c174",
+   "printed": "Schedule 2 row 2 Name of Corporation",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Class_2",
+   "html_id": "p2c175",
+   "printed": "Schedule 2 row 2 Classification",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Stock_2",
+   "html_id": "p2c176",
+   "printed": "Schedule 2 row 2 Stock Certificate No.",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Shares_2",
+   "html_id": "p2c177",
+   "printed": "Schedule 2 row 2 No. of Shares",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2FmvPerShare_2",
+   "html_id": "p2c178",
+   "printed": "Schedule 2 row 2 FMV / Book Value per Share",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Exc_2",
+   "html_id": "p2c179",
+   "printed": "Schedule 2 row 2 EXCLUSIVE",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Conj_2",
+   "html_id": "p2c180",
+   "printed": "Schedule 2 row 2 CONJUGAL/COMMUNAL",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Exc_Total",
+   "html_id": "p2c182",
+   "printed": "TOTAL (To Part IV Item 31) EXCLUSIVE",
+   "reason": "Schedule 2 TOTAL row, EXCLUSIVE"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2Conj_Total",
+   "html_id": "p2c183",
+   "printed": "TOTAL (To Part IV Item 31) CONJUGAL/COMMUNAL",
+   "reason": "Schedule 2 TOTAL row, CONJUGAL"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2AParticulars_1",
+   "html_id": "p2c189",
+   "printed": "Schedule 2A row 1 Particulars",
+   "reason": "column header \"Particulars\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched2AExc_1",
+   "html_id": "p2c190",
+   "printed": "Schedule 2A row 1 EXCLUSIVE",
+   "reason": "column header \"EXCLUSIVE\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched2AConj_1",
+   "html_id": "p2c191",
+   "printed": "Schedule 2A row 1 CONJUGAL/COMMUNAL",
+   "reason": "column header \"CONJUGAL/COMMUNAL\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched2AParticulars_2",
+   "html_id": "p2c192",
+   "printed": "Schedule 2A row 2 Particulars",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2AExc_2",
+   "html_id": "p2c193",
+   "printed": "Schedule 2A row 2 EXCLUSIVE",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2AConj_2",
+   "html_id": "p2c194",
+   "printed": "Schedule 2A row 2 CONJUGAL/COMMUNAL",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2AExc_Total",
+   "html_id": "p2c196",
+   "printed": "TOTAL (To Part IV Item 31) Schedule 2A EXCLUSIVE",
+   "reason": "Schedule 2A TOTAL row, EXCLUSIVE"
+  },
+  {
+   "writer_key": "frm1801v2018:sched2AConj_Total",
+   "html_id": "p2c197",
+   "printed": "TOTAL (To Part IV Item 31) Schedule 2A CONJUGAL/COMMUNAL",
+   "reason": "Schedule 2A TOTAL row, CONJUGAL"
+  },
+  {
+   "writer_key": "frm1801v2018:sched3Particulars_1",
+   "html_id": "p2c203",
+   "printed": "Schedule 3 row 1 Particulars",
+   "reason": "column header \"Particulars\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched3Exc_1",
+   "html_id": "p2c204",
+   "printed": "Schedule 3 row 1 EXCLUSIVE",
+   "reason": "column header \"EXCLUSIVE\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched3Conj_1",
+   "html_id": "p2c205",
+   "printed": "Schedule 3 row 1 CONJUGAL/COMMUNAL",
+   "reason": "column header \"CONJUGAL/COMMUNAL\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched3Particulars_2",
+   "html_id": "p2c206",
+   "printed": "Schedule 3 row 2 Particulars",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched3Exc_2",
+   "html_id": "p2c207",
+   "printed": "Schedule 3 row 2 EXCLUSIVE",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched3Conj_2",
+   "html_id": "p2c208",
+   "printed": "Schedule 3 row 2 CONJUGAL/COMMUNAL",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched3Exc_Total",
+   "html_id": "p2c210",
+   "printed": "TOTAL (To Part IV Item 32) EXCLUSIVE",
+   "reason": "Schedule 3 TOTAL row, EXCLUSIVE"
+  },
+  {
+   "writer_key": "frm1801v2018:sched3Conj_Total",
+   "html_id": "p2c211",
+   "printed": "TOTAL (To Part IV Item 32) CONJUGAL/COMMUNAL",
+   "reason": "Schedule 3 TOTAL row, CONJUGAL"
+  },
+  {
+   "writer_key": "frm1801v2018:sched4Name_1",
+   "html_id": "p2c219",
+   "printed": "Schedule 4 row 1 Trade Name or Business Name",
+   "reason": "column header \"Trade Name or Business Name\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched4Address_1",
+   "html_id": "p2c220",
+   "printed": "Schedule 4 row 1 Registered Address",
+   "reason": "column header \"Registered Address\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched4Rdo_1",
+   "html_id": "p2c221",
+   "printed": "Schedule 4 row 1 RDO Code",
+   "reason": "column header \"RDO Code\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched4Exc_1",
+   "html_id": "p2c222",
+   "printed": "Schedule 4 row 1 EXCLUSIVE",
+   "reason": "column header \"EXCLUSIVE / RDO Code\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched4Conj_1",
+   "html_id": "p2c223",
+   "printed": "Schedule 4 row 1 CONJUGAL/COMMUNAL",
+   "reason": "column header \"CONJUGAL/COMMUNAL\""
+  },
+  {
+   "writer_key": "frm1801v2018:sched4Name_2",
+   "html_id": "p2c224",
+   "printed": "Schedule 4 row 2 Trade Name or Business Name",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched4Address_2",
+   "html_id": "p2c225",
+   "printed": "Schedule 4 row 2 Registered Address",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched4Rdo_2",
+   "html_id": "p2c226",
+   "printed": "Schedule 4 row 2 RDO Code",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched4Exc_2",
+   "html_id": "p2c227",
+   "printed": "Schedule 4 row 2 EXCLUSIVE",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched4Conj_2",
+   "html_id": "p2c228",
+   "printed": "Schedule 4 row 2 CONJUGAL/COMMUNAL",
+   "reason": "column; row 2"
+  },
+  {
+   "writer_key": "frm1801v2018:sched4Exc_Total",
+   "html_id": "p2c230",
+   "printed": "TOTAL (To Part IV Item 33) EXCLUSIVE",
+   "reason": "Schedule 4 TOTAL row, EXCLUSIVE"
+  },
+  {
+   "writer_key": "frm1801v2018:sched4Conj_Total",
+   "html_id": "p2c231",
+   "printed": "TOTAL (To Part IV Item 33) CONJUGAL/COMMUNAL",
+   "reason": "Schedule 4 TOTAL row, CONJUGAL"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5EstateExc",
+   "html_id": "p2c236",
+   "printed": "Schedule 5 Claims against the Estate EXCLUSIVE",
+   "reason": "Schedule 5 row \"Claims against the Estate\", EXCLUSIVE"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5EstateConj",
+   "html_id": "p2c237",
+   "printed": "Schedule 5 Claims against the Estate CONJUGAL/COMMUNAL",
+   "reason": "Schedule 5 row, CONJUGAL"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5InsolventExc",
+   "html_id": "p2c239",
+   "printed": "Schedule 5 Claims of the deceased against Insolvent Persons EXCLUSIVE",
+   "reason": "Schedule 5 row, EXCLUSIVE"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5InsolventConj",
+   "html_id": "p2c240",
+   "printed": "Schedule 5 Claims of the deceased against Insolvent Persons CONJUGAL",
+   "reason": "Schedule 5 row, CONJUGAL"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5UnpaidExc",
+   "html_id": "p2c242",
+   "printed": "Schedule 5 Unpaid Mortgages, Taxes and Casualty Losses EXCLUSIVE",
+   "reason": "Schedule 5 row, EXCLUSIVE"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5UnpaidConj",
+   "html_id": "p2c243",
+   "printed": "Schedule 5 Unpaid Mortgages, Taxes and Casualty Losses CONJUGAL",
+   "reason": "Schedule 5 row, CONJUGAL"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5LossesExc",
+   "html_id": "p2c245",
+   "printed": "Schedule 5 Losses incurred during the settlement of the Estate EXCLUSIVE",
+   "reason": "Schedule 5 row, EXCLUSIVE"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5LossesConj",
+   "html_id": "p2c246",
+   "printed": "Schedule 5 Losses incurred during the settlement of the Estate CONJUGAL",
+   "reason": "Schedule 5 row, CONJUGAL"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5VanishingExc",
+   "html_id": "p2c248",
+   "printed": "Schedule 5 Property Previously Taxed (Vanishing Deduction) EXCLUSIVE",
+   "reason": "Schedule 5 row, EXCLUSIVE"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5VanishingConj",
+   "html_id": "p2c249",
+   "printed": "Schedule 5 Property Previously Taxed (Vanishing Deduction) CONJUGAL",
+   "reason": "Schedule 5 row, CONJUGAL"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5TransferExc",
+   "html_id": "p2c251",
+   "printed": "Schedule 5 Transfers for Public Use EXCLUSIVE",
+   "reason": "Schedule 5 row, EXCLUSIVE"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5TransferConj",
+   "html_id": "p2c252",
+   "printed": "Schedule 5 Transfers for Public Use CONJUGAL",
+   "reason": "Schedule 5 row, CONJUGAL"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5OthersExc",
+   "html_id": "p2c254",
+   "printed": "Schedule 5 Others (specify) EXCLUSIVE",
+   "reason": "Schedule 5 Others row, EXCLUSIVE"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5OthersConj",
+   "html_id": "p2c255",
+   "printed": "Schedule 5 Others (specify) CONJUGAL",
+   "reason": "Schedule 5 Others row, CONJUGAL"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5Exc_Total",
+   "html_id": "p2c257",
+   "printed": "TOTAL (To Part IV Item 35) EXCLUSIVE",
+   "reason": "Schedule 5 TOTAL row, EXCLUSIVE"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5Conj_Total",
+   "html_id": "p2c258",
+   "printed": "TOTAL (To Part IV Item 35) CONJUGAL/COMMUNAL",
+   "reason": "Schedule 5 TOTAL row, CONJUGAL"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN",
+   "reason": "the mixed TIN comb under the page 2 TIN caption: its nine inputs take the TIN digits (the branch slots are preprinted)"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm1801v2018:txtEstTaxDue",
+   "peso_html_id": "p1c63",
+   "cent_html_id": "p1c65",
+   "printed": "18 Estate Tax Due",
+   "reason": "peso comb + 2-slot cents, item 18 row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtCredits_ForeignEst",
+   "peso_html_id": "p1c68",
+   "cent_html_id": "p1c70",
+   "printed": "19A Foreign Estate Tax Paid",
+   "reason": "peso comb + cents, item 19A row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtCredits_TaxPrev",
+   "peso_html_id": "p1c72",
+   "cent_html_id": "p1c74",
+   "printed": "19B Tax Paid in Return Previously Filed",
+   "reason": "peso comb + cents, item 19B row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtCredits_Tot",
+   "peso_html_id": "p1c76",
+   "cent_html_id": "p1c78",
+   "printed": "19C Total (19A and 19B)",
+   "reason": "peso comb + cents, item 19C row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtTaxPayable",
+   "peso_html_id": "p1c80",
+   "cent_html_id": "p1c82",
+   "printed": "20 Tax Payable (Item 18 Less Item 19C)",
+   "reason": "peso comb + cents, item 20 row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtInstallment",
+   "peso_html_id": "p1c84",
+   "cent_html_id": "p1c86",
+   "printed": "21 Less: portion allowed for installment",
+   "reason": "peso comb + cents, item 21 row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtTaxPayable_1st",
+   "peso_html_id": "p1c88",
+   "cent_html_id": "p1c90",
+   "printed": "22 Tax Payable, 1st installment",
+   "reason": "peso comb + cents, item 22 row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtPen_Surcharge",
+   "peso_html_id": "p1c93",
+   "cent_html_id": "p1c95",
+   "printed": "23A Surcharge",
+   "reason": "peso comb + cents, item 23A row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtPen_Interest",
+   "peso_html_id": "p1c98",
+   "cent_html_id": "p1c100",
+   "printed": "23B Interest",
+   "reason": "peso comb + cents, item 23B row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtPen_Compromise",
+   "peso_html_id": "p1c103",
+   "cent_html_id": "p1c105",
+   "printed": "23C Compromise",
+   "reason": "peso comb + cents, item 23C row"
+  },
+  {
+   "writer_key": "frm1801v2018:txtPen_Tot",
+   "peso_html_id": "p1c108",
+   "cent_html_id": "p1c110",
+   "printed": "23D Total Penalties",
+   "reason": "peso comb + cents, item 23D row"
+  },
+  {
+   "writer_key": "frm1801v2018:cashAmt",
+   "peso_html_id": "p1c136",
+   "cent_html_id": "p1c138",
+   "printed": "25 Cash/Bank Debit Memo: Amount",
+   "reason": "peso comb + cents, item 25 amount"
+  },
+  {
+   "writer_key": "frm1801v2018:checkAmt",
+   "peso_html_id": "p1c145",
+   "cent_html_id": "p1c147",
+   "printed": "26 Check: Amount",
+   "reason": "peso comb + cents, item 26 amount"
+  },
+  {
+   "writer_key": "frm1801v2018:taxAmt",
+   "peso_html_id": "p1c153",
+   "cent_html_id": "p1c155",
+   "printed": "27 Tax Debit Memo: Amount",
+   "reason": "peso comb + cents, item 27 amount"
+  },
+  {
+   "writer_key": "frm1801v2018:othersAmt",
+   "peso_html_id": "p1c163",
+   "cent_html_id": "p1c165",
+   "printed": "28 Others: Amount",
+   "reason": "peso comb + cents, item 28 amount"
+  },
+  {
+   "writer_key": "frm1801v2018:txtRealProp_C",
+   "peso_html_id": "p2c15",
+   "cent_html_id": "p2c17",
+   "printed": "Real Properties C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtFam_C",
+   "peso_html_id": "p2c21",
+   "cent_html_id": "p2c23",
+   "printed": "Home (family home) C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtPersonalProp_C",
+   "peso_html_id": "p2c27",
+   "cent_html_id": "p2c29",
+   "printed": "31 Personal Properties C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtTaxable_C",
+   "peso_html_id": "p2c33",
+   "cent_html_id": "p2c35",
+   "printed": "Taxable Transfers C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtBusiness_C",
+   "peso_html_id": "p2c39",
+   "cent_html_id": "p2c41",
+   "printed": "Business Interest C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtGrossEst_C",
+   "peso_html_id": "p2c45",
+   "cent_html_id": "p2c47",
+   "printed": "Gross Estate C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtOrdDed_C",
+   "peso_html_id": "p2c51",
+   "cent_html_id": "p2c53",
+   "printed": "35 Less: Ordinary Deductions C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtEstAfterDed_C",
+   "peso_html_id": "p2c57",
+   "cent_html_id": "p2c59",
+   "printed": "Estate after Ordinary Deductions C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtStandardDed_C",
+   "peso_html_id": "p2c62",
+   "cent_html_id": "p2c64",
+   "printed": "Standard Deductions C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtFamDed_C",
+   "peso_html_id": "p2c66",
+   "cent_html_id": "p2c68",
+   "printed": "37B Family Home C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtOtherDed_C",
+   "peso_html_id": "p2c70",
+   "cent_html_id": "p2c72",
+   "printed": "37C Others (specify) C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtTotalDed_C",
+   "peso_html_id": "p2c74",
+   "cent_html_id": "p2c76",
+   "printed": "Total Special Deductions C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtNetEst_C",
+   "peso_html_id": "p2c78",
+   "cent_html_id": "p2c80",
+   "printed": "NET ESTATE C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtShareSpouse_C",
+   "peso_html_id": "p2c82",
+   "cent_html_id": "p2c84",
+   "printed": "Less: Share of Surviving Spouse C. Total",
+   "reason": "peso comb + cents, C column"
+  },
+  {
+   "writer_key": "frm1801v2018:txtNetTaxEst_C",
+   "peso_html_id": "p2c86",
+   "cent_html_id": "p2c88",
+   "printed": "40 NET TAXABLE ESTATE C. Total",
+   "reason": "peso comb + cents, C column"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1801v2018:amendedRtn_1",
+   "html_id": "p1c10",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1801v2018:amendedRtn_2",
+   "html_id": "p1c11",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1801v2018:categoryNonResident_1",
+   "html_id": "p1c28",
+   "printed": "9 Non-Resident Alien? Yes (left box, reading order)",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1801v2018:categoryNonResident_2",
+   "html_id": "p1c27",
+   "printed": "9 Non-Resident Alien? No (right box, reading order)",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1801v2018:optTreaty_1",
+   "html_id": "p1c39",
+   "printed": "14 Special Law / International Tax Treaty: Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1801v2018:optTreaty_2",
+   "html_id": "p1c40",
+   "printed": "14 Special Law / International Tax Treaty: No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1801v2018:fileGranted_1",
+   "html_id": "p1c42",
+   "printed": "15A Has an extension to file return been granted? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1801v2018:fileGranted_2",
+   "html_id": "p1c43",
+   "printed": "15A Has an extension to file return been granted? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1801v2018:settled_1",
+   "html_id": "p1c46",
+   "printed": "15B Has the estate been settled judicially? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1801v2018:settled_2",
+   "html_id": "p1c47",
+   "printed": "15B Has the estate been settled judicially? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1801v2018:extGranted_1",
+   "html_id": "p1c48",
+   "printed": "15C Has an extension to pay the tax been granted? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1801v2018:extGranted_2",
+   "html_id": "p1c49",
+   "printed": "15C Has an extension to pay the tax been granted? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1801v2018:instGranted_1",
+   "html_id": "p1c44",
+   "printed": "15D Has an installment payment been granted? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1801v2018:instGranted_2",
+   "html_id": "p1c45",
+   "printed": "15D Has an installment payment been granted? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  }
+ ],
+ "date_joins": [
+  {
+   "writer_key": "frm1801v2018:cashDate",
+   "mm_html_id": "p1c133",
+   "dd_html_id": "p1c134",
+   "yyyy_html_id": "p1c135",
+   "printed": "Part III cash row, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs left of the Amount combs on that Part III payment row; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1801v2018:checkDate",
+   "mm_html_id": "p1c142",
+   "dd_html_id": "p1c143",
+   "yyyy_html_id": "p1c144",
+   "printed": "Part III check row, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs left of the Amount combs on that Part III payment row; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1801v2018:taxDate",
+   "mm_html_id": "p1c150",
+   "dd_html_id": "p1c151",
+   "yyyy_html_id": "p1c152",
+   "printed": "Part III tax row, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs left of the Amount combs on that Part III payment row; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1801v2018:othersDate",
+   "mm_html_id": "p1c160",
+   "dd_html_id": "p1c161",
+   "yyyy_html_id": "p1c162",
+   "printed": "Part III others row, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs left of the Amount combs on that Part III payment row; one writer date split across the three"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_key": "frm1801v2018:txtDateMonth",
+   "reason": "item 1 Date of Death: one 6-slot comb (p1c4) for MMDDYY; three writer keys onto one cell is not a join"
+  },
+  {
+   "writer_key": "frm1801v2018:txtDateDay",
+   "reason": "item 1 Date of Death: one 6-slot comb (p1c4) for MMDDYY; three writer keys onto one cell is not a join"
+  },
+  {
+   "writer_key": "frm1801v2018:txtDateYear",
+   "reason": "item 1 Date of Death: one 6-slot comb (p1c4) for MMDDYY; three writer keys onto one cell is not a join"
+  },
+  {
+   "writer_key": "frm1801v2018:txtAtc",
+   "reason": "no fillable cell on the frozen sheet for this key (ES 010 ATC is preprinted)"
+  },
+  {
+   "writer_key": "frm1801v2018:tinA_1",
+   "reason": "TIN row (item 5): mixed cells with printed captions inside; the slot counts (3/4/4/5) do not give a clean 3-3-3 plus branch split"
+  },
+  {
+   "writer_key": "frm1801v2018:tinB_1",
+   "reason": "TIN row (item 5): mixed cells with printed captions inside; the slot counts (3/4/4/5) do not give a clean 3-3-3 plus branch split"
+  },
+  {
+   "writer_key": "frm1801v2018:tinC_1",
+   "reason": "TIN row (item 5): mixed cells with printed captions inside; the slot counts (3/4/4/5) do not give a clean 3-3-3 plus branch split"
+  },
+  {
+   "writer_key": "frm1801v2018:branchCode_1",
+   "reason": "TIN row (item 5): mixed cells with printed captions inside; the slot counts (3/4/4/5) do not give a clean 3-3-3 plus branch split"
+  },
+  {
+   "writer_key": "frm1801v2018:txtTINE1",
+   "reason": "executor TIN (item 11): one mixed 11-slot comb (p1c31) with printed dashes inside; not split"
+  },
+  {
+   "writer_key": "frm1801v2018:txtTINE2",
+   "reason": "executor TIN (item 11): one mixed 11-slot comb (p1c31) with printed dashes inside; not split"
+  },
+  {
+   "writer_key": "frm1801v2018:txtTINE3",
+   "reason": "executor TIN (item 11): one mixed 11-slot comb (p1c31) with printed dashes inside; not split"
+  },
+  {
+   "writer_key": "frm1801v2018:txtBranchCodeE",
+   "reason": "executor TIN (item 11): one mixed 11-slot comb (p1c31) with printed dashes inside; not split"
+  },
+  {
+   "writer_key": "frm1801v2018:telephoneNumber",
+   "reason": "item 12 Contact Number comb (p1c33) is mixed: its printed caption sits inside the slots"
+  },
+  {
+   "writer_key": "frm1801v2018:treatyY",
+   "reason": "item 14A \"If yes, specify\": the writer holds an option code, not printable text (same rule as 2553 item 13)"
+  },
+  {
+   "writer_key": "frm1801v2018:freq_Mon",
+   "reason": "frequency-of-payment options (p1c50 to p1c53): no printed option labels in the text layer, so not guessed"
+  },
+  {
+   "writer_key": "frm1801v2018:freq_Qtr",
+   "reason": "frequency-of-payment options (p1c50 to p1c53): no printed option labels in the text layer, so not guessed"
+  },
+  {
+   "writer_key": "frm1801v2018:freq_Semi",
+   "reason": "frequency-of-payment options (p1c50 to p1c53): no printed option labels in the text layer, so not guessed"
+  },
+  {
+   "writer_key": "frm1801v2018:freq_Other",
+   "reason": "frequency-of-payment options (p1c50 to p1c53): no printed option labels in the text layer, so not guessed"
+  },
+  {
+   "writer_key": "frm1801v2018:freqOtherInput",
+   "reason": "frequency-of-payment \"other\" specify: no matching labelled cell"
+  },
+  {
+   "writer_key": "frm1801v2018:txtTaxableEstate",
+   "reason": "item 16 Net Taxable Estate: peso comb p1c56 with a mixed 3-slot cents comb p1c57; not a 2-slot centavo pair"
+  },
+  {
+   "writer_key": "frm1801v2018:txtTaxRate",
+   "reason": "no fillable cell on the frozen sheet for this key (item 17 rate 6.0% is preprinted)"
+  },
+  {
+   "writer_key": "frm1801v2018:txtInstallmentYear",
+   "reason": "no fillable cell on the frozen sheet for this key (installment year blank)"
+  },
+  {
+   "writer_key": "frm1801v2018:txtTotPayable",
+   "reason": "item 24 peso comb p1c112 is mixed with the printed item 24 caption; not split"
+  },
+  {
+   "writer_key": "frm1801v2018:txtOtherDed_Specify",
+   "reason": "no fillable cell on the frozen sheet for this key (no specify cell on the Others row)"
+  },
+  {
+   "writer_key": "frm1801v2018:sched5Others_Specify",
+   "reason": "no fillable cell on the frozen sheet for this key (no specify cell on the Others row of Schedule 5)"
+  },
+  {
+   "writer_key": "frm1801v2018:txtCurrentPage",
+   "reason": "page counter, not a fillable cell"
+  },
+  {
+   "writer_key": "frm1801v2018:txtMaxPage",
+   "reason": "page counter, not a fillable cell"
+  },
+  {
+   "writer_keys": [
+    "frm1801v2018:sched1AArea_3",
+    "frm1801v2018:sched1AArea_4",
+    "frm1801v2018:sched1AArea_5",
+    "frm1801v2018:sched1AArea_6",
+    "frm1801v2018:sched1AArea_7",
+    "frm1801v2018:sched1AClass_3'",
+    "frm1801v2018:sched1AClass_4'",
+    "frm1801v2018:sched1AClass_5'",
+    "frm1801v2018:sched1AClass_6'",
+    "frm1801v2018:sched1AClass_7'",
+    "frm1801v2018:sched1AConj_3",
+    "frm1801v2018:sched1AConj_4",
+    "frm1801v2018:sched1AConj_5",
+    "frm1801v2018:sched1AConj_6",
+    "frm1801v2018:sched1AConj_7",
+    "frm1801v2018:sched1AExc_3",
+    "frm1801v2018:sched1AExc_4",
+    "frm1801v2018:sched1AExc_5",
+    "frm1801v2018:sched1AExc_6",
+    "frm1801v2018:sched1AExc_7",
+    "frm1801v2018:sched1AFmv_3",
+    "frm1801v2018:sched1AFmv_4",
+    "frm1801v2018:sched1AFmv_5",
+    "frm1801v2018:sched1AFmv_6",
+    "frm1801v2018:sched1AFmv_7",
+    "frm1801v2018:sched1ALoc_3",
+    "frm1801v2018:sched1ALoc_4",
+    "frm1801v2018:sched1ALoc_5",
+    "frm1801v2018:sched1ALoc_6",
+    "frm1801v2018:sched1ALoc_7",
+    "frm1801v2018:sched1AOct_3",
+    "frm1801v2018:sched1AOct_4",
+    "frm1801v2018:sched1AOct_5",
+    "frm1801v2018:sched1AOct_6",
+    "frm1801v2018:sched1AOct_7",
+    "frm1801v2018:sched1ATd_3",
+    "frm1801v2018:sched1ATd_4",
+    "frm1801v2018:sched1ATd_5",
+    "frm1801v2018:sched1ATd_6",
+    "frm1801v2018:sched1ATd_7",
+    "frm1801v2018:sched1AZonal_3",
+    "frm1801v2018:sched1AZonal_4",
+    "frm1801v2018:sched1AZonal_5",
+    "frm1801v2018:sched1AZonal_6",
+    "frm1801v2018:sched1AZonal_7",
+    "frm1801v2018:sched1Area_3",
+    "frm1801v2018:sched1Area_4",
+    "frm1801v2018:sched1Area_5",
+    "frm1801v2018:sched1Area_6",
+    "frm1801v2018:sched1Area_7",
+    "frm1801v2018:sched1Area_8",
+    "frm1801v2018:sched1Area_9",
+    "frm1801v2018:sched1Area_10",
+    "frm1801v2018:sched1Area_11",
+    "frm1801v2018:sched1Area_12",
+    "frm1801v2018:sched1Area_13",
+    "frm1801v2018:sched1Area_14",
+    "frm1801v2018:sched1Area_15",
+    "frm1801v2018:sched1Area_16",
+    "frm1801v2018:sched1Area_17",
+    "frm1801v2018:sched1Area_18",
+    "frm1801v2018:sched1Area_19",
+    "frm1801v2018:sched1Area_20",
+    "frm1801v2018:sched1Area_21",
+    "frm1801v2018:sched1Class_3'",
+    "frm1801v2018:sched1Class_4'",
+    "frm1801v2018:sched1Class_5'",
+    "frm1801v2018:sched1Class_6'",
+    "frm1801v2018:sched1Class_7'",
+    "frm1801v2018:sched1Class_8'",
+    "frm1801v2018:sched1Class_9'",
+    "frm1801v2018:sched1Class_10'",
+    "frm1801v2018:sched1Class_11'",
+    "frm1801v2018:sched1Class_12'",
+    "frm1801v2018:sched1Class_13'",
+    "frm1801v2018:sched1Class_14'",
+    "frm1801v2018:sched1Class_15'",
+    "frm1801v2018:sched1Class_16'",
+    "frm1801v2018:sched1Class_17'",
+    "frm1801v2018:sched1Class_18'",
+    "frm1801v2018:sched1Class_19'",
+    "frm1801v2018:sched1Class_20'",
+    "frm1801v2018:sched1Class_21'",
+    "frm1801v2018:sched1Conj_3",
+    "frm1801v2018:sched1Conj_4",
+    "frm1801v2018:sched1Conj_5",
+    "frm1801v2018:sched1Conj_6",
+    "frm1801v2018:sched1Conj_7",
+    "frm1801v2018:sched1Conj_8",
+    "frm1801v2018:sched1Conj_9",
+    "frm1801v2018:sched1Conj_10",
+    "frm1801v2018:sched1Conj_11",
+    "frm1801v2018:sched1Conj_12",
+    "frm1801v2018:sched1Conj_13",
+    "frm1801v2018:sched1Conj_14",
+    "frm1801v2018:sched1Conj_15",
+    "frm1801v2018:sched1Conj_16",
+    "frm1801v2018:sched1Conj_17",
+    "frm1801v2018:sched1Conj_18",
+    "frm1801v2018:sched1Conj_19",
+    "frm1801v2018:sched1Conj_20",
+    "frm1801v2018:sched1Conj_21",
+    "frm1801v2018:sched1Exc_3",
+    "frm1801v2018:sched1Exc_4",
+    "frm1801v2018:sched1Exc_5",
+    "frm1801v2018:sched1Exc_6",
+    "frm1801v2018:sched1Exc_7",
+    "frm1801v2018:sched1Exc_8",
+    "frm1801v2018:sched1Exc_9",
+    "frm1801v2018:sched1Exc_10",
+    "frm1801v2018:sched1Exc_11",
+    "frm1801v2018:sched1Exc_12",
+    "frm1801v2018:sched1Exc_13",
+    "frm1801v2018:sched1Exc_14",
+    "frm1801v2018:sched1Exc_15",
+    "frm1801v2018:sched1Exc_16",
+    "frm1801v2018:sched1Exc_17",
+    "frm1801v2018:sched1Exc_18",
+    "frm1801v2018:sched1Exc_19",
+    "frm1801v2018:sched1Exc_20",
+    "frm1801v2018:sched1Exc_21",
+    "frm1801v2018:sched1Fmv_3",
+    "frm1801v2018:sched1Fmv_4",
+    "frm1801v2018:sched1Fmv_5",
+    "frm1801v2018:sched1Fmv_6",
+    "frm1801v2018:sched1Fmv_7",
+    "frm1801v2018:sched1Fmv_8",
+    "frm1801v2018:sched1Fmv_9",
+    "frm1801v2018:sched1Fmv_10",
+    "frm1801v2018:sched1Fmv_11",
+    "frm1801v2018:sched1Fmv_12",
+    "frm1801v2018:sched1Fmv_13",
+    "frm1801v2018:sched1Fmv_14",
+    "frm1801v2018:sched1Fmv_15",
+    "frm1801v2018:sched1Fmv_16",
+    "frm1801v2018:sched1Fmv_17",
+    "frm1801v2018:sched1Fmv_18",
+    "frm1801v2018:sched1Fmv_19",
+    "frm1801v2018:sched1Fmv_20",
+    "frm1801v2018:sched1Fmv_21",
+    "frm1801v2018:sched1Loc_3",
+    "frm1801v2018:sched1Loc_4",
+    "frm1801v2018:sched1Loc_5",
+    "frm1801v2018:sched1Loc_6",
+    "frm1801v2018:sched1Loc_7",
+    "frm1801v2018:sched1Loc_8",
+    "frm1801v2018:sched1Loc_9",
+    "frm1801v2018:sched1Loc_10",
+    "frm1801v2018:sched1Loc_11",
+    "frm1801v2018:sched1Loc_12",
+    "frm1801v2018:sched1Loc_13",
+    "frm1801v2018:sched1Loc_14",
+    "frm1801v2018:sched1Loc_15",
+    "frm1801v2018:sched1Loc_16",
+    "frm1801v2018:sched1Loc_17",
+    "frm1801v2018:sched1Loc_18",
+    "frm1801v2018:sched1Loc_19",
+    "frm1801v2018:sched1Loc_20",
+    "frm1801v2018:sched1Loc_21",
+    "frm1801v2018:sched1Lot_3",
+    "frm1801v2018:sched1Lot_4",
+    "frm1801v2018:sched1Lot_5",
+    "frm1801v2018:sched1Lot_6",
+    "frm1801v2018:sched1Lot_7",
+    "frm1801v2018:sched1Lot_8",
+    "frm1801v2018:sched1Lot_9",
+    "frm1801v2018:sched1Lot_10",
+    "frm1801v2018:sched1Lot_11",
+    "frm1801v2018:sched1Lot_12",
+    "frm1801v2018:sched1Lot_13",
+    "frm1801v2018:sched1Lot_14",
+    "frm1801v2018:sched1Lot_15",
+    "frm1801v2018:sched1Lot_16",
+    "frm1801v2018:sched1Lot_17",
+    "frm1801v2018:sched1Lot_18",
+    "frm1801v2018:sched1Lot_19",
+    "frm1801v2018:sched1Lot_20",
+    "frm1801v2018:sched1Lot_21",
+    "frm1801v2018:sched1Oct_3",
+    "frm1801v2018:sched1Oct_4",
+    "frm1801v2018:sched1Oct_5",
+    "frm1801v2018:sched1Oct_6",
+    "frm1801v2018:sched1Oct_7",
+    "frm1801v2018:sched1Oct_8",
+    "frm1801v2018:sched1Oct_9",
+    "frm1801v2018:sched1Oct_10",
+    "frm1801v2018:sched1Oct_11",
+    "frm1801v2018:sched1Oct_12",
+    "frm1801v2018:sched1Oct_13",
+    "frm1801v2018:sched1Oct_14",
+    "frm1801v2018:sched1Oct_15",
+    "frm1801v2018:sched1Oct_16",
+    "frm1801v2018:sched1Oct_17",
+    "frm1801v2018:sched1Oct_18",
+    "frm1801v2018:sched1Oct_19",
+    "frm1801v2018:sched1Oct_20",
+    "frm1801v2018:sched1Oct_21",
+    "frm1801v2018:sched1Td_3",
+    "frm1801v2018:sched1Td_4",
+    "frm1801v2018:sched1Td_5",
+    "frm1801v2018:sched1Td_6",
+    "frm1801v2018:sched1Td_7",
+    "frm1801v2018:sched1Td_8",
+    "frm1801v2018:sched1Td_9",
+    "frm1801v2018:sched1Td_10",
+    "frm1801v2018:sched1Td_11",
+    "frm1801v2018:sched1Td_12",
+    "frm1801v2018:sched1Td_13",
+    "frm1801v2018:sched1Td_14",
+    "frm1801v2018:sched1Td_15",
+    "frm1801v2018:sched1Td_16",
+    "frm1801v2018:sched1Td_17",
+    "frm1801v2018:sched1Td_18",
+    "frm1801v2018:sched1Td_19",
+    "frm1801v2018:sched1Td_20",
+    "frm1801v2018:sched1Td_21",
+    "frm1801v2018:sched1Zonal_3",
+    "frm1801v2018:sched1Zonal_4",
+    "frm1801v2018:sched1Zonal_5",
+    "frm1801v2018:sched1Zonal_6",
+    "frm1801v2018:sched1Zonal_7",
+    "frm1801v2018:sched1Zonal_8",
+    "frm1801v2018:sched1Zonal_9",
+    "frm1801v2018:sched1Zonal_10",
+    "frm1801v2018:sched1Zonal_11",
+    "frm1801v2018:sched1Zonal_12",
+    "frm1801v2018:sched1Zonal_13",
+    "frm1801v2018:sched1Zonal_14",
+    "frm1801v2018:sched1Zonal_15",
+    "frm1801v2018:sched1Zonal_16",
+    "frm1801v2018:sched1Zonal_17",
+    "frm1801v2018:sched1Zonal_18",
+    "frm1801v2018:sched1Zonal_19",
+    "frm1801v2018:sched1Zonal_20",
+    "frm1801v2018:sched1Zonal_21",
+    "frm1801v2018:sched2AConj_3",
+    "frm1801v2018:sched2AConj_4",
+    "frm1801v2018:sched2AConj_5",
+    "frm1801v2018:sched2AConj_6",
+    "frm1801v2018:sched2AConj_7",
+    "frm1801v2018:sched2AExc_3",
+    "frm1801v2018:sched2AExc_4",
+    "frm1801v2018:sched2AExc_5",
+    "frm1801v2018:sched2AExc_6",
+    "frm1801v2018:sched2AExc_7",
+    "frm1801v2018:sched2AParticulars_3",
+    "frm1801v2018:sched2AParticulars_4",
+    "frm1801v2018:sched2AParticulars_5",
+    "frm1801v2018:sched2AParticulars_6",
+    "frm1801v2018:sched2AParticulars_7",
+    "frm1801v2018:sched2Class_3",
+    "frm1801v2018:sched2Class_4",
+    "frm1801v2018:sched2Class_5",
+    "frm1801v2018:sched2Class_6",
+    "frm1801v2018:sched2Class_7",
+    "frm1801v2018:sched2Conj_3",
+    "frm1801v2018:sched2Conj_4",
+    "frm1801v2018:sched2Conj_5",
+    "frm1801v2018:sched2Conj_6",
+    "frm1801v2018:sched2Conj_7",
+    "frm1801v2018:sched2Corp_3",
+    "frm1801v2018:sched2Corp_4",
+    "frm1801v2018:sched2Corp_5",
+    "frm1801v2018:sched2Corp_6",
+    "frm1801v2018:sched2Corp_7",
+    "frm1801v2018:sched2Exc_3",
+    "frm1801v2018:sched2Exc_4",
+    "frm1801v2018:sched2Exc_5",
+    "frm1801v2018:sched2Exc_6",
+    "frm1801v2018:sched2Exc_7",
+    "frm1801v2018:sched2FmvPerShare_3",
+    "frm1801v2018:sched2FmvPerShare_4",
+    "frm1801v2018:sched2FmvPerShare_5",
+    "frm1801v2018:sched2FmvPerShare_6",
+    "frm1801v2018:sched2FmvPerShare_7",
+    "frm1801v2018:sched2Shares_3",
+    "frm1801v2018:sched2Shares_4",
+    "frm1801v2018:sched2Shares_5",
+    "frm1801v2018:sched2Shares_6",
+    "frm1801v2018:sched2Shares_7",
+    "frm1801v2018:sched2Stock_3",
+    "frm1801v2018:sched2Stock_4",
+    "frm1801v2018:sched2Stock_5",
+    "frm1801v2018:sched2Stock_6",
+    "frm1801v2018:sched2Stock_7",
+    "frm1801v2018:sched3Conj_3",
+    "frm1801v2018:sched3Conj_4",
+    "frm1801v2018:sched3Conj_5",
+    "frm1801v2018:sched3Conj_6",
+    "frm1801v2018:sched3Conj_7",
+    "frm1801v2018:sched3Exc_3",
+    "frm1801v2018:sched3Exc_4",
+    "frm1801v2018:sched3Exc_5",
+    "frm1801v2018:sched3Exc_6",
+    "frm1801v2018:sched3Exc_7",
+    "frm1801v2018:sched3Particulars_3",
+    "frm1801v2018:sched3Particulars_4",
+    "frm1801v2018:sched3Particulars_5",
+    "frm1801v2018:sched3Particulars_6",
+    "frm1801v2018:sched3Particulars_7",
+    "frm1801v2018:sched4Address_3",
+    "frm1801v2018:sched4Address_4",
+    "frm1801v2018:sched4Address_5",
+    "frm1801v2018:sched4Address_6",
+    "frm1801v2018:sched4Address_7",
+    "frm1801v2018:sched4Conj_3",
+    "frm1801v2018:sched4Conj_4",
+    "frm1801v2018:sched4Conj_5",
+    "frm1801v2018:sched4Conj_6",
+    "frm1801v2018:sched4Conj_7",
+    "frm1801v2018:sched4Exc_3",
+    "frm1801v2018:sched4Exc_4",
+    "frm1801v2018:sched4Exc_5",
+    "frm1801v2018:sched4Exc_6",
+    "frm1801v2018:sched4Exc_7",
+    "frm1801v2018:sched4Name_3",
+    "frm1801v2018:sched4Name_4",
+    "frm1801v2018:sched4Name_5",
+    "frm1801v2018:sched4Name_6",
+    "frm1801v2018:sched4Name_7",
+    "frm1801v2018:sched4Rdo_3",
+    "frm1801v2018:sched4Rdo_4",
+    "frm1801v2018:sched4Rdo_5",
+    "frm1801v2018:sched4Rdo_6",
+    "frm1801v2018:sched4Rdo_7",
+    "frm1801v2018:sched1AArea_10",
+    "frm1801v2018:sched1AArea_11",
+    "frm1801v2018:sched1AArea_12",
+    "frm1801v2018:sched1AArea_13",
+    "frm1801v2018:sched1AArea_14",
+    "frm1801v2018:sched1AArea_15",
+    "frm1801v2018:sched1AArea_16",
+    "frm1801v2018:sched1AArea_17",
+    "frm1801v2018:sched1AArea_8",
+    "frm1801v2018:sched1AArea_9",
+    "frm1801v2018:sched1AConj_10",
+    "frm1801v2018:sched1AConj_11",
+    "frm1801v2018:sched1AConj_12",
+    "frm1801v2018:sched1AConj_13",
+    "frm1801v2018:sched1AConj_14",
+    "frm1801v2018:sched1AConj_15",
+    "frm1801v2018:sched1AConj_16",
+    "frm1801v2018:sched1AConj_17",
+    "frm1801v2018:sched1AConj_8",
+    "frm1801v2018:sched1AConj_9",
+    "frm1801v2018:sched1AExc_10",
+    "frm1801v2018:sched1AExc_11",
+    "frm1801v2018:sched1AExc_12",
+    "frm1801v2018:sched1AExc_13",
+    "frm1801v2018:sched1AExc_14",
+    "frm1801v2018:sched1AExc_15",
+    "frm1801v2018:sched1AExc_16",
+    "frm1801v2018:sched1AExc_17",
+    "frm1801v2018:sched1AExc_8",
+    "frm1801v2018:sched1AExc_9",
+    "frm1801v2018:sched1AFmv_10",
+    "frm1801v2018:sched1AFmv_11",
+    "frm1801v2018:sched1AFmv_12",
+    "frm1801v2018:sched1AFmv_13",
+    "frm1801v2018:sched1AFmv_14",
+    "frm1801v2018:sched1AFmv_15",
+    "frm1801v2018:sched1AFmv_16",
+    "frm1801v2018:sched1AFmv_17",
+    "frm1801v2018:sched1AFmv_8",
+    "frm1801v2018:sched1AFmv_9",
+    "frm1801v2018:sched1ALoc_10",
+    "frm1801v2018:sched1ALoc_11",
+    "frm1801v2018:sched1ALoc_12",
+    "frm1801v2018:sched1ALoc_13",
+    "frm1801v2018:sched1ALoc_14",
+    "frm1801v2018:sched1ALoc_15",
+    "frm1801v2018:sched1ALoc_16",
+    "frm1801v2018:sched1ALoc_17",
+    "frm1801v2018:sched1ALoc_8",
+    "frm1801v2018:sched1ALoc_9",
+    "frm1801v2018:sched1AOct_10",
+    "frm1801v2018:sched1AOct_11",
+    "frm1801v2018:sched1AOct_12",
+    "frm1801v2018:sched1AOct_13",
+    "frm1801v2018:sched1AOct_14",
+    "frm1801v2018:sched1AOct_15",
+    "frm1801v2018:sched1AOct_16",
+    "frm1801v2018:sched1AOct_17",
+    "frm1801v2018:sched1AOct_8",
+    "frm1801v2018:sched1AOct_9",
+    "frm1801v2018:sched1ATd_10",
+    "frm1801v2018:sched1ATd_11",
+    "frm1801v2018:sched1ATd_12",
+    "frm1801v2018:sched1ATd_13",
+    "frm1801v2018:sched1ATd_14",
+    "frm1801v2018:sched1ATd_15",
+    "frm1801v2018:sched1ATd_16",
+    "frm1801v2018:sched1ATd_17",
+    "frm1801v2018:sched1ATd_8",
+    "frm1801v2018:sched1ATd_9",
+    "frm1801v2018:sched1AZonal_10",
+    "frm1801v2018:sched1AZonal_11",
+    "frm1801v2018:sched1AZonal_12",
+    "frm1801v2018:sched1AZonal_13",
+    "frm1801v2018:sched1AZonal_14",
+    "frm1801v2018:sched1AZonal_15",
+    "frm1801v2018:sched1AZonal_16",
+    "frm1801v2018:sched1AZonal_17",
+    "frm1801v2018:sched1AZonal_8",
+    "frm1801v2018:sched1AZonal_9",
+    "frm1801v2018:sched1Area_22",
+    "frm1801v2018:sched1Area_23",
+    "frm1801v2018:sched1Area_24",
+    "frm1801v2018:sched1Area_25",
+    "frm1801v2018:sched1Area_26",
+    "frm1801v2018:sched1Area_27",
+    "frm1801v2018:sched1Area_28",
+    "frm1801v2018:sched1Area_29",
+    "frm1801v2018:sched1Area_30",
+    "frm1801v2018:sched1Area_31",
+    "frm1801v2018:sched1Conj_22",
+    "frm1801v2018:sched1Conj_23",
+    "frm1801v2018:sched1Conj_24",
+    "frm1801v2018:sched1Conj_25",
+    "frm1801v2018:sched1Conj_26",
+    "frm1801v2018:sched1Conj_27",
+    "frm1801v2018:sched1Conj_28",
+    "frm1801v2018:sched1Conj_29",
+    "frm1801v2018:sched1Conj_30",
+    "frm1801v2018:sched1Conj_31",
+    "frm1801v2018:sched1Exc_22",
+    "frm1801v2018:sched1Exc_23",
+    "frm1801v2018:sched1Exc_24",
+    "frm1801v2018:sched1Exc_25",
+    "frm1801v2018:sched1Exc_26",
+    "frm1801v2018:sched1Exc_27",
+    "frm1801v2018:sched1Exc_28",
+    "frm1801v2018:sched1Exc_29",
+    "frm1801v2018:sched1Exc_30",
+    "frm1801v2018:sched1Exc_31",
+    "frm1801v2018:sched1Fmv_22",
+    "frm1801v2018:sched1Fmv_23",
+    "frm1801v2018:sched1Fmv_24",
+    "frm1801v2018:sched1Fmv_25",
+    "frm1801v2018:sched1Fmv_26",
+    "frm1801v2018:sched1Fmv_27",
+    "frm1801v2018:sched1Fmv_28",
+    "frm1801v2018:sched1Fmv_29",
+    "frm1801v2018:sched1Fmv_30",
+    "frm1801v2018:sched1Fmv_31",
+    "frm1801v2018:sched1Loc_22",
+    "frm1801v2018:sched1Loc_23",
+    "frm1801v2018:sched1Loc_24",
+    "frm1801v2018:sched1Loc_25",
+    "frm1801v2018:sched1Loc_26",
+    "frm1801v2018:sched1Loc_27",
+    "frm1801v2018:sched1Loc_28",
+    "frm1801v2018:sched1Loc_29",
+    "frm1801v2018:sched1Loc_30",
+    "frm1801v2018:sched1Loc_31",
+    "frm1801v2018:sched1Lot_22",
+    "frm1801v2018:sched1Lot_23",
+    "frm1801v2018:sched1Lot_24",
+    "frm1801v2018:sched1Lot_25",
+    "frm1801v2018:sched1Lot_26",
+    "frm1801v2018:sched1Lot_27",
+    "frm1801v2018:sched1Lot_28",
+    "frm1801v2018:sched1Lot_29",
+    "frm1801v2018:sched1Lot_30",
+    "frm1801v2018:sched1Lot_31",
+    "frm1801v2018:sched1Oct_22",
+    "frm1801v2018:sched1Oct_23",
+    "frm1801v2018:sched1Oct_24",
+    "frm1801v2018:sched1Oct_25",
+    "frm1801v2018:sched1Oct_26",
+    "frm1801v2018:sched1Oct_27",
+    "frm1801v2018:sched1Oct_28",
+    "frm1801v2018:sched1Oct_29",
+    "frm1801v2018:sched1Oct_30",
+    "frm1801v2018:sched1Oct_31",
+    "frm1801v2018:sched1Td_22",
+    "frm1801v2018:sched1Td_23",
+    "frm1801v2018:sched1Td_24",
+    "frm1801v2018:sched1Td_25",
+    "frm1801v2018:sched1Td_26",
+    "frm1801v2018:sched1Td_27",
+    "frm1801v2018:sched1Td_28",
+    "frm1801v2018:sched1Td_29",
+    "frm1801v2018:sched1Td_30",
+    "frm1801v2018:sched1Td_31",
+    "frm1801v2018:sched1Zonal_22",
+    "frm1801v2018:sched1Zonal_23",
+    "frm1801v2018:sched1Zonal_24",
+    "frm1801v2018:sched1Zonal_25",
+    "frm1801v2018:sched1Zonal_26",
+    "frm1801v2018:sched1Zonal_27",
+    "frm1801v2018:sched1Zonal_28",
+    "frm1801v2018:sched1Zonal_29",
+    "frm1801v2018:sched1Zonal_30",
+    "frm1801v2018:sched1Zonal_31",
+    "frm1801v2018:sched2AConj_10",
+    "frm1801v2018:sched2AConj_11",
+    "frm1801v2018:sched2AConj_12",
+    "frm1801v2018:sched2AConj_13",
+    "frm1801v2018:sched2AConj_14",
+    "frm1801v2018:sched2AConj_15",
+    "frm1801v2018:sched2AConj_16",
+    "frm1801v2018:sched2AConj_17",
+    "frm1801v2018:sched2AConj_8",
+    "frm1801v2018:sched2AConj_9",
+    "frm1801v2018:sched2AExc_10",
+    "frm1801v2018:sched2AExc_11",
+    "frm1801v2018:sched2AExc_12",
+    "frm1801v2018:sched2AExc_13",
+    "frm1801v2018:sched2AExc_14",
+    "frm1801v2018:sched2AExc_15",
+    "frm1801v2018:sched2AExc_16",
+    "frm1801v2018:sched2AExc_17",
+    "frm1801v2018:sched2AExc_8",
+    "frm1801v2018:sched2AExc_9",
+    "frm1801v2018:sched2AParticulars_10",
+    "frm1801v2018:sched2AParticulars_11",
+    "frm1801v2018:sched2AParticulars_12",
+    "frm1801v2018:sched2AParticulars_13",
+    "frm1801v2018:sched2AParticulars_14",
+    "frm1801v2018:sched2AParticulars_15",
+    "frm1801v2018:sched2AParticulars_16",
+    "frm1801v2018:sched2AParticulars_17",
+    "frm1801v2018:sched2AParticulars_8",
+    "frm1801v2018:sched2AParticulars_9",
+    "frm1801v2018:sched2Class_10",
+    "frm1801v2018:sched2Class_11",
+    "frm1801v2018:sched2Class_12",
+    "frm1801v2018:sched2Class_13",
+    "frm1801v2018:sched2Class_14",
+    "frm1801v2018:sched2Class_15",
+    "frm1801v2018:sched2Class_16",
+    "frm1801v2018:sched2Class_17",
+    "frm1801v2018:sched2Class_8",
+    "frm1801v2018:sched2Class_9",
+    "frm1801v2018:sched2Conj_10",
+    "frm1801v2018:sched2Conj_11",
+    "frm1801v2018:sched2Conj_12",
+    "frm1801v2018:sched2Conj_13",
+    "frm1801v2018:sched2Conj_14",
+    "frm1801v2018:sched2Conj_15",
+    "frm1801v2018:sched2Conj_16",
+    "frm1801v2018:sched2Conj_17",
+    "frm1801v2018:sched2Conj_8",
+    "frm1801v2018:sched2Conj_9",
+    "frm1801v2018:sched2Corp_10",
+    "frm1801v2018:sched2Corp_11",
+    "frm1801v2018:sched2Corp_12",
+    "frm1801v2018:sched2Corp_13",
+    "frm1801v2018:sched2Corp_14",
+    "frm1801v2018:sched2Corp_15",
+    "frm1801v2018:sched2Corp_16",
+    "frm1801v2018:sched2Corp_17",
+    "frm1801v2018:sched2Corp_8",
+    "frm1801v2018:sched2Corp_9",
+    "frm1801v2018:sched2Exc_10",
+    "frm1801v2018:sched2Exc_11",
+    "frm1801v2018:sched2Exc_12",
+    "frm1801v2018:sched2Exc_13",
+    "frm1801v2018:sched2Exc_14",
+    "frm1801v2018:sched2Exc_15",
+    "frm1801v2018:sched2Exc_16",
+    "frm1801v2018:sched2Exc_17",
+    "frm1801v2018:sched2Exc_8",
+    "frm1801v2018:sched2Exc_9",
+    "frm1801v2018:sched2FmvPerShare_10",
+    "frm1801v2018:sched2FmvPerShare_11",
+    "frm1801v2018:sched2FmvPerShare_12",
+    "frm1801v2018:sched2FmvPerShare_13",
+    "frm1801v2018:sched2FmvPerShare_14",
+    "frm1801v2018:sched2FmvPerShare_15",
+    "frm1801v2018:sched2FmvPerShare_16",
+    "frm1801v2018:sched2FmvPerShare_17",
+    "frm1801v2018:sched2FmvPerShare_8",
+    "frm1801v2018:sched2FmvPerShare_9",
+    "frm1801v2018:sched2Shares_10",
+    "frm1801v2018:sched2Shares_11",
+    "frm1801v2018:sched2Shares_12",
+    "frm1801v2018:sched2Shares_13",
+    "frm1801v2018:sched2Shares_14",
+    "frm1801v2018:sched2Shares_15",
+    "frm1801v2018:sched2Shares_16",
+    "frm1801v2018:sched2Shares_17",
+    "frm1801v2018:sched2Shares_8",
+    "frm1801v2018:sched2Shares_9",
+    "frm1801v2018:sched2Stock_10",
+    "frm1801v2018:sched2Stock_11",
+    "frm1801v2018:sched2Stock_12",
+    "frm1801v2018:sched2Stock_13",
+    "frm1801v2018:sched2Stock_14",
+    "frm1801v2018:sched2Stock_15",
+    "frm1801v2018:sched2Stock_16",
+    "frm1801v2018:sched2Stock_17",
+    "frm1801v2018:sched2Stock_8",
+    "frm1801v2018:sched2Stock_9",
+    "frm1801v2018:sched3Conj_10",
+    "frm1801v2018:sched3Conj_11",
+    "frm1801v2018:sched3Conj_12",
+    "frm1801v2018:sched3Conj_13",
+    "frm1801v2018:sched3Conj_14",
+    "frm1801v2018:sched3Conj_15",
+    "frm1801v2018:sched3Conj_16",
+    "frm1801v2018:sched3Conj_17",
+    "frm1801v2018:sched3Conj_8",
+    "frm1801v2018:sched3Conj_9",
+    "frm1801v2018:sched3Exc_10",
+    "frm1801v2018:sched3Exc_11",
+    "frm1801v2018:sched3Exc_12",
+    "frm1801v2018:sched3Exc_13",
+    "frm1801v2018:sched3Exc_14",
+    "frm1801v2018:sched3Exc_15",
+    "frm1801v2018:sched3Exc_16",
+    "frm1801v2018:sched3Exc_17",
+    "frm1801v2018:sched3Exc_8",
+    "frm1801v2018:sched3Exc_9",
+    "frm1801v2018:sched3Particulars_10",
+    "frm1801v2018:sched3Particulars_11",
+    "frm1801v2018:sched3Particulars_12",
+    "frm1801v2018:sched3Particulars_13",
+    "frm1801v2018:sched3Particulars_14",
+    "frm1801v2018:sched3Particulars_15",
+    "frm1801v2018:sched3Particulars_16",
+    "frm1801v2018:sched3Particulars_17",
+    "frm1801v2018:sched3Particulars_8",
+    "frm1801v2018:sched3Particulars_9",
+    "frm1801v2018:sched4Address_10",
+    "frm1801v2018:sched4Address_11",
+    "frm1801v2018:sched4Address_12",
+    "frm1801v2018:sched4Address_13",
+    "frm1801v2018:sched4Address_14",
+    "frm1801v2018:sched4Address_15",
+    "frm1801v2018:sched4Address_16",
+    "frm1801v2018:sched4Address_17",
+    "frm1801v2018:sched4Address_8",
+    "frm1801v2018:sched4Address_9",
+    "frm1801v2018:sched4Conj_10",
+    "frm1801v2018:sched4Conj_11",
+    "frm1801v2018:sched4Conj_12",
+    "frm1801v2018:sched4Conj_13",
+    "frm1801v2018:sched4Conj_14",
+    "frm1801v2018:sched4Conj_15",
+    "frm1801v2018:sched4Conj_16",
+    "frm1801v2018:sched4Conj_17",
+    "frm1801v2018:sched4Conj_8",
+    "frm1801v2018:sched4Conj_9",
+    "frm1801v2018:sched4Exc_10",
+    "frm1801v2018:sched4Exc_11",
+    "frm1801v2018:sched4Exc_12",
+    "frm1801v2018:sched4Exc_13",
+    "frm1801v2018:sched4Exc_14",
+    "frm1801v2018:sched4Exc_15",
+    "frm1801v2018:sched4Exc_16",
+    "frm1801v2018:sched4Exc_17",
+    "frm1801v2018:sched4Exc_8",
+    "frm1801v2018:sched4Exc_9",
+    "frm1801v2018:sched4Name_10",
+    "frm1801v2018:sched4Name_11",
+    "frm1801v2018:sched4Name_12",
+    "frm1801v2018:sched4Name_13",
+    "frm1801v2018:sched4Name_14",
+    "frm1801v2018:sched4Name_15",
+    "frm1801v2018:sched4Name_16",
+    "frm1801v2018:sched4Name_17",
+    "frm1801v2018:sched4Name_8",
+    "frm1801v2018:sched4Name_9",
+    "frm1801v2018:sched4Rdo_10",
+    "frm1801v2018:sched4Rdo_11",
+    "frm1801v2018:sched4Rdo_12",
+    "frm1801v2018:sched4Rdo_13",
+    "frm1801v2018:sched4Rdo_14",
+    "frm1801v2018:sched4Rdo_15",
+    "frm1801v2018:sched4Rdo_16",
+    "frm1801v2018:sched4Rdo_17",
+    "frm1801v2018:sched4Rdo_8",
+    "frm1801v2018:sched4Rdo_9"
+   ],
+   "reason": "schedule rows past the two each schedule prints (layout _1 and _2 are the printed rows); further rows belong on an attached sheet"
+  },
+  {
+   "writer_keys": [
+    "frm1801v2018:tinA_2",
+    "frm1801v2018:tinB_2",
+    "frm1801v2018:tinC_2"
+   ],
+   "reason": "prints from derived:tin_digits (the print map shapes the nine TIN digits of the page 2 header for the sheet)"
+  },
+  {
+   "writer_key": "frm1801v2018:branchCode_2",
+   "reason": "page 2 branch: the mixed page 2 TIN comb preprints the branch slots"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c4",
+   "reason": "item 1 Date of Death: one 6-slot comb for MMDDYY (see txtDateMonth)"
+  },
+  {
+   "html_id": "p1c13",
+   "reason": "TIN row cell, mixed with the printed TIN caption (see tinA_1)"
+  },
+  {
+   "html_id": "p1c14",
+   "reason": "TIN row cell, 4 slots, not a 3-digit TIN part (see tinB_1)"
+  },
+  {
+   "html_id": "p1c15",
+   "reason": "TIN row cell, 4 slots, not a 3-digit TIN part (see tinC_1)"
+  },
+  {
+   "html_id": "p1c17",
+   "reason": "TIN branch cell (5 slots, mixed) on the TIN row (see branchCode_1)"
+  },
+  {
+   "html_id": "p1c25",
+   "reason": "item 8 address line 2: the layout has no second address key"
+  },
+  {
+   "html_id": "p1c31",
+   "reason": "executor TIN, mixed 11-slot comb (see txtTINE1)"
+  },
+  {
+   "html_id": "p1c32",
+   "reason": "executor TIN branch, mixed 5-slot comb (see txtBranchCodeE)"
+  },
+  {
+   "html_id": "p1c33",
+   "reason": "item 12 Contact Number, mixed, caption inside the slots (see telephoneNumber)"
+  },
+  {
+   "html_id": "p1c38",
+   "reason": "item 14A \"If yes, specify\" (see treatyY)"
+  },
+  {
+   "html_id": "p1c50",
+   "reason": "frequency-of-payment option box (see freq_Mon)"
+  },
+  {
+   "html_id": "p1c51",
+   "reason": "frequency-of-payment option box (see freq_Qtr)"
+  },
+  {
+   "html_id": "p1c52",
+   "reason": "frequency-of-payment option box (see freq_Semi)"
+  },
+  {
+   "html_id": "p1c53",
+   "reason": "frequency-of-payment option box (see freq_Other)"
+  },
+  {
+   "html_id": "p1c56",
+   "reason": "item 16 Net Taxable Estate peso comb (see txtTaxableEstate)"
+  },
+  {
+   "html_id": "p1c57",
+   "reason": "item 16 cents, mixed 3-slot comb (see txtTaxableEstate)"
+  },
+  {
+   "html_id": "p1c112",
+   "reason": "item 24 peso comb, mixed with the printed caption (see txtTotPayable)"
+  },
+  {
+   "html_id": "p1c114",
+   "reason": "item 24 cents comb; left with its peso comb (see txtTotPayable)"
+  },
+  {
+   "html_id": "p1c116",
+   "reason": "blank box at the foot of page 1: no layout key"
+  },
+  {
+   "html_id": "p1c119",
+   "reason": "Tax Agent accreditation no.: no layout key on this form"
+  },
+  {
+   "html_id": "p1c121",
+   "reason": "Tax Agent date of issue: no layout key on this form"
+  },
+  {
+   "html_id": "p1c123",
+   "reason": "Tax Agent date of expiry: no layout key on this form"
+  }
+ ]
+}

@@ -1,0 +1,149 @@
+{
+  "form_id": "2551q-v2018",
+  "source": "package/xml/atcCodes.xml",
+  "source_sha256": "0230926ea7facf45ce4a9b49d23865d72457f3cf6a3cc07f3c0aeaaee21c4162",
+  "blank": {
+    "value": "0",
+    "rate": "0.00"
+  },
+  "options": [
+    {
+      "value": "1",
+      "code": "PT010",
+      "rate": "3.0",
+      "description": "PERSON EXEMPT FROM VAT UNDER SEC. 109(BB) (SEC. 116)"
+    },
+    {
+      "value": "2",
+      "code": "PT040",
+      "rate": "3.0",
+      "description": "DOMESTIC CARRIERS AND KEEPERS OF GARAGES (SEC. 117)"
+    },
+    {
+      "value": "3",
+      "code": "PT041",
+      "rate": "3.0",
+      "description": "INTERNATIONAL CARRIERS (SEC. 118)"
+    },
+    {
+      "value": "4",
+      "code": "PT060",
+      "rate": "2.0",
+      "description": "FRANCHISES ON GAS AND WATER UTILITIES (SEC. 119)"
+    },
+    {
+      "value": "5",
+      "code": "PT070",
+      "rate": "3.0",
+      "description": "FRANCHISES ON RADIO/TV BROADCASTING COMPANIES WHOSE ANNUAL GROSS RECEIPTS DO NOT EXCEED P10M (SEC. 119)"
+    },
+    {
+      "value": "6",
+      "code": "PT090",
+      "rate": "10.0",
+      "description": "OVERSEAS DISPATCH, MESSAGE OR CONVERSATION ORIGINATING FROM THE PHILIPPINES (SEC. 120)"
+    },
+    {
+      "value": "7",
+      "code": "PT101",
+      "rate": "1.0",
+      "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI-BANKING FUNCTIONS (SEC. 121) - COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES - MATURITY PERIOD IS MORE THAN FIVE (5) YEARS"
+    },
+    {
+      "value": "8",
+      "code": "PT102",
+      "rate": "0.0",
+      "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI-BANKING FUNCTIONS (SEC. 121) - DIVIDENDS AND EQUITY SHARES AND NET INCOME OF SUBSIDIARIES"
+    },
+    {
+      "value": "9",
+      "code": "PT103",
+      "rate": "7.0",
+      "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI-BANKING FUNCTIONS (SEC. 121) - ROYALTIES, RENTALS OF PROPERTY, REAL OR PERSONAL, PROFITS FROM EXCHANGE AND ALL OTHER GROSS INCOME"
+    },
+    {
+      "value": "10",
+      "code": "PT104",
+      "rate": "7.0",
+      "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI-BANKING FUNCTIONS (SEC. 121) - NET TRADING GAINS WITHIN THE TAXABLE YEAR ON FOREIGN CURRENCY, DEBT SECURITIES, DERIVATIVES, AND OTHER FINANCIAL INSTRUMENTS"
+    },
+    {
+      "value": "11",
+      "code": "PT105",
+      "rate": "5.0",
+      "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI-BANKING FUNCTIONS (SEC. 121) - COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES - MATURITY PERIOD IS FIVE (5) YEARS OR LESS"
+    },
+    {
+      "value": "12",
+      "code": "PT113",
+      "rate": "5.0",
+      "description": "TAX ON OTHER NON-BANK FINANCIAL INTERMEDIARIES NOT PERFORMING QUASI-BANKING FUNCTIONS (SEC. 122) - COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES - MATURITY PERIOD IS FIVE (5) YEARS OR LESS"
+    },
+    {
+      "value": "13",
+      "code": "PT114",
+      "rate": "1.0",
+      "description": "TAX ON OTHER NON-BANK FINANCIAL INTERMEDIARIES NOT PERFORMING QUASI-BANKING FUNCTIONS (SEC. 122) - COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES - MATURITY PERIOD IS MORE THAN FIVE (5) YEARS"
+    },
+    {
+      "value": "14",
+      "code": "PT115",
+      "rate": "5.0",
+      "description": "TAX ON OTHER NON-BANK FINANCIAL INTERMEDIARIES NOT PERFORMING QUASI-BANKING FUNCTIONS (SEC. 122) - FROM ALL OTHER ITEMS TREATED AS GROSS INCOME UNDER THE CODE"
+    },
+    {
+      "value": "15",
+      "code": "PT120",
+      "rate": "2.0",
+      "description": "LIFE INSURANCE PREMIUMS (SEC. 123)"
+    },
+    {
+      "value": "16",
+      "code": "PT130",
+      "rate": "4.0",
+      "description": "AGENTS OF FOREIGN INSURANCE COMPANIES (SEC.124) - INSURANCE AGENTS"
+    },
+    {
+      "value": "17",
+      "code": "PT132",
+      "rate": "5.0",
+      "description": "AGENTS OF FOREIGN INSURANCE COMPANIES (SEC.124) - OWNERS OF PROPERTY OBTAINING DIRECTLY WITH FOREIGN INSURANCE COMPANIES"
+    },
+    {
+      "value": "18",
+      "code": "PT140",
+      "rate": "18.0",
+      "description": "COCKPITS (SEC. 125)"
+    },
+    {
+      "value": "19",
+      "code": "PT150",
+      "rate": "18.0",
+      "description": "TAX ON AMUSEMENT PLACES, SUCH AS CABARETS, NIGHT AND DAY CLUBS, VIDEOKE BARS, KARAOKE BARS, KARAOKE TELEVISION, KARAOKE BOXES, MUSIC LOUNGES AND OTHER SIMILAR ESTABLISHMENTS (SEC. 125)"
+    },
+    {
+      "value": "20",
+      "code": "PT160",
+      "rate": "10.0",
+      "description": "BOXING EXHIBITION (SEC. 125)"
+    },
+    {
+      "value": "21",
+      "code": "PT170",
+      "rate": "15.0",
+      "description": "PROFESSIONAL BASKETBALL GAMES (SEC. 125)"
+    },
+    {
+      "value": "22",
+      "code": "PT180",
+      "rate": "30.0",
+      "description": "JAI-ALAI AND RACE TRACKS (SEC. 125)"
+    },
+    {
+      "value": "23",
+      "code": "PT010",
+      "rate": "1.0",
+      "description": "PERSON EXEMPT FROM VAT UNDER SEC. 109(BB) (SEC. 116)"
+    }
+  ]
+}

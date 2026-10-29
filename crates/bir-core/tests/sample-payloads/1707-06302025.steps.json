@@ -1,0 +1,152 @@
+[
+ {
+  "call": "document.getElementById('responseBG').innerHTML = '<div>fn=Sample%20Dummy%20Taxpayerfn=</div><div>tin1=123tin1=</div><div>tin2=456tin2=</div><div>tin3=788tin3=</div><div>tin4=00000tin4=</div><div>rdo=039rdo=</div><div>lob=Sample%20Consulting%20Serviceslob=</div><div>regAddr=123%20Sample%20Street%2C%20Barangay%20Example%2C%20Quezon%20CityregAddr=</div><div>zip=1100zip=</div><div>telNo=09170000000telNo=</div><div>email=sample.taxpayer@example.comemail=</div><div>formType=1707v2021formType=</div>'; loadBGData(); document.getElementById('frm1707:ProfileAddress1').value = document.getElementById('frm1707:ProfileAddress1').value.toUpperCase(); document.getElementById('frm1707:ProfileAddress2').value = document.getElementById('frm1707:ProfileAddress2').value.toUpperCase(); $(\"input[name='frm1707\\\\:RegName']\").val(document.getElementById('frm1707:ProfileName').value);"
+ },
+ {
+  "set": "frm1707:txtPg1I1Month",
+  "value": "06"
+ },
+ {
+  "set": "frm1707:txtPg1I1Day",
+  "value": "30"
+ },
+ {
+  "set": "frm1707:txtPg1I1Year",
+  "value": "2025"
+ },
+ {
+  "click": "frm1707:rdoPg1I2AmendedNo"
+ },
+ {
+  "click": "frm1707:rdoPg1I3ATCIndiv"
+ },
+ {
+  "set": "frm1707:txtPg1I4NoOfSheets",
+  "value": "1"
+ },
+ {
+  "set": "frm1707:rdoPg1Pt1I5RDO",
+  "value": "039"
+ },
+ {
+  "set": "frm1707:txtPg1I6SellerName0",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1707:txtPg1I6SellerAddr0",
+  "value": "123 Sample Street, Quezon City"
+ },
+ {
+  "set": "frm1707:txtPg1I6SellerTIN0",
+  "value": "123456788000"
+ },
+ {
+  "set": "frm1707:txtPg1I6SellerName1",
+  "value": "Juan Sample-Co"
+ },
+ {
+  "set": "frm1707:txtPg1I6SellerAddr1",
+  "value": "9 Example Rd., Pasig"
+ },
+ {
+  "set": "frm1707:txtPg1I6SellerTIN1",
+  "value": "11122233300000"
+ },
+ {
+  "set": "frm1707:txtPg1I7BuyerName0",
+  "value": "Example Holdings Inc."
+ },
+ {
+  "set": "frm1707:txtPg1I7BuyerAddr0",
+  "value": "45 Example Ave., Makati City"
+ },
+ {
+  "set": "frm1707:txtPg1I7BuyerTIN0",
+  "value": "444555666000"
+ },
+ {
+  "click": "frm1707:rdoPg1I8TaxReliefYes"
+ },
+ {
+  "set": "frm1707:txtPg1I8TaxReliefSpec",
+  "value": "Tax treaty relief"
+ },
+ {
+  "click": "frm1707:rdoPg1I9TransDescCash"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch2NameOfCorpStock1",
+  "value": "Sample Corp"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch2NoOfShares1",
+  "value": "1000"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch2StockCertNo1",
+  "value": "1001"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch2TaxBaseSellPrice1",
+  "value": "250000.005"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch2NameOfCorpStock2",
+  "value": "Example Mining Inc"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch2NoOfShares2",
+  "value": "12345.6785"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch2StockCertNo2",
+  "value": "2002"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch2TaxBaseSellPrice2",
+  "value": "1234567.89"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch2NameOfCorpStock3",
+  "value": "Third Sample Co"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch2NoOfShares3",
+  "value": "10"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch2StockCertNo3",
+  "value": "3003"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch2TaxBaseSellPrice3",
+  "value": "999.995"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch3Particulars1",
+  "value": "Acquisition cost"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch3Amount1",
+  "value": "900000"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch3Particulars2",
+  "value": "Broker fees"
+ },
+ {
+  "set": "frm1707:txtPg2P4Sch3Amount2",
+  "value": "12345.675"
+ },
+ {
+  "set": "frm1707:txtPg1P2I17Surcharge",
+  "value": "25.5"
+ },
+ {
+  "set": "frm1707:txtPg1P2I17Interest",
+  "value": "10.005"
+ },
+ {
+  "call": "validate()"
+ }
+]

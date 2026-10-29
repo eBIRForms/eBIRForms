@@ -1,0 +1,651 @@
+{
+  "form_id": "1601c-v2018",
+  "html_slug": "1601c-2018",
+  "rule": "Fill-path only. Stamp name= stays catalog official_field_key (TIN/branch). Unstamped leftover writer keys may be copied onto the existing cell-id name= when the freeze sheet has exactly one fillable under a printed caption that matches one leftover-unique fields.json key, and the identity catalog names that cell as html_id_hint. That is not an official_field_key harvest. Text joins ASCII-uppercase letters into comb slots and data-writer-value for BIR CAPITAL LETTERS print; digits and punctuation are unchanged. Do not mutate profile/DB values. R3 peso+cent tax rows may be listed in money_joins: one leftover money key maps to peso_html_id plus cent_html_id. Split the writer {:.2} string: pesos right-aligned in the peso comb (leading slots empty, not zero-padded, no decimal glyph), cents in the 2-slot comb. Do not stamp name= on either comb. Do not left-align the dotted string into the peso comb. Leftover boolean/radio keys may be listed in xbox_joins: when the writer is true, put X in the catalog xbox (1-char text, not type=checkbox). Do not write the string true into the box. Do not join leftover keys that share an item number with another leftover except as documented here (For the Month MM/YYYY pair; Amended Return and Any Taxes Withheld Yes/No pairs). Since #113: every value the print map carries has a box or a reviewed not_joined reason. One writer key may fill several cells (html_ids). Part II items 15-36 follow the same peso+cent contract as items 14 and 25. date_joins split one writer date (MM/DD/YYYY or MM/YYYY) across separate MM, DD and YYYY combs (Part III dates, Schedule I). Print-only derived: keys come from Form1601CDraft::to_print_field_map: the page-2 TIN comb (derived:tin_digits), Item 9 over its two lines and Item 13A.",
+  "joins": [
+    {
+      "writer_key": "frm1601c:txtTaxpayerName",
+      "html_id": "p1c36",
+      "catalog_id": "1601c-2018/p1/money-40-1",
+      "printed": "8 Withholding Agent's Name",
+      "reason": "exactly one 40-slot comb immediately under the item 8 caption; leftover-unique text key; catalog html_id_hint"
+    },
+    {
+      "writer_key": "frm1601c:txtRDOCode",
+      "html_id": "p1c34",
+      "catalog_id": "1601c-2018/p1/comb-3s-1",
+      "printed": "7 RDO Code",
+      "reason": "exactly one 3-slot comb on the TIN row under the item 7 caption; leftover-unique key; catalog html_id_hint"
+    },
+    {
+      "writer_key": "frm1601c:txtZipCode",
+      "html_id": "p1c41",
+      "catalog_id": "1601c-2018/p1/date-yyyy-2",
+      "printed": "9A ZIP Code",
+      "reason": "exactly one 4-slot comb under the ZIP Code caption; leftover-unique txtZipCode; catalog html_id_hint"
+    },
+    {
+      "writer_key": "frm1601c:txtTelNum",
+      "html_id": "p1c43",
+      "catalog_id": "1601c-2018/p1/money-12-1",
+      "printed": "10 Telephone",
+      "reason": "exactly one 12-slot comb on the item 10 row; leftover-unique txtTelNum; catalog html_id_hint"
+    },
+    {
+      "writer_key": "txtEmail",
+      "html_id": "p1c48",
+      "catalog_id": "1601c-2018/p1/money-34-1",
+      "printed": "12 Email Address",
+      "reason": "exactly one 34-slot comb under the item 12 caption; leftover-unique txtEmail (unprefixed XML key); catalog html_id_hint. Catalog has no official_field_key (gap: no unique fields.json key for this box), so this is a fill-path join, not a stamp."
+    },
+    {
+      "writer_key": "frm1601c:txtMonth",
+      "html_id": "p1c9",
+      "catalog_id": "1601c-2018/p1/comb-2s-1",
+      "printed": "1 For the Month MM",
+      "reason": "item 1 For the Month is MM + YYYY, not one cell. leftover txtMonth is the 2-slot comb immediately left of the year comb (left≈46pt, data-comb-slots=2) under the For the Month / (MM/YYYY) caption. Catalog html_id_hint with no official_field_key. Do not stamp name=. Do not put the month in p1c15 (item 4 sheets)."
+    },
+    {
+      "writer_key": "frm1601c:txtYear",
+      "html_id": "p1c10",
+      "catalog_id": "1601c-2018/p1/date-yyyy-1",
+      "printed": "1 For the Month YYYY",
+      "reason": "exactly one 4-slot year comb under For the Month, immediately right of the MM comb. leftover-unique integer txtYear; ZIP already uses date-yyyy-2. Catalog html_id_hint with no official_field_key. Shares fields.json item_number 1 with txtMonth; the join is the caption+cell pair, not leftover uniqueness of item 1."
+    },
+    {
+      "writer_key": "frm1601c:txtSheets",
+      "html_id": "p1c15",
+      "printed": "4 Number of Sheet/s Attached",
+      "reason": "the 2-slot comb under the item 4 caption on the header row (right of Any Taxes Withheld). geometry: the printed caption sits directly left of or above this cell on the frozen sheet"
+    },
+    {
+      "writer_key": "derived:address_line1",
+      "html_id": "p1c38",
+      "printed": "9 Registered Address, line 1",
+      "reason": "full-width 40-slot comb under the item 9 caption; the print map breaks the address at the last space that fits"
+    },
+    {
+      "writer_key": "derived:line:address_line2",
+      "html_id": "p1c39",
+      "printed": "9 Registered Address, line 2",
+      "reason": "31-slot comb left of 9A ZIP Code on the second item 9 row: the rest of the address, then Address 2; a longer line prints whole in smaller type"
+    },
+    {
+      "writer_key": "derived:line:tax_relief_specify",
+      "html_id": "p1c51",
+      "printed": "13A If yes, specify",
+      "reason": "17-slot comb right of the 13A If yes, specify caption; prints the relief named on a Yes answer"
+    },
+    {
+      "writer_key": "frm1601c:txt20Other",
+      "html_id": "p1c223",
+      "printed": "20 Other Non-Taxable Compensation (specify)",
+      "reason": "the specify box between the item 20 caption and its amount combs"
+    },
+    {
+      "writer_key": "frm1601c:txt29Other",
+      "html_id": "p1c225",
+      "printed": "29 Other Remittances Made (specify)",
+      "reason": "the specify box between the item 29 caption and its amount combs"
+    },
+    {
+      "writer_key": "txtTaxAgentNo",
+      "html_id": "p1c154",
+      "printed": "Tax Agent Accreditation No./Attorney's Roll No.",
+      "reason": "the box right of the caption on the signature block row"
+    },
+    {
+      "writer_key": "txtDateIssue",
+      "html_id": "p1c156",
+      "printed": "Date of Issue (MM/DD/YYYY)",
+      "reason": "the one text box right of the Date of Issue caption (not a comb)"
+    },
+    {
+      "writer_key": "txtDateExpiry",
+      "html_id": "p1c158",
+      "printed": "Date of Expiry (MM/DD/YYYY)",
+      "reason": "the one text box right of the Date of Expiry caption (not a comb)"
+    },
+    {
+      "writer_key": "frm1601c:txtAgency37",
+      "html_id": "p1c166",
+      "printed": "37 Cash/Bank Debit Memo, Drawee Bank/Agency",
+      "reason": "comb under the Part III column header on the item 37 Cash/Bank Debit Memo row"
+    },
+    {
+      "writer_key": "frm1601c:txtNumber37",
+      "html_id": "p1c167",
+      "printed": "37 Cash/Bank Debit Memo, Number",
+      "reason": "comb under the Part III column header on the item 37 Cash/Bank Debit Memo row"
+    },
+    {
+      "writer_key": "frm1601c:txtAgency38",
+      "html_id": "p1c175",
+      "printed": "38 Check, Drawee Bank/Agency",
+      "reason": "comb under the Part III column header on the item 38 Check row"
+    },
+    {
+      "writer_key": "frm1601c:txtNumber38",
+      "html_id": "p1c176",
+      "printed": "38 Check, Number",
+      "reason": "comb under the Part III column header on the item 38 Check row"
+    },
+    {
+      "writer_key": "frm1601c:txtNumber39",
+      "html_id": "p1c184",
+      "printed": "39 Tax Debit Memo, Number",
+      "reason": "comb under the Part III column header on the item 39 Tax Debit Memo row"
+    },
+    {
+      "writer_key": "frm1601c:txtParticular40",
+      "html_id": "p1c192",
+      "printed": "40 Others (specify below)",
+      "reason": "the specify comb below the item 40 caption, left of Drawee Bank/Agency"
+    },
+    {
+      "writer_key": "frm1601c:txtAgency40",
+      "html_id": "p1c193",
+      "printed": "40 Others, Drawee Bank/Agency",
+      "reason": "comb under the Part III column header on the item 40 Others row"
+    },
+    {
+      "writer_key": "frm1601c:txtNumber40",
+      "html_id": "p1c194",
+      "printed": "40 Others, Number",
+      "reason": "comb under the Part III column header on the item 40 Others row"
+    },
+    {
+      "writer_key": "derived:tin_digits",
+      "html_id": "p2c5",
+      "printed": "Page 2 TIN",
+      "reason": "the 14-slot comb under the page 2 TIN caption: TIN then branch, from the page-2 TIN keys"
+    },
+    {
+      "writer_key": "frm1601c:txtPg2TaxpayerName",
+      "html_id": "p2c6",
+      "printed": "Page 2 Withholding Agent's Name",
+      "reason": "the 26-slot comb under the page 2 name caption (same name as item 8)"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtBankCode0",
+      "html_id": "p2c20",
+      "printed": "Schedule I row 1, 3 Drawee Bank/Bank Code/Agency",
+      "reason": "5-slot comb, Schedule I row 1 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtNumber0",
+      "html_id": "p2c21",
+      "printed": "Schedule I row 1, 4 Number",
+      "reason": "6-slot comb, Schedule I row 1 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtBankCode1",
+      "html_id": "p2c31",
+      "printed": "Schedule I row 2, 3 Drawee Bank/Bank Code/Agency",
+      "reason": "5-slot comb, Schedule I row 2 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtNumber1",
+      "html_id": "p2c32",
+      "printed": "Schedule I row 2, 4 Number",
+      "reason": "6-slot comb, Schedule I row 2 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtBankCode2",
+      "html_id": "p2c42",
+      "printed": "Schedule I row 3, 3 Drawee Bank/Bank Code/Agency",
+      "reason": "5-slot comb, Schedule I row 3 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtNumber2",
+      "html_id": "p2c43",
+      "printed": "Schedule I row 3, 4 Number",
+      "reason": "6-slot comb, Schedule I row 3 under the column header"
+    }
+  ],
+  "money_joins": [
+    {
+      "writer_key": "frm1601c:txtTax14",
+      "peso_html_id": "p1c56",
+      "cent_html_id": "p1c58",
+      "peso_catalog_id": "1601c-2018/p1/money-11-1",
+      "cent_catalog_id": "1601c-2018/p1/comb-2s-3",
+      "printed": "14 Total Amount of Compensation",
+      "reason": "Stage 3 R3 N:1 fill-path, not a catalog harvest. fields.json leftover-unique decimal-amount item 14. Freeze sheet has an 11-slot peso comb plus a 2-slot cents comb with the printed decimal between them. Catalog official_field_key is empty on both boxes. Split insert_money {:.2}; do not stamp name=."
+    },
+    {
+      "writer_key": "frm1601c:txtTax25",
+      "peso_html_id": "p1c101",
+      "cent_html_id": "p1c103",
+      "peso_catalog_id": "1601c-2018/p1/money-11-12",
+      "cent_catalog_id": "1601c-2018/p1/comb-2s-14",
+      "printed": "25 Total Taxes Withheld",
+      "reason": "Stage 3 R3 N:1 fill-path for the page-1 tax-withheld total users notice. Same peso+cent contract as txtTax14. Other Part II amount rows stay unjoined."
+    },
+    {
+      "writer_key": "frm1601c:txtTax15",
+      "peso_html_id": "p1c61",
+      "cent_html_id": "p1c63",
+      "printed": "15 Statutory Minimum Wage for MWEs",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 15 row (caption left of the combs); fields.json item 15. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax16",
+      "peso_html_id": "p1c65",
+      "cent_html_id": "p1c67",
+      "printed": "16 Holiday Pay, Overtime Pay, Night Shift Differential Pay, Hazard Pay (for MWEs only)",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 16 row (caption left of the combs); fields.json item 16. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax17",
+      "peso_html_id": "p1c69",
+      "cent_html_id": "p1c71",
+      "printed": "17 13th Month Pay and Other Benefits",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 17 row (caption left of the combs); fields.json item 17. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax18",
+      "peso_html_id": "p1c73",
+      "cent_html_id": "p1c75",
+      "printed": "18 De Minimis Benefits",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 18 row (caption left of the combs); fields.json item 18. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax19",
+      "peso_html_id": "p1c77",
+      "cent_html_id": "p1c79",
+      "printed": "19 SSS, GSIS, PHIC, HDMF Mandatory Contributions & Union Dues",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 19 row (caption left of the combs); fields.json item 19. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax20",
+      "peso_html_id": "p1c81",
+      "cent_html_id": "p1c83",
+      "printed": "20 Other Non-Taxable Compensation (specify)",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 20 row (caption left of the combs); fields.json item 20. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax21",
+      "peso_html_id": "p1c85",
+      "cent_html_id": "p1c87",
+      "printed": "21 Total Non-Taxable Compensation",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 21 row (caption left of the combs); fields.json item 21. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax22",
+      "peso_html_id": "p1c89",
+      "cent_html_id": "p1c91",
+      "printed": "22 Total Taxable Compensation",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 22 row (caption left of the combs); fields.json item 22. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax23",
+      "peso_html_id": "p1c93",
+      "cent_html_id": "p1c95",
+      "printed": "23 Less: Taxable compensation not subject to withholding tax",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 23 row (caption left of the combs); fields.json item 23. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax24",
+      "peso_html_id": "p1c97",
+      "cent_html_id": "p1c99",
+      "printed": "24 Net Taxable Compensation",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 24 row (caption left of the combs); fields.json item 24. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax26",
+      "peso_html_id": "p1c105",
+      "cent_html_id": "p1c107",
+      "printed": "26 Add/(Less): Adjustment of Taxes Withheld from Previous Month/s",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 26 row (caption left of the combs); fields.json item 26. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax27",
+      "peso_html_id": "p1c109",
+      "cent_html_id": "p1c111",
+      "printed": "27 Taxes Withheld for Remittance",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 27 row (caption left of the combs); fields.json item 27. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax28",
+      "peso_html_id": "p1c113",
+      "cent_html_id": "p1c115",
+      "printed": "28 Less: Tax Remitted in Return Previously Filed",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 28 row (caption left of the combs); fields.json item 28. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax29",
+      "peso_html_id": "p1c117",
+      "cent_html_id": "p1c119",
+      "printed": "29 Other Remittances Made (specify)",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 29 row (caption left of the combs); fields.json item 29. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax30",
+      "peso_html_id": "p1c121",
+      "cent_html_id": "p1c123",
+      "printed": "30 Total Tax Remittances Made",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 30 row (caption left of the combs); fields.json item 30. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax31",
+      "peso_html_id": "p1c125",
+      "cent_html_id": "p1c127",
+      "printed": "31 Tax Still Due/(Over-remittance)",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 31 row (caption left of the combs); fields.json item 31. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax32",
+      "peso_html_id": "p1c129",
+      "cent_html_id": "p1c131",
+      "printed": "32 Surcharge",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 32 row (caption left of the combs); fields.json item 32. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax33",
+      "peso_html_id": "p1c133",
+      "cent_html_id": "p1c135",
+      "printed": "33 Interest",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 33 row (caption left of the combs); fields.json item 33. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax34",
+      "peso_html_id": "p1c137",
+      "cent_html_id": "p1c139",
+      "printed": "34 Compromise",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 34 row (caption left of the combs); fields.json item 34. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax35",
+      "peso_html_id": "p1c141",
+      "cent_html_id": "p1c143",
+      "printed": "35 Total Penalties",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 35 row (caption left of the combs); fields.json item 35. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtTax36",
+      "peso_html_id": "p1c145",
+      "cent_html_id": "p1c147",
+      "printed": "36 TOTAL AMOUNT STILL DUE/(Over-remittance)",
+      "reason": "11-slot peso comb plus 2-slot cents comb on the item 36 row (caption left of the combs); fields.json item 36. Split {:.2}: pesos right-aligned, cents in the 2-slot comb"
+    },
+    {
+      "writer_key": "frm1601c:txtAmount37",
+      "peso_html_id": "p1c171",
+      "cent_html_id": "p1c173",
+      "printed": "37 Cash/Bank Debit Memo, Amount",
+      "reason": "peso comb plus 2-slot cents comb under the Part III column header on the item 37 Cash/Bank Debit Memo row"
+    },
+    {
+      "writer_key": "frm1601c:txtAmount38",
+      "peso_html_id": "p1c180",
+      "cent_html_id": "p1c182",
+      "printed": "38 Check, Amount",
+      "reason": "peso comb plus 2-slot cents comb under the Part III column header on the item 38 Check row"
+    },
+    {
+      "writer_key": "frm1601c:txtAmount39",
+      "peso_html_id": "p1c188",
+      "cent_html_id": "p1c190",
+      "printed": "39 Tax Debit Memo, Amount",
+      "reason": "peso comb plus 2-slot cents comb under the Part III column header on the item 39 Tax Debit Memo row"
+    },
+    {
+      "writer_key": "frm1601c:txtAmount40",
+      "peso_html_id": "p1c198",
+      "cent_html_id": "p1c200",
+      "printed": "40 Others, Amount",
+      "reason": "peso comb plus 2-slot cents comb under the Part III column header on the item 40 Others row"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtTaxPaid0",
+      "peso_html_id": "p2c22",
+      "cent_html_id": "p2c24",
+      "printed": "Schedule I row 1, 5 Tax Paid",
+      "reason": "peso comb plus 2-slot cents comb, Schedule I row 1 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtShouldTaxDue0",
+      "peso_html_id": "p2c53",
+      "cent_html_id": "p2c55",
+      "printed": "Schedule I row 1, 6 Should be Tax Due for the Month",
+      "reason": "peso comb plus 2-slot cents comb in the second row block, Schedule I row 1 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtAdjustments0",
+      "peso_html_id": "p2c57",
+      "cent_html_id": "p2c59",
+      "printed": "Schedule I row 1, 7 Adjustments",
+      "reason": "peso comb plus 2-slot cents comb in the second row block, Schedule I row 1 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtTaxPaid1",
+      "peso_html_id": "p2c33",
+      "cent_html_id": "p2c35",
+      "printed": "Schedule I row 2, 5 Tax Paid",
+      "reason": "peso comb plus 2-slot cents comb, Schedule I row 2 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtShouldTaxDue1",
+      "peso_html_id": "p2c63",
+      "cent_html_id": "p2c65",
+      "printed": "Schedule I row 2, 6 Should be Tax Due for the Month",
+      "reason": "peso comb plus 2-slot cents comb in the second row block, Schedule I row 2 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtAdjustments1",
+      "peso_html_id": "p2c67",
+      "cent_html_id": "p2c69",
+      "printed": "Schedule I row 2, 7 Adjustments",
+      "reason": "peso comb plus 2-slot cents comb in the second row block, Schedule I row 2 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtTaxPaid2",
+      "peso_html_id": "p2c44",
+      "cent_html_id": "p2c46",
+      "printed": "Schedule I row 3, 5 Tax Paid",
+      "reason": "peso comb plus 2-slot cents comb, Schedule I row 3 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtShouldTaxDue2",
+      "peso_html_id": "p2c73",
+      "cent_html_id": "p2c75",
+      "printed": "Schedule I row 3, 6 Should be Tax Due for the Month",
+      "reason": "peso comb plus 2-slot cents comb in the second row block, Schedule I row 3 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtAdjustments2",
+      "peso_html_id": "p2c77",
+      "cent_html_id": "p2c79",
+      "printed": "Schedule I row 3, 7 Adjustments",
+      "reason": "peso comb plus 2-slot cents comb in the second row block, Schedule I row 3 under the column header"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtTotal1",
+      "peso_html_id": "p2c83",
+      "cent_html_id": "p2c85",
+      "printed": "Schedule I 4 Total Adjustment",
+      "reason": "peso comb plus 2-slot cents comb on the Total Adjustment row"
+    }
+  ],
+  "xbox_joins": [
+    {
+      "writer_key": "frm1601c:AmendedRtn_1",
+      "html_id": "p1c21",
+      "catalog_id": "1601c-2018/p1/xbox-amended-yes",
+      "printed": "2 Amended Return Yes",
+      "reason": "item 2 Amended Return Yes xbox (p1c21-i, left≈183.6) immediately left of the Yes label at x≈209. leftover boolean AmendedRtn_1. Catalog xbox, not type=checkbox. Fill X when writer is true. Not a stamp."
+    },
+    {
+      "writer_key": "frm1601c:AmendedRtn_2",
+      "html_id": "p1c22",
+      "catalog_id": "1601c-2018/p1/xbox-amended-no",
+      "printed": "2 Amended Return No",
+      "reason": "item 2 Amended Return No xbox (p1c22-i, left≈231.5) immediately left of the No label at x≈252. leftover AmendedRtn_2. Pair with AmendedRtn_1; leave blank when false so a non-amended draft marks No."
+    },
+    {
+      "writer_key": "frm1601c:TaxWithheld_1",
+      "html_id": "p1c23",
+      "catalog_id": "1601c-2018/p1/xbox-withheld-yes",
+      "printed": "3 Any Taxes Withheld Yes",
+      "reason": "item 3 Any Taxes Withheld Yes xbox (p1c23-i, left≈304.7) immediately left of the Yes label at x≈323. leftover TaxWithheld_1. Catalog xbox, not type=checkbox. Fill X when writer is true."
+    },
+    {
+      "writer_key": "frm1601c:TaxWithheld_2",
+      "html_id": "p1c20",
+      "catalog_id": "1601c-2018/p1/xbox-withheld-no",
+      "printed": "3 Any Taxes Withheld No",
+      "reason": "item 3 Any Taxes Withheld No xbox (p1c20-i, left≈345.2) immediately left of the No label at x≈367. leftover TaxWithheld_2. Pair with TaxWithheld_1; leave blank when false so withheld=No marks this box."
+    },
+    {
+      "writer_key": "frm1601c:CatAgent_P",
+      "html_id": "p1c45",
+      "catalog_id": "1601c-2018/p1/xbox-category-private",
+      "printed": "11 Category of Withholding Agent Private",
+      "reason": "item 11 Private xbox (p1c45, left≈447.5, row 14) immediately left of the Private label at x≈467.9. leftover CatAgent_P. Pair with CatAgent_G; fill X when writer is true."
+    },
+    {
+      "writer_key": "frm1601c:CatAgent_G",
+      "html_id": "p1c46",
+      "catalog_id": "1601c-2018/p1/xbox-category-government",
+      "printed": "11 Category of Withholding Agent Government",
+      "reason": "item 11 Government xbox (p1c46, left≈519.6, row 14) immediately left of the Government label at x≈539.5. leftover CatAgent_G. Pair with CatAgent_P; fill X when writer is true."
+    },
+    {
+      "writer_key": "frm1601c:SpecialTax_1",
+      "html_id": "p1c52",
+      "printed": "13 Tax relief under Special Law or Treaty? Yes",
+      "reason": "box immediately left of the printed Yes on the item 13 row; X when the writer value is true"
+    },
+    {
+      "writer_key": "frm1601c:SpecialTax_2",
+      "html_id": "p1c53",
+      "printed": "13 Tax relief under Special Law or Treaty? No",
+      "reason": "box immediately left of the printed No on the item 13 row; X when the writer value is true"
+    }
+  ],
+  "date_joins": [
+    {
+      "writer_key": "frm1601c:txtDate37",
+      "mm_html_id": "p1c168",
+      "dd_html_id": "p1c169",
+      "yyyy_html_id": "p1c170",
+      "printed": "37 Cash/Bank Debit Memo, Date (MM/DD/YYYY)",
+      "reason": "MM, DD and YYYY combs under the Part III column header on the item 37 Cash/Bank Debit Memo row; one writer date split across the three"
+    },
+    {
+      "writer_key": "frm1601c:txtDate38",
+      "mm_html_id": "p1c177",
+      "dd_html_id": "p1c178",
+      "yyyy_html_id": "p1c179",
+      "printed": "38 Check, Date (MM/DD/YYYY)",
+      "reason": "MM, DD and YYYY combs under the Part III column header on the item 38 Check row; one writer date split across the three"
+    },
+    {
+      "writer_key": "frm1601c:txtDate39",
+      "mm_html_id": "p1c185",
+      "dd_html_id": "p1c186",
+      "yyyy_html_id": "p1c187",
+      "printed": "39 Tax Debit Memo, Date (MM/DD/YYYY)",
+      "reason": "MM, DD and YYYY combs under the Part III column header on the item 39 Tax Debit Memo row; one writer date split across the three"
+    },
+    {
+      "writer_key": "frm1601c:txtDate40",
+      "mm_html_id": "p1c195",
+      "dd_html_id": "p1c196",
+      "yyyy_html_id": "p1c197",
+      "printed": "40 Others, Date (MM/DD/YYYY)",
+      "reason": "MM, DD and YYYY combs under the Part III column header on the item 40 Others row; one writer date split across the three"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtMonthYear0",
+      "mm_html_id": "p2c15",
+      "yyyy_html_id": "p2c16",
+      "printed": "Schedule I row 1, 1 Previous Month/s (MM/YYYY)",
+      "reason": "MM and YYYY combs, Schedule I row 1 under the column header; one MM/YYYY writer value split across both"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtDatePaid0",
+      "mm_html_id": "p2c17",
+      "dd_html_id": "p2c18",
+      "yyyy_html_id": "p2c19",
+      "printed": "Schedule I row 1, 2 Date Paid (MM/DD/YYYY)",
+      "reason": "MM, DD and YYYY combs, Schedule I row 1 under the column header; one writer date split across the three"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtMonthYear1",
+      "mm_html_id": "p2c26",
+      "yyyy_html_id": "p2c27",
+      "printed": "Schedule I row 2, 1 Previous Month/s (MM/YYYY)",
+      "reason": "MM and YYYY combs, Schedule I row 2 under the column header; one MM/YYYY writer value split across both"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtDatePaid1",
+      "mm_html_id": "p2c28",
+      "dd_html_id": "p2c29",
+      "yyyy_html_id": "p2c30",
+      "printed": "Schedule I row 2, 2 Date Paid (MM/DD/YYYY)",
+      "reason": "MM, DD and YYYY combs, Schedule I row 2 under the column header; one writer date split across the three"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtMonthYear2",
+      "mm_html_id": "p2c37",
+      "yyyy_html_id": "p2c38",
+      "printed": "Schedule I row 3, 1 Previous Month/s (MM/YYYY)",
+      "reason": "MM and YYYY combs, Schedule I row 3 under the column header; one MM/YYYY writer value split across both"
+    },
+    {
+      "writer_key": "frm1601c:sched1:txtDatePaid2",
+      "mm_html_id": "p2c39",
+      "dd_html_id": "p2c40",
+      "yyyy_html_id": "p2c41",
+      "printed": "Schedule I row 3, 2 Date Paid (MM/DD/YYYY)",
+      "reason": "MM, DD and YYYY combs, Schedule I row 3 under the column header; one writer date split across the three"
+    }
+  ],
+  "not_joined": [
+    {
+      "writer_keys": [
+        "frm1601c:txtAddress",
+        "frm1601c:txtAddress2"
+      ],
+      "reason": "Item 9 prints from derived:address_line1 / derived:line:address_line2 (the address over both item 9 combs, Address 2 after it), so a long address is not cut at 40 characters"
+    },
+    {
+      "writer_key": "frm1601c:txtLineBus",
+      "reason": "not on the paper form: the 1601-C (2018) sheet has no line-of-business box (fields.json tags it item 8, whose only comb is the agent name)"
+    },
+    {
+      "writer_key": "frm1601c:txtATC",
+      "reason": "item 5 ATC is preprinted WW010 on the sheet; there is no box to fill"
+    },
+    {
+      "writer_key": "frm1601c:selTreaty",
+      "reason": "dropdown code (0 = none); item 13A prints the relief name from derived:line:tax_relief_specify"
+    },
+    {
+      "writer_keys": [
+        "frm1601c:txtPg2TIN1",
+        "frm1601c:txtPg2TIN2",
+        "frm1601c:txtPg2TIN3",
+        "frm1601c:txtPg2BranchCode"
+      ],
+      "reason": "page 2 TIN is one 14-slot comb (p2c5); it prints from derived:tin_digits, built from these four keys"
+    },
+    {
+      "writer_keys": [
+        "chkScheduleDelete0",
+        "chkScheduleDelete1",
+        "chkScheduleDelete2"
+      ],
+      "reason": "row delete checkbox of the page, not on the paper form"
+    },
+    {
+      "writer_keys": [
+        "frm1601c:txtCurrentPage",
+        "frm1601c:txtMaxPage"
+      ],
+      "reason": "page counter of the eBIRForms page, not a box on the paper form"
+    }
+  ]
+}

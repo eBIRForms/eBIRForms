@@ -1,0 +1,216 @@
+<?xml version='1.0'?>    
+            <div>frm1702EX:rdoPg1I1Calendar=truefrm1702EX:rdoPg1I1Calendar=</div>    
+            <div>frm1702EX:rdoPg1I1Fiscal=falsefrm1702EX:rdoPg1I1Fiscal=</div>    
+            <div>frm1702EX:ddlPg1I2Date=12frm1702EX:ddlPg1I2Date=</div>    
+            <div>frm1702EX:txtPg1I2YearEnd=25frm1702EX:txtPg1I2YearEnd=</div>    
+            <div>frm1702EX:rdoPg1I3AmendedYes=falsefrm1702EX:rdoPg1I3AmendedYes=</div>    
+            <div>frm1702EX:rdoPg1I3AmendedNo=truefrm1702EX:rdoPg1I3AmendedNo=</div>    
+            <div>frm1702EX:rdoPg1I4ShortPeriodYes=falsefrm1702EX:rdoPg1I4ShortPeriodYes=</div>    
+            <div>frm1702EX:rdoPg1I4ShortPeriodNo=truefrm1702EX:rdoPg1I4ShortPeriodNo=</div>    
+            <div>frm1702EX:txtPg1I5ATCR1C1=IC 011frm1702EX:txtPg1I5ATCR1C1=</div>    
+            <div>frm1702EX:txtPg1I5ATCR1C2= EXEMPT CORPORATION ON EXEMPT ACTIVITIESfrm1702EX:txtPg1I5ATCR1C2=</div>    
+            <div>frm1702EX:rdoPg1I5ATCR1C3=truefrm1702EX:rdoPg1I5ATCR1C3=</div>    
+            <div>frm1702EX:txtPg1I5ATCR2C1=IC 021frm1702EX:txtPg1I5ATCR2C1=</div>    
+            <div>frm1702EX:txtPg1I5ATCR2C2= GENERAL PROFESSIONAL PARTNERSHIPfrm1702EX:txtPg1I5ATCR2C2=</div>    
+            <div>frm1702EX:rdoPg1I5ATCR2C3=falsefrm1702EX:rdoPg1I5ATCR2C3=</div>    
+            <div>frm1702EX:txtPg1Pt1I6TINC1=123frm1702EX:txtPg1Pt1I6TINC1=</div>    
+            <div>frm1702EX:txtPg1Pt1I6TINC2=456frm1702EX:txtPg1Pt1I6TINC2=</div>    
+            <div>frm1702EX:txtPg1Pt1I6TINC3=788frm1702EX:txtPg1Pt1I6TINC3=</div>    
+            <div>frm1702EX:txtPg1Pt1I6TINC4=00000frm1702EX:txtPg1Pt1I6TINC4=</div>    
+            <div>frm1702EX:hdnPg1Pt1I7RDO=039frm1702EX:hdnPg1Pt1I7RDO=</div>    
+            <div>frm1702EX:rdoPg1Pt1I7RDO=039frm1702EX:rdoPg1Pt1I7RDO=</div>    
+            <div>frm1702EX:txtPg1Pt1I8RegisteredName=SAMPLE DUMMY FOUNDATION INCfrm1702EX:txtPg1Pt1I8RegisteredName=</div>    
+            <div>frm1702EX:txtPg1Pt1I8RegisteredName2=frm1702EX:txtPg1Pt1I8RegisteredName2=</div>    
+            <div>frm1702EX:txtPg1Pt1I8RegisteredName3=frm1702EX:txtPg1Pt1I8RegisteredName3=</div>    
+            <div>frm1702EX:txtPg1Pt1I9RegisteredAddress=123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITYfrm1702EX:txtPg1Pt1I9RegisteredAddress=</div>    
+            <div>frm1702EX:txtPg1Pt1I9RegisteredAddress2=frm1702EX:txtPg1Pt1I9RegisteredAddress2=</div>    
+            <div>frm1702EX:txtPg1Pt1I9RegisteredAddress3=frm1702EX:txtPg1Pt1I9RegisteredAddress3=</div>    
+            <div>frm1702EX:txPg1I9ZipCode=1100frm1702EX:txPg1I9ZipCode=</div>    
+            <div>frm1702EX:txtPg1Pt1I10DateofIncorporation=03/01/2010frm1702EX:txtPg1Pt1I10DateofIncorporation=</div>    
+            <div>frm1702EX:txtPg1Pt1I11ContactNumber=09170000000frm1702EX:txtPg1Pt1I11ContactNumber=</div>    
+            <div>frm1702EX:txtPg1Pt1I12Email=sample.taxpayer@example.comfrm1702EX:txtPg1Pt1I12Email=</div>    
+            <div>frm1702EX:rdoPg1Pt1I13MethodOfDeducItemized=truefrm1702EX:rdoPg1Pt1I13MethodOfDeducItemized=</div>    
+            <div>frm1702EX:rdoPg1Pt1I13MethodOfDeducOptional=falsefrm1702EX:rdoPg1Pt1I13MethodOfDeducOptional=</div>    
+            <div>frm1702EX:txtPg1Pt1I14LegalBasis=SEC 30 NIRCfrm1702EX:txtPg1Pt1I14LegalBasis=</div>    
+            <div>frm1702EX:txtPg1Pt1I15Investment=SAMPLE AGENCYfrm1702EX:txtPg1Pt1I15Investment=</div>    
+            <div>frm1702EX:txtPg1Pt1I16RegisteredActivity=REG-0001frm1702EX:txtPg1Pt1I16RegisteredActivity=</div>    
+            <div>frm1702EX:txtPg1Pt1I17EffectivityFrom=01/01/2010frm1702EX:txtPg1Pt1I17EffectivityFrom=</div>    
+            <div>frm1702EX:txtPg1Pt1I17EffectivityTo=12/31/2030frm1702EX:txtPg1Pt1I17EffectivityTo=</div>    
+            <div>frm1702EX:txtPg1Pt2I18TaxDue=0.00frm1702EX:txtPg1Pt2I18TaxDue=</div>    
+            <div>frm1702EX:txtPg1Pt2I19TotalTaxCrPmt=1,000.00frm1702EX:txtPg1Pt2I19TotalTaxCrPmt=</div>    
+            <div>frm1702EX:txtPg1Pt2I20TotalOverpmt=-1,000.00frm1702EX:txtPg1Pt2I20TotalOverpmt=</div>    
+            <div>frm1702EX:txtPg1Pt2I21PenaltyCompromise=0.00frm1702EX:txtPg1Pt2I21PenaltyCompromise=</div>    
+            <div>frm1702EX:txtPg1Pt2I22TotalAmtPayable=-1,000.00frm1702EX:txtPg1Pt2I22TotalAmtPayable=</div>    
+            <div>frm1702EX:rdoPg1OverpaymentRefund=truefrm1702EX:rdoPg1OverpaymentRefund=</div>    
+            <div>frm1702EX:rdoPg1OverpaymentTCC=falsefrm1702EX:rdoPg1OverpaymentTCC=</div>    
+            <div>frm1702EX:rdoPg1OverpaymentCarryOver=falsefrm1702EX:rdoPg1OverpaymentCarryOver=</div>    
+            <div>frm1702EX:txtPg1Pt2AuthorizedRepresentative=frm1702EX:txtPg1Pt2AuthorizedRepresentative=</div>    
+            <div>frm1702EX:txtPg1Pt2Treasurer=frm1702EX:txtPg1Pt2Treasurer=</div>    
+            <div>frm1702EX:txtPg1P2I23NumOfAttachments=00frm1702EX:txtPg1P2I23NumOfAttachments=</div>    
+            <div>frm1702EX:txtPg1Pt2TitleofSignatory=0frm1702EX:txtPg1Pt2TitleofSignatory=</div>    
+            <div>frm1702EX:txtPg1Pt2TINofSignatory=frm1702EX:txtPg1Pt2TINofSignatory=</div>    
+            <div>frm1702EX:txtPg1Pt2TitleofSignatory2=0frm1702EX:txtPg1Pt2TitleofSignatory2=</div>    
+            <div>frm1702EX:txtPg1Pt2TINofSignatory2=frm1702EX:txtPg1Pt2TINofSignatory2=</div>    
+            <div>frm1702EX:txtPg1Pt3I24CashC1=frm1702EX:txtPg1Pt3I24CashC1=</div>    
+            <div>frm1702EX:txtPg1Pt3I24CashC2=frm1702EX:txtPg1Pt3I24CashC2=</div>    
+            <div>frm1702EX:txtPg1Pt3I24Date=frm1702EX:txtPg1Pt3I24Date=</div>    
+            <div>frm1702EX:txtPg1Pt3I24CashC3=frm1702EX:txtPg1Pt3I24CashC3=</div>    
+            <div>frm1702EX:txtPg1Pt3I25CheckC1=frm1702EX:txtPg1Pt3I25CheckC1=</div>    
+            <div>frm1702EX:txtPg1Pt3I25CheckC2=frm1702EX:txtPg1Pt3I25CheckC2=</div>    
+            <div>frm1702EX:txtPg1Pt3I25Date=frm1702EX:txtPg1Pt3I25Date=</div>    
+            <div>frm1702EX:txtPg1Pt3I25CheckC3=frm1702EX:txtPg1Pt3I25CheckC3=</div>    
+            <div>frm1702EX:txtPg1Pt3I26TaxDebitC2=frm1702EX:txtPg1Pt3I26TaxDebitC2=</div>    
+            <div>frm1702EX:txtPg1Pt3I26Date=frm1702EX:txtPg1Pt3I26Date=</div>    
+            <div>frm1702EX:txtPg1Pt3I26TaxDebitC3=frm1702EX:txtPg1Pt3I26TaxDebitC3=</div>    
+            <div>frm1702EX:txtPg1Pt3I27OthersC1=frm1702EX:txtPg1Pt3I27OthersC1=</div>    
+            <div>frm1702EX:txtPg1Pt3I27OthersC2=frm1702EX:txtPg1Pt3I27OthersC2=</div>    
+            <div>frm1702EX:txtPg1Pt3I27OthersC3=frm1702EX:txtPg1Pt3I27OthersC3=</div>    
+            <div>frm1702EX:txtPg1Pt3I27Date=frm1702EX:txtPg1Pt3I27Date=</div>    
+            <div>frm1702EX:txtPg1Pt3I27OthersC4=frm1702EX:txtPg1Pt3I27OthersC4=</div>    
+            <div>frm1702EX:txtPg2TinC1=123frm1702EX:txtPg2TinC1=</div>    
+            <div>frm1702EX:txtPg2TinC2=456frm1702EX:txtPg2TinC2=</div>    
+            <div>frm1702EX:txtPg2TinC3=788frm1702EX:txtPg2TinC3=</div>    
+            <div>frm1702EX:txtPg2TinC4=00000frm1702EX:txtPg2TinC4=</div>    
+            <div>frm1702EX:txtPg2RegisteredName=SAMPLE DUMMY FOUNDATION INCfrm1702EX:txtPg2RegisteredName=</div>    
+            <div>frm1702EX:txtPg2Pt4I28SalesReceiptsRevFees=5,000,000.50frm1702EX:txtPg2Pt4I28SalesReceiptsRevFees=</div>    
+            <div>frm1702EX:txtPg2Pt4I29SalesRetAllowanceDisc=100,000.00frm1702EX:txtPg2Pt4I29SalesRetAllowanceDisc=</div>    
+            <div>frm1702EX:txtPg2Pt4I30NetSalesReceiptsRevFees=4,900,001.00frm1702EX:txtPg2Pt4I30NetSalesReceiptsRevFees=</div>    
+            <div>frm1702EX:txtPg2Pt4I31CostOfSalesServ=2,000,000.00frm1702EX:txtPg2Pt4I31CostOfSalesServ=</div>    
+            <div>frm1702EX:txtPg2Pt4I32GrossIncomeFromOper=2,900,001.00frm1702EX:txtPg2Pt4I32GrossIncomeFromOper=</div>    
+            <div>frm1702EX:txtPg2Pt4I33AddOther=50,000.00frm1702EX:txtPg2Pt4I33AddOther=</div>    
+            <div>frm1702EX:txtPg2Pt4I34TotalGross=2,950,001.00frm1702EX:txtPg2Pt4I34TotalGross=</div>    
+            <div>frm1702EX:txtPg2Pt4I35OrdinaryAllowable=571,700.00frm1702EX:txtPg2Pt4I35OrdinaryAllowable=</div>    
+            <div>frm1702EX:txtPg2Pt4I36SpecialAllowable=29,000.00frm1702EX:txtPg2Pt4I36SpecialAllowable=</div>    
+            <div>frm1702EX:txtPg2Pt4I37TotalItemized=600,700.00frm1702EX:txtPg2Pt4I37TotalItemized=</div>    
+            <div>frm1702EX:txtPg2Pt4I38OptionalStandardDeduc=0.00frm1702EX:txtPg2Pt4I38OptionalStandardDeduc=</div>    
+            <div>frm1702EX:txtPg2Pt4I39NetTaxable=2,349,301.00frm1702EX:txtPg2Pt4I39NetTaxable=</div>    
+            <div>frm1702EX:txtPg2Pt4I40TaxRate=0frm1702EX:txtPg2Pt4I40TaxRate=</div>    
+            <div>frm1702EX:txtPg2Pt4I41TaxDue=0.00frm1702EX:txtPg2Pt4I41TaxDue=</div>    
+            <div>frm1702EX:txtPg2Pt4I42PriorYearExcessCr=0.00frm1702EX:txtPg2Pt4I42PriorYearExcessCr=</div>    
+            <div>frm1702EX:txtPg2Pt4I43IncomeTaxPmtFromPreviousQrt=0.00frm1702EX:txtPg2Pt4I43IncomeTaxPmtFromPreviousQrt=</div>    
+            <div>frm1702EX:txtPg2Pt4I44CreditableTaxWithheldFromPrevQrt=0.00frm1702EX:txtPg2Pt4I44CreditableTaxWithheldFromPrevQrt=</div>    
+            <div>frm1702EX:txtPg2Pt4I45CreditableTaxWithheldFor4thQrt=1,000.00frm1702EX:txtPg2Pt4I45CreditableTaxWithheldFor4thQrt=</div>    
+            <div>frm1702EX:txtPg2Pt4I46ForeignTaxCr=0.00frm1702EX:txtPg2Pt4I46ForeignTaxCr=</div>    
+            <div>frm1702EX:txtPg2Pt4I47TaxPaidInReturnPrevFiled=0frm1702EX:txtPg2Pt4I47TaxPaidInReturnPrevFiled=</div>    
+            <div>frm1702EX:txtPg2Pt4I48OtherTaxCrPmtDesc=frm1702EX:txtPg2Pt4I48OtherTaxCrPmtDesc=</div>    
+            <div>frm1702EX:txtPg2Pt4I48OtherTaxCrPmtAmt=0.00frm1702EX:txtPg2Pt4I48OtherTaxCrPmtAmt=</div>    
+            <div>frm1702EX:txtPg2Pt4I49OtherTaxCrPmtDesc=frm1702EX:txtPg2Pt4I49OtherTaxCrPmtDesc=</div>    
+            <div>frm1702EX:txtPg2Pt4I49OtherTaxCrPmtAmt=0.00frm1702EX:txtPg2Pt4I49OtherTaxCrPmtAmt=</div>    
+            <div>frm1702EX:txtPg2Pt4I50TotalTaxCrPmt=1,000.00frm1702EX:txtPg2Pt4I50TotalTaxCrPmt=</div>    
+            <div>frm1702EX:txtPg2Pt4I51TotalOverpayment=-1,000.00frm1702EX:txtPg2Pt4I51TotalOverpayment=</div>    
+            <div>frm1702EX:txtPg2Pt5I52RegularIncomeOtherwiseDue=600,000.00frm1702EX:txtPg2Pt5I52RegularIncomeOtherwiseDue=</div>    
+            <div>frm1702EX:txtPg2Pt5I53SpecialAllowableItemizedDeduc=15,000.00frm1702EX:txtPg2Pt5I53SpecialAllowableItemizedDeduc=</div>    
+            <div>frm1702EX:txtPg2Pt5I54TotalTaxReliefAvailment=615,000.00frm1702EX:txtPg2Pt5I54TotalTaxReliefAvailment=</div>    
+            <div>frm1702EX:txtPg3TinC1=123frm1702EX:txtPg3TinC1=</div>    
+            <div>frm1702EX:txtPg3TinC2=456frm1702EX:txtPg3TinC2=</div>    
+            <div>frm1702EX:txtPg3TinC3=788frm1702EX:txtPg3TinC3=</div>    
+            <div>frm1702EX:txtPg3TinC4=00000frm1702EX:txtPg3TinC4=</div>    
+            <div>frm1702EX:txtPg3RegisteredName=SAMPLE DUMMY FOUNDATION INCfrm1702EX:txtPg3RegisteredName=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I1Ammortization=0.00frm1702EX:txtPg3Pt6S1I1Ammortization=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I2BadDebts=10,000.00frm1702EX:txtPg3Pt6S1I2BadDebts=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I3CharitableContrib=0.00frm1702EX:txtPg3Pt6S1I3CharitableContrib=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I4Depletion=0.00frm1702EX:txtPg3Pt6S1I4Depletion=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I5Depreciation=0.00frm1702EX:txtPg3Pt6S1I5Depreciation=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I6EntertainmentAmuseRecreate=0.00frm1702EX:txtPg3Pt6S1I6EntertainmentAmuseRecreate=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I7FringeBenefits=0.00frm1702EX:txtPg3Pt6S1I7FringeBenefits=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I8Interest=0.00frm1702EX:txtPg3Pt6S1I8Interest=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I9Losses=0.00frm1702EX:txtPg3Pt6S1I9Losses=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I10PensionTrust=0.00frm1702EX:txtPg3Pt6S1I10PensionTrust=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I11Rental=0.00frm1702EX:txtPg3Pt6S1I11Rental=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I12RnD=0.00frm1702EX:txtPg3Pt6S1I12RnD=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I13SalaryWageAllowance=500,000.00frm1702EX:txtPg3Pt6S1I13SalaryWageAllowance=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I14SssGsisPHealthHDMFOthers=0.00frm1702EX:txtPg3Pt6S1I14SssGsisPHealthHDMFOthers=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I15TaxAndLicense=0.00frm1702EX:txtPg3Pt6S1I15TaxAndLicense=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I16TranspoAndTravel=0.00frm1702EX:txtPg3Pt6S1I16TranspoAndTravel=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I17aJanitorAndMessengerServ=20,000.00frm1702EX:txtPg3Pt6S1I17aJanitorAndMessengerServ=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I17bProfessionalFee=0.00frm1702EX:txtPg3Pt6S1I17bProfessionalFee=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I17cSecurityServices=0.00frm1702EX:txtPg3Pt6S1I17cSecurityServices=</div>    
+            <div>frm1702EX:txtPg3Pt6I17OthersDDesc=SAMPLE EXPENSEfrm1702EX:txtPg3Pt6I17OthersDDesc=</div>    
+            <div>frm1702EX:txtPg3Pt6I17OthersDAmt=5,000.00frm1702EX:txtPg3Pt6I17OthersDAmt=</div>    
+            <div>frm1702EX:txtPg3Pt6I17OthersEDesc=RENT EXPENSEfrm1702EX:txtPg3Pt6I17OthersEDesc=</div>    
+            <div>frm1702EX:txtPg3Pt6I17OthersEAmt=6,000.00frm1702EX:txtPg3Pt6I17OthersEAmt=</div>    
+            <div>frm1702EX:txtPg3Pt6I17OthersFDesc=UTILITIESfrm1702EX:txtPg3Pt6I17OthersFDesc=</div>    
+            <div>frm1702EX:txtPg3Pt6I17OthersFAmt=7,000.00frm1702EX:txtPg3Pt6I17OthersFAmt=</div>    
+            <div>frm1702EX:txtPg3Pt6I17OthersGDesc=SUPPLIESfrm1702EX:txtPg3Pt6I17OthersGDesc=</div>    
+            <div>frm1702EX:txtPg3Pt6I17OthersGAmt=8,000.00frm1702EX:txtPg3Pt6I17OthersGAmt=</div>    
+            <div>frm1702EX:txtPg3Pt6I17OthersHDesc=REPAIRSfrm1702EX:txtPg3Pt6I17OthersHDesc=</div>    
+            <div>frm1702EX:txtPg3Pt6I17OthersHAmt=9,000.00frm1702EX:txtPg3Pt6I17OthersHAmt=</div>    
+            <div>frm1702EX:txtPg3Pt6I17OthersIDesc=OTHERSfrm1702EX:txtPg3Pt6I17OthersIDesc=</div>    
+            <div>frm1702EX:txtPg3Pt6I17OthersIAmt=6,700.00frm1702EX:txtPg3Pt6I17OthersIAmt=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I18TotOrdinaryAllowableItemDeduc=571,700.00frm1702EX:txtPg3Pt6S1I18TotOrdinaryAllowableItemDeduc=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I1Description=SAMPLE DEDUCTIONfrm1702EX:txtPg3Pt6S2I1Description=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I1LegalBasis=RA 0000frm1702EX:txtPg3Pt6S2I1LegalBasis=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I1Amount=15,000.00frm1702EX:txtPg3Pt6S2I1Amount=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I2Description=DEDUCTION TWOfrm1702EX:txtPg3Pt6S2I2Description=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I2LegalBasis=RA 0002frm1702EX:txtPg3Pt6S2I2LegalBasis=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I2Amount=2,000.00frm1702EX:txtPg3Pt6S2I2Amount=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I3Description=DEDUCTION THREEfrm1702EX:txtPg3Pt6S2I3Description=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I3LegalBasis=RA 0003frm1702EX:txtPg3Pt6S2I3LegalBasis=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I3Amount=3,000.00frm1702EX:txtPg3Pt6S2I3Amount=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I4Description=OTHERSfrm1702EX:txtPg3Pt6S2I4Description=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I4LegalBasis=RA 0004frm1702EX:txtPg3Pt6S2I4LegalBasis=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I4Amount=9,000.00frm1702EX:txtPg3Pt6S2I4Amount=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I5TotSpecialAllowedItemDeduc=29,000.00frm1702EX:txtPg3Pt6S2I5TotSpecialAllowedItemDeduc=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I1NetIncomePerBook=996,933.00frm1702EX:txtPg3Pt6S3I1NetIncomePerBook=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeDesc=NONDEDUCTIBLE EXPENSEfrm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeDesc=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeAmt=120,001.00frm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeAmt=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I3NonDeductExpenseOtherIncomeDesc=OTHERSfrm1702EX:txtPg3Pt6S3I3NonDeductExpenseOtherIncomeDesc=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I3NonDeductExpenseOtherIncomeAmt=1,265,367.00frm1702EX:txtPg3Pt6S3I3NonDeductExpenseOtherIncomeAmt=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I4Total=2,382,301.00frm1702EX:txtPg3Pt6S3I4Total=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxDesc=ROW 5frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxDesc=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxAmt=1,500.00frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxAmt=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I6NonTaxIncomeAndIncomeSubjectToFinTaxDesc=OTHERSfrm1702EX:txtPg3Pt6S3I6NonTaxIncomeAndIncomeSubjectToFinTaxDesc=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I6NonTaxIncomeAndIncomeSubjectToFinTaxAmt=13,000.00frm1702EX:txtPg3Pt6S3I6NonTaxIncomeAndIncomeSubjectToFinTaxAmt=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I7SpecialDeductDesc=ROW 7frm1702EX:txtPg3Pt6S3I7SpecialDeductDesc=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I7SpecialDeductAmt=1,500.00frm1702EX:txtPg3Pt6S3I7SpecialDeductAmt=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I8SpecialDeductDesc=OTHERSfrm1702EX:txtPg3Pt6S3I8SpecialDeductDesc=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I8SpecialDeductAmt=17,000.00frm1702EX:txtPg3Pt6S3I8SpecialDeductAmt=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I9Total=33,000.00frm1702EX:txtPg3Pt6S3I9Total=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I10NetTaxableIncome=2,349,301.00frm1702EX:txtPg3Pt6S3I10NetTaxableIncome=</div>    
+            <div>frm1702EX:txtLOB=SAMPLE CONSULTING SERVICESfrm1702EX:txtLOB=</div>    
+            <div>frm1702EX:txtCurrentPage=1frm1702EX:txtCurrentPage=</div>    
+            <div>frm1702EX:txtMaxPage=3frm1702EX:txtMaxPage=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I17_1Col1=TRANSPORTfrm1702EX:txtPg3Pt6S1I17_1Col1=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I17_1Col2=3,000.00frm1702EX:txtPg3Pt6S1I17_1Col2=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I17_2Col1=COURIERfrm1702EX:txtPg3Pt6S1I17_2Col1=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I17_2Col2=2,500.00frm1702EX:txtPg3Pt6S1I17_2Col2=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I17_3Col1=PRINTINGfrm1702EX:txtPg3Pt6S1I17_3Col1=</div>    
+            <div>frm1702EX:txtPg3Pt6S1I17_3Col2=1,200.00frm1702EX:txtPg3Pt6S1I17_3Col2=</div>    
+            <div>Pg3Pt6S1I17SubTotal=6,700.00Pg3Pt6S1I17SubTotal=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I4_1Col1=DEDUCTION FOURfrm1702EX:txtPg3Pt6S2I4_1Col1=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I4_1Col2=RA 0004frm1702EX:txtPg3Pt6S2I4_1Col2=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I4_1Col3=4,000.00frm1702EX:txtPg3Pt6S2I4_1Col3=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I4_2Col1=DEDUCTION FIVEfrm1702EX:txtPg3Pt6S2I4_2Col1=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I4_2Col2=RA 0005frm1702EX:txtPg3Pt6S2I4_2Col2=</div>    
+            <div>frm1702EX:txtPg3Pt6S2I4_2Col3=5,000.00frm1702EX:txtPg3Pt6S2I4_2Col3=</div>    
+            <div>Pg3Pt6S2I4SubTotal=9,000.00Pg3Pt6S2I4SubTotal=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I3_1Col1=ENTERTAINMENTfrm1702EX:txtPg3Pt6S3I3_1Col1=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I3_1Col2=30000.00frm1702EX:txtPg3Pt6S3I3_1Col2=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I3_2Col1=PENALTIESfrm1702EX:txtPg3Pt6S3I3_2Col1=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I3_2Col2=1234567.00frm1702EX:txtPg3Pt6S3I3_2Col2=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I3_3Col1=DONATIONSfrm1702EX:txtPg3Pt6S3I3_3Col1=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I3_3Col2=800.00frm1702EX:txtPg3Pt6S3I3_3Col2=</div>    
+            <div>Pg3Pt6S3I3SubTotal=1,265,367.00Pg3Pt6S3I3SubTotal=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I6_1Col1=DIVIDENDSfrm1702EX:txtPg3Pt6S3I6_1Col1=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I6_1Col2=6,000.00frm1702EX:txtPg3Pt6S3I6_1Col2=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I6_2Col1=ROYALTIESfrm1702EX:txtPg3Pt6S3I6_2Col1=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I6_2Col2=7,000.00frm1702EX:txtPg3Pt6S3I6_2Col2=</div>    
+            <div>Pg3Pt6S3I6SubTotal=13,000.00Pg3Pt6S3I6SubTotal=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I8_1Col1=SPECIAL ONEfrm1702EX:txtPg3Pt6S3I8_1Col1=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I8_1Col2=8,000.00frm1702EX:txtPg3Pt6S3I8_1Col2=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I8_2Col1=SPECIAL TWOfrm1702EX:txtPg3Pt6S3I8_2Col1=</div>    
+            <div>frm1702EX:txtPg3Pt6S3I8_2Col2=9,000.00frm1702EX:txtPg3Pt6S3I8_2Col2=</div>    
+            <div>Pg3Pt6S3I8SubTotal=17,000.00Pg3Pt6S3I8SubTotal=</div>    
+            <div>driveSelectTPExport=0driveSelectTPExport=</div>    
+            <div>txtFinalFlag=0.00txtFinalFlag=</div>    
+            <div>txtEnroll=NtxtEnroll=</div>    
+            <div>ebirOnlineConfirmUsername=ebirOnlineConfirmUsername=</div>    
+            <div>ebirOnlineUsername=ebirOnlineUsername=</div>    
+            <div>ebirOnlineSecret=ebirOnlineSecret=</div>    
+            <div>Pg3Pt6S1I17PopLength=3Pg3Pt6S1I17PopLength=</div>    
+            <div>Pg3Pt6S2I4PopLength=2Pg3Pt6S2I4PopLength=</div>    
+            <div>Pg3Pt6S3I3PopLength=3Pg3Pt6S3I3PopLength=</div>    
+            <div>Pg3Pt6S3I6PopLength=2Pg3Pt6S3I6PopLength=</div>    
+            <div>Pg3Pt6S3I8PopLength=2Pg3Pt6S3I8PopLength=</div>    
+                
+            All Rights Reserved BIR 2014.0

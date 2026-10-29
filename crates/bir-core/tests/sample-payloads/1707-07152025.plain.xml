@@ -1,0 +1,163 @@
+<?xml version='1.0'?>    
+            <div>frm1707:txtPg1I1Month=07frm1707:txtPg1I1Month=</div>    
+            <div>frm1707:txtPg1I1Day=15frm1707:txtPg1I1Day=</div>    
+            <div>frm1707:txtPg1I1Year=2025frm1707:txtPg1I1Year=</div>    
+            <div>frm1707:rdoPg1I2AmendedYes=falsefrm1707:rdoPg1I2AmendedYes=</div>    
+            <div>frm1707:rdoPg1I2AmendedNo=truefrm1707:rdoPg1I2AmendedNo=</div>    
+            <div>frm1707:rdoPg1I3ATCIndiv=truefrm1707:rdoPg1I3ATCIndiv=</div>    
+            <div>frm1707:txtPg1I3Indiv=II 030frm1707:txtPg1I3Indiv=</div>    
+            <div>frm1707:rdoPg1I3ATCCorp=falsefrm1707:rdoPg1I3ATCCorp=</div>    
+            <div>frm1707:txtPg1I3Corp=IC 110frm1707:txtPg1I3Corp=</div>    
+            <div>frm1707:txtPg1I4NoOfSheets=1frm1707:txtPg1I4NoOfSheets=</div>    
+            <div>frm1707:txtPg1TIN1=123frm1707:txtPg1TIN1=</div>    
+            <div>frm1707:txtPg1TIN2=456frm1707:txtPg1TIN2=</div>    
+            <div>frm1707:txtPg1TIN3=788frm1707:txtPg1TIN3=</div>    
+            <div>frm1707:txtPg1TIN4=00000frm1707:txtPg1TIN4=</div>    
+            <div>frm1707:ProfileName=SAMPLE DUMMY TAXPAYERfrm1707:ProfileName=</div>    
+            <div>frm1707:ProfileAddress1=123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITYfrm1707:ProfileAddress1=</div>    
+            <div>frm1707:ProfileAddress2=frm1707:ProfileAddress2=</div>    
+            <div>frm1707:ProfileZipCode=1100frm1707:ProfileZipCode=</div>    
+            <div>frm1707:ProfileContactNum=09170000000frm1707:ProfileContactNum=</div>    
+            <div>frm1707:ProfileEmailAddr=sample.taxpayer@example.comfrm1707:ProfileEmailAddr=</div>    
+            <div>frm1707:rdoPg1Pt1I5RDO=039frm1707:rdoPg1Pt1I5RDO=</div>    
+            <div>chkSellerDelete0=falsechkSellerDelete0=</div>    
+            <div>frm1707:txtPg1I6SellerName0=SAMPLE DUMMY TAXPAYERfrm1707:txtPg1I6SellerName0=</div>    
+            <div>frm1707:txtPg1I6SellerAddr0=123 SAMPLE STREET, QUEZON CITYfrm1707:txtPg1I6SellerAddr0=</div>    
+            <div>frm1707:txtPg1I6SellerTIN0=123456788000frm1707:txtPg1I6SellerTIN0=</div>    
+            <div>chkSellerDelete1=falsechkSellerDelete1=</div>    
+            <div>frm1707:txtPg1I6SellerName1=JUAN SAMPLE-COfrm1707:txtPg1I6SellerName1=</div>    
+            <div>frm1707:txtPg1I6SellerAddr1=9 EXAMPLE RD., PASIGfrm1707:txtPg1I6SellerAddr1=</div>    
+            <div>frm1707:txtPg1I6SellerTIN1=11122233300000frm1707:txtPg1I6SellerTIN1=</div>    
+            <div>chkSellerDelete2=falsechkSellerDelete2=</div>    
+            <div>frm1707:txtPg1I6SellerName2=frm1707:txtPg1I6SellerName2=</div>    
+            <div>frm1707:txtPg1I6SellerAddr2=frm1707:txtPg1I6SellerAddr2=</div>    
+            <div>frm1707:txtPg1I6SellerTIN2=frm1707:txtPg1I6SellerTIN2=</div>    
+            <div>chkBuyerDelete0=falsechkBuyerDelete0=</div>    
+            <div>frm1707:txtPg1I7BuyerName0=EXAMPLE HOLDINGS INC.frm1707:txtPg1I7BuyerName0=</div>    
+            <div>frm1707:txtPg1I7BuyerAddr0=45 EXAMPLE AVE., MAKATI CITYfrm1707:txtPg1I7BuyerAddr0=</div>    
+            <div>frm1707:txtPg1I7BuyerTIN0=444555666000frm1707:txtPg1I7BuyerTIN0=</div>    
+            <div>chkBuyerDelete1=falsechkBuyerDelete1=</div>    
+            <div>frm1707:txtPg1I7BuyerName1=frm1707:txtPg1I7BuyerName1=</div>    
+            <div>frm1707:txtPg1I7BuyerAddr1=frm1707:txtPg1I7BuyerAddr1=</div>    
+            <div>frm1707:txtPg1I7BuyerTIN1=frm1707:txtPg1I7BuyerTIN1=</div>    
+            <div>chkBuyerDelete2=falsechkBuyerDelete2=</div>    
+            <div>frm1707:txtPg1I7BuyerName2=frm1707:txtPg1I7BuyerName2=</div>    
+            <div>frm1707:txtPg1I7BuyerAddr2=frm1707:txtPg1I7BuyerAddr2=</div>    
+            <div>frm1707:txtPg1I7BuyerTIN2=frm1707:txtPg1I7BuyerTIN2=</div>    
+            <div>frm1707:rdoPg1I8TaxReliefYes=truefrm1707:rdoPg1I8TaxReliefYes=</div>    
+            <div>frm1707:rdoPg1I8TaxReliefNo=falsefrm1707:rdoPg1I8TaxReliefNo=</div>    
+            <div>frm1707:txtPg1I8TaxReliefSpec=TAX TREATY RELIEFfrm1707:txtPg1I8TaxReliefSpec=</div>    
+            <div>frm1707:rdoPg1I9TransDescCash=truefrm1707:rdoPg1I9TransDescCash=</div>    
+            <div>frm1707:rdoPg1I9TransDescInstallment=falsefrm1707:rdoPg1I9TransDescInstallment=</div>    
+            <div>frm1707:rdoPg1I9TransDescForeclosure=falsefrm1707:rdoPg1I9TransDescForeclosure=</div>    
+            <div>frm1707:rdoPg1I9TransDescOthers=falsefrm1707:rdoPg1I9TransDescOthers=</div>    
+            <div>frm1707:txtPg1I9TransDescSpec=frm1707:txtPg1I9TransDescSpec=</div>    
+            <div>frm1707:txtPg1P2I10TaxBase=1,500,568.54frm1707:txtPg1P2I10TaxBase=</div>    
+            <div>frm1707:txtPg1P2I11AllowExpnse=912,946.44frm1707:txtPg1P2I11AllowExpnse=</div>    
+            <div>frm1707:txtPg1P2I12NetCptalChnged=587,622.10frm1707:txtPg1P2I12NetCptalChnged=</div>    
+            <div>frm1707:txtPg1P2I13AppTaxRate=15frm1707:txtPg1P2I13AppTaxRate=</div>    
+            <div>frm1707:txtPg1P2I13TaxDueForTrans=88,143.31frm1707:txtPg1P2I13TaxDueForTrans=</div>    
+            <div>frm1707:txtPg1P2I14TaxDuePmtPriod=0.00frm1707:txtPg1P2I14TaxDuePmtPriod=</div>    
+            <div>frm1707:txtPg1P2I15TaxPaidInPrevRtrn=0.00frm1707:txtPg1P2I15TaxPaidInPrevRtrn=</div>    
+            <div>frm1707:txtPg1P2I16TaxPayable=88,143.31frm1707:txtPg1P2I16TaxPayable=</div>    
+            <div>frm1707:txtPg1P2I17Surcharge=25.50frm1707:txtPg1P2I17Surcharge=</div>    
+            <div>frm1707:txtPg1P2I17Interest=10.01frm1707:txtPg1P2I17Interest=</div>    
+            <div>frm1707:txtPg1P2I17Compromise=0.00frm1707:txtPg1P2I17Compromise=</div>    
+            <div>frm1707:txtPg1P2I17TotPenalties=35.51frm1707:txtPg1P2I17TotPenalties=</div>    
+            <div>frm1707:txtPg1P2I18TotAmtPyable=88,178.82frm1707:txtPg1P2I18TotAmtPyable=</div>    
+            <div>frm1707:txtPg1Pt4Indiv=frm1707:txtPg1Pt4Indiv=</div>    
+            <div>frm1707:txtPg1Pt4NonIndiv=frm1707:txtPg1Pt4NonIndiv=</div>    
+            <div>frm1707:txtPg1Pt4TaxAcredNo=frm1707:txtPg1Pt4TaxAcredNo=</div>    
+            <div>frm1707:txtPg1Pt4DateOfIssue=frm1707:txtPg1Pt4DateOfIssue=</div>    
+            <div>frm1707:txtPg1Pt4DateOfExpiry=frm1707:txtPg1Pt4DateOfExpiry=</div>    
+            <div>frm1707:txtPg1Pt3I28CashC1=frm1707:txtPg1Pt3I28CashC1=</div>    
+            <div>frm1707:txtPg1Pt3I28CashC2=frm1707:txtPg1Pt3I28CashC2=</div>    
+            <div>frm1707:txtPg1Pt3I28Date=frm1707:txtPg1Pt3I28Date=</div>    
+            <div>frm1707:txtPg1Pt3I28CashC3=frm1707:txtPg1Pt3I28CashC3=</div>    
+            <div>frm1707:txtPg1Pt3I29CheckC1=frm1707:txtPg1Pt3I29CheckC1=</div>    
+            <div>frm1707:txtPg1Pt3I29CheckC2=frm1707:txtPg1Pt3I29CheckC2=</div>    
+            <div>frm1707:txtPg1Pt3I29Date=frm1707:txtPg1Pt3I29Date=</div>    
+            <div>frm1707:txtPg1Pt3I29CheckC3=frm1707:txtPg1Pt3I29CheckC3=</div>    
+            <div>frm1707:txtPg1Pt3I30TaxDebitC1=frm1707:txtPg1Pt3I30TaxDebitC1=</div>    
+            <div>frm1707:txtPg1Pt3I30TaxDebitC2=frm1707:txtPg1Pt3I30TaxDebitC2=</div>    
+            <div>frm1707:txtPg1Pt3I30Date=frm1707:txtPg1Pt3I30Date=</div>    
+            <div>frm1707:txtPg1Pt3I30TaxDebitC3=frm1707:txtPg1Pt3I30TaxDebitC3=</div>    
+            <div>frm1707:txtPg1Pt3I31OthersC1=frm1707:txtPg1Pt3I31OthersC1=</div>    
+            <div>frm1707:txtPg1Pt3I31OthersC2=frm1707:txtPg1Pt3I31OthersC2=</div>    
+            <div>frm1707:txtPg1Pt3I31OthersC3=frm1707:txtPg1Pt3I31OthersC3=</div>    
+            <div>frm1707:txtPg1Pt3I31Date=frm1707:txtPg1Pt3I31Date=</div>    
+            <div>frm1707:txtPg1Pt3I31OthersC4=frm1707:txtPg1Pt3I31OthersC4=</div>    
+            <div>frm1707:txtPg2TinC1=123frm1707:txtPg2TinC1=</div>    
+            <div>frm1707:txtPg2TinC2=456frm1707:txtPg2TinC2=</div>    
+            <div>frm1707:txtPg2TinC3=788frm1707:txtPg2TinC3=</div>    
+            <div>frm1707:txtPg2TinC4=00000frm1707:txtPg2TinC4=</div>    
+            <div>BrachMask2=00000BrachMask2=</div>    
+            <div>frm1707:txtPg2RegisteredName=SAMPLE DUMMY TAXPAYERfrm1707:txtPg2RegisteredName=</div>    
+            <div>frm1707:txtPg2P4Sch1I1SellPrice=0.00frm1707:txtPg2P4Sch1I1SellPrice=</div>    
+            <div>frm1707:txtPg2P4Sch1I2CostExpense=0.00frm1707:txtPg2P4Sch1I2CostExpense=</div>    
+            <div>frm1707:txtPg2P4Sch1I3AssumMortgage=0.00frm1707:txtPg2P4Sch1I3AssumMortgage=</div>    
+            <div>frm1707:txtPg2P4Sch1I4NumInstallments=0frm1707:txtPg2P4Sch1I4NumInstallments=</div>    
+            <div>frm1707:txtPg2P4Sch1I5InstallmentAmt=0.00frm1707:txtPg2P4Sch1I5InstallmentAmt=</div>    
+            <div>frm1707:txtPg2P4Sch1I6ApplcRate=frm1707:txtPg2P4Sch1I6ApplcRate=</div>    
+            <div>frm1707:txtPg2P4Sch1I7PeriodTaxDue=0.00frm1707:txtPg2P4Sch1I7PeriodTaxDue=</div>    
+            <div>frm1707:txtPg2P4Sch1I8DateCollection=frm1707:txtPg2P4Sch1I8DateCollection=</div>    
+            <div>frm1707:txtPg2P4Sch1I9TotCollection=0.00frm1707:txtPg2P4Sch1I9TotCollection=</div>    
+            <div>frm1707:txtPg2P4Sch2NameOfCorpStock1=SAMPLE CORPfrm1707:txtPg2P4Sch2NameOfCorpStock1=</div>    
+            <div>frm1707:txtPg2P4Sch2NameOfCorpStock2=EXAMPLE MINING INCfrm1707:txtPg2P4Sch2NameOfCorpStock2=</div>    
+            <div>frm1707:txtPg2P4Sch2NameOfCorpStock3=THIRD SAMPLE COfrm1707:txtPg2P4Sch2NameOfCorpStock3=</div>    
+            <div>frm1707:txtPg2P4Sch2NameOfCorpStock4=OTHERSfrm1707:txtPg2P4Sch2NameOfCorpStock4=</div>    
+            <div>frm1707:txtPg2P4Sch2NoOfShares1=1,000.000frm1707:txtPg2P4Sch2NoOfShares1=</div>    
+            <div>frm1707:txtPg2P4Sch2StockCertNo1=1001frm1707:txtPg2P4Sch2StockCertNo1=</div>    
+            <div>frm1707:txtPg2P4Sch2TaxBaseSellPrice1=250,000.01frm1707:txtPg2P4Sch2TaxBaseSellPrice1=</div>    
+            <div>frm1707:txtPg2P4Sch2NoOfShares2=12,345.678frm1707:txtPg2P4Sch2NoOfShares2=</div>    
+            <div>frm1707:txtPg2P4Sch2StockCertNo2=2002frm1707:txtPg2P4Sch2StockCertNo2=</div>    
+            <div>frm1707:txtPg2P4Sch2TaxBaseSellPrice2=1,234,567.89frm1707:txtPg2P4Sch2TaxBaseSellPrice2=</div>    
+            <div>frm1707:txtPg2P4Sch2NoOfShares3=10.000frm1707:txtPg2P4Sch2NoOfShares3=</div>    
+            <div>frm1707:txtPg2P4Sch2StockCertNo3=3003frm1707:txtPg2P4Sch2StockCertNo3=</div>    
+            <div>frm1707:txtPg2P4Sch2TaxBaseSellPrice3=1,000.00frm1707:txtPg2P4Sch2TaxBaseSellPrice3=</div>    
+            <div>frm1707:txtPg2P4Sch2NoOfShares4=OTHERSfrm1707:txtPg2P4Sch2NoOfShares4=</div>    
+            <div>frm1707:txtPg2P4Sch2StockCertNo4=OTHERSfrm1707:txtPg2P4Sch2StockCertNo4=</div>    
+            <div>frm1707:txtPg2P4Sch2TaxBaseSellPrice4=15,000.64frm1707:txtPg2P4Sch2TaxBaseSellPrice4=</div>    
+            <div>frm1707:txtPg2P4Sch2TotAmount=1,500,568.54frm1707:txtPg2P4Sch2TotAmount=</div>    
+            <div>frm1707:txtPg2P4Sch3Particulars1=ACQUISITION COSTfrm1707:txtPg2P4Sch3Particulars1=</div>    
+            <div>frm1707:txtPg2P4Sch3Amount1=900,000.00frm1707:txtPg2P4Sch3Amount1=</div>    
+            <div>frm1707:txtPg2P4Sch3Particulars2=BROKER FEESfrm1707:txtPg2P4Sch3Particulars2=</div>    
+            <div>frm1707:txtPg2P4Sch3Amount2=12,345.68frm1707:txtPg2P4Sch3Amount2=</div>    
+            <div>frm1707:txtPg2P4Sch3Particulars3=DOCS FEESfrm1707:txtPg2P4Sch3Particulars3=</div>    
+            <div>frm1707:txtPg2P4Sch3Amount3=100.00frm1707:txtPg2P4Sch3Amount3=</div>    
+            <div>frm1707:txtPg2P4Sch3Particulars4=OTHERSfrm1707:txtPg2P4Sch3Particulars4=</div>    
+            <div>frm1707:txtPg2P4Sch3Amount4=500.76frm1707:txtPg2P4Sch3Amount4=</div>    
+            <div>frm1707:txtPg2P4Sch3TotAmount=912,946.44frm1707:txtPg2P4Sch3TotAmount=</div>    
+            <div>frm1707:txtLOB=SAMPLE CONSULTING SERVICESfrm1707:txtLOB=</div>    
+            <div>frm1707:txtCurrentPage=1frm1707:txtCurrentPage=</div>    
+            <div>frm1707:txtMaxPage=2frm1707:txtMaxPage=</div>    
+            <div>frm1707:txtPg2Pt4S2_1Col1=FOURTH CORPfrm1707:txtPg2Pt4S2_1Col1=</div>    
+            <div>frm1707:txtPg2Pt4S2_2Col1=FIFTH COfrm1707:txtPg2Pt4S2_2Col1=</div>    
+            <div>frm1707:txtPg2Pt4S2_3Col1=SIXTH COfrm1707:txtPg2Pt4S2_3Col1=</div>    
+            <div>frm1707:txtPg2Pt4S2_1Col2=40.000frm1707:txtPg2Pt4S2_1Col2=</div>    
+            <div>frm1707:txtPg2Pt4S2_1Col3=4004frm1707:txtPg2Pt4S2_1Col3=</div>    
+            <div>frm1707:txtPg2Pt4S2_1Col4=4,000.01frm1707:txtPg2Pt4S2_1Col4=</div>    
+            <div>frm1707:txtPg2Pt4S2_2Col2=50.500frm1707:txtPg2Pt4S2_2Col2=</div>    
+            <div>frm1707:txtPg2Pt4S2_2Col3=5005frm1707:txtPg2Pt4S2_2Col3=</div>    
+            <div>frm1707:txtPg2Pt4S2_2Col4=5,000.50frm1707:txtPg2Pt4S2_2Col4=</div>    
+            <div>frm1707:txtPg2Pt4S2_3Col2=1,234.568frm1707:txtPg2Pt4S2_3Col2=</div>    
+            <div>frm1707:txtPg2Pt4S2_3Col3=6006frm1707:txtPg2Pt4S2_3Col3=</div>    
+            <div>frm1707:txtPg2Pt4S2_3Col4=6,000.13frm1707:txtPg2Pt4S2_3Col4=</div>    
+            <div>Pg2Pt4S2SubTotal=15,000.64Pg2Pt4S2SubTotal=</div>    
+            <div>frm1707:txtPg2Pt4S3_1Col1=NOTARYfrm1707:txtPg2Pt4S3_1Col1=</div>    
+            <div>frm1707:txtPg2Pt4S3_1Col2=200.50frm1707:txtPg2Pt4S3_1Col2=</div>    
+            <div>frm1707:txtPg2Pt4S3_2Col1=TRANSFER TAXfrm1707:txtPg2Pt4S3_2Col1=</div>    
+            <div>frm1707:txtPg2Pt4S3_2Col2=300.26frm1707:txtPg2Pt4S3_2Col2=</div>    
+            <div>Pg2Pt4S3SubTotal=500.76Pg2Pt4S3SubTotal=</div>    
+            <div>frm1707:rdoCorpoDomestic=falsefrm1707:rdoCorpoDomestic=</div>    
+            <div>frm1707:rdoCorpoForeign=falsefrm1707:rdoCorpoForeign=</div>    
+            <div>driveSelectTPExport=0driveSelectTPExport=</div>    
+            <div>txtFinalFlag=0.00txtFinalFlag=</div>    
+            <div>txtEnroll=NtxtEnroll=</div>    
+            <div>ebirOnlineConfirmUsername=ebirOnlineConfirmUsername=</div>    
+            <div>ebirOnlineUsername=ebirOnlineUsername=</div>    
+            <div>ebirOnlineSecret=ebirOnlineSecret=</div>    
+            <div>Pg2Pt4S2PopLength=3Pg2Pt4S2PopLength=</div>    
+            <div>Pg2Pt4S3PopLength=2Pg2Pt4S3PopLength=</div>    
+                
+            All Rights Reserved BIR 2014.0

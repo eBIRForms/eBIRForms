@@ -1,0 +1,164 @@
+[
+ {
+  "call": "(function(){var d=document,v=function(i,x){d.getElementById(i).value=x;};v('frm2000:txtTaxpayerName','Sample Dummy Taxpayer');v('frm2000:txtPg2TaxpayerName','Sample Dummy Taxpayer');v('frm2000:txtTIN1','123');v('frm2000:txtPg2TIN1','123');v('frm2000:txtTIN2','456');v('frm2000:txtPg2TIN2','456');v('frm2000:txtTIN3','788');v('frm2000:txtPg2TIN3','788');v('frm2000:txtBranchCode','00000');v('frm2000:txtPg2BranchCode','00000');v('frm2000:txtRDOCode','039');v('frm2000:txtLineBus','Sample Consulting Services');v('frm2000:txtAddress','123 Sample Street, Barangay Example, Quezon City');v('frm2000:txtAddress2','');v('frm2000:txtZipCode','1100');v('frm2000:txtTelNum','09170000000');v('txtEmail','sample.taxpayer@example.com');})()"
+ },
+ {
+  "set": "frm2000:txtMonth",
+  "value": "06"
+ },
+ {
+  "set": "frm2000:txtYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm2000:AmendedRtn_2"
+ },
+ {
+  "set": "frm2000:txtSheets",
+  "value": "0"
+ },
+ {
+  "click": "frm2000:optParty_1"
+ },
+ {
+  "click": "frm2000:optMode_2"
+ },
+ {
+  "set": "drpATCCode0",
+  "value": "DS101"
+ },
+ {
+  "set": "frm2000:sched1:txtTaxBase0",
+  "value": "123456.789"
+ },
+ {
+  "call": "(function(){var s=document.getElementById('drpATCCode1');for(var k=0;k<s.options.length;k++){if(s.options[k].text.indexOf('PRE-NEED')>=0){s.selectedIndex=k;}}s.dispatchEvent(new Event('change'));s.dispatchEvent(new Event('blur'));})()"
+ },
+ {
+  "set": "frm2000:sched1:txtTaxBase1",
+  "value": "999.995"
+ },
+ {
+  "set": "drpATCCode2",
+  "value": "DS106"
+ },
+ {
+  "click": "ds106modYes"
+ },
+ {
+  "set": "frm2000:numOfDays",
+  "value": "90"
+ },
+ {
+  "call": "ds106CloseModal()"
+ },
+ {
+  "set": "frm2000:sched1:txtTaxBase2",
+  "value": "2500000"
+ },
+ {
+  "call": "addSchedule1()"
+ },
+ {
+  "set": "drpATCCode3",
+  "value": "DS104"
+ },
+ {
+  "set": "frm2000:sched1:txtTaxBase3",
+  "value": "40000.004"
+ },
+ {
+  "set": "frm2000:sched2:txtPaymentDate0",
+  "value": "06/05/2025"
+ },
+ {
+  "set": "frm2000:sched2:txtReceipt0",
+  "value": "Rcpt1001"
+ },
+ {
+  "set": "frm2000:sched2:txtAmountPaid0",
+  "value": "1000.5"
+ },
+ {
+  "set": "frm2000:sched2:txtPaymentDate1",
+  "value": "06/20/2025"
+ },
+ {
+  "set": "frm2000:sched2:txtReceipt1",
+  "value": "Rcpt1002"
+ },
+ {
+  "set": "frm2000:sched2:txtAmountPaid1",
+  "value": "2000.005"
+ },
+ {
+  "call": "addSchedule2()"
+ },
+ {
+  "set": "frm2000:sched2:txtPaymentDate2",
+  "value": "06/21/2025"
+ },
+ {
+  "set": "frm2000:sched2:txtReceipt2",
+  "value": "Rcpt1003"
+ },
+ {
+  "set": "frm2000:sched2:txtAmountPaid2",
+  "value": "300"
+ },
+ {
+  "set": "frm2000:sched2:txtPaymentDate3",
+  "value": "06/22/2025"
+ },
+ {
+  "set": "frm2000:sched2:txtReceipt3",
+  "value": "Rcpt1004"
+ },
+ {
+  "set": "frm2000:sched2:txtAmountPaid3",
+  "value": "400.25"
+ },
+ {
+  "set": "frm2000:sched4:txtRCOCode0",
+  "value": "Rco01"
+ },
+ {
+  "set": "frm2000:sched4:txtRemittanceDate0",
+  "value": "06/25/2025"
+ },
+ {
+  "set": "frm2000:sched4:txtBank0",
+  "value": "Sample Bank"
+ },
+ {
+  "set": "frm2000:sched4:txtAmountRemitted0",
+  "value": "5000"
+ },
+ {
+  "set": "frm2000:sched4:txtNumberFrom0",
+  "value": "1001"
+ },
+ {
+  "set": "frm2000:sched4:txtNumberTo0",
+  "value": "1100"
+ },
+ {
+  "set": "frm2000:txtTax17A",
+  "value": "25.5"
+ },
+ {
+  "set": "frm2000:txtTax17B",
+  "value": "10"
+ },
+ {
+  "set": "frm2000:txtOtherTIN",
+  "value": "987654321000"
+ },
+ {
+  "set": "frm2000:txtOtherName",
+  "value": "Sample Creditor Corp"
+ },
+ {
+  "call": "var xmlFileName = createXMLFileName('savefile/')"
+ }
+]

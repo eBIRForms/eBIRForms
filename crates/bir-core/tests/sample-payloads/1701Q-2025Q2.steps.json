@@ -1,0 +1,229 @@
+[
+ {
+  "set": "frm1701q:txtYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1701q:DateQuarter_2"
+ },
+ {
+  "click": "frm1701q:AmendedRtn_1"
+ },
+ {
+  "set": "frm1701q:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701q:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701q:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701q:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701q:txtPg2TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701q:txtPg2TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701q:txtPg2TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701q:txtPg2BranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701q:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm1701q:txtTaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701q:txtPg2TaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701q:txtAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm1701q:txtAddress2",
+  "value": ""
+ },
+ {
+  "set": "frm1701q:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "set": "frm1701q:txtLOB",
+  "value": "Sample Consulting Services"
+ },
+ {
+  "set": "frm1701q:txtTelno",
+  "value": "09170000000"
+ },
+ {
+  "click": "frm1701q:optType_2"
+ },
+ {
+  "click": "frm1701q:optATC_2"
+ },
+ {
+  "click": "frm1701q:optMethodOfDeduction:_1"
+ },
+ {
+  "set": "frm1701q:txtBirthMonth",
+  "value": "05"
+ },
+ {
+  "set": "frm1701q:txtBirthDay",
+  "value": "17"
+ },
+ {
+  "set": "frm1701q:txtBirthYear",
+  "value": "1985"
+ },
+ {
+  "set": "frm1701q:txtCitizenship",
+  "value": "Filipino"
+ },
+ {
+  "click": "frm1701q:optForeignTaxCredits_2"
+ },
+ {
+  "set": "frm1701q:txtSpouseTIN1",
+  "value": "987"
+ },
+ {
+  "set": "frm1701q:txtSpouseTIN2",
+  "value": "654"
+ },
+ {
+  "set": "frm1701q:txtSpouseTIN3",
+  "value": "321"
+ },
+ {
+  "set": "frm1701q:txtSpouseBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701q:txtSpouseRDOCode",
+  "value": "040"
+ },
+ {
+  "click": "frm1701q:optSpouseType_1"
+ },
+ {
+  "click": "frm1701q:optSpouseATC_5"
+ },
+ {
+  "set": "frm1701q:txtSpouseName",
+  "value": "Dummy Spouse Sample"
+ },
+ {
+  "set": "frm1701q:txtSpouseCitizenship",
+  "value": "Filipino"
+ },
+ {
+  "set": "frm1701q:txtSpouseForeignTaxNum",
+  "value": "x12345"
+ },
+ {
+  "click": "frm1701q:optSpouseForeignTaxCred_1"
+ },
+ {
+  "set": "frm1701q:txt36A",
+  "value": "1234567"
+ },
+ {
+  "set": "frm1701q:txt37A",
+  "value": "345678"
+ },
+ {
+  "set": "frm1701q:txt39A",
+  "value": "123456"
+ },
+ {
+  "set": "frm1701q:txt42A",
+  "value": "-1000.505"
+ },
+ {
+  "set": "frm1701q:txt43Desc",
+  "value": "Rental income"
+ },
+ {
+  "set": "frm1701q:txt43A",
+  "value": "50000"
+ },
+ {
+  "set": "frm1701q:txt44A",
+  "value": "7000"
+ },
+ {
+  "set": "frm1701q:txt55A",
+  "value": "10000"
+ },
+ {
+  "set": "frm1701q:txt59A",
+  "value": "2500"
+ },
+ {
+  "set": "frm1701q:txt61Desc",
+  "value": "Other credit"
+ },
+ {
+  "set": "frm1701q:txt61A",
+  "value": "300"
+ },
+ {
+  "set": "frm1701q:txt64A",
+  "value": "1000"
+ },
+ {
+  "set": "frm1701q:txt65A",
+  "value": "250"
+ },
+ {
+  "set": "frm1701q:txt48Desc",
+  "value": "Interest"
+ },
+ {
+  "set": "frm1701q:txt47B",
+  "value": "900000"
+ },
+ {
+  "set": "frm1701q:txt48B",
+  "value": "12345"
+ },
+ {
+  "set": "frm1701q:txt50B",
+  "value": "15000.505"
+ },
+ {
+  "set": "frm1701q:txt52B",
+  "value": "250000"
+ },
+ {
+  "set": "frm1701q:txt56B",
+  "value": "4000"
+ },
+ {
+  "set": "frm1701q:txt66B",
+  "value": "500"
+ }
+]

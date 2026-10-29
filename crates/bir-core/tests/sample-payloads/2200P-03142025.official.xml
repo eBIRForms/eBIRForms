@@ -1,0 +1,467 @@
+<?xml version='1.0'?>    
+            <div>frm2200P:txtPg1I1Month=03frm2200P:txtPg1I1Month=</div>    
+            <div>frm2200P:txtPg1I1Day=14frm2200P:txtPg1I1Day=</div>    
+            <div>frm2200P:txtPg1I1Year=2025frm2200P:txtPg1I1Year=</div>    
+            <div>frm2200P:rdoPg1I2AmendedYes=falsefrm2200P:rdoPg1I2AmendedYes=</div>    
+            <div>frm2200P:rdoPg1I2AmendedNo=truefrm2200P:rdoPg1I2AmendedNo=</div>    
+            <div>frm2200P:txtPg1I3NoSheets=2frm2200P:txtPg1I3NoSheets=</div>    
+            <div>frm2200P:txtPg1TIN1=123frm2200P:txtPg1TIN1=</div>    
+            <div>frm2200P:txtPg1TIN2=456frm2200P:txtPg1TIN2=</div>    
+            <div>frm2200P:txtPg1TIN3=788frm2200P:txtPg1TIN3=</div>    
+            <div>frm2200P:txtPg1TIN4=00000frm2200P:txtPg1TIN4=</div>    
+            <div>frm2200P:txtPg1I5RDO=039frm2200P:txtPg1I5RDO=</div>    
+            <div>frm2200P:rdoPg1Pt1I6RDO=039frm2200P:rdoPg1Pt1I6RDO=</div>    
+            <div>frm2200P:txtPg1Pt1I6RegisteredName=SAMPLE DUMMY TAXPAYERfrm2200P:txtPg1Pt1I6RegisteredName=</div>    
+            <div>frm2200P:txtPg1Pt1I7RegisteredAddress=123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITYfrm2200P:txtPg1Pt1I7RegisteredAddress=</div>    
+            <div>frm2200P:txtPg1Pt1I7RegisteredAddress2=frm2200P:txtPg1Pt1I7RegisteredAddress2=</div>    
+            <div>frm2200P:txPg1I7ZipCode=1100frm2200P:txPg1I7ZipCode=</div>    
+            <div>frm2200P:txtPg1Pt1I8ContactNumber=09170000000frm2200P:txtPg1Pt1I8ContactNumber=</div>    
+            <div>frm2200P:txtPg1Pt1I9Email=sample.taxpayer@example.comfrm2200P:txtPg1Pt1I9Email=</div>    
+            <div>frm2200P:txtPg1Pt1I10Region=130000000frm2200P:txtPg1Pt1I10Region=</div>    
+            <div>frm2200P:txtPg1Pt1I10Province=137400000frm2200P:txtPg1Pt1I10Province=</div>    
+            <div>frm2200P:txtPg1Pt1I10City=137403000frm2200P:txtPg1Pt1I10City=</div>    
+            <div>frm2200P:txtPg1Pt1I11Region=040000000frm2200P:txtPg1Pt1I11Region=</div>    
+            <div>frm2200P:txtPg1Pt1I11Province=042100000frm2200P:txtPg1Pt1I11Province=</div>    
+            <div>frm2200P:txtPg1Pt1I11City=042103000frm2200P:txtPg1Pt1I11City=</div>    
+            <div>frm2200P:rdoPg1I12TaxReliefYes=truefrm2200P:rdoPg1I12TaxReliefYes=</div>    
+            <div>frm2200P:rdoPg1I12TaxReliefNo=falsefrm2200P:rdoPg1I12TaxReliefNo=</div>    
+            <div>frm2200P:txtPg1I12TaxReliefSpecify=SAMPLE RELIEF LAWfrm2200P:txtPg1I12TaxReliefSpecify=</div>    
+            <div>frm2200P:rdoPg1Pt2MOPPaymentActual=falsefrm2200P:rdoPg1Pt2MOPPaymentActual=</div>    
+            <div>frm2200P:rdoPg1Pt2MOPPrepayment=falsefrm2200P:rdoPg1Pt2MOPPrepayment=</div>    
+            <div>frm2200P:rdoPg1Pt2MOPOther=truefrm2200P:rdoPg1Pt2MOPOther=</div>    
+            <div>frm2200P:txtPg1Pt2MOPOtherDesc=SAMPLE SCHEMEfrm2200P:txtPg1Pt2MOPOtherDesc=</div>    
+            <div>frm2200P:txtPg1P3I16ExciseTaxDue=126,100.10frm2200P:txtPg1P3I16ExciseTaxDue=</div>    
+            <div>frm2200P:txtPg1P3I17ABalCarriedOver=1,000.00frm2200P:txtPg1P3I17ABalCarriedOver=</div>    
+            <div>frm2200P:txtPg1P3I17BCredExciseTax=234.57frm2200P:txtPg1P3I17BCredExciseTax=</div>    
+            <div>frm2200P:txtPg1P3I17CTotal=1,234.57frm2200P:txtPg1P3I17CTotal=</div>    
+            <div>frm2200P:txtPg1P3I18NetTaxDue=124,865.53frm2200P:txtPg1P3I18NetTaxDue=</div>    
+            <div>frm2200P:txtPg1P3I19PmntOnRtrnPrevFiled=0.00frm2200P:txtPg1P3I19PmntOnRtrnPrevFiled=</div>    
+            <div>frm2200P:txtPg1P3I20TaxStillDue=124,865.53frm2200P:txtPg1P3I20TaxStillDue=</div>    
+            <div>frm2200P:txtPg1P3I21ASurcharge=25.50frm2200P:txtPg1P3I21ASurcharge=</div>    
+            <div>frm2200P:txtPg1P3I21BInterest=10.00frm2200P:txtPg1P3I21BInterest=</div>    
+            <div>frm2200P:txtPg1P3I21CCompromise=1,000.00frm2200P:txtPg1P3I21CCompromise=</div>    
+            <div>frm2200P:txtPg1P3I21DTotPenalties=1,035.50frm2200P:txtPg1P3I21DTotPenalties=</div>    
+            <div>frm2200P:txtPg1P3I22AmountPayable=125,901.03frm2200P:txtPg1P3I22AmountPayable=</div>    
+            <div>frm2200P:txtPg1P3I23ATaxPmntDposit=124,965.53frm2200P:txtPg1P3I23ATaxPmntDposit=</div>    
+            <div>frm2200P:txtPg1P3I23BPenalties=1,035.50frm2200P:txtPg1P3I23BPenalties=</div>    
+            <div>frm2200P:txtPg1P3I23CTotPmntMade=126,001.03frm2200P:txtPg1P3I23CTotPmntMade=</div>    
+            <div>frm2200P:txtPg1P3I24BalToCarryOver=-100.00frm2200P:txtPg1P3I24BalToCarryOver=</div>    
+            <div>frm2200P:txtPg1Pt4Indiv=frm2200P:txtPg1Pt4Indiv=</div>    
+            <div>frm2200P:txtPg1Pt4NonIndiv=frm2200P:txtPg1Pt4NonIndiv=</div>    
+            <div>frm2200P:txtPg1Pt4TaxAcredNo=frm2200P:txtPg1Pt4TaxAcredNo=</div>    
+            <div>frm2200P:txtPg1Pt4DateOfIssue=frm2200P:txtPg1Pt4DateOfIssue=</div>    
+            <div>frm2200P:txtPg1Pt4DateOfExpiry=frm2200P:txtPg1Pt4DateOfExpiry=</div>    
+            <div>frm2200P:txtPg1Pt4I25CashC1=frm2200P:txtPg1Pt4I25CashC1=</div>    
+            <div>frm2200P:txtPg1Pt4I25CashC2=frm2200P:txtPg1Pt4I25CashC2=</div>    
+            <div>frm2200P:txtPg1Pt4I25Date=frm2200P:txtPg1Pt4I25Date=</div>    
+            <div>frm2200P:txtPg1Pt4I25CashC3=frm2200P:txtPg1Pt4I25CashC3=</div>    
+            <div>frm2200P:txtPg1Pt4I26CheckC1=frm2200P:txtPg1Pt4I26CheckC1=</div>    
+            <div>frm2200P:txtPg1Pt4I26CheckC2=frm2200P:txtPg1Pt4I26CheckC2=</div>    
+            <div>frm2200P:txtPg1Pt4I26Date=frm2200P:txtPg1Pt4I26Date=</div>    
+            <div>frm2200P:txtPg1Pt4I26CheckC3=frm2200P:txtPg1Pt4I26CheckC3=</div>    
+            <div>frm2200P:txtPg1Pt4I27TaxDebitC2=frm2200P:txtPg1Pt4I27TaxDebitC2=</div>    
+            <div>frm2200P:txtPg1Pt4I27Date=frm2200P:txtPg1Pt4I27Date=</div>    
+            <div>frm2200P:txtPg1Pt4I27TaxDebitC3=frm2200P:txtPg1Pt4I27TaxDebitC3=</div>    
+            <div>frm2200P:txtPg1Pt4I28OthersC1=frm2200P:txtPg1Pt4I28OthersC1=</div>    
+            <div>frm2200P:txtPg1Pt4I28OthersC2=frm2200P:txtPg1Pt4I28OthersC2=</div>    
+            <div>frm2200P:txtPg1Pt4I28OthersC3=frm2200P:txtPg1Pt4I28OthersC3=</div>    
+            <div>frm2200P:txtPg1Pt4I28Date=frm2200P:txtPg1Pt4I28Date=</div>    
+            <div>frm2200P:txtPg1Pt4I28OthersC4=frm2200P:txtPg1Pt4I28OthersC4=</div>    
+            <div>frm2200P:txtPg2TinC1=123frm2200P:txtPg2TinC1=</div>    
+            <div>frm2200P:txtPg2TinC2=456frm2200P:txtPg2TinC2=</div>    
+            <div>frm2200P:txtPg2TinC3=788frm2200P:txtPg2TinC3=</div>    
+            <div>frm2200P:txtPg2TinC4=00000frm2200P:txtPg2TinC4=</div>    
+            <div>frm2200P:txtPg2RegisteredName=SAMPLE DUMMY TAXPAYERfrm2200P:txtPg2RegisteredName=</div>    
+            <div>frm2200P:txtSched1ATC1=XP010frm2200P:txtSched1ATC1=</div>    
+            <div>frm2200P:txtSched1Description1=LUBRICATING OILSfrm2200P:txtSched1Description1=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure1=PER LITERfrm2200P:txtSched1UnitOfMeasure1=</div>    
+            <div>frm2200P:txtSched1ApplicableRate1=10.00frm2200P:txtSched1ApplicableRate1=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval1=frm2200P:txtSched1PlaceOfRemoval1=</div>    
+            <div>frm2200P:txtSched1LocalManuProd1=frm2200P:txtSched1LocalManuProd1=</div>    
+            <div>frm2200P:txtSched1Imported1=frm2200P:txtSched1Imported1=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals1=frm2200P:txtSched1TotTaxRemovals1=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported1=frm2200P:txtSched1TaxPaidImported1=</div>    
+            <div>frm2200P:txtSched1UnderBond1=frm2200P:txtSched1UnderBond1=</div>    
+            <div>frm2200P:txtSched1Exports1=frm2200P:txtSched1Exports1=</div>    
+            <div>frm2200P:txtSched1Others1=frm2200P:txtSched1Others1=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid1=frm2200P:txtSched1TotTaxPaid1=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue1=frm2200P:txtSched1BasicExciseTaxDue1=</div>    
+            <div>frm2200P:txtSched1ATC2=XP020frm2200P:txtSched1ATC2=</div>    
+            <div>frm2200P:txtSched1Description2=GREASESfrm2200P:txtSched1Description2=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure2=PER KGfrm2200P:txtSched1UnitOfMeasure2=</div>    
+            <div>frm2200P:txtSched1ApplicableRate2=10.00frm2200P:txtSched1ApplicableRate2=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval2=frm2200P:txtSched1PlaceOfRemoval2=</div>    
+            <div>frm2200P:txtSched1LocalManuProd2=frm2200P:txtSched1LocalManuProd2=</div>    
+            <div>frm2200P:txtSched1Imported2=frm2200P:txtSched1Imported2=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals2=frm2200P:txtSched1TotTaxRemovals2=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported2=frm2200P:txtSched1TaxPaidImported2=</div>    
+            <div>frm2200P:txtSched1UnderBond2=frm2200P:txtSched1UnderBond2=</div>    
+            <div>frm2200P:txtSched1Exports2=frm2200P:txtSched1Exports2=</div>    
+            <div>frm2200P:txtSched1Others2=frm2200P:txtSched1Others2=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid2=frm2200P:txtSched1TotTaxPaid2=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue2=frm2200P:txtSched1BasicExciseTaxDue2=</div>    
+            <div>frm2200P:txtSched1ATC3=XP030frm2200P:txtSched1ATC3=</div>    
+            <div>frm2200P:txtSched1Description3=PROCESSED GASfrm2200P:txtSched1Description3=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure3=PER LITERfrm2200P:txtSched1UnitOfMeasure3=</div>    
+            <div>frm2200P:txtSched1ApplicableRate3=10.00frm2200P:txtSched1ApplicableRate3=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval3=frm2200P:txtSched1PlaceOfRemoval3=</div>    
+            <div>frm2200P:txtSched1LocalManuProd3=frm2200P:txtSched1LocalManuProd3=</div>    
+            <div>frm2200P:txtSched1Imported3=frm2200P:txtSched1Imported3=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals3=frm2200P:txtSched1TotTaxRemovals3=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported3=frm2200P:txtSched1TaxPaidImported3=</div>    
+            <div>frm2200P:txtSched1UnderBond3=frm2200P:txtSched1UnderBond3=</div>    
+            <div>frm2200P:txtSched1Exports3=frm2200P:txtSched1Exports3=</div>    
+            <div>frm2200P:txtSched1Others3=frm2200P:txtSched1Others3=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid3=frm2200P:txtSched1TotTaxPaid3=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue3=frm2200P:txtSched1BasicExciseTaxDue3=</div>    
+            <div>frm2200P:txtSched1ATC4=XP040frm2200P:txtSched1ATC4=</div>    
+            <div>frm2200P:txtSched1Description4=WAXES AND PETROLEUMfrm2200P:txtSched1Description4=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure4=PER KGfrm2200P:txtSched1UnitOfMeasure4=</div>    
+            <div>frm2200P:txtSched1ApplicableRate4=10.00frm2200P:txtSched1ApplicableRate4=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval4=frm2200P:txtSched1PlaceOfRemoval4=</div>    
+            <div>frm2200P:txtSched1LocalManuProd4=frm2200P:txtSched1LocalManuProd4=</div>    
+            <div>frm2200P:txtSched1Imported4=frm2200P:txtSched1Imported4=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals4=frm2200P:txtSched1TotTaxRemovals4=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported4=frm2200P:txtSched1TaxPaidImported4=</div>    
+            <div>frm2200P:txtSched1UnderBond4=frm2200P:txtSched1UnderBond4=</div>    
+            <div>frm2200P:txtSched1Exports4=frm2200P:txtSched1Exports4=</div>    
+            <div>frm2200P:txtSched1Others4=frm2200P:txtSched1Others4=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid4=frm2200P:txtSched1TotTaxPaid4=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue4=frm2200P:txtSched1BasicExciseTaxDue4=</div>    
+            <div>frm2200P:txtSched1ATC5=XP050frm2200P:txtSched1ATC5=</div>    
+            <div>frm2200P:txtSched1Description5=DENATURED ALCOHOL USED FOR MOTIVE POWERfrm2200P:txtSched1Description5=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure5=PER LITERfrm2200P:txtSched1UnitOfMeasure5=</div>    
+            <div>frm2200P:txtSched1ApplicableRate5=10.0frm2200P:txtSched1ApplicableRate5=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval5=frm2200P:txtSched1PlaceOfRemoval5=</div>    
+            <div>frm2200P:txtSched1LocalManuProd5=frm2200P:txtSched1LocalManuProd5=</div>    
+            <div>frm2200P:txtSched1Imported5=frm2200P:txtSched1Imported5=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals5=frm2200P:txtSched1TotTaxRemovals5=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported5=frm2200P:txtSched1TaxPaidImported5=</div>    
+            <div>frm2200P:txtSched1UnderBond5=frm2200P:txtSched1UnderBond5=</div>    
+            <div>frm2200P:txtSched1Exports5=frm2200P:txtSched1Exports5=</div>    
+            <div>frm2200P:txtSched1Others5=frm2200P:txtSched1Others5=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid5=frm2200P:txtSched1TotTaxPaid5=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue5=frm2200P:txtSched1BasicExciseTaxDue5=</div>    
+            <div>frm2200P:txtSched1ATC6=XP060frm2200P:txtSched1ATC6=</div>    
+            <div>frm2200P:txtSched1Description6=UNLEADED PREMIUM GASOLINEfrm2200P:txtSched1Description6=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure6=PER LITERfrm2200P:txtSched1UnitOfMeasure6=</div>    
+            <div>frm2200P:txtSched1ApplicableRate6=10.00frm2200P:txtSched1ApplicableRate6=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval6=BATANGAS DEPOTfrm2200P:txtSched1PlaceOfRemoval6=</div>    
+            <div>frm2200P:txtSched1LocalManuProd6=10,000.00frm2200P:txtSched1LocalManuProd6=</div>    
+            <div>frm2200P:txtSched1Imported6=2,500.00frm2200P:txtSched1Imported6=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals6=12,500.01frm2200P:txtSched1TotTaxRemovals6=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported6=frm2200P:txtSched1TaxPaidImported6=</div>    
+            <div>frm2200P:txtSched1UnderBond6=frm2200P:txtSched1UnderBond6=</div>    
+            <div>frm2200P:txtSched1Exports6=frm2200P:txtSched1Exports6=</div>    
+            <div>frm2200P:txtSched1Others6=frm2200P:txtSched1Others6=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid6=frm2200P:txtSched1TotTaxPaid6=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue6=125,000.10frm2200P:txtSched1BasicExciseTaxDue6=</div>    
+            <div>frm2200P:txtSched1ATC7=XP080frm2200P:txtSched1ATC7=</div>    
+            <div>frm2200P:txtSched1Description7=REGULAR GASOLINEfrm2200P:txtSched1Description7=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure7=PER LITERfrm2200P:txtSched1UnitOfMeasure7=</div>    
+            <div>frm2200P:txtSched1ApplicableRate7=10.00frm2200P:txtSched1ApplicableRate7=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval7=frm2200P:txtSched1PlaceOfRemoval7=</div>    
+            <div>frm2200P:txtSched1LocalManuProd7=frm2200P:txtSched1LocalManuProd7=</div>    
+            <div>frm2200P:txtSched1Imported7=frm2200P:txtSched1Imported7=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals7=frm2200P:txtSched1TotTaxRemovals7=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported7=frm2200P:txtSched1TaxPaidImported7=</div>    
+            <div>frm2200P:txtSched1UnderBond7=frm2200P:txtSched1UnderBond7=</div>    
+            <div>frm2200P:txtSched1Exports7=frm2200P:txtSched1Exports7=</div>    
+            <div>frm2200P:txtSched1Others7=frm2200P:txtSched1Others7=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid7=frm2200P:txtSched1TotTaxPaid7=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue7=frm2200P:txtSched1BasicExciseTaxDue7=</div>    
+            <div>frm2200P:txtSched1ATC8=XP085frm2200P:txtSched1ATC8=</div>    
+            <div>frm2200P:txtSched1Description8=PYROLYSIS GASOLINEfrm2200P:txtSched1Description8=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure8=PER LITERfrm2200P:txtSched1UnitOfMeasure8=</div>    
+            <div>frm2200P:txtSched1ApplicableRate8=10.00frm2200P:txtSched1ApplicableRate8=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval8=frm2200P:txtSched1PlaceOfRemoval8=</div>    
+            <div>frm2200P:txtSched1LocalManuProd8=frm2200P:txtSched1LocalManuProd8=</div>    
+            <div>frm2200P:txtSched1Imported8=frm2200P:txtSched1Imported8=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals8=frm2200P:txtSched1TotTaxRemovals8=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported8=frm2200P:txtSched1TaxPaidImported8=</div>    
+            <div>frm2200P:txtSched1UnderBond8=frm2200P:txtSched1UnderBond8=</div>    
+            <div>frm2200P:txtSched1Exports8=frm2200P:txtSched1Exports8=</div>    
+            <div>frm2200P:txtSched1Others8=frm2200P:txtSched1Others8=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid8=frm2200P:txtSched1TotTaxPaid8=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue8=frm2200P:txtSched1BasicExciseTaxDue8=</div>    
+            <div>frm2200P:txtSched1ATC9=XP090frm2200P:txtSched1ATC9=</div>    
+            <div>frm2200P:txtSched1Description9=NAPHTHAfrm2200P:txtSched1Description9=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure9=PER LITERfrm2200P:txtSched1UnitOfMeasure9=</div>    
+            <div>frm2200P:txtSched1ApplicableRate9=10.00frm2200P:txtSched1ApplicableRate9=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval9=frm2200P:txtSched1PlaceOfRemoval9=</div>    
+            <div>frm2200P:txtSched1LocalManuProd9=frm2200P:txtSched1LocalManuProd9=</div>    
+            <div>frm2200P:txtSched1Imported9=frm2200P:txtSched1Imported9=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals9=frm2200P:txtSched1TotTaxRemovals9=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported9=frm2200P:txtSched1TaxPaidImported9=</div>    
+            <div>frm2200P:txtSched1UnderBond9=frm2200P:txtSched1UnderBond9=</div>    
+            <div>frm2200P:txtSched1Exports9=frm2200P:txtSched1Exports9=</div>    
+            <div>frm2200P:txtSched1Others9=frm2200P:txtSched1Others9=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid9=frm2200P:txtSched1TotTaxPaid9=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue9=frm2200P:txtSched1BasicExciseTaxDue9=</div>    
+            <div>frm2200P:txtSched1ATC10=XP100frm2200P:txtSched1ATC10=</div>    
+            <div>frm2200P:txtSched1Description10=NAPHTHA TO BE USED FOR PETRO-CHEMICALSfrm2200P:txtSched1Description10=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure10=PER LITERfrm2200P:txtSched1UnitOfMeasure10=</div>    
+            <div>frm2200P:txtSched1ApplicableRate10=0.00frm2200P:txtSched1ApplicableRate10=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval10=frm2200P:txtSched1PlaceOfRemoval10=</div>    
+            <div>frm2200P:txtSched1LocalManuProd10=frm2200P:txtSched1LocalManuProd10=</div>    
+            <div>frm2200P:txtSched1Imported10=frm2200P:txtSched1Imported10=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals10=frm2200P:txtSched1TotTaxRemovals10=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported10=frm2200P:txtSched1TaxPaidImported10=</div>    
+            <div>frm2200P:txtSched1UnderBond10=frm2200P:txtSched1UnderBond10=</div>    
+            <div>frm2200P:txtSched1Exports10=frm2200P:txtSched1Exports10=</div>    
+            <div>frm2200P:txtSched1Others10=frm2200P:txtSched1Others10=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid10=frm2200P:txtSched1TotTaxPaid10=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue10=frm2200P:txtSched1BasicExciseTaxDue10=</div>    
+            <div>frm2200P:txtSched1ATC11=XP105frm2200P:txtSched1ATC11=</div>    
+            <div>frm2200P:txtSched1Description11=NAPHTHA AND PYROLYSIS GASOLINE, WHEN USED AS A RAW MATERIAL IN THE PRODUCTION OR IN THE REFINING OF PETROLEUM PRODUCTS, OR AS A REPLACEMENT FOR NATURAL-GAS-FIRED COMBINED CYCLE POWER PLANT STYLE=frm2200P:txtSched1Description11=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure11=PER LITERfrm2200P:txtSched1UnitOfMeasure11=</div>    
+            <div>frm2200P:txtSched1ApplicableRate11=0.00frm2200P:txtSched1ApplicableRate11=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval11=frm2200P:txtSched1PlaceOfRemoval11=</div>    
+            <div>frm2200P:txtSched1LocalManuProd11=frm2200P:txtSched1LocalManuProd11=</div>    
+            <div>frm2200P:txtSched1Imported11=frm2200P:txtSched1Imported11=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals11=frm2200P:txtSched1TotTaxRemovals11=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported11=frm2200P:txtSched1TaxPaidImported11=</div>    
+            <div>frm2200P:txtSched1UnderBond11=frm2200P:txtSched1UnderBond11=</div>    
+            <div>frm2200P:txtSched1Exports11=frm2200P:txtSched1Exports11=</div>    
+            <div>frm2200P:txtSched1Others11=frm2200P:txtSched1Others11=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid11=frm2200P:txtSched1TotTaxPaid11=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue11=frm2200P:txtSched1BasicExciseTaxDue11=</div>    
+            <div>frm2200P:txtSched1ATC12=XP110frm2200P:txtSched1ATC12=</div>    
+            <div>frm2200P:txtSched1Description12=AVIATION GASOLINEfrm2200P:txtSched1Description12=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure12=PER LITERfrm2200P:txtSched1UnitOfMeasure12=</div>    
+            <div>frm2200P:txtSched1ApplicableRate12=4.00frm2200P:txtSched1ApplicableRate12=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval12=frm2200P:txtSched1PlaceOfRemoval12=</div>    
+            <div>frm2200P:txtSched1LocalManuProd12=frm2200P:txtSched1LocalManuProd12=</div>    
+            <div>frm2200P:txtSched1Imported12=frm2200P:txtSched1Imported12=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals12=frm2200P:txtSched1TotTaxRemovals12=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported12=frm2200P:txtSched1TaxPaidImported12=</div>    
+            <div>frm2200P:txtSched1UnderBond12=frm2200P:txtSched1UnderBond12=</div>    
+            <div>frm2200P:txtSched1Exports12=frm2200P:txtSched1Exports12=</div>    
+            <div>frm2200P:txtSched1Others12=frm2200P:txtSched1Others12=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid12=frm2200P:txtSched1TotTaxPaid12=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue12=frm2200P:txtSched1BasicExciseTaxDue12=</div>    
+            <div>frm2200P:txtSched1ATC13=XP120frm2200P:txtSched1ATC13=</div>    
+            <div>frm2200P:txtSched1Description13=AVIATION TURBO JET FUELfrm2200P:txtSched1Description13=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure13=PER LITERfrm2200P:txtSched1UnitOfMeasure13=</div>    
+            <div>frm2200P:txtSched1ApplicableRate13=4.00frm2200P:txtSched1ApplicableRate13=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval13=frm2200P:txtSched1PlaceOfRemoval13=</div>    
+            <div>frm2200P:txtSched1LocalManuProd13=frm2200P:txtSched1LocalManuProd13=</div>    
+            <div>frm2200P:txtSched1Imported13=frm2200P:txtSched1Imported13=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals13=frm2200P:txtSched1TotTaxRemovals13=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported13=frm2200P:txtSched1TaxPaidImported13=</div>    
+            <div>frm2200P:txtSched1UnderBond13=frm2200P:txtSched1UnderBond13=</div>    
+            <div>frm2200P:txtSched1Exports13=frm2200P:txtSched1Exports13=</div>    
+            <div>frm2200P:txtSched1Others13=frm2200P:txtSched1Others13=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid13=frm2200P:txtSched1TotTaxPaid13=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue13=frm2200P:txtSched1BasicExciseTaxDue13=</div>    
+            <div>frm2200P:txtSched1ATC14=XP130frm2200P:txtSched1ATC14=</div>    
+            <div>frm2200P:txtSched1Description14=KEROSENEfrm2200P:txtSched1Description14=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure14=PER LITERfrm2200P:txtSched1UnitOfMeasure14=</div>    
+            <div>frm2200P:txtSched1ApplicableRate14=5.00"frm2200P:txtSched1ApplicableRate14=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval14=frm2200P:txtSched1PlaceOfRemoval14=</div>    
+            <div>frm2200P:txtSched1LocalManuProd14=frm2200P:txtSched1LocalManuProd14=</div>    
+            <div>frm2200P:txtSched1Imported14=frm2200P:txtSched1Imported14=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals14=frm2200P:txtSched1TotTaxRemovals14=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported14=frm2200P:txtSched1TaxPaidImported14=</div>    
+            <div>frm2200P:txtSched1UnderBond14=frm2200P:txtSched1UnderBond14=</div>    
+            <div>frm2200P:txtSched1Exports14=frm2200P:txtSched1Exports14=</div>    
+            <div>frm2200P:txtSched1Others14=frm2200P:txtSched1Others14=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid14=frm2200P:txtSched1TotTaxPaid14=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue14=frm2200P:txtSched1BasicExciseTaxDue14=</div>    
+            <div>frm2200P:txtSched1ATC15=XP131frm2200P:txtSched1ATC15=</div>    
+            <div>frm2200P:txtSched1Description15=KEROSENE USED AS AVIATION FUELfrm2200P:txtSched1Description15=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure15=PER LITERfrm2200P:txtSched1UnitOfMeasure15=</div>    
+            <div>frm2200P:txtSched1ApplicableRate15=4.00frm2200P:txtSched1ApplicableRate15=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval15=frm2200P:txtSched1PlaceOfRemoval15=</div>    
+            <div>frm2200P:txtSched1LocalManuProd15=frm2200P:txtSched1LocalManuProd15=</div>    
+            <div>frm2200P:txtSched1Imported15=frm2200P:txtSched1Imported15=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals15=frm2200P:txtSched1TotTaxRemovals15=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported15=frm2200P:txtSched1TaxPaidImported15=</div>    
+            <div>frm2200P:txtSched1UnderBond15=frm2200P:txtSched1UnderBond15=</div>    
+            <div>frm2200P:txtSched1Exports15=frm2200P:txtSched1Exports15=</div>    
+            <div>frm2200P:txtSched1Others15=frm2200P:txtSched1Others15=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid15=frm2200P:txtSched1TotTaxPaid15=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue15=frm2200P:txtSched1BasicExciseTaxDue15=</div>    
+            <div>frm2200P:txtSched1ATC16=XP140frm2200P:txtSched1ATC16=</div>    
+            <div>frm2200P:txtSched1Description16=DIESEL FUEL OILfrm2200P:txtSched1Description16=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure16=PER LITERfrm2200P:txtSched1UnitOfMeasure16=</div>    
+            <div>frm2200P:txtSched1ApplicableRate16=6.00frm2200P:txtSched1ApplicableRate16=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval16=PASIG TERMINALfrm2200P:txtSched1PlaceOfRemoval16=</div>    
+            <div>frm2200P:txtSched1LocalManuProd16=frm2200P:txtSched1LocalManuProd16=</div>    
+            <div>frm2200P:txtSched1Imported16=frm2200P:txtSched1Imported16=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals16=frm2200P:txtSched1TotTaxRemovals16=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported16=frm2200P:txtSched1TaxPaidImported16=</div>    
+            <div>frm2200P:txtSched1UnderBond16=100.00frm2200P:txtSched1UnderBond16=</div>    
+            <div>frm2200P:txtSched1Exports16=0.00frm2200P:txtSched1Exports16=</div>    
+            <div>frm2200P:txtSched1Others16=frm2200P:txtSched1Others16=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid16=100.00frm2200P:txtSched1TotTaxPaid16=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue16=1,000.00frm2200P:txtSched1BasicExciseTaxDue16=</div>    
+            <div>frm2200P:txtSched1ATC17=XP150frm2200P:txtSched1ATC17=</div>    
+            <div>frm2200P:txtSched1Description17=LPG USED AS MOTIVE POWERfrm2200P:txtSched1Description17=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure17=PER KGfrm2200P:txtSched1UnitOfMeasure17=</div>    
+            <div>frm2200P:txtSched1ApplicableRate17=6.00frm2200P:txtSched1ApplicableRate17=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval17=frm2200P:txtSched1PlaceOfRemoval17=</div>    
+            <div>frm2200P:txtSched1LocalManuProd17=frm2200P:txtSched1LocalManuProd17=</div>    
+            <div>frm2200P:txtSched1Imported17=frm2200P:txtSched1Imported17=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals17=frm2200P:txtSched1TotTaxRemovals17=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported17=frm2200P:txtSched1TaxPaidImported17=</div>    
+            <div>frm2200P:txtSched1UnderBond17=frm2200P:txtSched1UnderBond17=</div>    
+            <div>frm2200P:txtSched1Exports17=frm2200P:txtSched1Exports17=</div>    
+            <div>frm2200P:txtSched1Others17=frm2200P:txtSched1Others17=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid17=frm2200P:txtSched1TotTaxPaid17=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue17=frm2200P:txtSched1BasicExciseTaxDue17=</div>    
+            <div>frm2200P:txtSched1ATC18=XP160frm2200P:txtSched1ATC18=</div>    
+            <div>frm2200P:txtSched1Description18=LPGfrm2200P:txtSched1Description18=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure18=PER KGfrm2200P:txtSched1UnitOfMeasure18=</div>    
+            <div>frm2200P:txtSched1ApplicableRate18=3.00frm2200P:txtSched1ApplicableRate18=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval18=frm2200P:txtSched1PlaceOfRemoval18=</div>    
+            <div>frm2200P:txtSched1LocalManuProd18=frm2200P:txtSched1LocalManuProd18=</div>    
+            <div>frm2200P:txtSched1Imported18=frm2200P:txtSched1Imported18=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals18=frm2200P:txtSched1TotTaxRemovals18=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported18=frm2200P:txtSched1TaxPaidImported18=</div>    
+            <div>frm2200P:txtSched1UnderBond18=frm2200P:txtSched1UnderBond18=</div>    
+            <div>frm2200P:txtSched1Exports18=frm2200P:txtSched1Exports18=</div>    
+            <div>frm2200P:txtSched1Others18=frm2200P:txtSched1Others18=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid18=frm2200P:txtSched1TotTaxPaid18=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue18=frm2200P:txtSched1BasicExciseTaxDue18=</div>    
+            <div>frm2200P:txtSched1ATC19=XP165frm2200P:txtSched1ATC19=</div>    
+            <div>frm2200P:txtSched1Description19=LPG USED IN THE PRODUCTION OF PETRO-CHEMICAL PRODUCTSfrm2200P:txtSched1Description19=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure19=PER KGfrm2200P:txtSched1UnitOfMeasure19=</div>    
+            <div>frm2200P:txtSched1ApplicableRate19=0.00frm2200P:txtSched1ApplicableRate19=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval19=frm2200P:txtSched1PlaceOfRemoval19=</div>    
+            <div>frm2200P:txtSched1LocalManuProd19=frm2200P:txtSched1LocalManuProd19=</div>    
+            <div>frm2200P:txtSched1Imported19=frm2200P:txtSched1Imported19=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals19=frm2200P:txtSched1TotTaxRemovals19=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported19=frm2200P:txtSched1TaxPaidImported19=</div>    
+            <div>frm2200P:txtSched1UnderBond19=frm2200P:txtSched1UnderBond19=</div>    
+            <div>frm2200P:txtSched1Exports19=frm2200P:txtSched1Exports19=</div>    
+            <div>frm2200P:txtSched1Others19=frm2200P:txtSched1Others19=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid19=frm2200P:txtSched1TotTaxPaid19=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue19=frm2200P:txtSched1BasicExciseTaxDue19=</div>    
+            <div>frm2200P:txtSched1ATC20=XP170frm2200P:txtSched1ATC20=</div>    
+            <div>frm2200P:txtSched1Description20=ASPHALTfrm2200P:txtSched1Description20=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure20=PER KGfrm2200P:txtSched1UnitOfMeasure20=</div>    
+            <div>frm2200P:txtSched1ApplicableRate20=10.00frm2200P:txtSched1ApplicableRate20=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval20=frm2200P:txtSched1PlaceOfRemoval20=</div>    
+            <div>frm2200P:txtSched1LocalManuProd20=frm2200P:txtSched1LocalManuProd20=</div>    
+            <div>frm2200P:txtSched1Imported20=frm2200P:txtSched1Imported20=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals20=frm2200P:txtSched1TotTaxRemovals20=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported20=frm2200P:txtSched1TaxPaidImported20=</div>    
+            <div>frm2200P:txtSched1UnderBond20=frm2200P:txtSched1UnderBond20=</div>    
+            <div>frm2200P:txtSched1Exports20=frm2200P:txtSched1Exports20=</div>    
+            <div>frm2200P:txtSched1Others20=frm2200P:txtSched1Others20=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid20=frm2200P:txtSched1TotTaxPaid20=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue20=frm2200P:txtSched1BasicExciseTaxDue20=</div>    
+            <div>frm2200P:txtSched1ATC21=XP180frm2200P:txtSched1ATC21=</div>    
+            <div>frm2200P:txtSched1Description21=BUNKER FUEL OIL AND SIMILAR FUELfrm2200P:txtSched1Description21=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure21=PER LITERfrm2200P:txtSched1UnitOfMeasure21=</div>    
+            <div>frm2200P:txtSched1ApplicableRate21=6.00frm2200P:txtSched1ApplicableRate21=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval21=frm2200P:txtSched1PlaceOfRemoval21=</div>    
+            <div>frm2200P:txtSched1LocalManuProd21=frm2200P:txtSched1LocalManuProd21=</div>    
+            <div>frm2200P:txtSched1Imported21=frm2200P:txtSched1Imported21=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals21=frm2200P:txtSched1TotTaxRemovals21=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported21=frm2200P:txtSched1TaxPaidImported21=</div>    
+            <div>frm2200P:txtSched1UnderBond21=frm2200P:txtSched1UnderBond21=</div>    
+            <div>frm2200P:txtSched1Exports21=frm2200P:txtSched1Exports21=</div>    
+            <div>frm2200P:txtSched1Others21=frm2200P:txtSched1Others21=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid21=frm2200P:txtSched1TotTaxPaid21=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue21=frm2200P:txtSched1BasicExciseTaxDue21=</div>    
+            <div>frm2200P:txtSched1ATC22=XP190frm2200P:txtSched1ATC22=</div>    
+            <div>frm2200P:txtSched1Description22=BASE STOCKS FOR TUBE OILS AND GREASES, HVD, AROMATIC EXTRACTS, ETC.frm2200P:txtSched1Description22=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure22=PER LITERfrm2200P:txtSched1UnitOfMeasure22=</div>    
+            <div>frm2200P:txtSched1ApplicableRate22=10.00frm2200P:txtSched1ApplicableRate22=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval22=frm2200P:txtSched1PlaceOfRemoval22=</div>    
+            <div>frm2200P:txtSched1LocalManuProd22=frm2200P:txtSched1LocalManuProd22=</div>    
+            <div>frm2200P:txtSched1Imported22=frm2200P:txtSched1Imported22=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals22=frm2200P:txtSched1TotTaxRemovals22=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported22=frm2200P:txtSched1TaxPaidImported22=</div>    
+            <div>frm2200P:txtSched1UnderBond22=frm2200P:txtSched1UnderBond22=</div>    
+            <div>frm2200P:txtSched1Exports22=frm2200P:txtSched1Exports22=</div>    
+            <div>frm2200P:txtSched1Others22=frm2200P:txtSched1Others22=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid22=frm2200P:txtSched1TotTaxPaid22=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue22=frm2200P:txtSched1BasicExciseTaxDue22=</div>    
+            <div>frm2200P:txtSched1ATC23=XP200frm2200P:txtSched1ATC23=</div>    
+            <div>frm2200P:txtSched1Description23=PETROLEUM COKEfrm2200P:txtSched1Description23=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure23=PER MTfrm2200P:txtSched1UnitOfMeasure23=</div>    
+            <div>frm2200P:txtSched1ApplicableRate23=6.00frm2200P:txtSched1ApplicableRate23=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval23=frm2200P:txtSched1PlaceOfRemoval23=</div>    
+            <div>frm2200P:txtSched1LocalManuProd23=frm2200P:txtSched1LocalManuProd23=</div>    
+            <div>frm2200P:txtSched1Imported23=frm2200P:txtSched1Imported23=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals23=frm2200P:txtSched1TotTaxRemovals23=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported23=frm2200P:txtSched1TaxPaidImported23=</div>    
+            <div>frm2200P:txtSched1UnderBond23=frm2200P:txtSched1UnderBond23=</div>    
+            <div>frm2200P:txtSched1Exports23=frm2200P:txtSched1Exports23=</div>    
+            <div>frm2200P:txtSched1Others23=frm2200P:txtSched1Others23=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid23=frm2200P:txtSched1TotTaxPaid23=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue23=frm2200P:txtSched1BasicExciseTaxDue23=</div>    
+            <div>frm2200P:txtSched1ATC24=XP210frm2200P:txtSched1ATC24=</div>    
+            <div>frm2200P:txtSched1Description24=PETROLEUM COKE FOR MOTIVE POWER frm2200P:txtSched1Description24=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure24=PER MTfrm2200P:txtSched1UnitOfMeasure24=</div>    
+            <div>frm2200P:txtSched1ApplicableRate24=0.00frm2200P:txtSched1ApplicableRate24=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval24=frm2200P:txtSched1PlaceOfRemoval24=</div>    
+            <div>frm2200P:txtSched1LocalManuProd24=frm2200P:txtSched1LocalManuProd24=</div>    
+            <div>frm2200P:txtSched1Imported24=frm2200P:txtSched1Imported24=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals24=frm2200P:txtSched1TotTaxRemovals24=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported24=frm2200P:txtSched1TaxPaidImported24=</div>    
+            <div>frm2200P:txtSched1UnderBond24=frm2200P:txtSched1UnderBond24=</div>    
+            <div>frm2200P:txtSched1Exports24=frm2200P:txtSched1Exports24=</div>    
+            <div>frm2200P:txtSched1Others24=frm2200P:txtSched1Others24=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid24=frm2200P:txtSched1TotTaxPaid24=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue24=frm2200P:txtSched1BasicExciseTaxDue24=</div>    
+            <div>frm2200P:txtSched1ATC25=XP220frm2200P:txtSched1ATC25=</div>    
+            <div>frm2200P:txtSched1Description25=ADDITIVES FOR LUBRICATING OILS AND GREASESfrm2200P:txtSched1Description25=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure25=PER LITER/KGfrm2200P:txtSched1UnitOfMeasure25=</div>    
+            <div>frm2200P:txtSched1ApplicableRate25=10.00frm2200P:txtSched1ApplicableRate25=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval25=frm2200P:txtSched1PlaceOfRemoval25=</div>    
+            <div>frm2200P:txtSched1LocalManuProd25=frm2200P:txtSched1LocalManuProd25=</div>    
+            <div>frm2200P:txtSched1Imported25=frm2200P:txtSched1Imported25=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals25=frm2200P:txtSched1TotTaxRemovals25=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported25=frm2200P:txtSched1TaxPaidImported25=</div>    
+            <div>frm2200P:txtSched1UnderBond25=frm2200P:txtSched1UnderBond25=</div>    
+            <div>frm2200P:txtSched1Exports25=frm2200P:txtSched1Exports25=</div>    
+            <div>frm2200P:txtSched1Others25=frm2200P:txtSched1Others25=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid25=frm2200P:txtSched1TotTaxPaid25=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue25=frm2200P:txtSched1BasicExciseTaxDue25=</div>    
+            <div>frm2200P:chkBoxSched1ATC26=falsefrm2200P:chkBoxSched1ATC26=</div>    
+            <div>frm2200P:txtSched1ATC26=999frm2200P:txtSched1ATC26=</div>    
+            <div>frm2200P:txtSched1Description26=OTHER FUELfrm2200P:txtSched1Description26=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure26=PER LITERfrm2200P:txtSched1UnitOfMeasure26=</div>    
+            <div>frm2200P:txtSched1ApplicableRate26=2.50frm2200P:txtSched1ApplicableRate26=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval26=BATAANfrm2200P:txtSched1PlaceOfRemoval26=</div>    
+            <div>frm2200P:txtSched1LocalManuProd26=frm2200P:txtSched1LocalManuProd26=</div>    
+            <div>frm2200P:txtSched1Imported26=40.00frm2200P:txtSched1Imported26=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals26=frm2200P:txtSched1TotTaxRemovals26=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported26=frm2200P:txtSched1TaxPaidImported26=</div>    
+            <div>frm2200P:txtSched1UnderBond26=frm2200P:txtSched1UnderBond26=</div>    
+            <div>frm2200P:txtSched1Exports26=frm2200P:txtSched1Exports26=</div>    
+            <div>frm2200P:txtSched1Others26=frm2200P:txtSched1Others26=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid26=frm2200P:txtSched1TotTaxPaid26=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue26=100.00frm2200P:txtSched1BasicExciseTaxDue26=</div>    
+            <div>frm2200P:chkBoxSched1ATC27=falsefrm2200P:chkBoxSched1ATC27=</div>    
+            <div>frm2200P:txtSched1ATC27=frm2200P:txtSched1ATC27=</div>    
+            <div>frm2200P:txtSched1Description27=frm2200P:txtSched1Description27=</div>    
+            <div>frm2200P:txtSched1UnitOfMeasure27=frm2200P:txtSched1UnitOfMeasure27=</div>    
+            <div>frm2200P:txtSched1ApplicableRate27=frm2200P:txtSched1ApplicableRate27=</div>    
+            <div>frm2200P:txtSched1PlaceOfRemoval27=frm2200P:txtSched1PlaceOfRemoval27=</div>    
+            <div>frm2200P:txtSched1LocalManuProd27=frm2200P:txtSched1LocalManuProd27=</div>    
+            <div>frm2200P:txtSched1Imported27=frm2200P:txtSched1Imported27=</div>    
+            <div>frm2200P:txtSched1TotTaxRemovals27=frm2200P:txtSched1TotTaxRemovals27=</div>    
+            <div>frm2200P:txtSched1TaxPaidImported27=frm2200P:txtSched1TaxPaidImported27=</div>    
+            <div>frm2200P:txtSched1UnderBond27=frm2200P:txtSched1UnderBond27=</div>    
+            <div>frm2200P:txtSched1Exports27=frm2200P:txtSched1Exports27=</div>    
+            <div>frm2200P:txtSched1Others27=frm2200P:txtSched1Others27=</div>    
+            <div>frm2200P:txtSched1TotTaxPaid27=frm2200P:txtSched1TotTaxPaid27=</div>    
+            <div>frm2200P:txtSched1BasicExciseTaxDue27=frm2200P:txtSched1BasicExciseTaxDue27=</div>    
+            <div>frm2200P:txtSched1TotalTaxDue=126,100.10frm2200P:txtSched1TotalTaxDue=</div>    
+            <div>frm2200P:sched1AddedRowCount=0frm2200P:sched1AddedRowCount=</div>    
+            <div>frm2200P:txtLOB=SAMPLE CONSULTING SERVICESfrm2200P:txtLOB=</div>    
+            <div>frm2200P:txtCurrentPage=1frm2200P:txtCurrentPage=</div>    
+            <div>frm2200P:txtMaxPage=2frm2200P:txtMaxPage=</div>    
+            <div>driveSelectTPExport=0driveSelectTPExport=</div>    
+            <div>txtFinalFlag=0.00txtFinalFlag=</div>    
+            <div>txtEnroll=NtxtEnroll=</div>    
+            <div>ebirOnlineConfirmUsername=ebirOnlineConfirmUsername=</div>    
+            <div>ebirOnlineUsername=ebirOnlineUsername=</div>    
+            <div>ebirOnlineSecret=ebirOnlineSecret=</div>    
+                
+            All Rights Reserved BIR 2014.0

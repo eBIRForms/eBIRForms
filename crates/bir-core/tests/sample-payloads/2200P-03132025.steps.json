@@ -1,0 +1,370 @@
+[
+ {
+  "set": "frm2200P:txtPg1I1Month",
+  "value": "03"
+ },
+ {
+  "set": "frm2200P:txtPg1I1Day",
+  "value": "13"
+ },
+ {
+  "set": "frm2200P:txtPg1I1Year",
+  "value": "2025"
+ },
+ {
+  "set": "frm2200P:txtPg1I3NoSheets",
+  "value": "2"
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg1TIN1').value = \"123\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg1TIN2').value = \"456\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg1TIN3').value = \"788\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg1TIN4').value = \"00000\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg1I5RDO').value = \"039\""
+ },
+ {
+  "call": "var s = document.getElementById('frm2200P:rdoPg1Pt1I6RDO'); s.innerHTML = \"<option value='000'>000</option><option value='039'>039</option>\"; s.value = '039'"
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg1Pt1I6RegisteredName').value = \"SAMPLE DUMMY TAXPAYER\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg1Pt1I7RegisteredAddress').value = \"123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITY\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txPg1I7ZipCode').value = \"1100\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg1Pt1I8ContactNumber').value = \"09170000000\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg1Pt1I9Email').value = \"sample.taxpayer@example.com\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg2TinC1').value = \"123\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg2TinC2').value = \"456\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg2TinC3').value = \"788\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg2TinC4').value = \"00000\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtPg2RegisteredName').value = \"SAMPLE DUMMY TAXPAYER\""
+ },
+ {
+  "call": "document.getElementById('frm2200P:txtLOB').value = 'Sample Consulting Services'"
+ },
+ {
+  "set": "frm2200P:txtPg1Pt1I10Region",
+  "value": "130000000"
+ },
+ {
+  "set": "frm2200P:txtPg1Pt1I10Province",
+  "value": "137400000"
+ },
+ {
+  "set": "frm2200P:txtPg1Pt1I10City",
+  "value": "137403000"
+ },
+ {
+  "set": "frm2200P:txtPg1Pt1I11Region",
+  "value": "040000000"
+ },
+ {
+  "set": "frm2200P:txtPg1Pt1I11Province",
+  "value": "042100000"
+ },
+ {
+  "set": "frm2200P:txtPg1Pt1I11City",
+  "value": "042103000"
+ },
+ {
+  "click": "frm2200P:rdoPg1I12TaxReliefYes"
+ },
+ {
+  "set": "frm2200P:txtPg1I12TaxReliefSpecify",
+  "value": "Sample relief law"
+ },
+ {
+  "click": "frm2200P:rdoPg1Pt2MOPPrepayment"
+ },
+ {
+  "click": "frm2200P:rdoPg1Pt2MOPOther"
+ },
+ {
+  "set": "frm2200P:txtPg1Pt2MOPOtherDesc",
+  "value": "Sample scheme"
+ },
+ {
+  "set": "frm2200P:txtSched1PlaceOfRemoval6",
+  "value": "Batangas depot"
+ },
+ {
+  "set": "frm2200P:txtSched1LocalManuProd6",
+  "value": "10000.005"
+ },
+ {
+  "set": "frm2200P:txtSched1Imported6",
+  "value": "2500"
+ },
+ {
+  "set": "frm2200P:txtSched1TotTaxRemovals6",
+  "value": "12500.01"
+ },
+ {
+  "set": "frm2200P:txtSched1BasicExciseTaxDue6",
+  "value": "125000.1"
+ },
+ {
+  "set": "frm2200P:txtSched1PlaceOfRemoval16",
+  "value": "Pasig terminal"
+ },
+ {
+  "set": "frm2200P:txtSched1UnderBond16",
+  "value": "100"
+ },
+ {
+  "set": "frm2200P:txtSched1Exports16",
+  "value": "0"
+ },
+ {
+  "set": "frm2200P:txtSched1TotTaxPaid16",
+  "value": "100"
+ },
+ {
+  "set": "frm2200P:txtSched1BasicExciseTaxDue16",
+  "value": "999.995"
+ },
+ {
+  "set": "frm2200P:txtSched1ATC26",
+  "value": "999"
+ },
+ {
+  "set": "frm2200P:txtSched1Description26",
+  "value": "Other fuel"
+ },
+ {
+  "set": "frm2200P:txtSched1UnitOfMeasure26",
+  "value": "Per liter"
+ },
+ {
+  "set": "frm2200P:txtSched1ApplicableRate26",
+  "value": "2.5"
+ },
+ {
+  "set": "frm2200P:txtSched1PlaceOfRemoval26",
+  "value": "Bataan"
+ },
+ {
+  "set": "frm2200P:txtSched1Imported26",
+  "value": "40"
+ },
+ {
+  "set": "frm2200P:txtSched1BasicExciseTaxDue26",
+  "value": "100"
+ },
+ {
+  "set": "frm2200P:txtSched1ATC27",
+  "value": "998"
+ },
+ {
+  "set": "frm2200P:txtSched1Description27",
+  "value": "BUNKER BLEND"
+ },
+ {
+  "set": "frm2200P:txtSched1UnitOfMeasure27",
+  "value": "PER LITER"
+ },
+ {
+  "set": "frm2200P:txtSched1ApplicableRate27",
+  "value": "3.00"
+ },
+ {
+  "set": "frm2200P:txtSched1PlaceOfRemoval27",
+  "value": "CEBU"
+ },
+ {
+  "set": "frm2200P:txtSched1LocalManuProd27",
+  "value": "12.50"
+ },
+ {
+  "set": "frm2200P:txtSched1BasicExciseTaxDue27",
+  "value": "37.50"
+ },
+ {
+  "call": "addRowSched1()"
+ },
+ {
+  "set": "frm2200P:txtSched1ATC28",
+  "value": "928"
+ },
+ {
+  "set": "frm2200P:txtSched1Description28",
+  "value": "ADDED FUEL 28"
+ },
+ {
+  "set": "frm2200P:txtSched1UnitOfMeasure28",
+  "value": "PER KG"
+ },
+ {
+  "set": "frm2200P:txtSched1ApplicableRate28",
+  "value": "2.80"
+ },
+ {
+  "set": "frm2200P:txtSched1PlaceOfRemoval28",
+  "value": "DEPOT 28"
+ },
+ {
+  "set": "frm2200P:txtSched1Imported28",
+  "value": "2800.00"
+ },
+ {
+  "set": "frm2200P:txtSched1Exports28",
+  "value": "1.005"
+ },
+ {
+  "set": "frm2200P:txtSched1BasicExciseTaxDue28",
+  "value": "280.25"
+ },
+ {
+  "call": "addRowSched1()"
+ },
+ {
+  "set": "frm2200P:txtSched1ATC29",
+  "value": "929"
+ },
+ {
+  "set": "frm2200P:txtSched1Description29",
+  "value": "ADDED FUEL 29"
+ },
+ {
+  "set": "frm2200P:txtSched1UnitOfMeasure29",
+  "value": "PER KG"
+ },
+ {
+  "set": "frm2200P:txtSched1ApplicableRate29",
+  "value": "2.90"
+ },
+ {
+  "set": "frm2200P:txtSched1PlaceOfRemoval29",
+  "value": "DEPOT 29"
+ },
+ {
+  "set": "frm2200P:txtSched1Imported29",
+  "value": "2900.00"
+ },
+ {
+  "set": "frm2200P:txtSched1Exports29",
+  "value": "1.005"
+ },
+ {
+  "set": "frm2200P:txtSched1BasicExciseTaxDue29",
+  "value": "290.25"
+ },
+ {
+  "call": "addRowSched1()"
+ },
+ {
+  "set": "frm2200P:txtSched1ATC30",
+  "value": "930"
+ },
+ {
+  "set": "frm2200P:txtSched1Description30",
+  "value": "ADDED FUEL 30"
+ },
+ {
+  "set": "frm2200P:txtSched1UnitOfMeasure30",
+  "value": "PER KG"
+ },
+ {
+  "set": "frm2200P:txtSched1ApplicableRate30",
+  "value": "3.00"
+ },
+ {
+  "set": "frm2200P:txtSched1PlaceOfRemoval30",
+  "value": "DEPOT 30"
+ },
+ {
+  "set": "frm2200P:txtSched1Imported30",
+  "value": "3000.00"
+ },
+ {
+  "set": "frm2200P:txtSched1Exports30",
+  "value": "1.005"
+ },
+ {
+  "set": "frm2200P:txtSched1BasicExciseTaxDue30",
+  "value": "300.25"
+ },
+ {
+  "call": "addRowSched1()"
+ },
+ {
+  "set": "frm2200P:txtSched1ATC31",
+  "value": "931"
+ },
+ {
+  "set": "frm2200P:txtSched1Description31",
+  "value": "ADDED FUEL 31"
+ },
+ {
+  "set": "frm2200P:txtSched1UnitOfMeasure31",
+  "value": "PER KG"
+ },
+ {
+  "set": "frm2200P:txtSched1ApplicableRate31",
+  "value": "3.10"
+ },
+ {
+  "set": "frm2200P:txtSched1PlaceOfRemoval31",
+  "value": "DEPOT 31"
+ },
+ {
+  "set": "frm2200P:txtSched1Imported31",
+  "value": "3100.00"
+ },
+ {
+  "set": "frm2200P:txtSched1Exports31",
+  "value": "1.005"
+ },
+ {
+  "set": "frm2200P:txtSched1BasicExciseTaxDue31",
+  "value": "310.25"
+ },
+ {
+  "set": "frm2200P:txtPg1P3I17ABalCarriedOver",
+  "value": "1000"
+ },
+ {
+  "set": "frm2200P:txtPg1P3I17BCredExciseTax",
+  "value": "234.565"
+ },
+ {
+  "set": "frm2200P:txtPg1P3I21ASurcharge",
+  "value": "25.5"
+ },
+ {
+  "set": "frm2200P:txtPg1P3I21BInterest",
+  "value": "10"
+ },
+ {
+  "set": "frm2200P:txtPg1P3I21CCompromise",
+  "value": "1000"
+ },
+ {
+  "set": "frm2200P:txtPg1P3I23ATaxPmntDposit",
+  "value": "126184.03"
+ }
+]

@@ -1,0 +1,68 @@
+{
+  "slug": "1600wp-2010",
+  "code": "1600WP",
+  "revision": "2010",
+  "variant": "",
+  "in_corpus": false,
+  "source_file": "1600WP p1ENCS.pdf",
+  "sha256": "6ea2ef0f6c84a68ef1c50ad63f4ff0e95a68258f52b62b98f305c861c8b75d55",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 1,
+  "pages": 1,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial"
+  ],
+  "rules": 351,
+  "text_runs": 183,
+  "images": 1,
+  "cells": 264,
+  "comb_cells": 21,
+  "growables": [],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1600WP p1ENCS.pdf",
+      "sha256": "6ea2ef0f6c84a68ef1c50ad63f4ff0e95a68258f52b62b98f305c861c8b75d55"
+    },
+    {
+      "role": "guide",
+      "file": "1600WP Guide.pdf",
+      "sha256": "3742f9553251ddd86396a565e156490b5e210487a66c5dfacd83cfc14cbba2f7"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "standalone-pdf"
+    ],
+    "moved_from_form": [],
+    "standalone_pdfs": [
+      {
+        "file": "1600WP Guide.pdf",
+        "sha256": "3742f9553251ddd86396a565e156490b5e210487a66c5dfacd83cfc14cbba2f7",
+        "linked_as": "guides/1600WP Guide.pdf",
+        "reflowed_into": "guide.html"
+      }
+    ],
+    "reclaimed_pt_total": 0,
+    "reclaimed_pct_mean": 0,
+    "reclaimed_pct_min": 0,
+    "reclaimed_pct_max": 0,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [],
+    "standalone_pdfs": [
+      "1600WP Guide.pdf"
+    ]
+  },
+  "html_bytes": 271362,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "code": "010000000",
+    "name": "REGION I  - Ilocos Region",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "020000000",
+    "name": "REGION II  - Cagayan Valley",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "030000000",
+    "name": "REGION III - Central Luzon",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "040000000",
+    "name": "REGION IV-A  - CALABARZON",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "050000000",
+    "name": "REGION V - Bicol Region",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "060000000",
+    "name": "REGION VI - Western Visayas",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "070000000",
+    "name": "REGION VII - Central Visayas",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "080000000",
+    "name": "REGION VIII  - Eastern Visayas",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "090000000",
+    "name": "REGION IX  - Zamboanga Peninsula",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "100000000",
+    "name": "REGION X  - Northern Mindanao",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "110000000",
+    "name": "REGION XI - Davao Region",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "120000000",
+    "name": "REGION XII - Soccsksargen",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "130000000",
+    "name": "NCR - National Capital Region",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "140000000",
+    "name": "CAR - Cordillera Administrative Region",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "150000000",
+    "name": "ARMM - Autonomous Region in Muslim Mindanao",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "160000000",
+    "name": "REGION XIII - Caraga",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "code": "170000000",
+    "name": "REGION IV-B  - MIMAROPA",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  }
+]

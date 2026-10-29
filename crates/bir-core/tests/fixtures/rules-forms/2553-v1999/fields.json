@@ -1,0 +1,2617 @@
+{
+    "$schema":  "../../schema/fields.schema.json",
+    "schema_version":  "1.0.0",
+    "form_id":  "2553-v1999",
+    "revision":  "1999-07-01",
+    "field_count":  68,
+    "runtime_serializable_element_count":  68,
+    "inventory_sha256":  "9bf7a4b80bd246c737b7e482ad4e7e11e5e83a565e11af24dfdc3ecbd8764403",
+    "fields":  [
+                   {
+                       "field_key":  "frm2553:itemFiscalStartMonth:_1",
+                       "serialized_key":  "frm2553:itemFiscalStartMonth:_1",
+                       "serialized_occurrence":  1,
+                       "label":  "Calendar year",
+                       "page":  1,
+                       "item_number":  "1",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L266",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:itemFiscalStartMonth:_2",
+                       "serialized_key":  "frm2553:itemFiscalStartMonth:_2",
+                       "serialized_occurrence":  1,
+                       "label":  "Fiscal year",
+                       "page":  1,
+                       "item_number":  "1",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L268",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:itemYearEndMonth",
+                       "serialized_key":  "frm2553:itemYearEndMonth",
+                       "serialized_occurrence":  1,
+                       "label":  "Month ended",
+                       "page":  1,
+                       "item_number":  "2",
+                       "control_kind":  "select",
+                       "storage_type":  "string",
+                       "logical_type":  "month-code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "00",
+                                           "01",
+                                           "02",
+                                           "03",
+                                           "04",
+                                           "05",
+                                           "06",
+                                           "07",
+                                           "08",
+                                           "09",
+                                           "10",
+                                           "11",
+                                           "12"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L285",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txtYearEnded",
+                       "serialized_key":  "frm2553:txtYearEnded",
+                       "serialized_occurrence":  1,
+                       "label":  "Year ended",
+                       "page":  1,
+                       "item_number":  "2",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "year-string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  4
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L300",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:optQtr:_1",
+                       "serialized_key":  "frm2553:optQtr:_1",
+                       "serialized_occurrence":  1,
+                       "label":  "First quarter",
+                       "page":  1,
+                       "item_number":  "3",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L325",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:optQtr:_2",
+                       "serialized_key":  "frm2553:optQtr:_2",
+                       "serialized_occurrence":  1,
+                       "label":  "Second quarter",
+                       "page":  1,
+                       "item_number":  "3",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L329",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:optQtr:_3",
+                       "serialized_key":  "frm2553:optQtr:_3",
+                       "serialized_occurrence":  1,
+                       "label":  "Third quarter",
+                       "page":  1,
+                       "item_number":  "3",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L333",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:optQtr:_4",
+                       "serialized_key":  "frm2553:optQtr:_4",
+                       "serialized_occurrence":  1,
+                       "label":  "Fourth quarter",
+                       "page":  1,
+                       "item_number":  "3",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "true",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L337",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:optAmended_1",
+                       "serialized_key":  "frm2553:optAmended_1",
+                       "serialized_occurrence":  1,
+                       "label":  "Amended return Yes",
+                       "page":  1,
+                       "item_number":  "4",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L363",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:optAmended_2",
+                       "serialized_key":  "frm2553:optAmended_2",
+                       "serialized_occurrence":  1,
+                       "label":  "Amended return No",
+                       "page":  1,
+                       "item_number":  "4",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "true",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L368",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txtSheets",
+                       "serialized_key":  "frm2553:txtSheets",
+                       "serialized_occurrence":  1,
+                       "label":  "Number of sheets attached",
+                       "page":  1,
+                       "item_number":  "5",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  2
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L388",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txtTIN1",
+                       "serialized_key":  "frm2553:txtTIN1",
+                       "serialized_occurrence":  1,
+                       "label":  "TIN segment 1",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L425",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txtTIN2",
+                       "serialized_key":  "frm2553:txtTIN2",
+                       "serialized_occurrence":  1,
+                       "label":  "TIN segment 2",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L426",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txtTIN3",
+                       "serialized_key":  "frm2553:txtTIN3",
+                       "serialized_occurrence":  1,
+                       "label":  "TIN segment 3",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L427",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txtBranchCode",
+                       "serialized_key":  "frm2553:txtBranchCode",
+                       "serialized_occurrence":  1,
+                       "label":  "Branch code",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L428",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txtRDOCode",
+                       "serialized_key":  "frm2553:txtRDOCode",
+                       "serialized_occurrence":  1,
+                       "label":  "RDO code",
+                       "page":  1,
+                       "item_number":  "7",
+                       "control_kind":  "runtime-generated-select",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "000",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L2991",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txtDescription",
+                       "serialized_key":  "frm2553:txtDescription",
+                       "serialized_occurrence":  1,
+                       "label":  "Line of business or occupation",
+                       "page":  1,
+                       "item_number":  "8",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L592",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txtTPName",
+                       "serialized_key":  "frm2553:txtTPName",
+                       "serialized_occurrence":  1,
+                       "label":  "Taxpayer name",
+                       "page":  1,
+                       "item_number":  "9",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  70
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L623",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txtTelNum",
+                       "serialized_key":  "frm2553:txtTelNum",
+                       "serialized_occurrence":  1,
+                       "label":  "Telephone number",
+                       "page":  1,
+                       "item_number":  "10",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  20
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L636",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txtAddress",
+                       "serialized_key":  "frm2553:txtAddress",
+                       "serialized_occurrence":  1,
+                       "label":  "Registered address",
+                       "page":  1,
+                       "item_number":  "11",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  70
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L667",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txtZipCode",
+                       "serialized_key":  "frm2553:txtZipCode",
+                       "serialized_occurrence":  1,
+                       "label":  "ZIP code",
+                       "page":  1,
+                       "item_number":  "12",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  12
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L684",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:optTreaty_1",
+                       "serialized_key":  "frm2553:optTreaty_1",
+                       "serialized_occurrence":  1,
+                       "label":  "Special rate or treaty Yes",
+                       "page":  1,
+                       "item_number":  "13",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L713",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:optTreaty_2",
+                       "serialized_key":  "frm2553:optTreaty_2",
+                       "serialized_occurrence":  1,
+                       "label":  "Special rate or treaty No",
+                       "page":  1,
+                       "item_number":  "13",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "true",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L721",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:lstTaxTreaty",
+                       "serialized_key":  "frm2553:lstTaxTreaty",
+                       "serialized_occurrence":  1,
+                       "label":  "Special rate or treaty basis",
+                       "page":  1,
+                       "item_number":  "13",
+                       "control_kind":  "select",
+                       "storage_type":  "string",
+                       "logical_type":  "enum-code",
+                       "required":  "conditional",
+                       "required_when":  "Item 13 Yes is selected.",
+                       "enabled_when":  "Item 13 Yes is selected.",
+                       "visible_when":  null,
+                       "default_value":  "0",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "0",
+                                           "1",
+                                           "2"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L738",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt14A",
+                       "serialized_key":  "frm2553:txt14A",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 14A Taxable transaction or industry classification",
+                       "page":  1,
+                       "item_number":  "14",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L781",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt14B",
+                       "serialized_key":  "frm2553:txt14B",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 14B ATC",
+                       "page":  1,
+                       "item_number":  "14",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L789",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt14C",
+                       "serialized_key":  "frm2553:txt14C",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 14C Taxable amount",
+                       "page":  1,
+                       "item_number":  "14",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "conditional",
+                       "required_when":  "The corresponding ATC field is nonblank.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L798",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt14D",
+                       "serialized_key":  "frm2553:txt14D",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 14D Tax rate",
+                       "page":  1,
+                       "item_number":  "14",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "percentage",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L806",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt14E",
+                       "serialized_key":  "frm2553:txt14E",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 14E Tax due",
+                       "page":  1,
+                       "item_number":  "14",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "2553-row-tax",
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L815",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt15A",
+                       "serialized_key":  "frm2553:txt15A",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 15A Taxable transaction or industry classification",
+                       "page":  1,
+                       "item_number":  "15",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L821",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt15B",
+                       "serialized_key":  "frm2553:txt15B",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 15B ATC",
+                       "page":  1,
+                       "item_number":  "15",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L829",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt15C",
+                       "serialized_key":  "frm2553:txt15C",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 15C Taxable amount",
+                       "page":  1,
+                       "item_number":  "15",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "conditional",
+                       "required_when":  "The corresponding ATC field is nonblank.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L837",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt15D",
+                       "serialized_key":  "frm2553:txt15D",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 15D Tax rate",
+                       "page":  1,
+                       "item_number":  "15",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "percentage",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L845",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt15E",
+                       "serialized_key":  "frm2553:txt15E",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 15E Tax due",
+                       "page":  1,
+                       "item_number":  "15",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "2553-row-tax",
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L854",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt16A",
+                       "serialized_key":  "frm2553:txt16A",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 16A Taxable transaction or industry classification",
+                       "page":  1,
+                       "item_number":  "16",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L860",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt16B",
+                       "serialized_key":  "frm2553:txt16B",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 16B ATC",
+                       "page":  1,
+                       "item_number":  "16",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L868",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt16C",
+                       "serialized_key":  "frm2553:txt16C",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 16C Taxable amount",
+                       "page":  1,
+                       "item_number":  "16",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "conditional",
+                       "required_when":  "The corresponding ATC field is nonblank.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L876",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt16D",
+                       "serialized_key":  "frm2553:txt16D",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 16D Tax rate",
+                       "page":  1,
+                       "item_number":  "16",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "percentage",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L884",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt16E",
+                       "serialized_key":  "frm2553:txt16E",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 16E Tax due",
+                       "page":  1,
+                       "item_number":  "16",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "2553-row-tax",
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L893",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt17A",
+                       "serialized_key":  "frm2553:txt17A",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 17A Taxable transaction or industry classification",
+                       "page":  1,
+                       "item_number":  "17",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L898",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt17B",
+                       "serialized_key":  "frm2553:txt17B",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 17B ATC",
+                       "page":  1,
+                       "item_number":  "17",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L905",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt17C",
+                       "serialized_key":  "frm2553:txt17C",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 17C Taxable amount",
+                       "page":  1,
+                       "item_number":  "17",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "conditional",
+                       "required_when":  "The corresponding ATC field is nonblank.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L913",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt17D",
+                       "serialized_key":  "frm2553:txt17D",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 17D Tax rate",
+                       "page":  1,
+                       "item_number":  "17",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "percentage",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L921",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt17E",
+                       "serialized_key":  "frm2553:txt17E",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 17E Tax due",
+                       "page":  1,
+                       "item_number":  "17",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "2553-row-tax",
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L931",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt18A",
+                       "serialized_key":  "frm2553:txt18A",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 18A Taxable transaction or industry classification",
+                       "page":  1,
+                       "item_number":  "18",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L936",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt18B",
+                       "serialized_key":  "frm2553:txt18B",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 18B ATC",
+                       "page":  1,
+                       "item_number":  "18",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L943",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt18C",
+                       "serialized_key":  "frm2553:txt18C",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 18C Taxable amount",
+                       "page":  1,
+                       "item_number":  "18",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "conditional",
+                       "required_when":  "The corresponding ATC field is nonblank.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L951",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt18D",
+                       "serialized_key":  "frm2553:txt18D",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 18D Tax rate",
+                       "page":  1,
+                       "item_number":  "18",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "percentage",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L959",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt18E",
+                       "serialized_key":  "frm2553:txt18E",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 18E Tax due",
+                       "page":  1,
+                       "item_number":  "18",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "2553-row-tax",
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L968",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt19",
+                       "serialized_key":  "frm2553:txt19",
+                       "serialized_occurrence":  1,
+                       "label":  "Total tax due",
+                       "page":  1,
+                       "item_number":  "19",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "2553-item19-total-tax",
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L987",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt20A",
+                       "serialized_key":  "frm2553:txt20A",
+                       "serialized_occurrence":  1,
+                       "label":  "Tax paid in return previously filed",
+                       "page":  1,
+                       "item_number":  "20",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Amended return Yes is selected.",
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1016",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt20B",
+                       "serialized_key":  "frm2553:txt20B",
+                       "serialized_occurrence":  1,
+                       "label":  "Creditable tax withheld per BIR Form 2307",
+                       "page":  1,
+                       "item_number":  "20",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1030",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt20C",
+                       "serialized_key":  "frm2553:txt20C",
+                       "serialized_occurrence":  1,
+                       "label":  "Total tax credits or payments",
+                       "page":  1,
+                       "item_number":  "20",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "2553-item20c-total-credits",
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1044",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt21",
+                       "serialized_key":  "frm2553:txt21",
+                       "serialized_occurrence":  1,
+                       "label":  "Tax payable or overpayment",
+                       "page":  1,
+                       "item_number":  "21",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "2553-item21-tax-payable",
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1051",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt22A",
+                       "serialized_key":  "frm2553:txt22A",
+                       "serialized_occurrence":  1,
+                       "label":  "Surcharge",
+                       "page":  1,
+                       "item_number":  "22",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1078",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt22B",
+                       "serialized_key":  "frm2553:txt22B",
+                       "serialized_occurrence":  1,
+                       "label":  "Interest",
+                       "page":  1,
+                       "item_number":  "22",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1081",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt22C",
+                       "serialized_key":  "frm2553:txt22C",
+                       "serialized_occurrence":  1,
+                       "label":  "Compromise",
+                       "page":  1,
+                       "item_number":  "22",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1084",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt22D",
+                       "serialized_key":  "frm2553:txt22D",
+                       "serialized_occurrence":  1,
+                       "label":  "Total penalties",
+                       "page":  1,
+                       "item_number":  "22",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "2553-item22d-total-penalties",
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1091",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:txt23",
+                       "serialized_key":  "frm2553:txt23",
+                       "serialized_occurrence":  1,
+                       "label":  "Total amount payable or overpayment",
+                       "page":  1,
+                       "item_number":  "23",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "official keypress filtering is incomplete and does not establish a reliable sign bound"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "2553-item23-total-payable",
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1098",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:ifoverpay_1",
+                       "serialized_key":  "frm2553:ifoverpay_1",
+                       "serialized_occurrence":  1,
+                       "label":  "Overpayment to be refunded",
+                       "page":  1,
+                       "item_number":  "23",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "conditional",
+                       "required_when":  "Item 23 is negative and the official formatted-number comparison succeeds.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1106",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2553:ifoverpay_2",
+                       "serialized_key":  "frm2553:ifoverpay_2",
+                       "serialized_occurrence":  1,
+                       "label":  "Overpayment tax credit certificate",
+                       "page":  1,
+                       "item_number":  "23",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "conditional",
+                       "required_when":  "Item 23 is negative and the official formatted-number comparison succeeds.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1107",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtFinalFlag",
+                       "serialized_key":  "txtFinalFlag",
+                       "serialized_occurrence":  1,
+                       "label":  "Workflow final flag",
+                       "page":  null,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  60
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1284",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtEnroll",
+                       "serialized_key":  "txtEnroll",
+                       "serialized_occurrence":  1,
+                       "label":  "Online enrollment state",
+                       "page":  null,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "N",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  60
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1285",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "ebirOnlineConfirmUsername",
+                       "serialized_key":  "ebirOnlineConfirmUsername",
+                       "serialized_occurrence":  1,
+                       "label":  "Online confirmation username",
+                       "page":  null,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1302",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "ebirOnlineUsername",
+                       "serialized_key":  "ebirOnlineUsername",
+                       "serialized_occurrence":  1,
+                       "label":  "Online username",
+                       "page":  null,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1388",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "ebirOnlineSecret",
+                       "serialized_key":  "ebirOnlineSecret",
+                       "serialized_occurrence":  1,
+                       "label":  "Online secret",
+                       "page":  null,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1397",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtEmail",
+                       "serialized_key":  "txtEmail",
+                       "serialized_occurrence":  1,
+                       "label":  "Online email",
+                       "page":  null,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  60
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1413",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   },
+                   {
+                       "field_key":  "driveSelectTPExport",
+                       "serialized_key":  "driveSelectTPExport",
+                       "serialized_occurrence":  1,
+                       "label":  "Export drive selector",
+                       "page":  null,
+                       "item_number":  null,
+                       "control_kind":  "select",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#saveXML",
+                                           "official-hta-runtime#control:L1435",
+                                           "revision-matched-final-copy-keys"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The key is present in the hash-pinned 68-key July 1999 final-copy inventory; no value is emitted."
+                                 ]
+                   }
+               ]
+}

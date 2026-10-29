@@ -1,0 +1,565 @@
+{
+ "form_id": "1606-v2018",
+ "html_slug": "1606-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page's own text layer) names the item. The eBIRForms page is the older 1606 layout, so items are matched by meaning, not number. Peso amounts split into the peso comb and the 2-slot cents comb; Schedule amounts in single text cells print the writer's official text (1,234.56). Values the sheet prints differently from the submitted controls (whole TINs, the WI/WC box for seller type and rate, rate digits, Schedule 3 Item 1A for foreclosures) come from derived: keys of to_print_field_map, never from the submitted XML. Unexposed or unmatched items stay blank on print; the submitted XML always carries them. Since #113: one writer key may fill several cells (Item 12 and Schedule 3 item 2 share txtTax); Schedule 1 prints the lot (row 1) and improvement (row 2) with their higher FMV and total, and Item 11 its specify text, from derived: keys. The older layout's items with no counterpart on the 2018 sheet are listed in not_joined.",
+ "joins": [
+  {
+   "writer_key": "frm1606:txtDateMonth",
+   "html_id": "p1c4",
+   "printed": "1 Date of Transaction MM",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtDateDay",
+   "html_id": "p1c5",
+   "printed": "1 Date of Transaction DD",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtDateYear",
+   "html_id": "p1c6",
+   "printed": "1 Date of Transaction YYYY",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtSheets",
+   "html_id": "p1c10",
+   "printed": "4 No. of Sheet/s Attached",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtRDOCode16A",
+   "html_id": "p1c17",
+   "printed": "5 RDO Code of Location of Property",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtBuyerName",
+   "html_id": "p1c25",
+   "printed": "7A Buyer's Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtBuyerAddress",
+   "html_id": "p1c26",
+   "printed": "7A Buyer's Registered Address",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:buyer_tin",
+   "html_id": "p1c27",
+   "printed": "7A Buyer's TIN",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1606:txtSellerName",
+   "html_id": "p1c40",
+   "printed": "8A Seller's Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtSellerAddress",
+   "html_id": "p1c41",
+   "printed": "8A Seller's Registered Address",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:seller_tin",
+   "html_id": "p1c42",
+   "printed": "8A Seller's TIN",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:rate_whole",
+   "html_id": "p1c74",
+   "printed": "13 Applicable Tax Rate (whole)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:rate_tenths",
+   "html_id": "p1c76",
+   "printed": "13 Applicable Tax Rate (tenths)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:buyer_tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN of Buyer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:buyer_name",
+   "html_id": "p2c6",
+   "printed": "Page 2 Taxpayer's/Buyer's Name",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1606:txtTCT",
+   "html_id": "p2c13",
+   "printed": "Schedule 1 OCT/TCT/CCT No.",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtTaxDC",
+   "html_id": "p2c14",
+   "printed": "Schedule 1 Tax Declaration (TD) No.",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtLocation",
+   "html_id": "p2c15",
+   "printed": "Schedule 1 Location",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtArea",
+   "html_id": "p2c42",
+   "printed": "Schedule 1 Area (sq.m.)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtFMVLand",
+   "html_id": "p2c43",
+   "printed": "Schedule 1 FMV per TD (Column 1)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtFMVZonal",
+   "html_id": "p2c44",
+   "printed": "Schedule 1 FMV per BIR zonal value (Column 2)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtOthers20",
+   "html_id": "p2c108",
+   "printed": "Schedule 2 If Exempt, or Others, specify",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtTotalN",
+   "html_id": "p2c110",
+   "printed": "Schedule 2 Item 7 Total No. of Installments",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1606:txtOtherss28E",
+   "html_id": "p2c129",
+   "printed": "Schedule 3 Item 1D Others (Specify)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1606 (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:line:tax_relief_specify",
+   "html_id": "p1c63",
+   "printed": "11 If yes, specify",
+   "reason": "12-slot comb above the If yes, specify caption on the item 11 row; the relief named on a Yes"
+  },
+  {
+   "writer_key": "frm1606:txtFMVImprovements",
+   "html_id": "p2c50",
+   "printed": "Schedule 1 row 2, FMV per TD (Column 1)",
+   "reason": "the Column 1 cell on Schedule 1 row 2; the improvement takes row 2 (row 1 holds the lot), labelled by derived:sched1_kind2"
+  },
+  {
+   "writer_key": "frm1606:txtFMVBIR",
+   "html_id": "p2c51",
+   "printed": "Schedule 1 row 2, FMV per BIR (Zonal Value) (Column 2)",
+   "reason": "the Column 2 cell on Schedule 1 row 2 (the improvement row)"
+  },
+  {
+   "writer_key": "derived:sched1_kind1",
+   "html_id": "p2c40",
+   "printed": "Schedule 1 row 1, Lot / Improvement",
+   "reason": "the Lot / Improvement cell on Schedule 1 row 1: LOT on row 1, IMPROVEMENT on row 2 when that row has values"
+  },
+  {
+   "writer_key": "derived:sched1_fmv1",
+   "html_id": "p2c45",
+   "printed": "Schedule 1 row 1, Fair Market Value (whichever is higher between Columns 1 & 2)",
+   "reason": "the last column cell on Schedule 1 row 1: the higher of the row's two FMVs"
+  },
+  {
+   "writer_key": "derived:sched1_kind2",
+   "html_id": "p2c47",
+   "printed": "Schedule 1 row 2, Lot / Improvement",
+   "reason": "the Lot / Improvement cell on Schedule 1 row 2: LOT on row 1, IMPROVEMENT on row 2 when that row has values"
+  },
+  {
+   "writer_key": "derived:sched1_fmv2",
+   "html_id": "p2c52",
+   "printed": "Schedule 1 row 2, Fair Market Value (whichever is higher between Columns 1 & 2)",
+   "reason": "the last column cell on Schedule 1 row 2: the higher of the row's two FMVs"
+  },
+  {
+   "writer_key": "derived:sched1_total",
+   "html_id": "p2c75",
+   "printed": "Schedule 1 TOTAL (To Schedule 3 Item 1B)",
+   "reason": "the TOTAL cell under the FMV column: txtFMVLI, the amount Schedule 3 B carries"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm1606:txtTaxR",
+   "peso_html_id": "p1c79",
+   "cent_html_id": "p1c81",
+   "printed": "14 Tax Due",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtLess",
+   "peso_html_id": "p1c83",
+   "cent_html_id": "p1c85",
+   "printed": "15 Less: Tax paid in previously filed return",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtTaxDue",
+   "peso_html_id": "p1c87",
+   "cent_html_id": "p1c89",
+   "printed": "16 Required Tax to be Withheld",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtSurcharge",
+   "peso_html_id": "p1c92",
+   "cent_html_id": "p1c94",
+   "printed": "17A Surcharge",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtInterest",
+   "peso_html_id": "p1c96",
+   "cent_html_id": "p1c98",
+   "printed": "17B Interest",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtCompromise",
+   "peso_html_id": "p1c100",
+   "cent_html_id": "p1c102",
+   "printed": "17C Compromise",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtTotalPenalties",
+   "peso_html_id": "p1c104",
+   "cent_html_id": "p1c106",
+   "printed": "17D Total Penalties",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtTotal",
+   "peso_html_id": "p1c108",
+   "cent_html_id": "p1c110",
+   "printed": "18 Total Amount Payable/(Over remittance)",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtSelling",
+   "peso_html_id": "p2c81",
+   "cent_html_id": "p2c83",
+   "printed": "Schedule 2 Item 2 Selling Price",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtCost",
+   "peso_html_id": "p2c88",
+   "cent_html_id": "p2c90",
+   "printed": "Schedule 2 Item 3 Cost and Other Expenses",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtMortgage",
+   "peso_html_id": "p2c94",
+   "cent_html_id": "p2c96",
+   "printed": "Schedule 2 Item 4 Mortgage Assumed",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtTotalP",
+   "peso_html_id": "p2c101",
+   "cent_html_id": "p2c103",
+   "printed": "Schedule 2 Item 5 Total Payments during the Initial Year",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtAmount",
+   "peso_html_id": "p2c105",
+   "cent_html_id": "p2c107",
+   "printed": "Schedule 2 Item 6 Amount of Installment this Month",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "derived:sched3_1a",
+   "peso_html_id": "p2c114",
+   "cent_html_id": "p2c116",
+   "printed": "Schedule 3 Item 1A Gross Selling Price / Bid Price",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtFMVLI",
+   "peso_html_id": "p2c118",
+   "cent_html_id": "p2c120",
+   "printed": "Schedule 3 Item 1B Total FMV of Land and Improvement",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtInstallment",
+   "peso_html_id": "p2c122",
+   "cent_html_id": "p2c124",
+   "printed": "Schedule 3 Item 1C Installment Collected",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtOthers28E",
+   "peso_html_id": "p2c126",
+   "cent_html_id": "p2c128",
+   "printed": "Schedule 3 Item 1D Others",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1606:txtTax",
+   "peso_html_id": "p1c70",
+   "cent_html_id": "p1c72",
+   "peso_html_ids": [
+    "p2c131"
+   ],
+   "cent_html_ids": [
+    "p2c133"
+   ],
+   "printed": "12 Taxable Base; Schedule 3 item 2 Taxable Base",
+   "reason": "item 12 peso + cents combs (From Part IV Schedule 3 Item 2), and the Schedule 3 item 2 Taxable Base peso + cents combs (To Part II, Item 12): the same amount in both boxes"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1606:j_id217:_1",
+   "html_id": "p1c14",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:j_id217:_2",
+   "html_id": "p1c11",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:j_id252:_1",
+   "html_id": "p1c12",
+   "printed": "3 Any Taxes Withheld? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:j_id252:_2",
+   "html_id": "p1c13",
+   "printed": "3 Any Taxes Withheld? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:j_id392:_1",
+   "html_id": "p1c19",
+   "printed": "6 Category of Withholding Agent Private",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:j_id392:_2",
+   "html_id": "p1c20",
+   "printed": "6 Category of Withholding Agent Government",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "derived:atc_individual_1.5",
+   "html_id": "p1c53",
+   "printed": "9 Individual WI 555 1.5%",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "derived:atc_individual_3",
+   "html_id": "p1c54",
+   "printed": "9 Individual WI 556 3.0%",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "derived:atc_individual_5",
+   "html_id": "p1c55",
+   "printed": "9 Individual WI 557 5.0%",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "derived:atc_individual_6",
+   "html_id": "p1c56",
+   "printed": "9 Individual WI 558 6.0%",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "derived:atc_corporate_1.5",
+   "html_id": "p1c57",
+   "printed": "9 Corporate WC 555 1.5%",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "derived:atc_corporate_3",
+   "html_id": "p1c58",
+   "printed": "9 Corporate WC 556 3.0%",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "derived:atc_corporate_5",
+   "html_id": "p1c59",
+   "printed": "9 Corporate WC 557 5.0%",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "derived:atc_corporate_6",
+   "html_id": "p1c60",
+   "printed": "9 Corporate WC 558 6.0%",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:j_id394:_1",
+   "html_id": "p1c64",
+   "printed": "10 Selling price covers more than one property? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:j_id394:_2",
+   "html_id": "p1c65",
+   "printed": "10 ... No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:rdTreaty:_1",
+   "html_id": "p1c66",
+   "printed": "11 Tax relief? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:rdTreaty:_2",
+   "html_id": "p1c67",
+   "printed": "11 Tax relief? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:j_id395:_1",
+   "html_id": "p2c84",
+   "printed": "Schedule 2 Cash Sales",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:j_id395:_3",
+   "html_id": "p2c85",
+   "printed": "Schedule 2 Installment Sale",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:j_id395:_4",
+   "html_id": "p2c91",
+   "printed": "Schedule 2 Foreclosure Sale",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:j_id395:_2",
+   "html_id": "p2c97",
+   "printed": "Schedule 2 Exempt",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1606:j_id395:_5",
+   "html_id": "p2c98",
+   "printed": "Schedule 2 Others",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm1606:Habitual_1",
+    "frm1606:Habitual_2"
+   ],
+   "reason": "older layout question; the 2018 sheet asks it only through the Schedule 4 rate captions (b./c.) and draws no box for it"
+  },
+  {
+   "writer_keys": [
+    "frm1606:j_id393:_1",
+    "frm1606:j_id393:_2",
+    "frm1606:j_id393:_3",
+    "frm1606:j_id393:_4",
+    "frm1606:j_id393:_5",
+    "frm1606:j_id393:_6",
+    "frm1606:j_id393_7",
+    "frm1606:j_id393_8"
+   ],
+   "reason": "older layout Item 15 property class radios and Others text; the 2018 Schedule 1 Classification column takes the * legend codes (RR, CR, CL, ...), which these radios do not map to one-to-one"
+  },
+  {
+   "writer_keys": [
+    "frm1606:opt27A",
+    "frm1606:opt27B",
+    "frm1606:opt27C",
+    "frm1606:opt27D"
+   ],
+   "reason": "older layout Item 27 FMV-basis boxes; the 2018 sheet has no such boxes (the FMVs print in the Schedule 1 columns)"
+  },
+  {
+   "writer_keys": [
+    "frm1606:opt28A",
+    "frm1606:opt28B",
+    "frm1606:opt28C",
+    "frm1606:opt28D",
+    "frm1606:opt28E"
+   ],
+   "reason": "older layout Item 28 taxable-base boxes; the 2018 Schedule 3 lines A-D have no boxes, the chosen base prints as the Schedule 3 Taxable Base (item 2)"
+  },
+  {
+   "writer_keys": [
+    "frm1606:txtGross",
+    "frm1606:txtBid"
+   ],
+   "reason": "prints from derived:sched3_1a (the print map shapes Schedule 3 A, the gross selling price or, on a foreclosure, the bid price for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1606:txt13",
+    "frm1606:txt13C",
+    "frm1606:optATC13_2",
+    "frm1606:optATC13_3"
+   ],
+   "reason": "older layout Item 13 ATC (WI155/WC155); the 2018 sheet prints Item 9 ATC/Tax Rate boxes from derived:atc_individual_* / derived:atc_corporate_*"
+  },
+  {
+   "writer_keys": [
+    "frm1606:txtTIN1",
+    "frm1606:txtTIN2",
+    "frm1606:txtTIN3",
+    "frm1606:txtBranchCode"
+   ],
+   "reason": "prints from derived:buyer_tin (the print map shapes the buyer TIN as one dashed value for the item 7 TIN cell for the sheet)"
+  },
+  {
+   "writer_key": "frm1606:txtBranchCodeS",
+   "reason": "prints from derived:seller_tin (the print map shapes the seller TIN with its branch as one dashed value for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1606:txtRDOCode",
+    "frm1606:txtRDOCodeS"
+   ],
+   "reason": "buyer and seller RDO codes of the older layout; the 2018 sheet only has the RDO Code of Location of Property (item 5)"
+  },
+  {
+   "writer_key": "frm1606:txtOthers",
+   "reason": "older layout Item 17 Others description; the 2018 Schedule 1 has no Others column"
+  },
+  {
+   "writer_keys": [
+    "frm1606:opt37:_1",
+    "frm1606:opt37:_2"
+   ],
+   "reason": "older layout over-remittance boxes; the 2018 sheet only says to file BIR Form No. 1914 and draws no boxes"
+  },
+  {
+   "writer_key": "txtEmail",
+   "reason": "not on the paper form: the 2018 1606 sheet has no email box"
+  }
+ ]
+}

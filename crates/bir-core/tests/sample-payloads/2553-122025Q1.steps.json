@@ -1,0 +1,174 @@
+[
+ {
+  "click": "frm2553:itemFiscalStartMonth:_1"
+ },
+ {
+  "set": "frm2553:itemYearEndMonth",
+  "value": "12"
+ },
+ {
+  "set": "frm2553:txtYearEnded",
+  "value": "2025"
+ },
+ {
+  "click": "frm2553:optQtr:_1"
+ },
+ {
+  "click": "frm2553:optAmended_2"
+ },
+ {
+  "set": "frm2553:txtSheets",
+  "value": "0"
+ },
+ {
+  "set": "frm2553:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm2553:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm2553:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm2553:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm2553:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm2553:txtDescription",
+  "value": "Sample Consulting Services"
+ },
+ {
+  "set": "frm2553:txtTPName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm2553:txtTelNum",
+  "value": "09170000000"
+ },
+ {
+  "set": "frm2553:txtAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm2553:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "click": "frm2553:optTreaty_1"
+ },
+ {
+  "set": "frm2553:lstTaxTreaty",
+  "value": "1"
+ },
+ {
+  "set": "frm2553:txt14A",
+  "value": "PAGCOR"
+ },
+ {
+  "set": "frm2553:txt14B",
+  "value": "OT010"
+ },
+ {
+  "set": "frm2553:txt14C",
+  "value": "123456.789"
+ },
+ {
+  "set": "frm2553:txt14D",
+  "value": "5.0"
+ },
+ {
+  "set": "frm2553:txt15A",
+  "value": "OTHERS"
+ },
+ {
+  "set": "frm2553:txt15B",
+  "value": "OT012"
+ },
+ {
+  "set": "frm2553:txt15C",
+  "value": "2500000.00"
+ },
+ {
+  "set": "frm2553:txt15D",
+  "value": "3.50"
+ },
+ {
+  "set": "frm2553:txt16A",
+  "value": "SPECIAL/REGULAR/ECONOMIC FREE PORT ZONE ENTERPRISES"
+ },
+ {
+  "set": "frm2553:txt16B",
+  "value": "OT011"
+ },
+ {
+  "set": "frm2553:txt16C",
+  "value": "999.995"
+ },
+ {
+  "set": "frm2553:txt16D",
+  "value": "5.0"
+ },
+ {
+  "set": "frm2553:txt17A",
+  "value": ""
+ },
+ {
+  "set": "frm2553:txt17B",
+  "value": ""
+ },
+ {
+  "set": "frm2553:txt17C",
+  "value": "0.00"
+ },
+ {
+  "set": "frm2553:txt17D",
+  "value": "0.00"
+ },
+ {
+  "set": "frm2553:txt18A",
+  "value": ""
+ },
+ {
+  "set": "frm2553:txt18B",
+  "value": ""
+ },
+ {
+  "set": "frm2553:txt18C",
+  "value": "0.00"
+ },
+ {
+  "set": "frm2553:txt18D",
+  "value": "0.00"
+ },
+ {
+  "set": "frm2553:txt20A",
+  "value": "0.00"
+ },
+ {
+  "set": "frm2553:txt20B",
+  "value": "1000.00"
+ },
+ {
+  "set": "frm2553:txt22A",
+  "value": "25.50"
+ },
+ {
+  "set": "frm2553:txt22B",
+  "value": "10.00"
+ },
+ {
+  "set": "frm2553:txt22C",
+  "value": "0.00"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ }
+]

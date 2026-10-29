@@ -1,0 +1,73 @@
+{
+  "slug": "1702rt-2018c",
+  "code": "1702RT",
+  "revision": "2018C",
+  "variant": "",
+  "in_corpus": true,
+  "source_file": "1702-RT Jan 2018 ENCS Final v3.pdf",
+  "sha256": "d9a6a8a13e0114934261151c4eb269a1573042e7ce670eaf12b15f169d308d2d",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 6,
+  "pages": 4,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0",
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Bold",
+    "Arial Narrow",
+    "Calibri"
+  ],
+  "rules": 2678,
+  "text_runs": 441,
+  "images": 6,
+  "cells": 501,
+  "comb_cells": 205,
+  "growables": [
+    {
+      "page": 3,
+      "rows": 4,
+      "capacity": 4,
+      "pitch_pt": 19.32
+    },
+    {
+      "page": 4,
+      "rows": 3,
+      "capacity": 3,
+      "pitch_pt": 19.44
+    },
+    {
+      "page": 4,
+      "rows": 4,
+      "capacity": 4,
+      "pitch_pt": 19.32
+    },
+    {
+      "page": 4,
+      "rows": 3,
+      "capacity": 3,
+      "pitch_pt": 19.32
+    }
+  ],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1702-RT Jan 2018 ENCS Final v3.pdf",
+      "sha256": "d9a6a8a13e0114934261151c4eb269a1573042e7ce670eaf12b15f169d308d2d"
+    }
+  ],
+  "guide": null,
+  "guide_detected": {
+    "inline_pages": [],
+    "standalone_pdfs": []
+  },
+  "html_bytes": 1387195,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

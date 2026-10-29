@@ -1,0 +1,166 @@
+[
+ {
+  "call": "Number.prototype.toLocaleString=function(){var n=Number(this);var s=Math.abs(n).toFixed(2).split('.');s[0]=s[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g,',');return (n<0?'-':'')+s[0]+'.'+s[1];}"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtTIN1').value='123'"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtTIN2').value='456'"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtTIN3').value='788'"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtBranchCode').value='00000'"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtPg2TIN1').value='123'"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtPg2TIN2').value='456'"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtPg2TIN3').value='788'"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtPg2BranchCode').value='00000'"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtRDOCode').value='039'"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtTaxpayerName1').value='SAMPLE DUMMY CORPORATION'"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtPg2TaxpayerName').value='SAMPLE DUMMY CORPORATION'"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtAddress').value='123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITY'"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtZipCode').value='1100'"
+ },
+ {
+  "call": "[].forEach.call(document.querySelectorAll('[id=\"frm1702q:txtTelNum\"]'),function(e){e.value='09170000000'})"
+ },
+ {
+  "call": "document.getElementById('frm1702q:txtLOB').value='SAMPLE CONSULTING SERVICES'"
+ },
+ {
+  "call": "document.getElementById('txtEmail').value='sample.taxpayer@example.com'"
+ },
+ {
+  "click": "frm1702q:rbForClndrFscl_1"
+ },
+ {
+  "set": "frm1702q:txtYrEndYear",
+  "value": "25"
+ },
+ {
+  "click": "frm1702q:rbQuarter_2"
+ },
+ {
+  "call": "document.getElementById('frm1702q:rbATC_1').click()"
+ },
+ {
+  "call": "document.getElementById('frm1702q:rbATC_2').click()"
+ },
+ {
+  "set": "frm1702q:cbATC_2",
+  "value": "IC010_25%"
+ },
+ {
+  "click": "frm1702q:rbMthdOfDdctns_1"
+ },
+ {
+  "click": "frm1702q:rbTxRlf_2"
+ },
+ {
+  "set": "frm1702q:Sched1:txtTax1B",
+  "value": "800000.5"
+ },
+ {
+  "set": "frm1702q:Sched1:txtTax2B",
+  "value": "300000"
+ },
+ {
+  "set": "frm1702q:Sched1:txtTax4B",
+  "value": "20000"
+ },
+ {
+  "set": "frm1702q:Sched1:txtTax6B",
+  "value": "100000"
+ },
+ {
+  "set": "frm1702q:Sched1:txtTax8B",
+  "value": "150000"
+ },
+ {
+  "set": "frm1702q:Sched1:txtTax10B",
+  "value": "10"
+ },
+ {
+  "set": "frm1702q:Sched2:txtTax1",
+  "value": "5000000.50"
+ },
+ {
+  "set": "frm1702q:Sched2:txtTax2",
+  "value": "1200000"
+ },
+ {
+  "set": "frm1702q:Sched2:txtTax4",
+  "value": "100000.49"
+ },
+ {
+  "set": "frm1702q:Sched2:txtTax6",
+  "value": "900000"
+ },
+ {
+  "set": "frm1702q:Sched2:txtTax8",
+  "value": "500000"
+ },
+ {
+  "set": "frm1702q:Sched3:txtTax1",
+  "value": "3000000"
+ },
+ {
+  "set": "frm1702q:Sched3:txtTax2",
+  "value": "3900001"
+ },
+ {
+  "set": "frm1702q:Sched4:txtTax1",
+  "value": "10000"
+ },
+ {
+  "set": "frm1702q:Sched4:txtTax2",
+  "value": "150000"
+ },
+ {
+  "set": "frm1702q:Sched4:txtTax3",
+  "value": "20000"
+ },
+ {
+  "set": "frm1702q:Sched4:txtTax4",
+  "value": "5000"
+ },
+ {
+  "set": "frm1702q:Sched4:txtTax5",
+  "value": "7500.5"
+ },
+ {
+  "set": "frm1702q:Sched4:txtOthrTxCrdts0",
+  "value": "Sample credit"
+ },
+ {
+  "set": "frm1702q:Sched4:txtOthrTxCrdtAmnt0",
+  "value": "1234"
+ },
+ {
+  "set": "frm1702q:txtTax21",
+  "value": "1000"
+ },
+ {
+  "call": "validate()"
+ }
+]

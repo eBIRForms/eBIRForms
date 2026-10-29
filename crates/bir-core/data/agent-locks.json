@@ -1,0 +1,1929 @@
+{
+  "0605-v2003": {
+    "host_written": [
+      "frm0605:txtOthersName",
+      "itemQuarter_1",
+      "itemQuarter_2",
+      "itemQuarter_3",
+      "itemQuarter_4"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm0605:txtTax20A",
+          "frm0605:txtTax20B",
+          "frm0605:txtTax20C"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "0619e-v2018": {
+    "host_written": [
+      "frm0619E:optCategory:G",
+      "frm0619E:optCategory:P"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm0619E:txtTax17A",
+          "frm0619E:txtTax17B",
+          "frm0619E:txtTax17C"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "0619f-v2018": {
+    "host_written": [
+      "frm0619F:optCategory:G",
+      "frm0619F:optCategory:P"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm0619F:txtTax18A",
+          "frm0619F:txtTax18B",
+          "frm0619F:txtTax18C"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1600pt-v2018": {
+    "host_written": [
+      "AtcCode1",
+      "AtcCode10",
+      "AtcCode11",
+      "AtcCode12",
+      "AtcCode13",
+      "AtcCode14",
+      "AtcCode15",
+      "AtcCode16",
+      "AtcCode17",
+      "AtcCode18",
+      "AtcCode19",
+      "AtcCode2",
+      "AtcCode20",
+      "AtcCode21",
+      "AtcCode22",
+      "AtcCode23",
+      "AtcCode24",
+      "AtcCode25",
+      "AtcCode26",
+      "AtcCode27",
+      "AtcCode28",
+      "AtcCode29",
+      "AtcCode3",
+      "AtcCode30",
+      "AtcCode31",
+      "AtcCode4",
+      "AtcCode5",
+      "AtcCode6",
+      "AtcCode7",
+      "AtcCode8",
+      "AtcCode9",
+      "frm1600PT:rdoPg1I10CategoryofWthholdAgentGovt",
+      "frm1600PT:rdoPg1I10CategoryofWthholdAgentPriv",
+      "frm1600PT:rdoPg1I3TaxWithheldNo",
+      "frm1600PT:rdoPg1I3TaxWithheldYes"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1600PT:txtPg1P2I23Surcharge",
+          "frm1600PT:txtPg1P2I24Interest",
+          "frm1600PT:txtPg1P2I25Compromise"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1600vt-v2018": {
+    "host_written": [
+      "AtcCode1",
+      "AtcCode10",
+      "AtcCode11",
+      "AtcCode12",
+      "AtcCode13",
+      "AtcCode2",
+      "AtcCode3",
+      "AtcCode4",
+      "AtcCode5",
+      "AtcCode6",
+      "AtcCode7",
+      "AtcCode8",
+      "AtcCode9",
+      "frm1600VT:rdoPg1I10CategoryofWthholdAgentGovt",
+      "frm1600VT:rdoPg1I10CategoryofWthholdAgentPriv",
+      "frm1600VT:rdoPg1I3TaxWithheldNo",
+      "frm1600VT:rdoPg1I3TaxWithheldYes"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1600VT:txtPg1P2I23Surcharge",
+          "frm1600VT:txtPg1P2I24Interest",
+          "frm1600VT:txtPg1P2I25Compromise"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1600wp-v2010": {
+    "host_written": [
+      "frm1600WP:AnyTaxHeld_1",
+      "frm1600WP:AnyTaxHeld_2",
+      "frm1600WP:CategoryAgent_G",
+      "frm1600WP:CategoryAgent_P",
+      "frm1600WP:txtAtcCode1",
+      "frm1600WP:txtAtcCode2"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1600WP:txtTax15A",
+          "frm1600WP:txtTax15B",
+          "frm1600WP:txtTax15C"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1601c-v2018": {
+    "host_written": [
+      "frm1601c:sched1:txtMonthYear0",
+      "frm1601c:sched1:txtMonthYear1",
+      "frm1601c:sched1:txtMonthYear2"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1601c:txtTax32",
+          "frm1601c:txtTax33",
+          "frm1601c:txtTax34"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1601eq-v2018": {
+    "host_written": [
+      "frm1601EQ:optCategory:G",
+      "frm1601EQ:optCategory:P",
+      "frm1601EQ:optWithheld:N",
+      "frm1601EQ:optWithheld:Y",
+      "frm1601EQ:txtAtcCd1",
+      "frm1601EQ:txtAtcCd10",
+      "frm1601EQ:txtAtcCd100",
+      "frm1601EQ:txtAtcCd101",
+      "frm1601EQ:txtAtcCd102",
+      "frm1601EQ:txtAtcCd103",
+      "frm1601EQ:txtAtcCd104",
+      "frm1601EQ:txtAtcCd105",
+      "frm1601EQ:txtAtcCd106",
+      "frm1601EQ:txtAtcCd107",
+      "frm1601EQ:txtAtcCd108",
+      "frm1601EQ:txtAtcCd109",
+      "frm1601EQ:txtAtcCd11",
+      "frm1601EQ:txtAtcCd110",
+      "frm1601EQ:txtAtcCd111",
+      "frm1601EQ:txtAtcCd12",
+      "frm1601EQ:txtAtcCd13",
+      "frm1601EQ:txtAtcCd14",
+      "frm1601EQ:txtAtcCd15",
+      "frm1601EQ:txtAtcCd16",
+      "frm1601EQ:txtAtcCd17",
+      "frm1601EQ:txtAtcCd18",
+      "frm1601EQ:txtAtcCd19",
+      "frm1601EQ:txtAtcCd2",
+      "frm1601EQ:txtAtcCd20",
+      "frm1601EQ:txtAtcCd21",
+      "frm1601EQ:txtAtcCd22",
+      "frm1601EQ:txtAtcCd23",
+      "frm1601EQ:txtAtcCd24",
+      "frm1601EQ:txtAtcCd25",
+      "frm1601EQ:txtAtcCd26",
+      "frm1601EQ:txtAtcCd27",
+      "frm1601EQ:txtAtcCd28",
+      "frm1601EQ:txtAtcCd29",
+      "frm1601EQ:txtAtcCd3",
+      "frm1601EQ:txtAtcCd30",
+      "frm1601EQ:txtAtcCd31",
+      "frm1601EQ:txtAtcCd32",
+      "frm1601EQ:txtAtcCd33",
+      "frm1601EQ:txtAtcCd34",
+      "frm1601EQ:txtAtcCd35",
+      "frm1601EQ:txtAtcCd36",
+      "frm1601EQ:txtAtcCd37",
+      "frm1601EQ:txtAtcCd38",
+      "frm1601EQ:txtAtcCd39",
+      "frm1601EQ:txtAtcCd4",
+      "frm1601EQ:txtAtcCd40",
+      "frm1601EQ:txtAtcCd41",
+      "frm1601EQ:txtAtcCd42",
+      "frm1601EQ:txtAtcCd43",
+      "frm1601EQ:txtAtcCd44",
+      "frm1601EQ:txtAtcCd45",
+      "frm1601EQ:txtAtcCd46",
+      "frm1601EQ:txtAtcCd47",
+      "frm1601EQ:txtAtcCd48",
+      "frm1601EQ:txtAtcCd49",
+      "frm1601EQ:txtAtcCd5",
+      "frm1601EQ:txtAtcCd50",
+      "frm1601EQ:txtAtcCd51",
+      "frm1601EQ:txtAtcCd52",
+      "frm1601EQ:txtAtcCd53",
+      "frm1601EQ:txtAtcCd54",
+      "frm1601EQ:txtAtcCd55",
+      "frm1601EQ:txtAtcCd56",
+      "frm1601EQ:txtAtcCd57",
+      "frm1601EQ:txtAtcCd58",
+      "frm1601EQ:txtAtcCd59",
+      "frm1601EQ:txtAtcCd6",
+      "frm1601EQ:txtAtcCd60",
+      "frm1601EQ:txtAtcCd61",
+      "frm1601EQ:txtAtcCd62",
+      "frm1601EQ:txtAtcCd63",
+      "frm1601EQ:txtAtcCd64",
+      "frm1601EQ:txtAtcCd65",
+      "frm1601EQ:txtAtcCd66",
+      "frm1601EQ:txtAtcCd67",
+      "frm1601EQ:txtAtcCd68",
+      "frm1601EQ:txtAtcCd69",
+      "frm1601EQ:txtAtcCd7",
+      "frm1601EQ:txtAtcCd70",
+      "frm1601EQ:txtAtcCd71",
+      "frm1601EQ:txtAtcCd72",
+      "frm1601EQ:txtAtcCd73",
+      "frm1601EQ:txtAtcCd74",
+      "frm1601EQ:txtAtcCd75",
+      "frm1601EQ:txtAtcCd76",
+      "frm1601EQ:txtAtcCd77",
+      "frm1601EQ:txtAtcCd78",
+      "frm1601EQ:txtAtcCd79",
+      "frm1601EQ:txtAtcCd8",
+      "frm1601EQ:txtAtcCd80",
+      "frm1601EQ:txtAtcCd81",
+      "frm1601EQ:txtAtcCd82",
+      "frm1601EQ:txtAtcCd83",
+      "frm1601EQ:txtAtcCd84",
+      "frm1601EQ:txtAtcCd85",
+      "frm1601EQ:txtAtcCd86",
+      "frm1601EQ:txtAtcCd87",
+      "frm1601EQ:txtAtcCd88",
+      "frm1601EQ:txtAtcCd89",
+      "frm1601EQ:txtAtcCd9",
+      "frm1601EQ:txtAtcCd90",
+      "frm1601EQ:txtAtcCd91",
+      "frm1601EQ:txtAtcCd92",
+      "frm1601EQ:txtAtcCd93",
+      "frm1601EQ:txtAtcCd94",
+      "frm1601EQ:txtAtcCd95",
+      "frm1601EQ:txtAtcCd96",
+      "frm1601EQ:txtAtcCd97",
+      "frm1601EQ:txtAtcCd98",
+      "frm1601EQ:txtAtcCd99",
+      "frm1601EQ:txtTaxBase1",
+      "frm1601EQ:txtTaxBase10",
+      "frm1601EQ:txtTaxBase100",
+      "frm1601EQ:txtTaxBase101",
+      "frm1601EQ:txtTaxBase102",
+      "frm1601EQ:txtTaxBase103",
+      "frm1601EQ:txtTaxBase104",
+      "frm1601EQ:txtTaxBase105",
+      "frm1601EQ:txtTaxBase106",
+      "frm1601EQ:txtTaxBase107",
+      "frm1601EQ:txtTaxBase108",
+      "frm1601EQ:txtTaxBase109",
+      "frm1601EQ:txtTaxBase11",
+      "frm1601EQ:txtTaxBase110",
+      "frm1601EQ:txtTaxBase111",
+      "frm1601EQ:txtTaxBase12",
+      "frm1601EQ:txtTaxBase13",
+      "frm1601EQ:txtTaxBase14",
+      "frm1601EQ:txtTaxBase15",
+      "frm1601EQ:txtTaxBase16",
+      "frm1601EQ:txtTaxBase17",
+      "frm1601EQ:txtTaxBase18",
+      "frm1601EQ:txtTaxBase19",
+      "frm1601EQ:txtTaxBase2",
+      "frm1601EQ:txtTaxBase20",
+      "frm1601EQ:txtTaxBase21",
+      "frm1601EQ:txtTaxBase22",
+      "frm1601EQ:txtTaxBase23",
+      "frm1601EQ:txtTaxBase24",
+      "frm1601EQ:txtTaxBase25",
+      "frm1601EQ:txtTaxBase26",
+      "frm1601EQ:txtTaxBase27",
+      "frm1601EQ:txtTaxBase28",
+      "frm1601EQ:txtTaxBase29",
+      "frm1601EQ:txtTaxBase3",
+      "frm1601EQ:txtTaxBase30",
+      "frm1601EQ:txtTaxBase31",
+      "frm1601EQ:txtTaxBase32",
+      "frm1601EQ:txtTaxBase33",
+      "frm1601EQ:txtTaxBase34",
+      "frm1601EQ:txtTaxBase35",
+      "frm1601EQ:txtTaxBase36",
+      "frm1601EQ:txtTaxBase37",
+      "frm1601EQ:txtTaxBase38",
+      "frm1601EQ:txtTaxBase39",
+      "frm1601EQ:txtTaxBase4",
+      "frm1601EQ:txtTaxBase40",
+      "frm1601EQ:txtTaxBase41",
+      "frm1601EQ:txtTaxBase42",
+      "frm1601EQ:txtTaxBase43",
+      "frm1601EQ:txtTaxBase44",
+      "frm1601EQ:txtTaxBase45",
+      "frm1601EQ:txtTaxBase46",
+      "frm1601EQ:txtTaxBase47",
+      "frm1601EQ:txtTaxBase48",
+      "frm1601EQ:txtTaxBase49",
+      "frm1601EQ:txtTaxBase5",
+      "frm1601EQ:txtTaxBase50",
+      "frm1601EQ:txtTaxBase51",
+      "frm1601EQ:txtTaxBase52",
+      "frm1601EQ:txtTaxBase53",
+      "frm1601EQ:txtTaxBase54",
+      "frm1601EQ:txtTaxBase55",
+      "frm1601EQ:txtTaxBase56",
+      "frm1601EQ:txtTaxBase57",
+      "frm1601EQ:txtTaxBase58",
+      "frm1601EQ:txtTaxBase59",
+      "frm1601EQ:txtTaxBase6",
+      "frm1601EQ:txtTaxBase60",
+      "frm1601EQ:txtTaxBase61",
+      "frm1601EQ:txtTaxBase62",
+      "frm1601EQ:txtTaxBase63",
+      "frm1601EQ:txtTaxBase64",
+      "frm1601EQ:txtTaxBase65",
+      "frm1601EQ:txtTaxBase66",
+      "frm1601EQ:txtTaxBase67",
+      "frm1601EQ:txtTaxBase68",
+      "frm1601EQ:txtTaxBase69",
+      "frm1601EQ:txtTaxBase7",
+      "frm1601EQ:txtTaxBase70",
+      "frm1601EQ:txtTaxBase71",
+      "frm1601EQ:txtTaxBase72",
+      "frm1601EQ:txtTaxBase73",
+      "frm1601EQ:txtTaxBase74",
+      "frm1601EQ:txtTaxBase75",
+      "frm1601EQ:txtTaxBase76",
+      "frm1601EQ:txtTaxBase77",
+      "frm1601EQ:txtTaxBase78",
+      "frm1601EQ:txtTaxBase79",
+      "frm1601EQ:txtTaxBase8",
+      "frm1601EQ:txtTaxBase80",
+      "frm1601EQ:txtTaxBase81",
+      "frm1601EQ:txtTaxBase82",
+      "frm1601EQ:txtTaxBase83",
+      "frm1601EQ:txtTaxBase84",
+      "frm1601EQ:txtTaxBase85",
+      "frm1601EQ:txtTaxBase86",
+      "frm1601EQ:txtTaxBase87",
+      "frm1601EQ:txtTaxBase88",
+      "frm1601EQ:txtTaxBase89",
+      "frm1601EQ:txtTaxBase9",
+      "frm1601EQ:txtTaxBase90",
+      "frm1601EQ:txtTaxBase91",
+      "frm1601EQ:txtTaxBase92",
+      "frm1601EQ:txtTaxBase93",
+      "frm1601EQ:txtTaxBase94",
+      "frm1601EQ:txtTaxBase95",
+      "frm1601EQ:txtTaxBase96",
+      "frm1601EQ:txtTaxBase97",
+      "frm1601EQ:txtTaxBase98",
+      "frm1601EQ:txtTaxBase99"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1601EQ:txtTax26",
+          "frm1601EQ:txtTax27",
+          "frm1601EQ:txtTax28"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1601fq-v2018": {
+    "host_written": [
+      "drpATCCode0",
+      "drpATCCode1",
+      "drpATCCode2",
+      "drpATCCode3",
+      "drpATCCode4",
+      "frm1601FQ:CatAgent_G",
+      "frm1601FQ:CatAgent_P",
+      "frm1601FQ:SpecialTax_1",
+      "frm1601FQ:SpecialTax_2",
+      "frm1601FQ:TaxWithheld_1",
+      "frm1601FQ:TaxWithheld_2",
+      "frm1601FQ:drpSpecialTax",
+      "frm1601FQ:txtAtcCode1",
+      "frm1601FQ:txtAtcCode10",
+      "frm1601FQ:txtAtcCode11",
+      "frm1601FQ:txtAtcCode12",
+      "frm1601FQ:txtAtcCode13",
+      "frm1601FQ:txtAtcCode14",
+      "frm1601FQ:txtAtcCode15",
+      "frm1601FQ:txtAtcCode16",
+      "frm1601FQ:txtAtcCode17",
+      "frm1601FQ:txtAtcCode18",
+      "frm1601FQ:txtAtcCode19",
+      "frm1601FQ:txtAtcCode2",
+      "frm1601FQ:txtAtcCode20",
+      "frm1601FQ:txtAtcCode21",
+      "frm1601FQ:txtAtcCode22",
+      "frm1601FQ:txtAtcCode23",
+      "frm1601FQ:txtAtcCode24",
+      "frm1601FQ:txtAtcCode25",
+      "frm1601FQ:txtAtcCode26",
+      "frm1601FQ:txtAtcCode27",
+      "frm1601FQ:txtAtcCode28",
+      "frm1601FQ:txtAtcCode29",
+      "frm1601FQ:txtAtcCode3",
+      "frm1601FQ:txtAtcCode30",
+      "frm1601FQ:txtAtcCode31",
+      "frm1601FQ:txtAtcCode32",
+      "frm1601FQ:txtAtcCode33",
+      "frm1601FQ:txtAtcCode34",
+      "frm1601FQ:txtAtcCode35",
+      "frm1601FQ:txtAtcCode36",
+      "frm1601FQ:txtAtcCode37",
+      "frm1601FQ:txtAtcCode38",
+      "frm1601FQ:txtAtcCode39",
+      "frm1601FQ:txtAtcCode4",
+      "frm1601FQ:txtAtcCode40",
+      "frm1601FQ:txtAtcCode41",
+      "frm1601FQ:txtAtcCode5",
+      "frm1601FQ:txtAtcCode6",
+      "frm1601FQ:txtAtcCode7",
+      "frm1601FQ:txtAtcCode8",
+      "frm1601FQ:txtAtcCode9",
+      "frm1601FQ:txtTaxBase1",
+      "frm1601FQ:txtTaxBase10",
+      "frm1601FQ:txtTaxBase11",
+      "frm1601FQ:txtTaxBase12",
+      "frm1601FQ:txtTaxBase13",
+      "frm1601FQ:txtTaxBase14",
+      "frm1601FQ:txtTaxBase15",
+      "frm1601FQ:txtTaxBase16",
+      "frm1601FQ:txtTaxBase17",
+      "frm1601FQ:txtTaxBase18",
+      "frm1601FQ:txtTaxBase19",
+      "frm1601FQ:txtTaxBase2",
+      "frm1601FQ:txtTaxBase20",
+      "frm1601FQ:txtTaxBase21",
+      "frm1601FQ:txtTaxBase22",
+      "frm1601FQ:txtTaxBase23",
+      "frm1601FQ:txtTaxBase24",
+      "frm1601FQ:txtTaxBase25",
+      "frm1601FQ:txtTaxBase26",
+      "frm1601FQ:txtTaxBase27",
+      "frm1601FQ:txtTaxBase28",
+      "frm1601FQ:txtTaxBase29",
+      "frm1601FQ:txtTaxBase3",
+      "frm1601FQ:txtTaxBase30",
+      "frm1601FQ:txtTaxBase31",
+      "frm1601FQ:txtTaxBase32",
+      "frm1601FQ:txtTaxBase33",
+      "frm1601FQ:txtTaxBase34",
+      "frm1601FQ:txtTaxBase35",
+      "frm1601FQ:txtTaxBase36",
+      "frm1601FQ:txtTaxBase37",
+      "frm1601FQ:txtTaxBase38",
+      "frm1601FQ:txtTaxBase39",
+      "frm1601FQ:txtTaxBase4",
+      "frm1601FQ:txtTaxBase40",
+      "frm1601FQ:txtTaxBase41",
+      "frm1601FQ:txtTaxBase5",
+      "frm1601FQ:txtTaxBase6",
+      "frm1601FQ:txtTaxBase7",
+      "frm1601FQ:txtTaxBase8",
+      "frm1601FQ:txtTaxBase9"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1601FQ:txtTax28",
+          "frm1601FQ:txtTax29",
+          "frm1601FQ:txtTax30"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1602q-v2018": {
+    "host_written": [
+      "frm1602Q:OptSpecialTax1",
+      "frm1602Q:OptSpecialTax2"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1602Q:txt24",
+          "frm1602Q:txt25",
+          "frm1602Q:txt26"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1603q-v2018": {
+    "host_written": [
+      "frm1603Q:SpecialTax_1",
+      "frm1603Q:SpecialTax_2"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1603Q:txtTax19",
+          "frm1603Q:txtTax20",
+          "frm1603Q:txtTax21"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1606-v2018": {
+    "host_written": [
+      "frm1606:txtBranchCodeS",
+      "frm1606:txtTINS1",
+      "frm1606:txtTINS2",
+      "frm1606:txtTINS3"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1606:txtCompromise",
+          "frm1606:txtInterest",
+          "frm1606:txtSurcharge"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1700-v2013": {
+    "host_written": [
+      "frm1700:rdoPg2I1PartVIEmployeeS",
+      "frm1700:rdoPg2I1PartVIEmployeeT",
+      "frm1700:rdoPg2I2PartVIEmployeeS",
+      "frm1700:rdoPg2I2PartVIEmployeeT",
+      "frm1700:rdoPg2I3PartVIEmployeeS",
+      "frm1700:rdoPg2I3PartVIEmployeeT",
+      "frm1700:rdoPg2I4PartVIEmployeeS",
+      "frm1700:rdoPg2I4PartVIEmployeeT",
+      "frm1700:txtPg1I18SBranchCode",
+      "frm1700:txtPg1I18STIN1",
+      "frm1700:txtPg1I18STIN2",
+      "frm1700:txtPg1I18STIN3",
+      "frm1700:txtPg2I1PartVIEmployerBranchCode",
+      "frm1700:txtPg2I1PartVIEmployerName1",
+      "frm1700:txtPg2I1PartVIEmployerName2",
+      "frm1700:txtPg2I1PartVIEmployerTIN1",
+      "frm1700:txtPg2I1PartVIEmployerTIN2",
+      "frm1700:txtPg2I1PartVIEmployerTIN3",
+      "frm1700:txtPg2I2PartVIEmployerBranchCode",
+      "frm1700:txtPg2I2PartVIEmployerName1",
+      "frm1700:txtPg2I2PartVIEmployerName2",
+      "frm1700:txtPg2I2PartVIEmployerTIN1",
+      "frm1700:txtPg2I2PartVIEmployerTIN2",
+      "frm1700:txtPg2I2PartVIEmployerTIN3",
+      "frm1700:txtPg2I3PartVIEmployerBranchCode",
+      "frm1700:txtPg2I3PartVIEmployerName1",
+      "frm1700:txtPg2I3PartVIEmployerName2",
+      "frm1700:txtPg2I3PartVIEmployerTIN1",
+      "frm1700:txtPg2I3PartVIEmployerTIN2",
+      "frm1700:txtPg2I3PartVIEmployerTIN3",
+      "frm1700:txtPg2I4PartVIEmployerBranchCode",
+      "frm1700:txtPg2I4PartVIEmployerName1",
+      "frm1700:txtPg2I4PartVIEmployerName2",
+      "frm1700:txtPg2I4PartVIEmployerTIN1",
+      "frm1700:txtPg2I4PartVIEmployerTIN2",
+      "frm1700:txtPg2I4PartVIEmployerTIN3",
+      "frm1700:txtPg2ISched1c_1REG",
+      "frm1700:txtPg2ISched1c_2REG",
+      "frm1700:txtPg2ISched1c_3REG",
+      "frm1700:txtPg2ISched1c_4REG",
+      "frm1700:txtPg2ISched1d_1CIFR",
+      "frm1700:txtPg2ISched1d_2CIFR",
+      "frm1700:txtPg2ISched1d_3CIFR",
+      "frm1700:txtPg2ISched1d_4CIFR",
+      "frm1700:txtPg2ISched1e_1TW",
+      "frm1700:txtPg2ISched1e_2TW",
+      "frm1700:txtPg2ISched1e_3TW",
+      "frm1700:txtPg2ISched1e_4TW"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1700:txtPg1I31A",
+          "frm1700:txtPg1I32A",
+          "frm1700:txtPg1I33A"
+        ],
+        "prefix": "/taxpayer"
+      },
+      {
+        "keys": [
+          "frm1700:txtPg1I31B",
+          "frm1700:txtPg1I32B",
+          "frm1700:txtPg1I33B"
+        ],
+        "prefix": "/spouse_column"
+      }
+    ]
+  },
+  "1701-v2018": {
+    "host_written": [
+      "frm1701:txtPg2I1BranchCode",
+      "frm1701:txtPg2I1TIN1",
+      "frm1701:txtPg2I1TIN2",
+      "frm1701:txtPg2I1TIN3",
+      "frm1701:txtPg2IShed1a_BranchCode",
+      "frm1701:txtPg2IShed1a_TIN1",
+      "frm1701:txtPg2IShed1a_TIN2",
+      "frm1701:txtPg2IShed1a_TIN3",
+      "frm1701:txtPg2IShed2a_BranchCode",
+      "frm1701:txtPg2IShed2a_TIN1",
+      "frm1701:txtPg2IShed2a_TIN2",
+      "frm1701:txtPg2IShed2a_TIN3"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1701:txtPg1I27A",
+          "frm1701:txtPg1I28A",
+          "frm1701:txtPg1I29A"
+        ],
+        "prefix": "/penalty"
+      },
+      {
+        "keys": [
+          "frm1701:txtPg1I27B",
+          "frm1701:txtPg1I28B",
+          "frm1701:txtPg1I29B"
+        ],
+        "prefix": "/spouse_penalty"
+      }
+    ]
+  },
+  "1701a-v2018": {
+    "host_written": [
+      "frm1701A:txtSpouseBranchCode",
+      "frm1701A:txtSpouseTIN1",
+      "frm1701A:txtSpouseTIN2",
+      "frm1701A:txtSpouseTIN3",
+      "frm1701A:txtmodalPartIVA_10C3",
+      "frm1701A:txtmodalPartIVA_11C3",
+      "frm1701A:txtmodalPartIVA_12C3",
+      "frm1701A:txtmodalPartIVA_13C3",
+      "frm1701A:txtmodalPartIVA_1C3",
+      "frm1701A:txtmodalPartIVA_2C3",
+      "frm1701A:txtmodalPartIVA_3C3",
+      "frm1701A:txtmodalPartIVA_4C3",
+      "frm1701A:txtmodalPartIVA_5C3",
+      "frm1701A:txtmodalPartIVA_6C3",
+      "frm1701A:txtmodalPartIVA_7C3",
+      "frm1701A:txtmodalPartIVA_8C3",
+      "frm1701A:txtmodalPartIVA_9C3",
+      "frm1701A:txtmodalPartIVB_10C3",
+      "frm1701A:txtmodalPartIVB_11C3",
+      "frm1701A:txtmodalPartIVB_12C3",
+      "frm1701A:txtmodalPartIVB_1C3",
+      "frm1701A:txtmodalPartIVB_2C3",
+      "frm1701A:txtmodalPartIVB_3C3",
+      "frm1701A:txtmodalPartIVB_4C3",
+      "frm1701A:txtmodalPartIVB_5C3",
+      "frm1701A:txtmodalPartIVB_6C3",
+      "frm1701A:txtmodalPartIVB_7C3",
+      "frm1701A:txtmodalPartIVB_8C3",
+      "frm1701A:txtmodalPartIVB_9C3"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1701A:txt25A",
+          "frm1701A:txt26A",
+          "frm1701A:txt27A"
+        ],
+        "prefix": "/taxpayer"
+      },
+      {
+        "keys": [
+          "frm1701A:txt25B",
+          "frm1701A:txt26B",
+          "frm1701A:txt27B"
+        ],
+        "prefix": "/spouse_column"
+      }
+    ]
+  },
+  "1701ms-v2024": {
+    "host_written": [
+      "frm1701MS:txtPg2BranchCodeSpouse",
+      "frm1701MS:txtPg2TIN1Spouse",
+      "frm1701MS:txtPg2TIN2Spouse",
+      "frm1701MS:txtPg2TIN3Spouse",
+      "frm1701MS:txtTaxRatea",
+      "frm1701MS:txtTaxRateb"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1701MS:txtCompromise28a",
+          "frm1701MS:txtInterestNo28a",
+          "frm1701MS:txtSurchangeNo28a"
+        ],
+        "prefix": "/taxpayer"
+      },
+      {
+        "keys": [
+          "frm1701MS:txtCompromise28b",
+          "frm1701MS:txtInterestNo28b",
+          "frm1701MS:txtSurchangeNo28b"
+        ],
+        "prefix": "/spouse"
+      }
+    ]
+  },
+  "1701q-v2018": {
+    "host_written": [
+      "frm1701q:txtSpouseBranchCode",
+      "frm1701q:txtSpouseTIN1",
+      "frm1701q:txtSpouseTIN2",
+      "frm1701q:txtSpouseTIN3"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1701q:txt64A",
+          "frm1701q:txt65A",
+          "frm1701q:txt66A"
+        ],
+        "prefix": "/penalty"
+      },
+      {
+        "keys": [
+          "frm1701q:txt64B",
+          "frm1701q:txt65B",
+          "frm1701q:txt66B"
+        ],
+        "prefix": "/spouse_penalty"
+      }
+    ]
+  },
+  "1702mx-v2018c": {
+    "host_written": [
+      "frm1702MX:txtPg2Pt4I34SpecialTaxRate",
+      "frm1702MX:txtPg2Sc2It14B",
+      "frm1702MX:txtPg2Sc2It14C"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1702MX:txtPg1Pt2I17",
+          "frm1702MX:txtPg1Pt2I18",
+          "frm1702MX:txtPg1Pt2I19"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1702q-v2018c": {
+    "host_written": [],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1702q:txtTax21",
+          "frm1702q:txtTax22",
+          "frm1702q:txtTax23"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1702rt-v2018c": {
+    "host_written": [
+      "frm1702RT:txtPg1Pt1I10",
+      "frm1702RT:txtPg1Pt3I23DebitMemoC3Date",
+      "frm1702RT:txtPg1Pt3I24CheckC3Date",
+      "frm1702RT:txtPg1Pt3I25TaxDebitDate",
+      "frm1702RT:txtPg1Pt3I26OthersC3Date"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1702RT:txtPg1Pt2I17Surcharge",
+          "frm1702RT:txtPg1Pt2I18Interest",
+          "frm1702RT:txtPg1Pt2I19Compromise"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1706-v2018": {
+    "host_written": [
+      "frm1706:txtDateDayI",
+      "frm1706:txtDateMonthI",
+      "frm1706:txtDateYearI",
+      "frm1706:txtTINB1",
+      "frm1706:txtTINB2",
+      "frm1706:txtTINB3"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1706:txtCompromise",
+          "frm1706:txtInterest",
+          "frm1706:txtSurcharge"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1707-v2021": {
+    "host_written": [
+      "frm1707:rdoPg1I8TaxReliefNo",
+      "frm1707:rdoPg1I8TaxReliefYes",
+      "frm1707:txtPg1I1Day",
+      "frm1707:txtPg1I1Month",
+      "frm1707:txtPg1I1Year",
+      "frm1707:txtPg2P4Sch2NameOfCorpStock4",
+      "frm1707:txtPg2P4Sch2NoOfShares4",
+      "frm1707:txtPg2P4Sch2StockCertNo4",
+      "frm1707:txtPg2P4Sch2TaxBaseSellPrice4",
+      "frm1707:txtPg2P4Sch3Amount4",
+      "frm1707:txtPg2P4Sch3Particulars4"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1707:txtPg1P2I17Compromise",
+          "frm1707:txtPg1P2I17Interest",
+          "frm1707:txtPg1P2I17Surcharge"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1707a-v2021": {
+    "host_written": [
+      "frm1707Av2021:rdoI11TaxTreatyNo",
+      "frm1707Av2021:rdoI11TaxTreatyYes"
+    ],
+    "occurrence_aliases": {
+      "frm1707Av2021:txtI11Email#occurrence-2": "frm1707Av2021:txtI11Email"
+    },
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1707Av2021:txtI18ASurcharge",
+          "frm1707Av2021:txtI18BInterest",
+          "frm1707Av2021:txtI18CCompromise"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1800-v2018": {
+    "host_written": [
+      "frm1800v2018:TaxTreaty",
+      "frm1800v2018:TaxTreatyYN_N",
+      "frm1800v2018:TaxTreatyYN_Y",
+      "frm1800v2018:txtDeductionAmount28",
+      "frm1800v2018:txtDeductionAmount29",
+      "frm1800v2018:txtDeductionAmount30",
+      "frm1800v2018:txtDeductionAmount31",
+      "frm1800v2018:txtDeductionAmount32",
+      "frm1800v2018:txtDeductionTitle28",
+      "frm1800v2018:txtDeductionTitle29",
+      "frm1800v2018:txtDeductionTitle30",
+      "frm1800v2018:txtDeductionTitle31",
+      "frm1800v2018:txtDeductionTitle32"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1800v2018:Compromise",
+          "frm1800v2018:Interest",
+          "frm1800v2018:Surcharge"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "1801-v2018": {
+    "host_written": [
+      "frm1801v2018:freq",
+      "frm1801v2018:freqOtherInput",
+      "frm1801v2018:freq_Mon",
+      "frm1801v2018:freq_Other",
+      "frm1801v2018:freq_Qtr",
+      "frm1801v2018:freq_Semi",
+      "frm1801v2018:instGranted",
+      "frm1801v2018:instGranted_1",
+      "frm1801v2018:instGranted_2",
+      "frm1801v2018:optTreaty_1",
+      "frm1801v2018:optTreaty_2",
+      "frm1801v2018:treatyY",
+      "frm1801v2018:txtDateDay",
+      "frm1801v2018:txtDateMonth",
+      "frm1801v2018:txtDateYear",
+      "frm1801v2018:txtTINE1",
+      "frm1801v2018:txtTINE2",
+      "frm1801v2018:txtTINE3"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm1801v2018:txtPen_Compromise",
+          "frm1801v2018:txtPen_Interest",
+          "frm1801v2018:txtPen_Surcharge"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "2000-v2018": {
+    "host_written": [],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm2000:txtTax17A",
+          "frm2000:txtTax17B",
+          "frm2000:txtTax17C"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "2000ot-v2018": {
+    "host_written": [],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm2000OT:txtTax20A",
+          "frm2000OT:txtTax20B",
+          "frm2000OT:txtTax20C"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "2200a-v2020": {
+    "host_written": [],
+    "occurrence_aliases": {
+      "frm2200Av2020:branchCode#occurrence-2": "frm2200Av2020:branchCode",
+      "frm2200Av2020:branchCode#occurrence-3": "frm2200Av2020:branchCode",
+      "frm2200Av2020:registeredName#occurrence-2": "frm2200Av2020:registeredName",
+      "frm2200Av2020:registeredName#occurrence-3": "frm2200Av2020:registeredName",
+      "frm2200Av2020:tinA#occurrence-2": "frm2200Av2020:tinA",
+      "frm2200Av2020:tinA#occurrence-3": "frm2200Av2020:tinA",
+      "frm2200Av2020:tinB#occurrence-2": "frm2200Av2020:tinB",
+      "frm2200Av2020:tinB#occurrence-3": "frm2200Av2020:tinB",
+      "frm2200Av2020:tinC#occurrence-2": "frm2200Av2020:tinC",
+      "frm2200Av2020:tinC#occurrence-3": "frm2200Av2020:tinC"
+    },
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm2200Av2020:txtPen_Compromise",
+          "frm2200Av2020:txtPen_Interest",
+          "frm2200Av2020:txtPen_Surcharge"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "2200an-v2018": {
+    "host_written": [],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm2200ANv2018:txt21A",
+          "frm2200ANv2018:txt21B",
+          "frm2200ANv2018:txt21C"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "2200c-v2018": {
+    "host_written": [],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm2200C:txtPg1P3I21ASurcharge",
+          "frm2200C:txtPg1P3I21BInterest",
+          "frm2200C:txtPg1P3I21CCompromise"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "2200m-v2018": {
+    "host_written": [],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm2200M:txtPg1P3I21ASurcharge",
+          "frm2200M:txtPg1P3I21BInterest",
+          "frm2200M:txtPg1P3I21CCompromise"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "2200p-v2020": {
+    "host_written": [],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm2200P:txtPg1P3I21ASurcharge",
+          "frm2200P:txtPg1P3I21BInterest",
+          "frm2200P:txtPg1P3I21CCompromise"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "2200s-v2018": {
+    "host_written": [
+      "frm2200S:txtsched1AppTaxRate0",
+      "frm2200S:txtsched1AppTaxRate1",
+      "frm2200S:txtsched1AppTaxRate10",
+      "frm2200S:txtsched1AppTaxRate11",
+      "frm2200S:txtsched1AppTaxRate12",
+      "frm2200S:txtsched1AppTaxRate13",
+      "frm2200S:txtsched1AppTaxRate14",
+      "frm2200S:txtsched1AppTaxRate2",
+      "frm2200S:txtsched1AppTaxRate3",
+      "frm2200S:txtsched1AppTaxRate4",
+      "frm2200S:txtsched1AppTaxRate5",
+      "frm2200S:txtsched1AppTaxRate6",
+      "frm2200S:txtsched1AppTaxRate7",
+      "frm2200S:txtsched1AppTaxRate8",
+      "frm2200S:txtsched1AppTaxRate9"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm2200S:txtTax21A",
+          "frm2200S:txtTax21B",
+          "frm2200S:txtTax21C"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "2200t-v2020": {
+    "host_written": [],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm2200Tv2020:txtPen_Compromise",
+          "frm2200Tv2020:txtPen_Interest",
+          "frm2200Tv2020:txtPen_Surcharge"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "2550m-v2007": {
+    "host_written": [
+      "frm2550m:txtAmountSales1",
+      "frm2550m:txtAmountSales10",
+      "frm2550m:txtAmountSales11",
+      "frm2550m:txtAmountSales12",
+      "frm2550m:txtAmountSales13",
+      "frm2550m:txtAmountSales14",
+      "frm2550m:txtAmountSales15",
+      "frm2550m:txtAmountSales16",
+      "frm2550m:txtAmountSales17",
+      "frm2550m:txtAmountSales18",
+      "frm2550m:txtAmountSales19",
+      "frm2550m:txtAmountSales2",
+      "frm2550m:txtAmountSales20",
+      "frm2550m:txtAmountSales21",
+      "frm2550m:txtAmountSales22",
+      "frm2550m:txtAmountSales23",
+      "frm2550m:txtAmountSales24",
+      "frm2550m:txtAmountSales25",
+      "frm2550m:txtAmountSales26",
+      "frm2550m:txtAmountSales27",
+      "frm2550m:txtAmountSales28",
+      "frm2550m:txtAmountSales29",
+      "frm2550m:txtAmountSales3",
+      "frm2550m:txtAmountSales30",
+      "frm2550m:txtAmountSales31",
+      "frm2550m:txtAmountSales32",
+      "frm2550m:txtAmountSales33",
+      "frm2550m:txtAmountSales34",
+      "frm2550m:txtAmountSales35",
+      "frm2550m:txtAmountSales36",
+      "frm2550m:txtAmountSales4",
+      "frm2550m:txtAmountSales5",
+      "frm2550m:txtAmountSales6",
+      "frm2550m:txtAmountSales7",
+      "frm2550m:txtAmountSales8",
+      "frm2550m:txtAmountSales9",
+      "frm2550m:txtAtcCde1",
+      "frm2550m:txtAtcCde10",
+      "frm2550m:txtAtcCde11",
+      "frm2550m:txtAtcCde12",
+      "frm2550m:txtAtcCde13",
+      "frm2550m:txtAtcCde14",
+      "frm2550m:txtAtcCde15",
+      "frm2550m:txtAtcCde16",
+      "frm2550m:txtAtcCde17",
+      "frm2550m:txtAtcCde18",
+      "frm2550m:txtAtcCde19",
+      "frm2550m:txtAtcCde2",
+      "frm2550m:txtAtcCde20",
+      "frm2550m:txtAtcCde21",
+      "frm2550m:txtAtcCde22",
+      "frm2550m:txtAtcCde23",
+      "frm2550m:txtAtcCde24",
+      "frm2550m:txtAtcCde25",
+      "frm2550m:txtAtcCde26",
+      "frm2550m:txtAtcCde27",
+      "frm2550m:txtAtcCde28",
+      "frm2550m:txtAtcCde29",
+      "frm2550m:txtAtcCde3",
+      "frm2550m:txtAtcCde30",
+      "frm2550m:txtAtcCde31",
+      "frm2550m:txtAtcCde32",
+      "frm2550m:txtAtcCde33",
+      "frm2550m:txtAtcCde34",
+      "frm2550m:txtAtcCde35",
+      "frm2550m:txtAtcCde36",
+      "frm2550m:txtAtcCde4",
+      "frm2550m:txtAtcCde5",
+      "frm2550m:txtAtcCde6",
+      "frm2550m:txtAtcCde7",
+      "frm2550m:txtAtcCde8",
+      "frm2550m:txtAtcCde9",
+      "txtAmountPaidSch70",
+      "txtAmountPaidSch71",
+      "txtAmountPaidSch710",
+      "txtAmountPaidSch711",
+      "txtAmountPaidSch72",
+      "txtAmountPaidSch73",
+      "txtAmountPaidSch74",
+      "txtAmountPaidSch75",
+      "txtAmountPaidSch76",
+      "txtAmountPaidSch77",
+      "txtAmountPaidSch78",
+      "txtAmountPaidSch79",
+      "txtAmt0",
+      "txtAmt1",
+      "txtAmt10",
+      "txtAmt11",
+      "txtAmt2",
+      "txtAmt3",
+      "txtAmt3A0",
+      "txtAmt3A1",
+      "txtAmt3A10",
+      "txtAmt3A11",
+      "txtAmt3A2",
+      "txtAmt3A3",
+      "txtAmt3A4",
+      "txtAmt3A5",
+      "txtAmt3A6",
+      "txtAmt3A7",
+      "txtAmt3A8",
+      "txtAmt3A9",
+      "txtAmt3B0",
+      "txtAmt3B1",
+      "txtAmt3B10",
+      "txtAmt3B11",
+      "txtAmt3B2",
+      "txtAmt3B3",
+      "txtAmt3B4",
+      "txtAmt3B5",
+      "txtAmt3B6",
+      "txtAmt3B7",
+      "txtAmt3B8",
+      "txtAmt3B9",
+      "txtAmt4",
+      "txtAmt5",
+      "txtAmt6",
+      "txtAmt7",
+      "txtAmt8",
+      "txtAmt9",
+      "txtAppliedCurr0",
+      "txtAppliedCurr1",
+      "txtAppliedCurr10",
+      "txtAppliedCurr11",
+      "txtAppliedCurr2",
+      "txtAppliedCurr3",
+      "txtAppliedCurr4",
+      "txtAppliedCurr5",
+      "txtAppliedCurr6",
+      "txtAppliedCurr7",
+      "txtAppliedCurr8",
+      "txtAppliedCurr9",
+      "txtAppliedCurrSch70",
+      "txtAppliedCurrSch71",
+      "txtAppliedCurrSch710",
+      "txtAppliedCurrSch711",
+      "txtAppliedCurrSch72",
+      "txtAppliedCurrSch73",
+      "txtAppliedCurrSch74",
+      "txtAppliedCurrSch75",
+      "txtAppliedCurrSch76",
+      "txtAppliedCurrSch77",
+      "txtAppliedCurrSch78",
+      "txtAppliedCurrSch79",
+      "txtAppliedCurrSch80",
+      "txtAppliedCurrSch81",
+      "txtAppliedCurrSch810",
+      "txtAppliedCurrSch811",
+      "txtAppliedCurrSch82",
+      "txtAppliedCurrSch83",
+      "txtAppliedCurrSch84",
+      "txtAppliedCurrSch85",
+      "txtAppliedCurrSch86",
+      "txtAppliedCurrSch87",
+      "txtAppliedCurrSch88",
+      "txtAppliedCurrSch89",
+      "txtBalInputTaxPrevious3B0",
+      "txtBalInputTaxPrevious3B1",
+      "txtBalInputTaxPrevious3B10",
+      "txtBalInputTaxPrevious3B11",
+      "txtBalInputTaxPrevious3B2",
+      "txtBalInputTaxPrevious3B3",
+      "txtBalInputTaxPrevious3B4",
+      "txtBalInputTaxPrevious3B5",
+      "txtBalInputTaxPrevious3B6",
+      "txtBalInputTaxPrevious3B7",
+      "txtBalInputTaxPrevious3B8",
+      "txtBalInputTaxPrevious3B9",
+      "txtDatePurchased0",
+      "txtDatePurchased1",
+      "txtDatePurchased10",
+      "txtDatePurchased11",
+      "txtDatePurchased2",
+      "txtDatePurchased3",
+      "txtDatePurchased3A0",
+      "txtDatePurchased3A1",
+      "txtDatePurchased3A10",
+      "txtDatePurchased3A11",
+      "txtDatePurchased3A2",
+      "txtDatePurchased3A3",
+      "txtDatePurchased3A4",
+      "txtDatePurchased3A5",
+      "txtDatePurchased3A6",
+      "txtDatePurchased3A7",
+      "txtDatePurchased3A8",
+      "txtDatePurchased3A9",
+      "txtDatePurchased3B0",
+      "txtDatePurchased3B1",
+      "txtDatePurchased3B10",
+      "txtDatePurchased3B11",
+      "txtDatePurchased3B2",
+      "txtDatePurchased3B3",
+      "txtDatePurchased3B4",
+      "txtDatePurchased3B5",
+      "txtDatePurchased3B6",
+      "txtDatePurchased3B7",
+      "txtDatePurchased3B8",
+      "txtDatePurchased3B9",
+      "txtDatePurchased4",
+      "txtDatePurchased5",
+      "txtDatePurchased6",
+      "txtDatePurchased7",
+      "txtDatePurchased8",
+      "txtDatePurchased9",
+      "txtDescription0",
+      "txtDescription1",
+      "txtDescription10",
+      "txtDescription11",
+      "txtDescription2",
+      "txtDescription3",
+      "txtDescription3A0",
+      "txtDescription3A1",
+      "txtDescription3A10",
+      "txtDescription3A11",
+      "txtDescription3A2",
+      "txtDescription3A3",
+      "txtDescription3A4",
+      "txtDescription3A5",
+      "txtDescription3A6",
+      "txtDescription3A7",
+      "txtDescription3A8",
+      "txtDescription3A9",
+      "txtDescription3B0",
+      "txtDescription3B1",
+      "txtDescription3B10",
+      "txtDescription3B11",
+      "txtDescription3B2",
+      "txtDescription3B3",
+      "txtDescription3B4",
+      "txtDescription3B5",
+      "txtDescription3B6",
+      "txtDescription3B7",
+      "txtDescription3B8",
+      "txtDescription3B9",
+      "txtDescription4",
+      "txtDescription5",
+      "txtDescription6",
+      "txtDescription7",
+      "txtDescription8",
+      "txtDescription9",
+      "txtEstLife3A0",
+      "txtEstLife3A1",
+      "txtEstLife3A10",
+      "txtEstLife3A11",
+      "txtEstLife3A2",
+      "txtEstLife3A3",
+      "txtEstLife3A4",
+      "txtEstLife3A5",
+      "txtEstLife3A6",
+      "txtEstLife3A7",
+      "txtEstLife3A8",
+      "txtEstLife3A9",
+      "txtEstLife3B0",
+      "txtEstLife3B1",
+      "txtEstLife3B10",
+      "txtEstLife3B11",
+      "txtEstLife3B2",
+      "txtEstLife3B3",
+      "txtEstLife3B4",
+      "txtEstLife3B5",
+      "txtEstLife3B6",
+      "txtEstLife3B7",
+      "txtEstLife3B8",
+      "txtEstLife3B9",
+      "txtIncomePayment0",
+      "txtIncomePayment1",
+      "txtIncomePayment10",
+      "txtIncomePayment11",
+      "txtIncomePayment2",
+      "txtIncomePayment3",
+      "txtIncomePayment4",
+      "txtIncomePayment5",
+      "txtIncomePayment6",
+      "txtIncomePayment7",
+      "txtIncomePayment8",
+      "txtIncomePayment9",
+      "txtIncomePaymentSch80",
+      "txtIncomePaymentSch81",
+      "txtIncomePaymentSch810",
+      "txtIncomePaymentSch811",
+      "txtIncomePaymentSch82",
+      "txtIncomePaymentSch83",
+      "txtIncomePaymentSch84",
+      "txtIncomePaymentSch85",
+      "txtIncomePaymentSch86",
+      "txtIncomePaymentSch87",
+      "txtIncomePaymentSch88",
+      "txtIncomePaymentSch89",
+      "txtInputTax0",
+      "txtInputTax1",
+      "txtInputTax10",
+      "txtInputTax11",
+      "txtInputTax2",
+      "txtInputTax3",
+      "txtInputTax3A0",
+      "txtInputTax3A1",
+      "txtInputTax3A10",
+      "txtInputTax3A11",
+      "txtInputTax3A2",
+      "txtInputTax3A3",
+      "txtInputTax3A4",
+      "txtInputTax3A5",
+      "txtInputTax3A6",
+      "txtInputTax3A7",
+      "txtInputTax3A8",
+      "txtInputTax3A9",
+      "txtInputTax4",
+      "txtInputTax5",
+      "txtInputTax6",
+      "txtInputTax7",
+      "txtInputTax8",
+      "txtInputTax9",
+      "txtNameAgent0",
+      "txtNameAgent1",
+      "txtNameAgent10",
+      "txtNameAgent11",
+      "txtNameAgent2",
+      "txtNameAgent3",
+      "txtNameAgent4",
+      "txtNameAgent5",
+      "txtNameAgent6",
+      "txtNameAgent7",
+      "txtNameAgent8",
+      "txtNameAgent9",
+      "txtNameAgentSch80",
+      "txtNameAgentSch81",
+      "txtNameAgentSch810",
+      "txtNameAgentSch811",
+      "txtNameAgentSch82",
+      "txtNameAgentSch83",
+      "txtNameAgentSch84",
+      "txtNameAgentSch85",
+      "txtNameAgentSch86",
+      "txtNameAgentSch87",
+      "txtNameAgentSch88",
+      "txtNameAgentSch89",
+      "txtNameMillerSch70",
+      "txtNameMillerSch71",
+      "txtNameMillerSch710",
+      "txtNameMillerSch711",
+      "txtNameMillerSch72",
+      "txtNameMillerSch73",
+      "txtNameMillerSch74",
+      "txtNameMillerSch75",
+      "txtNameMillerSch76",
+      "txtNameMillerSch77",
+      "txtNameMillerSch78",
+      "txtNameMillerSch79",
+      "txtNameTaxPayerSch70",
+      "txtNameTaxPayerSch71",
+      "txtNameTaxPayerSch710",
+      "txtNameTaxPayerSch711",
+      "txtNameTaxPayerSch72",
+      "txtNameTaxPayerSch73",
+      "txtNameTaxPayerSch74",
+      "txtNameTaxPayerSch75",
+      "txtNameTaxPayerSch76",
+      "txtNameTaxPayerSch77",
+      "txtNameTaxPayerSch78",
+      "txtNameTaxPayerSch79",
+      "txtORNumSch70",
+      "txtORNumSch71",
+      "txtORNumSch710",
+      "txtORNumSch711",
+      "txtORNumSch72",
+      "txtORNumSch73",
+      "txtORNumSch74",
+      "txtORNumSch75",
+      "txtORNumSch76",
+      "txtORNumSch77",
+      "txtORNumSch78",
+      "txtORNumSch79",
+      "txtPeriodCovered0",
+      "txtPeriodCovered1",
+      "txtPeriodCovered10",
+      "txtPeriodCovered11",
+      "txtPeriodCovered2",
+      "txtPeriodCovered3",
+      "txtPeriodCovered4",
+      "txtPeriodCovered5",
+      "txtPeriodCovered6",
+      "txtPeriodCovered7",
+      "txtPeriodCovered8",
+      "txtPeriodCovered9",
+      "txtPeriodCoveredSch70",
+      "txtPeriodCoveredSch71",
+      "txtPeriodCoveredSch710",
+      "txtPeriodCoveredSch711",
+      "txtPeriodCoveredSch72",
+      "txtPeriodCoveredSch73",
+      "txtPeriodCoveredSch74",
+      "txtPeriodCoveredSch75",
+      "txtPeriodCoveredSch76",
+      "txtPeriodCoveredSch77",
+      "txtPeriodCoveredSch78",
+      "txtPeriodCoveredSch79",
+      "txtPeriodCoveredSch80",
+      "txtPeriodCoveredSch81",
+      "txtPeriodCoveredSch810",
+      "txtPeriodCoveredSch811",
+      "txtPeriodCoveredSch82",
+      "txtPeriodCoveredSch83",
+      "txtPeriodCoveredSch84",
+      "txtPeriodCoveredSch85",
+      "txtPeriodCoveredSch86",
+      "txtPeriodCoveredSch87",
+      "txtPeriodCoveredSch88",
+      "txtPeriodCoveredSch89",
+      "txtRecogLife3A0",
+      "txtRecogLife3A1",
+      "txtRecogLife3A10",
+      "txtRecogLife3A11",
+      "txtRecogLife3A2",
+      "txtRecogLife3A3",
+      "txtRecogLife3A4",
+      "txtRecogLife3A5",
+      "txtRecogLife3A6",
+      "txtRecogLife3A7",
+      "txtRecogLife3A8",
+      "txtRecogLife3A9",
+      "txtRecogLife3B0",
+      "txtRecogLife3B1",
+      "txtRecogLife3B10",
+      "txtRecogLife3B11",
+      "txtRecogLife3B2",
+      "txtRecogLife3B3",
+      "txtRecogLife3B4",
+      "txtRecogLife3B5",
+      "txtRecogLife3B6",
+      "txtRecogLife3B7",
+      "txtRecogLife3B8",
+      "txtRecogLife3B9",
+      "txtTotalWithheld0",
+      "txtTotalWithheld1",
+      "txtTotalWithheld10",
+      "txtTotalWithheld11",
+      "txtTotalWithheld2",
+      "txtTotalWithheld3",
+      "txtTotalWithheld4",
+      "txtTotalWithheld5",
+      "txtTotalWithheld6",
+      "txtTotalWithheld7",
+      "txtTotalWithheld8",
+      "txtTotalWithheld9",
+      "txtTotalWithheldSch80",
+      "txtTotalWithheldSch81",
+      "txtTotalWithheldSch810",
+      "txtTotalWithheldSch811",
+      "txtTotalWithheldSch82",
+      "txtTotalWithheldSch83",
+      "txtTotalWithheldSch84",
+      "txtTotalWithheldSch85",
+      "txtTotalWithheldSch86",
+      "txtTotalWithheldSch87",
+      "txtTotalWithheldSch88",
+      "txtTotalWithheldSch89"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm2550m:txtTax25A",
+          "frm2550m:txtTax25B",
+          "frm2550m:txtTax25C"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "2550q-v2024": {
+    "host_written": [
+      "txtAmountPaid40",
+      "txtAmountPaid41",
+      "txtAmountPaid410",
+      "txtAmountPaid411",
+      "txtAmountPaid412",
+      "txtAmountPaid42",
+      "txtAmountPaid43",
+      "txtAmountPaid44",
+      "txtAmountPaid45",
+      "txtAmountPaid46",
+      "txtAmountPaid47",
+      "txtAmountPaid48",
+      "txtAmountPaid49",
+      "txtAmountPurchase10",
+      "txtAmountPurchase11",
+      "txtAmountPurchase110",
+      "txtAmountPurchase111",
+      "txtAmountPurchase112",
+      "txtAmountPurchase12",
+      "txtAmountPurchase13",
+      "txtAmountPurchase14",
+      "txtAmountPurchase15",
+      "txtAmountPurchase16",
+      "txtAmountPurchase17",
+      "txtAmountPurchase18",
+      "txtAmountPurchase19",
+      "txtDate40",
+      "txtDate41",
+      "txtDate410",
+      "txtDate411",
+      "txtDate412",
+      "txtDate42",
+      "txtDate43",
+      "txtDate44",
+      "txtDate45",
+      "txtDate46",
+      "txtDate47",
+      "txtDate48",
+      "txtDate49",
+      "txtDate4To0",
+      "txtDate4To1",
+      "txtDate4To10",
+      "txtDate4To11",
+      "txtDate4To12",
+      "txtDate4To2",
+      "txtDate4To3",
+      "txtDate4To4",
+      "txtDate4To5",
+      "txtDate4To6",
+      "txtDate4To7",
+      "txtDate4To8",
+      "txtDate4To9",
+      "txtDateCovered30",
+      "txtDateCovered31",
+      "txtDateCovered310",
+      "txtDateCovered311",
+      "txtDateCovered312",
+      "txtDateCovered32",
+      "txtDateCovered33",
+      "txtDateCovered34",
+      "txtDateCovered35",
+      "txtDateCovered36",
+      "txtDateCovered37",
+      "txtDateCovered38",
+      "txtDateCovered39",
+      "txtDateCovered3To0",
+      "txtDateCovered3To1",
+      "txtDateCovered3To10",
+      "txtDateCovered3To11",
+      "txtDateCovered3To12",
+      "txtDateCovered3To2",
+      "txtDateCovered3To3",
+      "txtDateCovered3To4",
+      "txtDateCovered3To5",
+      "txtDateCovered3To6",
+      "txtDateCovered3To7",
+      "txtDateCovered3To8",
+      "txtDateCovered3To9",
+      "txtDatePurchase10",
+      "txtDatePurchase11",
+      "txtDatePurchase110",
+      "txtDatePurchase111",
+      "txtDatePurchase112",
+      "txtDatePurchase12",
+      "txtDatePurchase13",
+      "txtDatePurchase14",
+      "txtDatePurchase15",
+      "txtDatePurchase16",
+      "txtDatePurchase17",
+      "txtDatePurchase18",
+      "txtDatePurchase19",
+      "txtDescription10",
+      "txtDescription11",
+      "txtDescription110",
+      "txtDescription111",
+      "txtDescription112",
+      "txtDescription12",
+      "txtDescription13",
+      "txtDescription14",
+      "txtDescription15",
+      "txtDescription16",
+      "txtDescription17",
+      "txtDescription18",
+      "txtDescription19",
+      "txtEstimatedLife10",
+      "txtEstimatedLife11",
+      "txtEstimatedLife110",
+      "txtEstimatedLife111",
+      "txtEstimatedLife112",
+      "txtEstimatedLife12",
+      "txtEstimatedLife13",
+      "txtEstimatedLife14",
+      "txtEstimatedLife15",
+      "txtEstimatedLife16",
+      "txtEstimatedLife17",
+      "txtEstimatedLife18",
+      "txtEstimatedLife19",
+      "txtIncomePayment30",
+      "txtIncomePayment31",
+      "txtIncomePayment310",
+      "txtIncomePayment311",
+      "txtIncomePayment312",
+      "txtIncomePayment32",
+      "txtIncomePayment33",
+      "txtIncomePayment34",
+      "txtIncomePayment35",
+      "txtIncomePayment36",
+      "txtIncomePayment37",
+      "txtIncomePayment38",
+      "txtIncomePayment39",
+      "txtInputTax10",
+      "txtInputTax11",
+      "txtInputTax110",
+      "txtInputTax111",
+      "txtInputTax112",
+      "txtInputTax12",
+      "txtInputTax13",
+      "txtInputTax14",
+      "txtInputTax15",
+      "txtInputTax16",
+      "txtInputTax17",
+      "txtInputTax18",
+      "txtInputTax19",
+      "txtNameOfMiller40",
+      "txtNameOfMiller41",
+      "txtNameOfMiller410",
+      "txtNameOfMiller411",
+      "txtNameOfMiller412",
+      "txtNameOfMiller42",
+      "txtNameOfMiller43",
+      "txtNameOfMiller44",
+      "txtNameOfMiller45",
+      "txtNameOfMiller46",
+      "txtNameOfMiller47",
+      "txtNameOfMiller48",
+      "txtNameOfMiller49",
+      "txtNameOfTaxpayer40",
+      "txtNameOfTaxpayer41",
+      "txtNameOfTaxpayer410",
+      "txtNameOfTaxpayer411",
+      "txtNameOfTaxpayer412",
+      "txtNameOfTaxpayer42",
+      "txtNameOfTaxpayer43",
+      "txtNameOfTaxpayer44",
+      "txtNameOfTaxpayer45",
+      "txtNameOfTaxpayer46",
+      "txtNameOfTaxpayer47",
+      "txtNameOfTaxpayer48",
+      "txtNameOfTaxpayer49",
+      "txtNameWithHoldingAgent30",
+      "txtNameWithHoldingAgent31",
+      "txtNameWithHoldingAgent310",
+      "txtNameWithHoldingAgent311",
+      "txtNameWithHoldingAgent312",
+      "txtNameWithHoldingAgent32",
+      "txtNameWithHoldingAgent33",
+      "txtNameWithHoldingAgent34",
+      "txtNameWithHoldingAgent35",
+      "txtNameWithHoldingAgent36",
+      "txtNameWithHoldingAgent37",
+      "txtNameWithHoldingAgent38",
+      "txtNameWithHoldingAgent39",
+      "txtOfficialReceiptNumber40",
+      "txtOfficialReceiptNumber41",
+      "txtOfficialReceiptNumber410",
+      "txtOfficialReceiptNumber411",
+      "txtOfficialReceiptNumber412",
+      "txtOfficialReceiptNumber42",
+      "txtOfficialReceiptNumber43",
+      "txtOfficialReceiptNumber44",
+      "txtOfficialReceiptNumber45",
+      "txtOfficialReceiptNumber46",
+      "txtOfficialReceiptNumber47",
+      "txtOfficialReceiptNumber48",
+      "txtOfficialReceiptNumber49",
+      "txtRecognizedLife10",
+      "txtRecognizedLife11",
+      "txtRecognizedLife110",
+      "txtRecognizedLife111",
+      "txtRecognizedLife112",
+      "txtRecognizedLife12",
+      "txtRecognizedLife13",
+      "txtRecognizedLife14",
+      "txtRecognizedLife15",
+      "txtRecognizedLife16",
+      "txtRecognizedLife17",
+      "txtRecognizedLife18",
+      "txtRecognizedLife19",
+      "txtSourceCode10",
+      "txtSourceCode11",
+      "txtSourceCode110",
+      "txtSourceCode111",
+      "txtSourceCode112",
+      "txtSourceCode12",
+      "txtSourceCode13",
+      "txtSourceCode14",
+      "txtSourceCode15",
+      "txtSourceCode16",
+      "txtSourceCode17",
+      "txtSourceCode18",
+      "txtSourceCode19",
+      "txtTotalTaxWithHeld30",
+      "txtTotalTaxWithHeld31",
+      "txtTotalTaxWithHeld310",
+      "txtTotalTaxWithHeld311",
+      "txtTotalTaxWithHeld312",
+      "txtTotalTaxWithHeld32",
+      "txtTotalTaxWithHeld33",
+      "txtTotalTaxWithHeld34",
+      "txtTotalTaxWithHeld35",
+      "txtTotalTaxWithHeld36",
+      "txtTotalTaxWithHeld37",
+      "txtTotalTaxWithHeld38",
+      "txtTotalTaxWithHeld39"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": []
+  },
+  "2551q-v2018": {
+    "host_written": [],
+    "occurrence_aliases": {
+      "txtEmail#occurrence-2": "txtEmail"
+    },
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm2551Qv2018:txt20",
+          "frm2551Qv2018:txt21",
+          "frm2551Qv2018:txt22"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "2552-v2018": {
+    "host_written": [
+      "frm2552:rdoPg1I11TransactionLSE",
+      "frm2552:rdoPg1I11TransactionPrimary",
+      "frm2552:rdoPg1I11TransactionSecondary",
+      "frm2552:txtPg1Pt1I12TotShare",
+      "frm2552:txtPg2P4I2Amount",
+      "frm2552:txtPg2P4I3Amount",
+      "frm2552:txtPg2P4I4Amount",
+      "frm2552:txtPg2P4I5Amount",
+      "frm2552:txtPg2Pt5Sch1Buyer5",
+      "frm2552:txtPg2Pt5Sch1Corp5",
+      "frm2552:txtPg2Pt5Sch1Date5",
+      "frm2552:txtPg2Pt5Sch1NumShares5",
+      "frm2552:txtPg2Pt5Sch1Seller5",
+      "frm2552:txtPg2Pt5Sch1TaxBase5",
+      "frm2552:txtPg2Pt5Sch2Buyer5",
+      "frm2552:txtPg2Pt5Sch2Corp5",
+      "frm2552:txtPg2Pt5Sch2Date5",
+      "frm2552:txtPg2Pt5Sch2NumShares5",
+      "frm2552:txtPg2Pt5Sch2Seller5",
+      "frm2552:txtPg2Pt5Sch2TaxBase5",
+      "frm2552:txtPg2Pt5Sch2TaxRate5",
+      "frm2552:txtPg2Pt5Sch3Buyer5",
+      "frm2552:txtPg2Pt5Sch3Corp5",
+      "frm2552:txtPg2Pt5Sch3Date5",
+      "frm2552:txtPg2Pt5Sch3NumShares5",
+      "frm2552:txtPg2Pt5Sch3Seller5",
+      "frm2552:txtPg2Pt5Sch3TaxBase5",
+      "frm2552:txtPg2Pt5Sch3TaxRate5"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm2552:txtPg1P2I21Surcharge",
+          "frm2552:txtPg1P2I22Interest",
+          "frm2552:txtPg1P2I23Compromise"
+        ],
+        "prefix": ""
+      }
+    ]
+  },
+  "2553-v1999": {
+    "host_written": [
+      "frm2553:lstTaxTreaty",
+      "frm2553:optTreaty_1",
+      "frm2553:optTreaty_2",
+      "frm2553:txt14B",
+      "frm2553:txt14C",
+      "frm2553:txt14D",
+      "frm2553:txt15B",
+      "frm2553:txt15C",
+      "frm2553:txt15D",
+      "frm2553:txt16B",
+      "frm2553:txt16C",
+      "frm2553:txt16D",
+      "frm2553:txt17B",
+      "frm2553:txt17C",
+      "frm2553:txt17D",
+      "frm2553:txt18B",
+      "frm2553:txt18C",
+      "frm2553:txt18D"
+    ],
+    "occurrence_aliases": {},
+    "penalty_groups": [
+      {
+        "keys": [
+          "frm2553:txt22A",
+          "frm2553:txt22B",
+          "frm2553:txt22C"
+        ],
+        "prefix": ""
+      }
+    ]
+  }
+}

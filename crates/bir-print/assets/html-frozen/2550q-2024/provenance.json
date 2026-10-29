@@ -1,0 +1,71 @@
+{
+  "slug": "2550q-2024",
+  "code": "2550Q",
+  "revision": "2024",
+  "variant": "",
+  "in_corpus": true,
+  "source_file": "2550Q  April 2024 ENCS_Final.pdf",
+  "sha256": "18eb16925010fdda820cef958221ba2c0d073066efa93a898113e39b31135a25",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 3,
+  "pages": 2,
+  "paper": "612.0x1008.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x1008.0",
+    "612.0x1008.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Times New Roman"
+  ],
+  "rules": 1237,
+  "text_runs": 403,
+  "images": 3,
+  "cells": 452,
+  "comb_cells": 150,
+  "growables": [],
+  "sources": [
+    {
+      "role": "form",
+      "file": "2550Q  April 2024 ENCS_Final.pdf",
+      "sha256": "18eb16925010fdda820cef958221ba2c0d073066efa93a898113e39b31135a25"
+    },
+    {
+      "role": "guide",
+      "file": "2550Q guidelines April 2024_final.pdf",
+      "sha256": "b6ee4f090cb48963a44b1ef58fd6cdb4b5865ba4674963c3661c7f164895b120"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "standalone-pdf"
+    ],
+    "moved_from_form": [],
+    "standalone_pdfs": [
+      {
+        "file": "2550Q guidelines April 2024_final.pdf",
+        "sha256": "b6ee4f090cb48963a44b1ef58fd6cdb4b5865ba4674963c3661c7f164895b120",
+        "linked_as": "guides/2550Q guidelines April 2024_final.pdf",
+        "reflowed_into": "guide.html"
+      }
+    ],
+    "reclaimed_pt_total": 0,
+    "reclaimed_pct_mean": 0,
+    "reclaimed_pct_min": 0,
+    "reclaimed_pct_max": 0,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [],
+    "standalone_pdfs": [
+      "2550Q guidelines April 2024_final.pdf"
+    ]
+  },
+  "html_bytes": 758525,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

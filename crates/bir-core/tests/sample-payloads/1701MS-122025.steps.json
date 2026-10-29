@@ -1,0 +1,102 @@
+[
+ {
+  "set": "frm1701MS:txtYearNo1",
+  "value": "2025"
+ },
+ {
+  "call": "document.getElementById('frm1701MS:txtTaxpayerNo8a').value='SAMPLE DUMMY TAXPAYER';document.getElementById('frm1701MS:txtPg1TIN1').value='123';document.getElementById('frm1701MS:txtPg1TIN2').value='456';document.getElementById('frm1701MS:txtPg1TIN3').value='788';document.getElementById('frm1701MS:txtPg1BranchCode').value='00000';document.getElementById('frm1701MS:txtPg2TIN1').value='123';document.getElementById('frm1701MS:txtPg2TIN2').value='456';document.getElementById('frm1701MS:txtPg2TIN3').value='788';document.getElementById('frm1701MS:txtPg2BranchCode').value='00000';document.getElementById('frm1701MS:txtRDOCodea').value='039';document.getElementById('frm1701MS:txtEmaila').value='sample.taxpayer@example.com';document.getElementById('frm1701MS:txtTelNum10a').value='09170000000';document.getElementById('frm1701MS:Pg2TaxPayer').value='SAMPLE DUMMY TAXPAYER'"
+ },
+ {
+  "set": "frm1701MS:civilStatus",
+  "value": "Married"
+ },
+ {
+  "click": "frm1701MS:txtIfMarriedJointlyNo5"
+ },
+ {
+  "set": "frm1701MS:txtPg2TIN1Spouse",
+  "value": "123"
+ },
+ {
+  "set": "frm1701MS:txtPg2TIN2Spouse",
+  "value": "456"
+ },
+ {
+  "set": "frm1701MS:txtPg2TIN3Spouse",
+  "value": "788"
+ },
+ {
+  "set": "frm1701MS:txtPg2BranchCodeSpouse",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701MS:txtRDOCodeb",
+  "value": "039"
+ },
+ {
+  "set": "frm1701MS:txtTaxpayerNo8b",
+  "value": "Sample Dummy Spouse"
+ },
+ {
+  "set": "frm1701MS:txtEmailb",
+  "value": "sample.spouse@example.com"
+ },
+ {
+  "set": "frm1701MS:txtTelNum10b",
+  "value": "09170000001"
+ },
+ {
+  "click": "frm1701MS:txtTaxpayerNo11b"
+ },
+ {
+  "click": "frm1701MS:txtTaxpayerNo12b"
+ },
+ {
+  "click": "frm1701MS:txtTaxpayerNo17b"
+ },
+ {
+  "set": "frm1701MS:txtGrossa",
+  "value": "900000.5"
+ },
+ {
+  "set": "frm1701MS:txtLessNonTaxablea",
+  "value": "90000"
+ },
+ {
+  "set": "frm1701MS:txtSalesRevenueNo5a",
+  "value": "1500000"
+ },
+ {
+  "set": "frm1701MS:txtSalesReturnsNo6a",
+  "value": "10000"
+ },
+ {
+  "set": "frm1701MS:txtTaxPaymentsNo2a",
+  "value": "50000"
+ },
+ {
+  "set": "frm1701MS:txtCreditableForm2316No5a",
+  "value": "80000"
+ },
+ {
+  "click": "frm1701MS:txtTaxpayerNo11d1"
+ },
+ {
+  "set": "frm1701MS:txtGrossb",
+  "value": "600000"
+ },
+ {
+  "set": "frm1701MS:txtLessNonTaxableb",
+  "value": "90000"
+ },
+ {
+  "set": "frm1701MS:txtCreditableForm2316No5b",
+  "value": "44500"
+ },
+ {
+  "call": "document.getElementById('frm1701MS:perjuryClause').click()"
+ },
+ {
+  "call": "validate()"
+ }
+]

@@ -1,0 +1,67 @@
+{
+  "form_id": "0619f-v2018",
+  "html_slug": "0619f-2018",
+  "rule": "Stamp name= only where the identity catalog has a 1:1 official_field_key that exists in fields.json. Remaining writer keys stay on cell-id name=. Do not invent a join. Mixed combs with no empty input are catalog identities but unwritable.",
+  "stamped": [
+    {
+      "catalog_id": "0619f-2018/p1/tin-1",
+      "html_id": "p1c28",
+      "name": "frm0619F:txtTIN1"
+    },
+    {
+      "catalog_id": "0619f-2018/p1/tin-2",
+      "html_id": "p1c30",
+      "name": "frm0619F:txtTIN2"
+    },
+    {
+      "catalog_id": "0619f-2018/p1/tin-3",
+      "html_id": "p1c32",
+      "name": "frm0619F:txtTIN3"
+    },
+    {
+      "catalog_id": "0619f-2018/p1/tin-branch",
+      "html_id": "p1c34",
+      "name": "frm0619F:txtBranchCode"
+    }
+  ],
+  "stamped_names": [
+    "frm0619F:txtTIN1",
+    "frm0619F:txtTIN2",
+    "frm0619F:txtTIN3",
+    "frm0619F:txtBranchCode"
+  ],
+  "unwritable_mixed": [],
+  "unstamped_writer_keys_in_fields_json": [
+    "frm0619F:optAmend:N",
+    "frm0619F:optAmend:Y",
+    "frm0619F:optCategory:G",
+    "frm0619F:optCategory:P",
+    "frm0619F:optWithheld:N",
+    "frm0619F:optWithheld:Y",
+    "frm0619F:txtAddress",
+    "frm0619F:txtAddress2",
+    "frm0619F:txtDueDay",
+    "frm0619F:txtDueMonth",
+    "frm0619F:txtDueYear",
+    "frm0619F:txtLineBus",
+    "frm0619F:txtMonth",
+    "frm0619F:txtRDOCode",
+    "frm0619F:txtTax13",
+    "frm0619F:txtTax14",
+    "frm0619F:txtTax15",
+    "frm0619F:txtTax16",
+    "frm0619F:txtTax17",
+    "frm0619F:txtTax18A",
+    "frm0619F:txtTax18B",
+    "frm0619F:txtTax18C",
+    "frm0619F:txtTax18D",
+    "frm0619F:txtTax19",
+    "frm0619F:txtTaxTypeCode",
+    "frm0619F:txtTaxpayerName",
+    "frm0619F:txtTelNum",
+    "frm0619F:txtYear",
+    "frm0619F:txtZipCode"
+  ],
+  "writer_frm_keys_absent_from_fields_json": [],
+  "writer_frm_keys_absent_from_fields_json_reason": ""
+}

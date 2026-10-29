@@ -1,0 +1,73 @@
+{
+  "slug": "1702mx-2018c",
+  "code": "1702MX",
+  "revision": "2018C",
+  "variant": "",
+  "in_corpus": true,
+  "source_file": "1702-MX Jan 2018 ENCS Final with OSDv2.pdf",
+  "sha256": "81c05fffadde6c0b4098aeba8547a9820a0806c6be9b0c6ceac5597cab4263d2",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 7,
+  "pages": 4,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0",
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Bold",
+    "Arial Narrow",
+    "Calibri"
+  ],
+  "rules": 1481,
+  "text_runs": 596,
+  "images": 7,
+  "cells": 874,
+  "comb_cells": 117,
+  "growables": [
+    {
+      "page": 3,
+      "rows": 4,
+      "capacity": 4,
+      "pitch_pt": 13.44
+    },
+    {
+      "page": 4,
+      "rows": 4,
+      "capacity": 4,
+      "pitch_pt": 14.88
+    },
+    {
+      "page": 4,
+      "rows": 4,
+      "capacity": 4,
+      "pitch_pt": 14.88
+    },
+    {
+      "page": 4,
+      "rows": 3,
+      "capacity": 3,
+      "pitch_pt": 19.32
+    }
+  ],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1702-MX Jan 2018 ENCS Final with OSDv2.pdf",
+      "sha256": "81c05fffadde6c0b4098aeba8547a9820a0806c6be9b0c6ceac5597cab4263d2"
+    }
+  ],
+  "guide": null,
+  "guide_detected": {
+    "inline_pages": [],
+    "standalone_pdfs": []
+  },
+  "html_bytes": 1124116,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

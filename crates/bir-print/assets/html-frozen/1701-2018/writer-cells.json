@@ -1,0 +1,2394 @@
+{
+ "form_id": "1701-v2018",
+ "html_slug": "1701-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page's own text layer) names the item. Text cells and combs: caption beside or above the cell, or the column header of the NOLCO and Schedule 5 tables. Booleans: X in the box immediately left of the printed option (Yes/No, civil status, filing status, taxpayer type, ATC, tax rate and deduction method, overpayment). Amounts: every amount is a 9-slot whole-peso comb with no centavo comb, so they are peso_joins: the writer value (1,234.00) is parsed, rounded to whole pesos (50 centavos up) and right-aligned. No money_joins exist on this sheet. The Part VI summary (page 4) prints from txtPg4ISc6_*: the official layout names that family Part VI. The item 1 sheet has only a YYYY comb. Stamped TIN cells keep their catalog name=. Split dates print through date_joins (MM, DD, YYYY combs from one key); the email prints as typed; the page 2-4 TIN combs and the Item 33 digit boxes print from derived: keys of Form1701Draft::to_print_field_map. The signature block stays blank. Since #113 every value the print map carries has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm1701:txtPg1I1Year",
+   "html_id": "p1c4",
+   "printed": "1 For the Year (YYYY)",
+   "reason": "YYYY comb beside the \"( YYYY)\" caption; the sheet has no separate MM comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I5RDOCode",
+   "html_id": "p1c21",
+   "printed": "5 RDO Code",
+   "reason": "caption or column header names the item; text sits beside or below it"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I8TaxpayerName",
+   "html_id": "p1c37",
+   "printed": "8 Taxpayer's Name",
+   "reason": "caption or column header names the item; text sits beside or below it"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I9Address",
+   "html_id": "p1c39",
+   "printed": "9 Registered Address (first line)",
+   "reason": "caption or column header names the item; text sits beside or below it"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I9Address2",
+   "html_id": "p1c40",
+   "printed": "9 Registered Address (second line)",
+   "reason": "second address line directly under the item 9 line"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I9AZipCode",
+   "html_id": "p1c42",
+   "printed": "9A ZIP Code",
+   "reason": "caption or column header names the item; text sits beside or below it"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I12Citizenship",
+   "html_id": "p1c52",
+   "printed": "12 Citizenship",
+   "reason": "caption or column header names the item; text sits beside or below it"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I14ForeignTaxNumber",
+   "html_id": "p1c54",
+   "printed": "14 Foreign Tax Number, if applicable",
+   "reason": "caption or column header names the item; text sits beside or below it"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I15TelNum",
+   "html_id": "p1c59",
+   "printed": "15 Contact Number (Landline/Cellphone No.)",
+   "reason": "caption or column header names the item; text sits beside or below it"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I34Agency",
+   "html_id": "p1c137",
+   "printed": "34 Cash/Bank Debit Memo, Drawee Bank/Agency",
+   "reason": "row 34 under the Drawee Bank/Agency column"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I34Number",
+   "html_id": "p1c138",
+   "printed": "34 Cash/Bank Debit Memo, Number",
+   "reason": "row 34 under the Number column"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I35Agency",
+   "html_id": "p1c144",
+   "printed": "35 Check, Drawee Bank/Agency",
+   "reason": "row 35 under the Drawee Bank/Agency column"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I235Number",
+   "html_id": "p1c145",
+   "printed": "35 Check, Number",
+   "reason": "row 35 under the Number column; key name carries the 35 item number"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I36Number",
+   "html_id": "p1c151",
+   "printed": "36 Tax Debit Memo, Number",
+   "reason": "row 36 under the Number column"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I37Particular",
+   "html_id": "p1c157",
+   "printed": "37 Others, Particulars (specify below)",
+   "reason": "row 37 under the Particulars column"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I37Agency",
+   "html_id": "p1c158",
+   "printed": "37 Others, Drawee Bank/Agency",
+   "reason": "row 37 under the Drawee Bank/Agency column"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I37Number",
+   "html_id": "p1c159",
+   "printed": "37 Others, Number",
+   "reason": "row 37 under the Number column"
+  },
+  {
+   "writer_key": "frm1701:txtPg2TaxpayerName",
+   "html_id": "p2c6",
+   "printed": "Tax Filer's Last Name (page 2 header)",
+   "reason": "header name cell under \"Tax Filer's Last Name\""
+  },
+  {
+   "writer_key": "frm1701:txtPg2I2SpouseRDOCode",
+   "html_id": "p2c17",
+   "printed": "2 RDO Code (Part IV)",
+   "reason": "caption or column header names the item; text sits beside or below it"
+  },
+  {
+   "writer_key": "frm1701:txtPg2I5SpouseName",
+   "html_id": "p2c31",
+   "printed": "5 Spouse's Name",
+   "reason": "caption or column header names the item; text sits beside or below it"
+  },
+  {
+   "writer_key": "frm1701:txtPg2I6TelNum",
+   "html_id": "p2c33",
+   "printed": "6 Contact Number",
+   "reason": "caption or column header names the item; text sits beside or below it"
+  },
+  {
+   "writer_key": "frm1701:txtPg2I7Citizenship",
+   "html_id": "p2c35",
+   "printed": "7 Citizenship",
+   "reason": "caption or column header names the item; text sits beside or below it"
+  },
+  {
+   "writer_key": "frm1701:txtPg2I9ForeignTaxNumber",
+   "html_id": "p2c38",
+   "printed": "9 Foreign Tax Number",
+   "reason": "caption or column header names the item; text sits beside or below it"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_19Desc",
+   "html_id": "p2c134",
+   "printed": "19 Add: Other Non-Operating Income (specify below)",
+   "reason": "description cell on the item 19 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_20Desc",
+   "html_id": "p2c139",
+   "printed": "20 (specify below)",
+   "reason": "description cell on the item 20 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg3TaxpayerName",
+   "html_id": "p3c6",
+   "printed": "Tax Filer's Last Name (page 3 header)",
+   "reason": "header name cell under \"Tax Filer's Last Name\""
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_27Desc",
+   "html_id": "p3c16",
+   "printed": "27 Add: Other Non-Operating Income (specify below)",
+   "reason": "description cell on the item 27 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_17dDesc",
+   "html_id": "p3c98",
+   "printed": "17d (description)",
+   "reason": "description cell on the item 17d row"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_1Desc",
+   "html_id": "p3c110",
+   "printed": "5.A item 1, Description",
+   "reason": "Description column, item 1"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_1Legal",
+   "html_id": "p3c112",
+   "printed": "5.A item 1, Legal Basis",
+   "reason": "Legal Basis column, item 1"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_2Desc",
+   "html_id": "p3c115",
+   "printed": "5.A item 2, Description",
+   "reason": "Description column, item 2"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_2Legal",
+   "html_id": "p3c117",
+   "printed": "5.A item 2, Legal Basis",
+   "reason": "Legal Basis column, item 2"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_4Desc",
+   "html_id": "p3c123",
+   "printed": "5.B item 4, Description",
+   "reason": "Description column, item 4"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_4Legal",
+   "html_id": "p3c125",
+   "printed": "5.B item 4, Legal Basis",
+   "reason": "Legal Basis column, item 4"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_5Desc",
+   "html_id": "p3c128",
+   "printed": "5.B item 5, Description",
+   "reason": "Description column, item 5"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_5Legal",
+   "html_id": "p3c130",
+   "printed": "5.B item 5, Legal Basis",
+   "reason": "Legal Basis column, item 5"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_8D",
+   "html_id": "p3c186",
+   "printed": "Total NOLCO - Taxpayer/Filer (Sum of Items 4D to 7D)",
+   "reason": "Current Year (D) column of the total row"
+  },
+  {
+   "writer_key": "frm1701:txtPg4TaxpayerName",
+   "html_id": "p4c6",
+   "printed": "Tax Filer's Last Name (page 4 header)",
+   "reason": "header name cell under \"Tax Filer's Last Name\""
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_13D",
+   "html_id": "p4c46",
+   "printed": "Total NOLCO - Spouse (Sum of Items 9D to 12D)",
+   "reason": "Current Year (D) column of the total row"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_2Particulars",
+   "html_id": "p4c137",
+   "printed": "2 Add: Non-Deductible Expenses/Taxable Other Income (particulars)",
+   "reason": "particulars cell on the item 2 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_3Particulars",
+   "html_id": "p4c142",
+   "printed": "3 Add: Non-Deductible Expenses/Taxable Other Income (particulars)",
+   "reason": "particulars cell on the item 3 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_4Particulars",
+   "html_id": "p4c147",
+   "printed": "4 Add: Non-Deductible Expenses/Taxable Other Income (particulars)",
+   "reason": "particulars cell on the item 4 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_6Particulars",
+   "html_id": "p4c156",
+   "printed": "6 Less: A) Non-Taxable Income and Income Subjected to Final Tax (particulars)",
+   "reason": "particulars cell on the item 6 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_7Particulars",
+   "html_id": "p4c161",
+   "printed": "7 (particulars)",
+   "reason": "particulars cell on the item 7 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_8Particulars",
+   "html_id": "p4c167",
+   "printed": "8 B) Special/Other Allowable Deductions (particulars)",
+   "reason": "particulars cell on the item 8 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_9Particulars",
+   "html_id": "p4c172",
+   "printed": "9 (particulars)",
+   "reason": "particulars cell on the item 9 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_4Year",
+   "html_id": "p3c157",
+   "printed": "4 Year Incurred",
+   "reason": "row 4 under the \"Year Incurred\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_4A",
+   "html_id": "p3c158",
+   "printed": "4 A. Amount",
+   "reason": "row 4 under the \"A\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_4B",
+   "html_id": "p3c159",
+   "printed": "4 B. NOLCO Applied (Previous Year/s)",
+   "reason": "row 4 under the \"B\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_4C",
+   "html_id": "p3c160",
+   "printed": "4 C. NOLCO Expired (Unapplied)",
+   "reason": "row 4 under the \"C\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_4D",
+   "html_id": "p3c161",
+   "printed": "4 D. NOLCO Applied (Current Year)",
+   "reason": "row 4 under the \"D\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_4E",
+   "html_id": "p3c162",
+   "printed": "4 E. Net Operating Loss (Unapplied)",
+   "reason": "row 4 under the \"E\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_5Year",
+   "html_id": "p3c164",
+   "printed": "5 Year Incurred",
+   "reason": "row 5 under the \"Year Incurred\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_5A",
+   "html_id": "p3c165",
+   "printed": "5 A. Amount",
+   "reason": "row 5 under the \"A\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_5B",
+   "html_id": "p3c166",
+   "printed": "5 B. NOLCO Applied (Previous Year/s)",
+   "reason": "row 5 under the \"B\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_5C",
+   "html_id": "p3c167",
+   "printed": "5 C. NOLCO Expired (Unapplied)",
+   "reason": "row 5 under the \"C\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_5D",
+   "html_id": "p3c168",
+   "printed": "5 D. NOLCO Applied (Current Year)",
+   "reason": "row 5 under the \"D\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_5E",
+   "html_id": "p3c169",
+   "printed": "5 E. Net Operating Loss (Unapplied)",
+   "reason": "row 5 under the \"E\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_6Year",
+   "html_id": "p3c171",
+   "printed": "6 Year Incurred",
+   "reason": "row 6 under the \"Year Incurred\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_6A",
+   "html_id": "p3c172",
+   "printed": "6 A. Amount",
+   "reason": "row 6 under the \"A\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_6B",
+   "html_id": "p3c173",
+   "printed": "6 B. NOLCO Applied (Previous Year/s)",
+   "reason": "row 6 under the \"B\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_6C",
+   "html_id": "p3c174",
+   "printed": "6 C. NOLCO Expired (Unapplied)",
+   "reason": "row 6 under the \"C\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_6D",
+   "html_id": "p3c175",
+   "printed": "6 D. NOLCO Applied (Current Year)",
+   "reason": "row 6 under the \"D\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_6E",
+   "html_id": "p3c176",
+   "printed": "6 E. Net Operating Loss (Unapplied)",
+   "reason": "row 6 under the \"E\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_7Year",
+   "html_id": "p3c178",
+   "printed": "7 Year Incurred",
+   "reason": "row 7 under the \"Year Incurred\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_7A",
+   "html_id": "p3c179",
+   "printed": "7 A. Amount",
+   "reason": "row 7 under the \"A\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_7B",
+   "html_id": "p3c180",
+   "printed": "7 B. NOLCO Applied (Previous Year/s)",
+   "reason": "row 7 under the \"B\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_7C",
+   "html_id": "p3c181",
+   "printed": "7 C. NOLCO Expired (Unapplied)",
+   "reason": "row 7 under the \"C\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_7D",
+   "html_id": "p3c182",
+   "printed": "7 D. NOLCO Applied (Current Year)",
+   "reason": "row 7 under the \"D\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_7E",
+   "html_id": "p3c183",
+   "printed": "7 E. Net Operating Loss (Unapplied)",
+   "reason": "row 7 under the \"E\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_9Year",
+   "html_id": "p4c17",
+   "printed": "9 Year Incurred",
+   "reason": "row 9 under the \"Year Incurred\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_9A",
+   "html_id": "p4c18",
+   "printed": "9 A. Amount",
+   "reason": "row 9 under the \"A\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_9B",
+   "html_id": "p4c19",
+   "printed": "9 B. NOLCO Applied (Previous Year/s)",
+   "reason": "row 9 under the \"B\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_9C",
+   "html_id": "p4c20",
+   "printed": "9 C. NOLCO Expired (Unapplied)",
+   "reason": "row 9 under the \"C\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_9D",
+   "html_id": "p4c21",
+   "printed": "9 D. NOLCO Applied (Current Year)",
+   "reason": "row 9 under the \"D\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_9E",
+   "html_id": "p4c22",
+   "printed": "9 E. Net Operating Loss (Unapplied)",
+   "reason": "row 9 under the \"E\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_10Year",
+   "html_id": "p4c24",
+   "printed": "10 Year Incurred",
+   "reason": "row 10 under the \"Year Incurred\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_10A",
+   "html_id": "p4c25",
+   "printed": "10 A. Amount",
+   "reason": "row 10 under the \"A\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_10B",
+   "html_id": "p4c26",
+   "printed": "10 B. NOLCO Applied (Previous Year/s)",
+   "reason": "row 10 under the \"B\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_10C",
+   "html_id": "p4c27",
+   "printed": "10 C. NOLCO Expired (Unapplied)",
+   "reason": "row 10 under the \"C\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_10D",
+   "html_id": "p4c28",
+   "printed": "10 D. NOLCO Applied (Current Year)",
+   "reason": "row 10 under the \"D\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_10E",
+   "html_id": "p4c29",
+   "printed": "10 E. Net Operating Loss (Unapplied)",
+   "reason": "row 10 under the \"E\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_11Year",
+   "html_id": "p4c31",
+   "printed": "11 Year Incurred",
+   "reason": "row 11 under the \"Year Incurred\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_11A",
+   "html_id": "p4c32",
+   "printed": "11 A. Amount",
+   "reason": "row 11 under the \"A\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_11B",
+   "html_id": "p4c33",
+   "printed": "11 B. NOLCO Applied (Previous Year/s)",
+   "reason": "row 11 under the \"B\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_11C",
+   "html_id": "p4c34",
+   "printed": "11 C. NOLCO Expired (Unapplied)",
+   "reason": "row 11 under the \"C\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_11D",
+   "html_id": "p4c35",
+   "printed": "11 D. NOLCO Applied (Current Year)",
+   "reason": "row 11 under the \"D\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_11E",
+   "html_id": "p4c36",
+   "printed": "11 E. Net Operating Loss (Unapplied)",
+   "reason": "row 11 under the \"E\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_12Year",
+   "html_id": "p4c38",
+   "printed": "12 Year Incurred",
+   "reason": "row 12 under the \"Year Incurred\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_12A",
+   "html_id": "p4c39",
+   "printed": "12 A. Amount",
+   "reason": "row 12 under the \"A\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_12B",
+   "html_id": "p4c40",
+   "printed": "12 B. NOLCO Applied (Previous Year/s)",
+   "reason": "row 12 under the \"B\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_12C",
+   "html_id": "p4c41",
+   "printed": "12 C. NOLCO Expired (Unapplied)",
+   "reason": "row 12 under the \"C\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_12D",
+   "html_id": "p4c42",
+   "printed": "12 D. NOLCO Applied (Current Year)",
+   "reason": "row 12 under the \"D\" column header"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IShed6_12E",
+   "html_id": "p4c43",
+   "printed": "12 E. Net Operating Loss (Unapplied)",
+   "reason": "row 12 under the \"E\" column header"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "html_ids": [
+    "p3c5",
+    "p4c5"
+   ],
+   "printed": "Pages 2-4 header TIN",
+   "reason": "the TIN comb under each later page's TIN caption: the nine TIN digits (the sheet preprints the branch 0 0 0 0 0 after them)"
+  },
+  {
+   "writer_key": "txtEmail",
+   "html_id": "p1c48",
+   "printed": "11 Email Address",
+   "reason": "the 32-slot comb under the item 11 caption; emails print as typed (not uppercased)"
+  },
+  {
+   "writer_key": "derived:attachments_tens",
+   "html_id": "p1c127",
+   "printed": "33 Number of Attachments (tens)",
+   "reason": "the first of the two digit boxes right of the item 33 caption"
+  },
+  {
+   "writer_key": "derived:attachments_units",
+   "html_id": "p1c128",
+   "printed": "33 Number of Attachments (units)",
+   "reason": "the second digit box right of the item 33 caption"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_9Specify",
+   "html_id": "p4c213",
+   "printed": "Part VII item 9 (specify)",
+   "reason": "the input of the item 9 row cell, inset past the printed caption, left of the A/B amount combs"
+  }
+ ],
+ "money_joins": [],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1701:rdoPg1I2AmendedYes",
+   "html_id": "p1c7",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I2AmendedNo",
+   "html_id": "p1c8",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I3ShortPeriodYes",
+   "html_id": "p1c9",
+   "printed": "3 Short Period Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I3ShortPeriodNo",
+   "html_id": "p1c10",
+   "printed": "3 Short Period Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I6TaxpayerTypeS",
+   "html_id": "p1c23",
+   "printed": "6 Taxpayer Type Single Proprietor",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I6TaxpayerTypeP",
+   "html_id": "p1c24",
+   "printed": "6 Taxpayer Type Professional",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I6TaxpayerTypeE",
+   "html_id": "p1c25",
+   "printed": "6 Taxpayer Type Estate",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I6TaxpayerTypeT",
+   "html_id": "p1c26",
+   "printed": "6 Taxpayer Type Trust",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I6TaxpayerTypeC",
+   "html_id": "p1c27",
+   "printed": "6 Taxpayer Type Compensation Earner",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I7ATC_II012",
+   "html_id": "p1c30",
+   "printed": "7 ATC II012 Business Income-Graduated IT Rates",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I7ATC_II014",
+   "html_id": "p1c29",
+   "printed": "7 ATC II014 Income from Profession-Graduated IT Rates",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I7ATC_II013",
+   "html_id": "p1c31",
+   "printed": "7 ATC II013 Mixed Income-Graduated IT Rates",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I7ATC_II011",
+   "html_id": "p1c32",
+   "printed": "7 ATC II011 Compensation Income",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I7ATC_II015",
+   "html_id": "p1c33",
+   "printed": "7 ATC II015 Business Income - 8% IT Rate",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I7ATC_II017",
+   "html_id": "p1c34",
+   "printed": "7 ATC II017 Income from Profession - 8% IT Rate",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I7ATC_II016",
+   "html_id": "p1c35",
+   "printed": "7 ATC II016 Mixed Income - 8% IT Rate",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I13ForeignTaxCreditsYes",
+   "html_id": "p1c55",
+   "printed": "13 Claiming Foreign Tax Credits? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I13ForeignTaxCreditsNo",
+   "html_id": "p1c56",
+   "printed": "13 Claiming Foreign Tax Credits? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I16CivilStatusS",
+   "html_id": "p1c61",
+   "printed": "16 Civil Status Single",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I16CivilStatusM",
+   "html_id": "p1c62",
+   "printed": "16 Civil Status Married",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I16CivilStatusLS",
+   "html_id": "p1c63",
+   "printed": "16 Civil Status Legally Separated",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I16CivilStatusW",
+   "html_id": "p1c64",
+   "printed": "16 Civil Status Widow/er",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I17SpouseIncomeYes",
+   "html_id": "p1c67",
+   "printed": "17 If married, spouse has income? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I17SpouseIncomeNo",
+   "html_id": "p1c68",
+   "printed": "17 If married, spouse has income? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I18FilingStatusJ",
+   "html_id": "p1c69",
+   "printed": "18 Filing Status Joint Filing",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I18FilingStatusS",
+   "html_id": "p1c70",
+   "printed": "18 Filing Status Separate Filing",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I19IncomeExemptYes",
+   "html_id": "p1c73",
+   "printed": "19 Income EXEMPT from Income Tax? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I19IncomeExemptNo",
+   "html_id": "p1c75",
+   "printed": "19 Income EXEMPT from Income Tax? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I20IncomeSpecialYes",
+   "html_id": "p1c74",
+   "printed": "20 Income subject to SPECIAL/PREFERENTIAL RATE? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I20IncomeSpecialNo",
+   "html_id": "p1c76",
+   "printed": "20 Income subject to SPECIAL/PREFERENTIAL RATE? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I21TaxRateG",
+   "html_id": "p1c78",
+   "printed": "21 Tax Rate Graduated Rates",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I21AMethodDeductionI",
+   "html_id": "p1c79",
+   "printed": "21A Method of Deduction Itemized Deduction",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I21AMethodDeductionO",
+   "html_id": "p1c80",
+   "printed": "21A Method of Deduction Optional Standard Deduction",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1I21TaxRateP",
+   "html_id": "p1c81",
+   "printed": "21 Tax Rate 8% in lieu of Graduated Rates",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1OverpaymentRefund",
+   "html_id": "p1c121",
+   "printed": "Overpayment: To be refunded",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1OverpaymentTCC",
+   "html_id": "p1c122",
+   "printed": "Overpayment: To be issued a Tax Credit Certificate (TCC)",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg1OverpaymentCarryOver",
+   "html_id": "p1c123",
+   "printed": "Overpayment: To be carried over as a tax credit",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I3SpouseTypeS",
+   "html_id": "p2c19",
+   "printed": "3 Filer's Spouse Type Single Proprietor",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I3SpouseTypeP",
+   "html_id": "p2c20",
+   "printed": "3 Filer's Spouse Type Professional",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I3SpouseTypeC",
+   "html_id": "p2c21",
+   "printed": "3 Filer's Spouse Type Compensation Earner",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I4ATC_II012",
+   "html_id": "p2c24",
+   "printed": "4 ATC II012 Business Income-Graduated IT Rates",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I4ATC_II014",
+   "html_id": "p2c23",
+   "printed": "4 ATC II014 Income from Profession-Graduated IT Rates",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I4ATC_II013",
+   "html_id": "p2c25",
+   "printed": "4 ATC II013 Mixed Income-Graduated IT Rates",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I4ATC_II011",
+   "html_id": "p2c29",
+   "printed": "4 ATC II011 Compensation Income",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I4ATC_II015",
+   "html_id": "p2c27",
+   "printed": "4 ATC II015 Business Income - 8% IT Rate",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I4ATC_II017",
+   "html_id": "p2c26",
+   "printed": "4 ATC II017 Income from Profession - 8% IT Rate",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I4ATC_II016",
+   "html_id": "p2c28",
+   "printed": "4 ATC II016 Mixed Income - 8% IT Rate",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I10IncomeExemptYes",
+   "html_id": "p2c42",
+   "printed": "10 Income EXEMPT from Income Tax? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I10IncomeExemptNo",
+   "html_id": "p2c43",
+   "printed": "10 Income EXEMPT from Income Tax? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I11IncomeSpecialYes",
+   "html_id": "p2c41",
+   "printed": "11 Income subject to SPECIAL/PREFERENTIAL RATE? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I11IncomeSpecialNo",
+   "html_id": "p2c44",
+   "printed": "11 Income subject to SPECIAL/PREFERENTIAL RATE? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I12TaxRateG",
+   "html_id": "p2c46",
+   "printed": "12 Tax Rate Graduated Rates",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I12AMethodDeductionI",
+   "html_id": "p2c47",
+   "printed": "12A Method of Deduction Itemized Deduction",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I12AMethodDeductionO",
+   "html_id": "p2c48",
+   "printed": "12A Method of Deduction Optional Standard Deduction",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I12TaxRateP",
+   "html_id": "p2c49",
+   "printed": "12 Tax Rate 8% in lieu of Graduated Rates",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I8ForeignTaxCreditsYes",
+   "html_id": "p2c36-i0",
+   "printed": "8 Claiming Foreign Tax Credits? Yes",
+   "reason": "cell with two boxes under one input name: the first box (input id p2c36-i0, inset 142.6pt) left of the printed Yes"
+  },
+  {
+   "writer_key": "frm1701:rdoPg2I8ForeignTaxCreditsNo",
+   "html_id": "p2c36-i1",
+   "printed": "8 Claiming Foreign Tax Credits? No",
+   "reason": "the second box of the item 8 cell (input id p2c36-i1, inset 185.6pt) left of the printed No"
+  },
+  {
+   "writer_key": "frm1701:chkPg2IShed1a_1Taxpayer",
+   "html_id": "p2c54-i0",
+   "printed": "Schedule 1 row: Taxpayer",
+   "reason": "the upper box of the row mark cell (p2c54-i0), left of the printed Taxpayer label"
+  },
+  {
+   "writer_key": "frm1701:chkPg2IShed1a_1Spouse",
+   "html_id": "p2c54-i1",
+   "printed": "Schedule 1 row: Spouse",
+   "reason": "the lower box of the row mark cell (p2c54-i1), left of the printed Spouse label"
+  },
+  {
+   "writer_key": "frm1701:chkPg2IShed2a_2Taxpayer",
+   "html_id": "p2c59-i0",
+   "printed": "Schedule 2 row: Taxpayer",
+   "reason": "the upper box of the row mark cell (p2c59-i0), left of the printed Taxpayer label"
+  },
+  {
+   "writer_key": "frm1701:chkPg2IShed2a_2Spouse",
+   "html_id": "p2c59-i1",
+   "printed": "Schedule 2 row: Spouse",
+   "reason": "the lower box of the row mark cell (p2c59-i1), left of the printed Spouse label"
+  }
+ ],
+ "peso_joins": [
+  {
+   "writer_key": "frm1701:txtPg1I22ATaxDue",
+   "html_id": "p1c87",
+   "printed": "22 Tax Due (From Part VI Item 5), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I22BTaxDue",
+   "html_id": "p1c88",
+   "printed": "22 Tax Due (From Part VI Item 5), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I23A",
+   "html_id": "p1c90",
+   "printed": "23 Less: Total Tax Credits/Payments (From Part VII Item 10), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I23B",
+   "html_id": "p1c91",
+   "printed": "23 Less: Total Tax Credits/Payments (From Part VII Item 10), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I24ATaxPayable",
+   "html_id": "p1c93",
+   "printed": "24 Tax Payable/(Overpayment) (Item 22 Less Item 23), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I24BTaxPayable",
+   "html_id": "p1c94",
+   "printed": "24 Tax Payable/(Overpayment) (Item 22 Less Item 23), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I25A",
+   "html_id": "p1c96",
+   "printed": "25 Less: Portion of Tax Payable Allowed for 2nd Installment, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I25B",
+   "html_id": "p1c97",
+   "printed": "25 Less: Portion of Tax Payable Allowed for 2nd Installment, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I26A",
+   "html_id": "p1c99",
+   "printed": "26 Amount of Tax Payable/(Overpayment) (Item 24 Less Item 25), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I26B",
+   "html_id": "p1c100",
+   "printed": "26 Amount of Tax Payable/(Overpayment) (Item 24 Less Item 25), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I27A",
+   "html_id": "p1c102",
+   "printed": "27 Interest, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I27B",
+   "html_id": "p1c103",
+   "printed": "27 Interest, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I28A",
+   "html_id": "p1c105",
+   "printed": "28 Surcharge, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I28B",
+   "html_id": "p1c106",
+   "printed": "28 Surcharge, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I29A",
+   "html_id": "p1c108",
+   "printed": "29 Compromise, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I29B",
+   "html_id": "p1c109",
+   "printed": "29 Compromise, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I30A",
+   "html_id": "p1c111",
+   "printed": "30 Total Penalties (Sum of Items 27 to 29), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I30B",
+   "html_id": "p1c112",
+   "printed": "30 Total Penalties (Sum of Items 27 to 29), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I31ATotalAmtPyble",
+   "html_id": "p1c114",
+   "printed": "31 Total Amount Payable/(Overpayment) (Sum of Items 26 and 30), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I31BTotalAmtPyble",
+   "html_id": "p1c115",
+   "printed": "31 Total Amount Payable/(Overpayment) (Sum of Items 26 and 30), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I32AggregateAmtPyble",
+   "html_id": "p1c117",
+   "printed": "32 Aggregate Amount Payable/(Overpayment) (Sum of Items 31A and 31B)",
+   "reason": "single column total row"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I34Amount",
+   "html_id": "p1c142",
+   "printed": "34 Cash/Bank Debit Memo, Amount",
+   "reason": "Amount column of the Part III row"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I35Amount",
+   "html_id": "p1c149",
+   "printed": "35 Check, Amount",
+   "reason": "Amount column of the Part III row"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I36Amount",
+   "html_id": "p1c155",
+   "printed": "36 Tax Debit Memo, Amount",
+   "reason": "Amount column of the Part III row"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I37Amount",
+   "html_id": "p1c163",
+   "printed": "37 Others, Amount",
+   "reason": "Amount column of the Part III row"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed1c_1CI",
+   "html_id": "p2c68",
+   "printed": "1 Gross Compensation Income",
+   "reason": "Compensation Income column of the item row"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed1c_1TW",
+   "html_id": "p2c69",
+   "printed": "1 Total Tax Withheld",
+   "reason": "Tax Withheld column of the item row"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed1c_2CI",
+   "html_id": "p2c71",
+   "printed": "2 Gross Compensation Income",
+   "reason": "Compensation Income column of the item row"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed1c_2TW",
+   "html_id": "p2c72",
+   "printed": "2 Total Tax Withheld",
+   "reason": "Tax Withheld column of the item row"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed1c_3ACI",
+   "html_id": "p2c74",
+   "printed": "3A Gross Compensation Income",
+   "reason": "Compensation Income column of the item row"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed1c_3ATW",
+   "html_id": "p2c75",
+   "printed": "3A Total Tax Withheld",
+   "reason": "Tax Withheld column of the item row"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed1c_3BCI",
+   "html_id": "p2c77",
+   "printed": "3B Gross Compensation Income",
+   "reason": "Compensation Income column of the item row"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed1c_3BTW",
+   "html_id": "p2c78",
+   "printed": "3B Total Tax Withheld",
+   "reason": "Tax Withheld column of the item row"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed2_4A",
+   "html_id": "p2c84",
+   "printed": "4 Gross Compensation Income (From Part V Schedule 1 Item 3Ac/3Bc), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed2_4B",
+   "html_id": "p2c85",
+   "printed": "4 Gross Compensation Income (From Part V Schedule 1 Item 3Ac/3Bc), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed2_5A",
+   "html_id": "p2c87",
+   "printed": "5 Less: Non-Taxable/Exempt Compensation, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed2_5B",
+   "html_id": "p2c88",
+   "printed": "5 Less: Non-Taxable/Exempt Compensation, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed2_6A",
+   "html_id": "p2c90",
+   "printed": "6 Taxable Compensation Income (Item 4 Less Item 5), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed2_6B",
+   "html_id": "p2c91",
+   "printed": "6 Taxable Compensation Income (Item 4 Less Item 5), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed2_7A",
+   "html_id": "p2c93",
+   "printed": "7 Tax Due-Compensation Income (Item 6 x applicable rate), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed2_7B",
+   "html_id": "p2c94",
+   "printed": "7 Tax Due-Compensation Income (Item 6 x applicable rate), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_8A",
+   "html_id": "p2c98",
+   "printed": "8 Sales/Revenues/Receipts/Fees, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_8B",
+   "html_id": "p2c99",
+   "printed": "8 Sales/Revenues/Receipts/Fees, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_9A",
+   "html_id": "p2c101",
+   "printed": "9 Less: Sales Returns, Allowances and Discounts, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_9B",
+   "html_id": "p2c102",
+   "printed": "9 Less: Sales Returns, Allowances and Discounts, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_10A",
+   "html_id": "p2c104",
+   "printed": "10 Net Sales/Revenues/Receipts/Fees (Item 8 Less Item 9), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_10B",
+   "html_id": "p2c105",
+   "printed": "10 Net Sales/Revenues/Receipts/Fees (Item 8 Less Item 9), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_11A",
+   "html_id": "p2c107",
+   "printed": "11 Less: Cost of Sales/Services, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_11B",
+   "html_id": "p2c108",
+   "printed": "11 Less: Cost of Sales/Services, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_12A",
+   "html_id": "p2c110",
+   "printed": "12 Gross Income/(Loss) from Operation (Item 10 Less Item 11), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_12B",
+   "html_id": "p2c111",
+   "printed": "12 Gross Income/(Loss) from Operation (Item 10 Less Item 11), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_13A",
+   "html_id": "p2c114",
+   "printed": "13 Ordinary Allowable Itemized Deductions, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_13B",
+   "html_id": "p2c115",
+   "printed": "13 Ordinary Allowable Itemized Deductions, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_14A",
+   "html_id": "p2c117",
+   "printed": "14 Special Allowable Itemized Deductions, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_14B",
+   "html_id": "p2c118",
+   "printed": "14 Special Allowable Itemized Deductions, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_15A",
+   "html_id": "p2c120",
+   "printed": "15 Allowance for Net Operating Loss Carry Over (NOLCO), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_15B",
+   "html_id": "p2c121",
+   "printed": "15 Allowance for Net Operating Loss Carry Over (NOLCO), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_16A",
+   "html_id": "p2c123",
+   "printed": "16 Total Allowable Itemized Deductions (Sum of Items 13 to 15), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_16B",
+   "html_id": "p2c124",
+   "printed": "16 Total Allowable Itemized Deductions (Sum of Items 13 to 15), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_17A",
+   "html_id": "p2c127",
+   "printed": "17 Optional Standard Deduction (OSD) (40% of Item 10), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_17B",
+   "html_id": "p2c128",
+   "printed": "17 Optional Standard Deduction (OSD) (40% of Item 10), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_18A",
+   "html_id": "p2c130",
+   "printed": "18 Taxable Income (Item 12 Less Item 16, or Item 10 Less Item 17), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_18B",
+   "html_id": "p2c131",
+   "printed": "18 Taxable Income (Item 12 Less Item 16, or Item 10 Less Item 17), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_19A",
+   "html_id": "p2c136",
+   "printed": "19 Other Non-Operating Income, item 19, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_19B",
+   "html_id": "p2c137",
+   "printed": "19 Other Non-Operating Income, item 19, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_20A",
+   "html_id": "p2c141",
+   "printed": "20 Other Non-Operating Income, item 20, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_20B",
+   "html_id": "p2c142",
+   "printed": "20 Other Non-Operating Income, item 20, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_21A",
+   "html_id": "p2c144",
+   "printed": "21 Share in Income by a Partner from General Professional Partnership, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_21B",
+   "html_id": "p2c145",
+   "printed": "21 Share in Income by a Partner from General Professional Partnership, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_22A",
+   "html_id": "p2c147",
+   "printed": "22 Total Other Non-Operating Income (Sum of Items 19 to 21), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_22B",
+   "html_id": "p2c148",
+   "printed": "22 Total Other Non-Operating Income (Sum of Items 19 to 21), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_23A",
+   "html_id": "p2c150",
+   "printed": "23 Taxable Income-Business (Sum of Items 18 and 22), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_23B",
+   "html_id": "p2c151",
+   "printed": "23 Taxable Income-Business (Sum of Items 18 and 22), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_24A",
+   "html_id": "p2c153",
+   "printed": "24 Total Taxable Income - Compensation & Business, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_24B",
+   "html_id": "p2c154",
+   "printed": "24 Total Taxable Income - Compensation & Business, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_25A",
+   "html_id": "p2c156",
+   "printed": "25 Tax Due-Compensation and Business Income (under graduated rates), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg2IShed3_25B",
+   "html_id": "p2c157",
+   "printed": "25 Tax Due-Compensation and Business Income (under graduated rates), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_26A",
+   "html_id": "p3c12",
+   "printed": "26 Sales/Revenues/Receipts/Fees (net of sales returns, allowances and discounts), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_26B",
+   "html_id": "p3c13",
+   "printed": "26 Sales/Revenues/Receipts/Fees (net of sales returns, allowances and discounts), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_27A",
+   "html_id": "p3c18",
+   "printed": "27 Add: Other Non-Operating Income (specify below), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_27B",
+   "html_id": "p3c19",
+   "printed": "27 Add: Other Non-Operating Income (specify below), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_28A",
+   "html_id": "p3c21",
+   "printed": "28 Total Income (Sum of Items 26 and 27), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_28B",
+   "html_id": "p3c22",
+   "printed": "28 Total Income (Sum of Items 26 and 27), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_29A",
+   "html_id": "p3c24",
+   "printed": "29 Less: Allowable reduction from gross sales/receipts and other non-operating income, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_29B",
+   "html_id": "p3c25",
+   "printed": "29 Less: Allowable reduction from gross sales/receipts and other non-operating income, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_30A",
+   "html_id": "p3c27",
+   "printed": "30 Item 28 Less Item 29, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_30B",
+   "html_id": "p3c28",
+   "printed": "30 Item 28 Less Item 29, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_31A",
+   "html_id": "p3c30",
+   "printed": "31 Tax Due-Business Income (Item 30 x 8% Flat Income Tax Rate), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_31B",
+   "html_id": "p3c31",
+   "printed": "31 Tax Due-Business Income (Item 30 x 8% Flat Income Tax Rate), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_32A",
+   "html_id": "p3c33",
+   "printed": "32 Sum of Items 7 and 31 (To Part VI Item 1), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed3_32B",
+   "html_id": "p3c34",
+   "printed": "32 Sum of Items 7 and 31 (To Part VI Item 1), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_1A",
+   "html_id": "p3c37",
+   "printed": "1 Amortizations, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_1B",
+   "html_id": "p3c38",
+   "printed": "1 Amortizations, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_2A",
+   "html_id": "p3c40",
+   "printed": "2 Bad Debts, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_2B",
+   "html_id": "p3c41",
+   "printed": "2 Bad Debts, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_3A",
+   "html_id": "p3c43",
+   "printed": "3 Charitable and Other Contributions, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_3B",
+   "html_id": "p3c44",
+   "printed": "3 Charitable and Other Contributions, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_4A",
+   "html_id": "p3c46",
+   "printed": "4 Depletion, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_4B",
+   "html_id": "p3c47",
+   "printed": "4 Depletion, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_5A",
+   "html_id": "p3c49",
+   "printed": "5 Depreciation, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_5B",
+   "html_id": "p3c50",
+   "printed": "5 Depreciation, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_6A",
+   "html_id": "p3c52",
+   "printed": "6 Entertainment, Amusement and Recreation, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_6B",
+   "html_id": "p3c53",
+   "printed": "6 Entertainment, Amusement and Recreation, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_7A",
+   "html_id": "p3c55",
+   "printed": "7 Fringe Benefits, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_7B",
+   "html_id": "p3c56",
+   "printed": "7 Fringe Benefits, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_8A",
+   "html_id": "p3c58",
+   "printed": "8 Interest, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_8B",
+   "html_id": "p3c59",
+   "printed": "8 Interest, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_9A",
+   "html_id": "p3c61",
+   "printed": "9 Losses, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_9B",
+   "html_id": "p3c62",
+   "printed": "9 Losses, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_10A",
+   "html_id": "p3c64",
+   "printed": "10 Pension Trusts, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_10B",
+   "html_id": "p3c65",
+   "printed": "10 Pension Trusts, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_11A",
+   "html_id": "p3c67",
+   "printed": "11 Rental, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_11B",
+   "html_id": "p3c68",
+   "printed": "11 Rental, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_12A",
+   "html_id": "p3c70",
+   "printed": "12 Research and Development, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_12B",
+   "html_id": "p3c71",
+   "printed": "12 Research and Development, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_13A",
+   "html_id": "p3c73",
+   "printed": "13 Salaries, Wages and Allowances, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_13B",
+   "html_id": "p3c74",
+   "printed": "13 Salaries, Wages and Allowances, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_14A",
+   "html_id": "p3c76",
+   "printed": "14 SSS, GSIS, Philhealth, HDMF and Other Contributions, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_14B",
+   "html_id": "p3c77",
+   "printed": "14 SSS, GSIS, Philhealth, HDMF and Other Contributions, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_15A",
+   "html_id": "p3c79",
+   "printed": "15 Taxes and Licenses, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_15B",
+   "html_id": "p3c80",
+   "printed": "15 Taxes and Licenses, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_16A",
+   "html_id": "p3c82",
+   "printed": "16 Transportation and Travel, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_16B",
+   "html_id": "p3c83",
+   "printed": "16 Transportation and Travel, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_18A",
+   "html_id": "p3c103",
+   "printed": "18 Total Ordinary Allowable Itemized Deductions (Sum of Items 1 to 17d), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_18B",
+   "html_id": "p3c104",
+   "printed": "18 Total Ordinary Allowable Itemized Deductions (Sum of Items 1 to 17d), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_17aA",
+   "html_id": "p3c87",
+   "printed": "17a (Schedule 4), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_17aB",
+   "html_id": "p3c88",
+   "printed": "17a (Schedule 4), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_17bA",
+   "html_id": "p3c91",
+   "printed": "17b (Schedule 4), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_17bB",
+   "html_id": "p3c92",
+   "printed": "17b (Schedule 4), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_17cA",
+   "html_id": "p3c95",
+   "printed": "17c (Schedule 4), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_17cB",
+   "html_id": "p3c96",
+   "printed": "17c (Schedule 4), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_17dA",
+   "html_id": "p3c100",
+   "printed": "17d (Schedule 4), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed4_17dB",
+   "html_id": "p3c101",
+   "printed": "17d (Schedule 4), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_1Amt",
+   "html_id": "p3c113",
+   "printed": "Schedule 5 1 Amount",
+   "reason": "Amount column of the Schedule 5 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_2Amt",
+   "html_id": "p3c118",
+   "printed": "Schedule 5 2 Amount",
+   "reason": "Amount column of the Schedule 5 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_3",
+   "html_id": "p3c120",
+   "printed": "Schedule 5 3 Sum of Items 1 and 2",
+   "reason": "Amount column of the Schedule 5 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_4Amt",
+   "html_id": "p3c126",
+   "printed": "Schedule 5 4 Amount",
+   "reason": "Amount column of the Schedule 5 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_5Amt",
+   "html_id": "p3c131",
+   "printed": "Schedule 5 5 Amount",
+   "reason": "Amount column of the Schedule 5 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed5_6",
+   "html_id": "p3c133",
+   "printed": "Schedule 5 6 Sum of Items 4 and 5",
+   "reason": "Amount column of the Schedule 5 row"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_1A",
+   "html_id": "p3c140",
+   "printed": "1 Gross Income, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_1B",
+   "html_id": "p3c141",
+   "printed": "1 Gross Income, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_2A",
+   "html_id": "p3c143",
+   "printed": "2 Less: Ordinary Allowable Itemized Deductions, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_2B",
+   "html_id": "p3c144",
+   "printed": "2 Less: Ordinary Allowable Itemized Deductions, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_3A",
+   "html_id": "p3c146",
+   "printed": "3 Net Operating Loss (Item 1 Less Item 2), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg3IShed6_3B",
+   "html_id": "p3c147",
+   "printed": "3 Net Operating Loss (Item 1 Less Item 2), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_1A",
+   "html_id": "p4c66",
+   "printed": "1 Prior Year's Excess Credits, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_1B",
+   "html_id": "p4c67",
+   "printed": "1 Prior Year's Excess Credits, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_2A",
+   "html_id": "p4c69",
+   "printed": "2 Tax Payments for the First Three (3) Quarters, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_2B",
+   "html_id": "p4c70",
+   "printed": "2 Tax Payments for the First Three (3) Quarters, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_3A",
+   "html_id": "p4c72",
+   "printed": "3 Creditable Tax Withheld for the First Three (3) Quarters, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_3B",
+   "html_id": "p4c73",
+   "printed": "3 Creditable Tax Withheld for the First Three (3) Quarters, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_4A",
+   "html_id": "p4c75",
+   "printed": "4 Creditable Tax Withheld for the 4th Quarter, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_4B",
+   "html_id": "p4c76",
+   "printed": "4 Creditable Tax Withheld for the 4th Quarter, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_5A",
+   "html_id": "p4c78",
+   "printed": "5 Creditable Tax Withheld per BIR Form No. 2316, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_5B",
+   "html_id": "p4c79",
+   "printed": "5 Creditable Tax Withheld per BIR Form No. 2316, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_6A",
+   "html_id": "p4c81",
+   "printed": "6 Tax Paid in Return Previously Filed, if Amended, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_6B",
+   "html_id": "p4c82",
+   "printed": "6 Tax Paid in Return Previously Filed, if Amended, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_7A",
+   "html_id": "p4c84",
+   "printed": "7 Foreign Tax Credits, if applicable, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_7B",
+   "html_id": "p4c85",
+   "printed": "7 Foreign Tax Credits, if applicable, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_8A",
+   "html_id": "p4c87",
+   "printed": "8 Special Tax Credits, if applicable (To Part VIII Item 6), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_8B",
+   "html_id": "p4c88",
+   "printed": "8 Special Tax Credits, if applicable (To Part VIII Item 6), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_9A",
+   "html_id": "p4c90",
+   "printed": "9 Other Tax Credits/Payments (specify), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_9B",
+   "html_id": "p4c91",
+   "printed": "9 Other Tax Credits/Payments (specify), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_10A",
+   "html_id": "p4c93",
+   "printed": "10 Total Tax Credits/Payments (Sum of Items 1 to 9), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart7_10B",
+   "html_id": "p4c94",
+   "printed": "10 Total Tax Credits/Payments (Sum of Items 1 to 9), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_1A",
+   "html_id": "p4c98",
+   "printed": "1 Regular Income Tax Otherwise Due (special rate), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_1B",
+   "html_id": "p4c99",
+   "printed": "1 Regular Income Tax Otherwise Due (special rate), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_2A",
+   "html_id": "p4c101",
+   "printed": "2 Tax Relief on Special Allowable Itemized Deductions, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_2B",
+   "html_id": "p4c102",
+   "printed": "2 Tax Relief on Special Allowable Itemized Deductions, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_3A",
+   "html_id": "p4c104",
+   "printed": "3 Sub-Total - Tax Relief (Sum of Items 1 and 2), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_3B",
+   "html_id": "p4c105",
+   "printed": "3 Sub-Total - Tax Relief (Sum of Items 1 and 2), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_4A",
+   "html_id": "p4c107",
+   "printed": "4 Less: Income Tax Due, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_4B",
+   "html_id": "p4c108",
+   "printed": "4 Less: Income Tax Due, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_5A",
+   "html_id": "p4c110",
+   "printed": "5 Tax Relief Availment Before Special Tax Credit (Item 3 Less Item 4), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_5B",
+   "html_id": "p4c111",
+   "printed": "5 Tax Relief Availment Before Special Tax Credit (Item 3 Less Item 4), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_6A",
+   "html_id": "p4c113",
+   "printed": "6 Add: Special Tax Credit, if any, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_6B",
+   "html_id": "p4c114",
+   "printed": "6 Add: Special Tax Credit, if any, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_7A",
+   "html_id": "p4c116",
+   "printed": "7 Total Tax Relief Availment - SPECIAL, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_7B",
+   "html_id": "p4c117",
+   "printed": "7 Total Tax Relief Availment - SPECIAL, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_8A",
+   "html_id": "p4c120",
+   "printed": "8 Regular Income Tax Otherwise Due (exempt), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_8B",
+   "html_id": "p4c121",
+   "printed": "8 Regular Income Tax Otherwise Due (exempt), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_9A",
+   "html_id": "p4c123",
+   "printed": "9 Tax Relief on Special Allowable Itemized Deductions (exempt), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_9B",
+   "html_id": "p4c124",
+   "printed": "9 Tax Relief on Special Allowable Itemized Deductions (exempt), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_10A",
+   "html_id": "p4c126",
+   "printed": "10 Total Tax Relief Availment - EXEMPT (Sum of Items 8 and 9), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart8_10B",
+   "html_id": "p4c127",
+   "printed": "10 Total Tax Relief Availment - EXEMPT (Sum of Items 8 and 9), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_1A",
+   "html_id": "p4c133",
+   "printed": "1 Net Income/(Loss) per Books, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_1B",
+   "html_id": "p4c134",
+   "printed": "1 Net Income/(Loss) per Books, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_2A",
+   "html_id": "p4c139",
+   "printed": "2 Add: Non-Deductible Expenses/Taxable Other Income, item 2, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_2B",
+   "html_id": "p4c140",
+   "printed": "2 Add: Non-Deductible Expenses/Taxable Other Income, item 2, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_3A",
+   "html_id": "p4c144",
+   "printed": "3 Add: Non-Deductible Expenses/Taxable Other Income, item 3, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_3B",
+   "html_id": "p4c145",
+   "printed": "3 Add: Non-Deductible Expenses/Taxable Other Income, item 3, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_4A",
+   "html_id": "p4c149",
+   "printed": "4 Add: Non-Deductible Expenses/Taxable Other Income, item 4, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_4B",
+   "html_id": "p4c150",
+   "printed": "4 Add: Non-Deductible Expenses/Taxable Other Income, item 4, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_5A",
+   "html_id": "p4c152",
+   "printed": "5 Total (Sum of Items 1 to 4), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_5B",
+   "html_id": "p4c153",
+   "printed": "5 Total (Sum of Items 1 to 4), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_6A",
+   "html_id": "p4c158",
+   "printed": "6 Less: A) Non-Taxable Income and Income Subjected to Final Tax, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_6B",
+   "html_id": "p4c159",
+   "printed": "6 Less: A) Non-Taxable Income and Income Subjected to Final Tax, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_7A",
+   "html_id": "p4c163",
+   "printed": "7 Less: item 7, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_7B",
+   "html_id": "p4c164",
+   "printed": "7 Less: item 7, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_8A",
+   "html_id": "p4c169",
+   "printed": "8 B) Special/Other Allowable Deductions, A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_8B",
+   "html_id": "p4c170",
+   "printed": "8 B) Special/Other Allowable Deductions, B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_9A",
+   "html_id": "p4c174",
+   "printed": "9 Other allowable deduction (specify), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_9B",
+   "html_id": "p4c175",
+   "printed": "9 Other allowable deduction (specify), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_10A",
+   "html_id": "p4c177",
+   "printed": "10 Total (Sum of Items 6 to 9), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_10B",
+   "html_id": "p4c178",
+   "printed": "10 Total (Sum of Items 6 to 9), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_11A",
+   "html_id": "p4c180",
+   "printed": "11 Net Taxable Income/(Loss) (Item 5 Less Item 10), A. Taxpayer/Filer",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4IPart9_11B",
+   "html_id": "p4c181",
+   "printed": "11 Net Taxable Income/(Loss) (Item 5 Less Item 10), B. Spouse",
+   "reason": "item row caption and A/B column name the key; whole pesos, no centavo comb"
+  },
+  {
+   "writer_key": "frm1701:txtPg4ISc6_1A",
+   "html_id": "p4c50",
+   "printed": "PART VI Summary of Income Tax Due item 1, column A",
+   "reason": "9-slot whole-peso comb on the Part VI item 1 row, column A (the official layout names txtPg4ISc6_1 as Part VI item 1)"
+  },
+  {
+   "writer_key": "frm1701:txtPg4ISc6_1B",
+   "html_id": "p4c51",
+   "printed": "PART VI Summary of Income Tax Due item 1, column B",
+   "reason": "9-slot whole-peso comb on the Part VI item 1 row, column B (the official layout names txtPg4ISc6_1 as Part VI item 1)"
+  },
+  {
+   "writer_key": "frm1701:txtPg4ISc6_2A",
+   "html_id": "p4c53",
+   "printed": "PART VI Summary of Income Tax Due item 2, column A",
+   "reason": "9-slot whole-peso comb on the Part VI item 2 row, column A (the official layout names txtPg4ISc6_2 as Part VI item 2)"
+  },
+  {
+   "writer_key": "frm1701:txtPg4ISc6_2B",
+   "html_id": "p4c54",
+   "printed": "PART VI Summary of Income Tax Due item 2, column B",
+   "reason": "9-slot whole-peso comb on the Part VI item 2 row, column B (the official layout names txtPg4ISc6_2 as Part VI item 2)"
+  },
+  {
+   "writer_key": "frm1701:txtPg4ISc6_3A",
+   "html_id": "p4c56",
+   "printed": "PART VI Summary of Income Tax Due item 3, column A",
+   "reason": "9-slot whole-peso comb on the Part VI item 3 row, column A (the official layout names txtPg4ISc6_3 as Part VI item 3)"
+  },
+  {
+   "writer_key": "frm1701:txtPg4ISc6_3B",
+   "html_id": "p4c57",
+   "printed": "PART VI Summary of Income Tax Due item 3, column B",
+   "reason": "9-slot whole-peso comb on the Part VI item 3 row, column B (the official layout names txtPg4ISc6_3 as Part VI item 3)"
+  },
+  {
+   "writer_key": "frm1701:txtPg4ISc6_4A",
+   "html_id": "p4c59",
+   "printed": "PART VI Summary of Income Tax Due item 4, column A",
+   "reason": "9-slot whole-peso comb on the Part VI item 4 row, column A (the official layout names txtPg4ISc6_4 as Part VI item 4)"
+  },
+  {
+   "writer_key": "frm1701:txtPg4ISc6_4B",
+   "html_id": "p4c60",
+   "printed": "PART VI Summary of Income Tax Due item 4, column B",
+   "reason": "9-slot whole-peso comb on the Part VI item 4 row, column B (the official layout names txtPg4ISc6_4 as Part VI item 4)"
+  },
+  {
+   "writer_key": "frm1701:txtPg4ISc6_5A",
+   "html_id": "p4c62",
+   "printed": "PART VI Summary of Income Tax Due item 5, column A",
+   "reason": "9-slot whole-peso comb on the Part VI item 5 row, column A (the official layout names txtPg4ISc6_5 as Part VI item 5)"
+  },
+  {
+   "writer_key": "frm1701:txtPg4ISc6_5B",
+   "html_id": "p4c63",
+   "printed": "PART VI Summary of Income Tax Due item 5, column B",
+   "reason": "9-slot whole-peso comb on the Part VI item 5 row, column B (the official layout names txtPg4ISc6_5 as Part VI item 5)"
+  }
+ ],
+ "date_joins": [
+  {
+   "writer_key": "frm1701:txtPg1I10BirthDate",
+   "mm_html_id": "p1c45",
+   "dd_html_id": "p1c46",
+   "yyyy_html_id": "p1c47",
+   "printed": "10 Date of Birth (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the item 10 caption; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I34Date",
+   "mm_html_id": "p1c139",
+   "dd_html_id": "p1c140",
+   "yyyy_html_id": "p1c141",
+   "printed": "Part III row 34, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part III Date column on the row 34 line; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I35Date",
+   "mm_html_id": "p1c146",
+   "dd_html_id": "p1c147",
+   "yyyy_html_id": "p1c148",
+   "printed": "Part III row 35, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part III Date column on the row 35 line; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I36Date",
+   "mm_html_id": "p1c152",
+   "dd_html_id": "p1c153",
+   "yyyy_html_id": "p1c154",
+   "printed": "Part III row 36, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part III Date column on the row 36 line; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I37Date",
+   "mm_html_id": "p1c160",
+   "dd_html_id": "p1c161",
+   "yyyy_html_id": "p1c162",
+   "printed": "Part III row 37, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part III Date column on the row 37 line; one writer date split across the three"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm1701:txtPg2TIN1",
+    "frm1701:txtPg2TIN2",
+    "frm1701:txtPg2TIN3",
+    "frm1701:txtPg3TIN1",
+    "frm1701:txtPg3TIN2",
+    "frm1701:txtPg3TIN3",
+    "frm1701:txtPg4TIN1",
+    "frm1701:txtPg4TIN2",
+    "frm1701:txtPg4TIN3"
+   ],
+   "reason": "prints from derived:tin_digits (the print map shapes the nine TIN digits of the page 2-4 headers for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1701:txtPg1I4BranchCode",
+    "frm1701:txtPg2BranchCode",
+    "frm1701:txtPg3BranchCode",
+    "frm1701:txtPg4BranchCode"
+   ],
+   "reason": "branch code: the sheet preprints 0 0 0 0 0 beside each TIN comb (no fillable branch cells)"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I33NumberOfAttachments",
+   "reason": "prints from derived:attachments_tens / derived:attachments_units (the print map shapes Item 33 over its two digit boxes for the sheet)"
+  },
+  {
+   "writer_key": "frm1701:txtPg1I1Month",
+   "reason": "item 1 prints only a YYYY comb on the 2018 sheet; the fiscal month has no box"
+  },
+  {
+   "writer_key": "frm1701:txtVersion",
+   "reason": "form version stamp of the eBIRForms page, not on the paper form"
+  },
+  {
+   "writer_keys": [
+    "frm1701:txtCurrentPage",
+    "frm1701:txtMaxPage"
+   ],
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c125",
+   "reason": "signature block line (authorized representative): no layout key"
+  },
+  {
+   "html_id": "p2c55",
+   "reason": "Schedule 1/2 employer name and TIN rows: the Taxpayer/Spouse row cannot be matched to the 1a/2a name keys without the checkbox cells (none on the sheet), and the 14-slot employer TIN does not match the three-key TIN layout"
+  },
+  {
+   "html_id": "p2c56",
+   "reason": "Schedule 1/2 employer name and TIN rows: the Taxpayer/Spouse row cannot be matched to the 1a/2a name keys without the checkbox cells (none on the sheet), and the 14-slot employer TIN does not match the three-key TIN layout"
+  },
+  {
+   "html_id": "p2c58",
+   "reason": "Schedule 1/2 employer name and TIN rows: the Taxpayer/Spouse row cannot be matched to the 1a/2a name keys without the checkbox cells (none on the sheet), and the 14-slot employer TIN does not match the three-key TIN layout"
+  },
+  {
+   "html_id": "p2c60",
+   "reason": "Schedule 1/2 employer name and TIN rows: the Taxpayer/Spouse row cannot be matched to the 1a/2a name keys without the checkbox cells (none on the sheet), and the 14-slot employer TIN does not match the three-key TIN layout"
+  },
+  {
+   "html_id": "p2c61",
+   "reason": "Schedule 1/2 employer name and TIN rows: the Taxpayer/Spouse row cannot be matched to the 1a/2a name keys without the checkbox cells (none on the sheet), and the 14-slot employer TIN does not match the three-key TIN layout"
+  },
+  {
+   "html_id": "p2c63",
+   "reason": "Schedule 1/2 employer name and TIN rows: the Taxpayer/Spouse row cannot be matched to the 1a/2a name keys without the checkbox cells (none on the sheet), and the 14-slot employer TIN does not match the three-key TIN layout"
+  }
+ ]
+}

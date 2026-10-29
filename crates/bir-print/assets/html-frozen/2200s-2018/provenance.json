@@ -1,0 +1,72 @@
+{
+  "slug": "2200s-2018",
+  "code": "2200S",
+  "revision": "2018",
+  "variant": "",
+  "in_corpus": false,
+  "source_file": "2200-S Jan 2018 rev2.pdf",
+  "sha256": "2626eab0f2681bd811d12ae6ed60e177d1961e4f462be5ed453d674f3418671b",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 3,
+  "pages": 2,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Calibri",
+    "Times New Roman"
+  ],
+  "rules": 781,
+  "text_runs": 279,
+  "images": 3,
+  "cells": 288,
+  "comb_cells": 65,
+  "growables": [],
+  "sources": [
+    {
+      "role": "form",
+      "file": "2200-S Jan 2018 rev2.pdf",
+      "sha256": "2626eab0f2681bd811d12ae6ed60e177d1961e4f462be5ed453d674f3418671b"
+    },
+    {
+      "role": "guide",
+      "file": "2200-S Jan 2018 Guide revised.pdf",
+      "sha256": "968ce5e240cfb1ad53ec831d5cd6a94493087bdeefaac88b0d536938cc784062"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "standalone-pdf"
+    ],
+    "moved_from_form": [],
+    "standalone_pdfs": [
+      {
+        "file": "2200-S Jan 2018 Guide revised.pdf",
+        "sha256": "968ce5e240cfb1ad53ec831d5cd6a94493087bdeefaac88b0d536938cc784062",
+        "linked_as": "guides/2200-S Jan 2018 Guide revised.pdf",
+        "reflowed_into": "guide.html"
+      }
+    ],
+    "reclaimed_pt_total": 0,
+    "reclaimed_pct_mean": 0,
+    "reclaimed_pct_min": 0,
+    "reclaimed_pct_max": 0,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [],
+    "standalone_pdfs": [
+      "2200-S Jan 2018 Guide revised.pdf"
+    ]
+  },
+  "html_bytes": 591142,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

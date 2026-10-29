@@ -1,0 +1,518 @@
+[
+  {
+    "region_code": "010000000",
+    "code": "012800000",
+    "name": "ILOCOS NORTE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "010000000",
+    "code": "012900000",
+    "name": "ILOCOS SUR",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "010000000",
+    "code": "013300000",
+    "name": "LA UNION",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "010000000",
+    "code": "015500000",
+    "name": "PANGASINAN",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "020000000",
+    "code": "020900000",
+    "name": "BATANES",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "020000000",
+    "code": "021500000",
+    "name": "CAGAYAN",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "020000000",
+    "code": "023100000",
+    "name": "ISABELA",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "020000000",
+    "code": "025000000",
+    "name": "NUEVA VIZCAYA",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "020000000",
+    "code": "025700000",
+    "name": "QUIRINO",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "030000000",
+    "code": "030800000",
+    "name": "BATAAN",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "030000000",
+    "code": "031400000",
+    "name": "BULACAN",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "030000000",
+    "code": "034900000",
+    "name": "NUEVA ECIJA",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "030000000",
+    "code": "035400000",
+    "name": "PAMPANGA",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "030000000",
+    "code": "036900000",
+    "name": "TARLAC",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "030000000",
+    "code": "037100000",
+    "name": "ZAMBALES",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "030000000",
+    "code": "037700000",
+    "name": "AURORA",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "040000000",
+    "code": "041000000",
+    "name": "BATANGAS",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "040000000",
+    "code": "042100000",
+    "name": "CAVITE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "040000000",
+    "code": "043400000",
+    "name": "LAGUNA",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "040000000",
+    "code": "045600000",
+    "name": "QUEZON",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "040000000",
+    "code": "045800000",
+    "name": "RIZAL",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "050000000",
+    "code": "050500000",
+    "name": "ALBAY",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "050000000",
+    "code": "051600000",
+    "name": "CAMARINES NORTE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "050000000",
+    "code": "051700000",
+    "name": "CAMARINES SUR",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "050000000",
+    "code": "052000000",
+    "name": "CATANDUANES",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "050000000",
+    "code": "054100000",
+    "name": "MASBATE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "050000000",
+    "code": "056200000",
+    "name": "SORSOGON",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "060000000",
+    "code": "060400000",
+    "name": "AKLAN",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "060000000",
+    "code": "060600000",
+    "name": "ANTIQUE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "060000000",
+    "code": "061900000",
+    "name": "CAPIZ",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "060000000",
+    "code": "063000000",
+    "name": "ILOILO",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "060000000",
+    "code": "064500000",
+    "name": "NEGROS OCCIDENTAL",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "060000000",
+    "code": "067900000",
+    "name": "GUIMARAS",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "070000000",
+    "code": "071200000",
+    "name": "BOHOL",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "070000000",
+    "code": "072200000",
+    "name": "CEBU",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "070000000",
+    "code": "074600000",
+    "name": "NEGROS ORIENTAL",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "070000000",
+    "code": "076100000",
+    "name": "SIQUIJOR",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "080000000",
+    "code": "082600000",
+    "name": "EASTERN SAMAR",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "080000000",
+    "code": "083700000",
+    "name": "LEYTE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "080000000",
+    "code": "084800000",
+    "name": "NORTHERN SAMAR",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "080000000",
+    "code": "086000000",
+    "name": "SAMAR (WESTERN SAMAR)",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "080000000",
+    "code": "086400000",
+    "name": "SOUTHERN LEYTE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "080000000",
+    "code": "087800000",
+    "name": "BILIRAN",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "090000000",
+    "code": "097200000",
+    "name": "ZAMBOANGA DEL NORTE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "090000000",
+    "code": "097300000",
+    "name": "ZAMBOANGA DEL SUR",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "090000000",
+    "code": "098300000",
+    "name": "ZAMBOANGA SIBUGAY",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "100000000",
+    "code": "101300000",
+    "name": "BUKIDNON",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "100000000",
+    "code": "101800000",
+    "name": "CAMIGUIN",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "100000000",
+    "code": "103500000",
+    "name": "LANAO DEL NORTE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "100000000",
+    "code": "104200000",
+    "name": "MISAMIS OCCIDENTAL",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "100000000",
+    "code": "104300000",
+    "name": "MISAMIS ORIENTAL",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "110000000",
+    "code": "112300000",
+    "name": "DAVAO DEL NORTE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "110000000",
+    "code": "112400000",
+    "name": "DAVAO DEL SUR",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "110000000",
+    "code": "112500000",
+    "name": "DAVAO ORIENTAL",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "110000000",
+    "code": "118200000",
+    "name": "COMPOSTELA VALLEY",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "120000000",
+    "code": "124700000",
+    "name": "COTABATO (NORTH COTABATO)",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "120000000",
+    "code": "126300000",
+    "name": "SOUTH COTABATO",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "120000000",
+    "code": "126500000",
+    "name": "SULTAN KUDARAT",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "120000000",
+    "code": "128000000",
+    "name": "SARANGANI",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "130000000",
+    "code": "133900000",
+    "name": "NCR, CITY OF MANILA, FIRST DISTRICT",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "130000000",
+    "code": "137600000",
+    "name": "NCR SECOND DISTRICT",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "130000000",
+    "code": "137400000",
+    "name": "NCR THIRD DISTRICT",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "130000000",
+    "code": "137500000",
+    "name": "NCR FOURTH DISTRICT",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "140000000",
+    "code": "140100000",
+    "name": "ABRA",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "140000000",
+    "code": "141100000",
+    "name": "BENGUET",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "140000000",
+    "code": "142700000",
+    "name": "IFUGAO",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "140000000",
+    "code": "143200000",
+    "name": "KALINGA",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "140000000",
+    "code": "144400000",
+    "name": "MOUNTAIN PROVINCE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "140000000",
+    "code": "148100000",
+    "name": "APAYAO",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "150000000",
+    "code": "150700000",
+    "name": "BASILAN",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "150000000",
+    "code": "153600000",
+    "name": "LANAO DEL SUR",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "150000000",
+    "code": "153800000",
+    "name": "MAGUINDANAO",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "150000000",
+    "code": "156600000",
+    "name": "SULU",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "150000000",
+    "code": "157000000",
+    "name": "TAWI-TAWI",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "150000000",
+    "code": "158400000",
+    "name": "SHARIFF KABUNSUAN",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "160000000",
+    "code": "160200000",
+    "name": "AGUSAN DEL NORTE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "160000000",
+    "code": "160300000",
+    "name": "AGUSAN DEL SUR",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "160000000",
+    "code": "166700000",
+    "name": "SURIGAO DEL NORTE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "160000000",
+    "code": "166800000",
+    "name": "SURIGAO DEL SUR",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "160000000",
+    "code": "168500000",
+    "name": "DINAGAT ISLANDS",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "170000000",
+    "code": "174000000",
+    "name": "MARINDUQUE",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "170000000",
+    "code": "175100000",
+    "name": "OCCIDENTAL MINDORO",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "170000000",
+    "code": "175200000",
+    "name": "ORIENTAL MINDORO",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "170000000",
+    "code": "175300000",
+    "name": "PALAWAN",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "170000000",
+    "code": "175900000",
+    "name": "ROMBLON",
+    "forms": "2200A|2200C|2200AN|2200M|2200P|2200S|2200T"
+  },
+  {
+    "region_code": "120000000",
+    "code": "129800000",
+    "name": "COTABATO CITY (Not a Province)",
+    "forms": "2200A|2200C|2200T"
+  }
+]

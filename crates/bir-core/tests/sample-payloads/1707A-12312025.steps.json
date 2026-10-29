@@ -1,0 +1,93 @@
+[
+ {
+  "call": "document.getElementById('responseBG').innerHTML = '<div>fn=Sample%20Dummy%20Taxpayerfn=</div><div>tin1=123tin1=</div><div>tin2=456tin2=</div><div>tin3=788tin3=</div><div>tin4=00000tin4=</div><div>rdo=039rdo=</div><div>lob=Sample%20Consulting%20Serviceslob=</div><div>regAddr=123%20Sample%20Street%2C%20Barangay%20Example%2C%20Quezon%20CityregAddr=</div><div>zip=1100zip=</div><div>telNo=09170000000telNo=</div><div>email=sample.taxpayer@example.comemail=</div><div>formType=1707Av2021formType=</div>'; loadBGData(); document.getElementById('frm1707Av2021:txtI9RegisteredAddress').value = document.getElementById('frm1707Av2021:txtI9RegisteredAddress').value.toUpperCase(); document.getElementById('frm1707Av2021:txtI8RegisteredName').value = document.getElementById('frm1707Av2021:txtI8RegisteredName').value.toUpperCase();"
+ },
+ {
+  "click": "frm1707Av2021:rdoI4ATCII030"
+ },
+ {
+  "set": "frm1707Av2021:txtI1YearEndYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1707Av2021:rdoI2AmemdedNo"
+ },
+ {
+  "set": "frm1707Av2021:txtI3Sheets",
+  "value": "1"
+ },
+ {
+  "click": "frm1707Av2021:rdoI11TaxTreatyYes"
+ },
+ {
+  "set": "frm1707Av2021:txtI11ASpecify",
+  "value": "Treaty relief"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C1DateOfTransactionI1",
+  "value": "02/15/2025"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C2NameOfCorporateStockI1",
+  "value": "Sample Corp"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C3SellingPriceI1",
+  "value": "500000.009"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C4CostI1",
+  "value": "120000"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C6TaxPaidI1",
+  "value": "15000.5"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C1DateOfTransactionI2",
+  "value": "06/30/2025"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C2NameOfCorporateStockI2",
+  "value": "Example Mining"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C3SellingPriceI2",
+  "value": "1234567.891"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C4CostI2",
+  "value": "1000000.105"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C6TaxPaidI2",
+  "value": "0"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C1DateOfTransactionI1",
+  "value": "09/01/2025"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C2NameOfCorporateStockI1",
+  "value": "Loss Co"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C3SellingPriceI1",
+  "value": "50000"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C4CostI1",
+  "value": "80000.55"
+ },
+ {
+  "set": "frm1707Av2021:txtI18ASurcharge",
+  "value": "25.5"
+ },
+ {
+  "set": "frm1707Av2021:txtI18BInterest",
+  "value": "10.009"
+ },
+ {
+  "call": "validate()"
+ }
+]

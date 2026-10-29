@@ -1,0 +1,125 @@
+<?xml version='1.0'?>	
+            <div>frm1706:txtDateMonth=03frm1706:txtDateMonth=</div>	
+            <div>frm1706:txtDateDay=15frm1706:txtDateDay=</div>	
+            <div>frm1706:txtDateYear=2025frm1706:txtDateYear=</div>	
+            <div>frm1706:j_id217:_1=falsefrm1706:j_id217:_1=</div>	
+            <div>frm1706:j_id217:_2=truefrm1706:j_id217:_2=</div>	
+            <div>frm1706:txtSheets=1frm1706:txtSheets=</div>	
+            <div>frm1706:txt4=II420frm1706:txt4=</div>	
+            <div>frm1706:opt4=truefrm1706:opt4=</div>	
+            <div>frm1706:txt4C=IC420frm1706:txt4C=</div>	
+            <div>frm1706:opt4C=falsefrm1706:opt4C=</div>	
+            <div>frm1706:txtTIN1=123frm1706:txtTIN1=</div>	
+            <div>frm1706:txtTIN2=456frm1706:txtTIN2=</div>	
+            <div>frm1706:txtTIN3=788frm1706:txtTIN3=</div>	
+            <div>frm1706:txtBranchCode=00000frm1706:txtBranchCode=</div>	
+            <div>frm1706:txtRDOCode=039frm1706:txtRDOCode=</div>	
+            <div>frm1706:txtTINB1=111frm1706:txtTINB1=</div>	
+            <div>frm1706:txtTINB2=222frm1706:txtTINB2=</div>	
+            <div>frm1706:txtTINB3=333frm1706:txtTINB3=</div>	
+            <div>frm1706:txtBranchCodeB=00000frm1706:txtBranchCodeB=</div>	
+            <div>frm1706:txtRDOCodeB=040frm1706:txtRDOCodeB=</div>	
+            <div>frm1706:txtSellerName=SAMPLE DUMMY TAXPAYERfrm1706:txtSellerName=</div>	
+            <div>frm1706:txtBuyerName=MARIA DELA CRUZ-SANTOSfrm1706:txtBuyerName=</div>	
+            <div>frm1706:txtSellerAddress=123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITYfrm1706:txtSellerAddress=</div>	
+            <div>frm1706:txtBuyerAddress=45 EXAMPLE AVE., MAKATI CITYfrm1706:txtBuyerAddress=</div>	
+            <div>frm1706:txtSellerRAddress=UNIT 5, SAMPLE RESIDENCESfrm1706:txtSellerRAddress=</div>	
+            <div>frm1706:txtLocation=LOT 7 BLK 2, SAMPLE SUBD., QUEZON CITYfrm1706:txtLocation=</div>	
+            <div>frm1706:txtRDOCode14A=039frm1706:txtRDOCode14A=</div>	
+            <div>frm1706:j_id391:_1=falsefrm1706:j_id391:_1=</div>	
+            <div>frm1706:j_id391:_3=falsefrm1706:j_id391:_3=</div>	
+            <div>frm1706:j_id391:_5=falsefrm1706:j_id391:_5=</div>	
+            <div>frm1706:j_id391:_8=truefrm1706:j_id391:_8=</div>	
+            <div>frm1706:j_id391:_7=MIXED USE LOTfrm1706:j_id391:_7=</div>	
+            <div>frm1706:j_id391:_2=falsefrm1706:j_id391:_2=</div>	
+            <div>frm1706:j_id391:_4=falsefrm1706:j_id391:_4=</div>	
+            <div>frm1706:j_id391:_6=falsefrm1706:j_id391:_6=</div>	
+            <div>frm1706:txtTCT=T-123456frm1706:txtTCT=</div>	
+            <div>frm1706:txtArea=250.5frm1706:txtArea=</div>	
+            <div>frm1706:txtTaxDC=0123456frm1706:txtTaxDC=</div>	
+            <div>frm1706:txtOthers=CORNER LOTfrm1706:txtOthers=</div>	
+            <div>frm1706:j_id392:_1=truefrm1706:j_id392:_1=</div>	
+            <div>frm1706:j_id392:_2=falsefrm1706:j_id392:_2=</div>	
+            <div>frm1706:j_id393:_1=falsefrm1706:j_id393:_1=</div>	
+            <div>frm1706:j_id393:_2=truefrm1706:j_id393:_2=</div>	
+            <div>frm1706:j_id394:_1=falsefrm1706:j_id394:_1=</div>	
+            <div>frm1706:j_id394:_2=truefrm1706:j_id394:_2=</div>	
+            <div>frm1706:rdTreaty:_1=truefrm1706:rdTreaty:_1=</div>	
+            <div>frm1706:rdTreaty:_2=falsefrm1706:rdTreaty:_2=</div>	
+            <div>frm1706:selTreaty=2frm1706:selTreaty=</div>	
+            <div>frm1706:j_id395:_1=truefrm1706:j_id395:_1=</div>	
+            <div>frm1706:j_id395:_4=falsefrm1706:j_id395:_4=</div>	
+            <div>frm1706:j_id395:_2=falsefrm1706:j_id395:_2=</div>	
+            <div>frm1706:j_id395:_5=falsefrm1706:j_id395:_5=</div>	
+            <div>frm1706:j_id395:_3=falsefrm1706:j_id395:_3=</div>	
+            <div>frm1706:txtOthers21=frm1706:txtOthers21=</div>	
+            <div>frm1706:txtSelling=frm1706:txtSelling=</div>	
+            <div>frm1706:txtCost=frm1706:txtCost=</div>	
+            <div>frm1706:txtMortgage=frm1706:txtMortgage=</div>	
+            <div>frm1706:txtTotalP=frm1706:txtTotalP=</div>	
+            <div>frm1706:txtAmount=frm1706:txtAmount=</div>	
+            <div>frm1706:txtTotalN=frm1706:txtTotalN=</div>	
+            <div>frm1706:txtDateMonthI=frm1706:txtDateMonthI=</div>	
+            <div>frm1706:txtDateDayI=frm1706:txtDateDayI=</div>	
+            <div>frm1706:txtDateYearI=frm1706:txtDateYearI=</div>	
+            <div>frm1706:opt29A=truefrm1706:opt29A=</div>	
+            <div>frm1706:txtFMVLand=1,234,567.00frm1706:txtFMVLand=</div>	
+            <div>frm1706:opt29C=truefrm1706:opt29C=</div>	
+            <div>frm1706:txtFMVZonal=1,500,000.13frm1706:txtFMVZonal=</div>	
+            <div>frm1706:opt29B=truefrm1706:opt29B=</div>	
+            <div>frm1706:txtFMVImprovements=300,000.55frm1706:txtFMVImprovements=</div>	
+            <div>frm1706:opt29D=truefrm1706:opt29D=</div>	
+            <div>frm1706:txtFMVBIR=250,000.00frm1706:txtFMVBIR=</div>	
+            <div>frm1706:opt30A=truefrm1706:opt30A=</div>	
+            <div>frm1706:txtGross=1,800,001.00frm1706:txtGross=</div>	
+            <div>frm1706:opt30B=falsefrm1706:opt30B=</div>	
+            <div>frm1706:txtBid=frm1706:txtBid=</div>	
+            <div>frm1706:opt30C=falsefrm1706:opt30C=</div>	
+            <div>frm1706:txtFMVLI=1,800,000.68frm1706:txtFMVLI=</div>	
+            <div>frm1706:opt30D=falsefrm1706:opt30D=</div>	
+            <div>frm1706:txtInstallment=frm1706:txtInstallment=</div>	
+            <div>frm1706:opt30E=falsefrm1706:opt30E=</div>	
+            <div>frm1706:txtOthers30E=frm1706:txtOthers30E=</div>	
+            <div>frm1706:opt30F=falsefrm1706:opt30F=</div>	
+            <div>frm1706:txtOtherss30F=frm1706:txtOtherss30F=</div>	
+            <div>frm1706:txtOthers30F=frm1706:txtOthers30F=</div>	
+            <div>frm1706:txtTax=1,800,001.00frm1706:txtTax=</div>	
+            <div>frm1706:txtRate=108,000.06frm1706:txtRate=</div>	
+            <div>frm1706:txtLess=0.00frm1706:txtLess=</div>	
+            <div>frm1706:txtTaxDue=108,000.06frm1706:txtTaxDue=</div>	
+            <div>frm1706:txtSurcharge=25.50frm1706:txtSurcharge=</div>	
+            <div>frm1706:txtInterest=10.01frm1706:txtInterest=</div>	
+            <div>frm1706:txtCompromise=1,000.00frm1706:txtCompromise=</div>	
+            <div>frm1706:txtTotalPenalties=1,035.51frm1706:txtTotalPenalties=</div>	
+            <div>frm1706:txtTotal=109,035.57frm1706:txtTotal=</div>	
+            <div>frm1706:opt37:_1=falsefrm1706:opt37:_1=</div>	
+            <div>frm1706:opt37:_2=falsefrm1706:opt37:_2=</div>	
+            <div>frm1706:txtSchedModal1=SALES PROCEEDSfrm1706:txtSchedModal1=</div>	
+            <div>frm1706:txtSchedModal2=1,800,001.00frm1706:txtSchedModal2=</div>	
+            <div>frm1706:txtSchedModal3=UTILIZEDfrm1706:txtSchedModal3=</div>	
+            <div>frm1706:txtSchedModal4=0.00frm1706:txtSchedModal4=</div>	
+            <div>frm1706:txtSchedModal5=frm1706:txtSchedModal5=</div>	
+            <div>frm1706:txtSchedModal6=frm1706:txtSchedModal6=</div>	
+            <div>frm1706:txtSchedModal7=frm1706:txtSchedModal7=</div>	
+            <div>frm1706:txtSchedModal8=frm1706:txtSchedModal8=</div>	
+            <div>frm1706:txtSchedModal9=frm1706:txtSchedModal9=</div>	
+            <div>frm1706:txtSchedModal10=frm1706:txtSchedModal10=</div>	
+            <div>frm1706:txtSchedModal11=frm1706:txtSchedModal11=</div>	
+            <div>frm1706:txtSchedModal12=frm1706:txtSchedModal12=</div>	
+            <div>frm1706:txtSchedModal13=frm1706:txtSchedModal13=</div>	
+            <div>frm1706:txtSchedModal14=frm1706:txtSchedModal14=</div>	
+            <div>frm1706:txtSchedModal15=frm1706:txtSchedModal15=</div>	
+            <div>frm1706:txtSchedModal16=frm1706:txtSchedModal16=</div>	
+            <div>frm1706:txtSchedModal17=frm1706:txtSchedModal17=</div>	
+            <div>frm1706:txtSchedModal18=frm1706:txtSchedModal18=</div>	
+            <div>frm1706:txtSchedModal19=frm1706:txtSchedModal19=</div>	
+            <div>frm1706:txtSchedModal20=frm1706:txtSchedModal20=</div>	
+            <div>txtFinalFlag=0txtFinalFlag=</div>	
+            <div>txtEnroll=NtxtEnroll=</div>	
+            <div>ebirOnlineConfirmUsername=ebirOnlineConfirmUsername=</div>	
+            <div>ebirOnlineUsername=ebirOnlineUsername=</div>	
+            <div>ebirOnlineSecret=ebirOnlineSecret=</div>	
+            <div>txtEmail=sample.taxpayer@example.comtxtEmail=</div>	
+            <div>driveSelectTPExport=0driveSelectTPExport=</div>	
+            	
+            All Rights Reserved BIR 2012.0

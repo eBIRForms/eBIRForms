@@ -1,0 +1,59 @@
+{
+  "slug": "1707a-2021",
+  "code": "1707A",
+  "revision": "2021",
+  "variant": "",
+  "in_corpus": true,
+  "source_file": "1707-A April 2021 ENCS.pdf",
+  "sha256": "5742d6bf0ca58c601f6c87e486984714a976c6a8b8c1bc6fb246b11fc87f08c3",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 3,
+  "pages": 2,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Calibri",
+    "Times New Roman"
+  ],
+  "rules": 753,
+  "text_runs": 246,
+  "images": 3,
+  "cells": 297,
+  "comb_cells": 96,
+  "growables": [
+    {
+      "page": 2,
+      "rows": 3,
+      "capacity": 3,
+      "pitch_pt": 19.2
+    },
+    {
+      "page": 2,
+      "rows": 3,
+      "capacity": 3,
+      "pitch_pt": 19.32
+    }
+  ],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1707-A April 2021 ENCS.pdf",
+      "sha256": "5742d6bf0ca58c601f6c87e486984714a976c6a8b8c1bc6fb246b11fc87f08c3"
+    }
+  ],
+  "guide": null,
+  "guide_detected": {
+    "inline_pages": [],
+    "standalone_pdfs": []
+  },
+  "html_bytes": 600817,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

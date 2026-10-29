@@ -1,0 +1,152 @@
+[
+ {
+  "set": "frm2550m:RtnYear",
+  "value": "06"
+ },
+ {
+  "set": "frm2550m:txtYear",
+  "value": "2022"
+ },
+ {
+  "set": "frm2550m:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm2550m:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm2550m:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm2550m:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm2550m:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm2550m:txtLineBus",
+  "value": "Sample Consulting Services"
+ },
+ {
+  "set": "frm2550m:txtTaxPayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm2550m:txtTelephoneNum",
+  "value": "09170000000"
+ },
+ {
+  "set": "frm2550m:txtAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm2550m:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "click": "frm2550m:OptAmendedYN1"
+ },
+ {
+  "set": "frm2550m:txtTax13A",
+  "value": "250000.005"
+ },
+ {
+  "set": "frm2550m:txtTax14",
+  "value": "40000"
+ },
+ {
+  "set": "frm2550m:txtTax15",
+  "value": "12345.67"
+ },
+ {
+  "set": "frm2550m:txtTax17A",
+  "value": "1500.25"
+ },
+ {
+  "set": "frm2550m:txtTax17C",
+  "value": "99.99"
+ },
+ {
+  "set": "frm2550m:txtTax18E",
+  "value": "20000"
+ },
+ {
+  "set": "frm2550m:txtTax18G",
+  "value": "8888.88"
+ },
+ {
+  "set": "frm2550m:txtTax18I",
+  "value": "3333.33"
+ },
+ {
+  "set": "frm2550m:txtTax18K",
+  "value": "1000"
+ },
+ {
+  "set": "frm2550m:txtTax18M",
+  "value": "500"
+ },
+ {
+  "set": "frm2550m:txtTax18N",
+  "value": "777.77"
+ },
+ {
+  "call": "d.getElementById('txtTaxableSaleSched4').value = d.getElementById('frm2550m:txtTax13A').value; d.getElementById('txtTotalSaleSched4').value = d.getElementById('frm2550m:txtTax16A').value; computeInputTaxSched4();"
+ },
+ {
+  "set": "txtinputtaxSched4",
+  "value": "18000"
+ },
+ {
+  "set": "txtInputTaxnotDirectSched4",
+  "value": "1200"
+ },
+ {
+  "call": "getSched4Modal()"
+ },
+ {
+  "call": "d.getElementById('txtTotSaleSched5').value = d.getElementById('frm2550m:txtTax15').value; d.getElementById('txtSumTotalSaleSched5').value = d.getElementById('frm2550m:txtTax16A').value;"
+ },
+ {
+  "set": "txtinputtaxSched5",
+  "value": "100"
+ },
+ {
+  "set": "txtAmountInputnotDirectSched5",
+  "value": "300"
+ },
+ {
+  "call": "getSched5Modal()"
+ },
+ {
+  "set": "frm2550m:txtTax20D",
+  "value": "10"
+ },
+ {
+  "call": "d.getElementById('frm2550m:txtTax23D').disabled = false"
+ },
+ {
+  "set": "frm2550m:txtTax23D",
+  "value": "1000"
+ },
+ {
+  "set": "frm2550m:txtTax23E",
+  "value": "200"
+ },
+ {
+  "set": "frm2550m:txtTax25A",
+  "value": "25.5"
+ },
+ {
+  "set": "frm2550m:txtTax25B",
+  "value": "10"
+ }
+]

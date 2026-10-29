@@ -1,0 +1,2113 @@
+{
+ "form_id": "2550m-v2007",
+ "html_slug": "2550m-2007",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the single fillable cell whose printed caption (from the frozen page's own text layer) names the item or the schedule column/row. Amounts print the writer's official text (1,234.56) in one text cell. The TIN boxes, the Item 11 specification (an option code), the Schedule 1 industry description and the Schedule 4/5 formula operands are not fillable cells on this sheet. Schedule rows beyond those printed (4 for Schedules 1-3, 5 for Schedules 6-8) belong on attached sheets. Booleans fill X in the box left of the printed option. Since #113 every value the print map carries has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm2550m:RtnYear",
+   "html_id": "p1c1",
+   "printed": "1 For the Month of MM",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtYear",
+   "html_id": "p1c2",
+   "printed": "1 For the Month of YYYY",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtSheets",
+   "html_id": "p1c3",
+   "printed": "3 Number of sheets attached",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtRDOCode",
+   "html_id": "p1c130",
+   "printed": "5 RDO Code",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtLineBus",
+   "html_id": "p1c15",
+   "printed": "6 Line of Business",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTaxPayerName",
+   "html_id": "p1c17",
+   "printed": "7 Taxpayer's Name",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTelephoneNum",
+   "html_id": "p1c18",
+   "printed": "8 Telephone Number",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtAddress",
+   "html_id": "p1c20",
+   "printed": "9 Registered Address",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtZipCode",
+   "html_id": "p1c21",
+   "printed": "10 Zip Code",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax12A",
+   "html_id": "p1c26",
+   "printed": "Item 12A",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax12B",
+   "html_id": "p1c27",
+   "printed": "Item 12B",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax13A",
+   "html_id": "p1c28",
+   "printed": "Item 13A",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax13B",
+   "html_id": "p1c29",
+   "printed": "Item 13B",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax14",
+   "html_id": "p1c30",
+   "printed": "Item 14",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax15",
+   "html_id": "p1c31",
+   "printed": "Item 15",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax16A",
+   "html_id": "p1c32",
+   "printed": "Item 16A",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax16B",
+   "html_id": "p1c33",
+   "printed": "Item 16B",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax17A",
+   "html_id": "p1c34",
+   "printed": "Item 17A",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax17B",
+   "html_id": "p1c35",
+   "printed": "Item 17B",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax17C",
+   "html_id": "p1c36",
+   "printed": "Item 17C",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax17D",
+   "html_id": "p1c37",
+   "printed": "Item 17D",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax17E",
+   "html_id": "p1c38",
+   "printed": "Item 17E",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax17F",
+   "html_id": "p1c39",
+   "printed": "Item 17F",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18A",
+   "html_id": "p1c40",
+   "printed": "Item 18A",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18B",
+   "html_id": "p1c41",
+   "printed": "Item 18B",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18C",
+   "html_id": "p1c42",
+   "printed": "Item 18C",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18D",
+   "html_id": "p1c43",
+   "printed": "Item 18D",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18E",
+   "html_id": "p1c44",
+   "printed": "Item 18E",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18F",
+   "html_id": "p1c45",
+   "printed": "Item 18F",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18G",
+   "html_id": "p1c46",
+   "printed": "Item 18G",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18H",
+   "html_id": "p1c47",
+   "printed": "Item 18H",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18I",
+   "html_id": "p1c48",
+   "printed": "Item 18I",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18J",
+   "html_id": "p1c49",
+   "printed": "Item 18J",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18K",
+   "html_id": "p1c50",
+   "printed": "Item 18K",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18L",
+   "html_id": "p1c51",
+   "printed": "Item 18L",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18M",
+   "html_id": "p1c52",
+   "printed": "Item 18M",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18N",
+   "html_id": "p1c53",
+   "printed": "Item 18N",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18O",
+   "html_id": "p1c54",
+   "printed": "Item 18O",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax18P",
+   "html_id": "p1c55",
+   "printed": "Item 18P",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax19",
+   "html_id": "p1c56",
+   "printed": "Item 19",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax20A",
+   "html_id": "p1c57",
+   "printed": "Item 20A",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax20B",
+   "html_id": "p1c58",
+   "printed": "Item 20B",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax20C",
+   "html_id": "p1c59",
+   "printed": "Item 20C",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax20D",
+   "html_id": "p1c60",
+   "printed": "Item 20D",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax20E",
+   "html_id": "p1c61",
+   "printed": "Item 20E",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax20F",
+   "html_id": "p1c62",
+   "printed": "Item 20F",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax21",
+   "html_id": "p1c63",
+   "printed": "Item 21",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax22",
+   "html_id": "p1c64",
+   "printed": "Item 22",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax23A",
+   "html_id": "p1c65",
+   "printed": "Item 23A",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax23B",
+   "html_id": "p1c66",
+   "printed": "Item 23B",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax23C",
+   "html_id": "p1c67",
+   "printed": "Item 23C",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax23D",
+   "html_id": "p1c68",
+   "printed": "Item 23D",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax23E",
+   "html_id": "p1c69",
+   "printed": "Item 23E",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax23F",
+   "html_id": "p1c70",
+   "printed": "Item 23F",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax23G",
+   "html_id": "p1c71",
+   "printed": "Item 23G",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax24",
+   "html_id": "p1c72",
+   "printed": "Item 24",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax25A",
+   "html_id": "p1c74",
+   "printed": "Item 25A",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax25B",
+   "html_id": "p1c75",
+   "printed": "Item 25B",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax25C",
+   "html_id": "p1c76",
+   "printed": "Item 25C",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax25D",
+   "html_id": "p1c73",
+   "printed": "Item 25D",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtTax26",
+   "html_id": "p1c77",
+   "printed": "Item 26",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtAtcCde1",
+   "html_id": "p2c154",
+   "printed": "Schedule 1 row 1 ATC",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtAmountSales1",
+   "html_id": "p2c155",
+   "printed": "Schedule 1 row 1 Amount of Sales/Receipts",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtOutputTax1",
+   "html_id": "p2c156",
+   "printed": "Schedule 1 row 1 Output Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtAtcCde2",
+   "html_id": "p2c1",
+   "printed": "Schedule 1 row 2 ATC",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtAmountSales2",
+   "html_id": "p2c2",
+   "printed": "Schedule 1 row 2 Amount of Sales/Receipts",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtOutputTax2",
+   "html_id": "p2c3",
+   "printed": "Schedule 1 row 2 Output Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtAtcCde3",
+   "html_id": "p2c5",
+   "printed": "Schedule 1 row 3 ATC",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtAmountSales3",
+   "html_id": "p2c6",
+   "printed": "Schedule 1 row 3 Amount of Sales/Receipts",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtOutputTax3",
+   "html_id": "p2c7",
+   "printed": "Schedule 1 row 3 Output Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtAtcCde4",
+   "html_id": "p2c9",
+   "printed": "Schedule 1 row 4 ATC",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtAmountSales4",
+   "html_id": "p2c10",
+   "printed": "Schedule 1 row 4 Amount of Sales/Receipts",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550m:txtOutputTax4",
+   "html_id": "p2c11",
+   "printed": "Schedule 1 row 4 Output Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550M:txtmodaltxtTotal12A",
+   "html_id": "p2c158",
+   "printed": "Schedule 1 Total Amount (to Item 12A)",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "frm2550M:txtmodaltxtTotal12B",
+   "html_id": "p2c159",
+   "printed": "Schedule 1 Total Output Tax (to Item 12B)",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDatePurchased0",
+   "html_id": "p2c165",
+   "printed": "Schedule 2 row 1 (A) Date Purchased",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDescription0",
+   "html_id": "p2c166",
+   "printed": "Schedule 2 row 1 (B) Description",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmt0",
+   "html_id": "p2c167",
+   "printed": "Schedule 2 row 1 (C) Amount",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtInputTax0",
+   "html_id": "p2c168",
+   "printed": "Schedule 2 row 1 (D) Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDatePurchased1",
+   "html_id": "p2c13",
+   "printed": "Schedule 2 row 2 (A) Date Purchased",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDescription1",
+   "html_id": "p2c14",
+   "printed": "Schedule 2 row 2 (B) Description",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmt1",
+   "html_id": "p2c15",
+   "printed": "Schedule 2 row 2 (C) Amount",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtInputTax1",
+   "html_id": "p2c16",
+   "printed": "Schedule 2 row 2 (D) Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDatePurchased2",
+   "html_id": "p2c17",
+   "printed": "Schedule 2 row 3 (A) Date Purchased",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDescription2",
+   "html_id": "p2c18",
+   "printed": "Schedule 2 row 3 (B) Description",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmt2",
+   "html_id": "p2c19",
+   "printed": "Schedule 2 row 3 (C) Amount",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtInputTax2",
+   "html_id": "p2c20",
+   "printed": "Schedule 2 row 3 (D) Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDatePurchased3",
+   "html_id": "p2c21",
+   "printed": "Schedule 2 row 4 (A) Date Purchased",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDescription3",
+   "html_id": "p2c22",
+   "printed": "Schedule 2 row 4 (B) Description",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmt3",
+   "html_id": "p2c23",
+   "printed": "Schedule 2 row 4 (C) Amount",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtInputTax3",
+   "html_id": "p2c24",
+   "printed": "Schedule 2 row 4 (D) Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtmodalTotalAmt",
+   "html_id": "p2c170",
+   "printed": "Schedule 2 Total Amount (to Item 18A)",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtmodalTotalInputTax",
+   "html_id": "p2c171",
+   "printed": "Schedule 2 Total Input Tax (to Item 18B)",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDatePurchased3A0",
+   "html_id": "p2c182",
+   "printed": "Schedule 3A row 1 (A) Date Purchased",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDescription3A0",
+   "html_id": "p2c183",
+   "printed": "Schedule 3A row 1 (B) Description",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmt3A0",
+   "html_id": "p2c184",
+   "printed": "Schedule 3A row 1 (C) Amount",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtInputTax3A0",
+   "html_id": "p2c185",
+   "printed": "Schedule 3A row 1 (D) Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtEstLife3A0",
+   "html_id": "p2c186",
+   "printed": "Schedule 3A row 1 (E) Est. Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtRecogLife3A0",
+   "html_id": "p2c187",
+   "printed": "Schedule 3A row 1 (F) Recognized Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAllowInputTax3A0",
+   "html_id": "p2c188",
+   "printed": "Schedule 3A row 1 (G) Allowable Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtBalInputTax3A0",
+   "html_id": "p2c189",
+   "printed": "Schedule 3A row 1 (H) Balance",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDatePurchased3A1",
+   "html_id": "p2c26",
+   "printed": "Schedule 3A row 2 (A) Date Purchased",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDescription3A1",
+   "html_id": "p2c27",
+   "printed": "Schedule 3A row 2 (B) Description",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmt3A1",
+   "html_id": "p2c28",
+   "printed": "Schedule 3A row 2 (C) Amount",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtInputTax3A1",
+   "html_id": "p2c29",
+   "printed": "Schedule 3A row 2 (D) Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtEstLife3A1",
+   "html_id": "p2c30",
+   "printed": "Schedule 3A row 2 (E) Est. Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtRecogLife3A1",
+   "html_id": "p2c31",
+   "printed": "Schedule 3A row 2 (F) Recognized Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAllowInputTax3A1",
+   "html_id": "p2c32",
+   "printed": "Schedule 3A row 2 (G) Allowable Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtBalInputTax3A1",
+   "html_id": "p2c33",
+   "printed": "Schedule 3A row 2 (H) Balance",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDatePurchased3A2",
+   "html_id": "p2c34",
+   "printed": "Schedule 3A row 3 (A) Date Purchased",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDescription3A2",
+   "html_id": "p2c35",
+   "printed": "Schedule 3A row 3 (B) Description",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmt3A2",
+   "html_id": "p2c36",
+   "printed": "Schedule 3A row 3 (C) Amount",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtInputTax3A2",
+   "html_id": "p2c37",
+   "printed": "Schedule 3A row 3 (D) Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtEstLife3A2",
+   "html_id": "p2c38",
+   "printed": "Schedule 3A row 3 (E) Est. Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtRecogLife3A2",
+   "html_id": "p2c39",
+   "printed": "Schedule 3A row 3 (F) Recognized Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAllowInputTax3A2",
+   "html_id": "p2c40",
+   "printed": "Schedule 3A row 3 (G) Allowable Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtBalInputTax3A2",
+   "html_id": "p2c41",
+   "printed": "Schedule 3A row 3 (H) Balance",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDatePurchased3A3",
+   "html_id": "p2c42",
+   "printed": "Schedule 3A row 4 (A) Date Purchased",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDescription3A3",
+   "html_id": "p2c43",
+   "printed": "Schedule 3A row 4 (B) Description",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmt3A3",
+   "html_id": "p2c44",
+   "printed": "Schedule 3A row 4 (C) Amount",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtInputTax3A3",
+   "html_id": "p2c45",
+   "printed": "Schedule 3A row 4 (D) Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtEstLife3A3",
+   "html_id": "p2c46",
+   "printed": "Schedule 3A row 4 (E) Est. Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtRecogLife3A3",
+   "html_id": "p2c47",
+   "printed": "Schedule 3A row 4 (F) Recognized Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAllowInputTax3A3",
+   "html_id": "p2c48",
+   "printed": "Schedule 3A row 4 (G) Allowable Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtBalInputTax3A3",
+   "html_id": "p2c49",
+   "printed": "Schedule 3A row 4 (H) Balance",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDatePurchased3B0",
+   "html_id": "p2c204",
+   "printed": "Schedule 3B row 1 (A) Date Purchased",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDescription3B0",
+   "html_id": "p2c205",
+   "printed": "Schedule 3B row 1 (B) Description",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmt3B0",
+   "html_id": "p2c206",
+   "printed": "Schedule 3B row 1 (C) Amount",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtBalInputTaxPrevious3B0",
+   "html_id": "p2c207",
+   "printed": "Schedule 3B row 1 (D) Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtEstLife3B0",
+   "html_id": "p2c208",
+   "printed": "Schedule 3B row 1 (E) Est. Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtRecogLife3B0",
+   "html_id": "p2c209",
+   "printed": "Schedule 3B row 1 (F) Recognized Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAllowInputTax3B0",
+   "html_id": "p2c210",
+   "printed": "Schedule 3B row 1 (G) Allowable Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtBalInputTax3B0",
+   "html_id": "p2c211",
+   "printed": "Schedule 3B row 1 (H) Balance",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDatePurchased3B1",
+   "html_id": "p2c51",
+   "printed": "Schedule 3B row 2 (A) Date Purchased",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDescription3B1",
+   "html_id": "p2c52",
+   "printed": "Schedule 3B row 2 (B) Description",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmt3B1",
+   "html_id": "p2c53",
+   "printed": "Schedule 3B row 2 (C) Amount",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtBalInputTaxPrevious3B1",
+   "html_id": "p2c54",
+   "printed": "Schedule 3B row 2 (D) Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtEstLife3B1",
+   "html_id": "p2c55",
+   "printed": "Schedule 3B row 2 (E) Est. Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtRecogLife3B1",
+   "html_id": "p2c56",
+   "printed": "Schedule 3B row 2 (F) Recognized Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAllowInputTax3B1",
+   "html_id": "p2c57",
+   "printed": "Schedule 3B row 2 (G) Allowable Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtBalInputTax3B1",
+   "html_id": "p2c58",
+   "printed": "Schedule 3B row 2 (H) Balance",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDatePurchased3B2",
+   "html_id": "p2c59",
+   "printed": "Schedule 3B row 3 (A) Date Purchased",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDescription3B2",
+   "html_id": "p2c60",
+   "printed": "Schedule 3B row 3 (B) Description",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmt3B2",
+   "html_id": "p2c61",
+   "printed": "Schedule 3B row 3 (C) Amount",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtBalInputTaxPrevious3B2",
+   "html_id": "p2c62",
+   "printed": "Schedule 3B row 3 (D) Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtEstLife3B2",
+   "html_id": "p2c63",
+   "printed": "Schedule 3B row 3 (E) Est. Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtRecogLife3B2",
+   "html_id": "p2c64",
+   "printed": "Schedule 3B row 3 (F) Recognized Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAllowInputTax3B2",
+   "html_id": "p2c65",
+   "printed": "Schedule 3B row 3 (G) Allowable Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtBalInputTax3B2",
+   "html_id": "p2c66",
+   "printed": "Schedule 3B row 3 (H) Balance",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDatePurchased3B3",
+   "html_id": "p2c67",
+   "printed": "Schedule 3B row 4 (A) Date Purchased",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtDescription3B3",
+   "html_id": "p2c68",
+   "printed": "Schedule 3B row 4 (B) Description",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmt3B3",
+   "html_id": "p2c69",
+   "printed": "Schedule 3B row 4 (C) Amount",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtBalInputTaxPrevious3B3",
+   "html_id": "p2c70",
+   "printed": "Schedule 3B row 4 (D) Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtEstLife3B3",
+   "html_id": "p2c71",
+   "printed": "Schedule 3B row 4 (E) Est. Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtRecogLife3B3",
+   "html_id": "p2c72",
+   "printed": "Schedule 3B row 4 (F) Recognized Life",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAllowInputTax3B3",
+   "html_id": "p2c73",
+   "printed": "Schedule 3B row 4 (G) Allowable Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtBalInputTax3B3",
+   "html_id": "p2c74",
+   "printed": "Schedule 3B row 4 (H) Balance",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtmodalTotalAmountSched3",
+   "html_id": "p2c191",
+   "printed": "Schedule 3A Total Amount (to Item 18C)",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtmodalTotalInputTaxSched3",
+   "html_id": "p2c192",
+   "printed": "Schedule 3A Total Input Tax (to Item 18D)",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtmodalTotalBalanceSched3A",
+   "html_id": "p2c194",
+   "printed": "Schedule 3A Total Balance",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtmodalTotalBalanceSched3B",
+   "html_id": "p2c213",
+   "printed": "Schedule 3B Total Balance",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtmodalTotalInputTax20ASched3",
+   "html_id": "p2c215",
+   "printed": "Schedule 3C Total Input Tax Deferred (to Item 20A)",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtinputtaxSched4",
+   "html_id": "p2c219",
+   "printed": "Schedule 4 Input Tax directly attributable",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotalInputTaxnotDirectSched4",
+   "html_id": "p2c76",
+   "printed": "Schedule 4 Ratable portion of Input Tax not directly attributable",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotalInputSaletoGovernmentSched4",
+   "html_id": "p2c77",
+   "printed": "Schedule 4 Total Input Tax attributable to sale to government",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtlessStdTaxSched4",
+   "html_id": "p2c79",
+   "printed": "Schedule 4 Less: Standard Input Tax",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotal20BSched4",
+   "html_id": "p2c221",
+   "printed": "Schedule 4 closed to expense (to Item 20B)",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtinputtaxSched5",
+   "html_id": "p2c225",
+   "printed": "Schedule 5 Input Tax directly attributable",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtProductnotDirectSched5",
+   "html_id": "p2c81",
+   "printed": "Schedule 5 Ratable portion of Input Tax not directly attributable",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotal20CSched5",
+   "html_id": "p2c226",
+   "printed": "Schedule 5 Total Input Tax attributable to exempt sale (to Item 20C)",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCovered0",
+   "html_id": "p2c233",
+   "printed": "Schedule 6 row 1 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameAgent0",
+   "html_id": "p2c234",
+   "printed": "Schedule 6 row 1 Name of Withholding Agent",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtIncomePayment0",
+   "html_id": "p2c235",
+   "printed": "Schedule 6 row 1 Income Payment",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotalWithheld0",
+   "html_id": "p2c236",
+   "printed": "Schedule 6 row 1 Total Tax Withheld",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurr0",
+   "html_id": "p2c237",
+   "printed": "Schedule 6 row 1 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCovered1",
+   "html_id": "p2c82",
+   "printed": "Schedule 6 row 2 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameAgent1",
+   "html_id": "p2c83",
+   "printed": "Schedule 6 row 2 Name of Withholding Agent",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtIncomePayment1",
+   "html_id": "p2c84",
+   "printed": "Schedule 6 row 2 Income Payment",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotalWithheld1",
+   "html_id": "p2c85",
+   "printed": "Schedule 6 row 2 Total Tax Withheld",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurr1",
+   "html_id": "p2c86",
+   "printed": "Schedule 6 row 2 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCovered2",
+   "html_id": "p2c87",
+   "printed": "Schedule 6 row 3 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameAgent2",
+   "html_id": "p2c88",
+   "printed": "Schedule 6 row 3 Name of Withholding Agent",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtIncomePayment2",
+   "html_id": "p2c89",
+   "printed": "Schedule 6 row 3 Income Payment",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotalWithheld2",
+   "html_id": "p2c90",
+   "printed": "Schedule 6 row 3 Total Tax Withheld",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurr2",
+   "html_id": "p2c91",
+   "printed": "Schedule 6 row 3 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCovered3",
+   "html_id": "p2c92",
+   "printed": "Schedule 6 row 4 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameAgent3",
+   "html_id": "p2c93",
+   "printed": "Schedule 6 row 4 Name of Withholding Agent",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtIncomePayment3",
+   "html_id": "p2c94",
+   "printed": "Schedule 6 row 4 Income Payment",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotalWithheld3",
+   "html_id": "p2c95",
+   "printed": "Schedule 6 row 4 Total Tax Withheld",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurr3",
+   "html_id": "p2c96",
+   "printed": "Schedule 6 row 4 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCovered4",
+   "html_id": "p2c97",
+   "printed": "Schedule 6 row 5 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameAgent4",
+   "html_id": "p2c98",
+   "printed": "Schedule 6 row 5 Name of Withholding Agent",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtIncomePayment4",
+   "html_id": "p2c99",
+   "printed": "Schedule 6 row 5 Income Payment",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotalWithheld4",
+   "html_id": "p2c100",
+   "printed": "Schedule 6 row 5 Total Tax Withheld",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurr4",
+   "html_id": "p2c101",
+   "printed": "Schedule 6 row 5 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtmodalTotal23A",
+   "html_id": "p2c239",
+   "printed": "Schedule 6 Total Tax Withheld",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtmodalTotalSched6AppliedCurrent",
+   "html_id": "p2c240",
+   "printed": "Schedule 6 Total Applied (to Item 23A)",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCoveredSch80",
+   "html_id": "p2c263",
+   "printed": "Schedule 8 row 1 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameAgentSch80",
+   "html_id": "p2c264",
+   "printed": "Schedule 8 row 1 Name of Withholding Agent",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtIncomePaymentSch80",
+   "html_id": "p2c265",
+   "printed": "Schedule 8 row 1 Income Payment",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotalWithheldSch80",
+   "html_id": "p2c266",
+   "printed": "Schedule 8 row 1 Total Tax Withheld",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurrSch80",
+   "html_id": "p2c267",
+   "printed": "Schedule 8 row 1 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCoveredSch81",
+   "html_id": "p2c128",
+   "printed": "Schedule 8 row 2 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameAgentSch81",
+   "html_id": "p2c129",
+   "printed": "Schedule 8 row 2 Name of Withholding Agent",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtIncomePaymentSch81",
+   "html_id": "p2c130",
+   "printed": "Schedule 8 row 2 Income Payment",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotalWithheldSch81",
+   "html_id": "p2c131",
+   "printed": "Schedule 8 row 2 Total Tax Withheld",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurrSch81",
+   "html_id": "p2c132",
+   "printed": "Schedule 8 row 2 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCoveredSch82",
+   "html_id": "p2c133",
+   "printed": "Schedule 8 row 3 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameAgentSch82",
+   "html_id": "p2c134",
+   "printed": "Schedule 8 row 3 Name of Withholding Agent",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtIncomePaymentSch82",
+   "html_id": "p2c135",
+   "printed": "Schedule 8 row 3 Income Payment",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotalWithheldSch82",
+   "html_id": "p2c136",
+   "printed": "Schedule 8 row 3 Total Tax Withheld",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurrSch82",
+   "html_id": "p2c137",
+   "printed": "Schedule 8 row 3 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCoveredSch83",
+   "html_id": "p2c138",
+   "printed": "Schedule 8 row 4 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameAgentSch83",
+   "html_id": "p2c139",
+   "printed": "Schedule 8 row 4 Name of Withholding Agent",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtIncomePaymentSch83",
+   "html_id": "p2c140",
+   "printed": "Schedule 8 row 4 Income Payment",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotalWithheldSch83",
+   "html_id": "p2c141",
+   "printed": "Schedule 8 row 4 Total Tax Withheld",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurrSch83",
+   "html_id": "p2c142",
+   "printed": "Schedule 8 row 4 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCoveredSch84",
+   "html_id": "p2c143",
+   "printed": "Schedule 8 row 5 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameAgentSch84",
+   "html_id": "p2c144",
+   "printed": "Schedule 8 row 5 Name of Withholding Agent",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtIncomePaymentSch84",
+   "html_id": "p2c145",
+   "printed": "Schedule 8 row 5 Income Payment",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtTotalWithheldSch84",
+   "html_id": "p2c146",
+   "printed": "Schedule 8 row 5 Total Tax Withheld",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurrSch84",
+   "html_id": "p2c147",
+   "printed": "Schedule 8 row 5 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtmodalTotal23C",
+   "html_id": "p2c269",
+   "printed": "Schedule 8 Total Tax Withheld",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtmodalTotalSched8AppliedCurrent",
+   "html_id": "p2c270",
+   "printed": "Schedule 8 Total Applied (to Item 23C)",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCoveredSch70",
+   "html_id": "p2c248",
+   "printed": "Schedule 7 row 1 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameMillerSch70",
+   "html_id": "p2c249",
+   "printed": "Schedule 7 row 1 Name of Miller",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameTaxPayerSch70",
+   "html_id": "p2c250",
+   "printed": "Schedule 7 row 1 Name of Taxpayer",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtORNumSch70",
+   "html_id": "p2c251",
+   "printed": "Schedule 7 row 1 Official Receipt Number",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmountPaidSch70",
+   "html_id": "p2c252",
+   "printed": "Schedule 7 row 1 Amount Paid",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurrSch70",
+   "html_id": "p2c253",
+   "printed": "Schedule 7 row 1 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCoveredSch71",
+   "html_id": "p2c103",
+   "printed": "Schedule 7 row 2 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameMillerSch71",
+   "html_id": "p2c104",
+   "printed": "Schedule 7 row 2 Name of Miller",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameTaxPayerSch71",
+   "html_id": "p2c105",
+   "printed": "Schedule 7 row 2 Name of Taxpayer",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtORNumSch71",
+   "html_id": "p2c106",
+   "printed": "Schedule 7 row 2 Official Receipt Number",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmountPaidSch71",
+   "html_id": "p2c107",
+   "printed": "Schedule 7 row 2 Amount Paid",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurrSch71",
+   "html_id": "p2c108",
+   "printed": "Schedule 7 row 2 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCoveredSch72",
+   "html_id": "p2c109",
+   "printed": "Schedule 7 row 3 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameMillerSch72",
+   "html_id": "p2c110",
+   "printed": "Schedule 7 row 3 Name of Miller",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameTaxPayerSch72",
+   "html_id": "p2c111",
+   "printed": "Schedule 7 row 3 Name of Taxpayer",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtORNumSch72",
+   "html_id": "p2c112",
+   "printed": "Schedule 7 row 3 Official Receipt Number",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmountPaidSch72",
+   "html_id": "p2c113",
+   "printed": "Schedule 7 row 3 Amount Paid",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurrSch72",
+   "html_id": "p2c114",
+   "printed": "Schedule 7 row 3 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCoveredSch73",
+   "html_id": "p2c115",
+   "printed": "Schedule 7 row 4 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameMillerSch73",
+   "html_id": "p2c116",
+   "printed": "Schedule 7 row 4 Name of Miller",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameTaxPayerSch73",
+   "html_id": "p2c117",
+   "printed": "Schedule 7 row 4 Name of Taxpayer",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtORNumSch73",
+   "html_id": "p2c118",
+   "printed": "Schedule 7 row 4 Official Receipt Number",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmountPaidSch73",
+   "html_id": "p2c119",
+   "printed": "Schedule 7 row 4 Amount Paid",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurrSch73",
+   "html_id": "p2c120",
+   "printed": "Schedule 7 row 4 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtPeriodCoveredSch74",
+   "html_id": "p2c121",
+   "printed": "Schedule 7 row 5 Period Covered",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameMillerSch74",
+   "html_id": "p2c122",
+   "printed": "Schedule 7 row 5 Name of Miller",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtNameTaxPayerSch74",
+   "html_id": "p2c123",
+   "printed": "Schedule 7 row 5 Name of Taxpayer",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtORNumSch74",
+   "html_id": "p2c124",
+   "printed": "Schedule 7 row 5 Official Receipt Number",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAmountPaidSch74",
+   "html_id": "p2c125",
+   "printed": "Schedule 7 row 5 Amount Paid",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtAppliedCurrSch74",
+   "html_id": "p2c126",
+   "printed": "Schedule 7 row 5 Applied Current mo.",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtmodalTotal23B",
+   "html_id": "p2c255",
+   "printed": "Schedule 7 Total Amount Paid",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  },
+  {
+   "writer_key": "txtmodalTotalSched7AppliedCurrent",
+   "html_id": "p2c256",
+   "printed": "Schedule 7 Total Applied (to Item 23B)",
+   "reason": "geometry: the fillable cell on this printed item's row/column of the 2550M (2007) sheet"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm2550m:OptAmendedYN1",
+   "html_id": "p1c4",
+   "printed": "2 Amended Return Yes",
+   "reason": "box left of the printed option; X when the writer is true"
+  },
+  {
+   "writer_key": "frm2550m:OptAmendedYN2",
+   "html_id": "p1c5",
+   "printed": "2 Amended Return No",
+   "reason": "box left of the printed option; X when the writer is true"
+  },
+  {
+   "writer_key": "frm2550m:OptSpecialTax1",
+   "html_id": "p1c24",
+   "printed": "11 Tax relief Yes",
+   "reason": "box left of the printed option; X when the writer is true"
+  },
+  {
+   "writer_key": "frm2550m:OptSpecialTax2",
+   "html_id": "p1c25",
+   "printed": "11 Tax relief No",
+   "reason": "box left of the printed option; X when the writer is true"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_key": "frm2550m:lstSpecialTax",
+   "reason": "The writer holds the option code (1/2), not printable text."
+  },
+  {
+   "writer_keys": [
+    "AtcCode1",
+    "AtcCode2",
+    "AtcCode3",
+    "AtcCode4",
+    "AtcCode5",
+    "AtcCode6",
+    "AtcCode7",
+    "AtcCode8",
+    "AtcCode9",
+    "AtcCode10",
+    "AtcCode11",
+    "AtcCode12",
+    "AtcCode13",
+    "AtcCode14",
+    "AtcCode15",
+    "AtcCode16",
+    "AtcCode17",
+    "AtcCode18",
+    "AtcCode19",
+    "AtcCode20",
+    "AtcCode21",
+    "AtcCode22",
+    "AtcCode23",
+    "AtcCode24",
+    "AtcCode25",
+    "AtcCode26",
+    "AtcCode27",
+    "AtcCode28",
+    "AtcCode29",
+    "AtcCode30",
+    "AtcCode31",
+    "AtcCode32",
+    "AtcCode33",
+    "AtcCode34",
+    "AtcCode35",
+    "AtcCode36"
+   ],
+   "reason": "one radio per row of the page's ATC picker list, not on the paper form; the chosen codes print in the Schedule 1 ATC column (txtAtcCde1-4)"
+  },
+  {
+   "writer_keys": [
+    "frm2550m:txtAmountSales5",
+    "frm2550m:txtOutputTax5",
+    "frm2550m:txtAmountSales6",
+    "frm2550m:txtOutputTax6",
+    "frm2550m:txtAmountSales7",
+    "frm2550m:txtOutputTax7",
+    "frm2550m:txtAmountSales8",
+    "frm2550m:txtOutputTax8",
+    "frm2550m:txtAmountSales9",
+    "frm2550m:txtOutputTax9",
+    "frm2550m:txtAmountSales10",
+    "frm2550m:txtOutputTax10",
+    "frm2550m:txtAmountSales11",
+    "frm2550m:txtAtcCde11",
+    "frm2550m:txtOutputTax11",
+    "frm2550m:txtAmountSales12",
+    "frm2550m:txtAtcCde12",
+    "frm2550m:txtOutputTax12",
+    "frm2550m:txtAmountSales13",
+    "frm2550m:txtAtcCde13",
+    "frm2550m:txtOutputTax13",
+    "frm2550m:txtAmountSales14",
+    "frm2550m:txtAtcCde14",
+    "frm2550m:txtOutputTax14",
+    "frm2550m:txtAmountSales15",
+    "frm2550m:txtAtcCde15",
+    "frm2550m:txtOutputTax15",
+    "frm2550m:txtAmountSales16",
+    "frm2550m:txtAtcCde16",
+    "frm2550m:txtOutputTax16",
+    "frm2550m:txtAmountSales17",
+    "frm2550m:txtAtcCde17",
+    "frm2550m:txtOutputTax17",
+    "frm2550m:txtAmountSales18",
+    "frm2550m:txtAtcCde18",
+    "frm2550m:txtOutputTax18",
+    "frm2550m:txtAmountSales19",
+    "frm2550m:txtAtcCde19",
+    "frm2550m:txtOutputTax19",
+    "frm2550m:txtAmountSales20",
+    "frm2550m:txtAtcCde20",
+    "frm2550m:txtOutputTax20",
+    "frm2550m:txtAmountSales21",
+    "frm2550m:txtAtcCde21",
+    "frm2550m:txtOutputTax21",
+    "frm2550m:txtAmountSales22",
+    "frm2550m:txtAtcCde22",
+    "frm2550m:txtOutputTax22",
+    "frm2550m:txtAmountSales23",
+    "frm2550m:txtAtcCde23",
+    "frm2550m:txtOutputTax23",
+    "frm2550m:txtAmountSales24",
+    "frm2550m:txtAtcCde24",
+    "frm2550m:txtOutputTax24",
+    "frm2550m:txtAmountSales25",
+    "frm2550m:txtAtcCde25",
+    "frm2550m:txtOutputTax25",
+    "frm2550m:txtAmountSales26",
+    "frm2550m:txtAtcCde26",
+    "frm2550m:txtOutputTax26",
+    "frm2550m:txtAmountSales27",
+    "frm2550m:txtAtcCde27",
+    "frm2550m:txtOutputTax27",
+    "frm2550m:txtAmountSales28",
+    "frm2550m:txtAtcCde28",
+    "frm2550m:txtOutputTax28",
+    "frm2550m:txtAmountSales29",
+    "frm2550m:txtAtcCde29",
+    "frm2550m:txtOutputTax29",
+    "frm2550m:txtAmountSales30",
+    "frm2550m:txtAtcCde30",
+    "frm2550m:txtOutputTax30",
+    "frm2550m:txtAmountSales31",
+    "frm2550m:txtAtcCde31",
+    "frm2550m:txtOutputTax31",
+    "frm2550m:txtAmountSales32",
+    "frm2550m:txtAtcCde32",
+    "frm2550m:txtOutputTax32",
+    "frm2550m:txtAmountSales33",
+    "frm2550m:txtAtcCde33",
+    "frm2550m:txtOutputTax33",
+    "frm2550m:txtAmountSales34",
+    "frm2550m:txtAtcCde34",
+    "frm2550m:txtOutputTax34",
+    "frm2550m:txtAmountSales35",
+    "frm2550m:txtAtcCde35",
+    "frm2550m:txtOutputTax35",
+    "frm2550m:txtAmountSales36",
+    "frm2550m:txtOutputTax36"
+   ],
+   "reason": "Schedule 1 prints four ATC rows; rows 5 onward belong on an attached sheet"
+  },
+  {
+   "writer_keys": [
+    "txtTotalSaleSched4",
+    "txtTaxableSaleSched4",
+    "txtInputTaxnotDirectSched4",
+    "txtTotSaleSched5",
+    "txtSumTotalSaleSched5",
+    "txtAmountInputnotDirectSched5"
+   ],
+   "reason": "Schedule 4/5 formula operand of the page; the 2007 sheet prints those formulas as text and has no fillable cell for the operands"
+  },
+  {
+   "writer_keys": [
+    "frm2550m:txtTIN1",
+    "frm2550m:txtTIN2",
+    "frm2550m:txtTIN3",
+    "frm2550m:txtBranchCode"
+   ],
+   "reason": "the 2007 sheet's TIN row has no fillable cells in the frozen page; printing the TIN needs inputs in html-frozen/2550m-2007/index.html (reported on #113)"
+  },
+  {
+   "writer_key": "txtEmail",
+   "reason": "not on the paper form: the 2007 sheet has no email box"
+  },
+  {
+   "writer_keys": [
+    "chxSched20",
+    "chxSched21",
+    "chxSched210",
+    "chxSched211",
+    "chxSched22",
+    "chxSched23",
+    "chxSched24",
+    "chxSched25",
+    "chxSched26",
+    "chxSched27",
+    "chxSched28",
+    "chxSched29",
+    "chxSched3A0",
+    "chxSched3A1",
+    "chxSched3A10",
+    "chxSched3A11",
+    "chxSched3A2",
+    "chxSched3A3",
+    "chxSched3A4",
+    "chxSched3A5",
+    "chxSched3A6",
+    "chxSched3A7",
+    "chxSched3A8",
+    "chxSched3A9",
+    "chxSched3B0",
+    "chxSched3B1",
+    "chxSched3B10",
+    "chxSched3B11",
+    "chxSched3B2",
+    "chxSched3B3",
+    "chxSched3B4",
+    "chxSched3B5",
+    "chxSched3B6",
+    "chxSched3B7",
+    "chxSched3B8",
+    "chxSched3B9",
+    "chxSched60",
+    "chxSched61",
+    "chxSched610",
+    "chxSched611",
+    "chxSched62",
+    "chxSched63",
+    "chxSched64",
+    "chxSched65",
+    "chxSched66",
+    "chxSched67",
+    "chxSched68",
+    "chxSched69",
+    "chxSched70",
+    "chxSched71",
+    "chxSched710",
+    "chxSched711",
+    "chxSched72",
+    "chxSched73",
+    "chxSched74",
+    "chxSched75",
+    "chxSched76",
+    "chxSched77",
+    "chxSched78",
+    "chxSched79",
+    "chxSched80",
+    "chxSched81",
+    "chxSched810",
+    "chxSched811",
+    "chxSched82",
+    "chxSched83",
+    "chxSched84",
+    "chxSched85",
+    "chxSched86",
+    "chxSched87",
+    "chxSched88",
+    "chxSched89"
+   ],
+   "reason": "delete checkbox of a schedule row of the page, not on the sheet"
+  },
+  {
+   "writer_keys": [
+    "txtAllowInputTax3A10",
+    "txtAllowInputTax3A11",
+    "txtAllowInputTax3A4",
+    "txtAllowInputTax3A5",
+    "txtAllowInputTax3A6",
+    "txtAllowInputTax3A7",
+    "txtAllowInputTax3A8",
+    "txtAllowInputTax3A9",
+    "txtAmt3A10",
+    "txtAmt3A11",
+    "txtAmt3A4",
+    "txtAmt3A5",
+    "txtAmt3A6",
+    "txtAmt3A7",
+    "txtAmt3A8",
+    "txtAmt3A9",
+    "txtBalInputTax3A10",
+    "txtBalInputTax3A11",
+    "txtBalInputTax3A4",
+    "txtBalInputTax3A5",
+    "txtBalInputTax3A6",
+    "txtBalInputTax3A7",
+    "txtBalInputTax3A8",
+    "txtBalInputTax3A9",
+    "txtDatePurchased3A10",
+    "txtDatePurchased3A11",
+    "txtDatePurchased3A4",
+    "txtDatePurchased3A5",
+    "txtDatePurchased3A6",
+    "txtDatePurchased3A7",
+    "txtDatePurchased3A8",
+    "txtDatePurchased3A9",
+    "txtDescription3A10",
+    "txtDescription3A11",
+    "txtDescription3A4",
+    "txtDescription3A5",
+    "txtDescription3A6",
+    "txtDescription3A7",
+    "txtDescription3A8",
+    "txtDescription3A9",
+    "txtEstLife3A10",
+    "txtEstLife3A11",
+    "txtEstLife3A4",
+    "txtEstLife3A5",
+    "txtEstLife3A6",
+    "txtEstLife3A7",
+    "txtEstLife3A8",
+    "txtEstLife3A9",
+    "txtInputTax3A10",
+    "txtInputTax3A11",
+    "txtInputTax3A4",
+    "txtInputTax3A5",
+    "txtInputTax3A6",
+    "txtInputTax3A7",
+    "txtInputTax3A8",
+    "txtInputTax3A9",
+    "txtRecogLife3A10",
+    "txtRecogLife3A11",
+    "txtRecogLife3A4",
+    "txtRecogLife3A5",
+    "txtRecogLife3A6",
+    "txtRecogLife3A7",
+    "txtRecogLife3A8",
+    "txtRecogLife3A9"
+   ],
+   "reason": "Schedule 3A row past the 4 rows the sheet prints: an add-more row of the page, uploaded with the return; the sheet has no box for it"
+  },
+  {
+   "writer_keys": [
+    "txtAllowInputTax3B10",
+    "txtAllowInputTax3B11",
+    "txtAllowInputTax3B4",
+    "txtAllowInputTax3B5",
+    "txtAllowInputTax3B6",
+    "txtAllowInputTax3B7",
+    "txtAllowInputTax3B8",
+    "txtAllowInputTax3B9",
+    "txtAmt3B10",
+    "txtAmt3B11",
+    "txtAmt3B4",
+    "txtAmt3B5",
+    "txtAmt3B6",
+    "txtAmt3B7",
+    "txtAmt3B8",
+    "txtAmt3B9",
+    "txtBalInputTax3B10",
+    "txtBalInputTax3B11",
+    "txtBalInputTax3B4",
+    "txtBalInputTax3B5",
+    "txtBalInputTax3B6",
+    "txtBalInputTax3B7",
+    "txtBalInputTax3B8",
+    "txtBalInputTax3B9",
+    "txtBalInputTaxPrevious3B10",
+    "txtBalInputTaxPrevious3B11",
+    "txtBalInputTaxPrevious3B4",
+    "txtBalInputTaxPrevious3B5",
+    "txtBalInputTaxPrevious3B6",
+    "txtBalInputTaxPrevious3B7",
+    "txtBalInputTaxPrevious3B8",
+    "txtBalInputTaxPrevious3B9",
+    "txtDatePurchased3B10",
+    "txtDatePurchased3B11",
+    "txtDatePurchased3B4",
+    "txtDatePurchased3B5",
+    "txtDatePurchased3B6",
+    "txtDatePurchased3B7",
+    "txtDatePurchased3B8",
+    "txtDatePurchased3B9",
+    "txtDescription3B10",
+    "txtDescription3B11",
+    "txtDescription3B4",
+    "txtDescription3B5",
+    "txtDescription3B6",
+    "txtDescription3B7",
+    "txtDescription3B8",
+    "txtDescription3B9",
+    "txtEstLife3B10",
+    "txtEstLife3B11",
+    "txtEstLife3B4",
+    "txtEstLife3B5",
+    "txtEstLife3B6",
+    "txtEstLife3B7",
+    "txtEstLife3B8",
+    "txtEstLife3B9",
+    "txtRecogLife3B10",
+    "txtRecogLife3B11",
+    "txtRecogLife3B4",
+    "txtRecogLife3B5",
+    "txtRecogLife3B6",
+    "txtRecogLife3B7",
+    "txtRecogLife3B8",
+    "txtRecogLife3B9"
+   ],
+   "reason": "Schedule 3B row past the 4 rows the sheet prints: an add-more row of the page, uploaded with the return; the sheet has no box for it"
+  },
+  {
+   "writer_keys": [
+    "txtAmountPaidSch710",
+    "txtAmountPaidSch711",
+    "txtAmountPaidSch75",
+    "txtAmountPaidSch76",
+    "txtAmountPaidSch77",
+    "txtAmountPaidSch78",
+    "txtAmountPaidSch79",
+    "txtAppliedCurrSch710",
+    "txtAppliedCurrSch711",
+    "txtAppliedCurrSch75",
+    "txtAppliedCurrSch76",
+    "txtAppliedCurrSch77",
+    "txtAppliedCurrSch78",
+    "txtAppliedCurrSch79",
+    "txtNameMillerSch710",
+    "txtNameMillerSch711",
+    "txtNameMillerSch75",
+    "txtNameMillerSch76",
+    "txtNameMillerSch77",
+    "txtNameMillerSch78",
+    "txtNameMillerSch79",
+    "txtNameTaxPayerSch710",
+    "txtNameTaxPayerSch711",
+    "txtNameTaxPayerSch75",
+    "txtNameTaxPayerSch76",
+    "txtNameTaxPayerSch77",
+    "txtNameTaxPayerSch78",
+    "txtNameTaxPayerSch79",
+    "txtORNumSch710",
+    "txtORNumSch711",
+    "txtORNumSch75",
+    "txtORNumSch76",
+    "txtORNumSch77",
+    "txtORNumSch78",
+    "txtORNumSch79",
+    "txtPeriodCoveredSch710",
+    "txtPeriodCoveredSch711",
+    "txtPeriodCoveredSch75",
+    "txtPeriodCoveredSch76",
+    "txtPeriodCoveredSch77",
+    "txtPeriodCoveredSch78",
+    "txtPeriodCoveredSch79"
+   ],
+   "reason": "Schedule 7 row past the 5 rows the sheet prints: an add-more row of the page, uploaded with the return; the sheet has no box for it"
+  },
+  {
+   "writer_keys": [
+    "txtAmt10",
+    "txtAmt11",
+    "txtAmt4",
+    "txtAmt5",
+    "txtAmt6",
+    "txtAmt7",
+    "txtAmt8",
+    "txtAmt9",
+    "txtDatePurchased10",
+    "txtDatePurchased11",
+    "txtDatePurchased4",
+    "txtDatePurchased5",
+    "txtDatePurchased6",
+    "txtDatePurchased7",
+    "txtDatePurchased8",
+    "txtDatePurchased9",
+    "txtDescription10",
+    "txtDescription11",
+    "txtDescription4",
+    "txtDescription5",
+    "txtDescription6",
+    "txtDescription7",
+    "txtDescription8",
+    "txtDescription9",
+    "txtInputTax10",
+    "txtInputTax11",
+    "txtInputTax4",
+    "txtInputTax5",
+    "txtInputTax6",
+    "txtInputTax7",
+    "txtInputTax8",
+    "txtInputTax9"
+   ],
+   "reason": "Schedule 2 row past the 4 rows the sheet prints: an add-more row of the page, uploaded with the return; the sheet has no box for it"
+  },
+  {
+   "writer_keys": [
+    "txtAppliedCurr10",
+    "txtAppliedCurr11",
+    "txtAppliedCurr5",
+    "txtAppliedCurr6",
+    "txtAppliedCurr7",
+    "txtAppliedCurr8",
+    "txtAppliedCurr9",
+    "txtIncomePayment10",
+    "txtIncomePayment11",
+    "txtIncomePayment5",
+    "txtIncomePayment6",
+    "txtIncomePayment7",
+    "txtIncomePayment8",
+    "txtIncomePayment9",
+    "txtNameAgent10",
+    "txtNameAgent11",
+    "txtNameAgent5",
+    "txtNameAgent6",
+    "txtNameAgent7",
+    "txtNameAgent8",
+    "txtNameAgent9",
+    "txtPeriodCovered10",
+    "txtPeriodCovered11",
+    "txtPeriodCovered5",
+    "txtPeriodCovered6",
+    "txtPeriodCovered7",
+    "txtPeriodCovered8",
+    "txtPeriodCovered9",
+    "txtTotalWithheld10",
+    "txtTotalWithheld11",
+    "txtTotalWithheld5",
+    "txtTotalWithheld6",
+    "txtTotalWithheld7",
+    "txtTotalWithheld8",
+    "txtTotalWithheld9"
+   ],
+   "reason": "Schedule 6 row past the 5 rows the sheet prints: an add-more row of the page, uploaded with the return; the sheet has no box for it"
+  },
+  {
+   "writer_keys": [
+    "txtAppliedCurrSch810",
+    "txtAppliedCurrSch811",
+    "txtAppliedCurrSch85",
+    "txtAppliedCurrSch86",
+    "txtAppliedCurrSch87",
+    "txtAppliedCurrSch88",
+    "txtAppliedCurrSch89",
+    "txtIncomePaymentSch810",
+    "txtIncomePaymentSch811",
+    "txtIncomePaymentSch85",
+    "txtIncomePaymentSch86",
+    "txtIncomePaymentSch87",
+    "txtIncomePaymentSch88",
+    "txtIncomePaymentSch89",
+    "txtNameAgentSch810",
+    "txtNameAgentSch811",
+    "txtNameAgentSch85",
+    "txtNameAgentSch86",
+    "txtNameAgentSch87",
+    "txtNameAgentSch88",
+    "txtNameAgentSch89",
+    "txtPeriodCoveredSch810",
+    "txtPeriodCoveredSch811",
+    "txtPeriodCoveredSch85",
+    "txtPeriodCoveredSch86",
+    "txtPeriodCoveredSch87",
+    "txtPeriodCoveredSch88",
+    "txtPeriodCoveredSch89",
+    "txtTotalWithheldSch810",
+    "txtTotalWithheldSch811",
+    "txtTotalWithheldSch85",
+    "txtTotalWithheldSch86",
+    "txtTotalWithheldSch87",
+    "txtTotalWithheldSch88",
+    "txtTotalWithheldSch89"
+   ],
+   "reason": "Schedule 8 row past the 5 rows the sheet prints: an add-more row of the page, uploaded with the return; the sheet has no box for it"
+  }
+ ]
+}

@@ -1,0 +1,967 @@
+{
+ "form_id": "2000ot-v2018",
+ "html_slug": "2000-ot-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (frozen page text layer) sits directly left of or just above it. Booleans take xbox_joins (box immediately left of the printed option; _1/_2/_3 follow the printed option order). Item 14-21 amounts pair a peso comb with the 2-slot centavo comb directly right (money_joins). Schedule 1.A and 1.B rows 2-5 print no row number and take the column header above (row 1 is the header-adjacent row). The 2000OT layout has no writer keys for the Tax Agent block or the Part III payment rows, so those cells stay blank. Multi-comb MM/DD/YYYY dates and the single 14-slot page 1 and page 2 TIN combs stay blank.",
+ "joins": [
+  {
+   "writer_key": "frm2000OT:txtSheets",
+   "html_id": "p1c10",
+   "printed": "4 Number of Sheet/s Attached",
+   "reason": "caption left of the 2-slot comb"
+  },
+  {
+   "writer_key": "frm2000OT:txtRDOCode",
+   "html_id": "p1c20",
+   "printed": "6 RDO Code of Location of Property",
+   "reason": "caption left of the 3-slot comb"
+  },
+  {
+   "writer_key": "frm2000OT:txtTaxpayerName",
+   "html_id": "p1c22",
+   "printed": "7 Taxpayer's Name",
+   "reason": "row 7 caption above the 36-slot comb"
+  },
+  {
+   "writer_key": "frm2000OT:txtAddress",
+   "html_id": "p1c24",
+   "printed": "8 Registered Address",
+   "reason": "row 8 caption above the 36-slot comb"
+  },
+  {
+   "writer_key": "frm2000OT:txtAddress2",
+   "html_id": "p1c25",
+   "printed": "8 Registered Address (second line)",
+   "reason": "second line stacked directly under the item 8 cell, beside the 8A ZIP caption"
+  },
+  {
+   "writer_key": "frm2000OT:txtZipCode",
+   "html_id": "p1c27",
+   "printed": "8A ZIP Code",
+   "reason": "caption left of the 4-slot comb"
+  },
+  {
+   "writer_key": "frm2000OT:txtTelNum",
+   "html_id": "p1c30",
+   "printed": "9 Contact Number",
+   "reason": "caption above the 12-slot comb"
+  },
+  {
+   "writer_key": "txtEmail",
+   "html_id": "p1c31",
+   "printed": "10 Email Address",
+   "reason": "caption above the 24-slot comb"
+  },
+  {
+   "writer_key": "frm2000OT:txtOtherName",
+   "html_id": "p1c36",
+   "printed": "11 Name (Last Name, First Name, Middle Name for Individual)/(Registered Name)",
+   "reason": "row 11 caption above the 36-slot comb"
+  },
+  {
+   "writer_key": "frm2000OT:txtOtherTIN",
+   "html_id": "p1c39",
+   "printed": "11B TIN",
+   "reason": "caption left of the 14-slot comb"
+  },
+  {
+   "writer_key": "frm2000OT:txtRealLocation",
+   "html_id": "p1c47",
+   "printed": "13 Location (if sale/transfer/donation of real property)",
+   "reason": "row 13 caption above the 36-slot comb"
+  },
+  {
+   "writer_key": "frm2000OT:txtTax16",
+   "html_id": "p1c58",
+   "printed": "16 Tax Rate",
+   "reason": "caption left of the text cell"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtOCTNo0",
+   "html_id": "p2c14",
+   "printed": "OCT/TCT/CCT No. (Schedule 1.A row 1)",
+   "reason": "caption above the cell in the first Schedule 1.A row"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtTaxDecNo0",
+   "html_id": "p2c15",
+   "printed": "Tax Declaration No. (TD) (Schedule 1.A row 1)",
+   "reason": "caption above the Schedule 1.A row 1 cell"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtLoc0",
+   "html_id": "p2c16",
+   "printed": "Location (Schedule 1.A row 1)",
+   "reason": "caption above the Schedule 1.A row 1 cell"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtOCTNo1",
+   "html_id": "p2c18",
+   "printed": "OCT/TCT/CCT No. (Schedule 1.A row 2)",
+   "reason": "Schedule 1.A row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtTaxDecNo1",
+   "html_id": "p2c19",
+   "printed": "Tax Declaration No. (TD) (Schedule 1.A row 2)",
+   "reason": "Schedule 1.A row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtLoc1",
+   "html_id": "p2c20",
+   "printed": "Location (Schedule 1.A row 2)",
+   "reason": "Schedule 1.A row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtOCTNo2",
+   "html_id": "p2c22",
+   "printed": "OCT/TCT/CCT No. (Schedule 1.A row 3)",
+   "reason": "Schedule 1.A row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtTaxDecNo2",
+   "html_id": "p2c23",
+   "printed": "Tax Declaration No. (TD) (Schedule 1.A row 3)",
+   "reason": "Schedule 1.A row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtLoc2",
+   "html_id": "p2c24",
+   "printed": "Location (Schedule 1.A row 3)",
+   "reason": "Schedule 1.A row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtOCTNo3",
+   "html_id": "p2c26",
+   "printed": "OCT/TCT/CCT No. (Schedule 1.A row 4)",
+   "reason": "Schedule 1.A row 4, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtTaxDecNo3",
+   "html_id": "p2c27",
+   "printed": "Tax Declaration No. (TD) (Schedule 1.A row 4)",
+   "reason": "Schedule 1.A row 4, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtLoc3",
+   "html_id": "p2c28",
+   "printed": "Location (Schedule 1.A row 4)",
+   "reason": "Schedule 1.A row 4, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtOCTNo4",
+   "html_id": "p2c30",
+   "printed": "OCT/TCT/CCT No. (Schedule 1.A row 5)",
+   "reason": "Schedule 1.A row 5, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtTaxDecNo4",
+   "html_id": "p2c31",
+   "printed": "Tax Declaration No. (TD) (Schedule 1.A row 5)",
+   "reason": "Schedule 1.A row 5, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtLoc4",
+   "html_id": "p2c32",
+   "printed": "Location (Schedule 1.A row 5)",
+   "reason": "Schedule 1.A row 5, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:txtPg2TaxpayerName",
+   "html_id": "p2c6",
+   "printed": "Taxpayer's Name (page 2 header)",
+   "reason": "caption above the 26-slot comb"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtLot0",
+   "html_id": "p2c39",
+   "printed": "Lot / Improvement (Schedule 1.A row 1)",
+   "reason": "Schedule 1.A row 1, Lot column header"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtClassification0",
+   "html_id": "p2c121",
+   "printed": "Classification (Schedule 1.A row 1)",
+   "reason": "Schedule 1.A row 1, Classification column header"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtArea0",
+   "html_id": "p2c122",
+   "printed": "Area (sq.m.) (Schedule 1.A row 1)",
+   "reason": "Schedule 1.A row 1, Area column header"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVCol10",
+   "html_id": "p2c123",
+   "printed": "Fair Market Value per sq.m. (Column 1) (Schedule 1.A row 1)",
+   "reason": "Schedule 1.A row 1, Column 1 header"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVCol20",
+   "html_id": "p2c124",
+   "printed": "Fair Market Value per sq.m. (Column 2) (Schedule 1.A row 1)",
+   "reason": "Schedule 1.A row 1, Column 2 header"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVSubTot0",
+   "html_id": "p2c42",
+   "printed": "Sub-total (between Columns 1 & 2) (Schedule 1.A row 1)",
+   "reason": "Schedule 1.A row 1, sub-total header"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtLot1",
+   "html_id": "p2c44",
+   "printed": "Lot / Improvement (Schedule 1.A row 2)",
+   "reason": "Schedule 1.A row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtClassification1",
+   "html_id": "p2c125",
+   "printed": "Classification (Schedule 1.A row 2)",
+   "reason": "Schedule 1.A row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtArea1",
+   "html_id": "p2c126",
+   "printed": "Area (sq.m.) (Schedule 1.A row 2)",
+   "reason": "Schedule 1.A row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVCol11",
+   "html_id": "p2c127",
+   "printed": "Fair Market Value per sq.m. (Column 1) (Schedule 1.A row 2)",
+   "reason": "Schedule 1.A row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVCol21",
+   "html_id": "p2c128",
+   "printed": "Fair Market Value per sq.m. (Column 2) (Schedule 1.A row 2)",
+   "reason": "Schedule 1.A row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVSubTot1",
+   "html_id": "p2c47",
+   "printed": "Sub-total (Schedule 1.A row 2)",
+   "reason": "Schedule 1.A row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtLot2",
+   "html_id": "p2c49",
+   "printed": "Lot / Improvement (Schedule 1.A row 3)",
+   "reason": "Schedule 1.A row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtClassification2",
+   "html_id": "p2c129",
+   "printed": "Classification (Schedule 1.A row 3)",
+   "reason": "Schedule 1.A row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtArea2",
+   "html_id": "p2c130",
+   "printed": "Area (sq.m.) (Schedule 1.A row 3)",
+   "reason": "Schedule 1.A row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVCol12",
+   "html_id": "p2c131",
+   "printed": "Fair Market Value per sq.m. (Column 1) (Schedule 1.A row 3)",
+   "reason": "Schedule 1.A row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVCol22",
+   "html_id": "p2c132",
+   "printed": "Fair Market Value per sq.m. (Column 2) (Schedule 1.A row 3)",
+   "reason": "Schedule 1.A row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVSubTot2",
+   "html_id": "p2c52",
+   "printed": "Sub-total (Schedule 1.A row 3)",
+   "reason": "Schedule 1.A row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtLot3",
+   "html_id": "p2c54",
+   "printed": "Lot / Improvement (Schedule 1.A row 4)",
+   "reason": "Schedule 1.A row 4, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtClassification3",
+   "html_id": "p2c133",
+   "printed": "Classification (Schedule 1.A row 4)",
+   "reason": "Schedule 1.A row 4, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtArea3",
+   "html_id": "p2c134",
+   "printed": "Area (sq.m.) (Schedule 1.A row 4)",
+   "reason": "Schedule 1.A row 4, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVCol13",
+   "html_id": "p2c135",
+   "printed": "Fair Market Value per sq.m. (Column 1) (Schedule 1.A row 4)",
+   "reason": "Schedule 1.A row 4, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVCol23",
+   "html_id": "p2c136",
+   "printed": "Fair Market Value per sq.m. (Column 2) (Schedule 1.A row 4)",
+   "reason": "Schedule 1.A row 4, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVSubTot3",
+   "html_id": "p2c57",
+   "printed": "Sub-total (Schedule 1.A row 4)",
+   "reason": "Schedule 1.A row 4, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtLot4",
+   "html_id": "p2c59",
+   "printed": "Lot / Improvement (Schedule 1.A row 5)",
+   "reason": "Schedule 1.A row 5, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtClassification4",
+   "html_id": "p2c137",
+   "printed": "Classification (Schedule 1.A row 5)",
+   "reason": "Schedule 1.A row 5, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtArea4",
+   "html_id": "p2c138",
+   "printed": "Area (sq.m.) (Schedule 1.A row 5)",
+   "reason": "Schedule 1.A row 5, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVCol14",
+   "html_id": "p2c139",
+   "printed": "Fair Market Value per sq.m. (Column 1) (Schedule 1.A row 5)",
+   "reason": "Schedule 1.A row 5, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVCol24",
+   "html_id": "p2c140",
+   "printed": "Fair Market Value per sq.m. (Column 2) (Schedule 1.A row 5)",
+   "reason": "Schedule 1.A row 5, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVSubTot4",
+   "html_id": "p2c62",
+   "printed": "Sub-total (Schedule 1.A row 5)",
+   "reason": "Schedule 1.A row 5, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1A:txtFMVTotal",
+   "html_id": "p2c64",
+   "printed": "TOTAL (To Schedule 2 Item B)",
+   "reason": "Schedule 1.A total printed to Schedule 2 Item B"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtNameOfCorpStock0",
+   "html_id": "p2c71",
+   "printed": "Name of Corporate Stock (a) (Schedule 1.B row 1)",
+   "reason": "Schedule 1.B column (a) header"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtNoOfSharesSold0",
+   "html_id": "p2c72",
+   "printed": "Number of Shares Sold (b) (Schedule 1.B row 1)",
+   "reason": "Schedule 1.B column (b) header"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtStockCertNo0",
+   "html_id": "p2c73",
+   "printed": "Stock Certificate Number (c) (Schedule 1.B row 1)",
+   "reason": "Schedule 1.B column (c) header"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtParValOfShares0",
+   "html_id": "p2c74",
+   "printed": "Par value of shares (d) (Schedule 1.B row 1)",
+   "reason": "Schedule 1.B column (d) header"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtDSTPaid0",
+   "html_id": "p2c75",
+   "printed": "DST Paid (e) (Schedule 1.B row 1)",
+   "reason": "Schedule 1.B column (e) header"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtNameOfCorpStock1",
+   "html_id": "p2c76",
+   "printed": "Name of Corporate Stock (a) (Schedule 1.B row 2)",
+   "reason": "Schedule 1.B row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtNoOfSharesSold1",
+   "html_id": "p2c77",
+   "printed": "Number of Shares Sold (b) (Schedule 1.B row 2)",
+   "reason": "Schedule 1.B row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtStockCertNo1",
+   "html_id": "p2c78",
+   "printed": "Stock Certificate Number (c) (Schedule 1.B row 2)",
+   "reason": "Schedule 1.B row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtParValOfShares1",
+   "html_id": "p2c79",
+   "printed": "Par value of shares (d) (Schedule 1.B row 2)",
+   "reason": "Schedule 1.B row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtDSTPaid1",
+   "html_id": "p2c80",
+   "printed": "DST Paid (e) (Schedule 1.B row 2)",
+   "reason": "Schedule 1.B row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtNameOfCorpStock2",
+   "html_id": "p2c81",
+   "printed": "Name of Corporate Stock (a) (Schedule 1.B row 3)",
+   "reason": "Schedule 1.B row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtNoOfSharesSold2",
+   "html_id": "p2c82",
+   "printed": "Number of Shares Sold (b) (Schedule 1.B row 3)",
+   "reason": "Schedule 1.B row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtStockCertNo2",
+   "html_id": "p2c83",
+   "printed": "Stock Certificate Number (c) (Schedule 1.B row 3)",
+   "reason": "Schedule 1.B row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtParValOfShares2",
+   "html_id": "p2c84",
+   "printed": "Par value of shares (d) (Schedule 1.B row 3)",
+   "reason": "Schedule 1.B row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:sched1B:txtDSTPaid2",
+   "html_id": "p2c85",
+   "printed": "DST Paid (e) (Schedule 1.B row 3)",
+   "reason": "Schedule 1.B row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000OT:Sched2:txtOthers",
+   "html_id": "p2c99",
+   "printed": "C Others (Specify)",
+   "reason": "Schedule 2 item C description right of the Others caption"
+  },
+  {
+   "writer_key": "derived:transaction_mm",
+   "html_id": "p1c7",
+   "printed": "1 Date of Transaction (MM)",
+   "reason": "2-slot MM comb of the item 1 date; the print map splits txtTransactionDate (MM/DD/YYYY)"
+  },
+  {
+   "writer_key": "derived:transaction_dd",
+   "html_id": "p1c8",
+   "printed": "1 Date of Transaction (DD)",
+   "reason": "2-slot DD comb of the item 1 date; the print map splits txtTransactionDate"
+  },
+  {
+   "writer_key": "derived:transaction_yyyy",
+   "html_id": "p1c9",
+   "printed": "1 Date of Transaction (YYYY)",
+   "reason": "4-slot YYYY comb of the item 1 date; the print map splits txtTransactionDate"
+  },
+  {
+   "writer_key": "derived:tin",
+   "html_id": "p1c18",
+   "printed": "5 Taxpayer Identification Number (TIN)",
+   "reason": "one 14-slot comb under the item 5 TIN caption; the print map joins txtTIN1-3 and txtBranchCode (9 digits + 5-digit branch)"
+  },
+  {
+   "writer_key": "derived:pg2_tin",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN",
+   "reason": "one 14-slot comb under the page 2 TIN caption; the print map joins txtPg2TIN1-3 and txtPg2BranchCode"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm2000OT:txtTax14",
+   "peso_html_id": "p1c50",
+   "cent_html_id": "p1c52",
+   "printed": "14 Taxable Base-Shares of Stock",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000OT:txtTax15",
+   "peso_html_id": "p1c54",
+   "cent_html_id": "p1c56",
+   "printed": "15 Taxable Base-Real Property (From Part IV Schedule 2 Item 2)",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000OT:txtTax17",
+   "peso_html_id": "p1c61",
+   "cent_html_id": "p1c63",
+   "printed": "17 Tax Due (Item 14 or 15 x Item 16)",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000OT:txtTax18",
+   "peso_html_id": "p1c65",
+   "cent_html_id": "p1c67",
+   "printed": "18 Less: Tax Paid in Return previously filed",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000OT:txtTax19",
+   "peso_html_id": "p1c69",
+   "cent_html_id": "p1c71",
+   "printed": "19 Tax Still Due/(Overpayment) (Item 17 less Item 18)",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000OT:txtTax20A",
+   "peso_html_id": "p1c74",
+   "cent_html_id": "p1c76",
+   "printed": "20A Surcharge",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000OT:txtTax20B",
+   "peso_html_id": "p1c78",
+   "cent_html_id": "p1c80",
+   "printed": "20B Interest",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000OT:txtTax20C",
+   "peso_html_id": "p1c82",
+   "cent_html_id": "p1c84",
+   "printed": "20C Compromise",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000OT:txtTax20D",
+   "peso_html_id": "p1c86",
+   "cent_html_id": "p1c88",
+   "printed": "20D Total Penalties (Sum of Items 20A to 20C)",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000OT:txtTax21",
+   "peso_html_id": "p1c90",
+   "cent_html_id": "p1c92",
+   "printed": "21 Total Amount Payable/(Overpayment) (Sum of Items 19 and 20D)",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000OT:Sched2:txtGrossSellingPrice",
+   "peso_html_id": "p2c88",
+   "cent_html_id": "p2c90",
+   "printed": "A Gross Selling Price / Bid Price / Net Gift",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000OT:Sched2:txtTotalFairMarket",
+   "peso_html_id": "p2c92",
+   "cent_html_id": "p2c94",
+   "printed": "B Total Fair Market Value of Land and Improvement per Schedule 1.A",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000OT:Sched2:txtOthersAmount",
+   "peso_html_id": "p2c96",
+   "cent_html_id": "p2c98",
+   "printed": "C Others (Specify) amount",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000OT:Sched2:txtTaxableBase",
+   "peso_html_id": "p2c101",
+   "cent_html_id": "p2c103",
+   "printed": "Taxable Base (cash/foreclosure sale/net gift, Item A or B whichever is higher)",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm2000OT:AmendedRtn_1",
+   "html_id": "p1c11",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm2000OT:AmendedRtn_2",
+   "html_id": "p1c12",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm2000OT:ATC_1",
+   "html_id": "p1c14",
+   "printed": "3 ATC: DO 102",
+   "reason": "box immediately left of the printed option"
+  },
+  {
+   "writer_key": "frm2000OT:ATC_2",
+   "html_id": "p1c15",
+   "printed": "3 ATC: DO 122",
+   "reason": "box immediately left of the printed option"
+  },
+  {
+   "writer_key": "frm2000OT:ATC_3",
+   "html_id": "p1c13",
+   "printed": "3 ATC: DO 125",
+   "reason": "box immediately left of the printed option"
+  },
+  {
+   "writer_key": "frm2000OT:optParty_1",
+   "html_id": "p1c33",
+   "printed": "11 Other Party to the transaction: Seller/Transferor/Donor",
+   "reason": "box immediately left of the printed option"
+  },
+  {
+   "writer_key": "frm2000OT:optParty_2",
+   "html_id": "p1c34",
+   "printed": "11 Other Party to the transaction: Buyer/Transferee/Donee",
+   "reason": "box immediately left of the printed option"
+  },
+  {
+   "writer_key": "frm2000OT:rbTransNature_1",
+   "html_id": "p1c42",
+   "printed": "12 Nature: Transfer of Shares of Stock Not Traded Through the Local Stock Exchange",
+   "reason": "box immediately left of the printed option"
+  },
+  {
+   "writer_key": "frm2000OT:rbTransNature_2",
+   "html_id": "p1c45",
+   "printed": "12 Nature: Transfer of Real Property Classified as Capital Asset",
+   "reason": "box immediately left of the printed option"
+  },
+  {
+   "writer_key": "frm2000OT:rbTransNature_3",
+   "html_id": "p1c44",
+   "printed": "12 Nature: Transfer of Real Property Other Than Capital Asset",
+   "reason": "box immediately left of the printed option"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm2000OT:txtTIN1",
+    "frm2000OT:txtTIN2",
+    "frm2000OT:txtTIN3",
+    "frm2000OT:txtBranchCode"
+   ],
+   "reason": "item 6 TIN is one 14-slot comb; it prints from derived:tin, built from these keys"
+  },
+  {
+   "writer_keys": [
+    "frm2000OT:txtPg2TIN1",
+    "frm2000OT:txtPg2TIN2",
+    "frm2000OT:txtPg2TIN3",
+    "frm2000OT:txtPg2BranchCode"
+   ],
+   "reason": "page 2 TIN is one 14-slot comb (p2c5); it prints from derived:pg2_tin"
+  },
+  {
+   "writer_key": "frm2000OT:txtLineBus",
+   "reason": "not on the paper form: this sheet has no line-of-business box"
+  },
+  {
+   "writer_key": "frm2000OT:txtCurrentPage",
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  },
+  {
+   "writer_keys": [
+    "frm2000OT:sched1A:txtArea10",
+    "frm2000OT:sched1A:txtArea11",
+    "frm2000OT:sched1A:txtArea12",
+    "frm2000OT:sched1A:txtArea13",
+    "frm2000OT:sched1A:txtArea14",
+    "frm2000OT:sched1A:txtArea15",
+    "frm2000OT:sched1A:txtArea5",
+    "frm2000OT:sched1A:txtArea6",
+    "frm2000OT:sched1A:txtArea7",
+    "frm2000OT:sched1A:txtArea8",
+    "frm2000OT:sched1A:txtArea9",
+    "frm2000OT:sched1A:txtClassification10",
+    "frm2000OT:sched1A:txtClassification11",
+    "frm2000OT:sched1A:txtClassification12",
+    "frm2000OT:sched1A:txtClassification13",
+    "frm2000OT:sched1A:txtClassification14",
+    "frm2000OT:sched1A:txtClassification15",
+    "frm2000OT:sched1A:txtClassification5",
+    "frm2000OT:sched1A:txtClassification6",
+    "frm2000OT:sched1A:txtClassification7",
+    "frm2000OT:sched1A:txtClassification8",
+    "frm2000OT:sched1A:txtClassification9",
+    "frm2000OT:sched1A:txtFMVCol110",
+    "frm2000OT:sched1A:txtFMVCol111",
+    "frm2000OT:sched1A:txtFMVCol112",
+    "frm2000OT:sched1A:txtFMVCol113",
+    "frm2000OT:sched1A:txtFMVCol114",
+    "frm2000OT:sched1A:txtFMVCol115",
+    "frm2000OT:sched1A:txtFMVCol15",
+    "frm2000OT:sched1A:txtFMVCol16",
+    "frm2000OT:sched1A:txtFMVCol17",
+    "frm2000OT:sched1A:txtFMVCol18",
+    "frm2000OT:sched1A:txtFMVCol19",
+    "frm2000OT:sched1A:txtFMVCol210",
+    "frm2000OT:sched1A:txtFMVCol211",
+    "frm2000OT:sched1A:txtFMVCol212",
+    "frm2000OT:sched1A:txtFMVCol213",
+    "frm2000OT:sched1A:txtFMVCol214",
+    "frm2000OT:sched1A:txtFMVCol215",
+    "frm2000OT:sched1A:txtFMVCol25",
+    "frm2000OT:sched1A:txtFMVCol26",
+    "frm2000OT:sched1A:txtFMVCol27",
+    "frm2000OT:sched1A:txtFMVCol28",
+    "frm2000OT:sched1A:txtFMVCol29",
+    "frm2000OT:sched1A:txtFMVSubTot10",
+    "frm2000OT:sched1A:txtFMVSubTot11",
+    "frm2000OT:sched1A:txtFMVSubTot12",
+    "frm2000OT:sched1A:txtFMVSubTot13",
+    "frm2000OT:sched1A:txtFMVSubTot14",
+    "frm2000OT:sched1A:txtFMVSubTot15",
+    "frm2000OT:sched1A:txtFMVSubTot5",
+    "frm2000OT:sched1A:txtFMVSubTot6",
+    "frm2000OT:sched1A:txtFMVSubTot7",
+    "frm2000OT:sched1A:txtFMVSubTot8",
+    "frm2000OT:sched1A:txtFMVSubTot9",
+    "frm2000OT:sched1A:txtLoc10",
+    "frm2000OT:sched1A:txtLoc11",
+    "frm2000OT:sched1A:txtLoc12",
+    "frm2000OT:sched1A:txtLoc13",
+    "frm2000OT:sched1A:txtLoc14",
+    "frm2000OT:sched1A:txtLoc15",
+    "frm2000OT:sched1A:txtLoc5",
+    "frm2000OT:sched1A:txtLoc6",
+    "frm2000OT:sched1A:txtLoc7",
+    "frm2000OT:sched1A:txtLoc8",
+    "frm2000OT:sched1A:txtLoc9",
+    "frm2000OT:sched1A:txtLot10",
+    "frm2000OT:sched1A:txtLot11",
+    "frm2000OT:sched1A:txtLot12",
+    "frm2000OT:sched1A:txtLot13",
+    "frm2000OT:sched1A:txtLot14",
+    "frm2000OT:sched1A:txtLot15",
+    "frm2000OT:sched1A:txtLot5",
+    "frm2000OT:sched1A:txtLot6",
+    "frm2000OT:sched1A:txtLot7",
+    "frm2000OT:sched1A:txtLot8",
+    "frm2000OT:sched1A:txtLot9",
+    "frm2000OT:sched1A:txtOCTNo10",
+    "frm2000OT:sched1A:txtOCTNo11",
+    "frm2000OT:sched1A:txtOCTNo12",
+    "frm2000OT:sched1A:txtOCTNo13",
+    "frm2000OT:sched1A:txtOCTNo14",
+    "frm2000OT:sched1A:txtOCTNo15",
+    "frm2000OT:sched1A:txtOCTNo5",
+    "frm2000OT:sched1A:txtOCTNo6",
+    "frm2000OT:sched1A:txtOCTNo7",
+    "frm2000OT:sched1A:txtOCTNo8",
+    "frm2000OT:sched1A:txtOCTNo9",
+    "frm2000OT:sched1A:txtTaxDecNo10",
+    "frm2000OT:sched1A:txtTaxDecNo11",
+    "frm2000OT:sched1A:txtTaxDecNo12",
+    "frm2000OT:sched1A:txtTaxDecNo13",
+    "frm2000OT:sched1A:txtTaxDecNo14",
+    "frm2000OT:sched1A:txtTaxDecNo15",
+    "frm2000OT:sched1A:txtTaxDecNo5",
+    "frm2000OT:sched1A:txtTaxDecNo6",
+    "frm2000OT:sched1A:txtTaxDecNo7",
+    "frm2000OT:sched1A:txtTaxDecNo8",
+    "frm2000OT:sched1A:txtTaxDecNo9"
+   ],
+   "reason": "Schedule 1.A row past the 5 rows the sheet prints: an add-more row of the page, uploaded with the return; the sheet has no box for it"
+  },
+  {
+   "writer_keys": [
+    "frm2000OT:sched1B:txtDSTPaid10",
+    "frm2000OT:sched1B:txtDSTPaid11",
+    "frm2000OT:sched1B:txtDSTPaid12",
+    "frm2000OT:sched1B:txtDSTPaid13",
+    "frm2000OT:sched1B:txtDSTPaid3",
+    "frm2000OT:sched1B:txtDSTPaid4",
+    "frm2000OT:sched1B:txtDSTPaid5",
+    "frm2000OT:sched1B:txtDSTPaid6",
+    "frm2000OT:sched1B:txtDSTPaid7",
+    "frm2000OT:sched1B:txtDSTPaid8",
+    "frm2000OT:sched1B:txtDSTPaid9",
+    "frm2000OT:sched1B:txtNameOfCorpStock10",
+    "frm2000OT:sched1B:txtNameOfCorpStock11",
+    "frm2000OT:sched1B:txtNameOfCorpStock12",
+    "frm2000OT:sched1B:txtNameOfCorpStock13",
+    "frm2000OT:sched1B:txtNameOfCorpStock3",
+    "frm2000OT:sched1B:txtNameOfCorpStock4",
+    "frm2000OT:sched1B:txtNameOfCorpStock5",
+    "frm2000OT:sched1B:txtNameOfCorpStock6",
+    "frm2000OT:sched1B:txtNameOfCorpStock7",
+    "frm2000OT:sched1B:txtNameOfCorpStock8",
+    "frm2000OT:sched1B:txtNameOfCorpStock9",
+    "frm2000OT:sched1B:txtNoOfSharesSold10",
+    "frm2000OT:sched1B:txtNoOfSharesSold11",
+    "frm2000OT:sched1B:txtNoOfSharesSold12",
+    "frm2000OT:sched1B:txtNoOfSharesSold13",
+    "frm2000OT:sched1B:txtNoOfSharesSold3",
+    "frm2000OT:sched1B:txtNoOfSharesSold4",
+    "frm2000OT:sched1B:txtNoOfSharesSold5",
+    "frm2000OT:sched1B:txtNoOfSharesSold6",
+    "frm2000OT:sched1B:txtNoOfSharesSold7",
+    "frm2000OT:sched1B:txtNoOfSharesSold8",
+    "frm2000OT:sched1B:txtNoOfSharesSold9",
+    "frm2000OT:sched1B:txtParValOfShares10",
+    "frm2000OT:sched1B:txtParValOfShares11",
+    "frm2000OT:sched1B:txtParValOfShares12",
+    "frm2000OT:sched1B:txtParValOfShares13",
+    "frm2000OT:sched1B:txtParValOfShares3",
+    "frm2000OT:sched1B:txtParValOfShares4",
+    "frm2000OT:sched1B:txtParValOfShares5",
+    "frm2000OT:sched1B:txtParValOfShares6",
+    "frm2000OT:sched1B:txtParValOfShares7",
+    "frm2000OT:sched1B:txtParValOfShares8",
+    "frm2000OT:sched1B:txtParValOfShares9",
+    "frm2000OT:sched1B:txtStockCertNo10",
+    "frm2000OT:sched1B:txtStockCertNo11",
+    "frm2000OT:sched1B:txtStockCertNo12",
+    "frm2000OT:sched1B:txtStockCertNo13",
+    "frm2000OT:sched1B:txtStockCertNo3",
+    "frm2000OT:sched1B:txtStockCertNo4",
+    "frm2000OT:sched1B:txtStockCertNo5",
+    "frm2000OT:sched1B:txtStockCertNo6",
+    "frm2000OT:sched1B:txtStockCertNo7",
+    "frm2000OT:sched1B:txtStockCertNo8",
+    "frm2000OT:sched1B:txtStockCertNo9"
+   ],
+   "reason": "Schedule 1.B row past the 3 rows the sheet prints: an add-more row of the page, uploaded with the return; the sheet has no box for it"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c37",
+   "reason": "second row beside the item 11B TIN with no printed caption; cannot confirm it is the txtOtherName2 line"
+  },
+  {
+   "html_id": "p1c100",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c102",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c104",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c112",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c113",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c114",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c116",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c118",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c119",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c121",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c123",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c124",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c125",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c127",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c129",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c130",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c132",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c134",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c135",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c137",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c139",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c140",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c142",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c144",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c145",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c146",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c148",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c150",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c151",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  },
+  {
+   "html_id": "p1c153",
+   "reason": "2000OT layout has no writer key for the Tax Agent block or the Part III payment rows (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others); left blank"
+  }
+ ]
+}

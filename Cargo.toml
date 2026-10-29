@@ -24,3 +24,21 @@ bir-core = { path = "crates/bir-core" }
 bir-print = { path = "crates/bir-print" }
 bir-app-core = { path = "crates/bir-app-core" }
 bir-submit = { path = "crates/bir-submit" }
+
+# Third-party versions shared by the domain crates (carried over from the
+# source repo's workspace at `oss-cut-base`).
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+regex = "1"
+urlencoding = "2.1"
+chrono = { version = "0.4", features = ["serde"] }
+sha2 = "0.10"
+zeroize = { version = "1", features = ["derive"] }
+tokio = { version = "1", features = ["full"] }
+rusqlite = { version = "0.32", features = ["bundled-sqlcipher"] }
+thiserror = "2"
+anyhow = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+dotenvy = "0.15.7"
+keyring = { version = "3" }

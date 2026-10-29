@@ -1,0 +1,193 @@
+[
+ {
+  "call": "Array.prototype.forEach.call(document.querySelectorAll('td[id$=\"_ATR\"]'), function (td) { td.value = td.getAttribute('value'); })"
+ },
+ {
+  "call": "document.getElementById('frm2200Av2020:tinA').value = \"123\""
+ },
+ {
+  "call": "document.getElementById('frm2200Av2020:tinB').value = \"456\""
+ },
+ {
+  "call": "document.getElementById('frm2200Av2020:tinC').value = \"788\""
+ },
+ {
+  "call": "document.getElementById('frm2200Av2020:branchCode').value = \"00000\""
+ },
+ {
+  "call": "document.getElementById('frm2200Av2020:registeredName').value = \"Sample Dummy Taxpayer\""
+ },
+ {
+  "call": "document.getElementById('frm2200Av2020:registeredAddress').value = \"123 Sample Street, Barangay Example, Quezon City\""
+ },
+ {
+  "call": "document.getElementById('frm2200Av2020:zipCode').value = \"1100\""
+ },
+ {
+  "call": "document.getElementById('frm2200Av2020:phoneNumber').value = \"09170000000\""
+ },
+ {
+  "call": "document.getElementById('frm2200Av2020:txtEmail').value = \"sample.taxpayer@example.com\""
+ },
+ {
+  "call": "document.getElementById('frm2200Av2020:rdoCode').innerHTML = \"<option value='000'> </option><option value='039'>039</option>\"; document.getElementById('frm2200Av2020:rdoCode').value = '039'"
+ },
+ {
+  "call": "document.getElementsByName('frm2200Av2020:tinA_2')[0].value = \"123\""
+ },
+ {
+  "call": "document.getElementsByName('frm2200Av2020:tinB_2')[0].value = \"456\""
+ },
+ {
+  "call": "document.getElementsByName('frm2200Av2020:tinC_2')[0].value = \"788\""
+ },
+ {
+  "call": "document.getElementsByName('frm2200Av2020:branchCode_2')[0].value = \"00000\""
+ },
+ {
+  "call": "document.getElementsByName('frm2200Av2020:registeredName_2')[0].value = \"Sample Dummy Taxpayer\""
+ },
+ {
+  "call": "document.getElementsByName('frm2200Av2020:tinA_3')[0].value = \"123\""
+ },
+ {
+  "call": "document.getElementsByName('frm2200Av2020:tinB_3')[0].value = \"456\""
+ },
+ {
+  "call": "document.getElementsByName('frm2200Av2020:tinC_3')[0].value = \"788\""
+ },
+ {
+  "call": "document.getElementsByName('frm2200Av2020:branchCode_3')[0].value = \"00000\""
+ },
+ {
+  "call": "document.getElementsByName('frm2200Av2020:registeredName_3')[0].value = \"Sample Dummy Taxpayer\""
+ },
+ {
+  "set": "frm2200Av2020:txtDateMonth",
+  "value": "3"
+ },
+ {
+  "set": "frm2200Av2020:txtDateDay",
+  "value": "14"
+ },
+ {
+  "set": "frm2200Av2020:txtDateYear",
+  "value": "2025"
+ },
+ {
+  "set": "frm2200Av2020:txtSheets",
+  "value": "1"
+ },
+ {
+  "set": "frm2200Av2020:prodRegion",
+  "value": "130000000"
+ },
+ {
+  "set": "frm2200Av2020:prodProvince",
+  "value": "137400000"
+ },
+ {
+  "set": "frm2200Av2020:prodCity",
+  "value": "137403000"
+ },
+ {
+  "set": "frm2200Av2020:remRegion",
+  "value": "040000000"
+ },
+ {
+  "set": "frm2200Av2020:remProvince",
+  "value": "042100000"
+ },
+ {
+  "set": "frm2200Av2020:remCity",
+  "value": "042103000"
+ },
+ {
+  "click": "frm2200Av2020:optTreaty_1"
+ },
+ {
+  "set": "frm2200Av2020:treatyY",
+  "value": "Sample relief law"
+ },
+ {
+  "click": "frm2200Av2020:optPayment_2"
+ },
+ {
+  "click": "frm2200Av2020:optPayment_3"
+ },
+ {
+  "set": "frm2200Av2020:paymentOther",
+  "value": "Sample scheme"
+ },
+ {
+  "set": "frm2200Av2020:txtSched1_1A_2024_Export",
+  "value": "50"
+ },
+ {
+  "set": "frm2200Av2020:txtSched1_1A_2024_Taxable",
+  "value": "10000.125"
+ },
+ {
+  "set": "frm2200Av2020:txtSched1_1A_2020B_Taxable",
+  "value": "1234.56"
+ },
+ {
+  "set": "frm2200Av2020:txtSched1_1B_2024_Taxable",
+  "value": "1234.567"
+ },
+ {
+  "set": "frm2200Av2020:txtSched1_3B_2020B2_Taxable",
+  "value": "99.99"
+ },
+ {
+  "call": "var cb = document.getElementById('frm2200Av2020:txtSched1_xa_others1_Check'); cb.checked = true; computeOthers(cb, 23, 35);"
+ },
+ {
+  "set": "frm2200Av2020:txtSched1_xa_others1_Atc",
+  "value": "999"
+ },
+ {
+  "set": "frm2200Av2020:txtSched1_xa_others1_Desc",
+  "value": "Sample other product"
+ },
+ {
+  "set": "frm2200Av2020:txtSched1_xa_others1_Bracket",
+  "value": "Per Liter"
+ },
+ {
+  "set": "frm2200Av2020:txtSched1_xa_others1_Rate",
+  "value": "5.5"
+ },
+ {
+  "set": "frm2200Av2020:txtSched1_xa_others1_Taxable",
+  "value": "2"
+ },
+ {
+  "set": "frm2200Av2020:txtSched1_xa_others1_Due",
+  "value": "11"
+ },
+ {
+  "set": "frm2200Av2020:txtLess_Balance",
+  "value": "1000"
+ },
+ {
+  "set": "frm2200Av2020:txtLess_Excise",
+  "value": "234.565"
+ },
+ {
+  "set": "frm2200Av2020:txtPen_Surcharge",
+  "value": "25.5"
+ },
+ {
+  "set": "frm2200Av2020:txtPen_Interest",
+  "value": "10"
+ },
+ {
+  "set": "frm2200Av2020:txtPen_Compromise",
+  "value": "1000"
+ },
+ {
+  "set": "frm2200Av2020:txtPay_TaxPayment",
+  "value": "86316.99"
+ }
+]

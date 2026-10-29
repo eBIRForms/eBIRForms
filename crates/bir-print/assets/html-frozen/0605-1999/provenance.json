@@ -1,0 +1,77 @@
+{
+  "slug": "0605-1999",
+  "code": "0605",
+  "revision": "1999",
+  "variant": "",
+  "in_corpus": true,
+  "source_file": "0605version1999_09.02.2022_copy.pdf",
+  "sha256": "de04419766c59bf27fdeb854c0f7c3f98601900caa20630442e671e2313e536f",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 1,
+  "pages": 2,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Times New Roman"
+  ],
+  "rules": 370,
+  "text_runs": 427,
+  "images": 1,
+  "cells": 378,
+  "comb_cells": 26,
+  "growables": [],
+  "sources": [
+    {
+      "role": "form",
+      "file": "0605version1999_09.02.2022_copy.pdf",
+      "sha256": "de04419766c59bf27fdeb854c0f7c3f98601900caa20630442e671e2313e536f"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "inline-region"
+    ],
+    "moved_from_form": [
+      {
+        "page": 2,
+        "cut_y_pt": 0.0,
+        "reclaimed_pt": 936.0,
+        "reclaimed_pct": 100,
+        "marker": "BIR Form 0605 (ENCS) - PAGE 2",
+        "marker_pattern": "unfillable-page",
+        "moved": {
+          "rules": 41,
+          "cells": 168,
+          "text_runs": 281,
+          "area_fills": 44,
+          "images": 0
+        },
+        "straddlers_kept_by_form": 0,
+        "moved_to": "guide.html"
+      }
+    ],
+    "standalone_pdfs": [],
+    "reclaimed_pt_total": 936.0,
+    "reclaimed_pct_mean": 100,
+    "reclaimed_pct_min": 100,
+    "reclaimed_pct_max": 100,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [
+      2
+    ],
+    "standalone_pdfs": []
+  },
+  "html_bytes": 236642,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

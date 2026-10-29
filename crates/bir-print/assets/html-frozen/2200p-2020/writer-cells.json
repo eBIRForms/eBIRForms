@@ -1,0 +1,2252 @@
+{
+ "form_id": "2200p-v2020",
+ "html_slug": "2200p-2020",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page text layer) sits directly left of or just above it. Booleans take xbox_joins: the box immediately left of the printed option. Item 1 date takes three combs. Part III items 16-24 are one 14-slot comb per line with no centavo comb beside it, so they are plain joins. Part IV rows 25-28 are 33-slot combs spanning all columns, so those row keys stay blank. Schedule 1: the 25 printed product rows carry ATC codes XP010 to XP220 that match the layout ATC1-25 defaults, so each row maps its ten fillable cells (Place of Removal through Basic Excise Tax Due) by column caption; the two Others rows (26, 27) take description, unit, rate and the ten amount cells. The printed description, unit and rate of the product rows, and the ATC cells, have no fillable cells and stay blank. Item 8 contact and item 9 email share one 40-slot comb, and each of items 10 and 11 has one 40-slot comb for its region, province and city codes; each comb takes one derived print-map line (to_print_field_map) with the values placed under their own captions. Since #113: the page 2 header comb prints the TIN then the name (derived:page_header) and the Others ATC boxes print; every other value has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm2200P:txtPg1I1Month",
+   "html_id": "p1c4",
+   "printed": "1 Date of Transaction (MM/DD/YYYY), month",
+   "reason": "first of three combs under the item 1 Date caption"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1I1Day",
+   "html_id": "p1c6",
+   "printed": "1 Date (MM/DD/YYYY), day",
+   "reason": "middle comb under the item 1 Date caption"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1I1Year",
+   "html_id": "p1c8",
+   "printed": "1 Date (MM/DD/YYYY), year",
+   "reason": "last comb under the item 1 Date caption"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1I3NoSheets",
+   "html_id": "p1c11",
+   "printed": "3 Number of Sheet/s Attached",
+   "reason": "caption left of the 2-slot comb"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1TIN1",
+   "html_id": "p1c16",
+   "printed": "Taxpayer Identification Number (TIN), part 1",
+   "reason": "caption left of the 3-slot comb"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1TIN2",
+   "html_id": "p1c18",
+   "printed": "Taxpayer Identification Number (TIN), part 2",
+   "reason": "comb after the first dash"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1TIN3",
+   "html_id": "p1c20",
+   "printed": "Taxpayer Identification Number (TIN), part 3",
+   "reason": "comb after the second dash"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1TIN4",
+   "html_id": "p1c22",
+   "printed": "Taxpayer Identification Number (TIN), branch",
+   "reason": "5-slot branch comb after the third dash"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1I5RDO",
+   "html_id": "p1c24",
+   "printed": "5 RDO Code",
+   "reason": "caption left of the 4-slot comb (item number matches the key)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1Pt1I6RegisteredName",
+   "html_id": "p1c26",
+   "printed": "6 Taxpayer's Name",
+   "reason": "caption above the 40-slot comb"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1Pt1I7RegisteredAddress",
+   "html_id": "p1c28",
+   "printed": "7 Registered Address",
+   "reason": "caption above the 40-slot comb"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1Pt1I7RegisteredAddress2",
+   "html_id": "p1c29",
+   "printed": "7 Registered Address, second line",
+   "reason": "second line directly under the item 7 address comb"
+  },
+  {
+   "writer_key": "frm2200P:txPg1I7ZipCode",
+   "html_id": "p1c31",
+   "printed": "7A ZIP Code",
+   "reason": "caption left of the 4-slot comb"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1I12TaxReliefSpecify",
+   "html_id": "p1c47",
+   "printed": "12A If yes, specify",
+   "reason": "caption above the 24-slot comb"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1Pt2MOPOtherDesc",
+   "html_id": "p1c55",
+   "printed": "Other Similar Schemes (specify)",
+   "reason": "caption left of the 27-slot comb"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I16ExciseTaxDue",
+   "html_id": "p1c59",
+   "printed": "16 Excise Tax Due (from Part V - Schedule 1)",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I17ABalCarriedOver",
+   "html_id": "p1c61",
+   "printed": "17A Balance Carried Over from Previous Return",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I17BCredExciseTax",
+   "html_id": "p1c63",
+   "printed": "17B Creditable Excise Tax, if applicable",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I17CTotal",
+   "html_id": "p1c65",
+   "printed": "Total (Sum of Items 17A and 17B)",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I18NetTaxDue",
+   "html_id": "p1c67",
+   "printed": "18 Net Tax Due/(Overpayment) (Item 16 less Item 17C)",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I19PmntOnRtrnPrevFiled",
+   "html_id": "p1c69",
+   "printed": "19 Less: Payment on Returns Previously Filed",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I20TaxStillDue",
+   "html_id": "p1c71",
+   "printed": "20 Tax Still Due/(Overpayment) (Item 18 less Item 19)",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I21ASurcharge",
+   "html_id": "p1c73",
+   "printed": "21A Surcharge",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I21BInterest",
+   "html_id": "p1c75",
+   "printed": "21B Interest",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I21CCompromise",
+   "html_id": "p1c77",
+   "printed": "21C Compromise",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I21DTotPenalties",
+   "html_id": "p1c79",
+   "printed": "Total Penalties (Sum of Items 21A to 21C)",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I22AmountPayable",
+   "html_id": "p1c81",
+   "printed": "22 Amount Payable/(Overpayment) (Sum of Items 20 and 21D)",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I23ATaxPmntDposit",
+   "html_id": "p1c83",
+   "printed": "23A Tax Payment/Deposit",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I23BPenalties",
+   "html_id": "p1c85",
+   "printed": "23B Penalties (from Item 21D)",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I23CTotPmntMade",
+   "html_id": "p1c87",
+   "printed": "Total Payment Made Today (Sum of Items 23A & 23B)",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1P3I24BalToCarryOver",
+   "html_id": "p1c89",
+   "printed": "24 Balance to be Carried Over to Next Return (Item 22 less Item 23C)",
+   "reason": "caption left of the 14-slot comb (single comb; no separate centavo comb on this sheet)"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1Pt4TaxAcredNo",
+   "html_id": "p1c95",
+   "printed": "Attorney's Roll No. / Tax Agent Accreditation No.",
+   "reason": "caption left of the text cell"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1Pt4DateOfIssue",
+   "html_id": "p1c97",
+   "printed": "Date of Issue",
+   "reason": "caption left of the text cell"
+  },
+  {
+   "writer_key": "frm2200P:txtPg1Pt4DateOfExpiry",
+   "html_id": "p1c99",
+   "printed": "Date of Expiry",
+   "reason": "caption left of the text cell"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotalTaxDue",
+   "html_id": "p2c405",
+   "printed": "TOTAL TAX DUE (To Part III, Item 16)",
+   "reason": "row caption left of the cell on the same row, Basic Excise Tax Due column"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval1",
+   "html_id": "p2c29",
+   "printed": "Schedule 1 XP010 row, Place of Removal column",
+   "reason": "printed ATC XP010 on the row (layout ATC1 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd1",
+   "html_id": "p2c30",
+   "printed": "Schedule 1 XP010 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP010 on the row (layout ATC1 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported1",
+   "html_id": "p2c31",
+   "printed": "Schedule 1 XP010 row, Imported column",
+   "reason": "printed ATC XP010 on the row (layout ATC1 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals1",
+   "html_id": "p2c32",
+   "printed": "Schedule 1 XP010 row, Total Taxable Removals column",
+   "reason": "printed ATC XP010 on the row (layout ATC1 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported1",
+   "html_id": "p2c33",
+   "printed": "Schedule 1 XP010 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP010 on the row (layout ATC1 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond1",
+   "html_id": "p2c34",
+   "printed": "Schedule 1 XP010 row, Under Bond column",
+   "reason": "printed ATC XP010 on the row (layout ATC1 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports1",
+   "html_id": "p2c35",
+   "printed": "Schedule 1 XP010 row, Exports column",
+   "reason": "printed ATC XP010 on the row (layout ATC1 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others1",
+   "html_id": "p2c36",
+   "printed": "Schedule 1 XP010 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP010 on the row (layout ATC1 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid1",
+   "html_id": "p2c37",
+   "printed": "Schedule 1 XP010 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP010 on the row (layout ATC1 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue1",
+   "html_id": "p2c38",
+   "printed": "Schedule 1 XP010 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP010 on the row (layout ATC1 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval2",
+   "html_id": "p2c43",
+   "printed": "Schedule 1 XP020 row, Place of Removal column",
+   "reason": "printed ATC XP020 on the row (layout ATC2 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd2",
+   "html_id": "p2c44",
+   "printed": "Schedule 1 XP020 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP020 on the row (layout ATC2 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported2",
+   "html_id": "p2c45",
+   "printed": "Schedule 1 XP020 row, Imported column",
+   "reason": "printed ATC XP020 on the row (layout ATC2 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals2",
+   "html_id": "p2c46",
+   "printed": "Schedule 1 XP020 row, Total Taxable Removals column",
+   "reason": "printed ATC XP020 on the row (layout ATC2 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported2",
+   "html_id": "p2c47",
+   "printed": "Schedule 1 XP020 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP020 on the row (layout ATC2 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond2",
+   "html_id": "p2c48",
+   "printed": "Schedule 1 XP020 row, Under Bond column",
+   "reason": "printed ATC XP020 on the row (layout ATC2 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports2",
+   "html_id": "p2c49",
+   "printed": "Schedule 1 XP020 row, Exports column",
+   "reason": "printed ATC XP020 on the row (layout ATC2 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others2",
+   "html_id": "p2c50",
+   "printed": "Schedule 1 XP020 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP020 on the row (layout ATC2 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid2",
+   "html_id": "p2c51",
+   "printed": "Schedule 1 XP020 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP020 on the row (layout ATC2 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue2",
+   "html_id": "p2c52",
+   "printed": "Schedule 1 XP020 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP020 on the row (layout ATC2 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval3",
+   "html_id": "p2c57",
+   "printed": "Schedule 1 XP030 row, Place of Removal column",
+   "reason": "printed ATC XP030 on the row (layout ATC3 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd3",
+   "html_id": "p2c58",
+   "printed": "Schedule 1 XP030 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP030 on the row (layout ATC3 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported3",
+   "html_id": "p2c59",
+   "printed": "Schedule 1 XP030 row, Imported column",
+   "reason": "printed ATC XP030 on the row (layout ATC3 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals3",
+   "html_id": "p2c60",
+   "printed": "Schedule 1 XP030 row, Total Taxable Removals column",
+   "reason": "printed ATC XP030 on the row (layout ATC3 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported3",
+   "html_id": "p2c61",
+   "printed": "Schedule 1 XP030 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP030 on the row (layout ATC3 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond3",
+   "html_id": "p2c62",
+   "printed": "Schedule 1 XP030 row, Under Bond column",
+   "reason": "printed ATC XP030 on the row (layout ATC3 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports3",
+   "html_id": "p2c63",
+   "printed": "Schedule 1 XP030 row, Exports column",
+   "reason": "printed ATC XP030 on the row (layout ATC3 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others3",
+   "html_id": "p2c64",
+   "printed": "Schedule 1 XP030 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP030 on the row (layout ATC3 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid3",
+   "html_id": "p2c65",
+   "printed": "Schedule 1 XP030 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP030 on the row (layout ATC3 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue3",
+   "html_id": "p2c66",
+   "printed": "Schedule 1 XP030 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP030 on the row (layout ATC3 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval4",
+   "html_id": "p2c71",
+   "printed": "Schedule 1 XP040 row, Place of Removal column",
+   "reason": "printed ATC XP040 on the row (layout ATC4 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd4",
+   "html_id": "p2c72",
+   "printed": "Schedule 1 XP040 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP040 on the row (layout ATC4 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported4",
+   "html_id": "p2c73",
+   "printed": "Schedule 1 XP040 row, Imported column",
+   "reason": "printed ATC XP040 on the row (layout ATC4 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals4",
+   "html_id": "p2c74",
+   "printed": "Schedule 1 XP040 row, Total Taxable Removals column",
+   "reason": "printed ATC XP040 on the row (layout ATC4 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported4",
+   "html_id": "p2c75",
+   "printed": "Schedule 1 XP040 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP040 on the row (layout ATC4 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond4",
+   "html_id": "p2c76",
+   "printed": "Schedule 1 XP040 row, Under Bond column",
+   "reason": "printed ATC XP040 on the row (layout ATC4 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports4",
+   "html_id": "p2c77",
+   "printed": "Schedule 1 XP040 row, Exports column",
+   "reason": "printed ATC XP040 on the row (layout ATC4 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others4",
+   "html_id": "p2c78",
+   "printed": "Schedule 1 XP040 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP040 on the row (layout ATC4 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid4",
+   "html_id": "p2c79",
+   "printed": "Schedule 1 XP040 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP040 on the row (layout ATC4 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue4",
+   "html_id": "p2c80",
+   "printed": "Schedule 1 XP040 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP040 on the row (layout ATC4 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval5",
+   "html_id": "p2c85",
+   "printed": "Schedule 1 XP050 row, Place of Removal column",
+   "reason": "printed ATC XP050 on the row (layout ATC5 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd5",
+   "html_id": "p2c86",
+   "printed": "Schedule 1 XP050 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP050 on the row (layout ATC5 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported5",
+   "html_id": "p2c87",
+   "printed": "Schedule 1 XP050 row, Imported column",
+   "reason": "printed ATC XP050 on the row (layout ATC5 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals5",
+   "html_id": "p2c88",
+   "printed": "Schedule 1 XP050 row, Total Taxable Removals column",
+   "reason": "printed ATC XP050 on the row (layout ATC5 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported5",
+   "html_id": "p2c89",
+   "printed": "Schedule 1 XP050 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP050 on the row (layout ATC5 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond5",
+   "html_id": "p2c90",
+   "printed": "Schedule 1 XP050 row, Under Bond column",
+   "reason": "printed ATC XP050 on the row (layout ATC5 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports5",
+   "html_id": "p2c91",
+   "printed": "Schedule 1 XP050 row, Exports column",
+   "reason": "printed ATC XP050 on the row (layout ATC5 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others5",
+   "html_id": "p2c92",
+   "printed": "Schedule 1 XP050 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP050 on the row (layout ATC5 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid5",
+   "html_id": "p2c93",
+   "printed": "Schedule 1 XP050 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP050 on the row (layout ATC5 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue5",
+   "html_id": "p2c94",
+   "printed": "Schedule 1 XP050 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP050 on the row (layout ATC5 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval6",
+   "html_id": "p2c99",
+   "printed": "Schedule 1 XP060 row, Place of Removal column",
+   "reason": "printed ATC XP060 on the row (layout ATC6 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd6",
+   "html_id": "p2c100",
+   "printed": "Schedule 1 XP060 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP060 on the row (layout ATC6 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported6",
+   "html_id": "p2c101",
+   "printed": "Schedule 1 XP060 row, Imported column",
+   "reason": "printed ATC XP060 on the row (layout ATC6 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals6",
+   "html_id": "p2c102",
+   "printed": "Schedule 1 XP060 row, Total Taxable Removals column",
+   "reason": "printed ATC XP060 on the row (layout ATC6 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported6",
+   "html_id": "p2c103",
+   "printed": "Schedule 1 XP060 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP060 on the row (layout ATC6 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond6",
+   "html_id": "p2c104",
+   "printed": "Schedule 1 XP060 row, Under Bond column",
+   "reason": "printed ATC XP060 on the row (layout ATC6 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports6",
+   "html_id": "p2c105",
+   "printed": "Schedule 1 XP060 row, Exports column",
+   "reason": "printed ATC XP060 on the row (layout ATC6 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others6",
+   "html_id": "p2c106",
+   "printed": "Schedule 1 XP060 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP060 on the row (layout ATC6 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid6",
+   "html_id": "p2c107",
+   "printed": "Schedule 1 XP060 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP060 on the row (layout ATC6 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue6",
+   "html_id": "p2c108",
+   "printed": "Schedule 1 XP060 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP060 on the row (layout ATC6 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval7",
+   "html_id": "p2c113",
+   "printed": "Schedule 1 XP080 row, Place of Removal column",
+   "reason": "printed ATC XP080 on the row (layout ATC7 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd7",
+   "html_id": "p2c114",
+   "printed": "Schedule 1 XP080 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP080 on the row (layout ATC7 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported7",
+   "html_id": "p2c115",
+   "printed": "Schedule 1 XP080 row, Imported column",
+   "reason": "printed ATC XP080 on the row (layout ATC7 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals7",
+   "html_id": "p2c116",
+   "printed": "Schedule 1 XP080 row, Total Taxable Removals column",
+   "reason": "printed ATC XP080 on the row (layout ATC7 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported7",
+   "html_id": "p2c117",
+   "printed": "Schedule 1 XP080 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP080 on the row (layout ATC7 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond7",
+   "html_id": "p2c118",
+   "printed": "Schedule 1 XP080 row, Under Bond column",
+   "reason": "printed ATC XP080 on the row (layout ATC7 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports7",
+   "html_id": "p2c119",
+   "printed": "Schedule 1 XP080 row, Exports column",
+   "reason": "printed ATC XP080 on the row (layout ATC7 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others7",
+   "html_id": "p2c120",
+   "printed": "Schedule 1 XP080 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP080 on the row (layout ATC7 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid7",
+   "html_id": "p2c121",
+   "printed": "Schedule 1 XP080 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP080 on the row (layout ATC7 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue7",
+   "html_id": "p2c122",
+   "printed": "Schedule 1 XP080 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP080 on the row (layout ATC7 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval8",
+   "html_id": "p2c127",
+   "printed": "Schedule 1 XP085 row, Place of Removal column",
+   "reason": "printed ATC XP085 on the row (layout ATC8 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd8",
+   "html_id": "p2c128",
+   "printed": "Schedule 1 XP085 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP085 on the row (layout ATC8 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported8",
+   "html_id": "p2c129",
+   "printed": "Schedule 1 XP085 row, Imported column",
+   "reason": "printed ATC XP085 on the row (layout ATC8 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals8",
+   "html_id": "p2c130",
+   "printed": "Schedule 1 XP085 row, Total Taxable Removals column",
+   "reason": "printed ATC XP085 on the row (layout ATC8 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported8",
+   "html_id": "p2c131",
+   "printed": "Schedule 1 XP085 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP085 on the row (layout ATC8 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond8",
+   "html_id": "p2c132",
+   "printed": "Schedule 1 XP085 row, Under Bond column",
+   "reason": "printed ATC XP085 on the row (layout ATC8 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports8",
+   "html_id": "p2c133",
+   "printed": "Schedule 1 XP085 row, Exports column",
+   "reason": "printed ATC XP085 on the row (layout ATC8 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others8",
+   "html_id": "p2c134",
+   "printed": "Schedule 1 XP085 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP085 on the row (layout ATC8 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid8",
+   "html_id": "p2c135",
+   "printed": "Schedule 1 XP085 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP085 on the row (layout ATC8 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue8",
+   "html_id": "p2c136",
+   "printed": "Schedule 1 XP085 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP085 on the row (layout ATC8 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval9",
+   "html_id": "p2c141",
+   "printed": "Schedule 1 XP090 row, Place of Removal column",
+   "reason": "printed ATC XP090 on the row (layout ATC9 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd9",
+   "html_id": "p2c142",
+   "printed": "Schedule 1 XP090 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP090 on the row (layout ATC9 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported9",
+   "html_id": "p2c143",
+   "printed": "Schedule 1 XP090 row, Imported column",
+   "reason": "printed ATC XP090 on the row (layout ATC9 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals9",
+   "html_id": "p2c144",
+   "printed": "Schedule 1 XP090 row, Total Taxable Removals column",
+   "reason": "printed ATC XP090 on the row (layout ATC9 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported9",
+   "html_id": "p2c145",
+   "printed": "Schedule 1 XP090 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP090 on the row (layout ATC9 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond9",
+   "html_id": "p2c146",
+   "printed": "Schedule 1 XP090 row, Under Bond column",
+   "reason": "printed ATC XP090 on the row (layout ATC9 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports9",
+   "html_id": "p2c147",
+   "printed": "Schedule 1 XP090 row, Exports column",
+   "reason": "printed ATC XP090 on the row (layout ATC9 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others9",
+   "html_id": "p2c148",
+   "printed": "Schedule 1 XP090 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP090 on the row (layout ATC9 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid9",
+   "html_id": "p2c149",
+   "printed": "Schedule 1 XP090 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP090 on the row (layout ATC9 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue9",
+   "html_id": "p2c150",
+   "printed": "Schedule 1 XP090 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP090 on the row (layout ATC9 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval10",
+   "html_id": "p2c155",
+   "printed": "Schedule 1 XP100 row, Place of Removal column",
+   "reason": "printed ATC XP100 on the row (layout ATC10 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd10",
+   "html_id": "p2c156",
+   "printed": "Schedule 1 XP100 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP100 on the row (layout ATC10 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported10",
+   "html_id": "p2c157",
+   "printed": "Schedule 1 XP100 row, Imported column",
+   "reason": "printed ATC XP100 on the row (layout ATC10 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals10",
+   "html_id": "p2c158",
+   "printed": "Schedule 1 XP100 row, Total Taxable Removals column",
+   "reason": "printed ATC XP100 on the row (layout ATC10 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported10",
+   "html_id": "p2c159",
+   "printed": "Schedule 1 XP100 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP100 on the row (layout ATC10 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond10",
+   "html_id": "p2c160",
+   "printed": "Schedule 1 XP100 row, Under Bond column",
+   "reason": "printed ATC XP100 on the row (layout ATC10 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports10",
+   "html_id": "p2c161",
+   "printed": "Schedule 1 XP100 row, Exports column",
+   "reason": "printed ATC XP100 on the row (layout ATC10 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others10",
+   "html_id": "p2c162",
+   "printed": "Schedule 1 XP100 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP100 on the row (layout ATC10 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid10",
+   "html_id": "p2c163",
+   "printed": "Schedule 1 XP100 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP100 on the row (layout ATC10 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue10",
+   "html_id": "p2c164",
+   "printed": "Schedule 1 XP100 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP100 on the row (layout ATC10 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval11",
+   "html_id": "p2c169",
+   "printed": "Schedule 1 XP105 row, Place of Removal column",
+   "reason": "printed ATC XP105 on the row (layout ATC11 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd11",
+   "html_id": "p2c170",
+   "printed": "Schedule 1 XP105 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP105 on the row (layout ATC11 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported11",
+   "html_id": "p2c171",
+   "printed": "Schedule 1 XP105 row, Imported column",
+   "reason": "printed ATC XP105 on the row (layout ATC11 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals11",
+   "html_id": "p2c172",
+   "printed": "Schedule 1 XP105 row, Total Taxable Removals column",
+   "reason": "printed ATC XP105 on the row (layout ATC11 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported11",
+   "html_id": "p2c173",
+   "printed": "Schedule 1 XP105 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP105 on the row (layout ATC11 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond11",
+   "html_id": "p2c174",
+   "printed": "Schedule 1 XP105 row, Under Bond column",
+   "reason": "printed ATC XP105 on the row (layout ATC11 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports11",
+   "html_id": "p2c175",
+   "printed": "Schedule 1 XP105 row, Exports column",
+   "reason": "printed ATC XP105 on the row (layout ATC11 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others11",
+   "html_id": "p2c176",
+   "printed": "Schedule 1 XP105 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP105 on the row (layout ATC11 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid11",
+   "html_id": "p2c177",
+   "printed": "Schedule 1 XP105 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP105 on the row (layout ATC11 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue11",
+   "html_id": "p2c178",
+   "printed": "Schedule 1 XP105 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP105 on the row (layout ATC11 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval12",
+   "html_id": "p2c183",
+   "printed": "Schedule 1 XP110 row, Place of Removal column",
+   "reason": "printed ATC XP110 on the row (layout ATC12 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd12",
+   "html_id": "p2c184",
+   "printed": "Schedule 1 XP110 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP110 on the row (layout ATC12 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported12",
+   "html_id": "p2c185",
+   "printed": "Schedule 1 XP110 row, Imported column",
+   "reason": "printed ATC XP110 on the row (layout ATC12 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals12",
+   "html_id": "p2c186",
+   "printed": "Schedule 1 XP110 row, Total Taxable Removals column",
+   "reason": "printed ATC XP110 on the row (layout ATC12 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported12",
+   "html_id": "p2c187",
+   "printed": "Schedule 1 XP110 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP110 on the row (layout ATC12 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond12",
+   "html_id": "p2c188",
+   "printed": "Schedule 1 XP110 row, Under Bond column",
+   "reason": "printed ATC XP110 on the row (layout ATC12 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports12",
+   "html_id": "p2c189",
+   "printed": "Schedule 1 XP110 row, Exports column",
+   "reason": "printed ATC XP110 on the row (layout ATC12 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others12",
+   "html_id": "p2c190",
+   "printed": "Schedule 1 XP110 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP110 on the row (layout ATC12 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid12",
+   "html_id": "p2c191",
+   "printed": "Schedule 1 XP110 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP110 on the row (layout ATC12 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue12",
+   "html_id": "p2c192",
+   "printed": "Schedule 1 XP110 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP110 on the row (layout ATC12 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval13",
+   "html_id": "p2c197",
+   "printed": "Schedule 1 XP120 row, Place of Removal column",
+   "reason": "printed ATC XP120 on the row (layout ATC13 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd13",
+   "html_id": "p2c198",
+   "printed": "Schedule 1 XP120 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP120 on the row (layout ATC13 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported13",
+   "html_id": "p2c199",
+   "printed": "Schedule 1 XP120 row, Imported column",
+   "reason": "printed ATC XP120 on the row (layout ATC13 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals13",
+   "html_id": "p2c200",
+   "printed": "Schedule 1 XP120 row, Total Taxable Removals column",
+   "reason": "printed ATC XP120 on the row (layout ATC13 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported13",
+   "html_id": "p2c201",
+   "printed": "Schedule 1 XP120 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP120 on the row (layout ATC13 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond13",
+   "html_id": "p2c202",
+   "printed": "Schedule 1 XP120 row, Under Bond column",
+   "reason": "printed ATC XP120 on the row (layout ATC13 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports13",
+   "html_id": "p2c203",
+   "printed": "Schedule 1 XP120 row, Exports column",
+   "reason": "printed ATC XP120 on the row (layout ATC13 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others13",
+   "html_id": "p2c204",
+   "printed": "Schedule 1 XP120 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP120 on the row (layout ATC13 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid13",
+   "html_id": "p2c205",
+   "printed": "Schedule 1 XP120 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP120 on the row (layout ATC13 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue13",
+   "html_id": "p2c206",
+   "printed": "Schedule 1 XP120 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP120 on the row (layout ATC13 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval14",
+   "html_id": "p2c211",
+   "printed": "Schedule 1 XP130 row, Place of Removal column",
+   "reason": "printed ATC XP130 on the row (layout ATC14 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd14",
+   "html_id": "p2c212",
+   "printed": "Schedule 1 XP130 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP130 on the row (layout ATC14 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported14",
+   "html_id": "p2c213",
+   "printed": "Schedule 1 XP130 row, Imported column",
+   "reason": "printed ATC XP130 on the row (layout ATC14 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals14",
+   "html_id": "p2c214",
+   "printed": "Schedule 1 XP130 row, Total Taxable Removals column",
+   "reason": "printed ATC XP130 on the row (layout ATC14 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported14",
+   "html_id": "p2c215",
+   "printed": "Schedule 1 XP130 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP130 on the row (layout ATC14 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond14",
+   "html_id": "p2c216",
+   "printed": "Schedule 1 XP130 row, Under Bond column",
+   "reason": "printed ATC XP130 on the row (layout ATC14 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports14",
+   "html_id": "p2c217",
+   "printed": "Schedule 1 XP130 row, Exports column",
+   "reason": "printed ATC XP130 on the row (layout ATC14 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others14",
+   "html_id": "p2c218",
+   "printed": "Schedule 1 XP130 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP130 on the row (layout ATC14 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid14",
+   "html_id": "p2c219",
+   "printed": "Schedule 1 XP130 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP130 on the row (layout ATC14 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue14",
+   "html_id": "p2c220",
+   "printed": "Schedule 1 XP130 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP130 on the row (layout ATC14 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval15",
+   "html_id": "p2c225",
+   "printed": "Schedule 1 XP131 row, Place of Removal column",
+   "reason": "printed ATC XP131 on the row (layout ATC15 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd15",
+   "html_id": "p2c226",
+   "printed": "Schedule 1 XP131 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP131 on the row (layout ATC15 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported15",
+   "html_id": "p2c227",
+   "printed": "Schedule 1 XP131 row, Imported column",
+   "reason": "printed ATC XP131 on the row (layout ATC15 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals15",
+   "html_id": "p2c228",
+   "printed": "Schedule 1 XP131 row, Total Taxable Removals column",
+   "reason": "printed ATC XP131 on the row (layout ATC15 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported15",
+   "html_id": "p2c229",
+   "printed": "Schedule 1 XP131 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP131 on the row (layout ATC15 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond15",
+   "html_id": "p2c230",
+   "printed": "Schedule 1 XP131 row, Under Bond column",
+   "reason": "printed ATC XP131 on the row (layout ATC15 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports15",
+   "html_id": "p2c231",
+   "printed": "Schedule 1 XP131 row, Exports column",
+   "reason": "printed ATC XP131 on the row (layout ATC15 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others15",
+   "html_id": "p2c232",
+   "printed": "Schedule 1 XP131 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP131 on the row (layout ATC15 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid15",
+   "html_id": "p2c233",
+   "printed": "Schedule 1 XP131 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP131 on the row (layout ATC15 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue15",
+   "html_id": "p2c234",
+   "printed": "Schedule 1 XP131 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP131 on the row (layout ATC15 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval16",
+   "html_id": "p2c239",
+   "printed": "Schedule 1 XP140 row, Place of Removal column",
+   "reason": "printed ATC XP140 on the row (layout ATC16 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd16",
+   "html_id": "p2c240",
+   "printed": "Schedule 1 XP140 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP140 on the row (layout ATC16 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported16",
+   "html_id": "p2c241",
+   "printed": "Schedule 1 XP140 row, Imported column",
+   "reason": "printed ATC XP140 on the row (layout ATC16 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals16",
+   "html_id": "p2c242",
+   "printed": "Schedule 1 XP140 row, Total Taxable Removals column",
+   "reason": "printed ATC XP140 on the row (layout ATC16 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported16",
+   "html_id": "p2c243",
+   "printed": "Schedule 1 XP140 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP140 on the row (layout ATC16 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond16",
+   "html_id": "p2c244",
+   "printed": "Schedule 1 XP140 row, Under Bond column",
+   "reason": "printed ATC XP140 on the row (layout ATC16 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports16",
+   "html_id": "p2c245",
+   "printed": "Schedule 1 XP140 row, Exports column",
+   "reason": "printed ATC XP140 on the row (layout ATC16 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others16",
+   "html_id": "p2c246",
+   "printed": "Schedule 1 XP140 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP140 on the row (layout ATC16 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid16",
+   "html_id": "p2c247",
+   "printed": "Schedule 1 XP140 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP140 on the row (layout ATC16 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue16",
+   "html_id": "p2c248",
+   "printed": "Schedule 1 XP140 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP140 on the row (layout ATC16 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval17",
+   "html_id": "p2c253",
+   "printed": "Schedule 1 XP150 row, Place of Removal column",
+   "reason": "printed ATC XP150 on the row (layout ATC17 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd17",
+   "html_id": "p2c254",
+   "printed": "Schedule 1 XP150 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP150 on the row (layout ATC17 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported17",
+   "html_id": "p2c255",
+   "printed": "Schedule 1 XP150 row, Imported column",
+   "reason": "printed ATC XP150 on the row (layout ATC17 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals17",
+   "html_id": "p2c256",
+   "printed": "Schedule 1 XP150 row, Total Taxable Removals column",
+   "reason": "printed ATC XP150 on the row (layout ATC17 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported17",
+   "html_id": "p2c257",
+   "printed": "Schedule 1 XP150 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP150 on the row (layout ATC17 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond17",
+   "html_id": "p2c258",
+   "printed": "Schedule 1 XP150 row, Under Bond column",
+   "reason": "printed ATC XP150 on the row (layout ATC17 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports17",
+   "html_id": "p2c259",
+   "printed": "Schedule 1 XP150 row, Exports column",
+   "reason": "printed ATC XP150 on the row (layout ATC17 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others17",
+   "html_id": "p2c260",
+   "printed": "Schedule 1 XP150 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP150 on the row (layout ATC17 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid17",
+   "html_id": "p2c261",
+   "printed": "Schedule 1 XP150 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP150 on the row (layout ATC17 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue17",
+   "html_id": "p2c262",
+   "printed": "Schedule 1 XP150 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP150 on the row (layout ATC17 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval18",
+   "html_id": "p2c267",
+   "printed": "Schedule 1 XP160 row, Place of Removal column",
+   "reason": "printed ATC XP160 on the row (layout ATC18 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd18",
+   "html_id": "p2c268",
+   "printed": "Schedule 1 XP160 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP160 on the row (layout ATC18 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported18",
+   "html_id": "p2c269",
+   "printed": "Schedule 1 XP160 row, Imported column",
+   "reason": "printed ATC XP160 on the row (layout ATC18 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals18",
+   "html_id": "p2c270",
+   "printed": "Schedule 1 XP160 row, Total Taxable Removals column",
+   "reason": "printed ATC XP160 on the row (layout ATC18 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported18",
+   "html_id": "p2c271",
+   "printed": "Schedule 1 XP160 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP160 on the row (layout ATC18 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond18",
+   "html_id": "p2c272",
+   "printed": "Schedule 1 XP160 row, Under Bond column",
+   "reason": "printed ATC XP160 on the row (layout ATC18 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports18",
+   "html_id": "p2c273",
+   "printed": "Schedule 1 XP160 row, Exports column",
+   "reason": "printed ATC XP160 on the row (layout ATC18 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others18",
+   "html_id": "p2c274",
+   "printed": "Schedule 1 XP160 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP160 on the row (layout ATC18 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid18",
+   "html_id": "p2c275",
+   "printed": "Schedule 1 XP160 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP160 on the row (layout ATC18 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue18",
+   "html_id": "p2c276",
+   "printed": "Schedule 1 XP160 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP160 on the row (layout ATC18 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval19",
+   "html_id": "p2c281",
+   "printed": "Schedule 1 XP165 row, Place of Removal column",
+   "reason": "printed ATC XP165 on the row (layout ATC19 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd19",
+   "html_id": "p2c282",
+   "printed": "Schedule 1 XP165 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP165 on the row (layout ATC19 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported19",
+   "html_id": "p2c283",
+   "printed": "Schedule 1 XP165 row, Imported column",
+   "reason": "printed ATC XP165 on the row (layout ATC19 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals19",
+   "html_id": "p2c284",
+   "printed": "Schedule 1 XP165 row, Total Taxable Removals column",
+   "reason": "printed ATC XP165 on the row (layout ATC19 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported19",
+   "html_id": "p2c285",
+   "printed": "Schedule 1 XP165 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP165 on the row (layout ATC19 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond19",
+   "html_id": "p2c286",
+   "printed": "Schedule 1 XP165 row, Under Bond column",
+   "reason": "printed ATC XP165 on the row (layout ATC19 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports19",
+   "html_id": "p2c287",
+   "printed": "Schedule 1 XP165 row, Exports column",
+   "reason": "printed ATC XP165 on the row (layout ATC19 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others19",
+   "html_id": "p2c288",
+   "printed": "Schedule 1 XP165 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP165 on the row (layout ATC19 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid19",
+   "html_id": "p2c289",
+   "printed": "Schedule 1 XP165 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP165 on the row (layout ATC19 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue19",
+   "html_id": "p2c290",
+   "printed": "Schedule 1 XP165 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP165 on the row (layout ATC19 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval20",
+   "html_id": "p2c295",
+   "printed": "Schedule 1 XP170 row, Place of Removal column",
+   "reason": "printed ATC XP170 on the row (layout ATC20 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd20",
+   "html_id": "p2c296",
+   "printed": "Schedule 1 XP170 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP170 on the row (layout ATC20 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported20",
+   "html_id": "p2c297",
+   "printed": "Schedule 1 XP170 row, Imported column",
+   "reason": "printed ATC XP170 on the row (layout ATC20 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals20",
+   "html_id": "p2c298",
+   "printed": "Schedule 1 XP170 row, Total Taxable Removals column",
+   "reason": "printed ATC XP170 on the row (layout ATC20 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported20",
+   "html_id": "p2c299",
+   "printed": "Schedule 1 XP170 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP170 on the row (layout ATC20 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond20",
+   "html_id": "p2c300",
+   "printed": "Schedule 1 XP170 row, Under Bond column",
+   "reason": "printed ATC XP170 on the row (layout ATC20 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports20",
+   "html_id": "p2c301",
+   "printed": "Schedule 1 XP170 row, Exports column",
+   "reason": "printed ATC XP170 on the row (layout ATC20 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others20",
+   "html_id": "p2c302",
+   "printed": "Schedule 1 XP170 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP170 on the row (layout ATC20 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid20",
+   "html_id": "p2c303",
+   "printed": "Schedule 1 XP170 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP170 on the row (layout ATC20 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue20",
+   "html_id": "p2c304",
+   "printed": "Schedule 1 XP170 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP170 on the row (layout ATC20 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval21",
+   "html_id": "p2c309",
+   "printed": "Schedule 1 XP180 row, Place of Removal column",
+   "reason": "printed ATC XP180 on the row (layout ATC21 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd21",
+   "html_id": "p2c310",
+   "printed": "Schedule 1 XP180 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP180 on the row (layout ATC21 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported21",
+   "html_id": "p2c311",
+   "printed": "Schedule 1 XP180 row, Imported column",
+   "reason": "printed ATC XP180 on the row (layout ATC21 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals21",
+   "html_id": "p2c312",
+   "printed": "Schedule 1 XP180 row, Total Taxable Removals column",
+   "reason": "printed ATC XP180 on the row (layout ATC21 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported21",
+   "html_id": "p2c313",
+   "printed": "Schedule 1 XP180 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP180 on the row (layout ATC21 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond21",
+   "html_id": "p2c314",
+   "printed": "Schedule 1 XP180 row, Under Bond column",
+   "reason": "printed ATC XP180 on the row (layout ATC21 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports21",
+   "html_id": "p2c315",
+   "printed": "Schedule 1 XP180 row, Exports column",
+   "reason": "printed ATC XP180 on the row (layout ATC21 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others21",
+   "html_id": "p2c316",
+   "printed": "Schedule 1 XP180 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP180 on the row (layout ATC21 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid21",
+   "html_id": "p2c317",
+   "printed": "Schedule 1 XP180 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP180 on the row (layout ATC21 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue21",
+   "html_id": "p2c318",
+   "printed": "Schedule 1 XP180 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP180 on the row (layout ATC21 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval22",
+   "html_id": "p2c323",
+   "printed": "Schedule 1 XP190 row, Place of Removal column",
+   "reason": "printed ATC XP190 on the row (layout ATC22 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd22",
+   "html_id": "p2c324",
+   "printed": "Schedule 1 XP190 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP190 on the row (layout ATC22 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported22",
+   "html_id": "p2c325",
+   "printed": "Schedule 1 XP190 row, Imported column",
+   "reason": "printed ATC XP190 on the row (layout ATC22 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals22",
+   "html_id": "p2c326",
+   "printed": "Schedule 1 XP190 row, Total Taxable Removals column",
+   "reason": "printed ATC XP190 on the row (layout ATC22 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported22",
+   "html_id": "p2c327",
+   "printed": "Schedule 1 XP190 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP190 on the row (layout ATC22 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond22",
+   "html_id": "p2c328",
+   "printed": "Schedule 1 XP190 row, Under Bond column",
+   "reason": "printed ATC XP190 on the row (layout ATC22 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports22",
+   "html_id": "p2c329",
+   "printed": "Schedule 1 XP190 row, Exports column",
+   "reason": "printed ATC XP190 on the row (layout ATC22 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others22",
+   "html_id": "p2c330",
+   "printed": "Schedule 1 XP190 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP190 on the row (layout ATC22 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid22",
+   "html_id": "p2c331",
+   "printed": "Schedule 1 XP190 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP190 on the row (layout ATC22 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue22",
+   "html_id": "p2c332",
+   "printed": "Schedule 1 XP190 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP190 on the row (layout ATC22 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval23",
+   "html_id": "p2c337",
+   "printed": "Schedule 1 XP200 row, Place of Removal column",
+   "reason": "printed ATC XP200 on the row (layout ATC23 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd23",
+   "html_id": "p2c338",
+   "printed": "Schedule 1 XP200 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP200 on the row (layout ATC23 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported23",
+   "html_id": "p2c339",
+   "printed": "Schedule 1 XP200 row, Imported column",
+   "reason": "printed ATC XP200 on the row (layout ATC23 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals23",
+   "html_id": "p2c340",
+   "printed": "Schedule 1 XP200 row, Total Taxable Removals column",
+   "reason": "printed ATC XP200 on the row (layout ATC23 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported23",
+   "html_id": "p2c341",
+   "printed": "Schedule 1 XP200 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP200 on the row (layout ATC23 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond23",
+   "html_id": "p2c342",
+   "printed": "Schedule 1 XP200 row, Under Bond column",
+   "reason": "printed ATC XP200 on the row (layout ATC23 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports23",
+   "html_id": "p2c343",
+   "printed": "Schedule 1 XP200 row, Exports column",
+   "reason": "printed ATC XP200 on the row (layout ATC23 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others23",
+   "html_id": "p2c344",
+   "printed": "Schedule 1 XP200 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP200 on the row (layout ATC23 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid23",
+   "html_id": "p2c345",
+   "printed": "Schedule 1 XP200 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP200 on the row (layout ATC23 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue23",
+   "html_id": "p2c346",
+   "printed": "Schedule 1 XP200 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP200 on the row (layout ATC23 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval24",
+   "html_id": "p2c351",
+   "printed": "Schedule 1 XP210 row, Place of Removal column",
+   "reason": "printed ATC XP210 on the row (layout ATC24 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd24",
+   "html_id": "p2c352",
+   "printed": "Schedule 1 XP210 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP210 on the row (layout ATC24 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported24",
+   "html_id": "p2c353",
+   "printed": "Schedule 1 XP210 row, Imported column",
+   "reason": "printed ATC XP210 on the row (layout ATC24 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals24",
+   "html_id": "p2c354",
+   "printed": "Schedule 1 XP210 row, Total Taxable Removals column",
+   "reason": "printed ATC XP210 on the row (layout ATC24 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported24",
+   "html_id": "p2c355",
+   "printed": "Schedule 1 XP210 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP210 on the row (layout ATC24 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond24",
+   "html_id": "p2c356",
+   "printed": "Schedule 1 XP210 row, Under Bond column",
+   "reason": "printed ATC XP210 on the row (layout ATC24 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports24",
+   "html_id": "p2c357",
+   "printed": "Schedule 1 XP210 row, Exports column",
+   "reason": "printed ATC XP210 on the row (layout ATC24 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others24",
+   "html_id": "p2c358",
+   "printed": "Schedule 1 XP210 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP210 on the row (layout ATC24 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid24",
+   "html_id": "p2c359",
+   "printed": "Schedule 1 XP210 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP210 on the row (layout ATC24 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue24",
+   "html_id": "p2c360",
+   "printed": "Schedule 1 XP210 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP210 on the row (layout ATC24 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval25",
+   "html_id": "p2c365",
+   "printed": "Schedule 1 XP220 row, Place of Removal column",
+   "reason": "printed ATC XP220 on the row (layout ATC25 default); cell sits under the Place of Removal column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd25",
+   "html_id": "p2c366",
+   "printed": "Schedule 1 XP220 row, Locally Manufactured/Produced column",
+   "reason": "printed ATC XP220 on the row (layout ATC25 default); cell sits under the Locally Manufactured/Produced column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported25",
+   "html_id": "p2c367",
+   "printed": "Schedule 1 XP220 row, Imported column",
+   "reason": "printed ATC XP220 on the row (layout ATC25 default); cell sits under the Imported column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals25",
+   "html_id": "p2c368",
+   "printed": "Schedule 1 XP220 row, Total Taxable Removals column",
+   "reason": "printed ATC XP220 on the row (layout ATC25 default); cell sits under the Total Taxable Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported25",
+   "html_id": "p2c369",
+   "printed": "Schedule 1 XP220 row, Tax-Paid Imported Stocks column",
+   "reason": "printed ATC XP220 on the row (layout ATC25 default); cell sits under the Tax-Paid Imported Stocks column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond25",
+   "html_id": "p2c370",
+   "printed": "Schedule 1 XP220 row, Under Bond column",
+   "reason": "printed ATC XP220 on the row (layout ATC25 default); cell sits under the Under Bond column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports25",
+   "html_id": "p2c371",
+   "printed": "Schedule 1 XP220 row, Exports column",
+   "reason": "printed ATC XP220 on the row (layout ATC25 default); cell sits under the Exports column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others25",
+   "html_id": "p2c372",
+   "printed": "Schedule 1 XP220 row, Others (Special Law or International Agreement) column",
+   "reason": "printed ATC XP220 on the row (layout ATC25 default); cell sits under the Others (Special Law or International Agreement) column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid25",
+   "html_id": "p2c373",
+   "printed": "Schedule 1 XP220 row, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "printed ATC XP220 on the row (layout ATC25 default); cell sits under the Total Tax-Paid/Exempt/Conditional Tax-Free Removals column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue25",
+   "html_id": "p2c374",
+   "printed": "Schedule 1 XP220 row, Basic Excise Tax Due column",
+   "reason": "printed ATC XP220 on the row (layout ATC25 default); cell sits under the Basic Excise Tax Due column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Description26",
+   "html_id": "p2c377",
+   "printed": "Others (specify), description column",
+   "reason": "caption \"(specify)\" on the Others row; Description column"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnitOfMeasure26",
+   "html_id": "p2c378",
+   "printed": "Others, Unit of Measure column",
+   "reason": "Unit of Measure column on the Others row"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1ApplicableRate26",
+   "html_id": "p2c379",
+   "printed": "Others, Applicable Rate column",
+   "reason": "Applicable Rate column on the Others row"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval26",
+   "html_id": "p2c380",
+   "printed": "Others row 26, Place of Removal column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd26",
+   "html_id": "p2c381",
+   "printed": "Others row 26, Locally Manufactured/Produced column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported26",
+   "html_id": "p2c382",
+   "printed": "Others row 26, Imported column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals26",
+   "html_id": "p2c383",
+   "printed": "Others row 26, Total Taxable Removals column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported26",
+   "html_id": "p2c384",
+   "printed": "Others row 26, Tax-Paid Imported Stocks column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond26",
+   "html_id": "p2c385",
+   "printed": "Others row 26, Under Bond column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports26",
+   "html_id": "p2c386",
+   "printed": "Others row 26, Exports column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others26",
+   "html_id": "p2c387",
+   "printed": "Others row 26, Others (Special Law or International Agreement) column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid26",
+   "html_id": "p2c388",
+   "printed": "Others row 26, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue26",
+   "html_id": "p2c389",
+   "printed": "Others row 26, Basic Excise Tax Due column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Description27",
+   "html_id": "p2c391",
+   "printed": "Others (specify), description column",
+   "reason": "caption \"(specify)\" on the Others row; Description column"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnitOfMeasure27",
+   "html_id": "p2c392",
+   "printed": "Others, Unit of Measure column",
+   "reason": "Unit of Measure column on the Others row"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1ApplicableRate27",
+   "html_id": "p2c393",
+   "printed": "Others, Applicable Rate column",
+   "reason": "Applicable Rate column on the Others row"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1PlaceOfRemoval27",
+   "html_id": "p2c394",
+   "printed": "Others row 27, Place of Removal column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1LocalManuProd27",
+   "html_id": "p2c395",
+   "printed": "Others row 27, Locally Manufactured/Produced column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Imported27",
+   "html_id": "p2c396",
+   "printed": "Others row 27, Imported column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxRemovals27",
+   "html_id": "p2c397",
+   "printed": "Others row 27, Total Taxable Removals column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TaxPaidImported27",
+   "html_id": "p2c398",
+   "printed": "Others row 27, Tax-Paid Imported Stocks column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1UnderBond27",
+   "html_id": "p2c399",
+   "printed": "Others row 27, Under Bond column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Exports27",
+   "html_id": "p2c400",
+   "printed": "Others row 27, Exports column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1Others27",
+   "html_id": "p2c401",
+   "printed": "Others row 27, Others (Special Law or International Agreement) column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1TotTaxPaid27",
+   "html_id": "p2c402",
+   "printed": "Others row 27, Total Tax-Paid/Exempt/Conditional Tax-Free Removals column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1BasicExciseTaxDue27",
+   "html_id": "p2c403",
+   "printed": "Others row 27, Basic Excise Tax Due column",
+   "reason": "Others row cell under the column caption"
+  },
+  {
+   "writer_key": "derived:contact_email",
+   "html_id": "p1c34",
+   "printed": "8 Contact Number / 9 Email Address",
+   "reason": "one 40-slot comb under both captions: the print map puts the contact number from slot 0 (caption x 27pt) and the email from slot 12 (caption x 200.7pt, pitch 14.52pt from x 16.32pt)"
+  },
+  {
+   "writer_key": "derived:place_of_production",
+   "html_id": "p1c39",
+   "printed": "10 Place of Production: Region / Province / City",
+   "reason": "one 40-slot comb under the three captions: region code from slot 0, province code from slot 10 (caption x 94pt; a 9-digit region code needs slots 0-8), city code from slot 24 (caption x 369pt)"
+  },
+  {
+   "writer_key": "derived:place_of_removal",
+   "html_id": "p1c44",
+   "printed": "11 Place of Removal: Region / Province / City",
+   "reason": "one 40-slot comb under the three captions: region code from slot 0, province code from slot 10, city code from slot 24"
+  },
+  {
+   "writer_key": "derived:page_header",
+   "html_id": "p2c5",
+   "printed": "Page 2 header: TIN / Taxpayer's Name",
+   "reason": "later page header: the sheet draws the TIN and Taxpayer's Name boxes as one 40-slot comb, so derived:page_header holds the 14 TIN digits then the name from slot 14 (under the Taxpayer's Name caption)"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1ATC26",
+   "html_id": "p2c376",
+   "printed": "Schedule 1 Others (specify) row 1, ATC",
+   "reason": "the ATC box at the left of the first Others row (XP printed inside it), left of the Description column"
+  },
+  {
+   "writer_key": "frm2200P:txtSched1ATC27",
+   "html_id": "p2c390",
+   "printed": "Schedule 1 Others (specify) row 2, ATC",
+   "reason": "the ATC box at the left of the second Others row (XP printed inside it), left of the Description column"
+  }
+ ],
+ "money_joins": [],
+ "xbox_joins": [
+  {
+   "writer_key": "frm2200P:rdoPg1I2AmendedYes",
+   "html_id": "p1c12",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm2200P:rdoPg1I2AmendedNo",
+   "html_id": "p1c13",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm2200P:rdoPg1I12TaxReliefYes",
+   "html_id": "p1c48",
+   "printed": "12 Tax Relief, International Tax Treaty? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm2200P:rdoPg1I12TaxReliefNo",
+   "html_id": "p1c49",
+   "printed": "12 Tax Relief, International Tax Treaty? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm2200P:rdoPg1Pt2MOPPaymentActual",
+   "html_id": "p1c52",
+   "printed": "13 Payment on Actual Removal",
+   "reason": "box immediately right of the item 13 number"
+  },
+  {
+   "writer_key": "frm2200P:rdoPg1Pt2MOPPrepayment",
+   "html_id": "p1c53",
+   "printed": "14 Prepayment / Advance Deposit",
+   "reason": "box immediately left of the printed option (item 14)"
+  },
+  {
+   "writer_key": "frm2200P:rdoPg1Pt2MOPOther",
+   "html_id": "p1c56",
+   "printed": "15 Other Similar Schemes (specify)",
+   "reason": "box immediately right of the item 15 number"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_key": "frm2200P:txtPg2RegisteredName",
+   "reason": "prints inside derived:page_header (TIN then name on the one page 2 header comb)"
+  },
+  {
+   "writer_keys": [
+    "frm2200P:txtPg2TinC1",
+    "frm2200P:txtPg2TinC2",
+    "frm2200P:txtPg2TinC3",
+    "frm2200P:txtPg2TinC4"
+   ],
+   "reason": "prints inside derived:page_header (TIN then name on the one page 2 header comb)"
+  },
+  {
+   "writer_key": "frm2200P:rdoPg1Pt1I6RDO",
+   "reason": "duplicate of frm2200P:txtPg1I5RDO (same RDO), which prints in item 5"
+  },
+  {
+   "writer_keys": [
+    "frm2200P:txtPg1Pt1I8ContactNumber",
+    "frm2200P:txtPg1Pt1I9Email"
+   ],
+   "reason": "prints from derived:contact_email (the print map shapes Items 8-9, one shared 40-slot comb for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2200P:txtPg1Pt1I10Region",
+    "frm2200P:txtPg1Pt1I10Province",
+    "frm2200P:txtPg1Pt1I10City"
+   ],
+   "reason": "prints from derived:place_of_production (the print map shapes Item 10 as place names on one shared comb instead of PSGC codes for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2200P:txtPg1Pt1I11Region",
+    "frm2200P:txtPg1Pt1I11Province",
+    "frm2200P:txtPg1Pt1I11City"
+   ],
+   "reason": "prints from derived:place_of_removal (the print map shapes Item 11 as place names on one shared comb instead of PSGC codes for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2200P:chkBoxSched1ATC26",
+    "frm2200P:chkBoxSched1ATC27",
+    "frm2200P:chkBoxSched1ATC28",
+    "frm2200P:chkBoxSched1ATC29",
+    "frm2200P:chkBoxSched1ATC30",
+    "frm2200P:chkBoxSched1ATC31",
+    "frm2200P:chkBoxSched1ATC32",
+    "frm2200P:chkBoxSched1ATC33",
+    "frm2200P:chkBoxSched1ATC34",
+    "frm2200P:chkBoxSched1ATC35",
+    "frm2200P:chkBoxSched1ATC36",
+    "frm2200P:chkBoxSched1ATC37",
+    "frm2200P:chkBoxSched1ATC38",
+    "frm2200P:chkBoxSched1ATC39",
+    "frm2200P:chkBoxSched1ATC40",
+    "frm2200P:chkBoxSched1ATC41"
+   ],
+   "reason": "row-enable checkbox of the page; the paper Others rows have no box for it"
+  },
+  {
+   "writer_key": "frm2200P:sched1AddedRowCount",
+   "reason": "row counter of the page, not on the paper form"
+  },
+  {
+   "writer_key": "frm2200P:txtLOB",
+   "reason": "not on the paper form: this sheet has no line-of-business box"
+  },
+  {
+   "writer_key": "frm2200P:txtCurrentPage",
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  },
+  {
+   "writer_keys": [
+    "frm2200P:txtSched1ATC28",
+    "frm2200P:txtSched1ATC29",
+    "frm2200P:txtSched1ATC30",
+    "frm2200P:txtSched1ATC31",
+    "frm2200P:txtSched1ATC32",
+    "frm2200P:txtSched1ATC33",
+    "frm2200P:txtSched1ATC34",
+    "frm2200P:txtSched1ATC35",
+    "frm2200P:txtSched1ATC36",
+    "frm2200P:txtSched1ATC37",
+    "frm2200P:txtSched1ATC38",
+    "frm2200P:txtSched1ATC39",
+    "frm2200P:txtSched1ATC40",
+    "frm2200P:txtSched1ATC41",
+    "frm2200P:txtSched1ApplicableRate28",
+    "frm2200P:txtSched1ApplicableRate29",
+    "frm2200P:txtSched1ApplicableRate30",
+    "frm2200P:txtSched1ApplicableRate31",
+    "frm2200P:txtSched1ApplicableRate32",
+    "frm2200P:txtSched1ApplicableRate33",
+    "frm2200P:txtSched1ApplicableRate34",
+    "frm2200P:txtSched1ApplicableRate35",
+    "frm2200P:txtSched1ApplicableRate36",
+    "frm2200P:txtSched1ApplicableRate37",
+    "frm2200P:txtSched1ApplicableRate38",
+    "frm2200P:txtSched1ApplicableRate39",
+    "frm2200P:txtSched1ApplicableRate40",
+    "frm2200P:txtSched1ApplicableRate41",
+    "frm2200P:txtSched1BasicExciseTaxDue28",
+    "frm2200P:txtSched1BasicExciseTaxDue29",
+    "frm2200P:txtSched1BasicExciseTaxDue30",
+    "frm2200P:txtSched1BasicExciseTaxDue31",
+    "frm2200P:txtSched1BasicExciseTaxDue32",
+    "frm2200P:txtSched1BasicExciseTaxDue33",
+    "frm2200P:txtSched1BasicExciseTaxDue34",
+    "frm2200P:txtSched1BasicExciseTaxDue35",
+    "frm2200P:txtSched1BasicExciseTaxDue36",
+    "frm2200P:txtSched1BasicExciseTaxDue37",
+    "frm2200P:txtSched1BasicExciseTaxDue38",
+    "frm2200P:txtSched1BasicExciseTaxDue39",
+    "frm2200P:txtSched1BasicExciseTaxDue40",
+    "frm2200P:txtSched1BasicExciseTaxDue41",
+    "frm2200P:txtSched1Description28",
+    "frm2200P:txtSched1Description29",
+    "frm2200P:txtSched1Description30",
+    "frm2200P:txtSched1Description31",
+    "frm2200P:txtSched1Description32",
+    "frm2200P:txtSched1Description33",
+    "frm2200P:txtSched1Description34",
+    "frm2200P:txtSched1Description35",
+    "frm2200P:txtSched1Description36",
+    "frm2200P:txtSched1Description37",
+    "frm2200P:txtSched1Description38",
+    "frm2200P:txtSched1Description39",
+    "frm2200P:txtSched1Description40",
+    "frm2200P:txtSched1Description41",
+    "frm2200P:txtSched1Exports28",
+    "frm2200P:txtSched1Exports29",
+    "frm2200P:txtSched1Exports30",
+    "frm2200P:txtSched1Exports31",
+    "frm2200P:txtSched1Exports32",
+    "frm2200P:txtSched1Exports33",
+    "frm2200P:txtSched1Exports34",
+    "frm2200P:txtSched1Exports35",
+    "frm2200P:txtSched1Exports36",
+    "frm2200P:txtSched1Exports37",
+    "frm2200P:txtSched1Exports38",
+    "frm2200P:txtSched1Exports39",
+    "frm2200P:txtSched1Exports40",
+    "frm2200P:txtSched1Exports41",
+    "frm2200P:txtSched1Imported28",
+    "frm2200P:txtSched1Imported29",
+    "frm2200P:txtSched1Imported30",
+    "frm2200P:txtSched1Imported31",
+    "frm2200P:txtSched1Imported32",
+    "frm2200P:txtSched1Imported33",
+    "frm2200P:txtSched1Imported34",
+    "frm2200P:txtSched1Imported35",
+    "frm2200P:txtSched1Imported36",
+    "frm2200P:txtSched1Imported37",
+    "frm2200P:txtSched1Imported38",
+    "frm2200P:txtSched1Imported39",
+    "frm2200P:txtSched1Imported40",
+    "frm2200P:txtSched1Imported41",
+    "frm2200P:txtSched1LocalManuProd28",
+    "frm2200P:txtSched1LocalManuProd29",
+    "frm2200P:txtSched1LocalManuProd30",
+    "frm2200P:txtSched1LocalManuProd31",
+    "frm2200P:txtSched1LocalManuProd32",
+    "frm2200P:txtSched1LocalManuProd33",
+    "frm2200P:txtSched1LocalManuProd34",
+    "frm2200P:txtSched1LocalManuProd35",
+    "frm2200P:txtSched1LocalManuProd36",
+    "frm2200P:txtSched1LocalManuProd37",
+    "frm2200P:txtSched1LocalManuProd38",
+    "frm2200P:txtSched1LocalManuProd39",
+    "frm2200P:txtSched1LocalManuProd40",
+    "frm2200P:txtSched1LocalManuProd41",
+    "frm2200P:txtSched1Others28",
+    "frm2200P:txtSched1Others29",
+    "frm2200P:txtSched1Others30",
+    "frm2200P:txtSched1Others31",
+    "frm2200P:txtSched1Others32",
+    "frm2200P:txtSched1Others33",
+    "frm2200P:txtSched1Others34",
+    "frm2200P:txtSched1Others35",
+    "frm2200P:txtSched1Others36",
+    "frm2200P:txtSched1Others37",
+    "frm2200P:txtSched1Others38",
+    "frm2200P:txtSched1Others39",
+    "frm2200P:txtSched1Others40",
+    "frm2200P:txtSched1Others41",
+    "frm2200P:txtSched1PlaceOfRemoval28",
+    "frm2200P:txtSched1PlaceOfRemoval29",
+    "frm2200P:txtSched1PlaceOfRemoval30",
+    "frm2200P:txtSched1PlaceOfRemoval31",
+    "frm2200P:txtSched1PlaceOfRemoval32",
+    "frm2200P:txtSched1PlaceOfRemoval33",
+    "frm2200P:txtSched1PlaceOfRemoval34",
+    "frm2200P:txtSched1PlaceOfRemoval35",
+    "frm2200P:txtSched1PlaceOfRemoval36",
+    "frm2200P:txtSched1PlaceOfRemoval37",
+    "frm2200P:txtSched1PlaceOfRemoval38",
+    "frm2200P:txtSched1PlaceOfRemoval39",
+    "frm2200P:txtSched1PlaceOfRemoval40",
+    "frm2200P:txtSched1PlaceOfRemoval41",
+    "frm2200P:txtSched1TaxPaidImported28",
+    "frm2200P:txtSched1TaxPaidImported29",
+    "frm2200P:txtSched1TaxPaidImported30",
+    "frm2200P:txtSched1TaxPaidImported31",
+    "frm2200P:txtSched1TaxPaidImported32",
+    "frm2200P:txtSched1TaxPaidImported33",
+    "frm2200P:txtSched1TaxPaidImported34",
+    "frm2200P:txtSched1TaxPaidImported35",
+    "frm2200P:txtSched1TaxPaidImported36",
+    "frm2200P:txtSched1TaxPaidImported37",
+    "frm2200P:txtSched1TaxPaidImported38",
+    "frm2200P:txtSched1TaxPaidImported39",
+    "frm2200P:txtSched1TaxPaidImported40",
+    "frm2200P:txtSched1TaxPaidImported41",
+    "frm2200P:txtSched1TotTaxPaid28",
+    "frm2200P:txtSched1TotTaxPaid29",
+    "frm2200P:txtSched1TotTaxPaid30",
+    "frm2200P:txtSched1TotTaxPaid31",
+    "frm2200P:txtSched1TotTaxPaid32",
+    "frm2200P:txtSched1TotTaxPaid33",
+    "frm2200P:txtSched1TotTaxPaid34",
+    "frm2200P:txtSched1TotTaxPaid35",
+    "frm2200P:txtSched1TotTaxPaid36",
+    "frm2200P:txtSched1TotTaxPaid37",
+    "frm2200P:txtSched1TotTaxPaid38",
+    "frm2200P:txtSched1TotTaxPaid39",
+    "frm2200P:txtSched1TotTaxPaid40",
+    "frm2200P:txtSched1TotTaxPaid41",
+    "frm2200P:txtSched1TotTaxRemovals28",
+    "frm2200P:txtSched1TotTaxRemovals29",
+    "frm2200P:txtSched1TotTaxRemovals30",
+    "frm2200P:txtSched1TotTaxRemovals31",
+    "frm2200P:txtSched1TotTaxRemovals32",
+    "frm2200P:txtSched1TotTaxRemovals33",
+    "frm2200P:txtSched1TotTaxRemovals34",
+    "frm2200P:txtSched1TotTaxRemovals35",
+    "frm2200P:txtSched1TotTaxRemovals36",
+    "frm2200P:txtSched1TotTaxRemovals37",
+    "frm2200P:txtSched1TotTaxRemovals38",
+    "frm2200P:txtSched1TotTaxRemovals39",
+    "frm2200P:txtSched1TotTaxRemovals40",
+    "frm2200P:txtSched1TotTaxRemovals41",
+    "frm2200P:txtSched1UnderBond28",
+    "frm2200P:txtSched1UnderBond29",
+    "frm2200P:txtSched1UnderBond30",
+    "frm2200P:txtSched1UnderBond31",
+    "frm2200P:txtSched1UnderBond32",
+    "frm2200P:txtSched1UnderBond33",
+    "frm2200P:txtSched1UnderBond34",
+    "frm2200P:txtSched1UnderBond35",
+    "frm2200P:txtSched1UnderBond36",
+    "frm2200P:txtSched1UnderBond37",
+    "frm2200P:txtSched1UnderBond38",
+    "frm2200P:txtSched1UnderBond39",
+    "frm2200P:txtSched1UnderBond40",
+    "frm2200P:txtSched1UnderBond41",
+    "frm2200P:txtSched1UnitOfMeasure28",
+    "frm2200P:txtSched1UnitOfMeasure29",
+    "frm2200P:txtSched1UnitOfMeasure30",
+    "frm2200P:txtSched1UnitOfMeasure31",
+    "frm2200P:txtSched1UnitOfMeasure32",
+    "frm2200P:txtSched1UnitOfMeasure33",
+    "frm2200P:txtSched1UnitOfMeasure34",
+    "frm2200P:txtSched1UnitOfMeasure35",
+    "frm2200P:txtSched1UnitOfMeasure36",
+    "frm2200P:txtSched1UnitOfMeasure37",
+    "frm2200P:txtSched1UnitOfMeasure38",
+    "frm2200P:txtSched1UnitOfMeasure39",
+    "frm2200P:txtSched1UnitOfMeasure40",
+    "frm2200P:txtSched1UnitOfMeasure41"
+   ],
+   "reason": "Schedule 1 row past the 27 rows the sheet prints (rows 26 and 27 are the two printed Others rows): an add-more row of the page, uploaded with the return; the sheet has no box for it"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c107",
+   "reason": "Part IV row 25 (Cash/Bank Debit Memo) is one 33-slot comb across the Drawee Bank, Number, Date and Amount columns; no separate cell per column, so the row keys stay blank"
+  },
+  {
+   "html_id": "p1c109",
+   "reason": "Part IV row 26 (Check) is one 33-slot comb across the Drawee Bank, Number, Date and Amount columns; the row keys stay blank"
+  },
+  {
+   "html_id": "p1c110",
+   "reason": "Part IV row 27 (Tax Debit Memo) is one full-width 28-slot comb with no column captions; the row keys stay blank"
+  },
+  {
+   "html_id": "p1c112",
+   "reason": "Part IV row 28 (Others) particulars comb: the row keys cannot be matched to a column, so left blank"
+  },
+  {
+   "html_id": "p1c113",
+   "reason": "Part IV row 28 (Others) is one 33-slot comb across the columns with no per-column cells; the row keys stay blank"
+  }
+ ]
+}

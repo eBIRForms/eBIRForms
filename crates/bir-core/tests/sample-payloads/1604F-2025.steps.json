@@ -1,0 +1,108 @@
+[
+ {
+  "call": "(function(){var o=document.getElementById.bind(document);document.getElementById=function(id){var e=o(id);if(e)return e;var l=String(id).toLowerCase();var all=document.querySelectorAll('[id]');for(var i=0;i<all.length;i++){if(all[i].id.toLowerCase()==l)return all[i];}return null;};})(); init();"
+ },
+ {
+  "call": "document.getElementById('frm1604f:tinA').value=\"123\"; document.getElementById('frm1604f:tinB').value=\"456\"; document.getElementById('frm1604f:tinC').value=\"788\"; document.getElementById('frm1604f:branchCode').value=\"00000\"; document.getElementById('frm1604f:rdoCode').value=\"039\"; document.getElementById('frm1604f:registeredName').value=\"Sample Dummy Taxpayer\"; document.getElementById('frm1604f:txtPg2TaxpayerName').value=\"Sample Dummy Taxpayer\"; document.getElementById('frm1604f:txtPg2TIN1').value=\"123\"; document.getElementById('frm1604f:txtPg2TIN2').value=\"456\"; document.getElementById('frm1604f:txtPg2TIN3').value=\"788\"; document.getElementById('frm1604f:txtPg2BranchCode').value=\"00000\"; document.getElementById('frm1604f:txtLineBus').value=\"Sample Consulting Services\"; document.getElementById('frm1604f:RegisteredAddress').value=\"123 Sample Street, Barangay Example, Quezon City\"; document.getElementById('frm1604f:zipCode').value=\"1100\"; document.getElementById('frm1604f:telephoneNumber').value=\"09170000000\"; document.getElementById('frm1604f:email').value=\"sample.taxpayer@example.com\""
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "set": "frm1604f:txtYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1604f:amendedRtn_2"
+ },
+ {
+  "set": "frm1604f:txtSheets",
+  "value": "0"
+ },
+ {
+  "click": "frm1604f:categoryAgent_1"
+ },
+ {
+  "click": "frm1604f:privateAgent_2"
+ },
+ {
+  "click": "frm1604f:taxRelief_1"
+ },
+ {
+  "set": "frm1604f:availedTaxRelief",
+  "value": "Rp-us treaty"
+ },
+ {
+  "set": "frm1604f:txtSched1Date1",
+  "value": "04/25/2025"
+ },
+ {
+  "set": "frm1604f:txtSched1TRA1",
+  "value": "tra-0001"
+ },
+ {
+  "set": "frm1604f:txtSched1TaxWheld1",
+  "value": "12345.675"
+ },
+ {
+  "set": "frm1604f:txtSched1Pen1",
+  "value": "100.005"
+ },
+ {
+  "set": "frm1604f:txtSched1Date2",
+  "value": "07/25/2025"
+ },
+ {
+  "set": "frm1604f:txtSched1TRA2",
+  "value": "eror 0002"
+ },
+ {
+  "set": "frm1604f:txtSched1TaxWheld2",
+  "value": "999.995"
+ },
+ {
+  "set": "frm1604f:txtSched1Date4",
+  "value": "01/26/2026"
+ },
+ {
+  "set": "frm1604f:txtSched1TRA4",
+  "value": "Tra-0004"
+ },
+ {
+  "set": "frm1604f:txtSched1TaxWheld4",
+  "value": "250000"
+ },
+ {
+  "set": "frm1604f:txtSched1Pen4",
+  "value": "1234.5"
+ },
+ {
+  "set": "frm1604f:txtSched2Date4",
+  "value": "01/30/2026"
+ },
+ {
+  "set": "frm1604f:txtSched2TRA4",
+  "value": "ear-4"
+ },
+ {
+  "set": "frm1604f:txtSched2TaxWheld4",
+  "value": "5000"
+ },
+ {
+  "set": "frm1604f:txtSched3Date3",
+  "value": "10/30/2025"
+ },
+ {
+  "set": "frm1604f:txtSched3TRA3",
+  "value": "x3"
+ },
+ {
+  "set": "frm1604f:txtSched3TaxWheld3",
+  "value": "1.5"
+ },
+ {
+  "set": "frm1604f:txtSched3Pen3",
+  "value": "2.25"
+ }
+]

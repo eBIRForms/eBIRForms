@@ -1,0 +1,210 @@
+[
+ {
+  "call": "document.getElementById('frm1700:txtPg1I4TIN1').value='123'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg1I4TIN2').value='456'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg1I4TIN3').value='788'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg1I4BranchCode').value='00000'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg2TIN1').value='123'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg2TIN2').value='456'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg2TIN3').value='788'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg2BranchCode').value='00000'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtRDOCode').value='039'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg1I7TaxpayerName').value='DUMMY, SAMPLE TAXPAYER'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg2TaxpayerName').value='DUMMY'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg1I8Address').value='123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITY'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg1I8Address2').value=''"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg1I8AZipCode').value='1100'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg1I14TelNum').value='09170000000'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtPg1I10Email').value='SAMPLE.TAXPAYER@EXAMPLE.COM'"
+ },
+ {
+  "call": "document.getElementById('frm1700:txtLOB').value='SAMPLE CONSULTING SERVICES'"
+ },
+ {
+  "set": "frm1700:txtPg1I1Year",
+  "value": "2025"
+ },
+ {
+  "click": "frm1700:rdoPg1I2AmendedNo"
+ },
+ {
+  "click": "frm1700:rdoPg1I6TaxpayerTypeE"
+ },
+ {
+  "set": "frm1700:txtPg1I9BirthDate",
+  "value": "01/15/1980"
+ },
+ {
+  "set": "frm1700:txtPg1I11Citizenship",
+  "value": "Filipino"
+ },
+ {
+  "click": "frm1700:rdoPg1I12ForeignTaxCreditsNo"
+ },
+ {
+  "click": "frm1700:rdoPg1I15CivilStatusM"
+ },
+ {
+  "click": "frm1700:rdoPg1I16SpouseHasIncomeY"
+ },
+ {
+  "click": "frm1700:rdoPg1I17FilingStatusJ"
+ },
+ {
+  "set": "frm1700:txtPg1I18STIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1700:txtPg1I18STIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1700:txtPg1I18STIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1700:txtPg1I18SBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1700:txtSpouseRDOCode",
+  "value": "039"
+ },
+ {
+  "click": "frm1700:rdoPg1I20SpouseTaxpayerTypeE"
+ },
+ {
+  "set": "frm1700:txtPg1I21SpouseName",
+  "value": "Dummy, Sample Spouse"
+ },
+ {
+  "set": "frm1700:txtPg1I22TSpouseTelNum",
+  "value": "09170000001"
+ },
+ {
+  "set": "frm1700:txtPg1I23SpouseCitizenship",
+  "value": "Filipino"
+ },
+ {
+  "click": "frm1700:rdoPg1I24SpouseForeignTaxCreditsNo"
+ },
+ {
+  "set": "frm1700:txtPg2I43A",
+  "value": "90000"
+ },
+ {
+  "set": "frm1700:txtPg2I45Desc",
+  "value": "Prize"
+ },
+ {
+  "set": "frm1700:txtPg2I45A",
+  "value": "10000.49"
+ },
+ {
+  "set": "frm1700:txtPg2I57Desc",
+  "value": "Sample credit"
+ },
+ {
+  "set": "frm1700:txtPg2I57A",
+  "value": "100"
+ },
+ {
+  "set": "frm1700:txtPg1I32A",
+  "value": "1000"
+ },
+ {
+  "call": "document.getElementById('frm1700:rdoPg2I1PartVIEmployeeT').click()"
+ },
+ {
+  "set": "frm1700:txtPg2I1PartVIEmployerName1",
+  "value": "Sample Employer Inc"
+ },
+ {
+  "set": "frm1700:txtPg2I1PartVIEmployerTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1700:txtPg2I1PartVIEmployerTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1700:txtPg2I1PartVIEmployerTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1700:txtPg2I1PartVIEmployerBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1700:txtPg2ISched1c_1REG",
+  "value": "600000.5"
+ },
+ {
+  "set": "frm1700:txtPg2ISched1e_1TW",
+  "value": "40000"
+ },
+ {
+  "call": "document.getElementById('frm1700:rdoPg2I2PartVIEmployeeS').click()"
+ },
+ {
+  "set": "frm1700:txtPg2I2PartVIEmployerName1",
+  "value": "Sample Spouse Employer"
+ },
+ {
+  "set": "frm1700:txtPg2I2PartVIEmployerTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1700:txtPg2I2PartVIEmployerTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1700:txtPg2I2PartVIEmployerTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1700:txtPg2I2PartVIEmployerBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1700:txtPg2ISched1c_2REG",
+  "value": "400000"
+ },
+ {
+  "set": "frm1700:txtPg2ISched1e_2TW",
+  "value": "20000"
+ },
+ {
+  "call": "validate()"
+ }
+]

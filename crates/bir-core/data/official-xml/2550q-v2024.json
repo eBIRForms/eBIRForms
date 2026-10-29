@@ -1,0 +1,1824 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "2550q-v2024",
+  "generated_by": "oracle/gen_layout.js (official saveXMLsubmit loop run in jsdom)",
+  "official_hta": "BIR-Form2550Qv2024.hta",
+  "official_hta_sha256": "3a5a4d3b2b342a4dfc55a05c69b560fb9be47af6451d8c651d19e1d33406ec70",
+  "header": "<?xml version='1.0'?>",
+  "lead": "        ",
+  "value_rules": [],
+  "entries": [
+    {
+      "key": "frm2550qv2024:calendarNo1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:fiscalNo1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:selectedMonthNo2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:selectedMonthNo2",
+          "codec": "raw"
+        }
+      ],
+      "default": "01",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:txtYearNo2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:txtYearNo2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:OptQuarter1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:OptQuarter2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:OptQuarter3",
+      "kind": "bool",
+      "default": "false",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:OptQuarter4",
+      "kind": "bool",
+      "default": "false",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:RtnPeriodFromNo4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:RtnPeriodFromNo4",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:RtnPeriodToNo4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:RtnPeriodToNo4",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:amendedReturnYesNo5",
+      "kind": "bool",
+      "default": "false",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:amendedReturnNo5",
+      "kind": "bool",
+      "default": "true",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:OptShortPrd1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:OptShortPrd2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:txtTIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:txtTIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:txtTIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:txtTIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:txtTIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:txtTIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:branchCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:branchCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:txtRDOCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:txtRDOCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:taxpayerName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:taxpayerName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:taxpayerAddress",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:taxpayerAddress",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:taxpayerZip",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:taxpayerZip",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:taxpayerContactNumber",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:taxpayerContactNumber",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:taxpayerEmailAddress",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:taxpayerEmailAddress",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:taxPayerClassification1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:taxPayerClassification2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:taxPayerClassification3",
+      "kind": "bool",
+      "default": "false",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:taxPayerClassification4",
+      "kind": "bool",
+      "default": "false",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:internationalTreatyYn",
+      "kind": "bool",
+      "default": "false",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:specialRateYn",
+      "kind": "bool",
+      "default": "true",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:specifyInternationalTreaty",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:specifyInternationalTreaty",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:excessInputTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:excessInputTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:creditableVat",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:creditableVat",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:advVatPayment",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:advVatPayment",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:vatPaidReturn",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:vatPaidReturn",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:addSpecifyNo19",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:addSpecifyNo19",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:otherCreditsNo19",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:otherCreditsNo19",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:totalTaxCredits",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:totalTaxCredits",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:excessCredits",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:excessCredits",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:surcharge",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:surcharge",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:interest",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:interest",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:compromise",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:compromise",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:penalties",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:penalties",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:totalPayable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:totalPayable",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:txtPg2TIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:txtPg2TIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:txtPg2TIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:txtPg2TIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:txtPg2TIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:txtPg2TIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:txtPg2BranchCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:txtPg2BranchCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:Pg2TaxPayer",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:Pg2TaxPayer",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:vatableSales",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:vatableSales",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:outputVatSales",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:outputVatSales",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:zeroRatedSales",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:zeroRatedSales",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:exemptSales",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:exemptSales",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:totalSales",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:totalSales",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:outputTaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:outputTaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:lessOutputVat",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:lessOutputVat",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:addOutputVat",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:addOutputVat",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:totalAdjOutput",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:totalAdjOutput",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:inputTaxCarried",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:inputTaxCarried",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:inputTaxDeferred",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:inputTaxDeferred",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:transitionalInputTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:transitionalInputTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:presumptiveInputTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:presumptiveInputTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:addSpecifyNo42",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:addSpecifyNo42",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:otherSpecify42",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:otherSpecify42",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:total43",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:total43",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:domesticPurchase",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:domesticPurchase",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:domesticInputTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:domesticInputTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:servicesPurchase",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:servicesPurchase",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:serviceInputTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:serviceInputTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:importPurchase",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:importPurchase",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:importInputTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:importInputTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:addSpecifyNo47",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:addSpecifyNo47",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:otherSpecify47",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:otherSpecify47",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "otherSpecify47B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "otherSpecify47B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:domesticPurchaseNoTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:domesticPurchaseNoTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:vatExemptImports",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:vatExemptImports",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:totalCurPurchase",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:totalCurPurchase",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:totalCurInputTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:totalCurInputTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:totalAvailInputTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:totalAvailInputTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:importCapitalInputTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:importCapitalInputTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:inputTaxAttr",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:inputTaxAttr",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:vatRefund",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:vatRefund",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:inputVatUnpaid",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:inputVatUnpaid",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:addSpecifyNo56",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:addSpecifyNo56",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:otherSpecify56",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:otherSpecify56",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:totalDeductions",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:totalDeductions",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:addInputVat",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:addInputVat",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:adjDeductions",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:adjDeductions",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:totalAllowInputTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:totalAllowInputTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:netVatPayable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:netVatPayable",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtDatePurchase10",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDatePurchase10",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtSourceCode10",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtSourceCode10",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtDescription10",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDescription10",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtAmountPurchase10",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtAmountPurchase10",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtInputTax10",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtInputTax10",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtEstimatedLife10",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEstimatedLife10",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtRecognizedLife10",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtRecognizedLife10",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtAllowedInputTax10",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtAllowedInputTax10",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtBalanceInputTax10",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtBalanceInputTax10",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtDatePurchase11",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDatePurchase11",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtSourceCode11",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtSourceCode11",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtDescription11",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDescription11",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtAmountPurchase11",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtAmountPurchase11",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtInputTax11",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtInputTax11",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtEstimatedLife11",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEstimatedLife11",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtRecognizedLife11",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtRecognizedLife11",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtAllowedInputTax11",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtAllowedInputTax11",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtBalanceInputTax11",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtBalanceInputTax11",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "sched1TotalBalPrev",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "sched1TotalBalPrev",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "sched1TotalBalNext",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "sched1TotalBalNext",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:sched2InputTaxDirect",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:sched2InputTaxDirect",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:sched2VatExemptSale",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:sched2VatExemptSale",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:sched2AmountInputTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:sched2AmountInputTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:sched2TotalSales",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:sched2TotalSales",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:sched2TotalRatable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:sched2TotalRatable",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:sched2TotalAttr",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:sched2TotalAttr",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtDateCovered30",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDateCovered30",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtDateCovered3To0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDateCovered3To0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtNameWithHoldingAgent30",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtNameWithHoldingAgent30",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtIncomePayment30",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtIncomePayment30",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtTotalTaxWithHeld30",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTotalTaxWithHeld30",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtDateCovered31",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDateCovered31",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtDateCovered3To1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDateCovered3To1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtNameWithHoldingAgent31",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtNameWithHoldingAgent31",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtIncomePayment31",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtIncomePayment31",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtTotalTaxWithHeld31",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTotalTaxWithHeld31",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "sched3TotalIncome",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "sched3TotalIncome",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "sched3TotalTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "sched3TotalTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtDate40",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDate40",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtDate4To0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDate4To0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtNameOfMiller40",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtNameOfMiller40",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtNameOfTaxpayer40",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtNameOfTaxpayer40",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtOfficialReceiptNumber40",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtOfficialReceiptNumber40",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtAmountPaid40",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtAmountPaid40",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtDate41",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDate41",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtDate4To1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDate4To1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtNameOfMiller41",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtNameOfMiller41",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtNameOfTaxpayer41",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtNameOfTaxpayer41",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtOfficialReceiptNumber41",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtOfficialReceiptNumber41",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtAmountPaid41",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtAmountPaid41",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "sched4AmountPaid",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "sched4AmountPaid",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:txtCurrentPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:txtCurrentPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "frm2550qv2024:txtMaxPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550qv2024:txtMaxPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "2",
+      "after": "\n"
+    },
+    {
+      "key": "resultOtherCreditsNo19",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "resultOtherCreditsNo19",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "resultOtherCreditsNo42",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "resultOtherCreditsNo42",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "resultOtherCreditsNo47",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "resultOtherCreditsNo47",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "resultOtherCreditsNo56",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "resultOtherCreditsNo56",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtTotalAmountOfBalanceofInputTaxFromPrevious",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTotalAmountOfBalanceofInputTaxFromPrevious",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtTotalAmountOfBalanceofInputTaxToBeCarried",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTotalAmountOfBalanceofInputTaxToBeCarried",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtTotalAmountofIncomePayment",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTotalAmountofIncomePayment",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtTotalAmoungOfTaxWithHeld",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTotalAmoungOfTaxWithHeld",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtAmountPaidSched4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtAmountPaidSched4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\n"
+    },
+    {
+      "key": "txtFinalFlag",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtFinalFlag",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\n"
+    },
+    {
+      "key": "txtEnroll",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEnroll",
+          "codec": "raw"
+        }
+      ],
+      "default": "N",
+      "after": "\n"
+    },
+    {
+      "key": "ebirOnlineConfirmUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineConfirmUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "ebirOnlineUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "ebirOnlineSecret",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineSecret",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "txtEmail",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEmail",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\n"
+    },
+    {
+      "key": "driveSelectTPExport",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "driveSelectTPExport",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\n        All Rights Reserved BIR 2012.0"
+    }
+  ]
+}

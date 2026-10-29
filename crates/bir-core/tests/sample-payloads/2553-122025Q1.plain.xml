@@ -1,0 +1,71 @@
+<?xml version='1.0'?>	
+            <div>frm2553:itemFiscalStartMonth:_1=truefrm2553:itemFiscalStartMonth:_1=</div>	
+            <div>frm2553:itemFiscalStartMonth:_2=falsefrm2553:itemFiscalStartMonth:_2=</div>	
+            <div>frm2553:itemYearEndMonth=12frm2553:itemYearEndMonth=</div>	
+            <div>frm2553:txtYearEnded=2025frm2553:txtYearEnded=</div>	
+            <div>frm2553:optQtr:_1=truefrm2553:optQtr:_1=</div>	
+            <div>frm2553:optQtr:_2=falsefrm2553:optQtr:_2=</div>	
+            <div>frm2553:optQtr:_3=falsefrm2553:optQtr:_3=</div>	
+            <div>frm2553:optQtr:_4=falsefrm2553:optQtr:_4=</div>	
+            <div>frm2553:optAmended_1=falsefrm2553:optAmended_1=</div>	
+            <div>frm2553:optAmended_2=truefrm2553:optAmended_2=</div>	
+            <div>frm2553:txtSheets=0frm2553:txtSheets=</div>	
+            <div>frm2553:txtTIN1=123frm2553:txtTIN1=</div>	
+            <div>frm2553:txtTIN2=456frm2553:txtTIN2=</div>	
+            <div>frm2553:txtTIN3=788frm2553:txtTIN3=</div>	
+            <div>frm2553:txtBranchCode=00000frm2553:txtBranchCode=</div>	
+            <div>frm2553:txtRDOCode=039frm2553:txtRDOCode=</div>	
+            <div>frm2553:txtDescription=SAMPLE CONSULTING SERVICESfrm2553:txtDescription=</div>	
+            <div>frm2553:txtTPName=SAMPLE DUMMY TAXPAYERfrm2553:txtTPName=</div>	
+            <div>frm2553:txtTelNum=09170000000frm2553:txtTelNum=</div>	
+            <div>frm2553:txtAddress=123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITYfrm2553:txtAddress=</div>	
+            <div>frm2553:txtZipCode=1100frm2553:txtZipCode=</div>	
+            <div>frm2553:optTreaty_1=truefrm2553:optTreaty_1=</div>	
+            <div>frm2553:optTreaty_2=falsefrm2553:optTreaty_2=</div>	
+            <div>frm2553:lstTaxTreaty=1frm2553:lstTaxTreaty=</div>	
+            <div>frm2553:txt14A=PAGCORfrm2553:txt14A=</div>	
+            <div>frm2553:txt14B=OT010frm2553:txt14B=</div>	
+            <div>frm2553:txt14C=123,456.79frm2553:txt14C=</div>	
+            <div>frm2553:txt14D=5.0frm2553:txt14D=</div>	
+            <div>frm2553:txt14E=6,172.84frm2553:txt14E=</div>	
+            <div>frm2553:txt15A=OTHERSfrm2553:txt15A=</div>	
+            <div>frm2553:txt15B=OT012frm2553:txt15B=</div>	
+            <div>frm2553:txt15C=2,500,000.00frm2553:txt15C=</div>	
+            <div>frm2553:txt15D=3.50frm2553:txt15D=</div>	
+            <div>frm2553:txt15E=87,500.00frm2553:txt15E=</div>	
+            <div>frm2553:txt16A=SPECIAL/REGULAR/ECONOMIC FREE PORT ZONE ENTERPRISESfrm2553:txt16A=</div>	
+            <div>frm2553:txt16B=OT011frm2553:txt16B=</div>	
+            <div>frm2553:txt16C=1,000.00frm2553:txt16C=</div>	
+            <div>frm2553:txt16D=5.0frm2553:txt16D=</div>	
+            <div>frm2553:txt16E=50.00frm2553:txt16E=</div>	
+            <div>frm2553:txt17A=frm2553:txt17A=</div>	
+            <div>frm2553:txt17B=frm2553:txt17B=</div>	
+            <div>frm2553:txt17C=0.00frm2553:txt17C=</div>	
+            <div>frm2553:txt17D=0.00frm2553:txt17D=</div>	
+            <div>frm2553:txt17E=0.00frm2553:txt17E=</div>	
+            <div>frm2553:txt18A=frm2553:txt18A=</div>	
+            <div>frm2553:txt18B=frm2553:txt18B=</div>	
+            <div>frm2553:txt18C=0.00frm2553:txt18C=</div>	
+            <div>frm2553:txt18D=0.00frm2553:txt18D=</div>	
+            <div>frm2553:txt18E=0.00frm2553:txt18E=</div>	
+            <div>frm2553:txt19=93,722.84frm2553:txt19=</div>	
+            <div>frm2553:txt20A=0.00frm2553:txt20A=</div>	
+            <div>frm2553:txt20B=1,000.00frm2553:txt20B=</div>	
+            <div>frm2553:txt20C=1,000.00frm2553:txt20C=</div>	
+            <div>frm2553:txt21=92,722.84frm2553:txt21=</div>	
+            <div>frm2553:txt22A=25.50frm2553:txt22A=</div>	
+            <div>frm2553:txt22B=10.00frm2553:txt22B=</div>	
+            <div>frm2553:txt22C=0.00frm2553:txt22C=</div>	
+            <div>frm2553:txt22D=35.50frm2553:txt22D=</div>	
+            <div>frm2553:txt23=92,758.34frm2553:txt23=</div>	
+            <div>frm2553:ifoverpay_1=falsefrm2553:ifoverpay_1=</div>	
+            <div>frm2553:ifoverpay_2=falsefrm2553:ifoverpay_2=</div>	
+            <div>txtFinalFlag=0txtFinalFlag=</div>	
+            <div>txtEnroll=NtxtEnroll=</div>	
+            <div>ebirOnlineConfirmUsername=ebirOnlineConfirmUsername=</div>	
+            <div>ebirOnlineUsername=ebirOnlineUsername=</div>	
+            <div>ebirOnlineSecret=ebirOnlineSecret=</div>	
+            <div>txtEmail=sample.taxpayer@example.comtxtEmail=</div>	
+            <div>driveSelectTPExport=0driveSelectTPExport=</div>	
+            	
+            All Rights Reserved BIR 2012.0

@@ -1,0 +1,72 @@
+{
+  "slug": "1707-2021",
+  "code": "1707",
+  "revision": "2021",
+  "variant": "",
+  "in_corpus": false,
+  "source_file": "1707 April 2021 ENCS.pdf",
+  "sha256": "b6bc016f240a8d6233db6fb0065b72b31e75cb665affc2b96bcd2066e7ad257e",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 3,
+  "pages": 2,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Calibri",
+    "Times New Roman"
+  ],
+  "rules": 1085,
+  "text_runs": 264,
+  "images": 3,
+  "cells": 318,
+  "comb_cells": 113,
+  "growables": [],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1707 April 2021 ENCS.pdf",
+      "sha256": "b6bc016f240a8d6233db6fb0065b72b31e75cb665affc2b96bcd2066e7ad257e"
+    },
+    {
+      "role": "guide",
+      "file": "1707 April 2021 ENCS Guidelines and Instructions.pdf",
+      "sha256": "dbb8142e6e67fde5e46dc8b137dab6123153b35c1dae9c95b1603a163b5778f3"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "standalone-pdf"
+    ],
+    "moved_from_form": [],
+    "standalone_pdfs": [
+      {
+        "file": "1707 April 2021 ENCS Guidelines and Instructions.pdf",
+        "sha256": "dbb8142e6e67fde5e46dc8b137dab6123153b35c1dae9c95b1603a163b5778f3",
+        "linked_as": "guides/1707 April 2021 ENCS Guidelines and Instructions.pdf",
+        "reflowed_into": "guide.html"
+      }
+    ],
+    "reclaimed_pt_total": 0,
+    "reclaimed_pct_mean": 0,
+    "reclaimed_pct_min": 0,
+    "reclaimed_pct_max": 0,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [],
+    "standalone_pdfs": [
+      "1707 April 2021 ENCS Guidelines and Instructions.pdf"
+    ]
+  },
+  "html_bytes": 670303,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

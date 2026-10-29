@@ -1,0 +1,5407 @@
+[
+  {
+    "code": "WV010",
+    "description": "VAT WITHHOLDING  ON  PURCHASE OF GOODS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WV020",
+    "description": "VAT WITHHOLDING  ON  PURCHASE OF  SERVICES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WV030",
+    "description": "VAT WITHHOLDING  ON  GOVERNMENT PUBLIC WORK CONTRACTS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WB030",
+    "description": "TAX ON CARRIERS AND KEEPERS OF GARAGES",
+    "rate": "3.0"
+  },
+  {
+    "code": "WB040",
+    "description": "FRANCHISE TAX ON GAS AND WATER UTILITIES",
+    "rate": "2.0"
+  },
+  {
+    "code": "WB050",
+    "description": "FRANCHISE TAX ON RADIO & TV BROADCASTING COMPANIES WHOSE ANNUAL GROSS RECEIPTS DO NOT EXCEED P10 M & WHO ARE NOT VAT-REGISTERED TAXPAYERS",
+    "rate": "3.0"
+  },
+  {
+    "code": "WB070",
+    "description": "TAX ON LIFE INSURANCE PREMIUMS",
+    "rate": "2.0"
+  },
+  {
+    "code": "WB090",
+    "description": "TAX ON OVERSEAS DISPATCH, MESSAGE OR CONVERSATION FROM THE PHILIPPINES",
+    "rate": "10.0"
+  },
+  {
+    "code": "WB120",
+    "description": "BUSINESS TAX ON AGENTS OF FOREIGN INSURANCE CO.- INSURANCE AGENTS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WB121",
+    "description": "BUSINESS TAX ON AGENTS OF  FOREIGN  INSURANCE CO.- OWNER OF THE PROPERTY",
+    "rate": "5.0"
+  },
+  {
+    "code": "WB130",
+    "description": "TAX ON INTERNATIONAL CARRIERS",
+    "rate": "3.0"
+  },
+  {
+    "code": "WB140",
+    "description": "TAX ON COCKPITS",
+    "rate": "18.0"
+  },
+  {
+    "code": "WB150",
+    "description": "TAX ON CABARET, NIGHT AND DAY CLUBS",
+    "rate": "18.0"
+  },
+  {
+    "code": "WB160",
+    "description": "TAX  ON BOXING EXHIBITIONS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WB170",
+    "description": "TAX ON PROFESSIONAL BASKETBALL GAMES",
+    "rate": "15.0"
+  },
+  {
+    "code": "WB180",
+    "description": "TAX ON JAI - ALAI AND RACE TRACKS",
+    "rate": "30.0"
+  },
+  {
+    "code": "WB200",
+    "description": "TAX ON SALE, BARTER OR EXCHANGE OF STOCKS LISTED & TRADED THROUGH LOCAL STOCK EXCHANGE",
+    "rate": "0.5"
+  },
+  {
+    "code": "WB201",
+    "description": "TAX ON SHARES OF STOCK SOLD OR EXCHANGED THROUGH INITIAL AND SECONDARY PUBLIC OFFERING: -  NOT OVER 25%",
+    "rate": "4.0"
+  },
+  {
+    "code": "WB202",
+    "description": "TAX ON SHARES OF STOCK SOLD OR EXCHANGED THROUGH INITIAL AND SECONDARY PUBLIC OFFERING: -  OVER 25% BUT NOT EXCEEDING 33 1/3 %",
+    "rate": "2.0"
+  },
+  {
+    "code": "WB203",
+    "description": "TAX ON SHARES OF STOCK SOLD OR EXCHANGED THROUGH INITIAL AND SECONDARY PUBLIC OFFERING: -  OVER 33 1/3%",
+    "rate": "1.0"
+  },
+  {
+    "code": "FP010",
+    "description": "FINES AND PEN - ON TAX ON INCOME",
+    "rate": ""
+  },
+  {
+    "code": "FP020",
+    "description": "FINES AND PEN - ON TAX ON TRANSFERS OF PROPERTY",
+    "rate": ""
+  },
+  {
+    "code": "FP030",
+    "description": "FINES AND PEN - ON VALUE-ADDED TAX",
+    "rate": ""
+  },
+  {
+    "code": "FP040",
+    "description": "FINES AND PEN - ON OTHER PERCENTAGE TAXES",
+    "rate": ""
+  },
+  {
+    "code": "FP042",
+    "description": "FINES AND PEN - ON STOCK TRANS (IPO)",
+    "rate": ""
+  },
+  {
+    "code": "FP050",
+    "description": "FINES AND PEN - ON EXCISE TAXES",
+    "rate": ""
+  },
+  {
+    "code": "FP051",
+    "description": "FINES AND PEN - ON EXCISE SPECIFIC",
+    "rate": ""
+  },
+  {
+    "code": "FP060",
+    "description": "FINES AND PEN - ON DOCUMENTARY STAMP TAXES",
+    "rate": ""
+  },
+  {
+    "code": "FP070",
+    "description": "FINES AND PEN - ON MISCELLANEOUS TAXES",
+    "rate": ""
+  },
+  {
+    "code": "FP071",
+    "description": "FINES AND PEN - ON ENERGY TAX",
+    "rate": ""
+  },
+  {
+    "code": "FP090",
+    "description": "OTHERS FINES AND PENALTIES",
+    "rate": ""
+  },
+  {
+    "code": "FP100",
+    "description": "FINES AND PEN - CAPITAL GAINS",
+    "rate": ""
+  },
+  {
+    "code": "FP110",
+    "description": "FINES AND PEN - ON COMPENSATION",
+    "rate": ""
+  },
+  {
+    "code": "FP120",
+    "description": "FINES AND PEN - ON FINAL",
+    "rate": ""
+  },
+  {
+    "code": "FP130",
+    "description": "FINES AND PEN - ON EXPANDED",
+    "rate": ""
+  },
+  {
+    "code": "FP140",
+    "description": "FINES AND PEN - GOVERNMENT MONEY",
+    "rate": ""
+  },
+  {
+    "code": "FP141",
+    "description": "FINES AND PEN - WINNING AND PRIZES",
+    "rate": ""
+  },
+  {
+    "code": "FP150",
+    "description": "FINES AND PEN - BANKS AND FINANCIAL INSTITUTION",
+    "rate": ""
+  },
+  {
+    "code": "FP160",
+    "description": "FINES AND PEN - ESTATE TAX",
+    "rate": ""
+  },
+  {
+    "code": "FP170",
+    "description": "FINES AND PEN - DONORS TAX",
+    "rate": ""
+  },
+  {
+    "code": "FP180",
+    "description": "FINES AND PEN - W/T ON REAL PROP/M VEHICLES NOT SUBJ TO CG",
+    "rate": ""
+  },
+  {
+    "code": "FP190",
+    "description": "FINES AND PEN - REGISTRATION FEE",
+    "rate": ""
+  },
+  {
+    "code": "FP930",
+    "description": "FINES AND PEN - INSPECTION FEES",
+    "rate": ""
+  },
+  {
+    "code": "II011",
+    "description": "PURE COMPENSATION",
+    "rate": ""
+  },
+  {
+    "code": "II012",
+    "description": "PURE BUSINESS",
+    "rate": ""
+  },
+  {
+    "code": "II013",
+    "description": "MIXED INCOME",
+    "rate": ""
+  },
+  {
+    "code": "MC010",
+    "description": "TAX AMNESTY ON INCOME (INDIVIDUAL)",
+    "rate": ""
+  },
+  {
+    "code": "MC020",
+    "description": "TAX AMNESTY ON INCOME (CORPORATE)",
+    "rate": ""
+  },
+  {
+    "code": "MC030",
+    "description": "COMP. PYMTS ON DELQNT. ACCOUNTS AND DISP. ASSESSMENTS",
+    "rate": ""
+  },
+  {
+    "code": "MC031",
+    "description": "DEFICIENCY TAX",
+    "rate": ""
+  },
+  {
+    "code": "MC040",
+    "description": "INCOME FROM FORFEITED PROPERTIES",
+    "rate": ""
+  },
+  {
+    "code": "MC050",
+    "description": "PROCEEDS FROM RESALE OF ESTATE TAKEN FOR TAXES",
+    "rate": ""
+  },
+  {
+    "code": "MC060",
+    "description": "ENERGY TAX ON EXCESS ELECTRIC POWER CONSUMPTION",
+    "rate": ""
+  },
+  {
+    "code": "MC090",
+    "description": "TIN CARD FEES",
+    "rate": ""
+  },
+  {
+    "code": "MC180",
+    "description": "REGISTRATION FEE FOR VAT/NON-VAT TAXPAYERS",
+    "rate": ""
+  },
+  {
+    "code": "MC190",
+    "description": "TRAVEL TAX",
+    "rate": ""
+  },
+  {
+    "code": "MC200",
+    "description": "OTHER MISCELLANEOUS TAXES",
+    "rate": ""
+  },
+  {
+    "code": "MC210",
+    "description": "MISCELLANEOUS TAXES - OTHER TAX REVENUE",
+    "rate": ""
+  },
+  {
+    "code": "MC220",
+    "description": "ADVANCE PAYMENT OF VALUE ADDED TAX ON PRIVILEGE STORE",
+    "rate": ""
+  },
+  {
+    "code": "MC230",
+    "description": "ADVANCE PAYMENT OF INCOME TAX  ON PRIVILEGE STORE",
+    "rate": ""
+  },
+  {
+    "code": "MC240",
+    "description": "ADVANCE PAYMENT OF PERCENTAGE TAX ON PRIVILEGE STORE",
+    "rate": ""
+  },
+  {
+    "code": "VM160",
+    "description": "VAT ON MANUFACTURING - SUGAR",
+    "rate": ""
+  },
+  {
+    "code": "XA010",
+    "description": "DIST SPIR PROD FR SAP OF NIPA, ETC UND SEC 138(a)",
+    "rate": ""
+  },
+  {
+    "code": "XA020",
+    "description": "DIST SPIRIT PROD IN A POT STILL",
+    "rate": ""
+  },
+  {
+    "code": "XA031",
+    "description": "DIST SPRT O.T. SAP OF NIPA, ETC UND SEC. 141 (B)(1)",
+    "rate": ""
+  },
+  {
+    "code": "XA032",
+    "description": "DIST SPRT O.T. SAP OF NIPA, ETC UND SEC. 141 (B)(2)",
+    "rate": ""
+  },
+  {
+    "code": "XA033",
+    "description": "DIST SPRT O.T. SAP OF NIPA, ETC UND SEC. 141 (B)(3)",
+    "rate": ""
+  },
+  {
+    "code": "XA040",
+    "description": "MEDICINAL PREP FLAVORING EXTRACTS AND ALL OTHER PREP",
+    "rate": ""
+  },
+  {
+    "code": "XA051",
+    "description": "BEER, LGR BEER, ALE, PRTR FERMIN LIQ, ETC UND SEC 143 (A)",
+    "rate": ""
+  },
+  {
+    "code": "XA052",
+    "description": "BEER, LGR BEER, ALE, PRTR FERMIN LIQ, ETC UND SEC 143 (B)",
+    "rate": ""
+  },
+  {
+    "code": "XA053",
+    "description": "BEER, LGR BEER, ALE, PRTR FERMIN LIQ, ETC UND SEC 143 (C)",
+    "rate": ""
+  },
+  {
+    "code": "XA061",
+    "description": "SPARKLING WINES/CHAMPAGNE, ETC UND SEC 142 (A)(1)",
+    "rate": ""
+  },
+  {
+    "code": "XA062",
+    "description": "SPARKLING WINES/CHAMPAGNE, ETC UND SEC 142 (A)(2)",
+    "rate": ""
+  },
+  {
+    "code": "XA070",
+    "description": "STILL WINES CONTAINING 14% ALCOHOL OR LESS ALCOHOL",
+    "rate": ""
+  },
+  {
+    "code": "XA080",
+    "description": "STILL WINES CONTAINING OVER 14% ALCOHOL",
+    "rate": ""
+  },
+  {
+    "code": "XA090",
+    "description": "FORTIFIED WINES",
+    "rate": ""
+  },
+  {
+    "code": "XB010",
+    "description": "SWEETENED JUICE DRINKS",
+    "rate": ""
+  },
+  {
+    "code": "XB020",
+    "description": "SWEETENED TEA",
+    "rate": ""
+  },
+  {
+    "code": "XB030",
+    "description": "CARBONATED BEVERAGES",
+    "rate": ""
+  },
+  {
+    "code": "XB040",
+    "description": "FLAVORED WATER",
+    "rate": ""
+  },
+  {
+    "code": "XB050",
+    "description": "ENERGY AND SPORTS DRINKS",
+    "rate": ""
+  },
+  {
+    "code": "XB060",
+    "description": "POWDERED DRINKS NOT CLASSIFIED AS MILK, JUICE, TEA AND COFFEE",
+    "rate": ""
+  },
+  {
+    "code": "XB070",
+    "description": "CEREAL AND GRAIN BEVERAGES",
+    "rate": ""
+  },
+  {
+    "code": "XB080",
+    "description": "OTHER NON-ALCOHOLIC BEVERAGES THAT CONTAIN ADDED SUGAR",
+    "rate": ""
+  },
+  {
+    "code": "XB090",
+    "description": "USING PURELY HIGH FRUCTOSE CORN SYRUP",
+    "rate": ""
+  },
+  {
+    "code": "XB100",
+    "description": "USING PURELY COCONUT SAP SUGAR AND PURELY STEVIOL GLYCOSIDES",
+    "rate": ""
+  },
+  {
+    "code": "XC010",
+    "description": "PERFORMANCE OF SERVICES ON INVASIVE COSMETIC PROCEDURES",
+    "rate": ""
+  },
+  {
+    "code": "XG020",
+    "description": "AUTOMOBILES (GASOLINE), ENGINE DISPL UP TO 1600CC",
+    "rate": ""
+  },
+  {
+    "code": "XG030",
+    "description": "AUTOMOBILES (GASOLINE), ENGINE DISPL OF 1601 TO 2000CC",
+    "rate": ""
+  },
+  {
+    "code": "XG040",
+    "description": "AUTOMOBILES (GASOLINE), ENGINE DISPL OF 2001 TO 2700CC",
+    "rate": ""
+  },
+  {
+    "code": "XG050",
+    "description": "AUTOMOBILES (GASOLINE), ENG DISPL 2701 OR OVER",
+    "rate": ""
+  },
+  {
+    "code": "XG060",
+    "description": "AUTOMOBILES (DIESEL), ENG DISPL UP TO 1800CC",
+    "rate": ""
+  },
+  {
+    "code": "XG070",
+    "description": "AUTOMOBILES (DIESEL), ENG DISPL OF 1801 TO 2300CC",
+    "rate": ""
+  },
+  {
+    "code": "XG080",
+    "description": "AUTOMOBILES (DIESEL), ENG DISPL OF 2301 TO 3000CC",
+    "rate": ""
+  },
+  {
+    "code": "XG090",
+    "description": "AUTOMOBILES (DIESEL), ENG DISPL OF 3001CC OR OVER",
+    "rate": ""
+  },
+  {
+    "code": "XG100",
+    "description": "JEWELRY",
+    "rate": ""
+  },
+  {
+    "code": "XG110",
+    "description": "PERFUMES AND TOILET WATERS",
+    "rate": ""
+  },
+  {
+    "code": "XG120",
+    "description": "YACHTS AND OTHER VESSELS INTENDED FOR PLEASURE",
+    "rate": ""
+  },
+  {
+    "code": "XM010",
+    "description": "COAL AND COKE",
+    "rate": "<!--10.00/null-->"
+  },
+  {
+    "code": "XM020",
+    "description": "NON-METALLIC MINERALS AND QUARRY RESOURCES",
+    "rate": "2.0"
+  },
+  {
+    "code": "XM030",
+    "description": "GOLD AND CHROMITE",
+    "rate": "2.0"
+  },
+  {
+    "code": "XM040",
+    "description": "COPPER AND OTHER METALLIC MINERALS",
+    "rate": "2.0"
+  },
+  {
+    "code": "XM050",
+    "description": "INDIGENOUS PETROLEUM",
+    "rate": "3.0"
+  },
+  {
+    "code": "XM051",
+    "description": "LOCALLY EXTRACTED NATURAL GAS AND LIQUIFIED NATURAL GAS",
+    "rate": "2.0"
+  },
+  {
+    "code": "XP010",
+    "description": "LUBRICATING OIL",
+    "rate": "<!--P4.50/Liter-->"
+  },
+  {
+    "code": "XP020",
+    "description": "GREASE",
+    "rate": "<!--P4.50/Kilo-->"
+  },
+  {
+    "code": "XP030",
+    "description": "PROCESSED GAS",
+    "rate": "<!--P0.05/Liter-->"
+  },
+  {
+    "code": "XP040",
+    "description": "WAXES AND PETROLATUM",
+    "rate": "<!--P3.50/Kilo-->"
+  },
+  {
+    "code": "XP060",
+    "description": "PREMIUM GASOLINE - UNLEADED",
+    "rate": "<!--P4.35/Liter-->"
+  },
+  {
+    "code": "XP070",
+    "description": "PREMIUM GASOLINE - LEADED",
+    "rate": "<!--P5.35/Liter-->"
+  },
+  {
+    "code": "XP080",
+    "description": "REGULAR GASOLINE",
+    "rate": "<!--P4.35/Liter-->"
+  },
+  {
+    "code": "XP090",
+    "description": "NAPTHA",
+    "rate": "<!--P4.35/Liter-->"
+  },
+  {
+    "code": "XP100",
+    "description": "NAPTHA TO USED FOR PETRO-CHEMICAL",
+    "rate": "<!--P0.0/Liter-->"
+  },
+  {
+    "code": "XP110",
+    "description": "AVIATION GASOLINE",
+    "rate": "<!--P5.35/Liter-->"
+  },
+  {
+    "code": "XP120",
+    "description": "AVIATION TURBO JET FUEL",
+    "rate": "<!--P3.67/Liter-->"
+  },
+  {
+    "code": "XP130",
+    "description": "KEROSENE",
+    "rate": "<!--P0.0/Liter-->"
+  },
+  {
+    "code": "XP131",
+    "description": "KEROSENE USED AS AVIATION FUEL",
+    "rate": "<!--P3.67/Liter-->"
+  },
+  {
+    "code": "XP140",
+    "description": "DIESEL FUEL AND SIMILAR FUEL OILS",
+    "rate": "<!--P0.0/Liter-->"
+  },
+  {
+    "code": "XP150",
+    "description": "LPG USED FOR MOTIVE POWER",
+    "rate": "<!--P0.0/Liter-->"
+  },
+  {
+    "code": "XP160",
+    "description": "LPG",
+    "rate": "<!--P0.0/Kilo-->"
+  },
+  {
+    "code": "XP170",
+    "description": "ASPHALTS",
+    "rate": "<!--P0.56/Kilo-->"
+  },
+  {
+    "code": "XP180",
+    "description": "BUNKER/REFINERY FUEL/FEEDSTOCK",
+    "rate": "<!--P0.0/Liter-->"
+  },
+  {
+    "code": "XP190",
+    "description": "BASESTOCKS FOR LUBRICATING OIL SAND GREASES, HVD, ETC.",
+    "rate": "<!--P4.5/Liter-->"
+  },
+  {
+    "code": "XT010",
+    "description": "SMOKING TOBACCO AND OTHER PARTIALLY MANUF TOBACCO",
+    "rate": ""
+  },
+  {
+    "code": "XT020",
+    "description": "CHEWING TOBACCO",
+    "rate": "0.94"
+  },
+  {
+    "code": "XT030",
+    "description": "CIGARS",
+    "rate": ""
+  },
+  {
+    "code": "XT040",
+    "description": "CIGARETTES PACKED BY HAND",
+    "rate": "2.72"
+  },
+  {
+    "code": "XT050",
+    "description": "CIGARETTES PACKED BY MACHINE, SEC 145 (C)(1)",
+    "rate": "28.30"
+  },
+  {
+    "code": "XT060",
+    "description": "CIGARETTES PACKED BY MACHINE, SEC 145 (C)(2)",
+    "rate": "12.0"
+  },
+  {
+    "code": "XT070",
+    "description": "CIGARETTES PACKED BY MACHINE, SEC 145 (C)(3)",
+    "rate": ""
+  },
+  {
+    "code": "XT080",
+    "description": "TOBACCO INSPECT FEES FOR EACH THOUSAND CIGARS",
+    "rate": "0.50"
+  },
+  {
+    "code": "XT090",
+    "description": "TOBACCO INSPECT FEES FOR EACH THOUSAND CIGARETTES",
+    "rate": "0.10"
+  },
+  {
+    "code": "XT100",
+    "description": "TOBACCO INSPECT FEE PER KG OF LEAF TOBACCO AND OTHER",
+    "rate": "0.02"
+  },
+  {
+    "code": "XT110",
+    "description": "PER KG OF SCRAPS AND OTHER MANUF TOBACCO PROD",
+    "rate": "0.03"
+  },
+  {
+    "code": "XT120",
+    "description": "ADDL IMPT BLENDING TOBACCO INSPECT AND MONITOR FEE",
+    "rate": ""
+  },
+  {
+    "code": "XT130",
+    "description": "CIGARETTES PACKED BY MACHINE, SEC. 145 (C)(4)",
+    "rate": ""
+  },
+  {
+    "code": "WC010",
+    "description": "PROFL TALENT FEE PD TO JURIDICL (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC011",
+    "description": "PROFL TALENT FEE PD TO JURIDICL (GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC050",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC051",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS (GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC100",
+    "description": "RENTALS (CORP.)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC110",
+    "description": "CINEM. FILM RENTALS (CORP.)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC120",
+    "description": "CONTRACTORS (CORPORATE)",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC140",
+    "description": "AMOUNTS PAID TO CERTAIN BROKERS AND AGENTS (CORP.)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC156",
+    "description": "CREDIT CREDIT CARD COMPANIES",
+    "rate": "0.5"
+  },
+  {
+    "code": "WC157",
+    "description": "PYMT BY GOVT TO LOCAL/RSDNT SUPPLIER(CORP-SERVICES)",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC158",
+    "description": "INCOME PAYMENTS MADE BY TOP 20,000 PRIVATE CORPORATIONS TO THEIR LOCAL/RESIDENT SUPPLIERS OF GOODS OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC160",
+    "description": "INCOME PAYMENTS MADE BY TOP 20,000 PRIVATE CORPORATIONS TO THEIR LOCAL/RESIDENT SUPPLIERS OF SERVICES OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC515",
+    "description": "COMM OF INDPNT AND/OR EXCL SALES REP,MKTG AGENTS(CORP)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC535",
+    "description": "PYMTS MADE BY PRE-NEED CO. TO FUNERAL PARLORS(CORP)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC540",
+    "description": "TOLLING FEE PAID TO REFINERIES(CORPORATE)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC610",
+    "description": "PYMTS MADE TO SUPPLIERS OF AGRICULTURAL PRODUCTS(CORP)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC630",
+    "description": "PYMTS ON PURCH-MINERALS,MINERAL PROD,QUARRY RESRCS(CORP)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC632",
+    "description": "INCME PYMT ON PURCH OF GOLD BYBSPTO GOLDMINRS RA7076",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC640",
+    "description": "PYMT BY GOVT TO LOCAL/RSDNT SUPPLIER(CORP-GOODS)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC650",
+    "description": "GROSS AMOUNT OF REFUND GIVEN BY MERALCO TO CUSTOMERS WITH ACTIVE CONTRACTS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WC651",
+    "description": "WITHHOLDING ON GROSS AMT OF REF TO MERALCO CUS-TERMINATED",
+    "rate": "32.0"
+  },
+  {
+    "code": "WC660",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT RESIDNTL ELECT&gt;200KW MER",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC661",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT NONRES ELECT&gt;200KW MER",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC662",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT RESIDNTL ELECT&gt;200KW DU",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC663",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT NONRES ELECT>200KW DU",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI010",
+    "description": "PROFLS, LAWYERS,CPAS, ENGR (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI011",
+    "description": "PROFLS, LAWYERS,CPAS, ENGR (GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI020",
+    "description": "PROF ENTRTNR-IF CURR YR GROSS INC DOESNT EXCEED P720,000 (IND.)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI021",
+    "description": "PROF ENTRTAINRS-IF CURRENT YR GROSS INC EXCEEDS P720,000 (IND.)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI030",
+    "description": "PROF ATH-IF CURR YR GROSS INC DOESNT EXCEED P720,000 (IND.)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI031",
+    "description": "PROF ATHLETES-IF CURRENT YR GROSS INC EXCEEDS P720,000 (IND.)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI040",
+    "description": "MOVIE,STAGE,ETC-IF CURR YR GROSS INC DOESNT EXCEED P720T (IND.)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI041",
+    "description": "MOVIE,STAGE,ETC-IF CURRENT YR GROSS INC EXCEEDS P720,000 (IND.)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI050",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI051",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS (GROSS INC &gt;720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI060",
+    "description": "BUSINESS AND BOOKKEEPING AGENTS (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI061",
+    "description": "BUSINESS AND BOOKKEEPING AGENTS (GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI070",
+    "description": "INSURANCE AGENTS AND ADJUSTERS (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI071",
+    "description": "INSURANCE AGENTS AND ADJUSTERS (GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI080",
+    "description": "OTHER RCPNT OF TF-IF CURR YR GROSS INC DSNT EXCEED P720T (IND.)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI081",
+    "description": "OTHER RCPNT OF TF-IF CURR YR GROSS INC EXCEEDS P720,000 (IND.)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI090",
+    "description": "FEES OF DIRECTORS NOT EMPLOYEE OF COMP(GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI091",
+    "description": "FEES OF DIRECTORS NOT EMPLOYEE OF COMP(GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI100",
+    "description": "RENTALS (INDIVIDUAL)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI110",
+    "description": "CINEM. FILM RENTALS -(INDIVIDUAL)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI120",
+    "description": "CONTRACTORS (INDIVIDUAL)",
+    "rate": "2.0"
+  },
+  {
+    "code": "WI130",
+    "description": "INCOME DISTRIBUTION TO BENEFICIARIES (IND.)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI140",
+    "description": "AMOUNTS PAID TO CERTAIN BROKERS AND AGENTS (IND.)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI141",
+    "description": "PYMTS FOR MED PRACTITIONRS THRU A DULY REG PROF PRTNRSHP (INC. &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI142",
+    "description": "PAYMENTS FOR MED PRACTITIONERS THRU A DULY REG PROF PARTNERSHIP (INC &gt;720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI150",
+    "description": "PYMT TO MED PRACTNRS THRU HOSP/CLINICS(GROSS INC &gt;720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI151",
+    "description": "PYMT TO MED PRACTNRS THRU HOSP/CLINICS(GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI152",
+    "description": "PYMT TO PARTNERS IN PROF PARTNERSHIP (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI153",
+    "description": "PYMT TO PARTNERS IN PROF PRTNSHIP (GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI156",
+    "description": "PAYMENTS MADE BY CREDIT CARD COMPANIES TO INDIVIDUALS",
+    "rate": "0.5"
+  },
+  {
+    "code": "WI157",
+    "description": "PYMT BY GOVT TO LOCAL/RSDNT SUPPLIER(INDIV-SERVICES)",
+    "rate": "2.0"
+  },
+  {
+    "code": "WI158",
+    "description": "INCOME PAYMENTS MADE BY TOP 20,000 PRIVATE CORPORATIONS TO THEIR LOCAL/RESIDENT SUPPLIERS OF GOODS OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI159",
+    "description": "ADDL PAYMENTS TO GOVT PERSONNEL FROM IMPORTERS,SHIPPING",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI160",
+    "description": "INCOME PAYMENTS MADE BY TOP 20,000 PRIVATE CORPORATIONS TO THEIR LOCAL/RESIDENT SUPPLIERS OF SERVICES OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "2.0"
+  },
+  {
+    "code": "WI515",
+    "description": "COMM OF INDPNT AND/OR EXCL SALES REP,MKTG AGENTS OF CO.",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI530",
+    "description": "GROSS PYMTS TO EMBALMERS BY FUNERAL COMPANIES",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI535",
+    "description": "PYMTS MADE BY PRE-NEED CO. TO FUNERAL PARLORS",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI540",
+    "description": "TOLLING FEE PAID TO REFINERIES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI610",
+    "description": "PYMTS MADE TO SUPPLIERS OF AGRICULTURAL PRODUCTS",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI630",
+    "description": "PYMTS ON PURCH-MINERALS,MINERAL PROD,QUARRY RESOURCES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI632",
+    "description": "INCM PYMT ON PURCH OF GOLD BYBSPTO GOLDMINRS RA7076 IND",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI640",
+    "description": "PYMT BY GOVT TO LOCAL/RSDNT SUPPLIER(INDIV-GOODS)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI650",
+    "description": "GROSS AMOUNT OF REFUND GIVEN BY MERALCO TO CUSTOMERS WITH ACTIVE CONTRACTS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI651",
+    "description": "WITHHOLDING ON GROSS AMT OF REF TO MERALCO CUS-TERMINATED",
+    "rate": "32.0"
+  },
+  {
+    "code": "WI660",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT RESID ELECT&gt;200KW MER IND",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI661",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT NONRS ELECT&gt;200KW MER IND",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI662",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT RESID ELECT&gt;200KW DU IND",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI663",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT NONRS ELECT&gt;200KW DU IND",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC010",
+    "description": "PROFL TALENT FEE PD TO JURIDICL (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC011",
+    "description": "PROFL TALENT FEE PD TO JURIDICL (GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC050",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC051",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS (GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC100",
+    "description": "RENTALS (CORP.)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC110",
+    "description": "CINEM. FILM RENTALS (CORP.)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC120",
+    "description": "CONTRACTORS (CORPORATE)",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC140",
+    "description": "AMOUNTS PAID TO CERTAIN BROKERS AND AGENTS (CORP.)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC156",
+    "description": "CREDIT CREDIT CARD COMPANIES",
+    "rate": "0.5"
+  },
+  {
+    "code": "WC157",
+    "description": "PYMT BY GOVT TO LOCAL/RSDNT SUPPLIER(CORP-SERVICES)",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC158",
+    "description": "INCOME PAYMENTS MADE BY TOP 20,000 PRIVATE CORPORATIONS TO THEIR LOCAL/RESIDENT SUPPLIERS OF GOODS OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC160",
+    "description": "INCOME PAYMENTS MADE BY TOP 20,000 PRIVATE CORPORATIONS TO THEIR LOCAL/RESIDENT SUPPLIERS OF SERVICES OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC515",
+    "description": "COMM OF INDPNT AND/OR EXCL SALES REP,MKTG AGENTS(CORP)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC535",
+    "description": "PYMTS MADE BY PRE-NEED CO. TO FUNERAL PARLORS(CORP)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC540",
+    "description": "TOLLING FEE PAID TO REFINERIES(CORPORATE)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC610",
+    "description": "PYMTS MADE TO SUPPLIERS OF AGRICULTURAL PRODUCTS(CORP)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC630",
+    "description": "PYMTS ON PURCH-MINERALS,MINERAL PROD,QUARRY RESRCS(CORP)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC632",
+    "description": "INCME PYMT ON PURCH OF GOLD BYBSPTO GOLDMINRS RA7076",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC640",
+    "description": "PYMT BY GOVT TO LOCAL/RSDNT SUPPLIER(CORP-GOODS)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC650",
+    "description": "GROSS AMOUNT OF REFUND GIVEN BY MERALCO TO CUSTOMERS WITH ACTIVE CONTRACTS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WC651",
+    "description": "WITHHOLDING ON GROSS AMT OF REF TO MERALCO CUS-TERMINATED",
+    "rate": "32.0"
+  },
+  {
+    "code": "WC660",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT RESIDNTL ELECT&gt;200KW MER",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC661",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT NONRES ELECT&gt;200KW MER",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC662",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT RESIDNTL ELECT&gt;200KW DU",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC663",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT NONRES ELECT>200KW DU",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI010",
+    "description": "PROFLS, LAWYERS,CPAS, ENGR (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI011",
+    "description": "PROFLS, LAWYERS,CPAS, ENGR (GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI020",
+    "description": "PROF ENTRTNR-IF CURR YR GROSS INC DOESNT EXCEED P720,000 (IND.)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI021",
+    "description": "PROF ENTRTAINRS-IF CURRENT YR GROSS INC EXCEEDS P720,000 (IND.)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI030",
+    "description": "PROF ATH-IF CURR YR GROSS INC DOESNT EXCEED P720,000 (IND.)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI031",
+    "description": "PROF ATHLETES-IF CURRENT YR GROSS INC EXCEEDS P720,000 (IND.)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI040",
+    "description": "MOVIE,STAGE,ETC-IF CURR YR GROSS INC DOESNT EXCEED P720T (IND.)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI041",
+    "description": "MOVIE,STAGE,ETC-IF CURRENT YR GROSS INC EXCEEDS P720,000 (IND.)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI050",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI051",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS (GROSS INC &gt;720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI060",
+    "description": "BUSINESS AND BOOKKEEPING AGENTS (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI061",
+    "description": "BUSINESS AND BOOKKEEPING AGENTS (GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI070",
+    "description": "INSURANCE AGENTS AND ADJUSTERS (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI071",
+    "description": "INSURANCE AGENTS AND ADJUSTERS (GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI080",
+    "description": "OTHER RCPNT OF TF-IF CURR YR GROSS INC DSNT EXCEED P720T (IND.)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI081",
+    "description": "other rcpnt of tf-if curr yr gross inc exceeds P720,000 (IND.)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI090",
+    "description": "FEES OF DIRECTORS NOT EMPLOYEE OF COMP(GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI091",
+    "description": "FEES OF DIRECTORS NOT EMPLOYEE OF COMP(GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI100",
+    "description": "RENTALS (INDIVIDUAL)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI110",
+    "description": "CINEM. FILM RENTALS -(INDIVIDUAL)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI120",
+    "description": "CONTRACTORS (INDIVIDUAL)",
+    "rate": "2.0"
+  },
+  {
+    "code": "WI130",
+    "description": "INCOME DISTRIBUTION TO BENEFICIARIES (IND.)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI140",
+    "description": "AMOUNTS PAID TO CERTAIN BROKERS AND AGENTS (IND.)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI141",
+    "description": "PYMTS FOR MED PRACTITIONRS THRU A DULY REG PROF PRTNRSHP (INC. &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI142",
+    "description": "PAYMENTS FOR MED PRACTITIONERS THRU A DULY REG PROF PARTNERSHIP (INC &gt;720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI150",
+    "description": "PYMT TO MED PRACTNRS THRU HOSP/CLINICS(GROSS INC &gt;720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI151",
+    "description": "PYMT TO MED PRACTNRS THRU HOSP/CLINICS(GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI152",
+    "description": "PAYM TO PARTNERS IN PROF PARTNERSHIP (GROSS INC &lt;= 720,000)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI153",
+    "description": "PYMT TO PARTNERS IN PROF PRTNSHIP (GROSS INC &gt; 720,000)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI156",
+    "description": "PAYMENTS MADE BY CREDIT CARD COMPANIES TO INDIVIDUALS",
+    "rate": "0.5"
+  },
+  {
+    "code": "WI157",
+    "description": "PYMT BY GOVT TO LOCAL/RSDNT SUPPLIER(INDIV-SERVICES)",
+    "rate": "2.0"
+  },
+  {
+    "code": "WI158",
+    "description": "INCOME PAYMENTS MADE BY TOP 20,000 PRIVATE CORPORATIONS TO THEIR LOCAL/RESIDENT SUPPLIERS OF GOODS OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI159",
+    "description": "ADDL PAYMENTS TO GOVT PERSONNEL FROM IMPORTERS,SHIPPING",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI160",
+    "description": "INCOME PAYMENTS MADE BY TOP 20,000 PRIVATE CORPORATIONS TO THEIR LOCAL/RESIDENT SUPPLIERS OF SERVICES OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "2.0"
+  },
+  {
+    "code": "WI515",
+    "description": "COMM OF INDPNT AND/OR EXCL SALES REP,MKTG AGENTS OF CO.",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI530",
+    "description": "GROSS PYMTS TO EMBALMERS BY FUNERAL COMPANIES",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI535",
+    "description": "PYMTS MADE BY PRE-NEED CO. TO FUNERAL PARLORS",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI540",
+    "description": "TOLLING FEE PAID TO REFINERIES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI610",
+    "description": "PYMTS MADE TO SUPPLIERS OF AGRICULTURAL PRODUCTS",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI630",
+    "description": "PYMTS ON PURCH-MINERALS,MINERAL PROD,QUARRY RESOURCES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI632",
+    "description": "INCM PYMT ON PURCH OF GOLD BYBSPTO GOLDMINRS RA7076 IND",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI640",
+    "description": "PYMT BY GOVT TO LOCAL/RSDNT SUPPLIER(INDIV-GOODS)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI650",
+    "description": "GROSS AMOUNT OF REFUND GIVEN BY MERALCO TO CUSTOMERS WITH ACTIVE CONTRACTS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI651",
+    "description": "WITHHOLDING ON GROSS AMT OF REF TO MERALCO CUS-TERMINATED",
+    "rate": "32.0"
+  },
+  {
+    "code": "WI660",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT RESID ELECT&gt;200KW MER IND",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI661",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT NONRS ELECT&gt;200KW MER IND",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI662",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT RESID ELECT&gt;200KW DU IND",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI663",
+    "description": "GROS OF INT RFUND OF MTER DPOSIT NONRS ELECT&gt;200KW DU IND",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC180",
+    "description": "FINAL TAX -INTEREST ON FOREIGN CURRENCY PAYABLE TO NON-RESIDENT FOREIGN CORPORATION",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC190",
+    "description": "FINAL TAX -INTEREST ON FOREIGN CURRENCY PAYABLE TO OFFSHORE BANKING UNIT/FOREIGN CURRENCY DEP. UNIT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC191",
+    "description": "WITHOLDING TAX ON INCOME PAYMENT TO FCDUS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC212",
+    "description": "CASH DIVIDEND PAYMENTS BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCs",
+    "rate": "30.0"
+  },
+  {
+    "code": "WC213",
+    "description": "PROPERTY DIVIDEND PAYMENTS BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCs",
+    "rate": "30.0"
+  },
+  {
+    "code": "WC222",
+    "description": "CASH DIVIDEND PAYMNT TO CORP TO NRFCS",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC223",
+    "description": "FT- PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORP TO NFRC WHOSE COUNTRIES ALLOWED TAX DEEMED PAID CREDIT (SUBJ TO TAX SPARING RULE)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC230",
+    "description": "ON OTHER PAYMENTS TO NRFCs",
+    "rate": "30.0"
+  },
+  {
+    "code": "WC250",
+    "description": "FINAL TAX -ON ROYALTIES PAID TO JURIDICAL PERSONS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC280",
+    "description": "BRANCH PROFIT REMITTANCES BY ALL OTHER CORPS. EXCEPT EPZA REG",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC290",
+    "description": "FINAL TAX -ON LEASE/CHARTER FEES PAYABLE TO NON-RESIDENT LESSOR OF FOREIGN VESSELS",
+    "rate": "4.5"
+  },
+  {
+    "code": "WC300",
+    "description": "FINAL TAX -ON LEASE/CHARTER FEES PAYABLE TO NON-RESIDENT LESSOR OF AIRCRAFT/MACHINES",
+    "rate": "7.5"
+  },
+  {
+    "code": "WC310",
+    "description": "ON PYTS TO OIL EXPLORATION SERVICE CONTRACTORS AND SUBCONTRACTORS - CORPORATE",
+    "rate": "8.0"
+  },
+  {
+    "code": "WC340",
+    "description": "ON PYT TO NON RESIDENT CINEMATOGRAPHIC FILM OWNER, LESSOR OR DISTRIBUTOR - CORPORATE",
+    "rate": "25.0"
+  },
+  {
+    "code": "WC410",
+    "description": "FT-INFORMER CASH REWARD TO JURIDICAL PERSONS - CORPORATE",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI202",
+    "description": "CASH DIVIDEND PAYMNT TO DOMESTIC CORP TO CITIZENS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI203",
+    "description": "FT-PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORP TO CITIZENS AND RESIDENT ALIENS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI224",
+    "description": "FT-CASH DIVIDEND PAYMENT BY DOMESTIC CORP TO NRAETB",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI225",
+    "description": "FT-PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORP TO NRAETB",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI226",
+    "description": "FT-SHARE OF NRA IN DISTRIB NET INC PART/JNT VENT ETC",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI240",
+    "description": "PROFIT SHARE OF INDIVIDUAL PARTNERS IN A TAXABLE PARTNERSHIP",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI250",
+    "description": "FINAL TAX -ON ROYALTIES PAID TO CITIZENS AND RESIDENT ALIENS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI260",
+    "description": "FINAL TAX -ON AWARDS/PRIZES",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI310",
+    "description": "ON PYTS TO OIL EXPLORATION SERVICE CONTRACTORS AND SUBCONTRACTORS - INDIVIDUAL",
+    "rate": "8.0"
+  },
+  {
+    "code": "WI330",
+    "description": "FINAL TAX -ON PAYMENTS TO NR ALIEN INDIVIDUAL NOT ENGAGED IN TRADE OR BUSINESS WITHIN THE PHILIPPINES",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI340",
+    "description": "ON PYT TO NON RESIDENT CINEMATOGRAPHIC FILM OWNER, LESSOR OR DISTRIBUTOR - INDIVIDUAL",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI341",
+    "description": "FT-ON ROYALTIES PD TO NRAETB ON CINEMATOGRAPHIC FILMS WORKS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI350",
+    "description": "(IND)INTEREST OR OTHER PAYMENTS IN TAX-FREE COVENANT BONDS, MORTGAGES, DEEDS OF TRUST OR OTHER OBLIG.",
+    "rate": "30.0"
+  },
+  {
+    "code": "WI380",
+    "description": "FINAL WITHHOLDING TAX ON ROYALTIES ON BOOKS, LITERARY WORKS AND MUSICAL COMPOSITIONS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI410",
+    "description": "(IND) INFORMERS REWARDS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC180",
+    "description": "FINAL TAX -INTEREST ON FOREIGN CURRENCY PAYABLE TO NON-RESIDENT FOREIGN CORPORATION",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC190",
+    "description": "FINAL TAX -INTEREST ON FOREIGN CURRENCY PAYABLE TO OFFSHORE BANKING UNIT/FOREIGN CURRENCY DEP. UNIT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC191",
+    "description": "WITHOLDING TAX ON INCOME PAYMENT TO FCDUS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC212",
+    "description": "CASH DIVIDEND PAYMENTS BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCs",
+    "rate": "30.0"
+  },
+  {
+    "code": "WC213",
+    "description": "PROPERTY DIVIDEND PAYMENTS BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCs",
+    "rate": "30.0"
+  },
+  {
+    "code": "WC222",
+    "description": "CASH DIVIDEND PAYMNT TO CORP TO NRFCS",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC223",
+    "description": "FT- PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORP TO NFRC WHOSE COUNTRIES ALLOWED TAX DEEMED PAID CREDIT (SUBJ TO TAX SPARING RULE)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC230",
+    "description": "ON OTHER PAYMENTS TO NRFCs",
+    "rate": "30.0"
+  },
+  {
+    "code": "WC250",
+    "description": "FINAL TAX -ON ROYALTIES PAID TO JURIDICAL PERSONS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC280",
+    "description": "BRANCH PROFIT REMITTANCES BY ALL OTHER CORPS. EXCEPT EPZA REG",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC290",
+    "description": "FINAL TAX -ON LEASE/CHARTER FEES PAYABLE TO NON-RESIDENT LESSOR OF FOREIGN VESSELS",
+    "rate": "4.5"
+  },
+  {
+    "code": "WC300",
+    "description": "FINAL TAX -ON LEASE/CHARTER FEES PAYABLE TO NON-RESIDENT LESSOR OF AIRCRAFT/MACHINES",
+    "rate": "7.5"
+  },
+  {
+    "code": "WC310",
+    "description": "ON PYTS TO OIL EXPLORATION SERVICE CONTRACTORS AND SUBCONTRACTORS - CORPORATE",
+    "rate": "8.0"
+  },
+  {
+    "code": "WC340",
+    "description": "ON PYT TO NON RESIDENT CINEMATOGRAPHIC FILM OWNER, LESSOR OR DISTRIBUTOR - CORPORATE",
+    "rate": "25.0"
+  },
+  {
+    "code": "WC410",
+    "description": "FT-INFORMER CASH REWARD TO JURIDICAL PERSONS - CORPORATE",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI202",
+    "description": "CASH DIVIDEND PAYMNT TO DOMESTIC CORP TO CITIZENS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI203",
+    "description": "FT-PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORP TO CITIZENS AND RESIDENT ALIENS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI224",
+    "description": "FT-CASH DIVIDEND PAYMENT BY DOMESTIC CORP TO NRAETB",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI225",
+    "description": "FT-PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORP TO NRAETB",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI226",
+    "description": "FT-SHARE OF NRA IN DISTRIB NET INC PART/JNT VENT ETC",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI240",
+    "description": "PROFIT SHARE OF INDIVIDUAL PARTNERS IN A TAXABLE PARTNERSHIP",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI250",
+    "description": "FINAL TAX -ON ROYALTIES PAID TO CITIZENS AND RESIDENT ALIENS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI260",
+    "description": "FINAL TAX -ON AWARDS/PRIZES",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI310",
+    "description": "ON PYTS TO OIL EXPLORATION SERVICE CONTRACTORS AND SUBCONTRACTORS - INDIVIDUAL",
+    "rate": "8.0"
+  },
+  {
+    "code": "WI330",
+    "description": "FINAL TAX -ON PAYMENTS TO NR ALIEN INDIVIDUAL NOT ENGAGED IN TRADE OR BUSINESS WITHIN THE PHILIPPINES",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI340",
+    "description": "ON PYT TO NON RESIDENT CINEMATOGRAPHIC FILM OWNER, LESSOR OR DISTRIBUTOR - INDIVIDUAL",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI341",
+    "description": "FT-ON ROYALTIES PD TO NRAETB ON CINEMATOGRAPHIC FILMS WORKS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI350",
+    "description": "(IND)INTEREST OR OTHER PAYMENTS IN TAX-FREE COVENANT BONDS, MORTGAGES, DEEDS OF TRUST OR OTHER OBLIG.",
+    "rate": "30.0"
+  },
+  {
+    "code": "WI380",
+    "description": "FINAL WITHHOLDING TAX ON ROYALTIES ON BOOKS, LITERARY WORKS AND MUSICAL COMPOSITIONS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI410",
+    "description": "(IND) INFORMERS REWARDS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WB191",
+    "description": "TAX ON WINNINGS FROM DOUBLE, FORECAST/QUINELLA AND TRIFECTA BETS ON HORSE RACES PAID BY GOVERNMENT WITHHOLDING TAX AGENT",
+    "rate": "4.0"
+  },
+  {
+    "code": "WB192",
+    "description": "TAX ON WINNINGS OR PRIZES PAID TO WINNERS OF WINNING HORSE RACE TICKETS OTHER THAN DOUBLE, FORECAST/QUINELLA AND TRIFECTA BETS; AND OWNERS OF WINNING RACE HORSES PAID BY GOVERNMENT WITHHOLDING TAX AGENT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WB193",
+    "description": "TAX ON WINNINGS FROM DOUBLE, FORECAST/QUINELLA AND TRIFECTA BETS ON HORSE RACES PAID BY PRIVATE WITHHOLDING TAX AGENT",
+    "rate": "4.0"
+  },
+  {
+    "code": "WB194",
+    "description": "TAX ON WINNINGS OR PRIZES PAID TO WINNERS OF WINNING HORSE RACE TICKETS OTHER THAN DOUBLE, FORECAST/QUINELLA AND TRIFECTA BETS; AND OWNERS OF WINNING RACE HORSES PAID BY PRIVATE WITHHOLDING TAX AGENT",
+    "rate": "10.0"
+  },
+  {
+    "code": "II011",
+    "description": "COMPENSATION EARNER",
+    "rate": ""
+  },
+  {
+    "code": "II040",
+    "description": "MARGINAL INCOME EARNER",
+    "rate": ""
+  },
+  {
+    "code": "II041",
+    "description": "OTHER INCOME/EARNINGS",
+    "rate": ""
+  },
+  {
+    "code": "IC010",
+    "description": "CORPORATION IN GENERAL - JAN 1, 2009 (2009)",
+    "rate": "30.0"
+  },
+  {
+    "code": "IC020",
+    "description": "TAXABLE PARTNERSHIP - JAN 1, 2009 (2009)",
+    "rate": "30.0"
+  },
+  {
+    "code": "IC030",
+    "description": "PROPRIETARY EDUCATIONAL INSTITUTIONS - JAN 1, 2009 (2009)",
+    "rate": "30.0"
+  },
+  {
+    "code": "IC031",
+    "description": "NON-STOCK,NON-PROFITS HOSPITALS - JAN 1, 2009 (2009)",
+    "rate": "30.0"
+  },
+  {
+    "code": "IC040",
+    "description": "GOCC, AGENCIES AND INSTRUMENTALITIES - JAN 1, 2009 (2009)",
+    "rate": "30.0"
+  },
+  {
+    "code": "IC041",
+    "description": "NATIONAL GOV'T.& LGU's - JAN 1, 2009 (2009)",
+    "rate": "0.0"
+  },
+  {
+    "code": "IC070",
+    "description": "RESIDENT FOREIGN CORPORATION IN GENERAL - JAN 1, 2009 (2009)",
+    "rate": "30.0"
+  },
+  {
+    "code": "IC190",
+    "description": "OFFSHORE BANKING UNITS(OBU's) - JAN 1, 2009 (2009)",
+    "rate": "30.0"
+  },
+  {
+    "code": "IC191",
+    "description": "FOREIGN CURRENCY DEPOSITUNIT(FCDU's)- JAN 1, 2009 (2009)",
+    "rate": "30.0"
+  },
+  {
+    "code": "IC011",
+    "description": "EXEMPT CORPORATION ON EXEMPT ACTIVITIES",
+    "rate": "0.0"
+  },
+  {
+    "code": "IC055",
+    "description": "MINIMUM CORPORATE INCOME TAX (2005)",
+    "rate": "2.0"
+  },
+  {
+    "code": "IC080",
+    "description": "RESIDENT FOREIGN CORPORATION-INT'LCARRIERS (2005)",
+    "rate": "2.5"
+  },
+  {
+    "code": "IC101",
+    "description": "REGIONAL OPERATING HEADQUARTERS (2005)",
+    "rate": "10.0"
+  },
+  {
+    "code": "IC021",
+    "description": "GENERAL PROFESSIONAL PARTNERSHIP (1986)",
+    "rate": "0.0"
+  },
+  {
+    "code": "DS101",
+    "description": "ORIGINAL ISSUE OF SHARES OF STOCKS",
+    "rate": ""
+  },
+  {
+    "code": "DS102",
+    "description": "SALES, AGREEMENT TO SELL &gt; MEMORANDA OF SALES DELIVERIES OR TRANSFER OF DUE BILL CERTIFICATE OF OBLIGATION",
+    "rate": ""
+  },
+  {
+    "code": "DS103",
+    "description": "BONDS, DEBENTURE AND CERTIFICATE OF STOCKS OR INDEBTEDNESS ISSUED IN FOREIGN COUNTRIES",
+    "rate": ""
+  },
+  {
+    "code": "DS104",
+    "description": "CERTIFICATE OF PROFITS OR INTEREST IN PROPERTY OR ACCUMULATIONS",
+    "rate": ""
+  },
+  {
+    "code": "DS105",
+    "description": "BANK CHECKS, DRAFTS, CERTL OF DEPOSIT NOT BEARING INTEREST AND OTHER INSTRUMENTS",
+    "rate": ""
+  },
+  {
+    "code": "DS106",
+    "description": "ORIGINAL ISSUE OF ALL DEBT INSTRUMENTS",
+    "rate": ""
+  },
+  {
+    "code": "DS107",
+    "description": "ACCEPTANCE OF BILLS OF EXCHANGE OR ORDER DRAWN IN A FOREIGN COUNTRY BUT PAYABLE IN THE PHILS",
+    "rate": ""
+  },
+  {
+    "code": "DS108",
+    "description": "FOREIGN BILLS OF EXCHANGE AND LETTERS OF CREDIT",
+    "rate": ""
+  },
+  {
+    "code": "DS109",
+    "description": "LIFE INSURANCE POLICIES",
+    "rate": ""
+  },
+  {
+    "code": "DS110",
+    "description": "POLICIES OF INSURANCE UPON PROPERTY",
+    "rate": ""
+  },
+  {
+    "code": "DS111",
+    "description": "FIDELITY BONDS AND OTHER INSURANCE POLICIES",
+    "rate": ""
+  },
+  {
+    "code": "DS112",
+    "description": "CAPITAL OF THE ANNUITIES",
+    "rate": ""
+  },
+  {
+    "code": "DS112",
+    "description": "ON PRE-NEED PLANS",
+    "rate": ""
+  },
+  {
+    "code": "DS113",
+    "description": "INDEMNITY BONDS",
+    "rate": ""
+  },
+  {
+    "code": "DS114",
+    "description": "CERTIFICATES-SECTION 188 OF THE TAX CODE",
+    "rate": ""
+  },
+  {
+    "code": "DS115",
+    "description": "WAREHOUSE RECEIPTS",
+    "rate": ""
+  },
+  {
+    "code": "DS116",
+    "description": "JAI-ALAI, HORSE RACE TICKETS, LOTTO ETC.",
+    "rate": ""
+  },
+  {
+    "code": "DS117",
+    "description": "BILLS OF LADING OR RECEIPTS",
+    "rate": ""
+  },
+  {
+    "code": "DS118",
+    "description": "PROXIES FOR VOTING AT ANY ELECTION",
+    "rate": ""
+  },
+  {
+    "code": "DS119",
+    "description": "POWERS OF ATTORNEY",
+    "rate": ""
+  },
+  {
+    "code": "DS120",
+    "description": "LEASES AND OTHER HIRING AGREEMENTS",
+    "rate": ""
+  },
+  {
+    "code": "DS121",
+    "description": "MORTGAGES, PLEDGES AND DEED OF TRUST",
+    "rate": ""
+  },
+  {
+    "code": "DS124",
+    "description": "ON ASSIGNMENT AND RENEWALS OF CERTAIN INSTRUMENTS.",
+    "rate": ""
+  },
+  {
+    "code": "DS125",
+    "description": "IN CASE OF STOCK WITHOUT PAR VALUE",
+    "rate": ""
+  },
+  {
+    "code": "DS126",
+    "description": "BILLS OF EXCHANGE OF DRAFTS",
+    "rate": ""
+  },
+  {
+    "code": "DS130",
+    "description": "CHARTER PARTIES AND SIMILAR INTR IF GROSS TONNAGE IS 1000 TONS AND BELOW",
+    "rate": ""
+  },
+  {
+    "code": "DS131",
+    "description": "CHARTER PARTIES AND SIMILAR INTR IF GROSS TONNAGE IS 1001 TONS TO 10,000 TONS",
+    "rate": ""
+  },
+  {
+    "code": "DS132",
+    "description": "CHARTER PARTIES AND SIMILAR INTR IF GROSS TONNAGE IS OVER THAN 10,000 TONS",
+    "rate": ""
+  },
+  {
+    "code": "VB010",
+    "description": "VAT-ON BUSINESS SERVICES-IN GENERAL",
+    "rate": ""
+  },
+  {
+    "code": "VB100",
+    "description": "VAT-ON BUS SERV-HOTEL, MOTELS, ETC",
+    "rate": ""
+  },
+  {
+    "code": "VB101",
+    "description": "VAT -ON BUSINESS SERVICES -RESTAURANTS, CATERERS",
+    "rate": ""
+  },
+  {
+    "code": "VB102",
+    "description": "VAT -ON BUS. SERVICES -DEALERS ON SEC/LENDING INVESTORS",
+    "rate": ""
+  },
+  {
+    "code": "VB105",
+    "description": "VAT -COMMON CARRIERS -LAND BASED (ROAD FREIGHT)",
+    "rate": ""
+  },
+  {
+    "code": "VB106",
+    "description": "VAT -COMMON CARRIERS -DOMESTIC OCEAN-GOING VESSEL",
+    "rate": ""
+  },
+  {
+    "code": "VB107",
+    "description": "VAT -COMMON CARRIERS -INTER-ISLAND SHIPPING VESSEL",
+    "rate": ""
+  },
+  {
+    "code": "VB108",
+    "description": "VAT -COMMON CARRIERS -AIRCRAFT",
+    "rate": ""
+  },
+  {
+    "code": "VB109",
+    "description": "VAT -FRANCHISE HOLDERS -TELEPHONE",
+    "rate": ""
+  },
+  {
+    "code": "VB111",
+    "description": "VAT -FRANCHISE HOLDERS -RADIO/TELEPHONE BROAD.",
+    "rate": ""
+  },
+  {
+    "code": "VB112",
+    "description": "VAT -FRANCHISE HOLDERS -OTHERS",
+    "rate": ""
+  },
+  {
+    "code": "VB113",
+    "description": "VAT -NON-LIFE INSURANCE COMPANIES",
+    "rate": ""
+  },
+  {
+    "code": "VC010",
+    "description": "VAT -ON CONSTRUCTION",
+    "rate": ""
+  },
+  {
+    "code": "VD010",
+    "description": "COMPULSORY SOCIAL SECURITY PUBLIC ADMIN AND DEFENSE",
+    "rate": ""
+  },
+  {
+    "code": "VH010",
+    "description": "VAT -ON COMMUNITY, PERSONAL AND HOUSEHOLD SERVICES",
+    "rate": ""
+  },
+  {
+    "code": "VI010",
+    "description": "VAT -ON IMPORTATION OF GOODS",
+    "rate": ""
+  },
+  {
+    "code": "VM010",
+    "description": "VAT -MANUFACTURING IN GEN.",
+    "rate": ""
+  },
+  {
+    "code": "VM020",
+    "description": "VAT ON MANUFACTURING - FOOD, PRODUCTS AND BEVERAGES",
+    "rate": ""
+  },
+  {
+    "code": "VM030",
+    "description": "VAT ON MANUFACTURING - CEMENT",
+    "rate": ""
+  },
+  {
+    "code": "VM040",
+    "description": "VAT ON MANUFACTURING - TOBACCO",
+    "rate": ""
+  },
+  {
+    "code": "VM050",
+    "description": "VAT ON MANUFACTURING - FLOUR",
+    "rate": ""
+  },
+  {
+    "code": "VM100",
+    "description": "VAT -MANUFACTURING -PESTICIDES",
+    "rate": ""
+  },
+  {
+    "code": "VM110",
+    "description": "VAT ON MANUFACTURING - ALCOHOL",
+    "rate": ""
+  },
+  {
+    "code": "VM120",
+    "description": "VAT ON MANUFACTURING - PETROLEUM",
+    "rate": ""
+  },
+  {
+    "code": "VM130",
+    "description": "VAT ON MANUFACTURING - AUTOMOBILES",
+    "rate": ""
+  },
+  {
+    "code": "VM140",
+    "description": "VAT ON MANUFACTURING - NON ESSENTIALS",
+    "rate": ""
+  },
+  {
+    "code": "VM150",
+    "description": "VAT ON MANUFACTURING - PHARMACUETICALS",
+    "rate": ""
+  },
+  {
+    "code": "VM160",
+    "description": "VAT ON MANUFACTURING - SUGAR",
+    "rate": ""
+  },
+  {
+    "code": "VP100",
+    "description": "VAT - SALE OF REAL PROPERTY",
+    "rate": ""
+  },
+  {
+    "code": "VP101",
+    "description": "VAT - LEASE OF REAL PROPERTY",
+    "rate": ""
+  },
+  {
+    "code": "VP102",
+    "description": "VAT - SALE/LEASE OF INTANGIBLE PROPERTY",
+    "rate": ""
+  },
+  {
+    "code": "VQ010",
+    "description": "VAT ON MINING AND QUARYING",
+    "rate": ""
+  },
+  {
+    "code": "VS010",
+    "description": "VAT -ON STORAGE AND WAREHOUSING",
+    "rate": ""
+  },
+  {
+    "code": "VT010",
+    "description": "VAT -ON WHOLESALE AND RETAIL TRADE",
+    "rate": ""
+  },
+  {
+    "code": "PT010",
+    "description": "PERSON EXEMPT FROM VAT UNDER SEC. 109(BB) (SEC. 116)",
+    "rate": "3.0"
+  },
+  {
+    "code": "PT040",
+    "description": "DOMESTIC CARRIERS AND KEEPERS OF GARAGES (SEC. 117)",
+    "rate": "3.0"
+  },
+  {
+    "code": "PT041",
+    "description": "INTERNATIONAL CARRIERS (SEC. 118)",
+    "rate": "3.0"
+  },
+  {
+    "code": "PT060",
+    "description": "FRANCHISES ON GAS AND WATER UTILITIES (SEC. 119)",
+    "rate": "2.0"
+  },
+  {
+    "code": "PT070",
+    "description": "FRANCHISES ON RADIO/TV BROADCASTING COMPANIES WHOSE ANNUAL GROSS RECEIPTS DO NOT EXCEED P10M (SEC. 119)",
+    "rate": "3.0"
+  },
+  {
+    "code": "PT090",
+    "description": "OVERSEAS DISPATCH, MESSAGE OR CONVERSATION ORIGINATING FROM THE PHILIPPINES (SEC. 120)",
+    "rate": "10.0"
+  },
+  {
+    "code": "PT101",
+    "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI-BANKING FUNCTIONS (SEC. 121) - COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES - MATURITY PERIOD IS MORE THAN FIVE (5) YEARS",
+    "rate": "1.0"
+  },
+  {
+    "code": "PT102",
+    "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI-BANKING FUNCTIONS (SEC. 121) - DIVIDENDS AND EQUITY SHARES AND NET INCOME OF SUBSIDIARIES",
+    "rate": "0.0"
+  },
+  {
+    "code": "PT103",
+    "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI-BANKING FUNCTIONS (SEC. 121) - ROYALTIES, RENTALS OF PROPERTY, REAL OR PERSONAL, PROFITS FROM EXCHANGE AND ALL OTHER GROSS INCOME",
+    "rate": "7.0"
+  },
+  {
+    "code": "PT104",
+    "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI-BANKING FUNCTIONS (SEC. 121) - NET TRADING GAINS WITHIN THE TAXABLE YEAR ON FOREIGN CURRENCY, DEBT SECURITIES, DERIVATIVES, AND OTHER FINANCIAL INSTRUMENTS",
+    "rate": "7.0"
+  },
+  {
+    "code": "PT105",
+    "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI-BANKING FUNCTIONS (SEC. 121) - COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES - MATURITY PERIOD IS FIVE (5) YEARS OR LESS",
+    "rate": "5.0"
+  },
+  {
+    "code": "PT113",
+    "description": "TAX ON OTHER NON-BANK FINANCIAL INTERMEDIARIES NOT PERFORMING QUASI-BANKING FUNCTIONS (SEC. 122) - COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES - MATURITY PERIOD IS FIVE (5) YEARS OR LESS",
+    "rate": "5.0"
+  },
+  {
+    "code": "PT114",
+    "description": "TAX ON OTHER NON-BANK FINANCIAL INTERMEDIARIES NOT PERFORMING QUASI-BANKING FUNCTIONS (SEC. 122) - COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES - MATURITY PERIOD IS MORE THAN FIVE (5) YEARS",
+    "rate": "1.0"
+  },
+  {
+    "code": "PT115",
+    "description": "TAX ON OTHER NON-BANK FINANCIAL INTERMEDIARIES NOT PERFORMING QUASI-BANKING FUNCTIONS (SEC. 122) - FROM ALL OTHER ITEMS TREATED AS GROSS INCOME UNDER THE CODE",
+    "rate": "5.0"
+  },
+  {
+    "code": "PT118",
+    "description": "PREFERENTIAL TAX RATE ON MICROFINANCE NGOs",
+    "rate": "2.0"
+  },
+  {
+    "code": "PT120",
+    "description": "LIFE INSURANCE PREMIUMS (SEC. 123)",
+    "rate": "2.0"
+  },
+  {
+    "code": "PT130",
+    "description": "TAX ON AGENTS OF FOREIGN INSURANCE COMPANIES",
+    "rate": "10.0"
+  },
+  {
+    "code": "PT130",
+    "description": "AGENTS OF FOREIGN INSURANCE COMPANIES (SEC.124) - INSURANCE AGENTS",
+    "rate": "4.0"
+  },
+  {
+    "code": "PT132",
+    "description": "AGENTS OF FOREIGN INSURANCE COMPANIES (SEC.124) - OWNERS OF PROPERTY OBTAINING DIRECTLY WITH FOREIGN INSURANCE COMPANIES",
+    "rate": "5.0"
+  },
+  {
+    "code": "PT140",
+    "description": "COCKPITS (SEC. 125)",
+    "rate": "18.0"
+  },
+  {
+    "code": "PT150",
+    "description": "TAX ON AMUSEMENT PLACES, SUCH AS CABARETS, NIGHT AND DAY CLUBS, VIDEOKE BARS, KARAOKE BARS, KARAOKE TELEVISION, KARAOKE BOXES, MUSIC LOUNGES AND OTHER SIMILAR ESTABLISHMENTS (SEC. 125)",
+    "rate": "18.0"
+  },
+  {
+    "code": "PT160",
+    "description": "BOXING EXHIBITION (SEC. 125)",
+    "rate": "10.0"
+  },
+  {
+    "code": "PT170",
+    "description": "PROFESSIONAL BASKETBALL GAMES (SEC. 125)",
+    "rate": "15.0"
+  },
+  {
+    "code": "PT180",
+    "description": "JAI-ALAI AND RACE TRACKS (SEC. 125)",
+    "rate": "30.0"
+  },
+  {
+    "code": "OT010",
+    "description": "PAGCOR",
+    "rate": "5.0"
+  },
+  {
+    "code": "OT012",
+    "description": "OTHERS",
+    "rate": "5.0"
+  },
+  {
+    "code": "OT011",
+    "description": "CLARK DEVELOPMENT CORPORATIONS",
+    "rate": "5.0"
+  },
+  {
+    "code": "XG021",
+    "description": "Passenger Car",
+    "rate": "2.0"
+  },
+  {
+    "code": "XG022",
+    "description": "Passenger Car",
+    "rate": "20.0"
+  },
+  {
+    "code": "XG023",
+    "description": "Passenger Car",
+    "rate": "40.0"
+  },
+  {
+    "code": "XG024",
+    "description": "Passenger Car",
+    "rate": "60.0"
+  },
+  {
+    "code": "XG031",
+    "description": "Utility Vehicles",
+    "rate": "2.0"
+  },
+  {
+    "code": "XG032",
+    "description": "Utility Vehicles",
+    "rate": "20.0"
+  },
+  {
+    "code": "XG033",
+    "description": "Utility Vehicles",
+    "rate": "40.0"
+  },
+  {
+    "code": "XG034",
+    "description": "Utility Vehicles",
+    "rate": "60.0"
+  },
+  {
+    "code": "XG041",
+    "description": "Passenger Vans",
+    "rate": "2.0"
+  },
+  {
+    "code": "XG042",
+    "description": "Passenger Vans",
+    "rate": "20.0"
+  },
+  {
+    "code": "XG043",
+    "description": "Passenger Vans",
+    "rate": "40.0"
+  },
+  {
+    "code": "XG044",
+    "description": "Passenger Vans",
+    "rate": "60.0"
+  },
+  {
+    "code": "XG051",
+    "description": "Pick-Ups",
+    "rate": "2.0"
+  },
+  {
+    "code": "XG052",
+    "description": "Pick-Ups",
+    "rate": "20.0"
+  },
+  {
+    "code": "XG053",
+    "description": "Pick-Ups",
+    "rate": "40.0"
+  },
+  {
+    "code": "XG054",
+    "description": "Pick-Ups",
+    "rate": "60.0"
+  },
+  {
+    "code": "XG055",
+    "description": "Pick-Ups",
+    "rate": "0.0"
+  },
+  {
+    "code": "XG061",
+    "description": "Others",
+    "rate": "2.0"
+  },
+  {
+    "code": "XG062",
+    "description": "Others",
+    "rate": "20.0"
+  },
+  {
+    "code": "XG063",
+    "description": "Others",
+    "rate": "40.0"
+  },
+  {
+    "code": "XG064",
+    "description": "Others",
+    "rate": "60.0"
+  },
+  {
+    "code": "XG065",
+    "description": "Hybrid Vehicles (50% of applicable tax rates)",
+    "rate": "4.0"
+  },
+  {
+    "code": "XG065",
+    "description": "Hybrid Vehicles (50% of applicable tax rates)",
+    "rate": "10.0"
+  },
+  {
+    "code": "XG065",
+    "description": "Hybrid Vehicles (50% of applicable tax rates)",
+    "rate": "20.0"
+  },
+  {
+    "code": "XG065",
+    "description": "Hybrid Vehicles (50% of applicable tax rates)",
+    "rate": "50.0"
+  },
+  {
+    "code": "XG068",
+    "description": "Purely Electric Hybrid Vehicles",
+    "rate": "0.0"
+  },
+  {
+    "code": "XG100",
+    "description": "Jewelry, pearls, precious and semi-precious, whether real or imitation",
+    "rate": "20.0"
+  },
+  {
+    "code": "XG110",
+    "description": "Perfumes and Toilet Waters",
+    "rate": "20.0"
+  },
+  {
+    "code": "XG120",
+    "description": "Yachts and other Vessels for Pleasure or Sports",
+    "rate": "20.0"
+  },
+  {
+    "code": "WW010",
+    "description": "",
+    "rate": ""
+  },
+  {
+    "code": "WI440",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-INDIVIDUAL",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI441",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-INDIVIDUAL",
+    "rate": "12.0"
+  },
+  {
+    "code": "WI442",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-INDIVIDUAL",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC440",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-CORPORATE",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC161",
+    "description": "FT-BANK DEPOSITS(CORPORATE)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC162",
+    "description": "FT-FROM TREASURY BILLS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC163",
+    "description": "FT-DEP. SUBST., TRUST FUND AND SIMILAR ARRANGEMENTS(CORPORATE)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC170",
+    "description": "FINAL WTAX:FOREIGN CURRENCY DEPOSITS(CORPORATE)",
+    "rate": "15.00"
+  },
+  {
+    "code": "WI161",
+    "description": "FT-BANK DEPOSITS(INDIVIDUAL)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI162",
+    "description": "FT-FROM TREASURY BILLS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI163",
+    "description": "FT-DEP. SUBST., TRUST FUND AND SIMILAR ARRANGEMENTS(INDIVIDUAL)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI170",
+    "description": "FINAL WTAX:FOREIGN CURRENCY DEPOSITS(INDIVIDUAL)",
+    "rate": "15.00"
+  },
+  {
+    "code": "WI440",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-INDIVIDUAL",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI441",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-INDIVIDUAL",
+    "rate": "12.0"
+  },
+  {
+    "code": "WI442",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-INDIVIDUAL",
+    "rate": "5.0"
+  },
+  {
+    "code": "WF320",
+    "description": "ALIEN AND FILIPINO EMPLOYED AND OCCUPYING THE SAME POSITION AS THOSE OF ALIENS EMPLOYED IN SELECTED MULTINATIONAL COMPANIES",
+    "rate": "15.0"
+  },
+  {
+    "code": "WF330",
+    "description": "NON-RESIDENT ALIEN NOT ENGAGED IN TRADE OR BUSINESS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WF360",
+    "description": "For citizen, resident alien, and non-resident alien engaged in trade or business in the Philippines:(Effective January 1, 1999)",
+    "rate": "33.0"
+  },
+  {
+    "code": "WF360",
+    "description": "For citizen, resident alien, and non-resident alien engaged in trade or business in the Philippines:(Effective January 1, 2000)",
+    "rate": "32.0"
+  },
+  {
+    "code": "WF360",
+    "description": "For Alien and Filipino employed and occupying the same position as those of aliens employed by the following multinational companies:(regional or area headquarters of a multinational company or regional operating headquarters of a multinational company)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WF360",
+    "description": "For Alien and Filipino employed and occupying the same position as those of aliens employed by the following multinational companies:(an offshore banking unit of a foreign bank established in the Philippines)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WF360",
+    "description": "For Alien and Filipino employed and occupying the same position as those of aliens employed by the following multinational companies:(a foreign service contractor or a foreign service subcontractor engaged in petroleum operations in the Philippines)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WF320",
+    "description": "ALIEN AND FILIPINO EMPLOYED AND OCCUPYING THE SAME POSITION AS THOSE OF ALIENS EMPLOYED IN SELECTED MULTINATIONAL COMPANIES",
+    "rate": "15.0"
+  },
+  {
+    "code": "WF330",
+    "description": "NON-RESIDENT ALIEN NOT ENGAGED IN TRADE OR BUSINESS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WF360",
+    "description": "For citizen, resident alien, and non-resident alien engaged in trade or business in the Philippines:(Effective January 1, 1999)",
+    "rate": "33.0"
+  },
+  {
+    "code": "WF360",
+    "description": "For citizen, resident alien, and non-resident alien engaged in trade or business in the Philippines:(Effective January 1, 2000)",
+    "rate": "32.0"
+  },
+  {
+    "code": "WF360",
+    "description": "For Alien and Filipino employed and occupying the same position as those of aliens employed by the following multinational companies:(regional or area headquarters of a multinational company or regional operating headquarters of a multinational company)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WF360",
+    "description": "For Alien and Filipino employed and occupying the same position as those of aliens employed by the following multinational companies:(an offshore banking unit of a foreign bank established in the Philippines)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WF360",
+    "description": "For Alien and Filipino employed and occupying the same position as those of aliens employed by the following multinational companies:(a foreign service contractor or a foreign service subcontractor engaged in petroleum operations in the Philippines)",
+    "rate": "15.0"
+  },
+  {
+    "code": "II011",
+    "description": "COMPENSATION",
+    "rate": ""
+  },
+  {
+    "code": "II012",
+    "description": "BUSINESS",
+    "rate": ""
+  },
+  {
+    "code": "II013",
+    "description": "MIXED INCOME",
+    "rate": ""
+  },
+  {
+    "code": "IC370",
+    "description": "",
+    "rate": ""
+  },
+  {
+    "code": "XA061",
+    "description": "FIVE HUNDRED PESOS (&lt;P500.00) OR LESS",
+    "rate": "<!--P183.42/Proof liter-->"
+  },
+  {
+    "code": "XA062",
+    "description": "MORE THAN FIVE HUNDRED PESOS (&gt;P500.00)",
+    "rate": "<!--P550.24/Proof liter-->"
+  },
+  {
+    "code": "XA070",
+    "description": "STILL WINES CONTAINING FOURTEEN PERCENT(14%) OF ALCOHOL BY VOLUME OR LESS",
+    "rate": "<!--P22.01/Proof liter-->"
+  },
+  {
+    "code": "XA080",
+    "description": "STILL WINES CONTAINING MORE THAN FOURTEEN PERCENT (14%) OF ALCOHOL BY VOLUME BUT NOT MORE THAN 25% OF ALCOHOL BY VOLUME",
+    "rate": "<!--P44.02/Proof liter-->"
+  },
+  {
+    "code": "XA051",
+    "description": "NET RETAIL PRICE PER LITER (EXCLUDING VAT AND EXCISE TAX) IS LESS THAN FOURTEEN PESOS AND FIFTY CENTAVOS (&lt;P14.50)",
+    "rate": "<!--P10.41/Proof liter-->"
+  },
+  {
+    "code": "XA052",
+    "description": "NET RETAIL PRICE PER LITER (EXCLUDING VAT AND EXCISE TAX) IS FOURTEEN PESOS AND FIFTY CENTAVOS(P14.50) UP TO TWENTY TWO PESOS(P22.00)",
+    "rate": "<!--P15.49/Proof liter-->"
+  },
+  {
+    "code": "XA053",
+    "description": "NET RETAIL PRICE PER LITER (EXCLUDING VAT AND EXCISE TAX) IS MORE THAN TWENTY TWO PESOS(&gt;22.00)",
+    "rate": "<!--P20.57/Proof liter-->"
+  },
+  {
+    "code": "XA053",
+    "description": "NET RETAIL PRICE PER LITER (EXCLUDING VAT AND EXCISE TAX) IS MORE THAN TWENTY TWO PESOS(&gt;22.00)",
+    "rate": "<!--P20.72/Proof liter-->"
+  },
+  {
+    "code": "XA053",
+    "description": "NET RETAIL PRICE PER LITER (EXCLUDING VAT AND EXCISE TAX) IS MORE THAN TWENTY TWO PESOS(&gt;22.00)",
+    "rate": "<!--P22.30/Proof liter-->"
+  },
+  {
+    "code": "XA053",
+    "description": "NET RETAIL PRICE PER LITER (EXCLUDING VAT AND EXCISE TAX) IS MORE THAN TWENTY TWO PESOS(&gt;22.00)",
+    "rate": "<!--P27.28/Proof liter-->"
+  },
+  {
+    "code": "XP050",
+    "description": "DENATURED ALCOHOL USED FOR MOTIVE POWER",
+    "rate": "<!--P0.05/Liter-->"
+  },
+  {
+    "code": "XP085",
+    "description": "PYROLYSIS GASOLINE",
+    "rate": "<!--P7.00/Liter-->"
+  },
+  {
+    "code": "XP105",
+    "description": "NAPTHA AND PYROLYSIS GASOLINE, WHEN USED IN PRODUCTION, OR REFINING, OR AS REPLACEMENT FUEL, IN LIEU OF LOCALLY-EXTRACTED NATURAL GAS DURING THE NON-AVAILABILITY THEREOF",
+    "rate": "<!--P0.00/Liter-->"
+  },
+  {
+    "code": "XP165",
+    "description": "LIQUEFIED PETROLEUM GAS WHEN USED AS RAW MATERIAL IN THE PRODUCTION OF PETROCHEMICAL PRODUCTS",
+    "rate": "<!--P0.00/Kilo-->"
+  },
+  {
+    "code": "XP200",
+    "description": "PETROLEUM COKE",
+    "rate": "<!--P2.50/Metric ton-->"
+  },
+  {
+    "code": "XP210",
+    "description": "PETROLEUM COKE WHEN USED AS FEEDSTOCK TO ANY POWER GENERATING FACILITY",
+    "rate": "<!--P0.00/Metric ton-->"
+  },
+  {
+    "code": "XP220",
+    "description": "ADDITIVES FOR LUBRICATING OILS AND GREASES",
+    "rate": "<!--P8.00/Liter-->"
+  },
+  {
+    "code": "VB103",
+    "description": "VAT-OPERATORS OF TAXICABS/UTILITY CARS",
+    "rate": ""
+  },
+  {
+    "code": "VB104",
+    "description": "VAT-OPERATORS OF TOURIST BUSES",
+    "rate": ""
+  },
+  {
+    "code": "VB110",
+    "description": "VAT-FRANCHISE HOLDERS-TELEGRAPH",
+    "rate": ""
+  },
+  {
+    "code": "VB114",
+    "description": "VAT-BOOKS",
+    "rate": ""
+  },
+  {
+    "code": "VB115",
+    "description": "VAT-NEWSPAPERS",
+    "rate": ""
+  },
+  {
+    "code": "VE010",
+    "description": "WT ON VAT -EXPORTER/TRADER",
+    "rate": ""
+  },
+  {
+    "code": "VS111",
+    "description": "VAT ON SERVICES RENDERED BY BANKS, NON-BANK, ETC.",
+    "rate": ""
+  },
+  {
+    "code": "PT200",
+    "description": "SALE, BARTER OR EXCHANGE OF SHARES OF STOCK LISTED AND TRADED THROUGH LSE",
+    "rate": "0.5"
+  },
+  {
+    "code": "PT201",
+    "description": "SALE/EXCHANGE OF SHARES OF STOCK THROUGH PRIMARY PUBLIC OFFERING UP TO 25%",
+    "rate": "4.0"
+  },
+  {
+    "code": "PT201",
+    "description": "SALE/EXCHANGE OF SHARES OF STOCK THROUGH PRIMARY PUBLIC OFFERING OVER 25% BUT NOT OVER 33 1/3%",
+    "rate": "2.0"
+  },
+  {
+    "code": "PT201",
+    "description": "SALE/EXCHANGE OF SHARES OF STOCK THROUGH PRIMARY PUBLIC OFFERING OVER 33 1/3%",
+    "rate": "1.0"
+  },
+  {
+    "code": "PT202",
+    "description": "SALE/EXCHANGE OF SHARES OF STOCK THROUGH SECONDARY PUBLIC OFFERING UP TO 25%",
+    "rate": "4.0"
+  },
+  {
+    "code": "PT202",
+    "description": "SALE/EXCHANGE OF SHARES OF STOCK THROUGH SECONDARY PUBLIC OFFERING OVER 25% BUT NOT OVER 33 1/3%",
+    "rate": "2.0"
+  },
+  {
+    "code": "PT202",
+    "description": "SALE/EXCHANGE OF SHARES OF STOCK THROUGH SECONDARY PUBLIC OFFERING OVER 33 1/3%",
+    "rate": "1.0"
+  },
+  {
+    "code": "DS122",
+    "description": "DEED OF SALE AND CONVEYANCE OF REAL PROPERTY",
+    "rate": ""
+  },
+  {
+    "code": "OT011",
+    "description": "SPECIAL/REGULAR/ECONOMIC FREE PORT ZONE ENTERPRISES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WB301",
+    "description": "A. ON INTEREST, COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES AS WELL AS INCOME FROM FINANCIAL LEASING, ON THE BASIS OF THE REMAINING MATURITIES OF INSTRUMENT FROM WHICH SUCH RECEIPTS ARE DERIVED - MATURITY PERIOD IS FIVE YEARS OR LESS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WB303",
+    "description": "A. ON INTEREST, COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES AS WELL AS INCOME FROM FINANCIAL LEASING, ON THE BASIS OF THE REMAINING MATURITIES OF INSTRUMENT FROM WHICH SUCH RECEIPTS ARE DERIVED - MATURITY PERIOD IS MORE THAN FIVE YEARS",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB102",
+    "description": "B. ON DIVIDENDS AND EQUITY SHARES AND NET INCOME OF SUBSIDIARIES",
+    "rate": "0.0"
+  },
+  {
+    "code": "WB103",
+    "description": "C. ON ROYALTIES, RENTALS OF PROPERTY, REAL OR PERSONAL, PROFITS FROM EXCHANGE AND ALL OTHER ITEMS TREATED AS GROSS INCOME UNDER THE CODE",
+    "rate": "7.0"
+  },
+  {
+    "code": "WB104",
+    "description": "D. ON NET TRADING GAINS WITHIN THE TAXABLE YEAR ON FOREIGN CURRENCY, DEBT SECURITIES, DERIVATIVES AND OTHER SIMILAR FINANCIAL INSTRUMENTS",
+    "rate": "7.0"
+  },
+  {
+    "code": "WB108",
+    "description": "A. ON INTEREST, COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES AS WELL AS INCOME FROM FINANCIAL LEASING, ON THE BASIS OF THE REMAINING MATURITIES OF INSTRUMENT FROM WHICH SUCH RECEIPTS ARE DERIVED - MATURITY PERIOD IS FIVE YEARS OR LESS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WB109",
+    "description": "A. ON INTEREST, COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES AS WELL AS INCOME FROM FINANCIAL LEASING, ON THE BASIS OF THE REMAINING MATURITIES OF INSTRUMENT FROM WHICH SUCH RECEIPTS ARE DERIVED - MATURITY PERIOD IS MORE THAN FIVE YEARS",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB110",
+    "description": "B. ON ALL OTHER ITEMS TREATED AS GROSS INCOME UNDER THE CODE",
+    "rate": "5.0"
+  },
+  {
+    "code": "WV040",
+    "description": "VAT WITHHOLDING  FROM NON-RESIDENTS (GOVERNMENT WITHHOLDING AGENT)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV050",
+    "description": "VAT WITHHOLDING FROM  NON-RESIDENTS (PRIVATE WITHHOLDING AGENT)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV012",
+    "description": "VAT WITHHOLDING ON PURCHASES OF GOODS (WITH WAIVER OF PRIVILEGE TO CLAIM INPUT TAX CREDIT) (CREDITABLE)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV014",
+    "description": "VAT WITHHOLDING ON PURCHASES OF GOODS (WITH WAIVER OF PRIVILEGE TO CLAIM INPUT TAX CREDIT) (FINAL)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV022",
+    "description": "VAT WITHHOLDING ON PURCHASES OF SERVICES (WITH WAIVER OF PRIVILEGE TO CLAIM INPUT TAX CREDIT) (CREDITABLE)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV024",
+    "description": "VAT WITHHOLDING ON PURCHASES OF SERVICES (WITH WAIVER OF PRIVILEGE TO CLAIM INPUT TAX CREDIT) (FINAL)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WB080",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109V (CREDITABLE)-GOVERNMENT WITHHOLDING AGENT",
+    "rate": "3.0"
+  },
+  {
+    "code": "WB082",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109V (CREDITABLE)-PRIVATE WITHHOLDING AGENT",
+    "rate": "3.0"
+  },
+  {
+    "code": "WB084",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109V (FINAL)",
+    "rate": "3.0"
+  },
+  {
+    "code": "WV040",
+    "description": "VAT WITHHOLDING  FROM NON-RESIDENTS (GOVERNMENT WITHHOLDING AGENT)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV050",
+    "description": "VAT WITHHOLDING FROM  NON-RESIDENTS (PRIVATE WITHHOLDING AGENT)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV012",
+    "description": "VAT WITHHOLDING ON PURCHASES OF GOODS (WITH WAIVER OF PRIVILEGE TO CLAIM INPUT TAX CREDIT) (CREDITABLE)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV014",
+    "description": "VAT WITHHOLDING ON PURCHASES OF GOODS (WITH WAIVER OF PRIVILEGE TO CLAIM INPUT TAX CREDIT) (FINAL)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV022",
+    "description": "VAT WITHHOLDING ON PURCHASES OF SERVICES (WITH WAIVER OF PRIVILEGE TO CLAIM INPUT TAX CREDIT) (CREDITABLE)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV024",
+    "description": "VAT WITHHOLDING ON PURCHASES OF SERVICES (WITH WAIVER OF PRIVILEGE TO CLAIM INPUT TAX CREDIT) (FINAL)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WB080",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109V (CREDITABLE)-GOVERNMENT WITHHOLDING AGENT",
+    "rate": "3.0"
+  },
+  {
+    "code": "WB082",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109V (CREDITABLE)-PRIVATE WITHHOLDING AGENT",
+    "rate": "3.0"
+  },
+  {
+    "code": "WB084",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109V (FINAL)",
+    "rate": "3.0"
+  },
+  {
+    "code": "WI680",
+    "description": "INCOME PAYMENTS MADE BY POLITICAL PARTIES AND CANDIDATES OF LOCAL AND NATIONAL ELECTIONS, INDIVIDUAL",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC680",
+    "description": "INCOME PAYMENTS MADE BY POLITICAL PARTIES AND CANDIDATES OF LOCAL AND NATIONAL ELECTIONS, CORPORATE",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI680",
+    "description": "INCOME PAYMENTS MADE BY POLITICAL PARTIES AND CANDIDATES OF LOCAL AND NATIONAL ELECTIONS, INDIVIDUAL",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC680",
+    "description": "INCOME PAYMENTS MADE BY POLITICAL PARTIES AND CANDIDATES OF LOCAL AND NATIONAL ELECTIONS, CORPORATE",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC690",
+    "description": "INCOME PAYMENTS SUBJECT TO WITHHOLDING TAX RECEIVED BY REAL ESTATE INVESTMENT TRUST (REIT)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC690",
+    "description": "INCOME PAYMENTS SUBJECT TO WITHHOLDING TAX RECEIVED BY REAL ESTATE INVESTMENT TRUST (REIT)",
+    "rate": "1.0"
+  },
+  {
+    "code": "IC030",
+    "description": "PROPRIETARY EDUCATIONAL INSTITUTIONS AND HOSPITALS",
+    "rate": "10.0"
+  },
+  {
+    "code": "IC031",
+    "description": "NON-STOCK, NON-PROFIT HOSPITALS",
+    "rate": "10.0"
+  },
+  {
+    "code": "IC190",
+    "description": "OFFSHORE BANKING UNITS (OBUS)",
+    "rate": "10.0"
+  },
+  {
+    "code": "IC191",
+    "description": "FOREIGN CURRENCY DEPOSIT UNITS (FCDUS)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC350",
+    "description": "(CORP)INTEREST OR OTHER PAYMENTS IN TAX-FREE COVENANT BONDS, MORTGAGES, DEEDS OF TRUST OR OTHER OBLIG.",
+    "rate": "30.0"
+  },
+  {
+    "code": "WI700",
+    "description": "(CORP) CASH OR PROPERTY DIVIDENDS PAID BY A REIT SUBJECT TO FINAL TAX",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC700",
+    "description": "(IND) CASH OR PROPERTY DIVIDENDS PAID BY A REIT SUBJECT TO FINAL TAX",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC350",
+    "description": "(CORP)INTEREST OR OTHER PAYMENTS IN TAX-FREE COVENANT BONDS, MORTGAGES, DEEDS OF TRUST OR OTHER OBLIG.",
+    "rate": "30.0"
+  },
+  {
+    "code": "WI700",
+    "description": "(CORP) CASH OR PROPERTY DIVIDENDS PAID BY A REIT SUBJECT TO FINAL TAX",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC700",
+    "description": "(IND) CASH OR PROPERTY DIVIDENDS PAID BY A REIT SUBJECT TO FINAL TAX",
+    "rate": "10.0"
+  },
+  {
+    "code": "VS062",
+    "description": "ON SERVICES RENDERED BY PERSONS ENGAGED IN THE PRACTICE OF PROFESSION OR CALLING AND PROFESSIONAL SERVICES RENDERED BY GENERAL PROFESSIONAL PARTNERSHIPS",
+    "rate": ""
+  },
+  {
+    "code": "VS210",
+    "description": "ON SERVICES RENDERED BY STOCK, REAL ESTATE, COMMERCIAL, CUSTOMS, INSURANCE AND IMMIGRATION BROKERS",
+    "rate": ""
+  },
+  {
+    "code": "WV060",
+    "description": "OTHER SERVICES RENDERED IN THE PHILIPPINES BY NON-RESIDENTS",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV070",
+    "description": "OTHER SERVICES RENDERED IN THE PHILIPPINES BY NON-RESIDENTS",
+    "rate": "12.0"
+  },
+  {
+    "code": "WC710",
+    "description": "INTEREST INCOME DERIVED FROM ANY OTHER DEBT INSTRUMENTS NOT W/IN THE COVERAGE OF DEPOSIT SUBSTITUTES AND RR NO. 14-2012 (CORPORATE)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC710",
+    "description": "INTEREST INCOME DERIVED FROM ANY OTHER DEBT INSTRUMENTS NOT W/IN THE COVERAGE OF DEPOSIT SUBSTITUTES AND RR NO. 14-2012 (CORPORATE)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI710",
+    "description": "INTEREST INCOME DERIVED FROM ANY OTHER DEBT INSTRUMENTS NOT W/IN THE COVERAGE OF DEPOSIT SUBSTITUTES AND RR NO. 14-2012  (INDIVIDUAL)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI710",
+    "description": "INTEREST INCOME DERIVED FROM ANY OTHER DEBT INSTRUMENTS NOT W/IN THE COVERAGE OF DEPOSIT SUBSTITUTES AND RR NO. 14-2012  (INDIVIDUAL)",
+    "rate": "20.0"
+  },
+  {
+    "code": "XA035",
+    "description": "a.) Ad Valorem Tax Rate based on the Net Retail Price (NRP) per Proof [excluding the excise and value-added taxes (VAT)]==2013",
+    "rate": "0.15"
+  },
+  {
+    "code": "XA035",
+    "description": "a.) Ad Valorem Tax Rate based on the Net Retail Price (NRP) per Proof [excluding the excise and value-added taxes (VAT)]==2014",
+    "rate": "0.15"
+  },
+  {
+    "code": "XA035",
+    "description": "a.) Ad Valorem Tax Rate based on the Net Retail Price (NRP) per Proof [excluding the excise and value-added taxes (VAT)]==2015",
+    "rate": "0.20"
+  },
+  {
+    "code": "XA035",
+    "description": "a.) Ad Valorem Tax Rate based on the Net Retail Price (NRP) per Proof [excluding the excise and value-added taxes (VAT)]==2016",
+    "rate": "0.20"
+  },
+  {
+    "code": "XA035",
+    "description": "a.) Ad Valorem Tax Rate based on the Net Retail Price (NRP) per Proof [excluding the excise and value-added taxes (VAT)]==2017",
+    "rate": "0.20"
+  },
+  {
+    "code": "XA035",
+    "description": "a.) Ad Valorem Tax Rate based on the Net Retail Price (NRP) per Proof [excluding the excise and value-added taxes (VAT)]==2018",
+    "rate": "0.20"
+  },
+  {
+    "code": "XA036",
+    "description": "b.) In addition to Ad Valorem Tax, Specific Tax per Proof Liter==2013",
+    "rate": "20.00"
+  },
+  {
+    "code": "XA036",
+    "description": "b.) In addition to Ad Valorem Tax, Specific Tax per Proof Liter==2014",
+    "rate": "20.00"
+  },
+  {
+    "code": "XA036",
+    "description": "b.) In addition to Ad Valorem Tax, Specific Tax per Proof Liter==2015",
+    "rate": "20.00"
+  },
+  {
+    "code": "XA036",
+    "description": "b.) In addition to Ad Valorem Tax, Specific Tax per Proof Liter==2016",
+    "rate": "20.80"
+  },
+  {
+    "code": "XA036",
+    "description": "b.) In addition to Ad Valorem Tax, Specific Tax per Proof Liter==2017",
+    "rate": "21.63"
+  },
+  {
+    "code": "XA036",
+    "description": "b.) In addition to Ad Valorem Tax, Specific Tax per Proof Liter==2018",
+    "rate": "22.50"
+  },
+  {
+    "code": "XA061",
+    "description": "a.) Sparkling Wines/Champagnes where the NRP [excluding the excise and value-added taxes (VAT) per bottle of 750 mL  volume capacity, regardless of Proof] is PHP500.00 or less==2013",
+    "rate": "250.00"
+  },
+  {
+    "code": "XA061",
+    "description": "a.) Sparkling Wines/Champagnes where the NRP [excluding the excise and value-added taxes (VAT) per bottle of 750 mL  volume capacity, regardless of Proof] is PHP500.00 or less==2014",
+    "rate": "260.00"
+  },
+  {
+    "code": "XA061",
+    "description": "a.) Sparkling Wines/Champagnes where the NRP [excluding the excise and value-added taxes (VAT) per bottle of 750 mL  volume capacity, regardless of Proof] is PHP500.00 or less==2015",
+    "rate": "270.40"
+  },
+  {
+    "code": "XA061",
+    "description": "a.) Sparkling Wines/Champagnes where the NRP [excluding the excise and value-added taxes (VAT) per bottle of 750 mL  volume capacity, regardless of Proof] is PHP500.00 or less==2016",
+    "rate": "281.22"
+  },
+  {
+    "code": "XA061",
+    "description": "a.) Sparkling Wines/Champagnes where the NRP [excluding the excise and value-added taxes (VAT) per bottle of 750 mL  volume capacity, regardless of Proof] is PHP500.00 or less==2017",
+    "rate": "292.47"
+  },
+  {
+    "code": "XA061",
+    "description": "a.) Sparkling Wines/Champagnes where the NRP [excluding the excise and value-added taxes (VAT) per bottle of 750 mL  volume capacity, regardless of Proof] is PHP500.00 or less==2018",
+    "rate": "304.16"
+  },
+  {
+    "code": "XA062",
+    "description": "More than PHP500.00==2013",
+    "rate": "700.00"
+  },
+  {
+    "code": "XA062",
+    "description": "More than PHP500.00==2014",
+    "rate": "728.00"
+  },
+  {
+    "code": "XA062",
+    "description": "More than PHP500.00==2015",
+    "rate": "757.12"
+  },
+  {
+    "code": "XA062",
+    "description": "More than PHP500.00==2016",
+    "rate": "787.40"
+  },
+  {
+    "code": "XA062",
+    "description": "More than PHP500.00==2017",
+    "rate": "818.90"
+  },
+  {
+    "code": "XA062",
+    "description": "More than PHP500.00==2018",
+    "rate": "851.66"
+  },
+  {
+    "code": "XA070",
+    "description": "b.) Still Wines and Carbonated Wines containing 14% of alcohol by volume or less==2013",
+    "rate": "30.00"
+  },
+  {
+    "code": "XA070",
+    "description": "b.) Still Wines and Carbonated Wines containing 14% of alcohol by volume or less==2014",
+    "rate": "31.20"
+  },
+  {
+    "code": "XA070",
+    "description": "b.) Still Wines and Carbonated Wines containing 14% of alcohol by volume or less==2015",
+    "rate": "32.45"
+  },
+  {
+    "code": "XA070",
+    "description": "b.) Still Wines and Carbonated Wines containing 14% of alcohol by volume or less==2016",
+    "rate": "33.75"
+  },
+  {
+    "code": "XA070",
+    "description": "b.) Still Wines and Carbonated Wines containing 14% of alcohol by volume or less==2017",
+    "rate": "35.10"
+  },
+  {
+    "code": "XA070",
+    "description": "b.) Still Wines and Carbonated Wines containing 14% of alcohol by volume or less==2018",
+    "rate": "36.50"
+  },
+  {
+    "code": "XA080",
+    "description": "c.) Still Wines and Carbonated Wines containing more than 14% of alcohol by volume but not more than 25% of alcohol by volume==2013",
+    "rate": "60.00"
+  },
+  {
+    "code": "XA080",
+    "description": "c.) Still Wines and Carbonated Wines containing more than 14% of alcohol by volume but not more than 25% of alcohol by volume==2014",
+    "rate": "62.40"
+  },
+  {
+    "code": "XA080",
+    "description": "c.) Still Wines and Carbonated Wines containing more than 14% of alcohol by volume but not more than 25% of alcohol by volume==2015",
+    "rate": "64.90"
+  },
+  {
+    "code": "XA080",
+    "description": "c.) Still Wines and Carbonated Wines containing more than 14% of alcohol by volume but not more than 25% of alcohol by volume==2016",
+    "rate": "67.50"
+  },
+  {
+    "code": "XA080",
+    "description": "c.) Still Wines and Carbonated Wines containing more than 14% of alcohol by volume but not more than 25% of alcohol by volume==2017",
+    "rate": "70.20"
+  },
+  {
+    "code": "XA080",
+    "description": "c.) Still Wines and Carbonated Wines containing more than 14% of alcohol by volume but not more than 25% of alcohol by volume==2018",
+    "rate": "73.00"
+  },
+  {
+    "code": "XA055",
+    "description": "a.) If the NRP (excluding the excise and VAT) per Liter of volume capacity is PHP50.60 and below==2013",
+    "rate": "15.00"
+  },
+  {
+    "code": "XA055",
+    "description": "a.) If the NRP (excluding the excise and VAT) per Liter of volume capacity is PHP50.60 and below==2013",
+    "rate": "15.49"
+  },
+  {
+    "code": "XA055",
+    "description": "a.) If the NRP (excluding the excise and VAT) per Liter of volume capacity is PHP50.60 and below==2014",
+    "rate": "17.00"
+  },
+  {
+    "code": "XA055",
+    "description": "a.) If the NRP (excluding the excise and VAT) per Liter of volume capacity is PHP50.60 and below==2015",
+    "rate": "19.00"
+  },
+  {
+    "code": "XA055",
+    "description": "a.) If the NRP (excluding the excise and VAT) per Liter of volume capacity is PHP50.60 and below==2016",
+    "rate": "21.00"
+  },
+  {
+    "code": "XA055",
+    "description": "a.) If the NRP (excluding the excise and VAT) per Liter of volume capacity is PHP50.60 and below==2017",
+    "rate": "23.50"
+  },
+  {
+    "code": "XA055",
+    "description": "a.) If the NRP (excluding the excise and VAT) per Liter of volume capacity is PHP50.60 and below==2018",
+    "rate": "24.44"
+  },
+  {
+    "code": "XA056",
+    "description": "More than PHP50.60==2013",
+    "rate": "20.00"
+  },
+  {
+    "code": "XA056",
+    "description": "More than PHP50.60==2013",
+    "rate": "20.57"
+  },
+  {
+    "code": "XA056",
+    "description": "More than PHP50.60==2014",
+    "rate": "21.00"
+  },
+  {
+    "code": "XA056",
+    "description": "More than PHP50.60==2014",
+    "rate": "21.39"
+  },
+  {
+    "code": "XA056",
+    "description": "More than PHP50.60==2015",
+    "rate": "22.00"
+  },
+  {
+    "code": "XA056",
+    "description": "More than PHP50.60==2015",
+    "rate": "22.25"
+  },
+  {
+    "code": "XA056",
+    "description": "More than PHP50.60==2016",
+    "rate": "23.00"
+  },
+  {
+    "code": "XA056",
+    "description": "More than PHP50.60==2016",
+    "rate": "23.14"
+  },
+  {
+    "code": "XA056",
+    "description": "More than PHP50.60==2017",
+    "rate": "23.50"
+  },
+  {
+    "code": "XA056",
+    "description": "More than PHP50.60==2018",
+    "rate": "24.44"
+  },
+  {
+    "code": "XA057",
+    "description": "b.) If brewed and sold at microbreweries or small establishments such as pubs and restaurants, regardless of the NRP==2013",
+    "rate": "28.00"
+  },
+  {
+    "code": "XA057",
+    "description": "b.) If brewed and sold at microbreweries or small establishments such as pubs and restaurants, regardless of the NRP==2014",
+    "rate": "29.12"
+  },
+  {
+    "code": "XA057",
+    "description": "b.) If brewed and sold at microbreweries or small establishments such as pubs and restaurants, regardless of the NRP==2015",
+    "rate": "30.28"
+  },
+  {
+    "code": "XA057",
+    "description": "b.) If brewed and sold at microbreweries or small establishments such as pubs and restaurants, regardless of the NRP==2016",
+    "rate": "31.50"
+  },
+  {
+    "code": "XA057",
+    "description": "b.) If brewed and sold at microbreweries or small establishments such as pubs and restaurants, regardless of the NRP==2017",
+    "rate": "32.76"
+  },
+  {
+    "code": "XA057",
+    "description": "b.) If brewed and sold at microbreweries or small establishments such as pubs and restaurants, regardless of the NRP==2018",
+    "rate": "34.07"
+  },
+  {
+    "code": "XT010",
+    "description": "1.) Tobacco Products a. Tobacco twisted by hand or reduced into a condition to be consumed in any manner other than the ordinary mode of drying or curing==2013",
+    "rate": "1.75"
+  },
+  {
+    "code": "XT010",
+    "description": "1.) Tobacco Products a. Tobacco twisted by hand or reduced into a condition to be consumed in any manner other than the ordinary mode of drying or curing==2014",
+    "rate": "1.82"
+  },
+  {
+    "code": "XT010",
+    "description": "1.) Tobacco Products a. Tobacco twisted by hand or reduced into a condition to be consumed in any manner other than the ordinary mode of drying or curing==2015",
+    "rate": "1.89"
+  },
+  {
+    "code": "XT010",
+    "description": "1.) Tobacco Products a. Tobacco twisted by hand or reduced into a condition to be consumed in any manner other than the ordinary mode of drying or curing==2016",
+    "rate": "1.97"
+  },
+  {
+    "code": "XT010",
+    "description": "1.) Tobacco Products a. Tobacco twisted by hand or reduced into a condition to be consumed in any manner other than the ordinary mode of drying or curing==2017",
+    "rate": "2.05"
+  },
+  {
+    "code": "XT010",
+    "description": "b. Tobacco prepared or partially prepared with or without the use of any machine or instrument or without being pressed or sweetened==2013",
+    "rate": "1.75"
+  },
+  {
+    "code": "XT010",
+    "description": "b. Tobacco prepared or partially prepared with or without the use of any machine or instrument or without being pressed or sweetened==2014",
+    "rate": "1.82"
+  },
+  {
+    "code": "XT010",
+    "description": "b. Tobacco prepared or partially prepared with or without the use of any machine or instrument or without being pressed or sweetened==2015",
+    "rate": "1.89"
+  },
+  {
+    "code": "XT010",
+    "description": "b. Tobacco prepared or partially prepared with or without the use of any machine or instrument or without being pressed or sweetened==2016",
+    "rate": "1.97"
+  },
+  {
+    "code": "XT010",
+    "description": "b. Tobacco prepared or partially prepared with or without the use of any machine or instrument or without being pressed or sweetened==2017",
+    "rate": "2.05"
+  },
+  {
+    "code": "XT010",
+    "description": "c. Fine-shorts and refuse, scraps, clippings, cuttings, stems, midribs and sweepings of tobacco==2013",
+    "rate": "1.75"
+  },
+  {
+    "code": "XT010",
+    "description": "c. Fine-shorts and refuse, scraps, clippings, cuttings, stems, midribs and sweepings of tobacco==2014",
+    "rate": "1.82"
+  },
+  {
+    "code": "XT010",
+    "description": "c. Fine-shorts and refuse, scraps, clippings, cuttings, stems, midribs and sweepings of tobacco==2015",
+    "rate": "1.89"
+  },
+  {
+    "code": "XT010",
+    "description": "c. Fine-shorts and refuse, scraps, clippings, cuttings, stems, midribs and sweepings of tobacco==2016",
+    "rate": "1.97"
+  },
+  {
+    "code": "XT010",
+    "description": "c. Fine-shorts and refuse, scraps, clippings, cuttings, stems, midribs and sweepings of tobacco==2017",
+    "rate": "2.05"
+  },
+  {
+    "code": "XT020",
+    "description": "2.) Chewing tobacco unsuitable for use in any other manner==2013",
+    "rate": "1.50"
+  },
+  {
+    "code": "XT020",
+    "description": "2.) Chewing tobacco unsuitable for use in any other manner==2014",
+    "rate": "1.56"
+  },
+  {
+    "code": "XT020",
+    "description": "2.) Chewing tobacco unsuitable for use in any other manner==2015",
+    "rate": "1.62"
+  },
+  {
+    "code": "XT020",
+    "description": "2.) Chewing tobacco unsuitable for use in any other manner==2016",
+    "rate": "1.68"
+  },
+  {
+    "code": "XT020",
+    "description": "2.) Chewing tobacco unsuitable for use in any other manner==2017",
+    "rate": "1.75"
+  },
+  {
+    "code": "XT035",
+    "description": "3.) Cigars  a. Ad Valorem Tax - Based on the net retail price (NRP) per Cigar [excluding the excise and value-added tax (VAT)]==2013",
+    "rate": "0.20"
+  },
+  {
+    "code": "XT035",
+    "description": "3.) Cigars  a. Ad Valorem Tax - Based on the net retail price (NRP) per Cigar [excluding the excise and value-added tax (VAT)]==2014",
+    "rate": "0.20"
+  },
+  {
+    "code": "XT035",
+    "description": "3.) Cigars  a. Ad Valorem Tax - Based on the net retail price (NRP) per Cigar [excluding the excise and value-added tax (VAT)]==2015",
+    "rate": "0.20"
+  },
+  {
+    "code": "XT035",
+    "description": "3.) Cigars  a. Ad Valorem Tax - Based on the net retail price (NRP) per Cigar [excluding the excise and value-added tax (VAT)]==2016",
+    "rate": "0.20"
+  },
+  {
+    "code": "XT035",
+    "description": "3.) Cigars  a. Ad Valorem Tax - Based on the net retail price (NRP) per Cigar [excluding the excise and value-added tax (VAT)]==2017",
+    "rate": "0.20"
+  },
+  {
+    "code": "XT036",
+    "description": "b. In addition to Ad Valorem Tax, a Specific Tax per Cigar==2013",
+    "rate": "5.00"
+  },
+  {
+    "code": "XT036",
+    "description": "b. In addition to Ad Valorem Tax, a Specific Tax per Cigar==2014",
+    "rate": "5.20"
+  },
+  {
+    "code": "XT036",
+    "description": "b. In addition to Ad Valorem Tax, a Specific Tax per Cigar==2015",
+    "rate": "5.41"
+  },
+  {
+    "code": "XT036",
+    "description": "b. In addition to Ad Valorem Tax, a Specific Tax per Cigar==2016",
+    "rate": "5.62"
+  },
+  {
+    "code": "XT036",
+    "description": "b. In addition to Ad Valorem Tax, a Specific Tax per Cigar==2017",
+    "rate": "5.85"
+  },
+  {
+    "code": "XT040",
+    "description": "4.) Cigarettes  a. Cigarettes packed by hand==2013",
+    "rate": "12.00"
+  },
+  {
+    "code": "XT040",
+    "description": "4.) Cigarettes  a. Cigarettes packed by hand==2014",
+    "rate": "15.00"
+  },
+  {
+    "code": "XT040",
+    "description": "4.) Cigarettes  a. Cigarettes packed by hand==2015",
+    "rate": "18.00"
+  },
+  {
+    "code": "XT040",
+    "description": "4.) Cigarettes  a. Cigarettes packed by hand==2016",
+    "rate": "21.00"
+  },
+  {
+    "code": "XT040",
+    "description": "4.) Cigarettes  a. Cigarettes packed by hand==2017",
+    "rate": "30.00"
+  },
+  {
+    "code": "XT140",
+    "description": "b. Cigarettes packed by machine, where the NRP (excluding the excise and VAT) per pack is PHP11.50 and below==2013",
+    "rate": "12.00"
+  },
+  {
+    "code": "XT140",
+    "description": "b. Cigarettes packed by machine, where the NRP (excluding the excise and VAT) per pack is PHP11.50 and below==2014",
+    "rate": "17.00"
+  },
+  {
+    "code": "XT140",
+    "description": "b. Cigarettes packed by machine, where the NRP (excluding the excise and VAT) per pack is PHP11.50 and below==2015",
+    "rate": "21.00"
+  },
+  {
+    "code": "XT140",
+    "description": "b. Cigarettes packed by machine, where the NRP (excluding the excise and VAT) per pack is PHP11.50 and below==2016",
+    "rate": "25.00"
+  },
+  {
+    "code": "XT140",
+    "description": "b. Cigarettes packed by machine, where the NRP (excluding the excise and VAT) per pack is PHP11.50 and below==2017",
+    "rate": "30.00"
+  },
+  {
+    "code": "XT150",
+    "description": "More than Php11.50==2013",
+    "rate": "25.00"
+  },
+  {
+    "code": "XT150",
+    "description": "More than Php11.50==2014",
+    "rate": "27.00"
+  },
+  {
+    "code": "XT150",
+    "description": "More than Php11.50==2015",
+    "rate": "28.00"
+  },
+  {
+    "code": "XT150",
+    "description": "More than Php11.50==2016",
+    "rate": "29.00"
+  },
+  {
+    "code": "XT150",
+    "description": "More than Php11.50==2017",
+    "rate": "30.00"
+  },
+  {
+    "code": "WI010",
+    "description": "PROFESSIONAL (LAWYERS, CPAS, ENGINEERS, ETC.) - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI011",
+    "description": "PROFESSIONAL (LAWYERS, CPAS, ENGINEERS, ETC.) - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI020",
+    "description": "PROFESSIONAL ENTERTAINERS SUCH AS, BUT NOT LIMITED TO ACTORS AND ACTRESSES, SINGERS, LYRICISTS, COMPOSERS, EMCEES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI021",
+    "description": "PROFESSIONAL ENTERTAINERS SUCH AS, BUT NOT LIMITED TO ACTORS AND ACTRESSES, SINGERS, LYRICISTS, COMPOSERS, EMCEES - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI030",
+    "description": "PROFESSIONAL ATHLETES INCLUDING BASKETBALL PLAYERS, PELOTARIS AND JOCKEYS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI031",
+    "description": "PROFESSIONAL ATHLETES INCLUDING BASKETBALL PLAYERS, PELOTARIS AND JOCKEYS - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI040",
+    "description": "ALL DIRECTORS AND PRODUCERS INVOLVED IN MOVIES, STAGE, RADIO, TELEVISION AND MUSICAL PRODUCTIONS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI041",
+    "description": "ALL DIRECTORS AND PRODUCERS INVOLVED IN MOVIES, STAGE, RADIO, TELEVISION AND MUSICAL PRODUCTIONS - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI050",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI051",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI060",
+    "description": "BUSINESS AND BOOKKEEPING AGENTS AND AGENCIES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI061",
+    "description": "BUSINESS AND BOOKKEEPING AGENTS AND AGENCIES -IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI070",
+    "description": "INSURANCE AGENTS AND INSURANCE ADJUSTERS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI071",
+    "description": "INSURANCE AGENTS AND INSURANCE ADJUSTERS - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI080",
+    "description": "OTHER RECIPIENTS OF TALENT FEES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI081",
+    "description": "OTHER RECIPIENTS OF TALENT FEES - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI090",
+    "description": "FEES OF DIRECTORS WHO ARE NOT EMPLOYEES OF THE COMPANY - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI091",
+    "description": "FEES OF DIRECTORS WHO ARE NOT EMPLOYEES OF THE COMPANY - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI100",
+    "description": "RENTALS: ON GROSS RENTAL OR LEASE FOR THE CONTINUED USE OR POSSESSION OF PERSONAL PROPERTY IN EXCESS OF TEN THOUSAND PESOS (P 10,000) ANNUALLY AND REAL PROPERTY USED IN BUSINESS WHICH THE PAYOR OR OBLIGOR HAS NOT TAKEN TITLE OR IS NOT TAKING TITLE, OR IN WHICH HAS NO EQUITY; POLES, SATELLITES , TRANSMISSION FACILITIES AND BILLBOARDS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI110",
+    "description": "CINEMATOGRAPHIC FILM RENTALS AND OTHER PAYMENTS TO RESIDENT INDIVIDUALS AND CORPORATE CINEMATOGRAPHIC FILM OWNERS, LESSORS OR DISTRIBUTORS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI120",
+    "description": "INCOME PAYMENTS TO CERTAIN CONTRACTORS",
+    "rate": "2.0"
+  },
+  {
+    "code": "WI130",
+    "description": "INCOME DISTRIBUTION TO THE BENEFICIARIES OF ESTATES AND TRUSTS",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI139",
+    "description": "GROSS COMMISSIONS OR SERVICE FEES OF CUSTOMS, INSURANCE, STOCK, IMMIGRATION AND COMMERCIAL BROKERS, FEES OF AGENTS OF PROFESSIONAL ENTERTAINERS AND REAL ESTATE SERVICE PRACTITIONERS (RESPS), (I.E. REAL ESTATE CONSULTANTS, REAL ESTATE APPRAISERS AND REAL ESTATE BROKERS) - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI140",
+    "description": "GROSS COMMISSIONS OR SERVICE FEES OF CUSTOMS, INSURANCE, STOCK, IMMIGRATION AND COMMERCIAL BROKERS, FEES OF AGENTS OF PROFESSIONAL ENTERTAINERS AND REAL ESTATE SERVICE PRACTITIONERS (RESPS), (I.E. REAL ESTATE CONSULTANTS, REAL ESTATE APPRAISERS AND REAL ESTATE BROKERS) -  IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI150",
+    "description": "PROFESSIONAL FEES PAID TO MEDICAL PRACTITIONERS (INCLUDES DOCTORS OF MEDICINE, DOCTORS OF VETERINARY SCIENCE & DENTISTS) BY HOSPITALS & CLINICS OR PAID DIRECTLY BY HEALTH MAINTENANCE ORGANIZATIONS (HMOS) AND/OR SIMILAR ESTABLISHMENTS - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI151",
+    "description": "PROFESSIONAL FEES PAID TO MEDICAL PRACTITIONERS (INCLUDES DOCTORS OF MEDICINE, DOCTORS OF VETERINARY SCIENCE & DENTISTS) BY HOSPITALS & CLINICS OR PAID DIRECTLY BY HEALTH MAINTENANCE ORGANIZATIONS (HMOS) AND/OR SIMILAR ESTABLISHMENTS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI152",
+    "description": "PAYMENT BY THE GENERAL PROFESSIONAL PARTNERSHIPS (GPPS) TO ITS PARTNERS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI153",
+    "description": "PAYMENT BY THE GENERAL PROFESSIONAL PARTNERSHIPS (GPPS) TO ITS PARTNERS - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI156",
+    "description": "INCOME PAYMENTS MADE BY CREDIT CARD COMPANIES",
+    "rate": "0.5"
+  },
+  {
+    "code": "WI640",
+    "description": "INCOME PAYMENTS MADE BY THE GOVERNMENT AND GOVERNMENT-OWNED AND CONTROLLED CORPORATIONS (GOCCS) TO ITS LOCAL/RESIDENT SUPPLIERS OF GOODS OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI157",
+    "description": "INCOME PAYMENTS MADE BY THE GOVERNMENT AND GOVERNMENT-OWNED AND CONTROLLED CORPORATIONS (GOCCS) TO ITS LOCAL/RESIDENT SUPPLIERS OF SERVICES OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "2.0"
+  },
+  {
+    "code": "WI159",
+    "description": "ADDITIONAL INCOME PAYMENTS TO GOVERNMENT PERSONNEL FROM IMPORTERS, SHIPPING AND AIRLINE COMPANIES OR THEIR AGENTS FOR OVERTIME SERVICES",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI158",
+    "description": "INCOME PAYMENT MADE BY TOP WITHHOLDING AGENTS TO THEIR LOCAL/RESIDENT SUPPLIER OF GOODS OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI160",
+    "description": "INCOME PAYMENT MADE BY TOP WITHHOLDING AGENTS TO THEIR LOCAL/RESIDENT SUPPLIER OF SERVICES OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "2.0"
+  },
+  {
+    "code": "WI515",
+    "description": "COMMISSIONS, REBATES, DISCOUNTS AND OTHER SIMILAR CONSIDERATIONS PAID/GRANTED TO INDEPENDENT AND/OR EXCLUSIVE SALES REPRESENTATIVES AND MARKETING AGENTS AND SUB-AGENTS OF COMPANIES, INCLUDING MULTI-LEVEL MARKETING COMPANIES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI516",
+    "description": "COMMISSIONS, REBATES, DISCOUNTS AND OTHER SIMILAR CONSIDERATIONS PAID/GRANTED TO INDEPENDENT AND/OR EXCLUSIVE SALES REPRESENTATIVES AND MARKETING AGENTS AND SUB-AGENTS OF COMPANIES, INCLUDING MULTI-LEVEL MARKETING COMPANIES - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI530",
+    "description": "GROSS PAYMENTS TO EMBALMERS BY FUNERAL PARLORS",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI535",
+    "description": "PAYMENTS MADE BY PRE-NEED COMPANIES TO FUNERAL PARLORS",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI540",
+    "description": "TOLLING FEES PAID TO REFINERIES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI610",
+    "description": "INCOME PAYMENTS MADE TO SUPPLIERS OF AGRICULTURAL PRODUCTS IN EXCESS OF CUMULATIVE AMOUNT OF P 300,000 WITHIN THE SAME TAXABLE YEAR",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI630",
+    "description": "INCOME PAYMENTS ON PURCHASES OF MINERALS, MINERAL PRODUCTS AND QUARRY RESOURCES, SUCH AS BUT NOT LIMITED TO SILVER, GOLD, MARBLE, GRANITE, GRAVEL, SAND, BOULDERS AND OTHER MINERAL PRODUCTS EXCEPT PURCHASES BY BANGKO SENTRAL NG PILIPINAS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI632",
+    "description": "INCOME PAYMENTS ON PURCHASES OF MINERALS, MINERAL PRODUCTS AND QUARRY RESOURCES BY BANGKO SENTRAL NG PILIPINAS (BSP) FROM GOLD MINERS/SUPPLIERS UNDER PD 1899, AS AMENDED BY RA NO. 7076",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI650",
+    "description": "ON GROSS AMOUNT OF REFUND GIVEN BY MERALCO TO CUSTOMERS WITH ACTIVE CONTRACTS AS CLASSIFIED BY MERALCO",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI651",
+    "description": "ON GROSS AMOUNT OF REFUND GIVEN BY MERALCO TO CUSTOMERS WITH TERMINATED CONTRACTS AS CLASSIFIED BY MERALCO",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI660",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF RESIDENTIAL AND GENERAL SERVICE CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY MERALCO",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI661",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF  NON-RESIDENTIAL CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY MERALCO",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI662",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF RESIDENTIAL AND GENERAL SERVICE CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY OTHER ELECTRIC DISTRIBUTION UTILITIES (DU)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI663",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S ILLINGS OF  NON-RESIDENTIAL CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY OTHER ELECTRIC DISTRIBUTION UTILITIES (DU)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI680",
+    "description": "INCOME PAYMENTS MADE BY POLITICAL PARTIES AND CANDIDATES OF LOCAL AND NATIONAL ELECTIONS ON ALL THEIR PURCHASES OF GOODS AND SERVICES RELATED TO CAMPAIGN EXPENDITURES, AND INCOME PAYMENTS MADE BY INDIVIDUALS OR JURIDICAL PERSONS FOR THEIR PURCHASES OF GOODS AND SERVICES INTENDED TO BE GIVEN AS CAMPAIGN CONTRIBUTIONS TO POLITICAL PARTIES AND CANDIDATES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI710",
+    "description": "INTEREST INCOME DERIVED FROM ANY OTHER DEBT INSTRUMENTS NOT WITHIN THE COVERAGE OF DEPOSIT SUBSTITUTES AND REVENUE REGULATIONS NO. 14-2012",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI720",
+    "description": "INCOME PAYMENTS ON LOCALLY PRODUCED RAW SUGAR",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI010",
+    "description": "PROFESSIONAL (LAWYERS, CPAS, ENGINEERS, ETC.) - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI011",
+    "description": "PROFESSIONAL (LAWYERS, CPAS, ENGINEERS, ETC.) - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI020",
+    "description": "PROFESSIONAL ENTERTAINERS SUCH AS, BUT NOT LIMITED TO ACTORS AND ACTRESSES, SINGERS, LYRICISTS, COMPOSERS, EMCEES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI021",
+    "description": "PROFESSIONAL ENTERTAINERS SUCH AS, BUT NOT LIMITED TO ACTORS AND ACTRESSES, SINGERS, LYRICISTS, COMPOSERS, EMCEES - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI030",
+    "description": "PROFESSIONAL ATHLETES INCLUDING BASKETBALL PLAYERS, PELOTARIS AND JOCKEYS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI031",
+    "description": "PROFESSIONAL ATHLETES INCLUDING BASKETBALL PLAYERS, PELOTARIS AND JOCKEYS - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI040",
+    "description": "ALL DIRECTORS AND PRODUCERS INVOLVED IN MOVIES, STAGE, RADIO, TELEVISION AND MUSICAL PRODUCTIONS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI041",
+    "description": "ALL DIRECTORS AND PRODUCERS INVOLVED IN MOVIES, STAGE, RADIO, TELEVISION AND MUSICAL PRODUCTIONS - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI050",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI051",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI060",
+    "description": "BUSINESS AND BOOKKEEPING AGENTS AND AGENCIES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI061",
+    "description": "BUSINESS AND BOOKKEEPING AGENTS AND AGENCIES -IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI070",
+    "description": "INSURANCE AGENTS AND INSURANCE ADJUSTERS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI071",
+    "description": "INSURANCE AGENTS AND INSURANCE ADJUSTERS - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI080",
+    "description": "OTHER RECIPIENTS OF TALENT FEES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI081",
+    "description": "OTHER RECIPIENTS OF TALENT FEES - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI090",
+    "description": "FEES OF DIRECTORS WHO ARE NOT EMPLOYEES OF THE COMPANY - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI091",
+    "description": "FEES OF DIRECTORS WHO ARE NOT EMPLOYEES OF THE COMPANY - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI100",
+    "description": "RENTALS: ON GROSS RENTAL OR LEASE FOR THE CONTINUED USE OR POSSESSION OF PERSONAL PROPERTY IN EXCESS OF TEN THOUSAND PESOS (P 10,000) ANNUALLY AND REAL PROPERTY USED IN BUSINESS WHICH THE PAYOR OR OBLIGOR HAS NOT TAKEN TITLE OR IS NOT TAKING TITLE, OR IN WHICH HAS NO EQUITY; POLES, SATELLITES , TRANSMISSION FACILITIES AND BILLBOARDS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI110",
+    "description": "CINEMATOGRAPHIC FILM RENTALS AND OTHER PAYMENTS TO RESIDENT INDIVIDUALS AND CORPORATE CINEMATOGRAPHIC FILM OWNERS, LESSORS OR DISTRIBUTORS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI120",
+    "description": "INCOME PAYMENTS TO CERTAIN CONTRACTORS",
+    "rate": "2.0"
+  },
+  {
+    "code": "WI130",
+    "description": "INCOME DISTRIBUTION TO THE BENEFICIARIES OF ESTATES AND TRUSTS",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI139",
+    "description": "GROSS COMMISSIONS OR SERVICE FEES OF CUSTOMS, INSURANCE, STOCK, IMMIGRATION AND COMMERCIAL BROKERS, FEES OF AGENTS OF PROFESSIONAL ENTERTAINERS AND REAL ESTATE SERVICE PRACTITIONERS (RESPS), (I.E. REAL ESTATE CONSULTANTS, REAL ESTATE APPRAISERS AND REAL ESTATE BROKERS) - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI140",
+    "description": "GROSS COMMISSIONS OR SERVICE FEES OF CUSTOMS, INSURANCE, STOCK, IMMIGRATION AND COMMERCIAL BROKERS, FEES OF AGENTS OF PROFESSIONAL ENTERTAINERS AND REAL ESTATE SERVICE PRACTITIONERS (RESPS), (I.E. REAL ESTATE CONSULTANTS, REAL ESTATE APPRAISERS AND REAL ESTATE BROKERS) -  IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI150",
+    "description": "PROFESSIONAL FEES PAID TO MEDICAL PRACTITIONERS (INCLUDES DOCTORS OF MEDICINE, DOCTORS OF VETERINARY SCIENCE & DENTISTS) BY HOSPITALS & CLINICS OR PAID DIRECTLY BY HEALTH MAINTENANCE ORGANIZATIONS (HMOS) AND/OR SIMILAR ESTABLISHMENTS - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI151",
+    "description": "PROFESSIONAL FEES PAID TO MEDICAL PRACTITIONERS (INCLUDES DOCTORS OF MEDICINE, DOCTORS OF VETERINARY SCIENCE & DENTISTS) BY HOSPITALS & CLINICS OR PAID DIRECTLY BY HEALTH MAINTENANCE ORGANIZATIONS (HMOS) AND/OR SIMILAR ESTABLISHMENTS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI152",
+    "description": "PAYMENT BY THE GENERAL PROFESSIONAL PARTNERSHIPS (GPPS) TO ITS PARTNERS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI153",
+    "description": "PAYMENT BY THE GENERAL PROFESSIONAL PARTNERSHIPS (GPPS) TO ITS PARTNERS - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI156",
+    "description": "INCOME PAYMENTS MADE BY CREDIT CARD COMPANIES",
+    "rate": "0.5"
+  },
+  {
+    "code": "WI640",
+    "description": "INCOME PAYMENTS MADE BY THE GOVERNMENT AND GOVERNMENT-OWNED AND CONTROLLED CORPORATIONS (GOCCS) TO ITS LOCAL/RESIDENT SUPPLIERS OF GOODS OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI157",
+    "description": "INCOME PAYMENTS MADE BY THE GOVERNMENT AND GOVERNMENT-OWNED AND CONTROLLED CORPORATIONS (GOCCS) TO ITS LOCAL/RESIDENT SUPPLIERS OF SERVICES OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "2.0"
+  },
+  {
+    "code": "WI159",
+    "description": "ADDITIONAL INCOME PAYMENTS TO GOVERNMENT PERSONNEL FROM IMPORTERS, SHIPPING AND AIRLINE COMPANIES OR THEIR AGENTS FOR OVERTIME SERVICES",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI158",
+    "description": "INCOME PAYMENT MADE BY TOP WITHHOLDING AGENTS TO THEIR LOCAL/RESIDENT SUPPLIER OF GOODS OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI160",
+    "description": "INCOME PAYMENT MADE BY TOP WITHHOLDING AGENTS TO THEIR LOCAL/RESIDENT SUPPLIER OF SERVICES OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "2.0"
+  },
+  {
+    "code": "WI515",
+    "description": "COMMISSIONS, REBATES, DISCOUNTS AND OTHER SIMILAR CONSIDERATIONS PAID/GRANTED TO INDEPENDENT AND/OR EXCLUSIVE SALES REPRESENTATIVES AND MARKETING AGENTS AND SUB-AGENTS OF COMPANIES, INCLUDING MULTI-LEVEL MARKETING COMPANIES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 3M",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI516",
+    "description": "COMMISSIONS, REBATES, DISCOUNTS AND OTHER SIMILAR CONSIDERATIONS PAID/GRANTED TO INDEPENDENT AND/OR EXCLUSIVE SALES REPRESENTATIVES AND MARKETING AGENTS AND SUB-AGENTS OF COMPANIES, INCLUDING MULTI-LEVEL MARKETING COMPANIES - IF GROSS INCOME IS MORE THAN P 3M OR VAT REGISTERED REGARDLESS OF AMOUNT",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI530",
+    "description": "GROSS PAYMENTS TO EMBALMERS BY FUNERAL PARLORS",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI535",
+    "description": "PAYMENTS MADE BY PRE-NEED COMPANIES TO FUNERAL PARLORS",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI540",
+    "description": "TOLLING FEES PAID TO REFINERIES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI610",
+    "description": "INCOME PAYMENTS MADE TO SUPPLIERS OF AGRICULTURAL PRODUCTS IN EXCESS OF CUMULATIVE AMOUNT OF P 300,000 WITHIN THE SAME TAXABLE YEAR",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI630",
+    "description": "INCOME PAYMENTS ON PURCHASES OF MINERALS, MINERAL PRODUCTS AND QUARRY RESOURCES, SUCH AS BUT NOT LIMITED TO SILVER, GOLD, MARBLE, GRANITE, GRAVEL, SAND, BOULDERS AND OTHER MINERAL PRODUCTS EXCEPT PURCHASES BY BANGKO SENTRAL NG PILIPINAS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI632",
+    "description": "INCOME PAYMENTS ON PURCHASES OF MINERALS, MINERAL PRODUCTS AND QUARRY RESOURCES BY BANGKO SENTRAL NG PILIPINAS (BSP) FROM GOLD MINERS/SUPPLIERS UNDER PD 1899, AS AMENDED BY RA NO. 7076",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI650",
+    "description": "ON GROSS AMOUNT OF REFUND GIVEN BY MERALCO TO CUSTOMERS WITH ACTIVE CONTRACTS AS CLASSIFIED BY MERALCO",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI651",
+    "description": "ON GROSS AMOUNT OF REFUND GIVEN BY MERALCO TO CUSTOMERS WITH TERMINATED CONTRACTS AS CLASSIFIED BY MERALCO",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI660",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF RESIDENTIAL AND GENERAL SERVICE CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY MERALCO",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI661",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF  NON-RESIDENTIAL CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY MERALCO",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI662",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF RESIDENTIAL AND GENERAL SERVICE CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY OTHER ELECTRIC DISTRIBUTION UTILITIES (DU)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI663",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF  NON-RESIDENTIAL CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY OTHER ELECTRIC DISTRIBUTION UTILITIES (DU)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI680",
+    "description": "INCOME PAYMENTS MADE BY POLITICAL PARTIES AND CANDIDATES OF LOCAL AND NATIONAL ELECTIONS ON ALL THEIR PURCHASES OF GOODS AND SERVICES RELATED TO CAMPAIGN EXPENDITURES, AND INCOME PAYMENTS MADE BY INDIVIDUALS OR JURIDICAL PERSONS FOR THEIR PURCHASES OF GOODS AND SERVICES INTENDED TO BE GIVEN AS CAMPAIGN CONTRIBUTIONS TO POLITICAL PARTIES AND CANDIDATES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WI710",
+    "description": "INTEREST INCOME DERIVED FROM ANY OTHER DEBT INSTRUMENTS NOT WITHIN THE COVERAGE OF DEPOSIT SUBSTITUTES AND REVENUE REGULATIONS NO. 14-2012",
+    "rate": "15.0"
+  },
+  {
+    "code": "WI720",
+    "description": "INCOME PAYMENTS ON LOCALLY PRODUCED RAW SUGAR",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC010",
+    "description": "PROFESSIONAL (LAWYERS, CPAS, ENGINEERS, ETC.) - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC011",
+    "description": "PROFESSIONAL (LAWYERS, CPAS, ENGINEERS, ETC.) - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC020",
+    "description": "PROFESSIONAL ENTERTAINERS SUCH AS, BUT NOT LIMITED TO ACTORS AND ACTRESSES, SINGERS, LYRICISTS, COMPOSERS, EMCEES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC021",
+    "description": "PROFESSIONAL ENTERTAINERS SUCH AS, BUT NOT LIMITED TO ACTORS AND ACTRESSES, SINGERS, LYRICISTS, COMPOSERS, EMCEES - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC030",
+    "description": "PROFESSIONAL ATHLETES INCLUDING BASKETBALL PLAYERS, PELOTARIS AND JOCKEYS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC031",
+    "description": "PROFESSIONAL ATHLETES INCLUDING BASKETBALL PLAYERS, PELOTARIS AND JOCKEYS - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC040",
+    "description": "ALL DIRECTORS AND PRODUCERS INVOLVED IN MOVIES, STAGE, RADIO, TELEVISION AND MUSICAL PRODUCTIONS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC041",
+    "description": "ALL DIRECTORS AND PRODUCERS INVOLVED IN MOVIES, STAGE, RADIO, TELEVISION AND MUSICAL PRODUCTIONS -  IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC050",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC051",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC060",
+    "description": "BUSINESS AND BOOKKEEPING AGENTS AND AGENCIES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC061",
+    "description": "BUSINESS AND BOOKKEEPING AGENTS AND AGENCIES - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC070",
+    "description": "INSURANCE AGENTS AND INSURANCE ADJUSTERS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC071",
+    "description": "INSURANCE AGENTS AND INSURANCE ADJUSTERS - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC080",
+    "description": "OTHER RECIPIENTS OF TALENT FEES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC081",
+    "description": "OTHER RECIPIENTS OF TALENT FEES - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC100",
+    "description": "RENTALS: ON GROSS RENTAL OR LEASE FOR THE CONTINUED USE OR POSSESSION OF PERSONAL PROPERTY IN EXCESS OF TEN THOUSAND PESOS (P 10,000) ANNUALLY AND REAL PROPERTY USED IN BUSINESS WHICH THE PAYOR OR OBLIGOR HAS NOT TAKEN TITLE OR IS NOT TAKING TITLE, OR IN WHICH HAS NO EQUITY; POLES, SATELLITES, TRANSMISSION FACILITIES AND BILLBOARDS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC110",
+    "description": "CINEMATOGRAPHIC FILM RENTALS AND OTHER PAYMENTS TO RESIDENT INDIVIDUALS AND CORPORATE CINEMATOGRAPHIC FILM OWNERS, LESSORS OR DISTRIBUTORS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC120",
+    "description": "INCOME PAYMENTS TO CERTAIN CONTRACTORS",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC139",
+    "description": "GROSS COMMISSIONS OR SERVICE FEES OF CUSTOMS, INSURANCE, STOCK, IMMIGRATION AND COMMERCIAL BROKERS, FEES OF AGENTS OF PROFESSIONAL ENTERTAINERS AND REAL ESTATE SERVICE PRACTITIONERS (RESPS), (I.E. REAL ESTATE ONSULTANTS, REAL ESTATE APPRAISERS AND REAL ESTATE BROKERS) - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC140",
+    "description": "GROSS COMMISSIONS OR SERVICE FEES OF CUSTOMS, INSURANCE, STOCK, IMMIGRATION AND COMMERCIAL BROKERS, FEES OF AGENTS OF PROFESSIONAL ENTERTAINERS AND REAL ESTATE SERVICE PRACTITIONERS (RESPS), (I.E. REAL ESTATE ONSULTANTS, REAL ESTATE APPRAISERS AND REAL ESTATE BROKERS) - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC150",
+    "description": "PROFESSIONAL FEES PAID TO MEDICAL PRACTITIONERS (INCLUDES DOCTORS OF MEDICINE DOCTORS OF VETERINARY SCIENCE & DENTISTS) BY HOSPITALS & CLINICS OR PAID DIRECTLY BY HEALTH MAINTENANCE ORGANIZATIONS (HMOS) AND/OR SIMILAR ESTABLISHMENTS - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC151",
+    "description": "PROFESSIONAL FEES PAID TO MEDICAL PRACTITIONERS (INCLUDES DOCTORS OF MEDICINE DOCTORS OF VETERINARY SCIENCE & DENTISTS) BY HOSPITALS & CLINICS OR PAID DIRECTLY BY HEALTH MAINTENANCE ORGANIZATIONS (HMOS) AND/OR SIMILAR ESTABLISHMENTS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC156",
+    "description": "INCOME PAYMENTS MADE BY CREDIT CARD COMPANIES",
+    "rate": "0.5"
+  },
+  {
+    "code": "WC640",
+    "description": "INCOME PAYMENTS MADE BY THE GOVERNMENT AND GOVERNMENT-OWNED AND CONTROLLED CORPORATIONS (GOCCS) TO ITS LOCAL/RESIDENT SUPPLIERS OF GOODS OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC157",
+    "description": "INCOME PAYMENTS MADE BY THE GOVERNMENT AND GOVERNMENT-OWNED AND CONTROLLED CORPORATIONS (GOCCS) TO ITS LOCAL/RESIDENT SUPPLIERS OF SERVICES OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC158",
+    "description": "INCOME PAYMENT MADE BY TOP WITHHOLDING AGENTS TO THEIR LOCAL/RESIDENT SUPPLIER OF GOODS OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC160",
+    "description": "INCOME PAYMENT MADE BY TOP WITHHOLDING AGENTS TO THEIR  LOCAL/RESIDENT SUPPLIER OF SERVICES OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC515",
+    "description": "COMMISSIONS, REBATES, DISCOUNTS AND OTHER SIMILAR CONSIDERATIONS PAID/ GRANTED TO INDEPENDENT AND/OR EXCLUSIVE SALES REPRESENTATIVES AND MARKETING AGENTS AND SUB-AGENTS OF COMPANIES, INCLUDING MULTI-LEVEL MARKETING COMPANIES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC516",
+    "description": "COMMISSIONS, REBATES, DISCOUNTS AND OTHER SIMILAR CONSIDERATIONS PAID/ GRANTED TO INDEPENDENT AND/OR EXCLUSIVE SALES REPRESENTATIVES AND MARKETING AGENTS AND SUB-AGENTS OF COMPANIES, INCLUDING MULTI-LEVEL MARKETING COMPANIES - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC535",
+    "description": "PAYMENTS MADE BY PRE-NEED COMPANIES TO FUNERAL PARLORS",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC540",
+    "description": "TOLLING FEES PAID TO REFINERIES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC610",
+    "description": "INCOME PAYMENTS MADE TO SUPPLIERS OF AGRICULTURAL PRODUCTS IN EXCESS OF CUMULATIVE AMOUNT OF P 300,000 WITHIN THE SAME TAXABLE YEAR",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC630",
+    "description": "INCOME PAYMENTS ON PURCHASES OF MINERALS, MINERAL PRODUCTS AND QUARRY RESOURCES, SUCH AS BUT NOT LIMITED TO SILVER, GOLD, MARBLE, GRANITE, GRAVEL, SAND, BOULDERS AND OTHER MINERAL PRODUCTS EXCEPT PURCHASES BY BANGKO SENTRAL NG PILIPINAS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC632",
+    "description": "INCOME PAYMENTS ON PURCHASES OF MINERALS, MINERAL PRODUCTS AND QUARRY RESOURCES BY BANGKO SENTRAL NG PILIPINAS (BSP) FROM GOLD MINERS/SUPPLIERS UNDER PD 1899, AS AMENDED BY RA NO. 7076",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC650",
+    "description": "ON GROSS AMOUNT OF REFUND GIVEN BY MERALCO TO CUSTOMERS WITH ACTIVE CONTRACTS AS CLASSIFIED BY MERALCO",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC651",
+    "description": "ON GROSS AMOUNT OF REFUND GIVEN BY MERALCO TO CUSTOMERS WITH TERMINATED CONTRACTS AS CLASSIFIED BY MERALCO",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC660",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF RESIDENTIAL AND GENERAL SERVICE CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY MERALCO",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC661",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF  NON-RESIDENTIAL CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY MERALCO",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC662",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF RESIDENTIAL AND GENERAL SERVICE CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY OTHER ELECTRIC DISTRIBUTION UTILITIES (DU)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC663",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF  NON- RESIDENTIAL CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY OTHER ELECTRIC DISTRIBUTION UTILITIES (DU)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC680",
+    "description": "INCOME PAYMENTS MADE BY POLITICAL PARTIES AND CANDIDATES OF LOCAL AND NATIONAL ELECTIONS ON ALL THEIR PURCHASES OF GOODS AND SERVICES RELATED TO CAMPAIGN EXPENDITURES, AND INCOME PAYMENTS MADE BY INDIVIDUALS OR JURIDICAL PERSONS FOR THEIR PURCHASES OF GOODS AND SERVICES INTENDED TO BE GIVEN AS CAMPAIGN CONTRIBUTIONS TO POLITICAL PARTIES AND CANDIDATES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC690",
+    "description": "INCOME PAYMENTS RECEIVED BY REAL ESTATE INVESTMENT TRUST (REIT)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC710",
+    "description": "INTEREST INCOME DERIVED FROM ANY OTHER DEBT INSTRUMENTS NOT WITHIN THE COVERAGE OF DEPOSIT SUBSTITUTES AND REVENUE REGULATIONS NO. 14-2012",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC720",
+    "description": "INCOME PAYMENTS ON LOCALLY PRODUCED RAW SUGAR",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC010",
+    "description": "PROFESSIONAL (LAWYERS, CPAS, ENGINEERS, ETC.) - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC011",
+    "description": "PROFESSIONAL (LAWYERS, CPAS, ENGINEERS, ETC.) - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC020",
+    "description": "PROFESSIONAL ENTERTAINERS SUCH AS, BUT NOT LIMITED TO ACTORS AND ACTRESSES, SINGERS, LYRICISTS, COMPOSERS, EMCEES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC021",
+    "description": "PROFESSIONAL ENTERTAINERS SUCH AS, BUT NOT LIMITED TO ACTORS AND ACTRESSES, SINGERS, LYRICISTS, COMPOSERS, EMCEES - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC030",
+    "description": "PROFESSIONAL ATHLETES INCLUDING BASKETBALL PLAYERS, PELOTARIS AND JOCKEYS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC031",
+    "description": "PROFESSIONAL ATHLETES INCLUDING BASKETBALL PLAYERS, PELOTARIS AND JOCKEYS - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC040",
+    "description": "ALL DIRECTORS AND PRODUCERS INVOLVED IN MOVIES, STAGE, RADIO, TELEVISION AND MUSICAL PRODUCTIONS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC041",
+    "description": "ALL DIRECTORS AND PRODUCERS INVOLVED IN MOVIES, STAGE, RADIO, TELEVISION AND MUSICAL PRODUCTIONS -  IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC050",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC051",
+    "description": "MANAGEMENT AND TECHNICAL CONSULTANTS - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC060",
+    "description": "BUSINESS AND BOOKKEEPING AGENTS AND AGENCIES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC061",
+    "description": "BUSINESS AND BOOKKEEPING AGENTS AND AGENCIES - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC070",
+    "description": "INSURANCE AGENTS AND INSURANCE ADJUSTERS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC071",
+    "description": "INSURANCE AGENTS AND INSURANCE ADJUSTERS - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC080",
+    "description": "OTHER RECIPIENTS OF TALENT FEES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC081",
+    "description": "OTHER RECIPIENTS OF TALENT FEES - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC100",
+    "description": "RENTALS: ON GROSS RENTAL OR LEASE FOR THE CONTINUED USE OR POSSESSION OF PERSONAL PROPERTY IN EXCESS OF TEN THOUSAND PESOS (P 10,000) ANNUALLY AND REAL PROPERTY USED IN BUSINESS WHICH THE PAYOR OR OBLIGOR HAS NOT TAKEN TITLE OR IS NOT TAKING TITLE, OR IN WHICH HAS NO EQUITY; POLES, SATELLITES, TRANSMISSION FACILITIES AND BILLBOARDS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC110",
+    "description": "CINEMATOGRAPHIC FILM RENTALS AND OTHER PAYMENTS TO RESIDENT INDIVIDUALS AND CORPORATE CINEMATOGRAPHIC FILM OWNERS, LESSORS OR DISTRIBUTORS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC120",
+    "description": "INCOME PAYMENTS TO CERTAIN CONTRACTORS",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC139",
+    "description": "GROSS COMMISSIONS OR SERVICE FEES OF CUSTOMS, INSURANCE, STOCK, IMMIGRATION AND COMMERCIAL BROKERS, FEES OF AGENTS OF PROFESSIONAL ENTERTAINERS AND REAL ESTATE SERVICE PRACTITIONERS (RESPS), (I.E. REAL ESTATE ONSULTANTS, REAL ESTATE APPRAISERS AND REAL ESTATE BROKERS) - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC140",
+    "description": "GROSS COMMISSIONS OR SERVICE FEES OF CUSTOMS, INSURANCE, STOCK, IMMIGRATION AND COMMERCIAL BROKERS, FEES OF AGENTS OF PROFESSIONAL ENTERTAINERS AND REAL ESTATE SERVICE PRACTITIONERS (RESPS), (I.E. REAL ESTATE ONSULTANTS, REAL ESTATE APPRAISERS AND REAL ESTATE BROKERS) - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC150",
+    "description": "PROFESSIONAL FEES PAID TO MEDICAL PRACTITIONERS (INCLUDES DOCTORS OF MEDICINE DOCTORS OF VETERINARY SCIENCE & DENTISTS) BY HOSPITALS & CLINICS OR PAID DIRECTLY BY HEALTH MAINTENANCE ORGANIZATIONS (HMOS) AND/OR SIMILAR ESTABLISHMENTS - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC151",
+    "description": "PROFESSIONAL FEES PAID TO MEDICAL PRACTITIONERS (INCLUDES DOCTORS OF MEDICINE DOCTORS OF VETERINARY SCIENCE & DENTISTS) BY HOSPITALS & CLINICS OR PAID DIRECTLY BY HEALTH MAINTENANCE ORGANIZATIONS (HMOS) AND/OR SIMILAR ESTABLISHMENTS - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC156",
+    "description": "INCOME PAYMENTS MADE BY CREDIT CARD COMPANIES",
+    "rate": "0.5"
+  },
+  {
+    "code": "WC640",
+    "description": "INCOME PAYMENTS MADE BY THE GOVERNMENT AND GOVERNMENT-OWNED AND CONTROLLED CORPORATIONS (GOCCS) TO ITS LOCAL/RESIDENT SUPPLIERS OF GOODS OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC157",
+    "description": "INCOME PAYMENTS MADE BY THE GOVERNMENT AND GOVERNMENT-OWNED AND CONTROLLED CORPORATIONS (GOCCS) TO ITS LOCAL/RESIDENT SUPPLIERS OF SERVICES OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC158",
+    "description": "INCOME PAYMENT MADE BY TOP WITHHOLDING AGENTS TO THEIR LOCAL/RESIDENT SUPPLIER OF GOODS OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC160",
+    "description": "INCOME PAYMENT MADE BY TOP WITHHOLDING AGENTS TO THEIR  LOCAL/RESIDENT SUPPLIER OF SERVICES OTHER THAN THOSE COVERED BY OTHER RATES OF WITHHOLDING TAX",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC515",
+    "description": "COMMISSIONS, REBATES, DISCOUNTS AND OTHER SIMILAR CONSIDERATIONS PAID/ GRANTED TO INDEPENDENT AND/OR EXCLUSIVE SALES REPRESENTATIVES AND MARKETING AGENTS AND SUB-AGENTS OF COMPANIES, INCLUDING MULTI-LEVEL MARKETING COMPANIES - IF GROSS INCOME FOR THE CURRENT YEAR DID NOT EXCEED P 720,000",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC516",
+    "description": "COMMISSIONS, REBATES, DISCOUNTS AND OTHER SIMILAR CONSIDERATIONS PAID/ GRANTED TO INDEPENDENT AND/OR EXCLUSIVE SALES REPRESENTATIVES AND MARKETING AGENTS AND SUB-AGENTS OF COMPANIES, INCLUDING MULTI-LEVEL MARKETING COMPANIES - IF GROSS INCOME EXCEEDS P 720,000",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC535",
+    "description": "PAYMENTS MADE BY PRE-NEED COMPANIES TO FUNERAL PARLORS",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC540",
+    "description": "TOLLING FEES PAID TO REFINERIES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC610",
+    "description": "INCOME PAYMENTS MADE TO SUPPLIERS OF AGRICULTURAL PRODUCTS IN EXCESS OF CUMULATIVE AMOUNT OF P 300,000 WITHIN THE SAME TAXABLE YEAR",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC630",
+    "description": "INCOME PAYMENTS ON PURCHASES OF MINERALS, MINERAL PRODUCTS AND QUARRY RESOURCES, SUCH AS BUT NOT LIMITED TO SILVER, GOLD, MARBLE, GRANITE, GRAVEL, SAND, BOULDERS AND OTHER MINERAL PRODUCTS EXCEPT PURCHASES BY BANGKO SENTRAL NG PILIPINAS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC632",
+    "description": "INCOME PAYMENTS ON PURCHASES OF MINERALS, MINERAL PRODUCTS AND QUARRY RESOURCES BY BANGKO SENTRAL NG PILIPINAS (BSP) FROM GOLD MINERS/SUPPLIERS UNDER PD 1899, AS AMENDED BY RA NO. 7076",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC650",
+    "description": "ON GROSS AMOUNT OF REFUND GIVEN BY MERALCO TO CUSTOMERS WITH ACTIVE CONTRACTS AS CLASSIFIED BY MERALCO",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC651",
+    "description": "ON GROSS AMOUNT OF REFUND GIVEN BY MERALCO TO CUSTOMERS WITH TERMINATED CONTRACTS AS CLASSIFIED BY MERALCO",
+    "rate": "32.0"
+  },
+  {
+    "code": "WC660",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF RESIDENTIAL AND GENERAL SERVICE CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY MERALCO",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC661",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF  NON-RESIDENTIAL CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY MERALCO",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC662",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF RESIDENTIAL AND GENERAL SERVICE CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY OTHER ELECTRIC DISTRIBUTION UTILITIES (DU)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC663",
+    "description": "ON GROSS AMOUNT OF INTEREST ON THE REFUND OF METER DEPOSIT WHETHER PAID DIRECTLY TO THE CUSTOMERS OR APPLIED AGAINST CUSTOMER'S BILLINGS OF  NON- RESIDENTIAL CUSTOMERS WHOSE MONTHLY ELECTRICITY CONSUMPTION EXCEEDS 200 KWH AS CLASSIFIED BY OTHER ELECTRIC DISTRIBUTION UTILITIES (DU)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC680",
+    "description": "INCOME PAYMENTS MADE BY POLITICAL PARTIES AND CANDIDATES OF LOCAL AND NATIONAL ELECTIONS ON ALL THEIR PURCHASES OF GOODS AND SERVICES RELATED TO CAMPAIGN EXPENDITURES, AND INCOME PAYMENTS MADE BY INDIVIDUALS OR JURIDICAL PERSONS FOR THEIR PURCHASES OF GOODS AND SERVICES INTENDED TO BE GIVEN AS CAMPAIGN CONTRIBUTIONS TO POLITICAL PARTIES AND CANDIDATES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC690",
+    "description": "INCOME PAYMENTS RECEIVED BY REAL ESTATE INVESTMENT TRUST (REIT)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC710",
+    "description": "INTEREST INCOME DERIVED FROM ANY OTHER DEBT INSTRUMENTS NOT WITHIN THE COVERAGE OF DEPOSIT SUBSTITUTES AND REVENUE REGULATIONS NO. 14-2012",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC720",
+    "description": "INCOME PAYMENTS ON LOCALLY PRODUCED RAW SUGAR",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI820",
+    "description": "ON THE GROSS REMITTANCES BY E-MARKETPLACE OPERATORS TO THE SELLERS/MERCHANTS FOR THE GOODS OR SERVICES SOLD/PAID THROUGH THEIR PLATFORM/FACILITY-INDIVIDUAL.",
+    "rate": "0.5"
+  },
+  {
+    "code": "WI830",
+    "description": "ON THE GROSS REMITTANCES BY DIGITAL FINANCIAL SERVICES PROVIDERS TO THE SELLERS/MERCHANTS FOR THE GOODS OR SERVICES SOLD/PAID THROUGH THEIR PLATFORM/FACILITY-INDIVIDUAL",
+    "rate": "0.5"
+  },
+  {
+    "code": "WC820",
+    "description": "ON THE GROSS REMITTANCES BY E-MARKETPLACE OPERATORS TO THE SELLERS/MERCHANTS FOR THE GOODS OR SERVICES SOLD/PAID THROUGH THEIR PLATFORM/FACILITY-CORPORATE",
+    "rate": "0.5"
+  },
+  {
+    "code": "WC830",
+    "description": "ON THE GROSS REMITTANCES BY DIGITAL FINANCIAL SERVICES PROVIDERS TO THE SELLERS/MERCHANTS FOR THE GOODS OR SERVICES SOLD/PAID THROUGH THEIR PLATFORM/FACILITY-CORPORATE",
+    "rate": "0.5"
+  },
+  {
+    "code": "WI202",
+    "description": "CASH DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI203",
+    "description": "PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI224",
+    "description": "CASH DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO NON-RESIDENT ALIEN ENGAGE IN TRADE OR BUSINESS WITHIN THE PHILIPPINES (NRAETB)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI225",
+    "description": "PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO NRAETB",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI226",
+    "description": "SHARE OF NRAETB IN THE DISTRIBUTABLE NET INCOME AFTER TAX OF A PARTNERSHIP (EXCEPT GENERAL PROFESSIONAL PARTNERSHIP) OF WHICH HE IS A PARTNER, OR SHARE IN THE NET INCOME AFTER TAX OF AN ASSOCIATION, JOINT ACCOUNT OR A JOINT VENTURE TAXABLE AS A CORPORATION OF WHICH HE IS A MEMBER OR A CO-VENTURER",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI240",
+    "description": "DISTRIBUTIVE SHARE OF INDIVIDUAL PARTNERS IN A TAXABLE PARTNERSHIP, ASSOCIATION, JOINT ACCOUNT OR JOINT VENTURE OR CONSORTIUM",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI250",
+    "description": "ALL KINDS OF ROYALTY PAYMENTS TO CITIZENS, RESIDENTS ALIENS AND NRAETB (OTHER THAN WI380 AND WI341), DOMESTIC AND RESIDENT FOREIGN CORPORATIONS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI260",
+    "description": "ON PRIZES EXCEEDING P10,000 AND OTHER WINNINGS PAID TO INDIVIDUALS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI310",
+    "description": "ON PAYMENTS TO OIL EXPLORATION SERVICE CONTRACTORS/SUB-CONTRACTORS",
+    "rate": "8.0"
+  },
+  {
+    "code": "WI330",
+    "description": "PAYMENTS TO NON-RESIDENT ALIEN NOT ENGAGE IN TRADE OR BUSINESS WITHIN THE PHILIPPINES (NRANETB) EXCEPT ON SALE OF SHARES IN DOMESTIC CORPORATION AND REAL PROPERTY",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI340",
+    "description": "ON PAYMENTS TO NON-RESIDENT INDIVIDUAL/FOREIGN CORPORATE CINEMATOGRAPHIC FILM OWNERS, LESSORS OR DISTRIBUTORS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI341",
+    "description": "ROYALTIES PAID TO NRAETB ON CINEMATOGRAPHIC FILMS AND SIMILAR WORKS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI350",
+    "description": "FINAL TAX ON INTEREST OR OTHER PAYMENTS UPON TAX-FREE COVENANT BONDS, MORTGAGES, DEEDS OF TRUST OR OTHER OBLIGATIONS UNDER SEC. 57C OF THE NATIONAL INTERNAL REVENUE CODE OF 1997, AS AMENDED",
+    "rate": "30.0"
+  },
+  {
+    "code": "WI380",
+    "description": "ROYALTIES PAID TO CITIZENS, RESIDENT ALIENS AND NRAETB ON BOOKS, OTHER LITERARY WORKS AND MUSICAL COMPOSITIONS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI410",
+    "description": "INFORMERS CASH REWARD TO INDIVIDUALS/JURIDICAL PERSONS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI700",
+    "description": "CASH OR PROPERTY DIVIDEND PAID BY A REAL ESTATE INVESTMENT TRUST (REIT)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC180",
+    "description": "INTEREST ON FOREIGN LOANS PAYABLE TO NON-RESIDENT FOREIGN CORPORATIONS (NRFCS)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC190",
+    "description": "INTEREST AND OTHER INCOME PAYMENTS ON FOREIGN CURRENCY TRANSACTIONS/LOANS PAYABLE TO OFFSHORE BANKING UNITS (OBUS)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC191",
+    "description": "INTEREST AND OTHER INCOME PAYMENTS ON FOREIGN CURRENCY TRANSACTIONS/LOANS PAYABLE TO FOREIGN CURRENCY DEPOSIT UNITS (FCDUS)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC212",
+    "description": "CASH DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCS",
+    "rate": "30.0"
+  },
+  {
+    "code": "WC213",
+    "description": "PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCS",
+    "rate": "30.0"
+  },
+  {
+    "code": "WC222",
+    "description": "CASH DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO NRFCS WHOSE COUNTRIES ALLOWED TAX DEEMED PAID CREDIT (SUBJECT TO TAX SPARING RULE)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC223",
+    "description": "PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO NRFCS WHOSE COUNTRIES ALLOWED TAX DEEMED PAID CREDIT (SUBJECT TO TAX SPARING RULE)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC230",
+    "description": "ON OTHER PAYMENTS TO NRFCS",
+    "rate": "30.0"
+  },
+  {
+    "code": "WC250",
+    "description": "ALL KINDS OF ROYALTY PAYMENTS TO CITIZENS, RESIDENTS ALIENS AND NRAETB (OTHER THAN WI380 AND WI341), DOMESTIC AND RESIDENT FOREIGN CORPORATIONS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC280",
+    "description": "BRANCH PROFIT REMITTANCES BY ALL CORPORATIONS EXCEPT PEZA/SBMA/CDA REGISTERED",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC290",
+    "description": "ON THE GROSS RENTALS, LEASE AND CHARTER FEES DERIVED BY NON-RESIDENT OWNER OR LESSOR OF FOREIGN VESSELS",
+    "rate": "4.5"
+  },
+  {
+    "code": "WC300",
+    "description": "ON THE GROSS RENTALS, CHARTERS AND OTHER FEES DERIVED BY NON-RESIDENT LESSOR OR AIRCRAFT, MACHINERIES AND EQUIPMENT",
+    "rate": "7.5"
+  },
+  {
+    "code": "WC310",
+    "description": "ON PAYMENTS TO OIL EXPLORATION SERVICE CONTRACTORS/SUB-CONTRACTORS",
+    "rate": "8.0"
+  },
+  {
+    "code": "WC340",
+    "description": "ON PAYMENTS TO NON-RESIDENT INDIVIDUAL/FOREIGN CORPORATE CINEMATOGRAPHIC FILM OWNERS, LESSORS OR DISTRIBUTORS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WC410",
+    "description": "INFORMERS CASH REWARD TO INDIVIDUALS/JURIDICAL PERSONS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC700",
+    "description": "CASH OR PROPERTY DIVIDEND PAID BY A REAL ESTATE INVESTMENT TRUST (REIT)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI202",
+    "description": "CASH DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI203",
+    "description": "PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI224",
+    "description": "CASH DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO NON-RESIDENT ALIEN ENGAGE IN TRADE OR BUSINESS WITHIN THE PHILIPPINES (NRAETB)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI225",
+    "description": "PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO NRAETB",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI226",
+    "description": "SHARE OF NRAETB IN THE DISTRIBUTABLE NET INCOME AFTER TAX OF A PARTNERSHIP (EXCEPT GENERAL PROFESSIONAL PARTNERSHIP) OF WHICH HE IS A PARTNER, OR SHARE IN THE NET INCOME AFTER TAX OF AN ASSOCIATION, JOINT ACCOUNT OR A JOINT VENTURE TAXABLE AS A CORPORATION OF WHICH HE IS A MEMBER OR A CO-VENTURER",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI240",
+    "description": "DISTRIBUTIVE SHARE OF INDIVIDUAL PARTNERS IN A TAXABLE PARTNERSHIP, ASSOCIATION, JOINT ACCOUNT OR JOINT VENTURE OR CONSORTIUM",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI250",
+    "description": "ALL KINDS OF ROYALTY PAYMENTS TO CITIZENS, RESIDENTS ALIENS AND NRAETB (OTHER THAN WI380 AND WI341), DOMESTIC AND RESIDENT FOREIGN CORPORATIONS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI260",
+    "description": "ON PRIZES EXCEEDING P10,000 AND OTHER WINNINGS PAID TO INDIVIDUALS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI310",
+    "description": "ON PAYMENTS TO OIL EXPLORATION SERVICE CONTRACTORS/SUB-CONTRACTORS",
+    "rate": "8.0"
+  },
+  {
+    "code": "WI330",
+    "description": "PAYMENTS TO NON-RESIDENT ALIEN NOT ENGAGE IN TRADE OR BUSINESS WITHIN THE PHILIPPINES (NRANETB) EXCEPT ON SALE OF SHARES IN DOMESTIC CORPORATION AND REAL PROPERTY",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI340",
+    "description": "ON PAYMENTS TO NON-RESIDENT INDIVIDUAL/FOREIGN CORPORATE CINEMATOGRAPHIC FILM OWNERS, LESSORS OR DISTRIBUTORS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI341",
+    "description": "ROYALTIES PAID TO NRAETB ON CINEMATOGRAPHIC FILMS AND SIMILAR WORKS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI350",
+    "description": "FINAL TAX ON INTEREST OR OTHER PAYMENTS UPON TAX-FREE COVENANT BONDS, MORTGAGES, DEEDS OF TRUST OR OTHER OBLIGATIONS UNDER SEC. 57C OF THE NATIONAL INTERNAL REVENUE CODE OF 1997, AS AMENDED",
+    "rate": "30.0"
+  },
+  {
+    "code": "WI380",
+    "description": "ROYALTIES PAID TO CITIZENS, RESIDENT ALIENS AND NRAETB ON BOOKS, OTHER LITERARY WORKS AND MUSICAL COMPOSITIONS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI410",
+    "description": "INFORMERS CASH REWARD TO INDIVIDUALS/JURIDICAL PERSONS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI700",
+    "description": "CASH OR PROPERTY DIVIDEND PAID BY A REAL ESTATE INVESTMENT TRUST (REIT)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC180",
+    "description": "INTEREST ON FOREIGN LOANS PAYABLE TO NON-RESIDENT FOREIGN CORPORATIONS (NRFCS)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC190",
+    "description": "INTEREST AND OTHER INCOME PAYMENTS ON FOREIGN CURRENCY TRANSACTIONS/LOANS PAYABLE TO OFFSHORE BANKING UNITS (OBUS)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC191",
+    "description": "INTEREST AND OTHER INCOME PAYMENTS ON FOREIGN CURRENCY TRANSACTIONS/LOANS PAYABLE TO FOREIGN CURRENCY DEPOSIT UNITS (FCDUS)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC212",
+    "description": "CASH DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCS",
+    "rate": "30.0"
+  },
+  {
+    "code": "WC213",
+    "description": "PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCS",
+    "rate": "30.0"
+  },
+  {
+    "code": "WC222",
+    "description": "CASH DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO NRFCS WHOSE COUNTRIES ALLOWED TAX DEEMED PAID CREDIT (SUBJECT TO TAX SPARING RULE)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC223",
+    "description": "PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO NRFCS WHOSE COUNTRIES ALLOWED TAX DEEMED PAID CREDIT (SUBJECT TO TAX SPARING RULE)",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC230",
+    "description": "ON OTHER PAYMENTS TO NRFCS",
+    "rate": "30.0"
+  },
+  {
+    "code": "WC250",
+    "description": "ALL KINDS OF ROYALTY PAYMENTS TO CITIZENS, RESIDENTS ALIENS AND NRAETB (OTHER THAN WI380 AND WI341), DOMESTIC AND RESIDENT FOREIGN CORPORATIONS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC280",
+    "description": "BRANCH PROFIT REMITTANCES BY ALL CORPORATIONS EXCEPT PEZA/SBMA/CDA REGISTERED",
+    "rate": "15.0"
+  },
+  {
+    "code": "WC290",
+    "description": "ON THE GROSS RENTALS, LEASE AND CHARTER FEES DERIVED BY NON-RESIDENT OWNER OR LESSOR OF FOREIGN VESSELS",
+    "rate": "4.5"
+  },
+  {
+    "code": "WC300",
+    "description": "ON THE GROSS RENTALS, CHARTERS AND OTHER FEES DERIVED BY NON-RESIDENT LESSOR OR AIRCRAFT, MACHINERIES AND EQUIPMENT",
+    "rate": "7.5"
+  },
+  {
+    "code": "WC310",
+    "description": "ON PAYMENTS TO OIL EXPLORATION SERVICE CONTRACTORS/SUB-CONTRACTORS",
+    "rate": "8.0"
+  },
+  {
+    "code": "WC340",
+    "description": "ON PAYMENTS TO NON-RESIDENT INDIVIDUAL/FOREIGN CORPORATE CINEMATOGRAPHIC FILM OWNERS, LESSORS OR DISTRIBUTORS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WC410",
+    "description": "INFORMERS CASH REWARD TO INDIVIDUALS/JURIDICAL PERSONS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WC700",
+    "description": "CASH OR PROPERTY DIVIDEND PAID BY A REAL ESTATE INVESTMENT TRUST (REIT)",
+    "rate": "10.0"
+  },
+  {
+    "code": "WI161",
+    "description": "FT-BANK DEPOSITS(INDIVIDUAL)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI162",
+    "description": "FT-FROM TREASURY BILLS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI163",
+    "description": "FT-DEP. SUBST., TRUST FUND AND SIMILAR ARRANGEMENTS(INDIVIDUAL)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI165",
+    "description": "ON AMOUNTS WITHDRAWN FROM DECEDENT'S DEPOSIT ACCOUNT",
+    "rate": "6.0"
+  },
+  {
+    "code": "WI170",
+    "description": "FINAL WTAX:FOREIGN CURRENCY DEPOSITS(INDIVIDUAL)",
+    "rate": "15.00"
+  },
+  {
+    "code": "WI440",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-INDIVIDUAL",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI441",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-INDIVIDUAL",
+    "rate": "12.0"
+  },
+  {
+    "code": "WI442",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-INDIVIDUAL",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC161",
+    "description": "FT-BANK DEPOSITS(CORPORATE)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC162",
+    "description": "FT-FROM TREASURY BILLS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC163",
+    "description": "FT-DEP. SUBST., TRUST FUND AND SIMILAR ARRANGEMENTS(CORPORATE)",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC170",
+    "description": "FINAL WTAX:FOREIGN CURRENCY DEPOSITS(CORPORATE)",
+    "rate": "15.00"
+  },
+  {
+    "code": "WC440",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-CORPORATE",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI440",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-INDIVIDUAL",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI441",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-INDIVIDUAL",
+    "rate": "12.0"
+  },
+  {
+    "code": "WI442",
+    "description": "ON INTEREST INCOME FROM LONG-TERM DEPOSIT IN THE FORM OF SAVINGS TRUST FUNDS, DEPOSIT SUBSTITUTES WHICH WAS PRE-TERMINATED BY THE HOLDER BEFORE THE 5TH YEAR-INDIVIDUAL",
+    "rate": "5.0"
+  },
+  {
+    "code": "PT010",
+    "description": "PERSON EXEMPT FROM VAT UNDER SEC. 109(BB) (SEC. 116)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB080",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109V (CREDITABLE)-GOVERNMENT WITHHOLDING AGENT",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB080",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109V (CREDITABLE)-GOVERNMENT WITHHOLDING AGENT",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB082",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109V (CREDITABLE)-PRIVATE WITHHOLDING AGENT",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB084",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109V (FINAL)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB082",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109V (CREDITABLE)-PRIVATE WITHHOLDING AGENT",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB084",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109V (FINAL)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC212",
+    "description": "CASH DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WC213",
+    "description": "PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WC810",
+    "description": "FINAL TAX REPRESENTING FRANCHISE TAX ON PAYMENTS TO NRFC SUPPLIER OF PAGCOR RELATED TO ITS GAMING OPERATIONS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WC230",
+    "description": "ON OTHER PAYMENTS TO NRFCS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI240",
+    "description": "DISTRIBUTIVE SHARE OF INDIVIDUAL PARTNERS IN A TAXABLE PARTNERSHIP, ASSOCIATION, JOINT ACCOUNT OR JOINT VENTURE OR CONSORTIUM",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI341",
+    "description": "ROYALTIES PAID TO NRAETB ON CINEMATOGRAPHIC FILMS AND SIMILAR WORKS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI350",
+    "description": "FINAL TAX ON INTEREST OR OTHER PAYMENTS UPON TAX-FREE COVENANT BONDS, MORTGAGES, DEEDS OF TRUST OR OTHER OBLIGATIONS UNDER SEC. 57C OF THE NATIONAL INTERNAL REVENUE CODE OF 1997, AS AMENDED",
+    "rate": "20.0"
+  },
+  {
+    "code": "WC212",
+    "description": "CASH DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WC213",
+    "description": "PROPERTY DIVIDEND PAYMENT BY DOMESTIC CORPORATION TO CITIZENS AND RESIDENT ALIENS/NRFCS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WC230",
+    "description": "ON OTHER PAYMENTS TO NRFCS",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI240",
+    "description": "DISTRIBUTIVE SHARE OF INDIVIDUAL PARTNERS IN A TAXABLE PARTNERSHIP, ASSOCIATION, JOINT ACCOUNT OR JOINT VENTURE OR CONSORTIUM",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI341",
+    "description": "ROYALTIES PAID TO NRAETB ON CINEMATOGRAPHIC FILMS AND SIMILAR WORKS",
+    "rate": "20.0"
+  },
+  {
+    "code": "WI350",
+    "description": "FINAL TAX ON INTEREST OR OTHER PAYMENTS UPON TAX-FREE COVENANT BONDS, MORTGAGES, DEEDS OF TRUST OR OTHER OBLIGATIONS UNDER SEC. 57C OF THE NATIONAL INTERNAL REVENUE CODE OF 1997, AS AMENDED",
+    "rate": "20.0"
+  },
+  {
+    "code": "WB030",
+    "description": "TAX ON CARRIERS AND KEEPERS OF GARAGES",
+    "rate": "3.0"
+  },
+  {
+    "code": "WB040",
+    "description": "FRANCHISE TAX ON GAS AND UTILITIES",
+    "rate": "2.0"
+  },
+  {
+    "code": "WB050",
+    "description": "FRANCHISE TAX ON RADIO & RADIO & TV BROADCASTING COMPANIES WHOSE ANNUAL GROSS RECEIPTS DO NOT EXCEED P10M & WHO ARE NOT VAT-REGISTERED TAXPAYERS",
+    "rate": "3.0"
+  },
+  {
+    "code": "WB070",
+    "description": "TAX ON LIFE INSURANCE PREMIUMS",
+    "rate": "2.0"
+  },
+  {
+    "code": "WB080",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109BB (CREDITABLE)-GOVERNMENT WITHHOLDING AGENT",
+    "rate": "3.0"
+  },
+  {
+    "code": "WB080",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109BB (CREDITABLE)-GOVERNMENT WITHHOLDING AGENT",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB082",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109BB (CREDITABLE)-PRIVATE WITHHOLDING AGENT",
+    "rate": "3.0"
+  },
+  {
+    "code": "WB082",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109BB (CREDITABLE)-PRIVATE WITHHOLDING AGENT",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB084",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SECTION 109BB (FINAL) (SECTION 116 APPLIES)",
+    "rate": "3.0"
+  },
+  {
+    "code": "WB084",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SECTION 109BB (FINAL) (SECTION 116 APPLIES)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB090",
+    "description": "TAX ON OVERSEAS DISPATCH, MESSAGE OR CONVERSATION FROM THE PHILIPPINES",
+    "rate": "10.0"
+  },
+  {
+    "code": "WB120",
+    "description": "BUSINESS TAX ON AGENTS OF FOREIGN INSURANCE COMPANIES \u2013 INSURANCE AGENTS",
+    "rate": "4.0"
+  },
+  {
+    "code": "WB121",
+    "description": "BUSINESS TAX ON AGENTS OF FOREIGN INSURANCE COMPANIES \u2013 OWNER OF THE PROPERTY",
+    "rate": "5.0"
+  },
+  {
+    "code": "WB130",
+    "description": "TAX ON INTERNATIONAL CARRIERS",
+    "rate": "3.0"
+  },
+  {
+    "code": "WB140",
+    "description": "TAX ON COCKPITS",
+    "rate": "18.0"
+  },
+  {
+    "code": "WB150",
+    "description": "TAX ON AMUSEMENT PLACES, SUCH AS CABARETS, NIGHT AND DAY CLUBS, VIDEOKE BARS, KARAOKE BARS, KARAOKE TELEVISION, KARAOKE BOXES, MUSIC LOUNGES AND OTHER SIMILAR ESTABLISHMENTS",
+    "rate": "18.0"
+  },
+  {
+    "code": "WB160",
+    "description": "TAX ON BOXING EXHIBITIONS",
+    "rate": "10.0"
+  },
+  {
+    "code": "WB170",
+    "description": "TAX ON PROFESSIONAL BASKETBALL GAMES",
+    "rate": "15.0"
+  },
+  {
+    "code": "WB180",
+    "description": "TAX ON JAI-ALAI AND RACE TRACKS",
+    "rate": "30.0"
+  },
+  {
+    "code": "WB200",
+    "description": "TAX ON SALE, BARTER OR EXCHANGE OF STOCKS LISTED AND TRADED THROUGH LOCAL STOCK EXCHANGE",
+    "rate": "0.6"
+  },
+  {
+    "code": "WB201",
+    "description": "TAX ON SHARES OF STOCK SOLD OR EXCHANGED THROUGH INITIAL AND SECONDARY PUBLIC OFFERING: NOT OVER 25%",
+    "rate": "4.0"
+  },
+  {
+    "code": "WB202",
+    "description": "TAX ON SHARES OF STOCK SOLD OR EXCHANGED THROUGH INITIAL AND SECONDARY PUBLIC OFFERING: OVER 25% BUT NOT EXCEEDING 33 1/3%",
+    "rate": "2.0"
+  },
+  {
+    "code": "WB203",
+    "description": "TAX ON SHARES OF STOCK SOLD OR EXCHANGED THROUGH INITIAL AND SECONDARY PUBLIC OFFERING: OVER 33 1/3%",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB301",
+    "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI BANKING FUNCTIONS (ON INTEREST, COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES AS WELL AS INCOME FROM FINANCIAL LEASING, ON THE BASIS OF THE REMAINING MATURITIES OF INSTRUMENT FROM WHICH SUCH RECEIPTS ARE DERIVED: MATURITY PERIOD IS FIVE YEARS OR LESS)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WB303",
+    "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI BANKING FUNCTIONS (ON INTEREST, COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES AS WELL AS INCOME FROM FINANCIAL LEASING, ON THE BASIS OF THE REMAINING MATURITIES OF INSTRUMENT FROM WHICH SUCH RECEIPTS ARE DERIVED: MATURITY PERIOD IS MORE THAN FIVE YEARS)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB102",
+    "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI BANKING FUNCTIONS (ON DIVIDENDS AND EQUITY SHARES AND NET INCOME OF SUBSIDIARIES)",
+    "rate": "0.0"
+  },
+  {
+    "code": "WB103",
+    "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI BANKING FUNCTIONS (ON ROYALTIES, RENTALS OF PROPERTY, REAL OR PERSONAL, PROFITS FROM EXCHANGE AND ALL OTHER ITEMS TREATED AS GROSS INCOME UNDER THE CODE)",
+    "rate": "7.0"
+  },
+  {
+    "code": "WB104",
+    "description": "TAX ON BANKS AND NON-BANK FINANCIAL INTERMEDIARIES PERFORMING QUASI BANKING FUNCTIONS (ON NET TRADING GAINS WITHIN THE TAXABLE YEAR ON FOREIGN CURRENCY, DEBT SECURITIES, DERIVATIVES AND OTHER SIMILAR FINANCIAL INSTRUMENTS)",
+    "rate": "7.0"
+  },
+  {
+    "code": "WB108",
+    "description": "TAX ON OTHER NON-BANKS FINANCIAL INTERMEDIARIES NOT PERFORMING QUASI-BANKING FUNCTIONS (ON INTEREST, COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES AS WELL AS INCOME FROM FINANCIAL LEASING, ON THE BASIS OF THE REMAINING MATURITIES OF INSTRUMENT FROM WHICH SUCH RECEIPTS ARE DERIVED: MATURITY PERIOD IS FIVE YEARS OR LESS)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WB109",
+    "description": "TAX ON OTHER NON-BANKS FINANCIAL INTERMEDIARIES NOT PERFORMING QUASI-BANKING FUNCTIONS (ON INTEREST, COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES AS WELL AS INCOME FROM FINANCIAL LEASING, ON THE BASIS OF THE REMAINING MATURITIES OF INSTRUMENT FROM WHICH SUCH RECEIPTS ARE DERIVED: MATURITY PERIOD IS MORE THAN FIVE YEARS)",
+    "rate": "1.0"
+  },
+  {
+    "code": "WB110",
+    "description": "TAX ON OTHER NON-BANKS FINANCIAL INTERMEDIARIES NOT PERFORMING QUASI-BANKING FUNCTIONS (ON ALL OTHER ITEMS TREATED AS GROSS INCOME UNDER THE CODE)",
+    "rate": "5.0"
+  },
+  {
+    "code": "WV010",
+    "description": "VAT WITHHOLDING ON PURCHASE OF GOODS",
+    "rate": "5.0"
+  },
+  {
+    "code": "WV020",
+    "description": "VAT WITHHOLDING ON PURCHASE OF SERVICES",
+    "rate": "5.0"
+  },
+  {
+    "code": "WV110",
+    "description": "VAT ON LOCAL SALES OF REGISTERED BUSINESS ENTERPRISES (RBEs)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV040",
+    "description": "FINAL WITHHOLDING VAT ON PAYMENTS FOR LEASE OR USE OF PROPERTIES OR PROPERTY RIGHTS OWNED BY NONRESIDENTS (GOVERNMENT WITHHOLDING AGENT)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV050",
+    "description": "FINAL WITHHOLDING VAT ON PAYMENTS FOR LEASE OR USE OF PROPERTIES OR PROPERTY RIGHTS OWNED BY NONRESIDENTS (PRIVATE WITHHOLDING AGENT)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV060",
+    "description": "FINAL WITHHOLDING VAT ON OTHER SERVICES RENDERED IN THE PHILIPPINES BY NON-RESIDENTS (GOVERNMENT WITHHOLDING AGENT)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV070",
+    "description": "FINAL WITHHOLDING VAT ON OTHER SERVICES RENDERED IN THE PHILIPPINES BY NON-RESIDENTS (PRIVATE WITHHOLDING AGENT)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV012",
+    "description": "VAT WITHHOLDING ON PURCHASES OF GOODS (WITH WAIVER OF PRIVILEGE TO CLAIM INPUT TAX CREDIT) (CREDITABLE)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV014",
+    "description": "VAT WITHHOLDING ON PURCHASES OF GOODS (WITH WAIVER OF PRIVILEGE TO CLAIM INPUT TAX CREDIT) (FINAL)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV022",
+    "description": "VAT WITHHOLDING ON PURCHASES OF SERVICES (WITH WAIVER OF PRIVILEGE TO CLAIM INPUT TAX CREDIT)(CREDITABLE)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV024",
+    "description": "VAT WITHHOLDING ON PURCHASES OF SERVICES (WITH WAIVER OF PRIVILEGE TO CLAIM INPUT TAX CREDIT) (FINAL)",
+    "rate": "12.0"
+  },
+  {
+    "code": "DS010",
+    "description": "DOCUMENTARY STAMP TAX IN GENERAL",
+    "rate": ""
+  },
+  {
+    "code": "IC080",
+    "description": "INCOME TAX ON INTERNATIONAL CARRIERS",
+    "rate": ""
+  },
+  {
+    "code": "WI770",
+    "description": "INCOME PAYMENTS MADE BY JOINT VENTURES, WHETHER INCORPORATED OR NOT, TAXABLE OR NON-TAXABLE, TO THEIR LOCAL/RESIDENT SUPPLIER OF GOODS. INDIVIDUAL",
+    "rate": "1.0"
+  },
+  {
+    "code": "WI780",
+    "description": "INCOME PAYMENTS MADE BY JOINT VENTURES, WHETHER INCORPORATED OR NOT, TAXABLE OR NON-TAXABLE, TO THEIR LOCAL/RESIDENT SUPPLIER OF SERVICES. INDIVIDUAL",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC770",
+    "description": "INCOME PAYMENTS MADE BY JOINT VENTURES, WHETHER INCORPORATED OR NOT, TAXABLE OR NON-TAXABLE, TO THEIR LOCAL/RESIDENT SUPPLIER OF GOODS. CORPORATE",
+    "rate": "1.0"
+  },
+  {
+    "code": "WC780",
+    "description": "INCOME PAYMENTS MADE BY JOINT VENTURES, WHETHER INCORPORATED OR NOT, TAXABLE OR NON-TAXABLE, TO THEIR LOCAL/RESIDENT SUPPLIER OF SERVICES. CORPORATE",
+    "rate": "2.0"
+  },
+  {
+    "code": "WC790",
+    "description": "ON THE SHARE OF EACH CO-VENTURER/MEMBER FROM THE NET INCOME OF THE JOINT VENTURE/CONSORTIUM NOT TAXABLE AS CORPORATION PRIOR TO ACTUAL OR CONSTRUCTIVE DISTRIBUTION THEREOF. CORPORATE",
+    "rate": "15.0"
+  },
+  {
+    "code": "PT010",
+    "description": "PERSONS EXEMPT FROM VAT UNDER SEC. 109(BB) (SEC. 116)",
+    "rate": ""
+  },
+  {
+    "code": "PT040",
+    "description": "DOMESTIC CARRIERS AND KEEPERS OF GARAGES (SEC. 117)",
+    "rate": ""
+  },
+  {
+    "code": "PT041",
+    "description": "PERCENTAGE TAX ON INTERNATIONAL CARRIERS",
+    "rate": ""
+  },
+  {
+    "code": "PT060",
+    "description": "FRANCHISES ON GAS AND WATER UTILITIES (SEC. 119)",
+    "rate": ""
+  },
+  {
+    "code": "PT070",
+    "description": "FRANCHISES ON RADIO/TV BROADCASTING COMPANIES WHOSE ANNUAL GROSS RECEIPTS DO NOT EXCEED P10 M (SEC. 119)",
+    "rate": ""
+  },
+  {
+    "code": "PT090",
+    "description": "OVERSEAS DISPATCH, MESSAGE OR CONVERSATION ORIGINATING FROM THE PHILIPPINES (SEC. 120)",
+    "rate": ""
+  },
+  {
+    "code": "PT140",
+    "description": "COCKPITS (SEC. 125)",
+    "rate": ""
+  },
+  {
+    "code": "PT150",
+    "description": "TAX ON AMUSEMENT PLACES, SUCH AS CABARETS, NIGHT AND DAY CLUBS, VIDEOKE BARS, KARAOKE BARS, KARAOKE TELEVISION, KARAOKE BOXES, MUSIC LOUNGES AND OTHER SIMILAR ESTABLISHMENTS (SEC. 125)",
+    "rate": ""
+  },
+  {
+    "code": "PT160",
+    "description": "BOXING EXHIBITION (SEC. 125)",
+    "rate": ""
+  },
+  {
+    "code": "PT170",
+    "description": "PROFESSIONAL BASKETBALL GAMES (SEC. 125)",
+    "rate": ""
+  },
+  {
+    "code": "PT180",
+    "description": "JAI-ALAI AND RACE TRACKS (SEC. 125)",
+    "rate": ""
+  },
+  {
+    "code": "PT105",
+    "description": "ON INTEREST, COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES AS WELL AS INCOME FROM FINANCIAL LEASING, ON THE BASIS OF REMAINING MATURITIES OF INSTRUMENTS FROM WHICH SUCH RECEIPTS ARE DERIVED. MATURITY PERIOD IS FIVE (5) YEARS OR LESS",
+    "rate": ""
+  },
+  {
+    "code": "PT101",
+    "description": "ON INTEREST, COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES AS WELL AS INCOME FROM FINANCIAL LEASING, ON THE BASIS OF REMAINING MATURITIES OF INSTRUMENTS FROM WHICH SUCH RECEIPTS ARE DERIVED. MATURITY PERIOD IS MORE THAN FIVE (5) YEARS",
+    "rate": ""
+  },
+  {
+    "code": "PT102",
+    "description": "ON DIVIDENDS AND EQUITY SHARES AND NET INCOME OF SUBSIDIARIES",
+    "rate": ""
+  },
+  {
+    "code": "PT103",
+    "description": "ON ROYALTIES, RENTALS OF PROPERTY, REAL OR PERSONAL, PROFITS FROM EXCHANGE AND ALL OTHER GROSS INCOME",
+    "rate": ""
+  },
+  {
+    "code": "PT104",
+    "description": "ON NET TRADING GAINS WITHIN THE TAXABLE YEAR ON FOREIGN CURRENCY, DEBT SECURITIES, DERIVATIVES AND OTHER FINANCIAL INSTRUMENTS",
+    "rate": ""
+  },
+  {
+    "code": "PT113",
+    "description": "ON INTEREST, COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES AS WELL AS INCOME FROM FINANCIAL LEASING, ON THE BASIS OF REMAINING MATURITIES OF INSTRUMENTS FROM WHICH SUCH RECEIPTS ARE DERIVED. MATURITY PERIOD IS FIVE (5) YEARS OR LESS",
+    "rate": ""
+  },
+  {
+    "code": "PT114",
+    "description": "ON INTEREST, COMMISSIONS AND DISCOUNTS FROM LENDING ACTIVITIES AS WELL AS INCOME FROM FINANCIAL LEASING, ON THE BASIS OF REMAINING MATURITIES OF INSTRUMENTS FROM WHICH SUCH RECEIPTS ARE DERIVED. MATURITY PERIOD IS MORE THAN FIVE (5) YEARS",
+    "rate": ""
+  },
+  {
+    "code": "PT115",
+    "description": "FROM ALL OTHER ITEMS TREATED AS GROSS INCOME UNDER THE CODE",
+    "rate": ""
+  },
+  {
+    "code": "PT120",
+    "description": "LIFE INSURANCE PREMIUMS (SEC. 123)",
+    "rate": ""
+  },
+  {
+    "code": "PT130",
+    "description": "INSURANCE AGENTS",
+    "rate": ""
+  },
+  {
+    "code": "PT132",
+    "description": "OWNERS OF PROPERTY OBTAINING INSURANCE DIRECTLY WITH FOREIGN INSURANCE COMPANIES",
+    "rate": ""
+  },
+  {
+    "code": "WI740",
+    "description": "FINAL WT ON FOREIGN NATIONALS EMPLOYED BY POGO ENTITIES",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI750",
+    "description": "ON GROSS INCOME EARNED BY FOREIGN NATIONALS OR NON-FILIPINO CITIZENS, REGARDLESS OF THEIR RESIDENCY, WHO ARE EMPLOYED AND ASSIGNED IN THE PHILIPPINES BY OFFSHORE GAMING LICENSEE OR ITS ACCREDITED SERVICE PROVIDER.",
+    "rate": "25.0"
+  },
+  {
+    "code": "WI240",
+    "description": "Distributive share of individual partners in a taxable partnership, association, joint account or joint venture or consortium;20",
+    "rate": "P"
+  },
+  {
+    "code": "WI341",
+    "description": "Royalties paid to NRAETB on cinematographic fils and similar works;20",
+    "rate": "P"
+  },
+  {
+    "code": "WC212",
+    "description": "Cash dividend payment by domestic corporation to citizens and resident aliens/NRFCs; 25",
+    "rate": "P"
+  },
+  {
+    "code": "WC213",
+    "description": "Property dividend payment by domestic corporation to citizens and resident aliens/NRFCs;25",
+    "rate": "P"
+  },
+  {
+    "code": "WC230",
+    "description": "ON OTHER PAYMENTS TO NRFCS",
+    "rate": "25.0"
+  },
+  {
+    "code": "EXB10",
+    "description": "EXCISE TAX ON EXPORT OF SWEETENED JUICE DRINKS",
+    "rate": ""
+  },
+  {
+    "code": "WV080",
+    "description": "FINAL WITHHOLDING VAT ON PURCHASE OF DIGITAL SERVICE CONSUMED IN THE PHILS FROM NON-RESIDENT DSPs (PRIVATE WA)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV090",
+    "description": "FINAL WITHHOLDING VAT ON PURCHASE OF DIGITAL SERVICE CONSUMED IN THE PHILS FROM NON-RESIDENT DSPs (GOVT WA)",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV100",
+    "description": "FINAL WITHHOLDING VAT ON THE GROSS AMOUNT BY RESIDENT E-MARKETPLACE TO THE NON-RESIDENT SELLERS/MERCHANTS FOR THE DIGITAL SERVICES SOLD/PAID THRU THEIR PLATFORM/FACILITY",
+    "rate": "12.0"
+  },
+  {
+    "code": "WV110",
+    "description": "VAT ON LOCAL SALES OF REGISTERED BUSINESS ENTERPRISES (RBEs)",
+    "rate": ""
+  }
+]

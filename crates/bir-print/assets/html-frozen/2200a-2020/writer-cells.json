@@ -1,0 +1,1574 @@
+{
+ "form_id": "2200a-v2020",
+ "html_slug": "2200a-2020",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (frozen page text layer) names the item. Booleans take xbox_joins (box immediately left of the printed option; _1/_2/_3 follow printed order). Schedule 1 rows map by ATC block, the printed effective-date caption and the Export/Taxable/Due column headers. The second group of Php 50.60 blocks on page 3 is left out. Page-2/3 header repeats of tinA/branchCode/registeredName are left out because each writer key can be joined once. Address line 2, Part IV date combs and tax agent cells stay blank because the layout has no key for them. Items 8-9 share one 40-slot comb, and each of items 10 and 11 has one 40-slot comb for its region, province and city codes; each comb takes one derived print-map line (to_print_field_map) with the values placed under their own captions. The three Others rows join ATC, description, tax bracket and rate by the column captions of the Schedule 1 header. Since #113: the page 2/3 header comb, the item 7 second line and the page 3 XA056 block (keys matched by the ATC, effective date and rate the model gives each key) print too; every other value has a reviewed not_joined reason. One writer key may fill several cells (html_ids).",
+ "joins": [
+  {
+   "writer_key": "frm2200Av2020:txtDateMonth",
+   "html_id": "p1c4",
+   "printed": "1 Date (MM/DD/YYYY), month",
+   "reason": "first of three combs under item 1 caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtDateDay",
+   "html_id": "p1c6",
+   "printed": "1 Date (MM/DD/YYYY), day",
+   "reason": "middle comb under item 1 caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtDateYear",
+   "html_id": "p1c8",
+   "printed": "1 Date (MM/DD/YYYY), year",
+   "reason": "last comb under item 1 caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSheets",
+   "html_id": "p1c11",
+   "printed": "3 Number of Sheet/s Attached",
+   "reason": "caption left of the 2-slot comb"
+  },
+  {
+   "writer_key": "frm2200Av2020:tinA",
+   "html_id": "p1c16",
+   "printed": "4 TIN part 1",
+   "reason": "first 3-slot TIN comb under item 4 caption (page 1 only)"
+  },
+  {
+   "writer_key": "frm2200Av2020:tinB",
+   "html_id": "p1c18",
+   "printed": "4 TIN part 2",
+   "reason": "3-slot comb after the first dash"
+  },
+  {
+   "writer_key": "frm2200Av2020:tinC",
+   "html_id": "p1c20",
+   "printed": "4 TIN part 3",
+   "reason": "3-slot comb after the second dash"
+  },
+  {
+   "writer_key": "frm2200Av2020:branchCode",
+   "html_id": "p1c22",
+   "printed": "4 TIN branch",
+   "reason": "5-slot branch comb after the third dash"
+  },
+  {
+   "writer_key": "frm2200Av2020:rdoCode",
+   "html_id": "p1c24",
+   "printed": "5 RDO Code",
+   "reason": "caption left of the comb"
+  },
+  {
+   "writer_key": "frm2200Av2020:registeredName",
+   "html_id": "p1c26",
+   "printed": "6 Taxpayer Name",
+   "reason": "full-width comb under item 6 caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:zipCode",
+   "html_id": "p1c31",
+   "printed": "7A ZIP Code",
+   "reason": "caption left of the 4-slot comb"
+  },
+  {
+   "writer_key": "frm2200Av2020:treatyY",
+   "html_id": "p1c47",
+   "printed": "12A If yes, specify",
+   "reason": "comb under the 12A \"If yes, specify\" caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:paymentOther",
+   "html_id": "p1c56",
+   "printed": "15 Other Similar Schemes (specify)",
+   "reason": "comb right of the \"(specify)\" caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtExciseDue",
+   "html_id": "p1c60",
+   "printed": "16 Excise Tax Due",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtLess_Balance",
+   "html_id": "p1c62",
+   "printed": "17A Balance Carried Over from Previous Return",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtLess_Excise",
+   "html_id": "p1c64",
+   "printed": "17B Creditable Excise Tax",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtLess_Tot",
+   "html_id": "p1c66",
+   "printed": "17C Total (Sum of 17A and 17B)",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtNetTaxDue",
+   "html_id": "p1c68",
+   "printed": "18 Net Tax Due (Item 16 less 17C)",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtPrevReturn",
+   "html_id": "p1c70",
+   "printed": "19 Less: Payment on Returns Previously Filed",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtStillDue",
+   "html_id": "p1c72",
+   "printed": "20 Tax Still Due/(Overpayment)",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtPen_Surcharge",
+   "html_id": "p1c74",
+   "printed": "21A Surcharge",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtPen_Interest",
+   "html_id": "p1c76",
+   "printed": "21B Interest",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtPen_Compromise",
+   "html_id": "p1c78",
+   "printed": "21C Compromise",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtPen_Tot",
+   "html_id": "p1c80",
+   "printed": "21D Total Penalties",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtAmtPayable",
+   "html_id": "p1c82",
+   "printed": "22 Amount Payable/(Overpayment)",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtPay_TaxPayment",
+   "html_id": "p1c84",
+   "printed": "23A Tax Payment/Deposit",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtPay_Penalties",
+   "html_id": "p1c86",
+   "printed": "23B Penalties",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtPay_Tot",
+   "html_id": "p1c88",
+   "printed": "23C Total Payment Made Today",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtBalance",
+   "html_id": "p1c90",
+   "printed": "24 Balance to be Carried Over to Next Return",
+   "reason": "single 14-slot comb under the printed item caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:othersDetails",
+   "html_id": "p1c113",
+   "printed": "28 Others (specify)",
+   "reason": "comb directly under the 28 Others (specify) caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2020_Export",
+   "html_id": "p2c25",
+   "printed": "Effective January 1, 2020, 20% Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2020_Taxable",
+   "html_id": "p2c26",
+   "printed": "Effective January 1, 2020, 20% Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2020_Due",
+   "html_id": "p2c27",
+   "printed": "Effective January 1, 2020, 20% Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2020B_Export",
+   "html_id": "p2c30",
+   "printed": "Effective January 23, 2020, 22% Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2020B_Taxable",
+   "html_id": "p2c31",
+   "printed": "Effective January 23, 2020, 22% Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2020B_Due",
+   "html_id": "p2c32",
+   "printed": "Effective January 23, 2020, 22% Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2021_Export",
+   "html_id": "p2c35",
+   "printed": "Effective January 1, 2021, 22% Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2021_Taxable",
+   "html_id": "p2c36",
+   "printed": "Effective January 1, 2021, 22% Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2021_Due",
+   "html_id": "p2c37",
+   "printed": "Effective January 1, 2021, 22% Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2022_Export",
+   "html_id": "p2c40",
+   "printed": "Effective January 1, 2022, 22% Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2022_Taxable",
+   "html_id": "p2c41",
+   "printed": "Effective January 1, 2022, 22% Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2022_Due",
+   "html_id": "p2c42",
+   "printed": "Effective January 1, 2022, 22% Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2023_Export",
+   "html_id": "p2c45",
+   "printed": "Effective January 1, 2023, 22% Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2023_Taxable",
+   "html_id": "p2c46",
+   "printed": "Effective January 1, 2023, 22% Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2023_Due",
+   "html_id": "p2c47",
+   "printed": "Effective January 1, 2023, 22% Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2024_Export",
+   "html_id": "p2c50",
+   "printed": "Effective January 1, 2024, 22% Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2024_Taxable",
+   "html_id": "p2c51",
+   "printed": "Effective January 1, 2024, 22% Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1A_2024_Due",
+   "html_id": "p2c52",
+   "printed": "Effective January 1, 2024, 22% Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2020_Export",
+   "html_id": "p2c62",
+   "printed": "Effective January 1, 2020, P24.34 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2020_Taxable",
+   "html_id": "p2c63",
+   "printed": "Effective January 1, 2020, P24.34 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2020_Due",
+   "html_id": "p2c64",
+   "printed": "Effective January 1, 2020, P24.34 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2020B_Export",
+   "html_id": "p2c67",
+   "printed": "Effective January 23, 2020, P42.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2020B_Taxable",
+   "html_id": "p2c68",
+   "printed": "Effective January 23, 2020, P42.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2020B_Due",
+   "html_id": "p2c69",
+   "printed": "Effective January 23, 2020, P42.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2021_Export",
+   "html_id": "p2c72",
+   "printed": "Effective January 1, 2021, P47.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2021_Taxable",
+   "html_id": "p2c73",
+   "printed": "Effective January 1, 2021, P47.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2021_Due",
+   "html_id": "p2c74",
+   "printed": "Effective January 1, 2021, P47.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2022_Export",
+   "html_id": "p2c77",
+   "printed": "Effective January 1, 2022, P52.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2022_Taxable",
+   "html_id": "p2c78",
+   "printed": "Effective January 1, 2022, P52.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2022_Due",
+   "html_id": "p2c79",
+   "printed": "Effective January 1, 2022, P52.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2023_Export",
+   "html_id": "p2c82",
+   "printed": "Effective January 1, 2023, P59.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2023_Taxable",
+   "html_id": "p2c83",
+   "printed": "Effective January 1, 2023, P59.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2023_Due",
+   "html_id": "p2c84",
+   "printed": "Effective January 1, 2023, P59.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2024_Export",
+   "html_id": "p2c87",
+   "printed": "Effective January 1, 2024, P66.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2024_Taxable",
+   "html_id": "p2c88",
+   "printed": "Effective January 1, 2024, P66.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_1B_2024_Due",
+   "html_id": "p2c89",
+   "printed": "Effective January 1, 2024, P66.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2020_Export",
+   "html_id": "p2c99",
+   "printed": "Php 500.00 or less, Effective January 1, 2020, P328.98 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2020_Taxable",
+   "html_id": "p2c100",
+   "printed": "Php 500.00 or less, Effective January 1, 2020, P328.98 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2020_Due",
+   "html_id": "p2c101",
+   "printed": "Php 500.00 or less, Effective January 1, 2020, P328.98 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2020B_Export",
+   "html_id": "p2c104",
+   "printed": "Php 500.00 or less, Effective January 23, 2020, P50.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2020B_Taxable",
+   "html_id": "p2c105",
+   "printed": "Php 500.00 or less, Effective January 23, 2020, P50.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2020B_Due",
+   "html_id": "p2c106",
+   "printed": "Php 500.00 or less, Effective January 23, 2020, P50.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2021_Export",
+   "html_id": "p2c109",
+   "printed": "Php 500.00 or less, Effective January 1, 2021, P53.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2021_Taxable",
+   "html_id": "p2c110",
+   "printed": "Php 500.00 or less, Effective January 1, 2021, P53.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2021_Due",
+   "html_id": "p2c111",
+   "printed": "Php 500.00 or less, Effective January 1, 2021, P53.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2022_Export",
+   "html_id": "p2c114",
+   "printed": "Php 500.00 or less, Effective January 1, 2022, P56.18 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2022_Taxable",
+   "html_id": "p2c115",
+   "printed": "Php 500.00 or less, Effective January 1, 2022, P56.18 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2022_Due",
+   "html_id": "p2c116",
+   "printed": "Php 500.00 or less, Effective January 1, 2022, P56.18 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2023_Export",
+   "html_id": "p2c119",
+   "printed": "Php 500.00 or less, Effective January 1, 2023, P59.55 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2023_Taxable",
+   "html_id": "p2c120",
+   "printed": "Php 500.00 or less, Effective January 1, 2023, P59.55 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2023_Due",
+   "html_id": "p2c121",
+   "printed": "Php 500.00 or less, Effective January 1, 2023, P59.55 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2024_Export",
+   "html_id": "p2c124",
+   "printed": "Php 500.00 or less, Effective January 1, 2024, P63.12 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2024_Taxable",
+   "html_id": "p2c125",
+   "printed": "Php 500.00 or less, Effective January 1, 2024, P63.12 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2024_Due",
+   "html_id": "p2c126",
+   "printed": "Php 500.00 or less, Effective January 1, 2024, P63.12 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2020A_Export",
+   "html_id": "p2c136",
+   "printed": "More than Php 500.00, Effective January 1, 2020, P921.15 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2020A_Taxable",
+   "html_id": "p2c137",
+   "printed": "More than Php 500.00, Effective January 1, 2020, P921.15 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2020A_Due",
+   "html_id": "p2c138",
+   "printed": "More than Php 500.00, Effective January 1, 2020, P921.15 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2020B2_Export",
+   "html_id": "p2c141",
+   "printed": "More than Php 500.00, Effective January 23, 2020, P50.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2020B2_Taxable",
+   "html_id": "p2c142",
+   "printed": "More than Php 500.00, Effective January 23, 2020, P50.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2020B2_Due",
+   "html_id": "p2c143",
+   "printed": "More than Php 500.00, Effective January 23, 2020, P50.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2021B_Export",
+   "html_id": "p2c146",
+   "printed": "More than Php 500.00, Effective January 1, 2021, P53.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2021B_Taxable",
+   "html_id": "p2c147",
+   "printed": "More than Php 500.00, Effective January 1, 2021, P53.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2021B_Due",
+   "html_id": "p2c148",
+   "printed": "More than Php 500.00, Effective January 1, 2021, P53.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2022B_Export",
+   "html_id": "p2c151",
+   "printed": "More than Php 500.00, Effective January 1, 2022, P56.18 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2022B_Taxable",
+   "html_id": "p2c152",
+   "printed": "More than Php 500.00, Effective January 1, 2022, P56.18 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2022B_Due",
+   "html_id": "p2c153",
+   "printed": "More than Php 500.00, Effective January 1, 2022, P56.18 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2023B_Export",
+   "html_id": "p2c156",
+   "printed": "More than Php 500.00, Effective January 1, 2023, P59.55 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2023B_Taxable",
+   "html_id": "p2c157",
+   "printed": "More than Php 500.00, Effective January 1, 2023, P59.55 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2023B_Due",
+   "html_id": "p2c158",
+   "printed": "More than Php 500.00, Effective January 1, 2023, P59.55 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2024B_Export",
+   "html_id": "p2c161",
+   "printed": "More than Php 500.00, Effective January 1, 2024, P63.12 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2024B_Taxable",
+   "html_id": "p2c162",
+   "printed": "More than Php 500.00, Effective January 1, 2024, P63.12 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2A_2024B_Due",
+   "html_id": "p2c163",
+   "printed": "More than Php 500.00, Effective January 1, 2024, P63.12 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2020_Export",
+   "html_id": "p2c173",
+   "printed": "Still wines 14% or less, Effective January 1, 2020, P39.48 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2020_Taxable",
+   "html_id": "p2c174",
+   "printed": "Still wines 14% or less, Effective January 1, 2020, P39.48 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2020_Due",
+   "html_id": "p2c175",
+   "printed": "Still wines 14% or less, Effective January 1, 2020, P39.48 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2020B_Export",
+   "html_id": "p2c178",
+   "printed": "Still wines 14% or less, Effective January 23, 2020, P50.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2020B_Taxable",
+   "html_id": "p2c179",
+   "printed": "Still wines 14% or less, Effective January 23, 2020, P50.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2020B_Due",
+   "html_id": "p2c180",
+   "printed": "Still wines 14% or less, Effective January 23, 2020, P50.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2021_Export",
+   "html_id": "p2c183",
+   "printed": "Still wines 14% or less, Effective January 1, 2021, P53.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2021_Taxable",
+   "html_id": "p2c184",
+   "printed": "Still wines 14% or less, Effective January 1, 2021, P53.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2021_Due",
+   "html_id": "p2c185",
+   "printed": "Still wines 14% or less, Effective January 1, 2021, P53.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2022_Export",
+   "html_id": "p2c188",
+   "printed": "Still wines 14% or less, Effective January 1, 2022, P56.18 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2022_Taxable",
+   "html_id": "p2c189",
+   "printed": "Still wines 14% or less, Effective January 1, 2022, P56.18 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2022_Due",
+   "html_id": "p2c190",
+   "printed": "Still wines 14% or less, Effective January 1, 2022, P56.18 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2023_Export",
+   "html_id": "p2c193",
+   "printed": "Still wines 14% or less, Effective January 1, 2023, P59.55 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2023_Taxable",
+   "html_id": "p2c194",
+   "printed": "Still wines 14% or less, Effective January 1, 2023, P59.55 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2023_Due",
+   "html_id": "p2c195",
+   "printed": "Still wines 14% or less, Effective January 1, 2023, P59.55 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2024_Export",
+   "html_id": "p2c198",
+   "printed": "Still wines 14% or less, Effective January 1, 2024, P63.12 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2024_Taxable",
+   "html_id": "p2c199",
+   "printed": "Still wines 14% or less, Effective January 1, 2024, P63.12 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2B_2024_Due",
+   "html_id": "p2c200",
+   "printed": "Still wines 14% or less, Effective January 1, 2024, P63.12 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2020_Export",
+   "html_id": "p2c210",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2020, P78.96 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2020_Taxable",
+   "html_id": "p2c211",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2020, P78.96 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2020_Due",
+   "html_id": "p2c212",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2020, P78.96 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2020B_Export",
+   "html_id": "p2c215",
+   "printed": "Still wines over 14% to 25%, Effective January 23, 2020, P50.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2020B_Taxable",
+   "html_id": "p2c216",
+   "printed": "Still wines over 14% to 25%, Effective January 23, 2020, P50.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2020B_Due",
+   "html_id": "p2c217",
+   "printed": "Still wines over 14% to 25%, Effective January 23, 2020, P50.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2021_Export",
+   "html_id": "p2c220",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2021, P53.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2021_Taxable",
+   "html_id": "p2c221",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2021, P53.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2021_Due",
+   "html_id": "p2c222",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2021, P53.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2022_Export",
+   "html_id": "p2c225",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2022, P56.18 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2022_Taxable",
+   "html_id": "p2c226",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2022, P56.18 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2022_Due",
+   "html_id": "p2c227",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2022, P56.18 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2023_Export",
+   "html_id": "p2c230",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2023, P59.55 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2023_Taxable",
+   "html_id": "p2c231",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2023, P59.55 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2023_Due",
+   "html_id": "p2c232",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2023, P59.55 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2024_Export",
+   "html_id": "p2c235",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2024, P63.12 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2024_Taxable",
+   "html_id": "p2c236",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2024, P63.12 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2C_2024_Due",
+   "html_id": "p2c237",
+   "printed": "Still wines over 14% to 25%, Effective January 1, 2024, P63.12 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2020_Export",
+   "html_id": "p2c247",
+   "printed": "Fortified wines over 25%, taxed as distilled spirits, Effective January 1, 2020 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2020_Taxable",
+   "html_id": "p2c248",
+   "printed": "Fortified wines over 25%, taxed as distilled spirits, Effective January 1, 2020 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2020_Due",
+   "html_id": "p2c249",
+   "printed": "Fortified wines over 25%, taxed as distilled spirits, Effective January 1, 2020 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2020B_Export",
+   "html_id": "p2c252",
+   "printed": "Fortified wines over 25%, Effective January 23, 2020, P50.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2020B_Taxable",
+   "html_id": "p2c253",
+   "printed": "Fortified wines over 25%, Effective January 23, 2020, P50.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2020B_Due",
+   "html_id": "p2c254",
+   "printed": "Fortified wines over 25%, Effective January 23, 2020, P50.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2021_Export",
+   "html_id": "p2c257",
+   "printed": "Fortified wines over 25%, Effective January 1, 2021, P53.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2021_Taxable",
+   "html_id": "p2c258",
+   "printed": "Fortified wines over 25%, Effective January 1, 2021, P53.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2021_Due",
+   "html_id": "p2c259",
+   "printed": "Fortified wines over 25%, Effective January 1, 2021, P53.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2022_Export",
+   "html_id": "p2c262",
+   "printed": "Fortified wines over 25%, Effective January 1, 2022, P56.18 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2022_Taxable",
+   "html_id": "p2c263",
+   "printed": "Fortified wines over 25%, Effective January 1, 2022, P56.18 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2022_Due",
+   "html_id": "p2c264",
+   "printed": "Fortified wines over 25%, Effective January 1, 2022, P56.18 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2023_Export",
+   "html_id": "p2c267",
+   "printed": "Fortified wines over 25%, Effective January 1, 2023, P59.55 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2023_Taxable",
+   "html_id": "p2c268",
+   "printed": "Fortified wines over 25%, Effective January 1, 2023, P59.55 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2023_Due",
+   "html_id": "p2c269",
+   "printed": "Fortified wines over 25%, Effective January 1, 2023, P59.55 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2024_Export",
+   "html_id": "p2c272",
+   "printed": "Fortified wines over 25%, Effective January 1, 2024, P63.12 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2024_Taxable",
+   "html_id": "p2c273",
+   "printed": "Fortified wines over 25%, Effective January 1, 2024, P63.12 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_2D_2024_Due",
+   "html_id": "p2c274",
+   "printed": "Fortified wines over 25%, Effective January 1, 2024, P63.12 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2020_Export",
+   "html_id": "p2c284",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2020, P26.43 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2020_Taxable",
+   "html_id": "p2c285",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2020, P26.43 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2020_Due",
+   "html_id": "p2c286",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2020, P26.43 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2020B_Export",
+   "html_id": "p2c289",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 23, 2020, P35.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2020B_Taxable",
+   "html_id": "p2c290",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 23, 2020, P35.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2020B_Due",
+   "html_id": "p2c291",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 23, 2020, P35.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2021_Export",
+   "html_id": "p2c294",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2021, P37.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2021_Taxable",
+   "html_id": "p2c295",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2021, P37.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2021_Due",
+   "html_id": "p2c296",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2021, P37.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2022_Export",
+   "html_id": "p2c299",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2022, P39.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2022_Taxable",
+   "html_id": "p2c300",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2022, P39.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2022_Due",
+   "html_id": "p2c301",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2022, P39.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2023_Export",
+   "html_id": "p2c304",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2023, P41.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2023_Taxable",
+   "html_id": "p2c305",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2023, P41.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2023_Due",
+   "html_id": "p2c306",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2023, P41.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2024_Export",
+   "html_id": "p2c309",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2024, P43.00 Export",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2024_Taxable",
+   "html_id": "p2c310",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2024, P43.00 Taxable",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2024_Due",
+   "html_id": "p2c311",
+   "printed": "Fermented liquors, Php 50.60 and below, Effective January 1, 2024, P43.00 Due",
+   "reason": "Schedule 1 row: ATC block, effective-date caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2020_Export",
+   "html_id": "p3c61",
+   "printed": "Brewed at microbreweries, Effective January 1, 2020, P36.85 Export",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2020_Taxable",
+   "html_id": "p3c62",
+   "printed": "Brewed at microbreweries, Effective January 1, 2020, P36.85 Taxable",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2020_Due",
+   "html_id": "p3c63",
+   "printed": "Brewed at microbreweries, Effective January 1, 2020, P36.85 Due",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2020B_Export",
+   "html_id": "p3c66",
+   "printed": "Brewed at microbreweries, Effective January 23, 2020, P35.00 Export",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2020B_Taxable",
+   "html_id": "p3c67",
+   "printed": "Brewed at microbreweries, Effective January 23, 2020, P35.00 Taxable",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2020B_Due",
+   "html_id": "p3c68",
+   "printed": "Brewed at microbreweries, Effective January 23, 2020, P35.00 Due",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2021_Export",
+   "html_id": "p3c71",
+   "printed": "Brewed at microbreweries, Effective January 1, 2021, P37.00 Export",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2021_Taxable",
+   "html_id": "p3c72",
+   "printed": "Brewed at microbreweries, Effective January 1, 2021, P37.00 Taxable",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2021_Due",
+   "html_id": "p3c73",
+   "printed": "Brewed at microbreweries, Effective January 1, 2021, P37.00 Due",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2022_Export",
+   "html_id": "p3c76",
+   "printed": "Brewed at microbreweries, Effective January 1, 2022, P39.00 Export",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2022_Taxable",
+   "html_id": "p3c77",
+   "printed": "Brewed at microbreweries, Effective January 1, 2022, P39.00 Taxable",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2022_Due",
+   "html_id": "p3c78",
+   "printed": "Brewed at microbreweries, Effective January 1, 2022, P39.00 Due",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2023_Export",
+   "html_id": "p3c81",
+   "printed": "Brewed at microbreweries, Effective January 1, 2023, P41.00 Export",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2023_Taxable",
+   "html_id": "p3c82",
+   "printed": "Brewed at microbreweries, Effective January 1, 2023, P41.00 Taxable",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2023_Due",
+   "html_id": "p3c83",
+   "printed": "Brewed at microbreweries, Effective January 1, 2023, P41.00 Due",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2024_Export",
+   "html_id": "p3c86",
+   "printed": "Brewed at microbreweries, Effective January 1, 2024, P43.00 Export",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2024_Taxable",
+   "html_id": "p3c87",
+   "printed": "Brewed at microbreweries, Effective January 1, 2024, P43.00 Taxable",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2024_Due",
+   "html_id": "p3c88",
+   "printed": "Brewed at microbreweries, Effective January 1, 2024, P43.00 Due",
+   "reason": "Schedule 1 row: ATC block 3B and column header agree"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others1_Export",
+   "html_id": "p3c100",
+   "printed": "4 Others (specify), row 1 Export",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others1_Taxable",
+   "html_id": "p3c101",
+   "printed": "4 Others (specify), row 1 Taxable",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others1_Due",
+   "html_id": "p3c102",
+   "printed": "4 Others (specify), row 1 Due",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others2_Export",
+   "html_id": "p3c107",
+   "printed": "4 Others (specify), row 2 Export",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others2_Taxable",
+   "html_id": "p3c108",
+   "printed": "4 Others (specify), row 2 Taxable",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others2_Due",
+   "html_id": "p3c109",
+   "printed": "4 Others (specify), row 2 Due",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others3_Export",
+   "html_id": "p3c114",
+   "printed": "4 Others (specify), row 3 Export",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others3_Taxable",
+   "html_id": "p3c115",
+   "printed": "4 Others (specify), row 3 Taxable",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others3_Due",
+   "html_id": "p3c116",
+   "printed": "4 Others (specify), row 3 Due",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_TotalDue",
+   "html_id": "p3c118",
+   "printed": "TOTAL TAX DUE (To Part III, Item 16)",
+   "reason": "caption left of the Tax Due column cell"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others1_Atc",
+   "html_id": "p3c96",
+   "printed": "4 Others (specify), row 1 ATC",
+   "reason": "Others row cell in the column captioned ATC (digits after the printed XA, input inset 23.1pt) (page 2/3 header: ATC x 28.8pt, Description x 136pt, Tax Bracket/Unit of Measure x 264-271pt, Tax Rate column x 334pt)"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others1_Desc",
+   "html_id": "p3c97",
+   "printed": "4 Others (specify), row 1 Description",
+   "reason": "Others row cell in the column captioned Description (page 2/3 header: ATC x 28.8pt, Description x 136pt, Tax Bracket/Unit of Measure x 264-271pt, Tax Rate column x 334pt)"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others1_Bracket",
+   "html_id": "p3c98",
+   "printed": "4 Others (specify), row 1 Tax Bracket/Unit of Measure",
+   "reason": "Others row cell in the column captioned Tax Bracket/Unit of Measure (page 2/3 header: ATC x 28.8pt, Description x 136pt, Tax Bracket/Unit of Measure x 264-271pt, Tax Rate column x 334pt)"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others1_Rate",
+   "html_id": "p3c99",
+   "printed": "4 Others (specify), row 1 Tax Rate",
+   "reason": "Others row cell in the column captioned Tax Rate (page 2/3 header: ATC x 28.8pt, Description x 136pt, Tax Bracket/Unit of Measure x 264-271pt, Tax Rate column x 334pt)"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others2_Atc",
+   "html_id": "p3c103",
+   "printed": "4 Others (specify), row 2 ATC",
+   "reason": "Others row cell in the column captioned ATC (digits after the printed XA, input inset 23.1pt) (page 2/3 header: ATC x 28.8pt, Description x 136pt, Tax Bracket/Unit of Measure x 264-271pt, Tax Rate column x 334pt)"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others2_Desc",
+   "html_id": "p3c104",
+   "printed": "4 Others (specify), row 2 Description",
+   "reason": "Others row cell in the column captioned Description (page 2/3 header: ATC x 28.8pt, Description x 136pt, Tax Bracket/Unit of Measure x 264-271pt, Tax Rate column x 334pt)"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others2_Bracket",
+   "html_id": "p3c105",
+   "printed": "4 Others (specify), row 2 Tax Bracket/Unit of Measure",
+   "reason": "Others row cell in the column captioned Tax Bracket/Unit of Measure (page 2/3 header: ATC x 28.8pt, Description x 136pt, Tax Bracket/Unit of Measure x 264-271pt, Tax Rate column x 334pt)"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others2_Rate",
+   "html_id": "p3c106",
+   "printed": "4 Others (specify), row 2 Tax Rate",
+   "reason": "Others row cell in the column captioned Tax Rate (page 2/3 header: ATC x 28.8pt, Description x 136pt, Tax Bracket/Unit of Measure x 264-271pt, Tax Rate column x 334pt)"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others3_Atc",
+   "html_id": "p3c110",
+   "printed": "4 Others (specify), row 3 ATC",
+   "reason": "Others row cell in the column captioned ATC (digits after the printed XA, input inset 23.1pt) (page 2/3 header: ATC x 28.8pt, Description x 136pt, Tax Bracket/Unit of Measure x 264-271pt, Tax Rate column x 334pt)"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others3_Desc",
+   "html_id": "p3c111",
+   "printed": "4 Others (specify), row 3 Description",
+   "reason": "Others row cell in the column captioned Description (page 2/3 header: ATC x 28.8pt, Description x 136pt, Tax Bracket/Unit of Measure x 264-271pt, Tax Rate column x 334pt)"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others3_Bracket",
+   "html_id": "p3c112",
+   "printed": "4 Others (specify), row 3 Tax Bracket/Unit of Measure",
+   "reason": "Others row cell in the column captioned Tax Bracket/Unit of Measure (page 2/3 header: ATC x 28.8pt, Description x 136pt, Tax Bracket/Unit of Measure x 264-271pt, Tax Rate column x 334pt)"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_xa_others3_Rate",
+   "html_id": "p3c113",
+   "printed": "4 Others (specify), row 3 Tax Rate",
+   "reason": "Others row cell in the column captioned Tax Rate (page 2/3 header: ATC x 28.8pt, Description x 136pt, Tax Bracket/Unit of Measure x 264-271pt, Tax Rate column x 334pt)"
+  },
+  {
+   "writer_key": "derived:contact_email",
+   "html_id": "p1c34",
+   "printed": "8 Contact Number / 9 Email Address",
+   "reason": "one 40-slot comb under both captions: the print map puts the contact number from slot 0 (caption x 27pt) and the email from slot 12 (caption x 200.69pt, pitch 14.52pt from x 16.32pt)"
+  },
+  {
+   "writer_key": "derived:place_of_production",
+   "html_id": "p1c39",
+   "printed": "10 Place of Production: Region / Province / City",
+   "reason": "one 40-slot comb under the three captions: region code from slot 0, province code from slot 10 (caption x 94.1pt; a 9-digit region code needs slots 0-8), city code from slot 24 (caption x 369.07pt)"
+  },
+  {
+   "writer_key": "derived:place_of_removal",
+   "html_id": "p1c44",
+   "printed": "11 Place of Removal: Region / Province / City",
+   "reason": "one 40-slot comb under the three captions: region code from slot 0, province code from slot 10, city code from slot 24"
+  },
+  {
+   "writer_key": "derived:page_header",
+   "html_id": "p2c5",
+   "html_ids": [
+    "p3c5"
+   ],
+   "printed": "Page 2 and page 3 header: TIN / Taxpayer's Name",
+   "reason": "later page header: the sheet draws the TIN and Taxpayer's Name boxes as one 40-slot comb, so derived:page_header holds the 14 TIN digits then the name from slot 14 (under the Taxpayer's Name caption)"
+  },
+  {
+   "writer_key": "derived:address_line1",
+   "html_id": "p1c28",
+   "printed": "7 Registered Address, line 1",
+   "reason": "full-width 40-slot comb under the item 7 caption; the print map breaks the address at the last space that fits"
+  },
+  {
+   "writer_key": "derived:line:address_line2",
+   "html_id": "p1c29",
+   "printed": "7 Registered Address, line 2",
+   "reason": "the second item 7 comb: the rest of the address; a longer line prints whole in smaller type"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2020A_Export",
+   "html_id": "p3c24",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2020, P26.43 Export",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2020 and rate 26.43, which the row prints; Export column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2020A_Taxable",
+   "html_id": "p3c25",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2020, P26.43 Taxable",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2020 and rate 26.43, which the row prints; Taxable column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2020A_Due",
+   "html_id": "p3c26",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2020, P26.43 Due",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2020 and rate 26.43, which the row prints; Due column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2020B2_Export",
+   "html_id": "p3c29",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 23, 2020, P35.00 Export",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 23, 2020 and rate 35.00, which the row prints; Export column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2020B2_Taxable",
+   "html_id": "p3c30",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 23, 2020, P35.00 Taxable",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 23, 2020 and rate 35.00, which the row prints; Taxable column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3B_2020B2_Due",
+   "html_id": "p3c31",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 23, 2020, P35.00 Due",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 23, 2020 and rate 35.00, which the row prints; Due column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2021B_Export",
+   "html_id": "p3c34",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2021, P37.00 Export",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2021 and rate 37.00, which the row prints; Export column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2021B_Taxable",
+   "html_id": "p3c35",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2021, P37.00 Taxable",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2021 and rate 37.00, which the row prints; Taxable column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2021B_Due",
+   "html_id": "p3c36",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2021, P37.00 Due",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2021 and rate 37.00, which the row prints; Due column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2022B_Export",
+   "html_id": "p3c39",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2022, P39.00 Export",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2022 and rate 39.00, which the row prints; Export column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2022B_Taxable",
+   "html_id": "p3c40",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2022, P39.00 Taxable",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2022 and rate 39.00, which the row prints; Taxable column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2022B_Due",
+   "html_id": "p3c41",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2022, P39.00 Due",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2022 and rate 39.00, which the row prints; Due column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2023B_Export",
+   "html_id": "p3c44",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2023, P41.00 Export",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2023 and rate 41.00, which the row prints; Export column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2023B_Taxable",
+   "html_id": "p3c45",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2023, P41.00 Taxable",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2023 and rate 41.00, which the row prints; Taxable column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2023B_Due",
+   "html_id": "p3c46",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2023, P41.00 Due",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2023 and rate 41.00, which the row prints; Due column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2024B_Export",
+   "html_id": "p3c49",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2024, P43.00 Export",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2024 and rate 43.00, which the row prints; Export column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2024B_Taxable",
+   "html_id": "p3c50",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2024, P43.00 Taxable",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2024 and rate 43.00, which the row prints; Taxable column by x order"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtSched1_3A_2024B_Due",
+   "html_id": "p3c51",
+   "printed": "Fermented liquors XA056 (page 3 top block), Effective January 1, 2024, P43.00 Due",
+   "reason": "the XA056 block heads page 3; the model lists this key under ATC XA056 with effective date January 1, 2024 and rate 43.00, which the row prints; Due column by x order"
+  }
+ ],
+ "money_joins": [],
+ "xbox_joins": [
+  {
+   "writer_key": "frm2200Av2020:amendedRtn_1",
+   "html_id": "p1c12",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of printed \"Yes\""
+  },
+  {
+   "writer_key": "frm2200Av2020:amendedRtn_2",
+   "html_id": "p1c13",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of printed \"No\""
+  },
+  {
+   "writer_key": "frm2200Av2020:optTreaty_1",
+   "html_id": "p1c48",
+   "printed": "12 International Tax Treaty? Yes",
+   "reason": "box immediately left of printed \"Yes\""
+  },
+  {
+   "writer_key": "frm2200Av2020:optTreaty_2",
+   "html_id": "p1c49",
+   "printed": "12 International Tax Treaty? No",
+   "reason": "box immediately left of printed \"No\""
+  },
+  {
+   "writer_key": "frm2200Av2020:optPayment_1",
+   "html_id": "p1c52",
+   "printed": "13 Payment on Actual Removal",
+   "reason": "box immediately left of item 13 caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:optPayment_2",
+   "html_id": "p1c53",
+   "printed": "14 Prepayment / Advance Deposit",
+   "reason": "box immediately left of item 14 caption"
+  },
+  {
+   "writer_key": "frm2200Av2020:optPayment_3",
+   "html_id": "p1c57",
+   "printed": "15 Other Similar Schemes",
+   "reason": "box immediately left of item 15 caption"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_key": "frm2200Av2020:registeredAddress",
+   "reason": "prints from derived:address_line1 / derived:line:address_line2 (the print map shapes the address over both item 7 combs for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2200Av2020:phoneNumber",
+    "frm2200Av2020:txtEmail"
+   ],
+   "reason": "prints from derived:contact_email (the print map shapes Items 8-9, one shared 40-slot comb for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2200Av2020:prodRegion",
+    "frm2200Av2020:prodProvince",
+    "frm2200Av2020:prodCity"
+   ],
+   "reason": "prints from derived:place_of_production (the print map shapes Item 10 as place names on one shared comb instead of PSGC codes for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2200Av2020:remRegion",
+    "frm2200Av2020:remProvince",
+    "frm2200Av2020:remCity"
+   ],
+   "reason": "prints from derived:place_of_removal (the print map shapes Item 11 as place names on one shared comb instead of PSGC codes for the sheet)"
+  },
+  {
+   "writer_key": "frm2200Av2020:txtCurrentPage",
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  },
+  {
+   "writer_keys": [
+    "frm2200Av2020:txtSched1_xa_others1_Check",
+    "frm2200Av2020:txtSched1_xa_others2_Check",
+    "frm2200Av2020:txtSched1_xa_others3_Check"
+   ],
+   "reason": "row-enable checkbox of the page; the paper Others rows have no box for it"
+  },
+  {
+   "writer_keys": [
+    "frm2200Av2020:cashAmt",
+    "frm2200Av2020:cashBank",
+    "frm2200Av2020:cashDate",
+    "frm2200Av2020:cashNum",
+    "frm2200Av2020:checkAmt",
+    "frm2200Av2020:checkBank",
+    "frm2200Av2020:checkDate",
+    "frm2200Av2020:checkNum",
+    "frm2200Av2020:othersAmt",
+    "frm2200Av2020:othersBank",
+    "frm2200Av2020:othersDate",
+    "frm2200Av2020:othersNum",
+    "frm2200Av2020:taxAmt",
+    "frm2200Av2020:taxDate",
+    "frm2200Av2020:taxNum"
+   ],
+   "reason": "Part IV payment detail (drawee bank, number, date, amount): each Part IV row is one comb spanning all four columns (not_joined_cells p1c108, p1c110, p1c111, p1c114), so the keys cannot be placed in their columns"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c96",
+   "reason": "Attorney's Roll No. / Tax Agent Accreditation No.: no layout key"
+  },
+  {
+   "html_id": "p1c98",
+   "reason": "Tax agent Date of Issue: no layout key"
+  },
+  {
+   "html_id": "p1c100",
+   "reason": "Tax agent Date of Expiry: no layout key"
+  },
+  {
+   "html_id": "p1c108",
+   "reason": "Part IV row 25 is one 33-slot comb spanning bank, number, date and amount columns; no column cell exists for the cash/bank key split"
+  },
+  {
+   "html_id": "p1c110",
+   "reason": "Part IV row 26 is one 33-slot comb spanning bank, number, date and amount columns; no column cell exists for the check key split"
+  },
+  {
+   "html_id": "p1c111",
+   "reason": "Part IV row 27 is one 28-slot comb spanning the full width; tax debit memo keys cannot be split"
+  },
+  {
+   "html_id": "p1c114",
+   "reason": "Part IV row 28 bank column is one 33-slot comb spanning the full width; no column split for othersBank"
+  }
+ ]
+}

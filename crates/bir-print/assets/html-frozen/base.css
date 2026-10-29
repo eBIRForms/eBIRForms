@@ -1,0 +1,20 @@
+/* Shared scaffolding for every generated form.
+ * Computed as the declarations common to all forms, so editing here
+ * changes every form at once. Form-specific rules live in each
+ * bundle's form.css, guide-specific rules in its guide.css. */
+* { margin:0;padding:0;box-sizing:border-box }
+.band { position:absolute;left:0;top:0;width:100%;height:100% }
+.c { position:absolute;z-index:6 }
+.f,.f .s { overflow:hidden }
+.fc { text-align:center }
+.img { position:absolute;z-index:6;display:block }
+.page { position:relative;overflow:hidden;background:#fff;break-after:page;page-break-after:always }
+.page:last-of-type { break-after:auto;page-break-after:auto }
+.r { position:absolute }
+.rl { position:absolute;left:0;top:0 }
+.s { position:absolute }
+.t { position:absolute;white-space:pre;text-rendering:geometricPrecision;z-index:5 }
+@font-face { font-family:"eBIRForms Arimo";font-style:normal;font-weight:100 900;font-display:block;src:url("fonts/arimo-latin-wght-normal.woff2") format("woff2") }
+@media print { .fi{border:0;outline:0;background:none;box-shadow:none;-webkit-appearance:none;appearance:none;caret-color:transparent} }
+@media screen { .fi:hover{background:rgba(21,101,192,.07)}.fi:focus{background:rgba(255,213,0,.35)} }
+html,body { background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact }

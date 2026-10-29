@@ -1,0 +1,748 @@
+{
+ "form_id": "1702q-v2018c",
+ "html_slug": "1702q-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page's own text layer) names the item. This sheet has no centavo combs: every amount is one 12-slot comb, so amounts print the writer's official text (1,234.56) right-aligned from derived: keys of to_print_field_map (commas dropped only when the text would not fit; blank when it still does not). Other values the sheet prints differently from the submitted controls also come from derived: keys, never from the submitted XML: the Item 2 MM and YY digit boxes, the Item 5 ATC code and description line, the two-line name and address combs, the 9-digit page 2 TIN, and the rate boxes (whole percent; Schedule 1 B adds the tenths box after the printed point; a rate the boxes cannot show stays blank, and the Schedule 3 rate prints only while Schedule 3 is open). Both TIN combs preprint the branch code 00000 (no fillable branch cell), so a non-head-office branch code cannot print. Booleans fill X in the box beside the printed option. The signatory/title/TIN cells and Part III Details of Payment are not joined: the model holds no values for them. The page 2 name comb (24 slots) prints the first 24 characters. The submitted XML always carries every control. Since #113 every value the print map carries has a box or a reviewed not_joined reason (the raw controls behind each derived: key are listed there).",
+ "joins": [
+  {
+   "writer_key": "derived:year_end_mm1",
+   "html_id": "p1c20",
+   "printed": "2 Year Ended MM (digit 1)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:year_end_mm2",
+   "html_id": "p1c21",
+   "printed": "2 Year Ended MM (digit 2)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:year_end_yy1",
+   "html_id": "p1c22",
+   "printed": "2 Year Ended /20YY (digit 1)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:year_end_yy2",
+   "html_id": "p1c23",
+   "printed": "2 Year Ended /20YY (digit 2)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:atc_code",
+   "html_id": "p1c17",
+   "printed": "5 ATC code (second line)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:atc_description",
+   "html_id": "p1c18",
+   "printed": "5 ATC description (second line)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1702q:txtTIN1",
+   "html_id": "p1c26",
+   "printed": "6 TIN (1-3)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702Q (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702q:txtTIN2",
+   "html_id": "p1c28",
+   "printed": "6 TIN (4-6)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702Q (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702q:txtTIN3",
+   "html_id": "p1c30",
+   "printed": "6 TIN (7-9)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702Q (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702q:txtRDOCode",
+   "html_id": "p1c34",
+   "printed": "7 RDO Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702Q (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:name_line1",
+   "html_id": "p1c37",
+   "printed": "8 Registered Name (line 1)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:name_line2",
+   "html_id": "p1c38",
+   "printed": "8 Registered Name (line 2)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:address_line1",
+   "html_id": "p1c40",
+   "printed": "9 Registered Address (line 1)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:address_line2",
+   "html_id": "p1c41",
+   "printed": "9 Registered Address (line 2)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1702q:txtZipCode",
+   "html_id": "p1c43",
+   "printed": "9A ZIP Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702Q (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702q:txtTelNum",
+   "html_id": "p1c46",
+   "printed": "10 Contact Number",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702Q (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702q:txtTxRlfSpcfy",
+   "html_id": "p1c52",
+   "printed": "13 If yes, specify",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702Q (January 2018) sheet"
+  },
+  {
+   "writer_key": "txtEmail",
+   "html_id": "p1c47",
+   "printed": "11 Email Address",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702Q (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:txtTax14",
+   "html_id": "p1c57",
+   "printed": "14 Income Tax Due - Regular/Normal Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:txtTax15",
+   "html_id": "p1c59",
+   "printed": "15 Less: Unexpired Excess of Prior Year MCIT",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:txtTax16",
+   "html_id": "p1c61",
+   "printed": "16 Balance/Income Tax Still Due - Regular/Normal Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:txtTax17",
+   "html_id": "p1c63",
+   "printed": "17 Add: Income Tax Due - Special Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:txtTax18",
+   "html_id": "p1c65",
+   "printed": "18 Aggregate Income Tax Due",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:txtTax19",
+   "html_id": "p1c67",
+   "printed": "19 Less: Total Tax Credits/Payments",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:txtTax20",
+   "html_id": "p1c69",
+   "printed": "20 Net Tax Payable/(Overpayment)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:txtTax21",
+   "html_id": "p1c71",
+   "printed": "21 Surcharge",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:txtTax22",
+   "html_id": "p1c73",
+   "printed": "22 Interest",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:txtTax23",
+   "html_id": "p1c75",
+   "printed": "23 Compromise",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:txtTax24",
+   "html_id": "p1c77",
+   "printed": "24 Total Penalties",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:txtTax25",
+   "html_id": "p1c79",
+   "printed": "25 TOTAL AMOUNT PAYABLE/(Overpayment)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "frm1702q:txtSheets",
+   "html_id": "p1c84",
+   "printed": "26 Number of Attachments",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702Q (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN (9 digits; the branch 00000 is preprinted)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1702q:txtPg2TaxpayerName",
+   "html_id": "p2c6",
+   "printed": "Page 2 Registered Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702Q (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax1A",
+   "html_id": "p2c12",
+   "printed": "Schedule 1 Item 1 Sales/Receipts/Revenues/Fees A. Exempt",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax1B",
+   "html_id": "p2c13",
+   "printed": "Schedule 1 Item 1 Sales/Receipts/Revenues/Fees B. Special",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax2A",
+   "html_id": "p2c15",
+   "printed": "Schedule 1 Item 2 Less: Cost of Sales/Services A. Exempt",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax2B",
+   "html_id": "p2c16",
+   "printed": "Schedule 1 Item 2 Less: Cost of Sales/Services B. Special",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax3A",
+   "html_id": "p2c18",
+   "printed": "Schedule 1 Item 3 Gross Income from Operation A. Exempt",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax3B",
+   "html_id": "p2c19",
+   "printed": "Schedule 1 Item 3 Gross Income from Operation B. Special",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax4A",
+   "html_id": "p2c21",
+   "printed": "Schedule 1 Item 4 Add: Other Taxable Income A. Exempt",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax4B",
+   "html_id": "p2c22",
+   "printed": "Schedule 1 Item 4 Add: Other Taxable Income B. Special",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax5A",
+   "html_id": "p2c24",
+   "printed": "Schedule 1 Item 5 Total Gross Income A. Exempt",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax5B",
+   "html_id": "p2c25",
+   "printed": "Schedule 1 Item 5 Total Gross Income B. Special",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax6A",
+   "html_id": "p2c27",
+   "printed": "Schedule 1 Item 6 Less: Deductions A. Exempt",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax6B",
+   "html_id": "p2c28",
+   "printed": "Schedule 1 Item 6 Less: Deductions B. Special",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax7A",
+   "html_id": "p2c30",
+   "printed": "Schedule 1 Item 7 Taxable Income this Quarter A. Exempt",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax7B",
+   "html_id": "p2c31",
+   "printed": "Schedule 1 Item 7 Taxable Income this Quarter B. Special",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax8A",
+   "html_id": "p2c33",
+   "printed": "Schedule 1 Item 8 Add: Taxable Income Previous Quarter/s A. Exempt",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax8B",
+   "html_id": "p2c34",
+   "printed": "Schedule 1 Item 8 Add: Taxable Income Previous Quarter/s B. Special",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax9A",
+   "html_id": "p2c36",
+   "printed": "Schedule 1 Item 9 Total Taxable Income to Date A. Exempt",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax9B",
+   "html_id": "p2c37",
+   "printed": "Schedule 1 Item 9 Total Taxable Income to Date B. Special",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:sched1_rate_a",
+   "html_id": "p2c39",
+   "printed": "Schedule 1 Item 10 Applicable Income Tax Rate A. Exempt (%)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sched1_rate_b_whole",
+   "html_id": "p2c42",
+   "printed": "Schedule 1 Item 10 Applicable Income Tax Rate B. Special (whole %)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sched1_rate_b_tenths",
+   "html_id": "p2c44",
+   "printed": "Schedule 1 Item 10 Applicable Income Tax Rate B. Special (tenths, after the printed point)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax11A",
+   "html_id": "p2c47",
+   "printed": "Schedule 1 Item 11 Income Tax Due A. Exempt",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax11B",
+   "html_id": "p2c48",
+   "printed": "Schedule 1 Item 11 Income Tax Due B. Special",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax12B",
+   "html_id": "p2c50",
+   "printed": "Schedule 1 Item 12 Less: Share of Other Agencies",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched1:txtTax13B",
+   "html_id": "p2c52",
+   "printed": "Schedule 1 Item 13 Net Income Tax Due to National Government",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched2:txtTax1",
+   "html_id": "p2c55",
+   "printed": "Schedule 2 Item 1 Sales/Receipts/Revenues/Fees",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched2:txtTax2",
+   "html_id": "p2c57",
+   "printed": "Schedule 2 Item 2 Less: Cost of Sales/Services",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched2:txtTax3",
+   "html_id": "p2c59",
+   "printed": "Schedule 2 Item 3 Gross Income from Operation",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched2:txtTax4",
+   "html_id": "p2c61",
+   "printed": "Schedule 2 Item 4 Add: Non-Operating and Other Taxable Income",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched2:txtTax5",
+   "html_id": "p2c63",
+   "printed": "Schedule 2 Item 5 Total Gross Income",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched2:txtTax6",
+   "html_id": "p2c65",
+   "printed": "Schedule 2 Item 6 Less: Deductions",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched2:txtTax7",
+   "html_id": "p2c67",
+   "printed": "Schedule 2 Item 7 Taxable Income this Quarter",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched2:txtTax8",
+   "html_id": "p2c69",
+   "printed": "Schedule 2 Item 8 Add: Taxable Income Previous Quarter/s",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched2:txtTax9",
+   "html_id": "p2c71",
+   "printed": "Schedule 2 Item 9 Total Taxable Income to Date",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:sched2_rate",
+   "html_id": "p2c73",
+   "printed": "Schedule 2 Item 10 Applicable Income Tax Rate (%)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:Sched2:txtTax11",
+   "html_id": "p2c76",
+   "printed": "Schedule 2 Item 11 Income Tax Due Other than MCIT",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched2:txtTax12",
+   "html_id": "p2c78",
+   "printed": "Schedule 2 Item 12 MCIT",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched2:txtTax13",
+   "html_id": "p2c80",
+   "printed": "Schedule 2 Item 13 Income Tax Due",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched3:txtTax1",
+   "html_id": "p2c83",
+   "printed": "Schedule 3 Item 1 Gross Income 1st Quarter",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched3:txtTax2",
+   "html_id": "p2c85",
+   "printed": "Schedule 3 Item 2 Gross Income 2nd Quarter",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched3:txtTax3",
+   "html_id": "p2c87",
+   "printed": "Schedule 3 Item 3 Gross Income 3rd Quarter",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched3:txtTax4",
+   "html_id": "p2c89",
+   "printed": "Schedule 3 Item 4 Total Gross Income",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched3:txtTax6",
+   "html_id": "p2c94",
+   "printed": "Schedule 3 Item 6 Minimum Corporate Income Tax",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:sched3_rate",
+   "html_id": "p2c91",
+   "printed": "Schedule 3 Item 5 MCIT Rate (%)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:Sched4:txtTax1",
+   "html_id": "p2c97",
+   "printed": "Schedule 4 Item 1 Prior Year's Excess Credits",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched4:txtTax2",
+   "html_id": "p2c99",
+   "printed": "Schedule 4 Item 2 Tax payment/s for the previous quarter/s other than MCIT",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched4:txtTax3",
+   "html_id": "p2c101",
+   "printed": "Schedule 4 Item 3 MCIT payment/s for the previous quarter/s",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched4:txtTax4",
+   "html_id": "p2c103",
+   "printed": "Schedule 4 Item 4 Creditable Tax Withheld for the previous quarter/s",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched4:txtTax5",
+   "html_id": "p2c105",
+   "printed": "Schedule 4 Item 5 Creditable Tax Withheld per BIR Form No. 2307 for this quarter",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched4:txtTax6",
+   "html_id": "p2c107",
+   "printed": "Schedule 4 Item 6 Tax paid in return previously filed (amended)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "frm1702q:Sched4:txtOthrTxCrdts0",
+   "html_id": "p2c110",
+   "printed": "Schedule 4 Item 6a Other Tax Credits/Payments (specify)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702Q (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:Sched4:txtOthrTxCrdtAmnt0",
+   "html_id": "p2c112",
+   "printed": "Schedule 4 Item 6a Other Tax Credits/Payments amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "frm1702q:Sched4:txtOthrTxCrdts1",
+   "html_id": "p2c114",
+   "printed": "Schedule 4 Item 6b Other Tax Credits/Payments (specify)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702Q (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:Sched4:txtOthrTxCrdtAmnt1",
+   "html_id": "p2c116",
+   "printed": "Schedule 4 Item 6b Other Tax Credits/Payments amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  },
+  {
+   "writer_key": "derived:Sched4:txtTax7",
+   "html_id": "p2c118",
+   "printed": "Schedule 4 Item 7 Total Tax Credits/Payments",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; the official amount right-aligned in the 12-slot comb (commas dropped only when it would not fit; blank when it still does not)"
+  }
+ ],
+ "money_joins": [],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1702q:rbForClndrFscl_1",
+   "html_id": "p1c8",
+   "printed": "1 For the Calendar",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702q:rbForClndrFscl_2",
+   "html_id": "p1c7",
+   "printed": "1 For the Fiscal",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702q:rbQuarter_1",
+   "html_id": "p1c12",
+   "printed": "3 Quarter 1st",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702q:rbQuarter_2",
+   "html_id": "p1c13",
+   "printed": "3 Quarter 2nd",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702q:rbQuarter_3",
+   "html_id": "p1c14",
+   "printed": "3 Quarter 3rd",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702q:rbAmendedRtn_1",
+   "html_id": "p1c15",
+   "printed": "4 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702q:rbAmendedRtn_2",
+   "html_id": "p1c16",
+   "printed": "4 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702q:rbATC_1",
+   "html_id": "p1c11",
+   "printed": "5 ATC IC 055 Minimum Corporate Income Tax (MCIT)",
+   "reason": "box right of the printed ATC line; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702q:rbATC_2",
+   "html_id": "p1c19",
+   "printed": "5 ATC (second line)",
+   "reason": "box right of the printed ATC line; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702q:rbMthdOfDdctns_1",
+   "html_id": "p1c49",
+   "printed": "12 Itemized Deductions",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702q:rbMthdOfDdctns_2",
+   "html_id": "p1c50",
+   "printed": "12 Optional Standard Deduction (OSD)",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702q:rbTxRlf_1",
+   "html_id": "p1c53",
+   "printed": "13 Tax relief? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702q:rbTxRlf_2",
+   "html_id": "p1c54",
+   "printed": "13 Tax relief? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm1702q:Sched1:txtTax11A",
+    "frm1702q:Sched1:txtTax11B",
+    "frm1702q:Sched1:txtTax12B",
+    "frm1702q:Sched1:txtTax13B",
+    "frm1702q:Sched1:txtTax1A",
+    "frm1702q:Sched1:txtTax1B",
+    "frm1702q:Sched1:txtTax2A",
+    "frm1702q:Sched1:txtTax2B",
+    "frm1702q:Sched1:txtTax3A",
+    "frm1702q:Sched1:txtTax3B",
+    "frm1702q:Sched1:txtTax4A",
+    "frm1702q:Sched1:txtTax4B",
+    "frm1702q:Sched1:txtTax5A",
+    "frm1702q:Sched1:txtTax5B",
+    "frm1702q:Sched1:txtTax6A",
+    "frm1702q:Sched1:txtTax6B",
+    "frm1702q:Sched1:txtTax7A",
+    "frm1702q:Sched1:txtTax7B",
+    "frm1702q:Sched1:txtTax8A",
+    "frm1702q:Sched1:txtTax8B",
+    "frm1702q:Sched1:txtTax9A",
+    "frm1702q:Sched1:txtTax9B",
+    "frm1702q:Sched2:txtTax1",
+    "frm1702q:Sched2:txtTax11",
+    "frm1702q:Sched2:txtTax12",
+    "frm1702q:Sched2:txtTax13",
+    "frm1702q:Sched2:txtTax2",
+    "frm1702q:Sched2:txtTax3",
+    "frm1702q:Sched2:txtTax4",
+    "frm1702q:Sched2:txtTax5",
+    "frm1702q:Sched2:txtTax6",
+    "frm1702q:Sched2:txtTax7",
+    "frm1702q:Sched2:txtTax8",
+    "frm1702q:Sched2:txtTax9",
+    "frm1702q:Sched3:txtTax1",
+    "frm1702q:Sched3:txtTax2",
+    "frm1702q:Sched3:txtTax3",
+    "frm1702q:Sched3:txtTax4",
+    "frm1702q:Sched3:txtTax6",
+    "frm1702q:Sched4:txtOthrTxCrdtAmnt0",
+    "frm1702q:Sched4:txtOthrTxCrdtAmnt1",
+    "frm1702q:Sched4:txtTax1",
+    "frm1702q:Sched4:txtTax2",
+    "frm1702q:Sched4:txtTax3",
+    "frm1702q:Sched4:txtTax4",
+    "frm1702q:Sched4:txtTax5",
+    "frm1702q:Sched4:txtTax6",
+    "frm1702q:Sched4:txtTax7",
+    "frm1702q:txtTax14",
+    "frm1702q:txtTax15",
+    "frm1702q:txtTax16",
+    "frm1702q:txtTax17",
+    "frm1702q:txtTax18",
+    "frm1702q:txtTax19",
+    "frm1702q:txtTax20",
+    "frm1702q:txtTax21",
+    "frm1702q:txtTax22",
+    "frm1702q:txtTax23",
+    "frm1702q:txtTax24",
+    "frm1702q:txtTax25"
+   ],
+   "reason": "prints from its derived:<control> twin (the official amount text right-aligned in the 12-slot comb; commas dropped when it would not fit)"
+  },
+  {
+   "writer_key": "frm1702q:Sched1:txtTax10A",
+   "reason": "prints from derived:sched1_rate_a (the print map shapes the Schedule 1 A rate as a whole percent for the sheet)"
+  },
+  {
+   "writer_key": "frm1702q:Sched1:txtTax10B",
+   "reason": "prints from derived:sched1_rate_b_whole / derived:sched1_rate_b_tenths (the print map shapes the Schedule 1 B rate over its whole and tenths boxes for the sheet)"
+  },
+  {
+   "writer_key": "frm1702q:Sched2:txtTax10",
+   "reason": "prints from derived:sched2_rate (the print map shapes the Schedule 2 rate as a whole percent for the sheet)"
+  },
+  {
+   "writer_key": "frm1702q:Sched3:txtTax5",
+   "reason": "prints from derived:sched3_rate (the print map shapes the Schedule 3 MCIT rate as a whole percent, only while Schedule 3 is open for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1702q:Sched4:chkOthrTxCrdts0",
+    "frm1702q:Sched4:chkOthrTxCrdts1"
+   ],
+   "reason": "row checkbox of the page's other-credits list, not on the paper form"
+  },
+  {
+   "writer_key": "frm1702q:cbATC_2",
+   "reason": "prints from derived:atc_code / derived:atc_description (the print map shapes the Item 5 ATC code and description line for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1702q:rbYrEndMonth",
+    "frm1702q:txtYrEndYear"
+   ],
+   "reason": "prints from derived:year_end_mm1/mm2 / derived:year_end_yy1/yy2 (the print map shapes Item 2 as MM and YY digit boxes for the sheet)"
+  },
+  {
+   "writer_key": "frm1702q:txtTaxpayerName1",
+   "reason": "prints from derived:name_line1 / derived:name_line2 (the print map shapes the name over the two item 8 combs for the sheet)"
+  },
+  {
+   "writer_key": "frm1702q:txtAddress",
+   "reason": "prints from derived:address_line1 / derived:address_line2 (the print map shapes the address over the two item 9 combs for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1702q:txtPg2TIN1",
+    "frm1702q:txtPg2TIN2",
+    "frm1702q:txtPg2TIN3"
+   ],
+   "reason": "prints from derived:tin_digits (the print map shapes the nine TIN digits of the page 2 header for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1702q:txtBranchCode",
+    "frm1702q:txtPg2BranchCode"
+   ],
+   "reason": "branch code: both TIN combs preprint 00000 (no fillable branch cell)"
+  },
+  {
+   "writer_key": "frm1702q:txtLOB",
+   "reason": "not on the paper form: this sheet has no line-of-business box"
+  },
+  {
+   "writer_key": "frm1702q:txtCurrentPage",
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  }
+ ]
+}

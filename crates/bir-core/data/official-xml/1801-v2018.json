@@ -1,0 +1,2448 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "1801-v2018",
+  "generated_by": "oracle/gen_layout_runtime.js (official saveXMLsubmit loop run on the loaded page in jsdom)",
+  "official_hta": "BIR-Form1801v2018.hta",
+  "official_hta_sha256": "d19c4ebe40ed109094ef43687ed5486a003bd11a67a251bdd5545a41c2f46d8d",
+  "header": "<?xml version='1.0'?>",
+  "lead": "\t",
+  "value_rules": [],
+  "entries": [
+    {
+      "key": "frm1801v2018:txtDateMonth",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtDateMonth",
+          "codec": "raw"
+        }
+      ],
+      "default": "01",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtDateDay",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtDateDay",
+          "codec": "raw"
+        }
+      ],
+      "default": "01",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtDateYear",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtDateYear",
+          "codec": "raw"
+        }
+      ],
+      "default": "2000",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:amendedRtn_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:amendedRtn_2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtSheets",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtSheets",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtAtc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtAtc",
+          "codec": "raw"
+        }
+      ],
+      "default": "ES 010",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:tinA_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:tinA_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:tinB_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:tinB_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:tinC_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:tinC_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:branchCode_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:branchCode_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtRDOCode_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtRDOCode_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:registeredName_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:registeredName_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:registeredAddress_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:registeredAddress_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:categoryNonResident_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:categoryNonResident_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:adminName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:adminName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtTINE1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtTINE1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtTINE2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtTINE2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtTINE3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtTINE3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtBranchCodeE",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtBranchCodeE",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:telephoneNumber",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:telephoneNumber",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtEmail",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtEmail",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:optTreaty_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:optTreaty_2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:treatyY",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:treatyY",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:fileGranted_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:fileGranted_2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:instGranted_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:instGranted_2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:settled_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:settled_2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:extGranted_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:extGranted_2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:freq_Mon",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:freq_Qtr",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:freq_Semi",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:freq_Other",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:freqOtherInput",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:freqOtherInput",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtTaxableEstate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtTaxableEstate",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtTaxRate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtTaxRate",
+          "codec": "raw"
+        }
+      ],
+      "default": "6.0%",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtEstTaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtEstTaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtCredits_ForeignEst",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtCredits_ForeignEst",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtCredits_TaxPrev",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtCredits_TaxPrev",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtCredits_Tot",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtCredits_Tot",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtTaxPayable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtTaxPayable",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtInstallmentYear",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtInstallmentYear",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtInstallment",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtInstallment",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtTaxPayable_1st",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtTaxPayable_1st",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtPen_Surcharge",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtPen_Surcharge",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtPen_Interest",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtPen_Interest",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtPen_Compromise",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtPen_Compromise",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtPen_Tot",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtPen_Tot",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtTotPayable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtTotPayable",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:cashBank",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:cashBank",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:cashNum",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:cashNum",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:cashDate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:cashDate",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:cashAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:cashAmt",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:checkBank",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:checkBank",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:checkNum",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:checkNum",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:checkDate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:checkDate",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:checkAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:checkAmt",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018taxkNum",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018taxkNum",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:taxDate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:taxDate",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:taxAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:taxAmt",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:othersDetails",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:othersDetails",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:othersBank",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:othersBank",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:othersNum",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:othersNum",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:othersDate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:othersDate",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:othersAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:othersAmt",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:tinA_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:tinA_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:tinB_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:tinB_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:tinC_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:tinC_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:branchCode_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:branchCode_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:registeredName_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:registeredName_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtRealProp_A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtRealProp_A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtRealProp_B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtRealProp_B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtRealProp_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtRealProp_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtFam_A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtFam_A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtFam_B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtFam_B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtFam_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtFam_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtPersonalProp_A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtPersonalProp_A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtPersonalProp_B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtPersonalProp_B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtPersonalProp_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtPersonalProp_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtTaxable_A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtTaxable_A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtTaxable_B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtTaxable_B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtTaxable_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtTaxable_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtBusiness_A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtBusiness_A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtBusiness_B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtBusiness_B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtBusiness_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtBusiness_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtGrossEst_A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtGrossEst_A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtGrossEst_B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtGrossEst_B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtGrossEst_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtGrossEst_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtOrdDed_A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtOrdDed_A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtOrdDed_B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtOrdDed_B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtOrdDed_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtOrdDed_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtEstAfterDed_A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtEstAfterDed_A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtEstAfterDed_B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtEstAfterDed_B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtEstAfterDed_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtEstAfterDed_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtStandardDed_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtStandardDed_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtFamDed_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtFamDed_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtOtherDed_Specify",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtOtherDed_Specify",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtOtherDed_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtOtherDed_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtTotalDed_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtTotalDed_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtNetEst_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtNetEst_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtShareSpouse_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtShareSpouse_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtNetTaxEst_C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtNetTaxEst_C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Oct_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Oct_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Td_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Td_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Loc_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Loc_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Lot_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Lot_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Area_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Area_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Class_1'",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Class_1'",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Oct_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Oct_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Td_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Td_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Loc_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Loc_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Lot_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Lot_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Area_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Area_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Class_2'",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Class_2'",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Fmv_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Fmv_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Zonal_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Zonal_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Exc_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Exc_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Conj_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Conj_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Fmv_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Fmv_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Zonal_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Zonal_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Exc_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Exc_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Conj_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Conj_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Exc_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Exc_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1Conj_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1Conj_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AOct_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AOct_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1ATd_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1ATd_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1ALoc_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1ALoc_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AArea_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AArea_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AClass_1'",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AClass_1'",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AFmv_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AFmv_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AZonal_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AZonal_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AExc_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AExc_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AConj_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AConj_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AOct_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AOct_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1ATd_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1ATd_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1ALoc_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1ALoc_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AArea_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AArea_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AClass_2'",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AClass_2'",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AFmv_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AFmv_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AZonal_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AZonal_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AExc_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AExc_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AConj_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AConj_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AExc_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AExc_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched1AConj_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched1AConj_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Corp_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Corp_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Class_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Class_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Stock_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Stock_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Shares_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Shares_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2FmvPerShare_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2FmvPerShare_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Exc_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Exc_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Conj_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Conj_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Corp_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Corp_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Class_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Class_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Stock_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Stock_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Shares_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Shares_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2FmvPerShare_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2FmvPerShare_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Exc_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Exc_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Conj_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Conj_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Exc_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Exc_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2Conj_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2Conj_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2AParticulars_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2AParticulars_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2AExc_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2AExc_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2AConj_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2AConj_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2AParticulars_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2AParticulars_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2AExc_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2AExc_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2AConj_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2AConj_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2AExc_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2AExc_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched2AConj_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched2AConj_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched3Particulars_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched3Particulars_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched3Exc_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched3Exc_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched3Conj_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched3Conj_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched3Particulars_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched3Particulars_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched3Exc_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched3Exc_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched3Conj_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched3Conj_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched3Exc_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched3Exc_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched3Conj_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched3Conj_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched4Name_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched4Name_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched4Address_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched4Address_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched4Rdo_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched4Rdo_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched4Exc_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched4Exc_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched4Conj_1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched4Conj_1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched4Name_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched4Name_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched4Address_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched4Address_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched4Rdo_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched4Rdo_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched4Exc_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched4Exc_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched4Conj_2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched4Conj_2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched4Exc_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched4Exc_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched4Conj_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched4Conj_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5EstateExc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5EstateExc",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5EstateConj",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5EstateConj",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5InsolventExc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5InsolventExc",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5InsolventConj",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5InsolventConj",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5UnpaidExc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5UnpaidExc",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5UnpaidConj",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5UnpaidConj",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5LossesExc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5LossesExc",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5LossesConj",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5LossesConj",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5VanishingExc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5VanishingExc",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5VanishingConj",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5VanishingConj",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5TransferExc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5TransferExc",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5TransferConj",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5TransferConj",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5Others_Specify",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5Others_Specify",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5OthersExc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5OthersExc",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5OthersConj",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5OthersConj",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5Exc_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5Exc_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:sched5Conj_Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:sched5Conj_Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtCurrentPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtCurrentPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "1",
+      "after": "\t"
+    },
+    {
+      "key": "frm1801v2018:txtMaxPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1801v2018:txtMaxPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "2",
+      "after": "\t\tAll Rights Reserved BIR 2012.0"
+    }
+  ]
+}

@@ -1,0 +1,1237 @@
+{
+ "form_id": "2552-v2018",
+ "html_slug": "2552-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the single fillable cell whose printed caption (from the frozen page's own text layer) names the item. Page 1 amounts split into the 12-slot peso comb and the 2-slot centavo comb of their row; page 2 prints the writer's official text in single cells. The ATC column of Items 13-15 is preprinted. Booleans fill X in the box left of the printed option. Parts III and the signatory/tax-agent cells are not joined: the official page keeps them disabled and empty. When Part V uses the Add More popup, row 5 prints OTHERS and the popup rows go on an attached sheet, as on the official printout.",
+ "joins": [
+  {
+   "writer_key": "frm2552:txtPg1I1Month",
+   "html_id": "p1c6",
+   "printed": "1 Date of Transaction MM",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1I1Day",
+   "html_id": "p1c7",
+   "printed": "1 Date of Transaction DD",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1I1Year",
+   "html_id": "p1c8",
+   "printed": "1 Date of Transaction YYYY",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1I3NoOfSheets",
+   "html_id": "p1c9",
+   "printed": "3 Number of sheet/s attached",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1TIN1",
+   "html_id": "p1c14",
+   "printed": "4 TIN (1-3)",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1TIN2",
+   "html_id": "p1c16",
+   "printed": "4 TIN (4-6)",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1TIN3",
+   "html_id": "p1c18",
+   "printed": "4 TIN (7-9)",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1TIN4",
+   "html_id": "p1c20",
+   "printed": "4 TIN branch",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1I5RDO",
+   "html_id": "p1c22",
+   "printed": "5 RDO Code",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1Pt1I6Name",
+   "html_id": "p1c24",
+   "printed": "6 Name of Stockbroker/Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1Pt1I7RegisteredAddress",
+   "html_id": "p1c26",
+   "printed": "7 Registered Address (line 1)",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1Pt1I7RegisteredAddress2",
+   "html_id": "p1c27",
+   "printed": "7 Registered Address (line 2)",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txPg1I7ZipCode",
+   "html_id": "p1c28",
+   "printed": "7A ZIP Code",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1Pt1I8ContactNumber",
+   "html_id": "p1c31",
+   "printed": "8 Contact Number",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1Pt1I9Email",
+   "html_id": "p1c32",
+   "printed": "9 Email Address",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1Pt1I10TaxReliefSpec",
+   "html_id": "p1c35",
+   "printed": "10A If yes, specify",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1Pt1I12NumOfShare",
+   "html_id": "p1c43",
+   "printed": "12A No. of Shares Sold, Bartered, or Exchanged",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg1Pt1I12TotShare",
+   "html_id": "p1c44",
+   "printed": "12B Total Outstanding Shares after Listing",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2P4I1TransClass",
+   "html_id": "p2c6",
+   "printed": "Part IV row 1 Transaction Classification",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2P4I1Amount",
+   "html_id": "p2c7",
+   "printed": "Part IV row 1 Amount Involved",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2P4I2TransClass",
+   "html_id": "p2c8",
+   "printed": "Part IV row 2 Transaction Classification",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2P4I2Amount",
+   "html_id": "p2c9",
+   "printed": "Part IV row 2 Amount Involved",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2P4I3TransClass",
+   "html_id": "p2c10",
+   "printed": "Part IV row 3 Transaction Classification",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2P4I3Amount",
+   "html_id": "p2c11",
+   "printed": "Part IV row 3 Amount Involved",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2P4I4TransClass",
+   "html_id": "p2c12",
+   "printed": "Part IV row 4 Transaction Classification",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2P4I4Amount",
+   "html_id": "p2c13",
+   "printed": "Part IV row 4 Amount Involved",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2P4I5TransClass",
+   "html_id": "p2c14",
+   "printed": "Part IV row 5 Transaction Classification",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2P4I5Amount",
+   "html_id": "p2c15",
+   "printed": "Part IV row 5 Amount Involved",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Date1",
+   "html_id": "p2c22",
+   "printed": "Schedule 1 row 1 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Seller1",
+   "html_id": "p2c23",
+   "printed": "Schedule 1 row 1 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Buyer1",
+   "html_id": "p2c24",
+   "printed": "Schedule 1 row 1 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Date2",
+   "html_id": "p2c26",
+   "printed": "Schedule 1 row 2 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Seller2",
+   "html_id": "p2c27",
+   "printed": "Schedule 1 row 2 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Buyer2",
+   "html_id": "p2c28",
+   "printed": "Schedule 1 row 2 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Date3",
+   "html_id": "p2c30",
+   "printed": "Schedule 1 row 3 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Seller3",
+   "html_id": "p2c31",
+   "printed": "Schedule 1 row 3 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Buyer3",
+   "html_id": "p2c32",
+   "printed": "Schedule 1 row 3 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Date4",
+   "html_id": "p2c34",
+   "printed": "Schedule 1 row 4 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Seller4",
+   "html_id": "p2c35",
+   "printed": "Schedule 1 row 4 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Buyer4",
+   "html_id": "p2c36",
+   "printed": "Schedule 1 row 4 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Date5",
+   "html_id": "p2c38",
+   "printed": "Schedule 1 row 5 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Seller5",
+   "html_id": "p2c39",
+   "printed": "Schedule 1 row 5 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Buyer5",
+   "html_id": "p2c40",
+   "printed": "Schedule 1 row 5 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Corp1",
+   "html_id": "p2c47",
+   "printed": "Schedule 1 row 1 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1NumShares1",
+   "html_id": "p2c48",
+   "printed": "Schedule 1 row 1 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxBase1",
+   "html_id": "p2c49",
+   "printed": "Schedule 1 row 1 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxRate1",
+   "html_id": "p2c50",
+   "printed": "Schedule 1 row 1 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxDue1",
+   "html_id": "p2c51",
+   "printed": "Schedule 1 row 1 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Corp2",
+   "html_id": "p2c53",
+   "printed": "Schedule 1 row 2 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1NumShares2",
+   "html_id": "p2c54",
+   "printed": "Schedule 1 row 2 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxBase2",
+   "html_id": "p2c55",
+   "printed": "Schedule 1 row 2 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxRate2",
+   "html_id": "p2c56",
+   "printed": "Schedule 1 row 2 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxDue2",
+   "html_id": "p2c57",
+   "printed": "Schedule 1 row 2 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Corp3",
+   "html_id": "p2c59",
+   "printed": "Schedule 1 row 3 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1NumShares3",
+   "html_id": "p2c60",
+   "printed": "Schedule 1 row 3 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxBase3",
+   "html_id": "p2c61",
+   "printed": "Schedule 1 row 3 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxRate3",
+   "html_id": "p2c62",
+   "printed": "Schedule 1 row 3 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxDue3",
+   "html_id": "p2c63",
+   "printed": "Schedule 1 row 3 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Corp4",
+   "html_id": "p2c65",
+   "printed": "Schedule 1 row 4 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1NumShares4",
+   "html_id": "p2c66",
+   "printed": "Schedule 1 row 4 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxBase4",
+   "html_id": "p2c67",
+   "printed": "Schedule 1 row 4 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxRate4",
+   "html_id": "p2c68",
+   "printed": "Schedule 1 row 4 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxDue4",
+   "html_id": "p2c69",
+   "printed": "Schedule 1 row 4 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1Corp5",
+   "html_id": "p2c71",
+   "printed": "Schedule 1 row 5 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1NumShares5",
+   "html_id": "p2c72",
+   "printed": "Schedule 1 row 5 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxBase5",
+   "html_id": "p2c73",
+   "printed": "Schedule 1 row 5 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxRate5",
+   "html_id": "p2c74",
+   "printed": "Schedule 1 row 5 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxDue5",
+   "html_id": "p2c75",
+   "printed": "Schedule 1 row 5 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch1TaxDueTot",
+   "html_id": "p2c77",
+   "printed": "Schedule 1 6 TOTAL",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Date1",
+   "html_id": "p2c83",
+   "printed": "Schedule 2 row 1 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Seller1",
+   "html_id": "p2c84",
+   "printed": "Schedule 2 row 1 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Buyer1",
+   "html_id": "p2c85",
+   "printed": "Schedule 2 row 1 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Date2",
+   "html_id": "p2c87",
+   "printed": "Schedule 2 row 2 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Seller2",
+   "html_id": "p2c88",
+   "printed": "Schedule 2 row 2 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Buyer2",
+   "html_id": "p2c89",
+   "printed": "Schedule 2 row 2 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Date3",
+   "html_id": "p2c91",
+   "printed": "Schedule 2 row 3 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Seller3",
+   "html_id": "p2c92",
+   "printed": "Schedule 2 row 3 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Buyer3",
+   "html_id": "p2c93",
+   "printed": "Schedule 2 row 3 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Date4",
+   "html_id": "p2c95",
+   "printed": "Schedule 2 row 4 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Seller4",
+   "html_id": "p2c96",
+   "printed": "Schedule 2 row 4 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Buyer4",
+   "html_id": "p2c97",
+   "printed": "Schedule 2 row 4 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Date5",
+   "html_id": "p2c99",
+   "printed": "Schedule 2 row 5 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Seller5",
+   "html_id": "p2c100",
+   "printed": "Schedule 2 row 5 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Buyer5",
+   "html_id": "p2c101",
+   "printed": "Schedule 2 row 5 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Corp1",
+   "html_id": "p2c108",
+   "printed": "Schedule 2 row 1 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2NumShares1",
+   "html_id": "p2c109",
+   "printed": "Schedule 2 row 1 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxBase1",
+   "html_id": "p2c110",
+   "printed": "Schedule 2 row 1 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxRate1",
+   "html_id": "p2c111",
+   "printed": "Schedule 2 row 1 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxDue1",
+   "html_id": "p2c112",
+   "printed": "Schedule 2 row 1 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Corp2",
+   "html_id": "p2c114",
+   "printed": "Schedule 2 row 2 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2NumShares2",
+   "html_id": "p2c115",
+   "printed": "Schedule 2 row 2 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxBase2",
+   "html_id": "p2c116",
+   "printed": "Schedule 2 row 2 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxRate2",
+   "html_id": "p2c117",
+   "printed": "Schedule 2 row 2 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxDue2",
+   "html_id": "p2c118",
+   "printed": "Schedule 2 row 2 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Corp3",
+   "html_id": "p2c120",
+   "printed": "Schedule 2 row 3 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2NumShares3",
+   "html_id": "p2c121",
+   "printed": "Schedule 2 row 3 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxBase3",
+   "html_id": "p2c122",
+   "printed": "Schedule 2 row 3 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxRate3",
+   "html_id": "p2c123",
+   "printed": "Schedule 2 row 3 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxDue3",
+   "html_id": "p2c124",
+   "printed": "Schedule 2 row 3 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Corp4",
+   "html_id": "p2c126",
+   "printed": "Schedule 2 row 4 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2NumShares4",
+   "html_id": "p2c127",
+   "printed": "Schedule 2 row 4 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxBase4",
+   "html_id": "p2c128",
+   "printed": "Schedule 2 row 4 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxRate4",
+   "html_id": "p2c129",
+   "printed": "Schedule 2 row 4 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxDue4",
+   "html_id": "p2c130",
+   "printed": "Schedule 2 row 4 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2Corp5",
+   "html_id": "p2c132",
+   "printed": "Schedule 2 row 5 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2NumShares5",
+   "html_id": "p2c133",
+   "printed": "Schedule 2 row 5 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxBase5",
+   "html_id": "p2c134",
+   "printed": "Schedule 2 row 5 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxRate5",
+   "html_id": "p2c135",
+   "printed": "Schedule 2 row 5 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxDue5",
+   "html_id": "p2c136",
+   "printed": "Schedule 2 row 5 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch2TaxDueTot",
+   "html_id": "p2c138",
+   "printed": "Schedule 2 6 TOTAL",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Date1",
+   "html_id": "p2c144",
+   "printed": "Schedule 3 row 1 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Seller1",
+   "html_id": "p2c145",
+   "printed": "Schedule 3 row 1 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Buyer1",
+   "html_id": "p2c146",
+   "printed": "Schedule 3 row 1 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Date2",
+   "html_id": "p2c148",
+   "printed": "Schedule 3 row 2 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Seller2",
+   "html_id": "p2c149",
+   "printed": "Schedule 3 row 2 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Buyer2",
+   "html_id": "p2c150",
+   "printed": "Schedule 3 row 2 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Date3",
+   "html_id": "p2c152",
+   "printed": "Schedule 3 row 3 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Seller3",
+   "html_id": "p2c153",
+   "printed": "Schedule 3 row 3 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Buyer3",
+   "html_id": "p2c154",
+   "printed": "Schedule 3 row 3 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Date4",
+   "html_id": "p2c156",
+   "printed": "Schedule 3 row 4 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Seller4",
+   "html_id": "p2c157",
+   "printed": "Schedule 3 row 4 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Buyer4",
+   "html_id": "p2c158",
+   "printed": "Schedule 3 row 4 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Date5",
+   "html_id": "p2c160",
+   "printed": "Schedule 3 row 5 (a) Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Seller5",
+   "html_id": "p2c161",
+   "printed": "Schedule 3 row 5 (b) Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Buyer5",
+   "html_id": "p2c162",
+   "printed": "Schedule 3 row 5 (c) Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Corp1",
+   "html_id": "p2c169",
+   "printed": "Schedule 3 row 1 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3NumShares1",
+   "html_id": "p2c170",
+   "printed": "Schedule 3 row 1 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxBase1",
+   "html_id": "p2c171",
+   "printed": "Schedule 3 row 1 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxRate1",
+   "html_id": "p2c172",
+   "printed": "Schedule 3 row 1 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxDue1",
+   "html_id": "p2c173",
+   "printed": "Schedule 3 row 1 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Corp2",
+   "html_id": "p2c175",
+   "printed": "Schedule 3 row 2 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3NumShares2",
+   "html_id": "p2c176",
+   "printed": "Schedule 3 row 2 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxBase2",
+   "html_id": "p2c177",
+   "printed": "Schedule 3 row 2 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxRate2",
+   "html_id": "p2c178",
+   "printed": "Schedule 3 row 2 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxDue2",
+   "html_id": "p2c179",
+   "printed": "Schedule 3 row 2 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Corp3",
+   "html_id": "p2c181",
+   "printed": "Schedule 3 row 3 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3NumShares3",
+   "html_id": "p2c182",
+   "printed": "Schedule 3 row 3 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxBase3",
+   "html_id": "p2c183",
+   "printed": "Schedule 3 row 3 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxRate3",
+   "html_id": "p2c184",
+   "printed": "Schedule 3 row 3 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxDue3",
+   "html_id": "p2c185",
+   "printed": "Schedule 3 row 3 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Corp4",
+   "html_id": "p2c187",
+   "printed": "Schedule 3 row 4 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3NumShares4",
+   "html_id": "p2c188",
+   "printed": "Schedule 3 row 4 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxBase4",
+   "html_id": "p2c189",
+   "printed": "Schedule 3 row 4 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxRate4",
+   "html_id": "p2c190",
+   "printed": "Schedule 3 row 4 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxDue4",
+   "html_id": "p2c191",
+   "printed": "Schedule 3 row 4 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3Corp5",
+   "html_id": "p2c193",
+   "printed": "Schedule 3 row 5 (d) Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3NumShares5",
+   "html_id": "p2c194",
+   "printed": "Schedule 3 row 5 (e) Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxBase5",
+   "html_id": "p2c195",
+   "printed": "Schedule 3 row 5 (f) Tax Base",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxRate5",
+   "html_id": "p2c196",
+   "printed": "Schedule 3 row 5 (g) Tax Rate",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxDue5",
+   "html_id": "p2c197",
+   "printed": "Schedule 3 row 5 (h) Tax Due",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt5Sch3TaxDueTot",
+   "html_id": "p2c199",
+   "printed": "Schedule 3 6 TOTAL",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Date1",
+   "html_id": "p2c207",
+   "printed": "Part VI row 1 Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Seller1",
+   "html_id": "p2c208",
+   "printed": "Part VI row 1 Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Buyer1",
+   "html_id": "p2c209",
+   "printed": "Part VI row 1 Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Corp1",
+   "html_id": "p2c210",
+   "printed": "Part VI row 1 Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6NumShares1",
+   "html_id": "p2c211",
+   "printed": "Part VI row 1 Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Date2",
+   "html_id": "p2c213",
+   "printed": "Part VI row 2 Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Seller2",
+   "html_id": "p2c214",
+   "printed": "Part VI row 2 Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Buyer2",
+   "html_id": "p2c215",
+   "printed": "Part VI row 2 Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Corp2",
+   "html_id": "p2c216",
+   "printed": "Part VI row 2 Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6NumShares2",
+   "html_id": "p2c217",
+   "printed": "Part VI row 2 Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Date3",
+   "html_id": "p2c219",
+   "printed": "Part VI row 3 Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Seller3",
+   "html_id": "p2c220",
+   "printed": "Part VI row 3 Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Buyer3",
+   "html_id": "p2c221",
+   "printed": "Part VI row 3 Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Corp3",
+   "html_id": "p2c222",
+   "printed": "Part VI row 3 Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6NumShares3",
+   "html_id": "p2c223",
+   "printed": "Part VI row 3 Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Date4",
+   "html_id": "p2c225",
+   "printed": "Part VI row 4 Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Seller4",
+   "html_id": "p2c226",
+   "printed": "Part VI row 4 Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Buyer4",
+   "html_id": "p2c227",
+   "printed": "Part VI row 4 Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Corp4",
+   "html_id": "p2c228",
+   "printed": "Part VI row 4 Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6NumShares4",
+   "html_id": "p2c229",
+   "printed": "Part VI row 4 Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Date5",
+   "html_id": "p2c231",
+   "printed": "Part VI row 5 Date",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Seller5",
+   "html_id": "p2c232",
+   "printed": "Part VI row 5 Seller",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Buyer5",
+   "html_id": "p2c233",
+   "printed": "Part VI row 5 Buyer",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6Corp5",
+   "html_id": "p2c234",
+   "printed": "Part VI row 5 Issuing Corporation",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  },
+  {
+   "writer_key": "frm2552:txtPg2Pt6NumShares5",
+   "html_id": "p2c235",
+   "printed": "Part VI row 5 Number of Shares",
+   "reason": "geometry: the fillable cell under/beside this printed caption on the 2552 (2018) sheet"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm2552:txtPg1P2I13TaxDue",
+   "peso_html_id": "p1c51",
+   "cent_html_id": "p1c53",
+   "printed": "13 Tax Due (Schedule 1)",
+   "reason": "12-slot peso comb and 2-slot centavo comb on this item's row; the writer's official amount splits into both"
+  },
+  {
+   "writer_key": "frm2552:txtPg1P2I14TaxDue",
+   "peso_html_id": "p1c56",
+   "cent_html_id": "p1c58",
+   "printed": "14 Tax Due (Schedule 2)",
+   "reason": "12-slot peso comb and 2-slot centavo comb on this item's row; the writer's official amount splits into both"
+  },
+  {
+   "writer_key": "frm2552:txtPg1P2I15TaxDue",
+   "peso_html_id": "p1c61",
+   "cent_html_id": "p1c63",
+   "printed": "15 Tax Due (Schedule 3)",
+   "reason": "12-slot peso comb and 2-slot centavo comb on this item's row; the writer's official amount splits into both"
+  },
+  {
+   "writer_key": "frm2552:txtPg1P2I16TotTaxDue",
+   "peso_html_id": "p1c65",
+   "cent_html_id": "p1c67",
+   "printed": "16 Total Tax Due",
+   "reason": "12-slot peso comb and 2-slot centavo comb on this item's row; the writer's official amount splits into both"
+  },
+  {
+   "writer_key": "frm2552:txtPg1P2I17TaxPaidInPrevRtrn",
+   "peso_html_id": "p1c70",
+   "cent_html_id": "p1c72",
+   "printed": "17 Tax Paid in Return Previously Filed",
+   "reason": "12-slot peso comb and 2-slot centavo comb on this item's row; the writer's official amount splits into both"
+  },
+  {
+   "writer_key": "frm2552:txtPg1P2I18CredTaxWthhld",
+   "peso_html_id": "p1c74",
+   "cent_html_id": "p1c76",
+   "printed": "18 Creditable Tax Withheld",
+   "reason": "12-slot peso comb and 2-slot centavo comb on this item's row; the writer's official amount splits into both"
+  },
+  {
+   "writer_key": "frm2552:txtPg1P2I19TotTaxCredPmnt",
+   "peso_html_id": "p1c78",
+   "cent_html_id": "p1c80",
+   "printed": "19 Total Tax Credits/Payments",
+   "reason": "12-slot peso comb and 2-slot centavo comb on this item's row; the writer's official amount splits into both"
+  },
+  {
+   "writer_key": "frm2552:txtPg1P2I20TotTaxStllDueOvrPmnt",
+   "peso_html_id": "p1c82",
+   "cent_html_id": "p1c84",
+   "printed": "20 Total Tax Still Due/(Overpayment)",
+   "reason": "12-slot peso comb and 2-slot centavo comb on this item's row; the writer's official amount splits into both"
+  },
+  {
+   "writer_key": "frm2552:txtPg1P2I21Surcharge",
+   "peso_html_id": "p1c86",
+   "cent_html_id": "p1c88",
+   "printed": "21 Surcharge",
+   "reason": "12-slot peso comb and 2-slot centavo comb on this item's row; the writer's official amount splits into both"
+  },
+  {
+   "writer_key": "frm2552:txtPg1P2I22Interest",
+   "peso_html_id": "p1c90",
+   "cent_html_id": "p1c92",
+   "printed": "22 Interest",
+   "reason": "12-slot peso comb and 2-slot centavo comb on this item's row; the writer's official amount splits into both"
+  },
+  {
+   "writer_key": "frm2552:txtPg1P2I23Compromise",
+   "peso_html_id": "p1c94",
+   "cent_html_id": "p1c96",
+   "printed": "23 Compromise",
+   "reason": "12-slot peso comb and 2-slot centavo comb on this item's row; the writer's official amount splits into both"
+  },
+  {
+   "writer_key": "frm2552:txtPg1P2I24TotPenalties",
+   "peso_html_id": "p1c98",
+   "cent_html_id": "p1c100",
+   "printed": "24 Total Penalties",
+   "reason": "12-slot peso comb and 2-slot centavo comb on this item's row; the writer's official amount splits into both"
+  },
+  {
+   "writer_key": "frm2552:txtPg1P2I25TotAmntPyable",
+   "peso_html_id": "p1c102",
+   "cent_html_id": "p1c104",
+   "printed": "25 Total Amount Payable/(Overpayment)",
+   "reason": "12-slot peso comb and 2-slot centavo comb on this item's row; the writer's official amount splits into both"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm2552:rdoPg1I2AmendedYes",
+   "html_id": "p1c10",
+   "printed": "2 Amended Return Yes",
+   "reason": "box left of the printed option; X when the writer is true"
+  },
+  {
+   "writer_key": "frm2552:rdoPg1I2AmendedNo",
+   "html_id": "p1c11",
+   "printed": "2 Amended Return No",
+   "reason": "box left of the printed option; X when the writer is true"
+  },
+  {
+   "writer_key": "frm2552:rdoPg1I10TaxReliefYes",
+   "html_id": "p1c36",
+   "printed": "10 Tax relief Yes",
+   "reason": "box left of the printed option; X when the writer is true"
+  },
+  {
+   "writer_key": "frm2552:rdoPg1I10TaxReliefNo",
+   "html_id": "p1c37",
+   "printed": "10 Tax relief No",
+   "reason": "box left of the printed option; X when the writer is true"
+  },
+  {
+   "writer_key": "frm2552:rdoPg1I11TransactionLSE",
+   "html_id": "p1c41",
+   "printed": "11A Shares Listed and Traded through the LSE",
+   "reason": "box left of the printed option; X when the writer is true"
+  },
+  {
+   "writer_key": "frm2552:rdoPg1I11TransactionPrimary",
+   "html_id": "p1c39",
+   "printed": "11B Initial Public Offering, Primary",
+   "reason": "box left of the printed option; X when the writer is true"
+  },
+  {
+   "writer_key": "frm2552:rdoPg1I11TransactionSecondary",
+   "html_id": "p1c40",
+   "printed": "11B Initial Public Offering, Secondary",
+   "reason": "box left of the printed option; X when the writer is true"
+  },
+  {
+   "writer_key": "frm2552:rdoPg1OverpaymentRefund",
+   "html_id": "p1c106",
+   "printed": "If overpayment: To be refunded",
+   "reason": "box left of the printed option; X when the writer is true"
+  },
+  {
+   "writer_key": "frm2552:rdoPg1OverpaymentTaxCredCert",
+   "html_id": "p1c107",
+   "printed": "If overpayment: To be issued Tax Credit Certificate",
+   "reason": "box left of the printed option; X when the writer is true"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_key": "frm2552:txtPg1P2I13TaxATC",
+   "reason": "ATC PT 200/201/202 is preprinted on the sheet."
+  },
+  {
+   "writer_key": "frm2552:txtLOB",
+   "reason": "Hidden profile field; the sheet has no line-of-business item."
+  },
+  {
+   "writer_key": "frm2552:rdoPg1Pt1I5RDO",
+   "reason": "duplicate of frm2552:txtPg1I5RDO (same RDO), which prints in item 5"
+  },
+  {
+   "writer_keys": [
+    "frm2552:txtPg1P2I14TaxATC",
+    "frm2552:txtPg1P2I15TaxATC"
+   ],
+   "reason": "ATC PT 201/202 is preprinted on the item 14/15 rows; there is no box to fill"
+  },
+  {
+   "writer_key": "frm2552:txtCurrentPage",
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  }
+ ]
+}

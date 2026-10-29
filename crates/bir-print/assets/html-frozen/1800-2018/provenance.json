@@ -1,0 +1,97 @@
+{
+  "slug": "1800-2018",
+  "code": "1800",
+  "revision": "2018",
+  "variant": "",
+  "in_corpus": false,
+  "source_file": "1800 Jan 2018 ENCS rev final.pdf",
+  "sha256": "e2e837852680196d0e9aa9a513f55c7a6e4924493b5440548e46217166cc085e",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 3,
+  "pages": 2,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Berlin Sans FB Demi",
+    "Times New Roman"
+  ],
+  "rules": 1113,
+  "text_runs": 313,
+  "images": 3,
+  "cells": 420,
+  "comb_cells": 107,
+  "growables": [
+    {
+      "page": 2,
+      "rows": 5,
+      "capacity": 5,
+      "pitch_pt": 18.0
+    },
+    {
+      "page": 2,
+      "rows": 7,
+      "capacity": 7,
+      "pitch_pt": 10.8
+    },
+    {
+      "page": 2,
+      "rows": 8,
+      "capacity": 8,
+      "pitch_pt": 11.64
+    },
+    {
+      "page": 2,
+      "rows": 9,
+      "capacity": 9,
+      "pitch_pt": 11.64
+    }
+  ],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1800 Jan 2018 ENCS rev final.pdf",
+      "sha256": "e2e837852680196d0e9aa9a513f55c7a6e4924493b5440548e46217166cc085e"
+    },
+    {
+      "role": "guide",
+      "file": "1800 Guidelines.pdf",
+      "sha256": "b8fa70696bea4a50aae94b9009b4281121112e9928b49eb156f8953949ae7cb8"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "standalone-pdf"
+    ],
+    "moved_from_form": [],
+    "standalone_pdfs": [
+      {
+        "file": "1800 Guidelines.pdf",
+        "sha256": "b8fa70696bea4a50aae94b9009b4281121112e9928b49eb156f8953949ae7cb8",
+        "linked_as": "guides/1800 Guidelines.pdf",
+        "reflowed_into": "guide.html"
+      }
+    ],
+    "reclaimed_pt_total": 0,
+    "reclaimed_pct_mean": 0,
+    "reclaimed_pct_min": 0,
+    "reclaimed_pct_max": 0,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [],
+    "standalone_pdfs": [
+      "1800 Guidelines.pdf"
+    ]
+  },
+  "html_bytes": 1001113,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

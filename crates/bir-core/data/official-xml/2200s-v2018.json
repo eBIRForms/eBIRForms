@@ -1,0 +1,1374 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "2200s-v2018",
+  "generated_by": "oracle/gen_layout.js (official saveXMLsubmit loop run in jsdom)",
+  "official_hta": "BIR-Form2200S.hta",
+  "official_hta_sha256": "2ccf624c87c8a951443630a0803e5f1f4bd7800bceb850ff14e8160f5f6b59fd",
+  "header": "<?xml version='1.0'?>",
+  "lead": "\t\n            ",
+  "value_rules": [],
+  "entries": [
+    {
+      "key": "frm2200S:txtMonth1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtMonth1",
+          "codec": "raw"
+        }
+      ],
+      "default": "01",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtDate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtDate",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtForYr",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtForYr",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:amendedRtn_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:amendedRtn_2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSheets",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSheets",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtBranchCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtBranchCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtRDOCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtRDOCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:taxpayerName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:taxpayerName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtAddress",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtAddress",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtZipCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtZipCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTelNum",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTelNum",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtLineBus",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtLineBus",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtPSIC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtPSIC",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEmail",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEmail",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200SoptRegion",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200SoptRegion",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200SoptProvince",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200SoptProvince",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200SoptCity",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200SoptCity",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200SoptRegion1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200SoptRegion1",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200SoptProvince1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200SoptProvince1",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200SoptCity1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200SoptCity1",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:optTreaty_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:optTreaty_2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:lstTaxTreaty",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:lstTaxTreaty",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:chkPymntManner_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:chkPymntManner_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:chkPymntManner_3",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtOthMannerofPymnt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtOthMannerofPymnt",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax16",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax16",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax17A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax17A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax17B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax17B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax17C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax17C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax18",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax18",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax19",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax19",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax20",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax20",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax21A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax21A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax21B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax21B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax21C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax21C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax21D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax21D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax22",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax22",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax23A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax23A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:PayPenalties",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax23B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax23B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax23C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax23C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtTax24",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtTax24",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtTaxAgentNo",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTaxAgentNo",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtDateIssue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDateIssue",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtDateExpiry",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDateExpiry",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtAgency33",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtAgency33",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtNumber33",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtNumber33",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtDate33",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtDate33",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtAmount33",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtAmount33",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtAgency34",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtAgency34",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtNumber34",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtNumber34",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtDate34",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtDate34",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtAmount34",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtAmount34",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtAgency35",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtAgency35",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtNumber35",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtNumber35",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtDate35",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtDate35",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtAmount35",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtAmount35",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtParticular36",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtParticular36",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtAgency36",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtAgency36",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtNumber36",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtNumber36",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtDate36",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtDate36",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtAmount36",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtAmount36",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSched1TIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSched1TIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSched1TIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSched1TIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSched1TIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSched1TIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSched1BranchCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSched1BranchCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSched1TaxpayerName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSched1TaxpayerName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSalesValue0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSalesValue0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtVolumeRemovals0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtVolumeRemovals0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtBasicTaxDue0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtBasicTaxDue0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSalesValue1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSalesValue1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtVolumeRemovals1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtVolumeRemovals1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtBasicTaxDue1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtBasicTaxDue1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSalesValue2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSalesValue2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtVolumeRemovals2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtVolumeRemovals2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtBasicTaxDue2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtBasicTaxDue2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSalesValue3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSalesValue3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtVolumeRemovals3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtVolumeRemovals3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtBasicTaxDue3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtBasicTaxDue3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSalesValue4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSalesValue4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtVolumeRemovals4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtVolumeRemovals4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtBasicTaxDue4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtBasicTaxDue4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSalesValue5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSalesValue5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtVolumeRemovals5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtVolumeRemovals5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtBasicTaxDue5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtBasicTaxDue5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSalesValue6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSalesValue6",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtVolumeRemovals6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtVolumeRemovals6",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtBasicTaxDue6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtBasicTaxDue6",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSalesValue7",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSalesValue7",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtVolumeRemovals7",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtVolumeRemovals7",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtBasicTaxDue7",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtBasicTaxDue7",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSalesValue8",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSalesValue8",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtVolumeRemovals8",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtVolumeRemovals8",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtBasicTaxDue8",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtBasicTaxDue8",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtSalesValue9",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtSalesValue9",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtVolumeRemovals9",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtVolumeRemovals9",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtBasicTaxDue9",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtBasicTaxDue9",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:sched1Chk0",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtsched1Atc0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtsched1Atc0",
+          "codec": "raw"
+        }
+      ],
+      "default": "XB",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtsched1Desc0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtsched1Desc0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtsched1TaxBracket0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtsched1TaxBracket0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtsched1AppTaxRate0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtsched1AppTaxRate0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtsched1SalesValue0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtsched1SalesValue0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtsched1VolumeRemovals0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtsched1VolumeRemovals0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:txtsched1BasicTaxDue0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:txtsched1BasicTaxDue0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200S:totalTaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200S:totalTaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtFinalFlag",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtFinalFlag",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEnroll",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEnroll",
+          "codec": "raw"
+        }
+      ],
+      "default": "N",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineConfirmUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineConfirmUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineSecret",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineSecret",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "driveSelectTPExport",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "driveSelectTPExport",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            \t\n            All Rights Reserved BIR 2014.0"
+    }
+  ]
+}

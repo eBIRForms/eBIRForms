@@ -1,0 +1,202 @@
+[
+ {
+  "set": "frm2552:txtPg1I1Month",
+  "value": "03"
+ },
+ {
+  "set": "frm2552:txtPg1I1Day",
+  "value": "14"
+ },
+ {
+  "set": "frm2552:txtPg1I1Year",
+  "value": "2025"
+ },
+ {
+  "click": "frm2552:rdoPg1I2AmendedYes"
+ },
+ {
+  "set": "frm2552:txtPg1I3NoOfSheets",
+  "value": "1"
+ },
+ {
+  "set": "frm2552:txtPg1TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm2552:txtPg1TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm2552:txtPg1TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm2552:txtPg1TIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm2552:txtPg1I5RDO",
+  "value": "039"
+ },
+ {
+  "set": "frm2552:rdoPg1Pt1I5RDO",
+  "value": "039"
+ },
+ {
+  "set": "frm2552:txtPg1Pt1I6Name",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm2552:txtPg1Pt1I7RegisteredAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm2552:txPg1I7ZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "frm2552:txtPg1Pt1I8ContactNumber",
+  "value": "09170000000"
+ },
+ {
+  "set": "frm2552:txtPg1Pt1I9Email",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "call": "document.getElementById('frm2552:txtLOB').value = 'Sample Consulting Services'"
+ },
+ {
+  "click": "frm2552:rdoPg1I10TaxReliefYes"
+ },
+ {
+  "set": "frm2552:txtPg1Pt1I10TaxReliefSpec",
+  "value": "Special law sample"
+ },
+ {
+  "click": "frm2552:rdoPg1I11TransactionLSE"
+ },
+ {
+  "set": "frm2552:txtPg2P4I1TransClass",
+  "value": "Exempt sample one"
+ },
+ {
+  "set": "frm2552:txtPg2P4I1Amount",
+  "value": "1000.005"
+ },
+ {
+  "set": "frm2552:txtPg2P4I2TransClass",
+  "value": "Exempt sample two"
+ },
+ {
+  "set": "frm2552:txtPg2P4I2Amount",
+  "value": "250"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1Date1",
+  "value": "03/14/2025"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1Seller1",
+  "value": "Sample Seller One"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1Buyer1",
+  "value": "Sample Buyer One"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1Corp1",
+  "value": "Sample Listed Corp"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1NumShares1",
+  "value": "1000"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1TaxBase1",
+  "value": "1234567.891"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1Date2",
+  "value": "03/14/2025"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1Seller2",
+  "value": "Sample Seller Two"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1Buyer2",
+  "value": "sample buyer two"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1Corp2",
+  "value": "Sample Listed Corp"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1NumShares2",
+  "value": "500.5"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1TaxBase2",
+  "value": "999999.995"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1Date3",
+  "value": "03/13/2025"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1Seller3",
+  "value": "Sample Seller Three"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1Buyer3",
+  "value": "Sample Buyer Three"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1Corp3",
+  "value": "Sample Listed Corp"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1NumShares3",
+  "value": "75"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch1TaxBase3",
+  "value": "2500.83"
+ },
+ {
+  "set": "frm2552:txtPg2Pt6Date1",
+  "value": "03/12/2025"
+ },
+ {
+  "set": "frm2552:txtPg2Pt6Seller1",
+  "value": "Sample Seller Six"
+ },
+ {
+  "set": "frm2552:txtPg2Pt6Buyer1",
+  "value": "Sample Buyer Six"
+ },
+ {
+  "set": "frm2552:txtPg2Pt6Corp1",
+  "value": "Other Sample Corp"
+ },
+ {
+  "set": "frm2552:txtPg2Pt6NumShares1",
+  "value": "42"
+ },
+ {
+  "set": "frm2552:txtPg1P2I17TaxPaidInPrevRtrn",
+  "value": "100.5"
+ },
+ {
+  "set": "frm2552:txtPg1P2I18CredTaxWthhld",
+  "value": "1000.25"
+ },
+ {
+  "set": "frm2552:txtPg1P2I21Surcharge",
+  "value": "25.5"
+ },
+ {
+  "set": "frm2552:txtPg1P2I22Interest",
+  "value": "10"
+ }
+]

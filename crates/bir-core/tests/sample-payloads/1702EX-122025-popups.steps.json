@@ -1,0 +1,381 @@
+[
+ {
+  "call": "[['TIN1','123'],['TIN2','456'],['TIN3','788'],['TIN4','00000']].forEach(function(p){[].forEach.call(document.getElementsByName('frm1702EX:'+p[0]),function(e){e.value=p[1]})})"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:hdnPg1Pt1I7RDO').value='039'"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:rdoPg1Pt1I7RDO').value='039'"
+ },
+ {
+  "call": "[].forEach.call(document.getElementsByName('frm1702EX:RegName'),function(e){e.value='SAMPLE DUMMY FOUNDATION INC'})"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:txtPg1Pt1I9RegisteredAddress').value='123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITY'"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:txPg1I9ZipCode').value='1100'"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:txtPg1Pt1I11ContactNumber').value='09170000000'"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:txtPg1Pt1I12Email').value='sample.taxpayer@example.com'"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:txtLOB').value='SAMPLE CONSULTING SERVICES'"
+ },
+ {
+  "click": "frm1702EX:rdoPg1I1Calendar"
+ },
+ {
+  "click": "frm1702EX:rdoPg1I3AmendedNo"
+ },
+ {
+  "click": "frm1702EX:rdoPg1I4ShortPeriodNo"
+ },
+ {
+  "click": "frm1702EX:rdoPg1I5ATCR1C3"
+ },
+ {
+  "set": "frm1702EX:txtPg1Pt1I10DateofIncorporation",
+  "value": "03/01/2010"
+ },
+ {
+  "click": "frm1702EX:rdoPg1Pt1I13MethodOfDeducItemized"
+ },
+ {
+  "set": "frm1702EX:txtPg1Pt1I14LegalBasis",
+  "value": "Sec 30 NIRC"
+ },
+ {
+  "set": "frm1702EX:txtPg1Pt1I15Investment",
+  "value": "Sample Agency"
+ },
+ {
+  "set": "frm1702EX:txtPg1Pt1I16RegisteredActivity",
+  "value": "REG-0001"
+ },
+ {
+  "set": "frm1702EX:txtPg1Pt1I17EffectivityFrom",
+  "value": "01/01/2010"
+ },
+ {
+  "set": "frm1702EX:txtPg1Pt1I17EffectivityTo",
+  "value": "12/31/2030"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt4I28SalesReceiptsRevFees",
+  "value": "5000000.50"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt4I29SalesRetAllowanceDisc",
+  "value": "100000"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt4I31CostOfSalesServ",
+  "value": "2000000"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt4I33AddOther",
+  "value": "50000"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt4I45CreditableTaxWithheldFor4thQrt",
+  "value": "1000"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt5I52RegularIncomeOtherwiseDue",
+  "value": "600000"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt5I53SpecialAllowableItemizedDeduc",
+  "value": "15000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S1I2BadDebts",
+  "value": "10000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S1I13SalaryWageAllowance",
+  "value": "500000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S1I17aJanitorAndMessengerServ",
+  "value": "20000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersDDesc",
+  "value": "Sample expense"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersDAmt",
+  "value": "5000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I1Description",
+  "value": "Sample deduction"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I1LegalBasis",
+  "value": "RA 0000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I1Amount",
+  "value": "15000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I1NetIncomePerBook",
+  "value": "996933"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeDesc",
+  "value": "Nondeductible expense"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeAmt",
+  "value": "120001"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxDesc",
+  "value": "Interest income"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxAmt",
+  "value": "20000"
+ },
+ {
+  "click": "frm1702EX:rdoPg1OverpaymentRefund"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersEDesc",
+  "value": "Rent expense"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersEAmt",
+  "value": "6000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersFDesc",
+  "value": "Utilities"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersFAmt",
+  "value": "7000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersGDesc",
+  "value": "Supplies"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersGAmt",
+  "value": "8000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersHDesc",
+  "value": "Repairs"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersHAmt",
+  "value": "9000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersIDesc",
+  "value": "Transport"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersIAmt",
+  "value": "3000.60"
+ },
+ {
+  "call": "document.getElementById('btnPg3Pt6S1I17More').click()"
+ },
+ {
+  "call": "ConditionAddRow('Pg3Pt6S1I17PopTable', '17.', 'add more', AddRow_Pg3Pt6S1I17PopTable)"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S1I17_2Col1",
+  "value": "Courier"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S1I17_2Col2",
+  "value": "2500.75"
+ },
+ {
+  "call": "ConditionAddRow('Pg3Pt6S1I17PopTable', '17.', 'add more', AddRow_Pg3Pt6S1I17PopTable)"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S1I17_3Col1",
+  "value": "Printing"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S1I17_3Col2",
+  "value": "1200"
+ },
+ {
+  "call": "SaveAndClose(Save_Pg3Pt6S1I17PopTable, '#Pg3Pt6S1I17Pop'); FormatAmount('totalOrdAllowedItemDeduc');"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I2Description",
+  "value": "Deduction two"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I2LegalBasis",
+  "value": "RA 0002"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I2Amount",
+  "value": "2000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I3Description",
+  "value": "Deduction three"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I3LegalBasis",
+  "value": "RA 0003"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I3Amount",
+  "value": "3000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I4Description",
+  "value": "Deduction four"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I4LegalBasis",
+  "value": "RA 0004"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I4Amount",
+  "value": "4000.40"
+ },
+ {
+  "call": "document.getElementById('btnPg3Pt6S2I4More').click()"
+ },
+ {
+  "call": "ConditionAddRow('Pg3Pt6S2I4PopTable', '4.', 'add more', AddRow_Pg3Pt6S2I4PopTable)"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I4_2Col1",
+  "value": "Deduction five"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I4_2Col2",
+  "value": "RA 0005"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I4_2Col3",
+  "value": "5000.99"
+ },
+ {
+  "call": "SaveAndClose(Save_Pg3Pt6S2I4PopTable, '#Pg3Pt6S2I4Pop'); FormatAmount('totalSpecAllowedItemDeduc');"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I3NonDeductExpenseOtherIncomeDesc",
+  "value": "Entertainment"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I3NonDeductExpenseOtherIncomeAmt",
+  "value": "30000.30"
+ },
+ {
+  "call": "document.getElementById('btnPg3Pt6S3I3More').click()"
+ },
+ {
+  "call": "ConditionAddRow('Pg3Pt6S3I3PopTable', '3.', 'add more', AddRow_Pg3Pt6S3I3PopTable)"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I3_2Col1",
+  "value": "Penalties"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I3_2Col2",
+  "value": "1234567.89"
+ },
+ {
+  "call": "ConditionAddRow('Pg3Pt6S3I3PopTable', '3.', 'add more', AddRow_Pg3Pt6S3I3PopTable)"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I3_3Col1",
+  "value": "Donations"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I3_3Col2",
+  "value": "800"
+ },
+ {
+  "call": "SaveAndClose(Save_Pg3Pt6S3I3PopTable, '#Pg3Pt6S3I3Pop')"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxDesc",
+  "value": "Row 5"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxAmt",
+  "value": "1500"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I6NonTaxIncomeAndIncomeSubjectToFinTaxDesc",
+  "value": "Dividends"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I6NonTaxIncomeAndIncomeSubjectToFinTaxAmt",
+  "value": "6000"
+ },
+ {
+  "call": "document.getElementById('btnPg3Pt6S3I6More').click()"
+ },
+ {
+  "call": "ConditionAddRow('Pg3Pt6S3I6PopTable', '6.', 'add more', AddRow_Pg3Pt6S3I6PopTable)"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I6_2Col1",
+  "value": "Royalties"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I6_2Col2",
+  "value": "7000.70"
+ },
+ {
+  "call": "SaveAndClose(Save_Pg3Pt6S3I6PopTable, '#Pg3Pt6S3I6Pop')"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I7SpecialDeductDesc",
+  "value": "Row 7"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I7SpecialDeductAmt",
+  "value": "1500"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I8SpecialDeductDesc",
+  "value": "Special one"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I8SpecialDeductAmt",
+  "value": "8000"
+ },
+ {
+  "call": "document.getElementById('btnPg3Pt6S3I8More').click()"
+ },
+ {
+  "call": "ConditionAddRow('Pg3Pt6S3I8PopTable', '8.', 'add more', AddRow_Pg3Pt6S3I8PopTable)"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I8_2Col1",
+  "value": "Special two"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I8_2Col2",
+  "value": "9000.10"
+ },
+ {
+  "call": "SaveAndClose(Save_Pg3Pt6S3I8PopTable, '#Pg3Pt6S3I8Pop')"
+ },
+ {
+  "call": "validate()"
+ }
+]

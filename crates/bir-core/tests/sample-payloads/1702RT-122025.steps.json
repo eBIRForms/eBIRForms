@@ -1,0 +1,307 @@
+[
+ {
+  "call": "taxableYear = 25"
+ },
+ {
+  "click": "frm1702RT:rdoPg1I1Calendar"
+ },
+ {
+  "set": "frm1702RT:txtPg1I2Year",
+  "value": "25"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I6TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I6TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I6TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I6TIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702RT:txtPg2TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702RT:txtPg2TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702RT:txtPg2TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702RT:txtPg2TIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702RT:txtPg3TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702RT:txtPg3TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702RT:txtPg3TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702RT:txtPg3TIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702RT:txtPg4TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702RT:txtPg4TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702RT:txtPg4TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702RT:txtPg4TIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702RT:txtRDO",
+  "value": "039"
+ },
+ {
+  "set": "frm1702RT:drpPg1Pt1I7RDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I8Name1",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1702RT:txtPg2RegisteredName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1702RT:txtPg3RegisteredName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1702RT:txtPg4RegisteredName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I9Address1",
+  "value": "123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITY"
+ },
+ {
+  "set": "frm1702RT:txtZIP",
+  "value": "1100"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I11Contact",
+  "value": "09170000000"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I12Email",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt1I10",
+  "value": "01/15/2020"
+ },
+ {
+  "click": "frm1702RT:rdoPg1Pt1I13ItemizedDeduction"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I27Sales",
+  "value": "8500000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I28LessSales",
+  "value": "125000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I30LessCost",
+  "value": "4200000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I32AddOtherTaxable",
+  "value": "75500"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I5Depreciation",
+  "value": "120000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I11Rental",
+  "value": "360000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I13Salaries",
+  "value": "1500000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I15TaxesandLicenses",
+  "value": "45250"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17bProfessionalFees",
+  "value": "80000"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17dC1",
+  "value": "Office supplies"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc1I17dC2",
+  "value": "15750"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I1C1",
+  "value": "Special deduction"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I1C2",
+  "value": "RA 9999"
+ },
+ {
+  "set": "frm1702RT:txtPg3Sc2I1C3",
+  "value": "50000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc3AI5C1",
+  "value": "2023"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc3AI5C2",
+  "value": "300000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc3AI5C3",
+  "value": "100000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc3AI5C5",
+  "value": "150000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc4I1C1",
+  "value": "2023"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc4I1C2",
+  "value": "50000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc4I1C3",
+  "value": "70000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc4I1C7",
+  "value": "20000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I42MinimumCorporate",
+  "value": "85010"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I44ExcessCredits",
+  "value": "10000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I46IncomeTaxUnderRegular",
+  "value": "300000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I48CreditableTaxWithheldFromPrevious",
+  "value": "40000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I49CreditableTaxWithheldFor4thQuarter",
+  "value": "15500"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt452SpecialTaxCredits",
+  "value": "1000"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I53C1",
+  "value": "Other credit"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt4I53C2",
+  "value": "2500"
+ },
+ {
+  "set": "frm1702RT:txtPg2Pt5I57SpecialAllowable",
+  "value": "12500"
+ },
+ {
+  "set": "frm1702RT:Pg2Pt4I40IncomeTaxRate",
+  "value": "25"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I1NetIncome",
+  "value": "1800000"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I2C1",
+  "value": "Non-deductible expenses"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I2C2",
+  "value": "179500"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I5C1",
+  "value": "Interest income subject to final tax"
+ },
+ {
+  "set": "frm1702RT:txtPg4Sc5I5C2",
+  "value": "50000"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt2I17Surcharge",
+  "value": "23343"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt2I18Interest",
+  "value": "4000"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt2I19Compromise",
+  "value": "1000"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt3I23DebitMemoC1",
+  "value": "Sample Bank"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt3I23DebitMemoC2",
+  "value": "12345"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt3I23DebitMemoC3Date",
+  "value": "04/15/2026"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt3I23DebitMemoC4Amount",
+  "value": "121718"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt2Signatory1",
+  "value": "President"
+ },
+ {
+  "set": "frm1702RT:txtPg1Pt2SignatoryTin1",
+  "value": "123456788000"
+ }
+]

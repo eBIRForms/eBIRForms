@@ -1,0 +1,88 @@
+[
+ {
+  "set": "frm2550m:RtnYear",
+  "value": "07"
+ },
+ {
+  "set": "frm2550m:txtYear",
+  "value": "2022"
+ },
+ {
+  "set": "frm2550m:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm2550m:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm2550m:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm2550m:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm2550m:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm2550m:txtLineBus",
+  "value": "Sample Consulting Services"
+ },
+ {
+  "set": "frm2550m:txtTaxPayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm2550m:txtTelephoneNum",
+  "value": "09170000000"
+ },
+ {
+  "set": "frm2550m:txtAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm2550m:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "call": "['AtcCode34','AtcCode1','AtcCode35'].forEach(function(id){ d.getElementById(id).checked = true; }); showModalAtc(); getATCCode();"
+ },
+ {
+  "set": "frm2550m:txtAmountSales1",
+  "value": "2345.67"
+ },
+ {
+  "set": "frm2550m:txtAmountSales2",
+  "value": "100000.005"
+ },
+ {
+  "set": "frm2550m:txtAmountSales3",
+  "value": "55555.55"
+ },
+ {
+  "call": "getSched1Modal()"
+ },
+ {
+  "set": "frm2550m:txtTax14",
+  "value": "1000"
+ },
+ {
+  "set": "frm2550m:txtTax17A",
+  "value": "300"
+ },
+ {
+  "set": "frm2550m:txtTax18E",
+  "value": "15000"
+ },
+ {
+  "set": "frm2550m:txtTax23F",
+  "value": "50"
+ }
+]

@@ -1,0 +1,1584 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "2000-v2018",
+  "generated_by": "oracle/gen_layout.js (official saveXMLsubmit loop run in jsdom)",
+  "official_hta": "BIR-Form2000v2018.hta",
+  "official_hta_sha256": "43aa6fcdba1ffb40bebb3dc1e8509a87b84799b38937bb6bc57273e9021c4a7b",
+  "header": "<?xml version='1.0'?>",
+  "lead": "    \n            ",
+  "value_rules": [],
+  "entries": [
+    {
+      "key": "frm2000:txtMonth",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtMonth",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtYear",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtYear",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:AmendedRtn_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:AmendedRtn_2",
+      "kind": "bool",
+      "default": "true",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtSheets",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtSheets",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtBranchCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtBranchCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtRDOCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtRDOCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTaxpayerName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTaxpayerName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtAddress",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtAddress",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtAddress2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtAddress2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtZipCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtZipCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTelNum",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTelNum",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "txtEmail",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEmail",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:optParty_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:optParty_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:optParty_3",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtOtherName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtOtherName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtOtherName2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtOtherName2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtOtherTIN",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtOtherTIN",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:optMode_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:optMode_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:optMode_3",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTax14",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTax14",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTax15A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTax15A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTax15B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTax15B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTax15C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTax15C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTax15D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTax15D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTax16",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTax16",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTax17A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTax17A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTax17B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTax17B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTax17C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTax17C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTax17D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTax17D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTax18",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTax18",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtTax19",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtTax19",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "txtTaxAgentNo",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTaxAgentNo",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "txtDateIssue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDateIssue",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "txtDateExpiry",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDateExpiry",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtAgency20",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtAgency20",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtNumber20",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtNumber20",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtDate20",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtDate20",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtAmount20",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtAmount20",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtAgency21",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtAgency21",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtNumber21",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtNumber21",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtDate21",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtDate21",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtAmount21",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtAmount21",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtAgency22",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtAgency22",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtNumber22",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtNumber22",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtDate22",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtDate22",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtAmount22",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtAmount22",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtParticular36",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtParticular36",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtAgency23",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtAgency23",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtNumber23",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtNumber23",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtDate23",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtDate23",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtAmount23",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtAmount23",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtPg2TIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtPg2TIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtPg2TIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtPg2TIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtPg2TIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtPg2TIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtPg2BranchCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtPg2BranchCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtPg2TaxpayerName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtPg2TaxpayerName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1Delete0",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "drpATCCode0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "drpATCCode0",
+          "codec": "raw"
+        }
+      ],
+      "default": "-",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched1:txtTaxBase0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched1:txtTaxBase0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched1:txtTaxRate0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched1:txtTaxRate0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched1:txtTaxDue0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched1:txtTaxDue0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1Delete1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "drpATCCode1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "drpATCCode1",
+          "codec": "raw"
+        }
+      ],
+      "default": "-",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched1:txtTaxBase1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched1:txtTaxBase1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched1:txtTaxRate1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched1:txtTaxRate1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched1:txtTaxDue1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched1:txtTaxDue1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1Delete2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "drpATCCode2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "drpATCCode2",
+          "codec": "raw"
+        }
+      ],
+      "default": "-",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched1:txtTaxBase2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched1:txtTaxBase2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched1:txtTaxRate2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched1:txtTaxRate2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched1:txtTaxDue2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched1:txtTaxDue2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched1:txtTotalDue1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched1:txtTotalDue1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule2Delete0",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched2:txtPaymentDate0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched2:txtPaymentDate0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched2:txtReceipt0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched2:txtReceipt0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched2:txtAmountPaid0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched2:txtAmountPaid0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule2Delete1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched2:txtPaymentDate1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched2:txtPaymentDate1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched2:txtReceipt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched2:txtReceipt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched2:txtAmountPaid1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched2:txtAmountPaid1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule2Delete2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched2:txtPaymentDate2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched2:txtPaymentDate2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched2:txtReceipt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched2:txtReceipt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched2:txtAmountPaid2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched2:txtAmountPaid2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched2:txtTotalPayment1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched2:txtTotalPayment1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule3Delete0",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched3:txtPaymentDate0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched3:txtPaymentDate0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched3:txtReceipt0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched3:txtReceipt0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched3:txtAmountPaid0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched3:txtAmountPaid0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule3Delete1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched3:txtPaymentDate1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched3:txtPaymentDate1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched3:txtReceipt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched3:txtReceipt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched3:txtAmountPaid1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched3:txtAmountPaid1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule3Delete2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched3:txtPaymentDate2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched3:txtPaymentDate2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched3:txtReceipt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched3:txtReceipt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched3:txtAmountPaid2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched3:txtAmountPaid2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched3:txtTotalPayment1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched3:txtTotalPayment1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule4Delete0",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtRCOCode0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtRCOCode0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtRemittanceDate0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtRemittanceDate0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtBank0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtBank0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtAmountRemitted0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtAmountRemitted0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtNumberFrom0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtNumberFrom0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtNumberTo0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtNumberTo0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule4Delete1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtRCOCode1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtRCOCode1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtRemittanceDate1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtRemittanceDate1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtBank1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtBank1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtAmountRemitted1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtAmountRemitted1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtNumberFrom1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtNumberFrom1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtNumberTo1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtNumberTo1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule4Delete2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtRCOCode2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtRCOCode2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtRemittanceDate2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtRemittanceDate2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtBank2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtBank2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtAmountRemitted2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtAmountRemitted2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtNumberFrom2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtNumberFrom2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtNumberTo2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtNumberTo2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:sched4:txtTotalRemittance1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:sched4:txtTotalRemittance1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtCurrentPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtCurrentPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtMaxPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtMaxPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "2",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:modLabel",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:modLabel",
+          "codec": "raw"
+        }
+      ],
+      "default": "Is the term of Debt Instrument less than a year?",
+      "after": "    \n            "
+    },
+    {
+      "key": "ds106modYes",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "ds106modNo",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:numOfDays",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:numOfDays",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:modLabel",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:modLabel",
+          "codec": "raw"
+        }
+      ],
+      "default": "Is the duration of the charter/contract is 6 months or less?",
+      "after": "    \n            "
+    },
+    {
+      "key": "ds130modYes",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "ds130modNo",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:numOfMonths",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:numOfMonths",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:modLabel",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:modLabel",
+          "codec": "raw"
+        }
+      ],
+      "default": "Is the duration of the charter/contract is 6 months or less?",
+      "after": "    \n            "
+    },
+    {
+      "key": "ds131modYes",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "ds131modNo",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:numOfMonths131",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:numOfMonths131",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:modLabel",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:modLabel",
+          "codec": "raw"
+        }
+      ],
+      "default": "Is the duration of the charter/contract is 6 months or less?            ",
+      "after": "    \n            "
+    },
+    {
+      "key": "ds132modYes",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "ds132modNo",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:numOfMonths132",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:numOfMonths132",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000:txtLineBus",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000:txtLineBus",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n                \n            All Rights Reserved BIR 2012.0"
+    }
+  ]
+}

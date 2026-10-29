@@ -1,0 +1,1757 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "1707-v2021",
+  "generated_by": "oracle/gen_layout_runtime.js (official saveXMLsubmit loop run on the loaded page in jsdom)",
+  "official_hta": "BIR-Form1707v2021.hta",
+  "official_hta_sha256": "a645463cf3bc7a80f0ec96a08796adde33c76ae65c617b3fefdb478e61496cd4",
+  "header": "<?xml version='1.0'?>",
+  "lead": "    \n            ",
+  "value_rules": [],
+  "entries": [
+    {
+      "key": "frm1707:txtPg1I1Month",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I1Month",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I1Day",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I1Day",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I1Year",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I1Year",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:rdoPg1I2AmendedYes",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:rdoPg1I2AmendedNo",
+      "kind": "bool",
+      "default": "true",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:rdoPg1I3ATCIndiv",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I3Indiv",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I3Indiv",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "II 030",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:rdoPg1I3ATCCorp",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I3Corp",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I3Corp",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "IC 110",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I4NoOfSheets",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I4NoOfSheets",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1TIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1TIN1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1TIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1TIN2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1TIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1TIN3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1TIN4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1TIN4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:ProfileName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:ProfileName",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:ProfileAddress1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:ProfileAddress1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:ProfileAddress2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:ProfileAddress2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:ProfileZipCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:ProfileZipCode",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:ProfileContactNum",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:ProfileContactNum",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:ProfileEmailAddr",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:ProfileEmailAddr",
+          "codec": "js-escape"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:rdoPg1Pt1I5RDO",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:rdoPg1Pt1I5RDO",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "000",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSellerDelete0",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I6SellerName0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I6SellerName0",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I6SellerAddr0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I6SellerAddr0",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I6SellerTIN0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I6SellerTIN0",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSellerDelete1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I6SellerName1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I6SellerName1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I6SellerAddr1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I6SellerAddr1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I6SellerTIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I6SellerTIN1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSellerDelete2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I6SellerName2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I6SellerName2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I6SellerAddr2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I6SellerAddr2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I6SellerTIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I6SellerTIN2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkBuyerDelete0",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I7BuyerName0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I7BuyerName0",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I7BuyerAddr0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I7BuyerAddr0",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I7BuyerTIN0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I7BuyerTIN0",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkBuyerDelete1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I7BuyerName1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I7BuyerName1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I7BuyerAddr1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I7BuyerAddr1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I7BuyerTIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I7BuyerTIN1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkBuyerDelete2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I7BuyerName2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I7BuyerName2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I7BuyerAddr2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I7BuyerAddr2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I7BuyerTIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I7BuyerTIN2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:rdoPg1I8TaxReliefYes",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:rdoPg1I8TaxReliefNo",
+      "kind": "bool",
+      "default": "true",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I8TaxReliefSpec",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I8TaxReliefSpec",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:rdoPg1I9TransDescCash",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:rdoPg1I9TransDescInstallment",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:rdoPg1I9TransDescForeclosure",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:rdoPg1I9TransDescOthers",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1I9TransDescSpec",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1I9TransDescSpec",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1P2I10TaxBase",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1P2I10TaxBase",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1P2I11AllowExpnse",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1P2I11AllowExpnse",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1P2I12NetCptalChnged",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1P2I12NetCptalChnged",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1P2I13AppTaxRate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1P2I13AppTaxRate",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1P2I13TaxDueForTrans",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1P2I13TaxDueForTrans",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1P2I14TaxDuePmtPriod",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1P2I14TaxDuePmtPriod",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1P2I15TaxPaidInPrevRtrn",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1P2I15TaxPaidInPrevRtrn",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1P2I16TaxPayable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1P2I16TaxPayable",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1P2I17Surcharge",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1P2I17Surcharge",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1P2I17Interest",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1P2I17Interest",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1P2I17Compromise",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1P2I17Compromise",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1P2I17TotPenalties",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1P2I17TotPenalties",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1P2I18TotAmtPyable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1P2I18TotAmtPyable",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt4Indiv",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt4Indiv",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt4NonIndiv",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt4NonIndiv",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt4TaxAcredNo",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt4TaxAcredNo",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt4DateOfIssue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt4DateOfIssue",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt4DateOfExpiry",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt4DateOfExpiry",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I28CashC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I28CashC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I28CashC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I28CashC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I28Date",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I28Date",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I28CashC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I28CashC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I29CheckC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I29CheckC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I29CheckC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I29CheckC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I29Date",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I29Date",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I29CheckC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I29CheckC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I30TaxDebitC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I30TaxDebitC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I30TaxDebitC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I30TaxDebitC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I30Date",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I30Date",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I30TaxDebitC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I30TaxDebitC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I31OthersC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I31OthersC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I31OthersC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I31OthersC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I31OthersC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I31OthersC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I31Date",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I31Date",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg1Pt3I31OthersC4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg1Pt3I31OthersC4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2TinC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2TinC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2TinC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2TinC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2TinC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2TinC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2TinC4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2TinC4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "BrachMask2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "BrachMask2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "00000",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2RegisteredName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2RegisteredName",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch1I1SellPrice",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch1I1SellPrice",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch1I2CostExpense",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch1I2CostExpense",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch1I3AssumMortgage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch1I3AssumMortgage",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch1I4NumInstallments",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch1I4NumInstallments",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch1I5InstallmentAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch1I5InstallmentAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch1I6ApplcRate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch1I6ApplcRate",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch1I7PeriodTaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch1I7PeriodTaxDue",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch1I8DateCollection",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch1I8DateCollection",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch1I9TotCollection",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch1I9TotCollection",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2NameOfCorpStock1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2NameOfCorpStock1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2NameOfCorpStock2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2NameOfCorpStock2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2NameOfCorpStock3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2NameOfCorpStock3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2NameOfCorpStock4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2NameOfCorpStock4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2NoOfShares1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2NoOfShares1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2StockCertNo1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2StockCertNo1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2TaxBaseSellPrice1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2TaxBaseSellPrice1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2NoOfShares2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2NoOfShares2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2StockCertNo2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2StockCertNo2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2TaxBaseSellPrice2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2TaxBaseSellPrice2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2NoOfShares3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2NoOfShares3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2StockCertNo3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2StockCertNo3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2TaxBaseSellPrice3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2TaxBaseSellPrice3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2NoOfShares4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2NoOfShares4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2StockCertNo4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2StockCertNo4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2TaxBaseSellPrice4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2TaxBaseSellPrice4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch2TotAmount",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch2TotAmount",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch3Particulars1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch3Particulars1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch3Amount1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch3Amount1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch3Particulars2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch3Particulars2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch3Amount2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch3Amount2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch3Particulars3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch3Particulars3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch3Amount3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch3Amount3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch3Particulars4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch3Particulars4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch3Amount4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch3Amount4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtPg2P4Sch3TotAmount",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtPg2P4Sch3TotAmount",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtLOB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtLOB",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtCurrentPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtCurrentPage",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "1",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:txtMaxPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1707:txtMaxPage",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "2",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg2Pt4S2SubTotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg2Pt4S2SubTotal",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg2Pt4S3SubTotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg2Pt4S3SubTotal",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:rdoCorpoDomestic",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1707:rdoCorpoForeign",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "driveSelectTPExport",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "driveSelectTPExport",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "    \n            "
+    },
+    {
+      "key": "txtFinalFlag",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtFinalFlag",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "txtEnroll",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEnroll",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "N",
+      "after": "    \n            "
+    },
+    {
+      "key": "ebirOnlineConfirmUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineConfirmUsername",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "ebirOnlineUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineUsername",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "ebirOnlineSecret",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineSecret",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg2Pt4S2PopLength",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg2Pt4S2PopLength",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg2Pt4S3PopLength",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg2Pt4S3PopLength",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n                \n            All Rights Reserved BIR 2014.0"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+[
+ {
+  "set": "frm1701MS:txtYearNo1",
+  "value": "2025"
+ },
+ {
+  "call": "document.getElementById('frm1701MS:txtTaxpayerNo8a').value='DUMMY, SAMPLE TAXPAYER';document.getElementById('frm1701MS:Pg2TaxPayer').value='DUMMY';document.getElementById('frm1701MS:txtPg1TIN1').value='123';document.getElementById('frm1701MS:txtPg1TIN2').value='456';document.getElementById('frm1701MS:txtPg1TIN3').value='788';document.getElementById('frm1701MS:txtPg1BranchCode').value='00000';document.getElementById('frm1701MS:txtPg2TIN1').value='123';document.getElementById('frm1701MS:txtPg2TIN2').value='456';document.getElementById('frm1701MS:txtPg2TIN3').value='788';document.getElementById('frm1701MS:txtPg2BranchCode').value='00000';document.getElementById('frm1701MS:txtRDOCodea').value='039';document.getElementById('frm1701MS:txtEmaila').value='sample.taxpayer@example.com';document.getElementById('frm1701MS:txtTelNum10a').value='09170000000'"
+ },
+ {
+  "set": "frm1701MS:civilStatus",
+  "value": "Single"
+ },
+ {
+  "click": "frm1701MS:txtTaxpayerNo11a"
+ },
+ {
+  "click": "frm1701MS:txtTaxpayerNo12e"
+ },
+ {
+  "set": "frm1701MS:txtTaxpayerNo13a",
+  "value": "Sample legal basis"
+ },
+ {
+  "set": "frm1701MS:txtTaxpayerNo14a",
+  "value": "Sample agency"
+ },
+ {
+  "set": "frm1701MS:txtTaxpayerNo15a",
+  "value": "Sample activity 001"
+ },
+ {
+  "set": "frm1701MS:txtTaxpayerNo16a",
+  "value": "01/01/2020"
+ },
+ {
+  "set": "frm1701MS:txtTaxpayerNo16a1",
+  "value": "12/31/2030"
+ },
+ {
+  "set": "frm1701MS:txtSalesRevenueNo5a",
+  "value": "2000000"
+ },
+ {
+  "set": "frm1701MS:txtCostofSalesNo8a",
+  "value": "500000"
+ },
+ {
+  "set": "frm1701MS:txtTaxRatea",
+  "value": "5"
+ },
+ {
+  "set": "frm1701MS:txtTaxPaymentsNo2a",
+  "value": "100000"
+ },
+ {
+  "set": "frm1701MS:addForeignTaxCredits",
+  "value": "Sample foreign credit"
+ },
+ {
+  "set": "frm1701MS:txtForeignTaxCreditsNo7a",
+  "value": "1000"
+ },
+ {
+  "set": "frm1701MS:txtSpecialTaxCreditsNo8a",
+  "value": "0"
+ },
+ {
+  "call": "document.getElementById('frm1701MS:txtToBeRefunded').click()"
+ },
+ {
+  "set": "frm1701MS:txtToBeRefunded1",
+  "value": "26000"
+ },
+ {
+  "call": "document.getElementById('frm1701MS:perjuryClause').click()"
+ },
+ {
+  "call": "validate()"
+ }
+]

@@ -1,0 +1,38 @@
+/* 1606 rev 2018 -- form-specific rules.
+ * Shared scaffolding is in ../base.css. */
+@page { size:612pt 936pt;margin:0 }
+@font-face { font-family:"eBIRForms Arimo";font-style:italic;font-weight:100 900;font-display:block;src:url("../fonts/arimo-latin-wght-italic.woff2") format("woff2") }
+@font-face { font-family:"eBIRForms Tinos";font-style:normal;font-weight:400;font-display:block;src:url("../fonts/tinos-latin-400-normal.woff2") format("woff2") }
+.fi { position:absolute;inset:0;appearance:none;-webkit-appearance:none;border:0;margin:0;padding:0;background:transparent;box-shadow:none;outline:0;border-radius:0;caret-color:#000000;text-rendering:geometricPrecision;font-family:"eBIRForms Arimo", Arimo, Arial, Helvetica, sans-serif;font-weight:400;font-style:normal;font-kerning:none;font-variant-ligatures:none;font-feature-settings:normal;font-variation-settings:"wght" 400;color:#000000 }
+.fh0 { font-size:6.98pt;line-height:7.8pt }
+.fh1 { font-size:9pt;line-height:10.0548pt }
+.fh10 { font-size:9pt;line-height:12.24pt }
+.fh11 { font-size:9pt;line-height:12.3pt }
+.fh12 { font-size:9pt;line-height:12.36pt }
+.fh13 { font-size:9pt;line-height:13.32pt }
+.fh14 { font-size:9pt;line-height:13.35pt }
+.fh15 { font-size:9pt;line-height:13.44pt }
+.fh16 { font-size:9pt;line-height:14.04pt }
+.fh17 { font-size:9pt;line-height:14.22pt }
+.fh18 { font-size:9pt;line-height:14.52pt }
+.fh19 { font-size:9pt;line-height:16.32pt }
+.fh2 { font-size:9pt;line-height:11.04pt }
+.fh20 { font-size:9pt;line-height:16.8pt }
+.fh21 { font-size:9pt;line-height:16.92pt }
+.fh22 { font-size:9pt;line-height:17.28pt }
+.fh23 { font-size:9pt;line-height:17.3pt }
+.fh24 { font-size:9pt;line-height:17.52pt }
+.fh25 { font-size:9pt;line-height:17.7pt }
+.fh26 { font-size:9pt;line-height:17.88pt }
+.fh27 { font-size:9pt;line-height:18.12pt }
+.fh28 { font-size:9pt;line-height:18.24pt }
+.fh29 { font-size:9pt;line-height:18.36pt }
+.fh3 { font-size:9pt;line-height:11.16pt }
+.fh30 { font-size:9pt;line-height:18.38pt }
+.fh31 { font-size:9pt;line-height:19.2pt }
+.fh4 { font-size:9pt;line-height:11.52pt }
+.fh5 { font-size:9pt;line-height:11.64pt }
+.fh6 { font-size:9pt;line-height:11.76pt }
+.fh7 { font-size:9pt;line-height:12.12pt }
+.fh8 { font-size:9pt;line-height:12.18pt }
+.fh9 { font-size:9pt;line-height:12.21pt }

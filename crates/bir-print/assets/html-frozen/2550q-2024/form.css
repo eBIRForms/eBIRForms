@@ -1,0 +1,43 @@
+/* 2550Q rev 2024 -- form-specific rules.
+ * Shared scaffolding is in ../base.css. */
+@page { size:612pt 1008pt;margin:0 }
+@font-face { font-family:"eBIRForms Arimo";font-style:italic;font-weight:100 900;font-display:block;src:url("../fonts/arimo-latin-wght-italic.woff2") format("woff2") }
+.fi { position:absolute;inset:0;appearance:none;-webkit-appearance:none;border:0;margin:0;padding:0;background:transparent;box-shadow:none;outline:0;border-radius:0;caret-color:#000000;text-rendering:geometricPrecision;font-family:"eBIRForms Arimo", Arimo, Arial, Helvetica, sans-serif;font-weight:400;font-style:normal;font-kerning:none;font-variant-ligatures:none;font-feature-settings:normal;font-variation-settings:"wght" 400;color:#000000;word-spacing:0.0094pt }
+.fh0 { font-size:6.71pt;line-height:7.5pt }
+.fh1 { font-size:6.79pt;line-height:7.59pt }
+.fh10 { font-size:9pt;line-height:14.89pt }
+.fh11 { font-size:9pt;line-height:14.9pt }
+.fh12 { font-size:9pt;line-height:14.91pt }
+.fh13 { font-size:9pt;line-height:15pt }
+.fh14 { font-size:9pt;line-height:15.02pt }
+.fh15 { font-size:9pt;line-height:15.61pt }
+.fh16 { font-size:9pt;line-height:15.7pt }
+.fh17 { font-size:9pt;line-height:15.8pt }
+.fh18 { font-size:9pt;line-height:15.85pt }
+.fh19 { font-size:9pt;line-height:16.09pt }
+.fh2 { font-size:6.81pt;line-height:7.61pt }
+.fh20 { font-size:9pt;line-height:16.1pt }
+.fh21 { font-size:9pt;line-height:16.11pt }
+.fh22 { font-size:9pt;line-height:16.45pt }
+.fh23 { font-size:9pt;line-height:16.69pt }
+.fh24 { font-size:9pt;line-height:16.7pt }
+.fh25 { font-size:9pt;line-height:16.79pt }
+.fh26 { font-size:9pt;line-height:16.94pt }
+.fh27 { font-size:9pt;line-height:17.19pt }
+.fh28 { font-size:9pt;line-height:17.2pt }
+.fh29 { font-size:9pt;line-height:17.3pt }
+.fh3 { font-size:7.24pt;line-height:8.09pt }
+.fh30 { font-size:9pt;line-height:17.31pt }
+.fh31 { font-size:9pt;line-height:17.33pt }
+.fh32 { font-size:9pt;line-height:18.05pt }
+.fh33 { font-size:9pt;line-height:18.76pt }
+.fh34 { font-size:9pt;line-height:19.2pt }
+.fh35 { font-size:9pt;line-height:26.5pt }
+.fh4 { font-size:7.33pt;line-height:8.2pt }
+.fh5 { font-size:7.34pt;line-height:8.21pt }
+.fh6 { font-size:9pt;line-height:10.0548pt }
+.fh7 { font-size:9pt;line-height:10.3pt }
+.fh8 { font-size:9pt;line-height:10.6pt }
+.fh9 { font-size:9pt;line-height:14.5pt }
+.doc-link { position:absolute;left:0;top:0;z-index:9;font:12px/1.5 system-ui,-apple-system,sans-serif;padding:2px 8px;background:#fff;color:#0645ad;text-decoration:underline }
+@media print { .doc-link{display:none} }

@@ -1,0 +1,871 @@
+{
+ "form_id": "1707-v2021",
+ "html_slug": "1707-2021",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page text layer) names the item. Text cells and combs: caption left of or above the cell, or the column header. Amounts: the 12-slot peso comb with the 2-slot centavo comb directly right form one money_joins pair. Booleans: X in the box immediately left of the printed option (Yes/No, ATC, Item 9 options). Key names that match a printed caption are used even where the key number is one off from the printed item number. Preprinted rates (15%) and the Part III payment block stay blank; the Schedule 1 item 8 date prints through a date_join and the page 2 TIN from derived:tin_digits (Form1707Draft::to_print_field_map). Since #113 every value the print map carries has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm1707:txtPg1I1Month",
+   "html_id": "p1c7",
+   "printed": "1 Date of Transaction (MM)",
+   "reason": "2-slot MM comb under \"1 Date of Transaction (MM/DD/YYYY)\""
+  },
+  {
+   "writer_key": "frm1707:txtPg1I1Day",
+   "html_id": "p1c8",
+   "printed": "1 Date of Transaction (DD)",
+   "reason": "2-slot DD comb, next to MM"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I1Year",
+   "html_id": "p1c9",
+   "printed": "1 Date of Transaction (YYYY)",
+   "reason": "4-slot YYYY comb, last of the date row"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I4NoOfSheets",
+   "html_id": "p1c12",
+   "printed": "4 Number of Sheet/s Attached",
+   "reason": "caption \"Number of Sheet/s Attached\" left of the 2-slot comb"
+  },
+  {
+   "writer_key": "frm1707:rdoPg1Pt1I5RDO",
+   "html_id": "p1c19",
+   "printed": "5 RDO Code of the Seller",
+   "reason": "caption left of the 3-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I6SellerName0",
+   "html_id": "p1c25",
+   "printed": "6A Seller name",
+   "reason": "row 6A name cell under \"6 Seller's Name\""
+  },
+  {
+   "writer_key": "frm1707:txtPg1I6SellerAddr0",
+   "html_id": "p1c26",
+   "printed": "6A Seller's Registered Address",
+   "reason": "row 6A address cell under \"Seller's Registered Address\""
+  },
+  {
+   "writer_key": "frm1707:txtPg1I6SellerTIN0",
+   "html_id": "p1c27",
+   "printed": "6A Seller's Taxpayer Identification Number",
+   "reason": "row 6A TIN cell under \"Seller's Taxpayer Identification Number (TIN)\""
+  },
+  {
+   "writer_key": "frm1707:txtPg1I6SellerName1",
+   "html_id": "p1c29",
+   "printed": "6B Seller name",
+   "reason": "row 6B name cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I6SellerAddr1",
+   "html_id": "p1c30",
+   "printed": "6B Seller's Registered Address",
+   "reason": "row 6B address cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I6SellerTIN1",
+   "html_id": "p1c31",
+   "printed": "6B Seller's TIN",
+   "reason": "row 6B TIN cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I6SellerName2",
+   "html_id": "p1c33",
+   "printed": "6C Seller name",
+   "reason": "row 6C name cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I6SellerAddr2",
+   "html_id": "p1c34",
+   "printed": "6C Seller's Registered Address",
+   "reason": "row 6C address cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I6SellerTIN2",
+   "html_id": "p1c35",
+   "printed": "6C Seller's TIN",
+   "reason": "row 6C TIN cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I7BuyerName0",
+   "html_id": "p1c40",
+   "printed": "7A Buyer name",
+   "reason": "row 7A name cell under \"7 Buyer's Name\""
+  },
+  {
+   "writer_key": "frm1707:txtPg1I7BuyerAddr0",
+   "html_id": "p1c41",
+   "printed": "7A Buyer's Registered Address",
+   "reason": "row 7A address cell under \"Buyer's Registered Address\""
+  },
+  {
+   "writer_key": "frm1707:txtPg1I7BuyerTIN0",
+   "html_id": "p1c42",
+   "printed": "7A Buyer's TIN",
+   "reason": "row 7A TIN cell under \"Buyer's Taxpayer Identification Number (TIN)\""
+  },
+  {
+   "writer_key": "frm1707:txtPg1I7BuyerName1",
+   "html_id": "p1c44",
+   "printed": "7B Buyer name",
+   "reason": "row 7B name cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I7BuyerAddr1",
+   "html_id": "p1c45",
+   "printed": "7B Buyer's Registered Address",
+   "reason": "row 7B address cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I7BuyerTIN1",
+   "html_id": "p1c46",
+   "printed": "7B Buyer's TIN",
+   "reason": "row 7B TIN cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I7BuyerName2",
+   "html_id": "p1c48",
+   "printed": "7C Buyer name",
+   "reason": "row 7C name cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I7BuyerAddr2",
+   "html_id": "p1c49",
+   "printed": "7C Buyer's Registered Address",
+   "reason": "row 7C address cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I7BuyerTIN2",
+   "html_id": "p1c50",
+   "printed": "7C Buyer's TIN",
+   "reason": "row 7C TIN cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1Pt4TaxAcredNo",
+   "html_id": "p1c118",
+   "printed": "Tax Agent Accreditation No.",
+   "reason": "caption \"Tax Agent Accreditation No./\" left of the cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1Pt4DateOfIssue",
+   "html_id": "p1c120",
+   "printed": "Date of Issue (tax agent)",
+   "reason": "caption \"Date of Issue\" left of the cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1Pt4DateOfExpiry",
+   "html_id": "p1c122",
+   "printed": "Date of Expiry (tax agent)",
+   "reason": "caption \"Date of Expiry\" left of the cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg2RegisteredName",
+   "html_id": "p2c6",
+   "printed": "Taxpayer's Name (page 2)",
+   "reason": "header \"Taxpayer's Name\" above the 26-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch1I4NumInstallments",
+   "html_id": "p2c22",
+   "printed": "Schedule 1 item 4 No. of Installment",
+   "reason": "caption \"4 No. of Installment\" left of the 2-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2NameOfCorpStock1",
+   "html_id": "p2c44",
+   "printed": "Schedule 2 row A Name of Corporate Stock",
+   "reason": "row A comb under \"Name of Corporate Stock\""
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2NameOfCorpStock2",
+   "html_id": "p2c46",
+   "printed": "Schedule 2 row B Name of Corporate Stock",
+   "reason": "row B comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2NameOfCorpStock3",
+   "html_id": "p2c48",
+   "printed": "Schedule 2 row C Name of Corporate Stock",
+   "reason": "row C comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2NameOfCorpStock4",
+   "html_id": "p2c50",
+   "printed": "Schedule 2 row D Name of Corporate Stock",
+   "reason": "row D comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2NoOfShares1",
+   "html_id": "p2c56",
+   "printed": "Schedule 2 row A No. of Shares",
+   "reason": "header \"No. of Shares\" above the row A comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2NoOfShares2",
+   "html_id": "p2c62",
+   "printed": "Schedule 2 row B No. of Shares",
+   "reason": "row B comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2NoOfShares3",
+   "html_id": "p2c68",
+   "printed": "Schedule 2 row C No. of Shares",
+   "reason": "row C comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2NoOfShares4",
+   "html_id": "p2c74",
+   "printed": "Schedule 2 row D No. of Shares",
+   "reason": "row D comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2StockCertNo1",
+   "html_id": "p2c57",
+   "printed": "Schedule 2 row A Stock Certificate Number",
+   "reason": "header \"Stock Certificate Number\" above the row A comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2StockCertNo2",
+   "html_id": "p2c63",
+   "printed": "Schedule 2 row B Stock Certificate Number",
+   "reason": "row B comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2StockCertNo3",
+   "html_id": "p2c69",
+   "printed": "Schedule 2 row C Stock Certificate Number",
+   "reason": "row C comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2StockCertNo4",
+   "html_id": "p2c75",
+   "printed": "Schedule 2 row D Stock Certificate Number",
+   "reason": "row D comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch3Particulars1",
+   "html_id": "p2c87",
+   "printed": "Schedule 3 row A Particulars",
+   "reason": "header \"Particulars\" above the 24-slot row A comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch3Particulars2",
+   "html_id": "p2c92",
+   "printed": "Schedule 3 row B Particulars",
+   "reason": "row B comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch3Particulars3",
+   "html_id": "p2c97",
+   "printed": "Schedule 3 row C Particulars",
+   "reason": "row C comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch3Particulars4",
+   "html_id": "p2c102",
+   "printed": "Schedule 3 row D Particulars",
+   "reason": "row D comb"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN",
+   "reason": "the 14-slot comb under the page 2 TIN caption: TIN then branch, from the page-2 TIN keys"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I8TaxReliefSpec",
+   "html_id": "p1c217",
+   "printed": "8 If yes, specify",
+   "reason": "the 25-slot comb right of the item 8 Yes/No boxes"
+  },
+  {
+   "writer_key": "frm1707:txtPg1I9TransDescSpec",
+   "html_id": "p1c214",
+   "printed": "9 Others (please specify)",
+   "reason": "the specify box right of the item 9 Others box"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm1707:txtPg1P2I10TaxBase",
+   "peso_html_id": "p1c62",
+   "cent_html_id": "p1c64",
+   "printed": "10 Taxable Base (Cash Sale / Foreclosure Sale)",
+   "reason": "caption left of the 12-slot comb; cents comb right"
+  },
+  {
+   "writer_key": "frm1707:txtPg1P2I11AllowExpnse",
+   "peso_html_id": "p1c66",
+   "cent_html_id": "p1c68",
+   "printed": "11 Less: Cost and Other Allowable Expenses",
+   "reason": "caption left of the 12-slot comb; cents comb right"
+  },
+  {
+   "writer_key": "frm1707:txtPg1P2I12NetCptalChnged",
+   "peso_html_id": "p1c70",
+   "cent_html_id": "p1c72",
+   "printed": "12 Net Capital Gain/(Loss)",
+   "reason": "caption left of the 12-slot comb; cents comb right"
+  },
+  {
+   "writer_key": "frm1707:txtPg1P2I13TaxDueForTrans",
+   "peso_html_id": "p1c76",
+   "cent_html_id": "p1c78",
+   "printed": "14 Tax Due on the Entire Transaction",
+   "reason": "key name (TaxDueForTrans) and caption agree; printed item 14, the sheet item 13 is the preprinted rate"
+  },
+  {
+   "writer_key": "frm1707:txtPg1P2I14TaxDuePmtPriod",
+   "peso_html_id": "p1c80",
+   "cent_html_id": "p1c82",
+   "printed": "15 Tax Due for this Payment Period",
+   "reason": "key name and caption agree (printed item 15)"
+  },
+  {
+   "writer_key": "frm1707:txtPg1P2I15TaxPaidInPrevRtrn",
+   "peso_html_id": "p1c84",
+   "cent_html_id": "p1c86",
+   "printed": "16 Less: Tax Paid in Return Previously Filed",
+   "reason": "key name and caption agree (printed item 16)"
+  },
+  {
+   "writer_key": "frm1707:txtPg1P2I16TaxPayable",
+   "peso_html_id": "p1c88",
+   "cent_html_id": "p1c90",
+   "printed": "17 Tax Payable/(Overpayment)",
+   "reason": "key name and caption agree (printed item 17)"
+  },
+  {
+   "writer_key": "frm1707:txtPg1P2I17Surcharge",
+   "peso_html_id": "p1c92",
+   "cent_html_id": "p1c94",
+   "printed": "18A Surcharge",
+   "reason": "caption \"18A Surcharge\" left of the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg1P2I17Interest",
+   "peso_html_id": "p1c96",
+   "cent_html_id": "p1c98",
+   "printed": "18B Interest",
+   "reason": "caption \"18B Interest\" left of the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg1P2I17Compromise",
+   "peso_html_id": "p1c100",
+   "cent_html_id": "p1c102",
+   "printed": "18C Compromise",
+   "reason": "caption \"18C Compromise\" left of the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg1P2I17TotPenalties",
+   "peso_html_id": "p1c104",
+   "cent_html_id": "p1c106",
+   "printed": "18D Total Penalties (Sum of Items 18A to 18C)",
+   "reason": "caption left of the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg1P2I18TotAmtPyable",
+   "peso_html_id": "p1c108",
+   "cent_html_id": "p1c110",
+   "printed": "19 Total Amount Payable/(Overpayment)",
+   "reason": "caption left of the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch1I1SellPrice",
+   "peso_html_id": "p2c10",
+   "cent_html_id": "p2c12",
+   "printed": "Schedule 1 item 1 Selling Price",
+   "reason": "caption \"1 Selling Price\" left of the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch1I2CostExpense",
+   "peso_html_id": "p2c14",
+   "cent_html_id": "p2c16",
+   "printed": "Schedule 1 item 2 Cost and Expenses",
+   "reason": "caption left of the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch1I3AssumMortgage",
+   "peso_html_id": "p2c18",
+   "cent_html_id": "p2c20",
+   "printed": "Schedule 1 item 3 Mortgage Assumed",
+   "reason": "caption left of the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch1I5InstallmentAmt",
+   "peso_html_id": "p2c24",
+   "cent_html_id": "p2c26",
+   "printed": "Schedule 1 item 5 Amount of Installment for this Payment Period",
+   "reason": "caption left of the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch1I7PeriodTaxDue",
+   "peso_html_id": "p2c30",
+   "cent_html_id": "p2c32",
+   "printed": "Schedule 1 item 7 Tax Due for the Period",
+   "reason": "caption left of the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch1I9TotCollection",
+   "peso_html_id": "p2c38",
+   "cent_html_id": "p2c40",
+   "printed": "Schedule 1 item 9 Total Collection during the Year of Sale",
+   "reason": "caption left of the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2TaxBaseSellPrice1",
+   "peso_html_id": "p2c58",
+   "cent_html_id": "p2c60",
+   "printed": "Schedule 2 row A Taxable Base/Selling Price",
+   "reason": "header above the 12-slot comb; cents comb right"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2TaxBaseSellPrice2",
+   "peso_html_id": "p2c64",
+   "cent_html_id": "p2c66",
+   "printed": "Schedule 2 row B Taxable Base/Selling Price",
+   "reason": "same column, row B"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2TaxBaseSellPrice3",
+   "peso_html_id": "p2c70",
+   "cent_html_id": "p2c72",
+   "printed": "Schedule 2 row C Taxable Base/Selling Price",
+   "reason": "same column, row C"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2TaxBaseSellPrice4",
+   "peso_html_id": "p2c76",
+   "cent_html_id": "p2c78",
+   "printed": "Schedule 2 row D Taxable Base/Selling Price",
+   "reason": "same column, row D"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch2TotAmount",
+   "peso_html_id": "p2c80",
+   "cent_html_id": "p2c82",
+   "printed": "Total Taxable Base (To Part II Item 10)",
+   "reason": "caption left of the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch3Amount1",
+   "peso_html_id": "p2c88",
+   "cent_html_id": "p2c90",
+   "printed": "Schedule 3 row A Amount",
+   "reason": "header \"Amount\" above the 12-slot row A comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch3Amount2",
+   "peso_html_id": "p2c93",
+   "cent_html_id": "p2c95",
+   "printed": "Schedule 3 row B Amount",
+   "reason": "row B comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch3Amount3",
+   "peso_html_id": "p2c98",
+   "cent_html_id": "p2c100",
+   "printed": "Schedule 3 row C Amount",
+   "reason": "row C comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch3Amount4",
+   "peso_html_id": "p2c103",
+   "cent_html_id": "p2c105",
+   "printed": "Schedule 3 row D Amount",
+   "reason": "row D comb"
+  },
+  {
+   "writer_key": "frm1707:txtPg2P4Sch3TotAmount",
+   "peso_html_id": "p2c107",
+   "cent_html_id": "p2c109",
+   "printed": "Total (To Part II Item 11)",
+   "reason": "caption left of the 12-slot comb"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1707:rdoPg1I2AmendedYes",
+   "html_id": "p1c13",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm1707:rdoPg1I2AmendedNo",
+   "html_id": "p1c14",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm1707:rdoPg1I3ATCIndiv",
+   "html_id": "p1c15",
+   "printed": "3 ATC: II030 Individual",
+   "reason": "box immediately left of \"II030 Individual\""
+  },
+  {
+   "writer_key": "frm1707:rdoPg1I3ATCCorp",
+   "html_id": "p1c16",
+   "printed": "3 ATC: IC110 Corporation",
+   "reason": "box immediately left of \"IC110 Corporation\""
+  },
+  {
+   "writer_key": "frm1707:rdoPg1I8TaxReliefYes",
+   "html_id": "p1c54",
+   "printed": "8 Tax relief under Special Law or International Tax Treaty? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm1707:rdoPg1I8TaxReliefNo",
+   "html_id": "p1c53",
+   "printed": "8 Tax relief under Special Law or International Tax Treaty? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm1707:rdoPg1I9TransDescCash",
+   "html_id": "p1c56",
+   "printed": "9 Description of Transaction: Cash Sale",
+   "reason": "box immediately left of \"Cash Sale\""
+  },
+  {
+   "writer_key": "frm1707:rdoPg1I9TransDescInstallment",
+   "html_id": "p1c58",
+   "printed": "9 Description of Transaction: Installment Sale",
+   "reason": "box immediately left of \"Installment Sale\""
+  },
+  {
+   "writer_key": "frm1707:rdoPg1I9TransDescForeclosure",
+   "html_id": "p1c59",
+   "printed": "9 Description of Transaction: Foreclosure Sale",
+   "reason": "box immediately left of \"Foreclosure Sale\""
+  },
+  {
+   "writer_key": "frm1707:rdoPg1I9TransDescOthers",
+   "html_id": "p1c57",
+   "printed": "9 Description of Transaction: Others",
+   "reason": "box immediately left of \"Others\""
+  }
+ ],
+ "date_joins": [
+  {
+   "writer_key": "frm1707:txtPg2P4Sch1I8DateCollection",
+   "mm_html_id": "p2c34",
+   "dd_html_id": "p2c35",
+   "yyyy_html_id": "p2c36",
+   "printed": "Schedule 1 item 8 Date of Collection (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs on the Schedule 1 item 8 row; one writer date split across the three"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm1707:txtPg2TinC1",
+    "frm1707:txtPg2TinC2",
+    "frm1707:txtPg2TinC3",
+    "frm1707:txtPg2TinC4"
+   ],
+   "reason": "page 2 TIN is one 14-slot comb (p2c5); it prints from derived:tin_digits, built from these four keys"
+  },
+  {
+   "writer_keys": [
+    "frm1707:txtPg1TIN1",
+    "frm1707:txtPg1TIN2",
+    "frm1707:txtPg1TIN3",
+    "frm1707:txtPg1TIN4"
+   ],
+   "reason": "the filer's TIN copy on page 1 of the page (loadBGData); the 2021 sheet has no filer TIN box on page 1 (the parties' TINs print in items 6 and 7, the filer's on the page 2 header)"
+  },
+  {
+   "writer_keys": [
+    "frm1707:ProfileName",
+    "frm1707:ProfileAddress1",
+    "frm1707:ProfileAddress2",
+    "frm1707:ProfileZipCode",
+    "frm1707:ProfileContactNum",
+    "frm1707:ProfileEmailAddr"
+   ],
+   "reason": "the filer's profile copy of the page; the 2021 sheet identifies the seller and buyer in items 6 and 7 and has no filer name, address, ZIP, contact or email box on page 1 (the name prints in the page 2 header)"
+  },
+  {
+   "writer_keys": [
+    "frm1707:rdoCorpoDomestic",
+    "frm1707:rdoCorpoForeign"
+   ],
+   "reason": "domestic/foreign corporation radio of the page; the 2021 sheet draws no box for it"
+  },
+  {
+   "writer_keys": [
+    "frm1707:txtPg1I3Indiv",
+    "frm1707:txtPg1I3Corp"
+   ],
+   "reason": "ATC code preprinted beside its item 3 box (II030 / IC110); the boxes print from rdoPg1I3ATCIndiv / rdoPg1I3ATCCorp"
+  },
+  {
+   "writer_key": "frm1707:txtPg1P2I13AppTaxRate",
+   "reason": "item 13 rate is preprinted (15%); there is no box to fill"
+  },
+  {
+   "writer_key": "frm1707:txtLOB",
+   "reason": "not on the paper form: this sheet has no line-of-business box"
+  },
+  {
+   "writer_keys": [
+    "Pg2Pt4S2PopLength",
+    "Pg2Pt4S3PopLength"
+   ],
+   "reason": "pop-up row count of the page, not on the paper form"
+  },
+  {
+   "writer_keys": [
+    "Pg2Pt4S2SubTotal",
+    "Pg2Pt4S3SubTotal"
+   ],
+   "reason": "pop-up subtotal: Schedule 2/3 row D prints it as OTHERS through the row D keys; no box of its own on the sheet"
+  },
+  {
+   "writer_keys": [
+    "frm1707:txtPg2Pt4S2_10Col1",
+    "frm1707:txtPg2Pt4S2_10Col2",
+    "frm1707:txtPg2Pt4S2_10Col3",
+    "frm1707:txtPg2Pt4S2_10Col4",
+    "frm1707:txtPg2Pt4S2_11Col1",
+    "frm1707:txtPg2Pt4S2_11Col2",
+    "frm1707:txtPg2Pt4S2_11Col3",
+    "frm1707:txtPg2Pt4S2_11Col4",
+    "frm1707:txtPg2Pt4S2_12Col1",
+    "frm1707:txtPg2Pt4S2_12Col2",
+    "frm1707:txtPg2Pt4S2_12Col3",
+    "frm1707:txtPg2Pt4S2_12Col4",
+    "frm1707:txtPg2Pt4S2_13Col1",
+    "frm1707:txtPg2Pt4S2_13Col2",
+    "frm1707:txtPg2Pt4S2_13Col3",
+    "frm1707:txtPg2Pt4S2_13Col4",
+    "frm1707:txtPg2Pt4S2_14Col1",
+    "frm1707:txtPg2Pt4S2_14Col2",
+    "frm1707:txtPg2Pt4S2_14Col3",
+    "frm1707:txtPg2Pt4S2_14Col4",
+    "frm1707:txtPg2Pt4S2_15Col1",
+    "frm1707:txtPg2Pt4S2_15Col2",
+    "frm1707:txtPg2Pt4S2_15Col3",
+    "frm1707:txtPg2Pt4S2_15Col4",
+    "frm1707:txtPg2Pt4S2_16Col1",
+    "frm1707:txtPg2Pt4S2_16Col2",
+    "frm1707:txtPg2Pt4S2_16Col3",
+    "frm1707:txtPg2Pt4S2_16Col4",
+    "frm1707:txtPg2Pt4S2_17Col1",
+    "frm1707:txtPg2Pt4S2_17Col2",
+    "frm1707:txtPg2Pt4S2_17Col3",
+    "frm1707:txtPg2Pt4S2_17Col4",
+    "frm1707:txtPg2Pt4S2_18Col1",
+    "frm1707:txtPg2Pt4S2_18Col2",
+    "frm1707:txtPg2Pt4S2_18Col3",
+    "frm1707:txtPg2Pt4S2_18Col4",
+    "frm1707:txtPg2Pt4S2_19Col1",
+    "frm1707:txtPg2Pt4S2_19Col2",
+    "frm1707:txtPg2Pt4S2_19Col3",
+    "frm1707:txtPg2Pt4S2_19Col4",
+    "frm1707:txtPg2Pt4S2_1Col1",
+    "frm1707:txtPg2Pt4S2_1Col2",
+    "frm1707:txtPg2Pt4S2_1Col3",
+    "frm1707:txtPg2Pt4S2_1Col4",
+    "frm1707:txtPg2Pt4S2_20Col1",
+    "frm1707:txtPg2Pt4S2_20Col2",
+    "frm1707:txtPg2Pt4S2_20Col3",
+    "frm1707:txtPg2Pt4S2_20Col4",
+    "frm1707:txtPg2Pt4S2_21Col1",
+    "frm1707:txtPg2Pt4S2_21Col2",
+    "frm1707:txtPg2Pt4S2_21Col3",
+    "frm1707:txtPg2Pt4S2_21Col4",
+    "frm1707:txtPg2Pt4S2_2Col1",
+    "frm1707:txtPg2Pt4S2_2Col2",
+    "frm1707:txtPg2Pt4S2_2Col3",
+    "frm1707:txtPg2Pt4S2_2Col4",
+    "frm1707:txtPg2Pt4S2_3Col1",
+    "frm1707:txtPg2Pt4S2_3Col2",
+    "frm1707:txtPg2Pt4S2_3Col3",
+    "frm1707:txtPg2Pt4S2_3Col4",
+    "frm1707:txtPg2Pt4S2_4Col1",
+    "frm1707:txtPg2Pt4S2_4Col2",
+    "frm1707:txtPg2Pt4S2_4Col3",
+    "frm1707:txtPg2Pt4S2_4Col4",
+    "frm1707:txtPg2Pt4S2_5Col1",
+    "frm1707:txtPg2Pt4S2_5Col2",
+    "frm1707:txtPg2Pt4S2_5Col3",
+    "frm1707:txtPg2Pt4S2_5Col4",
+    "frm1707:txtPg2Pt4S2_6Col1",
+    "frm1707:txtPg2Pt4S2_6Col2",
+    "frm1707:txtPg2Pt4S2_6Col3",
+    "frm1707:txtPg2Pt4S2_6Col4",
+    "frm1707:txtPg2Pt4S2_7Col1",
+    "frm1707:txtPg2Pt4S2_7Col2",
+    "frm1707:txtPg2Pt4S2_7Col3",
+    "frm1707:txtPg2Pt4S2_7Col4",
+    "frm1707:txtPg2Pt4S2_8Col1",
+    "frm1707:txtPg2Pt4S2_8Col2",
+    "frm1707:txtPg2Pt4S2_8Col3",
+    "frm1707:txtPg2Pt4S2_8Col4",
+    "frm1707:txtPg2Pt4S2_9Col1",
+    "frm1707:txtPg2Pt4S2_9Col2",
+    "frm1707:txtPg2Pt4S2_9Col3",
+    "frm1707:txtPg2Pt4S2_9Col4",
+    "frm1707:txtPg2Pt4S3_10Col1",
+    "frm1707:txtPg2Pt4S3_10Col2",
+    "frm1707:txtPg2Pt4S3_11Col1",
+    "frm1707:txtPg2Pt4S3_11Col2",
+    "frm1707:txtPg2Pt4S3_12Col1",
+    "frm1707:txtPg2Pt4S3_12Col2",
+    "frm1707:txtPg2Pt4S3_13Col1",
+    "frm1707:txtPg2Pt4S3_13Col2",
+    "frm1707:txtPg2Pt4S3_14Col1",
+    "frm1707:txtPg2Pt4S3_14Col2",
+    "frm1707:txtPg2Pt4S3_15Col1",
+    "frm1707:txtPg2Pt4S3_15Col2",
+    "frm1707:txtPg2Pt4S3_16Col1",
+    "frm1707:txtPg2Pt4S3_16Col2",
+    "frm1707:txtPg2Pt4S3_17Col1",
+    "frm1707:txtPg2Pt4S3_17Col2",
+    "frm1707:txtPg2Pt4S3_18Col1",
+    "frm1707:txtPg2Pt4S3_18Col2",
+    "frm1707:txtPg2Pt4S3_19Col1",
+    "frm1707:txtPg2Pt4S3_19Col2",
+    "frm1707:txtPg2Pt4S3_1Col1",
+    "frm1707:txtPg2Pt4S3_1Col2",
+    "frm1707:txtPg2Pt4S3_2Col1",
+    "frm1707:txtPg2Pt4S3_2Col2",
+    "frm1707:txtPg2Pt4S3_3Col1",
+    "frm1707:txtPg2Pt4S3_3Col2",
+    "frm1707:txtPg2Pt4S3_4Col1",
+    "frm1707:txtPg2Pt4S3_4Col2",
+    "frm1707:txtPg2Pt4S3_5Col1",
+    "frm1707:txtPg2Pt4S3_5Col2",
+    "frm1707:txtPg2Pt4S3_6Col1",
+    "frm1707:txtPg2Pt4S3_6Col2",
+    "frm1707:txtPg2Pt4S3_7Col1",
+    "frm1707:txtPg2Pt4S3_7Col2",
+    "frm1707:txtPg2Pt4S3_8Col1",
+    "frm1707:txtPg2Pt4S3_8Col2",
+    "frm1707:txtPg2Pt4S3_9Col1",
+    "frm1707:txtPg2Pt4S3_9Col2"
+   ],
+   "reason": "row of the 'More' pop-up (Schedule 2/3 row D onward): the sheet's row D reads OTHERS with the pop-up subtotal, so the pop-up rows have no box on the sheet"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c130",
+   "reason": "Part III Cash/Bank Debit Memo: keys split into C1/C2/C3 and a 3-comb Date; column identity not verifiable"
+  },
+  {
+   "html_id": "p1c131",
+   "reason": "Part III Cash/Bank Debit Memo: keys split into C1/C2/C3 and a 3-comb Date; column identity not verifiable"
+  },
+  {
+   "html_id": "p1c132",
+   "reason": "Part III Date (MM/DD/YYYY): one key for three combs"
+  },
+  {
+   "html_id": "p1c133",
+   "reason": "Part III Date (MM/DD/YYYY): one key for three combs"
+  },
+  {
+   "html_id": "p1c134",
+   "reason": "Part III Date (MM/DD/YYYY): one key for three combs"
+  },
+  {
+   "html_id": "p1c135",
+   "reason": "Part III Cash/Bank Debit Memo amount: column identity not verifiable"
+  },
+  {
+   "html_id": "p1c137",
+   "reason": "Part III Cash/Bank Debit Memo centavos: column identity not verifiable"
+  },
+  {
+   "html_id": "p1c139",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c140",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c141",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c142",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c143",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c144",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c146",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c148",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c149",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c150",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c151",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c152",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c153",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c155",
+   "reason": "Part III payment block: no unambiguous key"
+  },
+  {
+   "html_id": "p1c157",
+   "reason": "no layout key for this printed item (signature block, 8A/9 specify text, taxpayer classification boxes, or 6A-7C extras)"
+  },
+  {
+   "html_id": "p1c158",
+   "reason": "no layout key for this printed item (signature block, 8A/9 specify text, taxpayer classification boxes, or 6A-7C extras)"
+  },
+  {
+   "html_id": "p1c159",
+   "reason": "no layout key for this printed item (signature block, 8A/9 specify text, taxpayer classification boxes, or 6A-7C extras)"
+  },
+  {
+   "html_id": "p1c160",
+   "reason": "no layout key for this printed item (signature block, 8A/9 specify text, taxpayer classification boxes, or 6A-7C extras)"
+  },
+  {
+   "html_id": "p1c161",
+   "reason": "no layout key for this printed item (signature block, 8A/9 specify text, taxpayer classification boxes, or 6A-7C extras)"
+  },
+  {
+   "html_id": "p1c162",
+   "reason": "no layout key for this printed item (signature block, 8A/9 specify text, taxpayer classification boxes, or 6A-7C extras)"
+  },
+  {
+   "html_id": "p1c163",
+   "reason": "no layout key for this printed item (signature block, 8A/9 specify text, taxpayer classification boxes, or 6A-7C extras)"
+  },
+  {
+   "html_id": "p1c165",
+   "reason": "no layout key for this printed item (signature block, 8A/9 specify text, taxpayer classification boxes, or 6A-7C extras)"
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+/* 1702RT rev 2018C -- form-specific rules.
+ * Shared scaffolding is in ../base.css. */
+@page { size:612pt 936pt;margin:0 }
+@font-face { font-family:"eBIRForms Arimo";font-style:italic;font-weight:100 900;font-display:block;src:url("../fonts/arimo-latin-wght-italic.woff2") format("woff2") }
+.fi { position:absolute;inset:0;appearance:none;-webkit-appearance:none;border:0;margin:0;padding:0;background:transparent;box-shadow:none;outline:0;border-radius:0;caret-color:#000000;text-rendering:geometricPrecision;font-family:"eBIRForms Arimo", Arimo, Arial, Helvetica, sans-serif;font-weight:400;font-style:normal;font-kerning:none;font-variant-ligatures:none;font-feature-settings:normal;font-variation-settings:"wght" 400;color:#000000;word-spacing:-0.0544pt }
+.fh0 { font-size:7.84pt;line-height:8.76pt;letter-spacing:-0.0475pt }
+.fh1 { font-size:9pt;line-height:10.0548pt;letter-spacing:-0.0545pt }
+.fh10 { font-size:9pt;line-height:18.36pt;letter-spacing:-0.0545pt }
+.fh11 { font-size:9pt;line-height:18.38pt;letter-spacing:-0.0545pt }
+.fh12 { font-size:9pt;line-height:18.39pt;letter-spacing:-0.0545pt }
+.fh13 { font-size:9pt;line-height:18.48pt;letter-spacing:-0.0545pt }
+.fh14 { font-size:9pt;line-height:18.5pt;letter-spacing:-0.0545pt }
+.fh15 { font-size:9pt;line-height:18.51pt;letter-spacing:-0.0545pt }
+.fh16 { font-size:9pt;line-height:18.96pt;letter-spacing:-0.0545pt }
+.fh17 { font-size:9pt;line-height:19.08pt;letter-spacing:-0.0545pt }
+.fh18 { font-size:9pt;line-height:19.26pt;letter-spacing:-0.0545pt }
+.fh19 { font-size:9pt;line-height:19.32pt;letter-spacing:-0.0545pt }
+.fh2 { font-size:9pt;line-height:10.8pt;letter-spacing:-0.0545pt }
+.fh20 { font-size:9pt;line-height:19.38pt;letter-spacing:-0.0545pt }
+.fh21 { font-size:9pt;line-height:20.28pt;letter-spacing:-0.0545pt }
+.fh22 { font-size:9pt;line-height:20.34pt;letter-spacing:-0.0545pt }
+.fh23 { font-size:9pt;line-height:20.4pt;letter-spacing:-0.0545pt }
+.fh24 { font-size:9pt;line-height:20.64pt;letter-spacing:-0.0545pt }
+.fh3 { font-size:9pt;line-height:10.92pt;letter-spacing:-0.0545pt }
+.fh4 { font-size:9pt;line-height:10.98pt;letter-spacing:-0.0545pt }
+.fh5 { font-size:9pt;line-height:11.16pt;letter-spacing:-0.0545pt }
+.fh6 { font-size:9pt;line-height:14.76pt;letter-spacing:-0.0545pt }
+.fh7 { font-size:9pt;line-height:15.72pt;letter-spacing:-0.0545pt }
+.fh8 { font-size:9pt;line-height:17.28pt;letter-spacing:-0.0545pt }
+.fh9 { font-size:9pt;line-height:18pt;letter-spacing:-0.0545pt }

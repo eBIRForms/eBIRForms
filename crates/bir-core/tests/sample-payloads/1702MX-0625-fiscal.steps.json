@@ -1,0 +1,245 @@
+[
+ {
+  "set": "frm1702MX:txtPg1Pt1I6TINC1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702MX:txtPg1Pt1I6TINC2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702MX:txtPg1Pt1I6TINC3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702MX:txtPg1Pt1I6TINC4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702MX:txtPg2TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702MX:txtPg2TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702MX:txtPg2TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702MX:txtPg2TIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702MX:txtPg3TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702MX:txtPg3TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702MX:txtPg3TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702MX:txtPg3TIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702MX:txtPg4TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702MX:txtPg4TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702MX:txtPg4TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702MX:txtPg4TIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702MX:txtPg1AttMTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702MX:txtPg1AttMTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702MX:txtPg1AttMTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702MX:txtPg1AttMTIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702MX:txtPg2AttMTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1702MX:txtPg2AttMTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1702MX:txtPg2AttMTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1702MX:txtPg2AttMTIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm1702MX:txtPg1Pt1I7RDO",
+  "value": "039"
+ },
+ {
+  "set": "frm1702MX:drpPg1Pt1I7RDO",
+  "value": "039"
+ },
+ {
+  "set": "frm1702MX:txtPg1Pt1I9RegisteredName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1702MX:txtPg2RegisteredName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1702MX:txtPg3RegisteredName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1702MX:txtPg4RegisteredName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1702MX:txtPg1Pt1I10RegisteredAddress",
+  "value": "123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITY"
+ },
+ {
+  "set": "frm1702MX:txtZIP",
+  "value": "1100"
+ },
+ {
+  "set": "frm1702MX:txtPg1Pt1I11ContactNumber",
+  "value": "09170000000"
+ },
+ {
+  "set": "frm1702MX:txtPg1Pt1I12Email",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "click": "frm1702MX:rdoPg1I1Fiscal"
+ },
+ {
+  "click": "frm1702MX:rdoPg1I3AmendedYes"
+ },
+ {
+  "set": "frm1702MX:ddlPg1I2Date",
+  "value": "06"
+ },
+ {
+  "set": "frm1702MX:txtPg1I2YearEnd",
+  "value": "25"
+ },
+ {
+  "set": "frm1702MX:txtPg1Pt1I8",
+  "value": "03/10/2023"
+ },
+ {
+  "click": "frm1702MX:chkPg1I5ATCR2"
+ },
+ {
+  "set": "frm1702MX:drpPg1I5ATCR2",
+  "value": "IC030"
+ },
+ {
+  "click": "frm1702MX:rdoPg1Pt1I13MethodOfDeducOptional"
+ },
+ {
+  "set": "frm1702MX:txtPg2Pt4I31CB",
+  "value": "Boi"
+ },
+ {
+  "set": "frm1702MX:txtPg2Pt4I32CB",
+  "value": "Eo 226"
+ },
+ {
+  "set": "frm1702MX:txtPg2Pt4I33CB",
+  "value": "Tourism"
+ },
+ {
+  "set": "frm1702MX:txtPg2Pt4I35CB",
+  "value": "01/01/2021"
+ },
+ {
+  "set": "frm1702MX:txtPg2Pt4I36CB",
+  "value": "12/31/2027"
+ },
+ {
+  "set": "frm1702MX:txtPg2Pt4I34SpecialTaxRate",
+  "value": "7.5"
+ },
+ {
+  "set": "frm1702MX:txtPg2Sc2Itm1B",
+  "value": "1000000"
+ },
+ {
+  "set": "frm1702MX:txtPg2Sc2Itm2B",
+  "value": "300000"
+ },
+ {
+  "set": "frm1702MX:txtPg2Sc2Itm1C",
+  "value": "2000000"
+ },
+ {
+  "set": "frm1702MX:txtPg2Sc2Itm2C",
+  "value": "1500000"
+ },
+ {
+  "set": "frm1702MX:txtPg3Sc5Itm1B",
+  "value": "900000"
+ },
+ {
+  "set": "frm1702MX:txtPg2Sc3It20B",
+  "value": "100000"
+ },
+ {
+  "set": "frm1702MX:txtPg2Sc3It20C",
+  "value": "100000"
+ },
+ {
+  "set": "frm1702MX:txtPg2Sc3It27C",
+  "value": "10000"
+ },
+ {
+  "set": "frm1702MX:txtPg4Sc10Itm1B",
+  "value": "-200000"
+ },
+ {
+  "set": "frm1702MX:txtPg4Sc10Itm1C",
+  "value": "300000"
+ },
+ {
+  "set": "frm1702MX:txtPg2Sc2It14C",
+  "value": "25"
+ },
+ {
+  "set": "frm1702MX:txtPg2Sc2It14B",
+  "value": "7.5"
+ },
+ {
+  "set": "frm1702MX:txtPg2Sc2It15B",
+  "value": "75,000"
+ },
+ {
+  "click": "frm1702MX:rdoPg1Pt2I21CarriedOver"
+ }
+]

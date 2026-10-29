@@ -1,0 +1,1286 @@
+{
+ "form_id": "2200m-v2018",
+ "html_slug": "2200m-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the single fillable cell whose printed caption (from the frozen page's own text layer) names the item. Part III amounts split into the peso comb and 2-slot centavo comb on the item's row (negative amounts stay blank, like every split-money sheet). Schedule 1 cells are single text cells and print the official text (1,234.50); on the printed sheet rows 1-3 (XM010) expose only Place, A, B and F, rows 4-8 expose Place, C, D and F, and the continuation omits the fixed rate column I for rows 1-8. Items 10 and 11 print the place names and the page 2 TIN comb the 14 TIN digits, from derived: keys of Form2200MDraft::to_print_field_map (the writer holds codes and a four-part TIN). Part IV (payment details) has no writer values. Booleans fill X in the box left of the printed option. Since #113 every value has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm2200M:txtPg1I1Month",
+   "html_id": "p1c4",
+   "printed": "1 Date MM",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1I1Day",
+   "html_id": "p1c6",
+   "printed": "1 Date DD",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1I1Year",
+   "html_id": "p1c8",
+   "printed": "1 Date YYYY",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1I3NoSheets",
+   "html_id": "p1c11",
+   "printed": "3 No. of Sheet/s Attached",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1TIN1",
+   "html_id": "p1c16",
+   "printed": "4 TIN (1-3)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1TIN2",
+   "html_id": "p1c18",
+   "printed": "4 TIN (4-6)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1TIN3",
+   "html_id": "p1c20",
+   "printed": "4 TIN (7-9)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1TIN4",
+   "html_id": "p1c22",
+   "printed": "4 TIN branch",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1I5RDO",
+   "html_id": "p1c24",
+   "printed": "5 RDO Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1Pt1I6RegisteredName",
+   "html_id": "p1c26",
+   "printed": "6 Taxpayer's Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1Pt1I7RegisteredAddress",
+   "html_id": "p1c28",
+   "printed": "7 Registered Address (line 1)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1Pt1I7RegisteredAddress2",
+   "html_id": "p1c29",
+   "printed": "7 Registered Address (line 2)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txPg1I7ZipCode",
+   "html_id": "p1c31",
+   "printed": "7A ZIP Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1Pt1I8ContactNumber",
+   "html_id": "p1c34",
+   "printed": "8 Contact Number",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1Pt1I9Email",
+   "html_id": "p1c35",
+   "printed": "9 Email Address",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1I12TaxReliefSpecify",
+   "html_id": "p1c54",
+   "printed": "12A If yes, specify",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1Pt2MOPOtherDesc",
+   "html_id": "p1c61",
+   "printed": "15 Other Similar Schemes (specify)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtPg2RegisteredName",
+   "html_id": "p2c6",
+   "printed": "Page 2 Taxpayer's Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_PlaceOfRemoval1",
+   "html_id": "p2c23",
+   "printed": "Schedule 1 row 1 Place of Removal",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_VOMRITaxableA1",
+   "html_id": "p2c24",
+   "printed": "Schedule 1 row 1 (A)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_VOMRIExemptB1",
+   "html_id": "p2c25",
+   "printed": "Schedule 1 row 1 (B)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedTaxDueF1",
+   "html_id": "p2c29",
+   "printed": "Schedule 1 row 1 (F)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_PlaceOfRemoval2",
+   "html_id": "p2c31",
+   "printed": "Schedule 1 row 2 Place of Removal",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_VOMRITaxableA2",
+   "html_id": "p2c32",
+   "printed": "Schedule 1 row 2 (A)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_VOMRIExemptB2",
+   "html_id": "p2c33",
+   "printed": "Schedule 1 row 2 (B)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedTaxDueF2",
+   "html_id": "p2c37",
+   "printed": "Schedule 1 row 2 (F)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_PlaceOfRemoval3",
+   "html_id": "p2c39",
+   "printed": "Schedule 1 row 3 Place of Removal",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_VOMRITaxableA3",
+   "html_id": "p2c40",
+   "printed": "Schedule 1 row 3 (A)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_VOMRIExemptB3",
+   "html_id": "p2c41",
+   "printed": "Schedule 1 row 3 (B)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedTaxDueF3",
+   "html_id": "p2c45",
+   "printed": "Schedule 1 row 3 (F)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_PlaceOfRemoval4",
+   "html_id": "p2c48",
+   "printed": "Schedule 1 row 4 Place of Removal",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateC4",
+   "html_id": "p2c51",
+   "printed": "Schedule 1 row 4 (C)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateD4",
+   "html_id": "p2c52",
+   "printed": "Schedule 1 row 4 (D)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedTaxDueF4",
+   "html_id": "p2c54",
+   "printed": "Schedule 1 row 4 (F)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_PlaceOfRemoval5",
+   "html_id": "p2c57",
+   "printed": "Schedule 1 row 5 Place of Removal",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateC5",
+   "html_id": "p2c60",
+   "printed": "Schedule 1 row 5 (C)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateD5",
+   "html_id": "p2c61",
+   "printed": "Schedule 1 row 5 (D)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedTaxDueF5",
+   "html_id": "p2c63",
+   "printed": "Schedule 1 row 5 (F)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_PlaceOfRemoval6",
+   "html_id": "p2c66",
+   "printed": "Schedule 1 row 6 Place of Removal",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateC6",
+   "html_id": "p2c69",
+   "printed": "Schedule 1 row 6 (C)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateD6",
+   "html_id": "p2c70",
+   "printed": "Schedule 1 row 6 (D)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedTaxDueF6",
+   "html_id": "p2c72",
+   "printed": "Schedule 1 row 6 (F)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_PlaceOfRemoval7",
+   "html_id": "p2c75",
+   "printed": "Schedule 1 row 7 Place of Removal",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateC7",
+   "html_id": "p2c78",
+   "printed": "Schedule 1 row 7 (C)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateD7",
+   "html_id": "p2c79",
+   "printed": "Schedule 1 row 7 (D)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedTaxDueF7",
+   "html_id": "p2c81",
+   "printed": "Schedule 1 row 7 (F)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_PlaceOfRemoval8",
+   "html_id": "p2c84",
+   "printed": "Schedule 1 row 8 Place of Removal",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateC8",
+   "html_id": "p2c87",
+   "printed": "Schedule 1 row 8 (C)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateD8",
+   "html_id": "p2c88",
+   "printed": "Schedule 1 row 8 (D)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedTaxDueF8",
+   "html_id": "p2c90",
+   "printed": "Schedule 1 row 8 (F)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_description9",
+   "html_id": "p2c100",
+   "printed": "Schedule 1 row 9 (XM060 other 1) Description (specify)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_PlaceOfRemoval9",
+   "html_id": "p2c101",
+   "printed": "Schedule 1 row 9 (XM060 other 1) Place of Removal",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_VOMRITaxableA9",
+   "html_id": "p2c102",
+   "printed": "Schedule 1 row 9 (XM060 other 1) (A)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_VOMRIExemptB9",
+   "html_id": "p2c103",
+   "printed": "Schedule 1 row 9 (XM060 other 1) (B)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateC9",
+   "html_id": "p2c104",
+   "printed": "Schedule 1 row 9 (XM060 other 1) (C)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateD9",
+   "html_id": "p2c105",
+   "printed": "Schedule 1 row 9 (XM060 other 1) (D)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedTaxRateE9",
+   "html_id": "p2c106",
+   "printed": "Schedule 1 row 9 (XM060 other 1) (E)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedTaxDueF9",
+   "html_id": "p2c107",
+   "printed": "Schedule 1 row 9 (XM060 other 1) (F)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_description10",
+   "html_id": "p2c108",
+   "printed": "Schedule 1 row 10 (XM060 other 2) Description (specify)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_PlaceOfRemoval10",
+   "html_id": "p2c109",
+   "printed": "Schedule 1 row 10 (XM060 other 2) Place of Removal",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_VOMRITaxableA10",
+   "html_id": "p2c110",
+   "printed": "Schedule 1 row 10 (XM060 other 2) (A)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_VOMRIExemptB10",
+   "html_id": "p2c111",
+   "printed": "Schedule 1 row 10 (XM060 other 2) (B)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateC10",
+   "html_id": "p2c112",
+   "printed": "Schedule 1 row 10 (XM060 other 2) (C)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedRateD10",
+   "html_id": "p2c113",
+   "printed": "Schedule 1 row 10 (XM060 other 2) (D)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedTaxRateE10",
+   "html_id": "p2c114",
+   "printed": "Schedule 1 row 10 (XM060 other 2) (E)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_LocallyExtractedTaxDueF10",
+   "html_id": "p2c115",
+   "printed": "Schedule 1 row 10 (XM060 other 2) (F)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxableG1",
+   "html_id": "p2c129",
+   "printed": "Schedule 1 continuation row 1 (G)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedExemptH1",
+   "html_id": "p2c130",
+   "printed": "Schedule 1 continuation row 1 (H)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxDue1",
+   "html_id": "p2c132",
+   "printed": "Schedule 1 continuation row 1 (J)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TaxDueAdjustment1",
+   "html_id": "p2c133",
+   "printed": "Schedule 1 continuation row 1 (K)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TotalTaxDue1",
+   "html_id": "p2c134",
+   "printed": "Schedule 1 continuation row 1 (L) Total Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxableG2",
+   "html_id": "p2c136",
+   "printed": "Schedule 1 continuation row 2 (G)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedExemptH2",
+   "html_id": "p2c137",
+   "printed": "Schedule 1 continuation row 2 (H)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxDue2",
+   "html_id": "p2c139",
+   "printed": "Schedule 1 continuation row 2 (J)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TaxDueAdjustment2",
+   "html_id": "p2c140",
+   "printed": "Schedule 1 continuation row 2 (K)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TotalTaxDue2",
+   "html_id": "p2c141",
+   "printed": "Schedule 1 continuation row 2 (L) Total Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxableG3",
+   "html_id": "p2c143",
+   "printed": "Schedule 1 continuation row 3 (G)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedExemptH3",
+   "html_id": "p2c144",
+   "printed": "Schedule 1 continuation row 3 (H)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxDue3",
+   "html_id": "p2c146",
+   "printed": "Schedule 1 continuation row 3 (J)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TaxDueAdjustment3",
+   "html_id": "p2c147",
+   "printed": "Schedule 1 continuation row 3 (K)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TotalTaxDue3",
+   "html_id": "p2c148",
+   "printed": "Schedule 1 continuation row 3 (L) Total Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxableG4",
+   "html_id": "p2c151",
+   "printed": "Schedule 1 continuation row 4 (G)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedExemptH4",
+   "html_id": "p2c152",
+   "printed": "Schedule 1 continuation row 4 (H)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxDue4",
+   "html_id": "p2c154",
+   "printed": "Schedule 1 continuation row 4 (J)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TaxDueAdjustment4",
+   "html_id": "p2c155",
+   "printed": "Schedule 1 continuation row 4 (K)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TotalTaxDue4",
+   "html_id": "p2c156",
+   "printed": "Schedule 1 continuation row 4 (L) Total Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxableG5",
+   "html_id": "p2c159",
+   "printed": "Schedule 1 continuation row 5 (G)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedExemptH5",
+   "html_id": "p2c160",
+   "printed": "Schedule 1 continuation row 5 (H)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxDue5",
+   "html_id": "p2c162",
+   "printed": "Schedule 1 continuation row 5 (J)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TaxDueAdjustment5",
+   "html_id": "p2c163",
+   "printed": "Schedule 1 continuation row 5 (K)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TotalTaxDue5",
+   "html_id": "p2c164",
+   "printed": "Schedule 1 continuation row 5 (L) Total Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxableG6",
+   "html_id": "p2c167",
+   "printed": "Schedule 1 continuation row 6 (G)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedExemptH6",
+   "html_id": "p2c168",
+   "printed": "Schedule 1 continuation row 6 (H)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxDue6",
+   "html_id": "p2c170",
+   "printed": "Schedule 1 continuation row 6 (J)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TaxDueAdjustment6",
+   "html_id": "p2c171",
+   "printed": "Schedule 1 continuation row 6 (K)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TotalTaxDue6",
+   "html_id": "p2c172",
+   "printed": "Schedule 1 continuation row 6 (L) Total Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxableG7",
+   "html_id": "p2c175",
+   "printed": "Schedule 1 continuation row 7 (G)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedExemptH7",
+   "html_id": "p2c176",
+   "printed": "Schedule 1 continuation row 7 (H)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxDue7",
+   "html_id": "p2c178",
+   "printed": "Schedule 1 continuation row 7 (J)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TaxDueAdjustment7",
+   "html_id": "p2c179",
+   "printed": "Schedule 1 continuation row 7 (K)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TotalTaxDue7",
+   "html_id": "p2c180",
+   "printed": "Schedule 1 continuation row 7 (L) Total Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxableG8",
+   "html_id": "p2c183",
+   "printed": "Schedule 1 continuation row 8 (G)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedExemptH8",
+   "html_id": "p2c184",
+   "printed": "Schedule 1 continuation row 8 (H)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxDue8",
+   "html_id": "p2c186",
+   "printed": "Schedule 1 continuation row 8 (J)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TaxDueAdjustment8",
+   "html_id": "p2c187",
+   "printed": "Schedule 1 continuation row 8 (K)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TotalTaxDue8",
+   "html_id": "p2c188",
+   "printed": "Schedule 1 continuation row 8 (L) Total Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_descriptionCont9",
+   "html_id": "p2c197",
+   "printed": "Schedule 1 continuation row 9 (XM060 other 1) Description",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxableG9",
+   "html_id": "p2c198",
+   "printed": "Schedule 1 continuation row 9 (XM060 other 1) (G)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedExemptH9",
+   "html_id": "p2c199",
+   "printed": "Schedule 1 continuation row 9 (XM060 other 1) (H)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxRate9",
+   "html_id": "p2c200",
+   "printed": "Schedule 1 continuation row 9 (XM060 other 1) (I)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxDue9",
+   "html_id": "p2c201",
+   "printed": "Schedule 1 continuation row 9 (XM060 other 1) (J)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TaxDueAdjustment9",
+   "html_id": "p2c202",
+   "printed": "Schedule 1 continuation row 9 (XM060 other 1) (K)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TotalTaxDue9",
+   "html_id": "p2c203",
+   "printed": "Schedule 1 continuation row 9 (XM060 other 1) (L) Total Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_descriptionCont10",
+   "html_id": "p2c204",
+   "printed": "Schedule 1 continuation row 10 (XM060 other 2) Description",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxableG10",
+   "html_id": "p2c205",
+   "printed": "Schedule 1 continuation row 10 (XM060 other 2) (G)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedExemptH10",
+   "html_id": "p2c206",
+   "printed": "Schedule 1 continuation row 10 (XM060 other 2) (H)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxRate10",
+   "html_id": "p2c207",
+   "printed": "Schedule 1 continuation row 10 (XM060 other 2) (I)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_ImportedTaxDue10",
+   "html_id": "p2c208",
+   "printed": "Schedule 1 continuation row 10 (XM060 other 2) (J)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TaxDueAdjustment10",
+   "html_id": "p2c209",
+   "printed": "Schedule 1 continuation row 10 (XM060 other 2) (K)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:txtSched1_TotalTaxDue10",
+   "html_id": "p2c210",
+   "printed": "Schedule 1 continuation row 10 (XM060 other 2) (L) Total Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm2200M:TotalExciseTaxDue",
+   "html_id": "p2c212",
+   "printed": "TOTAL EXCISE TAX DUE (Part III, Item 16)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2200-M (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:line:item10_region",
+   "html_id": "p1c40",
+   "printed": "10 Place of Production - Region",
+   "reason": "the 6-slot comb under the Region caption of item 10; the name of the PSGC code (a longer name prints whole in smaller type)"
+  },
+  {
+   "writer_key": "derived:line:item10_province",
+   "html_id": "p1c41",
+   "printed": "10 Place of Production - Province",
+   "reason": "the 19-slot comb under the Province caption of item 10; the name of the PSGC code (a longer name prints whole in smaller type)"
+  },
+  {
+   "writer_key": "derived:line:item10_city",
+   "html_id": "p1c42",
+   "printed": "10 Place of Production - City",
+   "reason": "the 15-slot comb under the City caption of item 10; the name of the PSGC code (a longer name prints whole in smaller type)"
+  },
+  {
+   "writer_key": "derived:line:item11_region",
+   "html_id": "p1c47",
+   "printed": "11 Place of Removal - Region",
+   "reason": "the 6-slot comb under the Region caption of item 11; the name of the PSGC code (a longer name prints whole in smaller type)"
+  },
+  {
+   "writer_key": "derived:line:item11_province",
+   "html_id": "p1c48",
+   "printed": "11 Place of Removal - Province",
+   "reason": "the 19-slot comb under the Province caption of item 11; the name of the PSGC code (a longer name prints whole in smaller type)"
+  },
+  {
+   "writer_key": "derived:line:item11_city",
+   "html_id": "p1c49",
+   "printed": "11 Place of Removal - City",
+   "reason": "the 15-slot comb under the City caption of item 11; the name of the PSGC code (a longer name prints whole in smaller type)"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN",
+   "reason": "the 14-slot comb under the page 2 TIN caption: TIN then branch, from the page-2 TIN keys"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm2200M:txtPg1P3I16ExciseTaxDue",
+   "peso_html_id": "p1c65",
+   "cent_html_id": "p1c67",
+   "printed": "16 Excise Tax Due",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I17ABalCarriedOver",
+   "peso_html_id": "p1c69",
+   "cent_html_id": "p1c71",
+   "printed": "17A Balance Carried Over",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I17BCredExciseTax",
+   "peso_html_id": "p1c73",
+   "cent_html_id": "p1c75",
+   "printed": "17B Creditable Excise Tax",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I17CTotal",
+   "peso_html_id": "p1c77",
+   "cent_html_id": "p1c79",
+   "printed": "17C Total",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I18NetTaxDue",
+   "peso_html_id": "p1c81",
+   "cent_html_id": "p1c83",
+   "printed": "18 Net Tax Due/(Overpayment)",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I19PmntOnRtrnPrevFiled",
+   "peso_html_id": "p1c85",
+   "cent_html_id": "p1c87",
+   "printed": "19 Payment on Returns Previously Filed",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I20TaxStillDue",
+   "peso_html_id": "p1c89",
+   "cent_html_id": "p1c91",
+   "printed": "20 Tax Still Due/(Overpayment)",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I21ASurcharge",
+   "peso_html_id": "p1c93",
+   "cent_html_id": "p1c95",
+   "printed": "21A Surcharge",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I21BInterest",
+   "peso_html_id": "p1c97",
+   "cent_html_id": "p1c99",
+   "printed": "21B Interest",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I21CCompromise",
+   "peso_html_id": "p1c101",
+   "cent_html_id": "p1c103",
+   "printed": "21C Compromise",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I21DTotPenalties",
+   "peso_html_id": "p1c105",
+   "cent_html_id": "p1c107",
+   "printed": "21D Total Penalties",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I22AmountPayable",
+   "peso_html_id": "p1c109",
+   "cent_html_id": "p1c111",
+   "printed": "22 Amount Payable/(Overpayment)",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I23ATaxPmntDposit",
+   "peso_html_id": "p1c113",
+   "cent_html_id": "p1c115",
+   "printed": "23A Tax Payment/Deposit",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I23BPenalties",
+   "peso_html_id": "p1c117",
+   "cent_html_id": "p1c119",
+   "printed": "23B Penalties",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I23CTotPmntMade",
+   "peso_html_id": "p1c121",
+   "cent_html_id": "p1c123",
+   "printed": "23C Total Payment Made Today",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  },
+  {
+   "writer_key": "frm2200M:txtPg1P3I24BalToCarryOver",
+   "peso_html_id": "p1c125",
+   "cent_html_id": "p1c127",
+   "printed": "24 Balance to be Carried Over",
+   "reason": "peso comb and 2-slot centavo comb on the printed item's row"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm2200M:rdoPg1I2AmendedYes",
+   "html_id": "p1c12",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2200M:rdoPg1I2AmendedNo",
+   "html_id": "p1c13",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2200M:rdoPg1I12TaxReliefYes",
+   "html_id": "p1c52",
+   "printed": "12 Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2200M:rdoPg1I12TaxReliefNo",
+   "html_id": "p1c53",
+   "printed": "12 No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2200M:rdoPg1Pt2MOPPaymentActual",
+   "html_id": "p1c58",
+   "printed": "13 Payment on Actual Removal",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2200M:rdoPg1Pt2MOPPrepayment",
+   "html_id": "p1c59",
+   "printed": "14 Prepayment/Advance Deposit",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2200M:rdoPg1Pt2MOPOther",
+   "html_id": "p1c62",
+   "printed": "15 Other Similar Schemes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm2200M:txtPg1Pt1I10Region",
+    "frm2200M:txtPg1Pt1I10Province",
+    "frm2200M:txtPg1Pt1I10City"
+   ],
+   "reason": "prints from derived:line:item10_region / _province / _city (the print map shapes Item 10 as place names instead of PSGC codes for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2200M:txtPg1Pt1I11Region",
+    "frm2200M:txtPg1Pt1I11Province",
+    "frm2200M:txtPg1Pt1I11City"
+   ],
+   "reason": "prints from derived:line:item11_region / _province / _city (the print map shapes Item 11 as place names instead of PSGC codes for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2200M:txtPg2TinC1",
+    "frm2200M:txtPg2TinC2",
+    "frm2200M:txtPg2TinC3",
+    "frm2200M:txtPg2TinC4"
+   ],
+   "reason": "page 2 TIN is one 14-slot comb (p2c5); it prints from derived:tin_digits, built from these four keys"
+  },
+  {
+   "writer_keys": [
+    "frm2200M:LocallyExtractedRate1",
+    "frm2200M:txtSched1_LocallyExtractedRateC2",
+    "frm2200M:txtSched1_LocallyExtractedRateC3",
+    "frm2200M:txtSched1_LocallyExtractedRateD1",
+    "frm2200M:txtSched1_LocallyExtractedRateD2",
+    "frm2200M:txtSched1_LocallyExtractedRateD3"
+   ],
+   "reason": "Schedule 1 rows 1-3 (XM010 coal, taxed per MT) have no Actual/Fair Market Value (C/D) boxes on the sheet; only Place, Volume (A/B) and Tax Due (F) are drawn"
+  },
+  {
+   "writer_keys": [
+    "frm2200M:txtSched1_VOMRITaxableA4",
+    "frm2200M:txtSched1_VOMRITaxableA5",
+    "frm2200M:txtSched1_VOMRITaxableA6",
+    "frm2200M:txtSched1_VOMRITaxableA7",
+    "frm2200M:txtSched1_VOMRITaxableA8",
+    "frm2200M:txtSched1_VOMRIExemptB4",
+    "frm2200M:txtSched1_VOMRIExemptB5",
+    "frm2200M:txtSched1_VOMRIExemptB6",
+    "frm2200M:txtSched1_VOMRIExemptB7",
+    "frm2200M:txtSched1_VOMRIExemptB8"
+   ],
+   "reason": "Schedule 1 rows 4-8 (XM020-XM051, ad valorem) have no Volume (A/B) boxes on the sheet; only Place, Value (C/D) and Tax Due (F) are drawn"
+  },
+  {
+   "writer_keys": [
+    "frm2200M:chkBoxSched1Description9",
+    "frm2200M:chkBoxSched1Description10",
+    "frm2200M:chkBoxSched1Description11",
+    "frm2200M:chkBoxSched1Description12",
+    "frm2200M:chkBoxSched1Description13",
+    "frm2200M:chkBoxSched1Description14",
+    "frm2200M:chkBoxSched1Description15",
+    "frm2200M:chkBoxSched1Description16",
+    "frm2200M:chkBoxSched1Description17",
+    "frm2200M:chkBoxSched1Description18",
+    "frm2200M:chkBoxSched1Description19",
+    "frm2200M:chkBoxSched1Description20",
+    "frm2200M:chkBoxSched1Description21",
+    "frm2200M:chkBoxSched1Description22",
+    "frm2200M:chkBoxSched1Description23",
+    "frm2200M:chkBoxSched1Description24",
+    "frm2200M:chkBoxSched1Description25",
+    "frm2200M:chkBoxSched1Description26"
+   ],
+   "reason": "row-enable checkbox of the page; the paper Other Metallic Minerals rows have no box for it"
+  },
+  {
+   "writer_key": "frm2200M:sched1AddedRowCount",
+   "reason": "row counter of the page, not on the paper form"
+  },
+  {
+   "writer_key": "frm2200M:rdoPg1Pt1I6RDO",
+   "reason": "duplicate of frm2200M:txtPg1I5RDO (same RDO), which prints in item 5"
+  },
+  {
+   "writer_key": "frm2200M:txtLOB",
+   "reason": "not on the paper form: this sheet has no line-of-business box"
+  },
+  {
+   "writer_key": "frm2200M:txtCurrentPage",
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  },
+  {
+   "writer_keys": [
+    "frm2200M:txtSched1ATC11",
+    "frm2200M:txtSched1ATC12",
+    "frm2200M:txtSched1ATC13",
+    "frm2200M:txtSched1ATC14",
+    "frm2200M:txtSched1ATC15",
+    "frm2200M:txtSched1ATC16",
+    "frm2200M:txtSched1ATC17",
+    "frm2200M:txtSched1ATC18",
+    "frm2200M:txtSched1ATC19",
+    "frm2200M:txtSched1ATC20",
+    "frm2200M:txtSched1ATC21",
+    "frm2200M:txtSched1ATC22",
+    "frm2200M:txtSched1ATC23",
+    "frm2200M:txtSched1ATC24",
+    "frm2200M:txtSched1ATC25",
+    "frm2200M:txtSched1ATC26",
+    "frm2200M:txtSched1_ImportedExemptH11",
+    "frm2200M:txtSched1_ImportedExemptH12",
+    "frm2200M:txtSched1_ImportedExemptH13",
+    "frm2200M:txtSched1_ImportedExemptH14",
+    "frm2200M:txtSched1_ImportedExemptH15",
+    "frm2200M:txtSched1_ImportedExemptH16",
+    "frm2200M:txtSched1_ImportedExemptH17",
+    "frm2200M:txtSched1_ImportedExemptH18",
+    "frm2200M:txtSched1_ImportedExemptH19",
+    "frm2200M:txtSched1_ImportedExemptH20",
+    "frm2200M:txtSched1_ImportedExemptH21",
+    "frm2200M:txtSched1_ImportedExemptH22",
+    "frm2200M:txtSched1_ImportedExemptH23",
+    "frm2200M:txtSched1_ImportedExemptH24",
+    "frm2200M:txtSched1_ImportedExemptH25",
+    "frm2200M:txtSched1_ImportedExemptH26",
+    "frm2200M:txtSched1_ImportedTaxDue11",
+    "frm2200M:txtSched1_ImportedTaxDue12",
+    "frm2200M:txtSched1_ImportedTaxDue13",
+    "frm2200M:txtSched1_ImportedTaxDue14",
+    "frm2200M:txtSched1_ImportedTaxDue15",
+    "frm2200M:txtSched1_ImportedTaxDue16",
+    "frm2200M:txtSched1_ImportedTaxDue17",
+    "frm2200M:txtSched1_ImportedTaxDue18",
+    "frm2200M:txtSched1_ImportedTaxDue19",
+    "frm2200M:txtSched1_ImportedTaxDue20",
+    "frm2200M:txtSched1_ImportedTaxDue21",
+    "frm2200M:txtSched1_ImportedTaxDue22",
+    "frm2200M:txtSched1_ImportedTaxDue23",
+    "frm2200M:txtSched1_ImportedTaxDue24",
+    "frm2200M:txtSched1_ImportedTaxDue25",
+    "frm2200M:txtSched1_ImportedTaxDue26",
+    "frm2200M:txtSched1_ImportedTaxRate11",
+    "frm2200M:txtSched1_ImportedTaxRate12",
+    "frm2200M:txtSched1_ImportedTaxRate13",
+    "frm2200M:txtSched1_ImportedTaxRate14",
+    "frm2200M:txtSched1_ImportedTaxRate15",
+    "frm2200M:txtSched1_ImportedTaxRate16",
+    "frm2200M:txtSched1_ImportedTaxRate17",
+    "frm2200M:txtSched1_ImportedTaxRate18",
+    "frm2200M:txtSched1_ImportedTaxRate19",
+    "frm2200M:txtSched1_ImportedTaxRate20",
+    "frm2200M:txtSched1_ImportedTaxRate21",
+    "frm2200M:txtSched1_ImportedTaxRate22",
+    "frm2200M:txtSched1_ImportedTaxRate23",
+    "frm2200M:txtSched1_ImportedTaxRate24",
+    "frm2200M:txtSched1_ImportedTaxRate25",
+    "frm2200M:txtSched1_ImportedTaxRate26",
+    "frm2200M:txtSched1_ImportedTaxableG11",
+    "frm2200M:txtSched1_ImportedTaxableG12",
+    "frm2200M:txtSched1_ImportedTaxableG13",
+    "frm2200M:txtSched1_ImportedTaxableG14",
+    "frm2200M:txtSched1_ImportedTaxableG15",
+    "frm2200M:txtSched1_ImportedTaxableG16",
+    "frm2200M:txtSched1_ImportedTaxableG17",
+    "frm2200M:txtSched1_ImportedTaxableG18",
+    "frm2200M:txtSched1_ImportedTaxableG19",
+    "frm2200M:txtSched1_ImportedTaxableG20",
+    "frm2200M:txtSched1_ImportedTaxableG21",
+    "frm2200M:txtSched1_ImportedTaxableG22",
+    "frm2200M:txtSched1_ImportedTaxableG23",
+    "frm2200M:txtSched1_ImportedTaxableG24",
+    "frm2200M:txtSched1_ImportedTaxableG25",
+    "frm2200M:txtSched1_ImportedTaxableG26",
+    "frm2200M:txtSched1_LocallyExtractedRateC11",
+    "frm2200M:txtSched1_LocallyExtractedRateC12",
+    "frm2200M:txtSched1_LocallyExtractedRateC13",
+    "frm2200M:txtSched1_LocallyExtractedRateC14",
+    "frm2200M:txtSched1_LocallyExtractedRateC15",
+    "frm2200M:txtSched1_LocallyExtractedRateC16",
+    "frm2200M:txtSched1_LocallyExtractedRateC17",
+    "frm2200M:txtSched1_LocallyExtractedRateC18",
+    "frm2200M:txtSched1_LocallyExtractedRateC19",
+    "frm2200M:txtSched1_LocallyExtractedRateC20",
+    "frm2200M:txtSched1_LocallyExtractedRateC21",
+    "frm2200M:txtSched1_LocallyExtractedRateC22",
+    "frm2200M:txtSched1_LocallyExtractedRateC23",
+    "frm2200M:txtSched1_LocallyExtractedRateC24",
+    "frm2200M:txtSched1_LocallyExtractedRateC25",
+    "frm2200M:txtSched1_LocallyExtractedRateC26",
+    "frm2200M:txtSched1_LocallyExtractedRateD11",
+    "frm2200M:txtSched1_LocallyExtractedRateD12",
+    "frm2200M:txtSched1_LocallyExtractedRateD13",
+    "frm2200M:txtSched1_LocallyExtractedRateD14",
+    "frm2200M:txtSched1_LocallyExtractedRateD15",
+    "frm2200M:txtSched1_LocallyExtractedRateD16",
+    "frm2200M:txtSched1_LocallyExtractedRateD17",
+    "frm2200M:txtSched1_LocallyExtractedRateD18",
+    "frm2200M:txtSched1_LocallyExtractedRateD19",
+    "frm2200M:txtSched1_LocallyExtractedRateD20",
+    "frm2200M:txtSched1_LocallyExtractedRateD21",
+    "frm2200M:txtSched1_LocallyExtractedRateD22",
+    "frm2200M:txtSched1_LocallyExtractedRateD23",
+    "frm2200M:txtSched1_LocallyExtractedRateD24",
+    "frm2200M:txtSched1_LocallyExtractedRateD25",
+    "frm2200M:txtSched1_LocallyExtractedRateD26",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF11",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF12",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF13",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF14",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF15",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF16",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF17",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF18",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF19",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF20",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF21",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF22",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF23",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF24",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF25",
+    "frm2200M:txtSched1_LocallyExtractedTaxDueF26",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE11",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE12",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE13",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE14",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE15",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE16",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE17",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE18",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE19",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE20",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE21",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE22",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE23",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE24",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE25",
+    "frm2200M:txtSched1_LocallyExtractedTaxRateE26",
+    "frm2200M:txtSched1_PlaceOfRemoval11",
+    "frm2200M:txtSched1_PlaceOfRemoval12",
+    "frm2200M:txtSched1_PlaceOfRemoval13",
+    "frm2200M:txtSched1_PlaceOfRemoval14",
+    "frm2200M:txtSched1_PlaceOfRemoval15",
+    "frm2200M:txtSched1_PlaceOfRemoval16",
+    "frm2200M:txtSched1_PlaceOfRemoval17",
+    "frm2200M:txtSched1_PlaceOfRemoval18",
+    "frm2200M:txtSched1_PlaceOfRemoval19",
+    "frm2200M:txtSched1_PlaceOfRemoval20",
+    "frm2200M:txtSched1_PlaceOfRemoval21",
+    "frm2200M:txtSched1_PlaceOfRemoval22",
+    "frm2200M:txtSched1_PlaceOfRemoval23",
+    "frm2200M:txtSched1_PlaceOfRemoval24",
+    "frm2200M:txtSched1_PlaceOfRemoval25",
+    "frm2200M:txtSched1_PlaceOfRemoval26",
+    "frm2200M:txtSched1_TaxDueAdjustment11",
+    "frm2200M:txtSched1_TaxDueAdjustment12",
+    "frm2200M:txtSched1_TaxDueAdjustment13",
+    "frm2200M:txtSched1_TaxDueAdjustment14",
+    "frm2200M:txtSched1_TaxDueAdjustment15",
+    "frm2200M:txtSched1_TaxDueAdjustment16",
+    "frm2200M:txtSched1_TaxDueAdjustment17",
+    "frm2200M:txtSched1_TaxDueAdjustment18",
+    "frm2200M:txtSched1_TaxDueAdjustment19",
+    "frm2200M:txtSched1_TaxDueAdjustment20",
+    "frm2200M:txtSched1_TaxDueAdjustment21",
+    "frm2200M:txtSched1_TaxDueAdjustment22",
+    "frm2200M:txtSched1_TaxDueAdjustment23",
+    "frm2200M:txtSched1_TaxDueAdjustment24",
+    "frm2200M:txtSched1_TaxDueAdjustment25",
+    "frm2200M:txtSched1_TaxDueAdjustment26",
+    "frm2200M:txtSched1_TotalTaxDue11",
+    "frm2200M:txtSched1_TotalTaxDue12",
+    "frm2200M:txtSched1_TotalTaxDue13",
+    "frm2200M:txtSched1_TotalTaxDue14",
+    "frm2200M:txtSched1_TotalTaxDue15",
+    "frm2200M:txtSched1_TotalTaxDue16",
+    "frm2200M:txtSched1_TotalTaxDue17",
+    "frm2200M:txtSched1_TotalTaxDue18",
+    "frm2200M:txtSched1_TotalTaxDue19",
+    "frm2200M:txtSched1_TotalTaxDue20",
+    "frm2200M:txtSched1_TotalTaxDue21",
+    "frm2200M:txtSched1_TotalTaxDue22",
+    "frm2200M:txtSched1_TotalTaxDue23",
+    "frm2200M:txtSched1_TotalTaxDue24",
+    "frm2200M:txtSched1_TotalTaxDue25",
+    "frm2200M:txtSched1_TotalTaxDue26",
+    "frm2200M:txtSched1_VOMRIExemptB11",
+    "frm2200M:txtSched1_VOMRIExemptB12",
+    "frm2200M:txtSched1_VOMRIExemptB13",
+    "frm2200M:txtSched1_VOMRIExemptB14",
+    "frm2200M:txtSched1_VOMRIExemptB15",
+    "frm2200M:txtSched1_VOMRIExemptB16",
+    "frm2200M:txtSched1_VOMRIExemptB17",
+    "frm2200M:txtSched1_VOMRIExemptB18",
+    "frm2200M:txtSched1_VOMRIExemptB19",
+    "frm2200M:txtSched1_VOMRIExemptB20",
+    "frm2200M:txtSched1_VOMRIExemptB21",
+    "frm2200M:txtSched1_VOMRIExemptB22",
+    "frm2200M:txtSched1_VOMRIExemptB23",
+    "frm2200M:txtSched1_VOMRIExemptB24",
+    "frm2200M:txtSched1_VOMRIExemptB25",
+    "frm2200M:txtSched1_VOMRIExemptB26",
+    "frm2200M:txtSched1_VOMRITaxableA11",
+    "frm2200M:txtSched1_VOMRITaxableA12",
+    "frm2200M:txtSched1_VOMRITaxableA13",
+    "frm2200M:txtSched1_VOMRITaxableA14",
+    "frm2200M:txtSched1_VOMRITaxableA15",
+    "frm2200M:txtSched1_VOMRITaxableA16",
+    "frm2200M:txtSched1_VOMRITaxableA17",
+    "frm2200M:txtSched1_VOMRITaxableA18",
+    "frm2200M:txtSched1_VOMRITaxableA19",
+    "frm2200M:txtSched1_VOMRITaxableA20",
+    "frm2200M:txtSched1_VOMRITaxableA21",
+    "frm2200M:txtSched1_VOMRITaxableA22",
+    "frm2200M:txtSched1_VOMRITaxableA23",
+    "frm2200M:txtSched1_VOMRITaxableA24",
+    "frm2200M:txtSched1_VOMRITaxableA25",
+    "frm2200M:txtSched1_VOMRITaxableA26",
+    "frm2200M:txtSched1_description11",
+    "frm2200M:txtSched1_description12",
+    "frm2200M:txtSched1_description13",
+    "frm2200M:txtSched1_description14",
+    "frm2200M:txtSched1_description15",
+    "frm2200M:txtSched1_description16",
+    "frm2200M:txtSched1_description17",
+    "frm2200M:txtSched1_description18",
+    "frm2200M:txtSched1_description19",
+    "frm2200M:txtSched1_description20",
+    "frm2200M:txtSched1_description21",
+    "frm2200M:txtSched1_description22",
+    "frm2200M:txtSched1_description23",
+    "frm2200M:txtSched1_description24",
+    "frm2200M:txtSched1_description25",
+    "frm2200M:txtSched1_description26",
+    "frm2200M:txtSched1_descriptionCont11",
+    "frm2200M:txtSched1_descriptionCont12",
+    "frm2200M:txtSched1_descriptionCont13",
+    "frm2200M:txtSched1_descriptionCont14",
+    "frm2200M:txtSched1_descriptionCont15",
+    "frm2200M:txtSched1_descriptionCont16",
+    "frm2200M:txtSched1_descriptionCont17",
+    "frm2200M:txtSched1_descriptionCont18",
+    "frm2200M:txtSched1_descriptionCont19",
+    "frm2200M:txtSched1_descriptionCont20",
+    "frm2200M:txtSched1_descriptionCont21",
+    "frm2200M:txtSched1_descriptionCont22",
+    "frm2200M:txtSched1_descriptionCont23",
+    "frm2200M:txtSched1_descriptionCont24",
+    "frm2200M:txtSched1_descriptionCont25",
+    "frm2200M:txtSched1_descriptionCont26"
+   ],
+   "reason": "Schedule 1 row past the 10 rows the sheet prints (rows 9 and 10 are the two printed XM060 Other Metallic Minerals rows): an add-more row of the page, uploaded with the return; the sheet has no box for it"
+  }
+ ]
+}

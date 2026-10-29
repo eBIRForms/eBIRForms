@@ -1,0 +1,190 @@
+[
+ {
+  "call": "document.getElementById('frm1701A:txtTIN1').value='123'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtTIN2').value='456'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtTIN3').value='788'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtBranchCode').value='00000'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtPg2TIN1').value='123'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtPg2TIN2').value='456'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtPg2TIN3').value='788'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtPg2BranchCode').value='00000'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtRDOCode').value='039'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtTaxpayerName').value='DUMMY, SAMPLE TAXPAYER'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtPg2TaxpayerName').value='DUMMY'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtAddress').value='123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITY'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtZipCode').value='1100'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtTelNum').value='09170000000'"
+ },
+ {
+  "call": "document.getElementById('txtEmail').value='sample.taxpayer@example.com'"
+ },
+ {
+  "call": "document.getElementById('frm1701A:txtLineBus').value='SAMPLE CONSULTING SERVICES'"
+ },
+ {
+  "set": "frm1701A:txtYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1701A:optAmendedReturn_2"
+ },
+ {
+  "click": "frm1701A:optShortPeriod_2"
+ },
+ {
+  "click": "frm1701A:optTaxType_1"
+ },
+ {
+  "click": "frm1701A:optATC_1"
+ },
+ {
+  "set": "frm1701A:txtBirthDate",
+  "value": "01/15/1980"
+ },
+ {
+  "set": "frm1701A:txtCitizenship",
+  "value": "Filipino"
+ },
+ {
+  "click": "frm1701A:optForeignTaxCredits_2"
+ },
+ {
+  "click": "frm1701A:optCivilStatus_2"
+ },
+ {
+  "click": "frm1701A:optSpouseIncome_1"
+ },
+ {
+  "click": "frm1701A:optFilingStatus_1"
+ },
+ {
+  "set": "frm1701A:txt36A",
+  "value": "1234567.89"
+ },
+ {
+  "set": "frm1701A:txt37A",
+  "value": "10000.5"
+ },
+ {
+  "set": "frm1701A:txt41Desc",
+  "value": "Interest income"
+ },
+ {
+  "set": "frm1701A:txt41A",
+  "value": "5000.55"
+ },
+ {
+  "set": "frm1701A:txt43A",
+  "value": "20000"
+ },
+ {
+  "set": "frm1701A:txt57A",
+  "value": "1000"
+ },
+ {
+  "set": "frm1701A:txt58A",
+  "value": "30000"
+ },
+ {
+  "set": "frm1701A:txt59A",
+  "value": "5000.25"
+ },
+ {
+  "set": "frm1701A:txt60A",
+  "value": "2500"
+ },
+ {
+  "set": "frm1701A:txt63Desc",
+  "value": "Sample credit"
+ },
+ {
+  "set": "frm1701A:txt63A",
+  "value": "100"
+ },
+ {
+  "set": "frm1701A:txt25A",
+  "value": "1000"
+ },
+ {
+  "set": "frm1701A:txtSpouseTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701A:txtSpouseTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701A:txtSpouseTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701A:txtSpouseBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701A:txtSpouseRDOCode",
+  "value": "039"
+ },
+ {
+  "click": "frm1701A:optSpouseTaxType_2"
+ },
+ {
+  "click": "frm1701A:optSpouseATC_4"
+ },
+ {
+  "set": "frm1701A:txtSpouseName",
+  "value": "Dummy, Sample Spouse"
+ },
+ {
+  "set": "frm1701A:txtSpouseTelNum",
+  "value": "09170000001"
+ },
+ {
+  "set": "frm1701A:txtSpouseCitizenship",
+  "value": "Filipino"
+ },
+ {
+  "click": "frm1701A:optSpouseFTC_2"
+ },
+ {
+  "set": "frm1701A:txt47B",
+  "value": "900000"
+ },
+ {
+  "set": "frm1701A:txt54B",
+  "value": "250000"
+ },
+ {
+  "set": "frm1701A:txt59B",
+  "value": "4500.5"
+ },
+ {
+  "call": "validate()"
+ }
+]

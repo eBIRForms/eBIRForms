@@ -1,0 +1,1160 @@
+{
+ "form_id": "1702ex-v2018c",
+ "html_slug": "1702ex-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the single fillable cell whose printed caption (from the frozen page's own text layer) names the item. The sheet prints whole pesos ('DO NOT enter Centavos') in 12-slot combs with no centavo comb, so every amount prints from a derived:amount: key of to_print_field_map: the writer's amount rounded to whole pesos (50 centavos or more round up), right-aligned, a loss or overpayment in parentheses; description rows nobody filled print blank. Year Ended, the incorporation and effectivity dates, the registered name and address lines (38/38 and 38/38/30 slots), the attachment count and the 9-digit page 2/3 TIN combs are also derived: keys (never submitted). The sheet preprints the branch code as 00000 on all three pages (no fillable cells), so a non-zero branch code does not print. Booleans fill X in the box left of the printed option. Long descriptions are cut at the comb width; the submitted XML always carries the full text. Not joined (blank on print): Item 18 Tax Due (p1c75) and Item 41 Tax Due (p2c38), because the frozen sheet preprints 0 0 0 in the last three of their twelve slots and leaves only nine fillable, so a right-aligned amount would read a thousand times larger (a defect of the freeze, not of the form); Item 40 Tax Rate (the sheet has no fillable cell for it), the signature and Title of Signatory/TIN cells, and Part III Details of Payment (the model does not hold them). Add More popup rows beyond the fixed rows are not modeled. Since #113 every value the print map carries has a box or a reviewed not_joined reason (the raw controls behind each derived: key are listed there).",
+ "joins": [
+  {
+   "writer_key": "derived:year_end_mm1",
+   "html_id": "p1c19",
+   "printed": "2 Year Ended MM (first digit)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:year_end_mm2",
+   "html_id": "p1c20",
+   "printed": "2 Year Ended MM (second digit)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:year_end_yy1",
+   "html_id": "p1c21",
+   "printed": "2 Year Ended /20YY (first digit)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:year_end_yy2",
+   "html_id": "p1c22",
+   "printed": "2 Year Ended /20YY (second digit)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg1Pt1I6TINC1",
+   "html_id": "p1c25",
+   "printed": "6 TIN (1-3)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg1Pt1I6TINC2",
+   "html_id": "p1c27",
+   "printed": "6 TIN (4-6)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg1Pt1I6TINC3",
+   "html_id": "p1c29",
+   "printed": "6 TIN (7-9)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702EX:hdnPg1Pt1I7RDO",
+   "html_id": "p1c33",
+   "printed": "7 RDO Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:name_line1",
+   "html_id": "p1c36",
+   "printed": "8 Registered Name (line 1)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:name_line2",
+   "html_id": "p1c37",
+   "printed": "8 Registered Name (line 2)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:name_line3",
+   "html_id": "p1c38",
+   "printed": "8 Registered Name (line 3)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:address_line1",
+   "html_id": "p1c40",
+   "printed": "9 Registered Address (line 1)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:address_line2",
+   "html_id": "p1c41",
+   "printed": "9 Registered Address (line 2)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:address_line3",
+   "html_id": "p1c42",
+   "printed": "9 Registered Address (line 3)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1702EX:txPg1I9ZipCode",
+   "html_id": "p1c44",
+   "printed": "9A ZIP Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:incorporation_mm",
+   "html_id": "p1c46",
+   "printed": "10 Date of Incorporation/Organization MM",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:incorporation_dd",
+   "html_id": "p1c48",
+   "printed": "10 Date of Incorporation/Organization DD",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:incorporation_yyyy",
+   "html_id": "p1c50",
+   "printed": "10 Date of Incorporation/Organization YYYY",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg1Pt1I11ContactNumber",
+   "html_id": "p1c52",
+   "printed": "11 Contact Number",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg1Pt1I12Email",
+   "html_id": "p1c54",
+   "printed": "12 Email Address",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg1Pt1I14LegalBasis",
+   "html_id": "p1c60",
+   "printed": "14 Legal Basis of Tax Relief/Exemption",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg1Pt1I15Investment",
+   "html_id": "p1c61",
+   "printed": "15 Investment Promotion Agency (IPA)/Government Agency",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg1Pt1I16RegisteredActivity",
+   "html_id": "p1c64",
+   "printed": "16 Registered Activity/Program (Registration Number)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:effectivity_from_mm",
+   "html_id": "p1c66",
+   "printed": "17 Effectivity From MM",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:effectivity_from_dd",
+   "html_id": "p1c67",
+   "printed": "17 Effectivity From DD",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:effectivity_from_yyyy",
+   "html_id": "p1c68",
+   "printed": "17 Effectivity From YYYY",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:effectivity_to_mm",
+   "html_id": "p1c70",
+   "printed": "17 Effectivity To MM",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:effectivity_to_dd",
+   "html_id": "p1c71",
+   "printed": "17 Effectivity To DD",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:effectivity_to_yyyy",
+   "html_id": "p1c72",
+   "printed": "17 Effectivity To YYYY",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:amount:txtPg1Pt2I19TotalTaxCrPmt",
+   "html_id": "p1c77",
+   "printed": "19 Less: Total Tax Credits/Payments",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg1Pt2I20TotalOverpmt",
+   "html_id": "p1c79",
+   "printed": "20 Total (Overpayment)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg1Pt2I21PenaltyCompromise",
+   "html_id": "p1c81",
+   "printed": "21 Add: Penalty - Compromise",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg1Pt2I22TotalAmtPayable",
+   "html_id": "p1c83",
+   "printed": "22 TOTAL AMOUNT PAYABLE / (Overpayment)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:attachments",
+   "html_id": "p1c93",
+   "printed": "23 Number of Attachments",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN (9 digits)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg2RegisteredName",
+   "html_id": "p2c6",
+   "printed": "Page 2 Registered Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:tin_digits_p3",
+   "html_id": "p3c5",
+   "printed": "Page 3 TIN (9 digits)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3RegisteredName",
+   "html_id": "p3c6",
+   "printed": "Page 3 Registered Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I28SalesReceiptsRevFees",
+   "html_id": "p2c9",
+   "printed": "28 Sales/Receipts/Revenues/Fees",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I29SalesRetAllowanceDisc",
+   "html_id": "p2c11",
+   "printed": "29 Less: Sales Returns, Allowances and Discounts",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I30NetSalesReceiptsRevFees",
+   "html_id": "p2c13",
+   "printed": "30 Net Sales/Receipts/Revenues/Fees",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I31CostOfSalesServ",
+   "html_id": "p2c15",
+   "printed": "31 Less: Cost of Sales/Services",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I32GrossIncomeFromOper",
+   "html_id": "p2c17",
+   "printed": "32 Gross Income from Operation",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I33AddOther",
+   "html_id": "p2c19",
+   "printed": "33 Add: Other Income",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I34TotalGross",
+   "html_id": "p2c21",
+   "printed": "34 Total Gross Income",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I35OrdinaryAllowable",
+   "html_id": "p2c25",
+   "printed": "35 Ordinary Allowable Itemized Deductions",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I36SpecialAllowable",
+   "html_id": "p2c27",
+   "printed": "36 Special Allowable Itemized Deductions",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I37TotalItemized",
+   "html_id": "p2c29",
+   "printed": "37 Total Itemized Deductions",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I38OptionalStandardDeduc",
+   "html_id": "p2c32",
+   "printed": "38 OSD",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I39NetTaxable",
+   "html_id": "p2c34",
+   "printed": "39 Net Taxable Income/(Loss)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I42PriorYearExcessCr",
+   "html_id": "p2c41",
+   "printed": "42 Prior Year's Excess Credits",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I43IncomeTaxPmtFromPreviousQrt",
+   "html_id": "p2c43",
+   "printed": "43 Income Tax Payment from Previous Quarter/s",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I44CreditableTaxWithheldFromPrevQrt",
+   "html_id": "p2c45",
+   "printed": "44 Creditable Tax Withheld from Previous Quarter/s",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I45CreditableTaxWithheldFor4thQrt",
+   "html_id": "p2c47",
+   "printed": "45 Creditable Tax Withheld for the 4th Quarter",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I46ForeignTaxCr",
+   "html_id": "p2c49",
+   "printed": "46 Foreign Tax Credits",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I47TaxPaidInReturnPrevFiled",
+   "html_id": "p2c51",
+   "printed": "47 Tax Paid in Return Previously Filed",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I48OtherTaxCrPmtAmt",
+   "html_id": "p2c56",
+   "printed": "48 Other Tax Credits/Payments amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I49OtherTaxCrPmtAmt",
+   "html_id": "p2c60",
+   "printed": "49 Other Tax Credits/Payments amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I50TotalTaxCrPmt",
+   "html_id": "p2c62",
+   "printed": "50 Total Tax Credits/Payments",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt4I51TotalOverpayment",
+   "html_id": "p2c64",
+   "printed": "51 Total (Overpayment)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt5I52RegularIncomeOtherwiseDue",
+   "html_id": "p2c67",
+   "printed": "52 Regular Income Tax Otherwise Due",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt5I53SpecialAllowableItemizedDeduc",
+   "html_id": "p2c69",
+   "printed": "53 Special Allowable Itemized Deductions",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg2Pt5I54TotalTaxReliefAvailment",
+   "html_id": "p2c71",
+   "printed": "54 Total Tax Relief Availment",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg2Pt4I48OtherTaxCrPmtDesc",
+   "html_id": "p2c54",
+   "printed": "48 Other Tax Credits/Payments (specify)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg2Pt4I49OtherTaxCrPmtDesc",
+   "html_id": "p2c58",
+   "printed": "49 Other Tax Credits/Payments (specify)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I1Ammortization",
+   "html_id": "p3c10",
+   "printed": "Schedule 1 Item 1",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I2BadDebts",
+   "html_id": "p3c12",
+   "printed": "Schedule 1 Item 2",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I3CharitableContrib",
+   "html_id": "p3c14",
+   "printed": "Schedule 1 Item 3",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I4Depletion",
+   "html_id": "p3c16",
+   "printed": "Schedule 1 Item 4",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I5Depreciation",
+   "html_id": "p3c18",
+   "printed": "Schedule 1 Item 5",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I6EntertainmentAmuseRecreate",
+   "html_id": "p3c20",
+   "printed": "Schedule 1 Item 6",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I7FringeBenefits",
+   "html_id": "p3c22",
+   "printed": "Schedule 1 Item 7",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I8Interest",
+   "html_id": "p3c24",
+   "printed": "Schedule 1 Item 8",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I9Losses",
+   "html_id": "p3c26",
+   "printed": "Schedule 1 Item 9",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I10PensionTrust",
+   "html_id": "p3c28",
+   "printed": "Schedule 1 Item 10",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I11Rental",
+   "html_id": "p3c30",
+   "printed": "Schedule 1 Item 11",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I12RnD",
+   "html_id": "p3c32",
+   "printed": "Schedule 1 Item 12",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I13SalaryWageAllowance",
+   "html_id": "p3c34",
+   "printed": "Schedule 1 Item 13",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I14SssGsisPHealthHDMFOthers",
+   "html_id": "p3c36",
+   "printed": "Schedule 1 Item 14",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I15TaxAndLicense",
+   "html_id": "p3c38",
+   "printed": "Schedule 1 Item 15",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I16TranspoAndTravel",
+   "html_id": "p3c40",
+   "printed": "Schedule 1 Item 16",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I17aJanitorAndMessengerServ",
+   "html_id": "p3c44",
+   "printed": "Schedule 1 Item 17a",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I17bProfessionalFee",
+   "html_id": "p3c47",
+   "printed": "Schedule 1 Item 17b",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I17cSecurityServices",
+   "html_id": "p3c50",
+   "printed": "Schedule 1 Item 17c",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6I17OthersDDesc",
+   "html_id": "p3c52",
+   "printed": "Schedule 1 Item 17d description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6I17OthersDAmt",
+   "html_id": "p3c54",
+   "printed": "Schedule 1 Item 17d amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6I17OthersEDesc",
+   "html_id": "p3c56",
+   "printed": "Schedule 1 Item 17e description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6I17OthersEAmt",
+   "html_id": "p3c58",
+   "printed": "Schedule 1 Item 17e amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6I17OthersFDesc",
+   "html_id": "p3c60",
+   "printed": "Schedule 1 Item 17f description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6I17OthersFAmt",
+   "html_id": "p3c62",
+   "printed": "Schedule 1 Item 17f amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6I17OthersGDesc",
+   "html_id": "p3c64",
+   "printed": "Schedule 1 Item 17g description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6I17OthersGAmt",
+   "html_id": "p3c66",
+   "printed": "Schedule 1 Item 17g amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6I17OthersHDesc",
+   "html_id": "p3c68",
+   "printed": "Schedule 1 Item 17h description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6I17OthersHAmt",
+   "html_id": "p3c70",
+   "printed": "Schedule 1 Item 17h amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6I17OthersIDesc",
+   "html_id": "p3c72",
+   "printed": "Schedule 1 Item 17i description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6I17OthersIAmt",
+   "html_id": "p3c74",
+   "printed": "Schedule 1 Item 17i amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S1I18TotOrdinaryAllowableItemDeduc",
+   "html_id": "p3c76",
+   "printed": "Schedule 1 Item 18 Total",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S2I1Description",
+   "html_id": "p3c81",
+   "printed": "Schedule 2 Item 1 Description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S2I1LegalBasis",
+   "html_id": "p3c82",
+   "printed": "Schedule 2 Item 1 Legal Basis",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S2I1Amount",
+   "html_id": "p3c83",
+   "printed": "Schedule 2 Item 1 Amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S2I2Description",
+   "html_id": "p3c85",
+   "printed": "Schedule 2 Item 2 Description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S2I2LegalBasis",
+   "html_id": "p3c86",
+   "printed": "Schedule 2 Item 2 Legal Basis",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S2I2Amount",
+   "html_id": "p3c87",
+   "printed": "Schedule 2 Item 2 Amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S2I3Description",
+   "html_id": "p3c89",
+   "printed": "Schedule 2 Item 3 Description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S2I3LegalBasis",
+   "html_id": "p3c90",
+   "printed": "Schedule 2 Item 3 Legal Basis",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S2I3Amount",
+   "html_id": "p3c91",
+   "printed": "Schedule 2 Item 3 Amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S2I4Description",
+   "html_id": "p3c93",
+   "printed": "Schedule 2 Item 4 Description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S2I4LegalBasis",
+   "html_id": "p3c94",
+   "printed": "Schedule 2 Item 4 Legal Basis",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S2I4Amount",
+   "html_id": "p3c95",
+   "printed": "Schedule 2 Item 4 Amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S2I5TotSpecialAllowedItemDeduc",
+   "html_id": "p3c97",
+   "printed": "Schedule 2 Item 5 Total",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S3I1NetIncomePerBook",
+   "html_id": "p3c100",
+   "printed": "Schedule 3 Item 1 Net Income/(Loss) per Books",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeDesc",
+   "html_id": "p3c103",
+   "printed": "Schedule 3 Item 2 description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeAmt",
+   "html_id": "p3c105",
+   "printed": "Schedule 3 Item 2 amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S3I3NonDeductExpenseOtherIncomeDesc",
+   "html_id": "p3c107",
+   "printed": "Schedule 3 Item 3 description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S3I3NonDeductExpenseOtherIncomeAmt",
+   "html_id": "p3c109",
+   "printed": "Schedule 3 Item 3 amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxDesc",
+   "html_id": "p3c114",
+   "printed": "Schedule 3 Item 5 description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxAmt",
+   "html_id": "p3c116",
+   "printed": "Schedule 3 Item 5 amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S3I6NonTaxIncomeAndIncomeSubjectToFinTaxDesc",
+   "html_id": "p3c118",
+   "printed": "Schedule 3 Item 6 description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S3I6NonTaxIncomeAndIncomeSubjectToFinTaxAmt",
+   "html_id": "p3c120",
+   "printed": "Schedule 3 Item 6 amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S3I7SpecialDeductDesc",
+   "html_id": "p3c123",
+   "printed": "Schedule 3 Item 7 description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S3I7SpecialDeductAmt",
+   "html_id": "p3c125",
+   "printed": "Schedule 3 Item 7 amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg3Pt6S3I8SpecialDeductDesc",
+   "html_id": "p3c127",
+   "printed": "Schedule 3 Item 8 description",
+   "reason": "geometry: the only fillable cell for this printed item on the 1702-EX (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S3I8SpecialDeductAmt",
+   "html_id": "p3c129",
+   "printed": "Schedule 3 Item 8 amount",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S3I4Total",
+   "html_id": "p3c111",
+   "printed": "Schedule 3 Item 4 Total",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S3I9Total",
+   "html_id": "p3c131",
+   "printed": "Schedule 3 Item 9 Total",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  },
+  {
+   "writer_key": "derived:amount:txtPg3Pt6S3I10NetTaxableIncome",
+   "html_id": "p3c133",
+   "printed": "Schedule 3 Item 10 Net Taxable Income/(Loss)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the 12-slot comb"
+  }
+ ],
+ "money_joins": [],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1702EX:rdoPg1I1Calendar",
+   "html_id": "p1c7",
+   "printed": "1 For Calendar",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702EX:rdoPg1I1Fiscal",
+   "html_id": "p1c8",
+   "printed": "1 For Fiscal",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702EX:rdoPg1I3AmendedYes",
+   "html_id": "p1c12",
+   "printed": "3 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702EX:rdoPg1I3AmendedNo",
+   "html_id": "p1c13",
+   "printed": "3 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702EX:rdoPg1I4ShortPeriodYes",
+   "html_id": "p1c14",
+   "printed": "4 Short Period Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702EX:rdoPg1I4ShortPeriodNo",
+   "html_id": "p1c15",
+   "printed": "4 Short Period Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702EX:rdoPg1I5ATCR1C3",
+   "html_id": "p1c11",
+   "printed": "5 ATC IC 011 Exempt Corporation on Exempt Activities",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702EX:rdoPg1I5ATCR2C3",
+   "html_id": "p1c18",
+   "printed": "5 ATC IC 021 General Professional Partnership",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702EX:rdoPg1Pt1I13MethodOfDeducItemized",
+   "html_id": "p1c56",
+   "printed": "13 Itemized Deductions",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702EX:rdoPg1Pt1I13MethodOfDeducOptional",
+   "html_id": "p1c57",
+   "printed": "13 Optional Standard Deduction (OSD)",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702EX:rdoPg1OverpaymentRefund",
+   "html_id": "p1c86",
+   "printed": "To be refunded",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702EX:rdoPg1OverpaymentTCC",
+   "html_id": "p1c87",
+   "printed": "To be issued a Tax Credit Certificate (TCC)",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1702EX:rdoPg1OverpaymentCarryOver",
+   "html_id": "p1c88",
+   "printed": "To be carried over as tax credit for next year/quarter",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm1702EX:txtPg1Pt2I19TotalTaxCrPmt",
+    "frm1702EX:txtPg1Pt2I20TotalOverpmt",
+    "frm1702EX:txtPg1Pt2I21PenaltyCompromise",
+    "frm1702EX:txtPg1Pt2I22TotalAmtPayable",
+    "frm1702EX:txtPg2Pt4I28SalesReceiptsRevFees",
+    "frm1702EX:txtPg2Pt4I29SalesRetAllowanceDisc",
+    "frm1702EX:txtPg2Pt4I30NetSalesReceiptsRevFees",
+    "frm1702EX:txtPg2Pt4I31CostOfSalesServ",
+    "frm1702EX:txtPg2Pt4I32GrossIncomeFromOper",
+    "frm1702EX:txtPg2Pt4I33AddOther",
+    "frm1702EX:txtPg2Pt4I34TotalGross",
+    "frm1702EX:txtPg2Pt4I35OrdinaryAllowable",
+    "frm1702EX:txtPg2Pt4I36SpecialAllowable",
+    "frm1702EX:txtPg2Pt4I37TotalItemized",
+    "frm1702EX:txtPg2Pt4I38OptionalStandardDeduc",
+    "frm1702EX:txtPg2Pt4I39NetTaxable",
+    "frm1702EX:txtPg2Pt4I42PriorYearExcessCr",
+    "frm1702EX:txtPg2Pt4I43IncomeTaxPmtFromPreviousQrt",
+    "frm1702EX:txtPg2Pt4I44CreditableTaxWithheldFromPrevQrt",
+    "frm1702EX:txtPg2Pt4I45CreditableTaxWithheldFor4thQrt",
+    "frm1702EX:txtPg2Pt4I46ForeignTaxCr",
+    "frm1702EX:txtPg2Pt4I47TaxPaidInReturnPrevFiled",
+    "frm1702EX:txtPg2Pt4I48OtherTaxCrPmtAmt",
+    "frm1702EX:txtPg2Pt4I49OtherTaxCrPmtAmt",
+    "frm1702EX:txtPg2Pt4I50TotalTaxCrPmt",
+    "frm1702EX:txtPg2Pt4I51TotalOverpayment",
+    "frm1702EX:txtPg2Pt5I52RegularIncomeOtherwiseDue",
+    "frm1702EX:txtPg2Pt5I53SpecialAllowableItemizedDeduc",
+    "frm1702EX:txtPg2Pt5I54TotalTaxReliefAvailment",
+    "frm1702EX:txtPg3Pt6I17OthersDAmt",
+    "frm1702EX:txtPg3Pt6I17OthersEAmt",
+    "frm1702EX:txtPg3Pt6I17OthersFAmt",
+    "frm1702EX:txtPg3Pt6I17OthersGAmt",
+    "frm1702EX:txtPg3Pt6I17OthersHAmt",
+    "frm1702EX:txtPg3Pt6I17OthersIAmt",
+    "frm1702EX:txtPg3Pt6S1I10PensionTrust",
+    "frm1702EX:txtPg3Pt6S1I11Rental",
+    "frm1702EX:txtPg3Pt6S1I12RnD",
+    "frm1702EX:txtPg3Pt6S1I13SalaryWageAllowance",
+    "frm1702EX:txtPg3Pt6S1I14SssGsisPHealthHDMFOthers",
+    "frm1702EX:txtPg3Pt6S1I15TaxAndLicense",
+    "frm1702EX:txtPg3Pt6S1I16TranspoAndTravel",
+    "frm1702EX:txtPg3Pt6S1I17aJanitorAndMessengerServ",
+    "frm1702EX:txtPg3Pt6S1I17bProfessionalFee",
+    "frm1702EX:txtPg3Pt6S1I17cSecurityServices",
+    "frm1702EX:txtPg3Pt6S1I18TotOrdinaryAllowableItemDeduc",
+    "frm1702EX:txtPg3Pt6S1I1Ammortization",
+    "frm1702EX:txtPg3Pt6S1I2BadDebts",
+    "frm1702EX:txtPg3Pt6S1I3CharitableContrib",
+    "frm1702EX:txtPg3Pt6S1I4Depletion",
+    "frm1702EX:txtPg3Pt6S1I5Depreciation",
+    "frm1702EX:txtPg3Pt6S1I6EntertainmentAmuseRecreate",
+    "frm1702EX:txtPg3Pt6S1I7FringeBenefits",
+    "frm1702EX:txtPg3Pt6S1I8Interest",
+    "frm1702EX:txtPg3Pt6S1I9Losses",
+    "frm1702EX:txtPg3Pt6S2I1Amount",
+    "frm1702EX:txtPg3Pt6S2I2Amount",
+    "frm1702EX:txtPg3Pt6S2I3Amount",
+    "frm1702EX:txtPg3Pt6S2I4Amount",
+    "frm1702EX:txtPg3Pt6S2I5TotSpecialAllowedItemDeduc",
+    "frm1702EX:txtPg3Pt6S3I10NetTaxableIncome",
+    "frm1702EX:txtPg3Pt6S3I1NetIncomePerBook",
+    "frm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeAmt",
+    "frm1702EX:txtPg3Pt6S3I3NonDeductExpenseOtherIncomeAmt",
+    "frm1702EX:txtPg3Pt6S3I4Total",
+    "frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxAmt",
+    "frm1702EX:txtPg3Pt6S3I6NonTaxIncomeAndIncomeSubjectToFinTaxAmt",
+    "frm1702EX:txtPg3Pt6S3I7SpecialDeductAmt",
+    "frm1702EX:txtPg3Pt6S3I8SpecialDeductAmt",
+    "frm1702EX:txtPg3Pt6S3I9Total"
+   ],
+   "reason": "prints from its derived:amount:<control> key (whole pesos right-aligned in the 12-slot comb, the sheet says DO NOT enter centavos; a loss or overpayment in parentheses)"
+  },
+  {
+   "writer_keys": [
+    "frm1702EX:ddlPg1I2Date",
+    "frm1702EX:txtPg1I2YearEnd"
+   ],
+   "reason": "prints from derived:year_end_mm1/mm2 and the year digits (the print map shapes Item 2 Year Ended as MM / YY digits for the sheet)"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg1Pt1I10DateofIncorporation",
+   "reason": "prints from derived:incorporation_mm / _dd / _yyyy (the print map shapes the item 10 date over its combs for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1702EX:txtPg1Pt1I17EffectivityFrom",
+    "frm1702EX:txtPg1Pt1I17EffectivityTo"
+   ],
+   "reason": "prints from derived:effectivity_from_* / derived:effectivity_to_* (the print map shapes the item 17 dates over their combs for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1702EX:txtPg1Pt1I8RegisteredName",
+    "frm1702EX:txtPg1Pt1I9RegisteredAddress"
+   ],
+   "reason": "prints from derived:name_line1-3 / derived:address_line1-3 (the print map shapes the name and address over the sheet's 38-slot lines for the sheet)"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg1P2I23NumOfAttachments",
+   "reason": "prints from derived:attachments (the print map shapes the attachment count digits for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1702EX:txtPg2TinC1",
+    "frm1702EX:txtPg2TinC2",
+    "frm1702EX:txtPg2TinC3",
+    "frm1702EX:txtPg3TinC1",
+    "frm1702EX:txtPg3TinC2",
+    "frm1702EX:txtPg3TinC3"
+   ],
+   "reason": "prints from derived:tin_digits / derived:tin_digits_p3 (the print map shapes the nine TIN digits of the page 2 and 3 headers for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1702EX:txtPg1Pt1I6TINC4",
+    "frm1702EX:txtPg2TinC4",
+    "frm1702EX:txtPg3TinC4"
+   ],
+   "reason": "branch code: the sheet preprints 00000 on all three pages (no fillable cells)"
+  },
+  {
+   "writer_keys": [
+    "frm1702EX:txtPg1Pt2I18TaxDue",
+    "frm1702EX:txtPg2Pt4I41TaxDue"
+   ],
+   "reason": "Items 18 and 41 Tax Due: the frozen sheet preprints 0 0 0 in the last three of their twelve slots and leaves nine fillable, so a right-aligned amount would read a thousand times larger; printing them needs the freeze fixed in html-frozen/1702ex-2018/index.html (reported on #113)"
+  },
+  {
+   "writer_key": "frm1702EX:txtPg2Pt4I40TaxRate",
+   "reason": "Item 40 Tax Rate: the frozen sheet has no fillable cell for it"
+  },
+  {
+   "writer_keys": [
+    "frm1702EX:txtPg1Pt2TitleofSignatory",
+    "frm1702EX:txtPg1Pt2TitleofSignatory2"
+   ],
+   "reason": "signatory title dropdown codes; the signature block has no fillable cell for them"
+  },
+  {
+   "writer_key": "frm1702EX:rdoPg1Pt1I7RDO",
+   "reason": "duplicate of frm1702EX:hdnPg1Pt1I7RDO (same RDO), which prints in item 7"
+  },
+  {
+   "writer_key": "frm1702EX:txtLOB",
+   "reason": "not on the paper form: this sheet has no line-of-business box"
+  },
+  {
+   "writer_key": "frm1702EX:txtCurrentPage",
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  },
+  {
+   "writer_keys": [
+    "Pg3Pt6S1I17PopLength",
+    "Pg3Pt6S2I4PopLength",
+    "Pg3Pt6S3I3PopLength",
+    "Pg3Pt6S3I6PopLength",
+    "Pg3Pt6S3I8PopLength"
+   ],
+   "reason": "popup row count of the page, not on the paper form"
+  },
+  {
+   "writer_keys": [
+    "Pg3Pt6S1I17SubTotal",
+    "Pg3Pt6S2I4SubTotal",
+    "Pg3Pt6S3I3SubTotal",
+    "Pg3Pt6S3I6SubTotal",
+    "Pg3Pt6S3I8SubTotal"
+   ],
+   "reason": "popup subtotal: the schedule's last fixed line prints it as OTHERS through its own key; no box of its own on the sheet"
+  },
+  {
+   "writer_keys": [
+    "frm1702EX:txtPg3Pt6S1I17_10Col1",
+    "frm1702EX:txtPg3Pt6S1I17_10Col2",
+    "frm1702EX:txtPg3Pt6S1I17_11Col1",
+    "frm1702EX:txtPg3Pt6S1I17_11Col2",
+    "frm1702EX:txtPg3Pt6S1I17_12Col1",
+    "frm1702EX:txtPg3Pt6S1I17_12Col2",
+    "frm1702EX:txtPg3Pt6S1I17_13Col1",
+    "frm1702EX:txtPg3Pt6S1I17_13Col2",
+    "frm1702EX:txtPg3Pt6S1I17_1Col1",
+    "frm1702EX:txtPg3Pt6S1I17_1Col2",
+    "frm1702EX:txtPg3Pt6S1I17_2Col1",
+    "frm1702EX:txtPg3Pt6S1I17_2Col2",
+    "frm1702EX:txtPg3Pt6S1I17_3Col1",
+    "frm1702EX:txtPg3Pt6S1I17_3Col2",
+    "frm1702EX:txtPg3Pt6S1I17_4Col1",
+    "frm1702EX:txtPg3Pt6S1I17_4Col2",
+    "frm1702EX:txtPg3Pt6S1I17_5Col1",
+    "frm1702EX:txtPg3Pt6S1I17_5Col2",
+    "frm1702EX:txtPg3Pt6S1I17_6Col1",
+    "frm1702EX:txtPg3Pt6S1I17_6Col2",
+    "frm1702EX:txtPg3Pt6S1I17_7Col1",
+    "frm1702EX:txtPg3Pt6S1I17_7Col2",
+    "frm1702EX:txtPg3Pt6S1I17_8Col1",
+    "frm1702EX:txtPg3Pt6S1I17_8Col2",
+    "frm1702EX:txtPg3Pt6S1I17_9Col1",
+    "frm1702EX:txtPg3Pt6S1I17_9Col2",
+    "frm1702EX:txtPg3Pt6S2I4_10Col1",
+    "frm1702EX:txtPg3Pt6S2I4_10Col2",
+    "frm1702EX:txtPg3Pt6S2I4_10Col3",
+    "frm1702EX:txtPg3Pt6S2I4_11Col1",
+    "frm1702EX:txtPg3Pt6S2I4_11Col2",
+    "frm1702EX:txtPg3Pt6S2I4_11Col3",
+    "frm1702EX:txtPg3Pt6S2I4_12Col1",
+    "frm1702EX:txtPg3Pt6S2I4_12Col2",
+    "frm1702EX:txtPg3Pt6S2I4_12Col3",
+    "frm1702EX:txtPg3Pt6S2I4_1Col1",
+    "frm1702EX:txtPg3Pt6S2I4_1Col2",
+    "frm1702EX:txtPg3Pt6S2I4_1Col3",
+    "frm1702EX:txtPg3Pt6S2I4_2Col1",
+    "frm1702EX:txtPg3Pt6S2I4_2Col2",
+    "frm1702EX:txtPg3Pt6S2I4_2Col3",
+    "frm1702EX:txtPg3Pt6S2I4_3Col1",
+    "frm1702EX:txtPg3Pt6S2I4_3Col2",
+    "frm1702EX:txtPg3Pt6S2I4_3Col3",
+    "frm1702EX:txtPg3Pt6S2I4_4Col1",
+    "frm1702EX:txtPg3Pt6S2I4_4Col2",
+    "frm1702EX:txtPg3Pt6S2I4_4Col3",
+    "frm1702EX:txtPg3Pt6S2I4_5Col1",
+    "frm1702EX:txtPg3Pt6S2I4_5Col2",
+    "frm1702EX:txtPg3Pt6S2I4_5Col3",
+    "frm1702EX:txtPg3Pt6S2I4_6Col1",
+    "frm1702EX:txtPg3Pt6S2I4_6Col2",
+    "frm1702EX:txtPg3Pt6S2I4_6Col3",
+    "frm1702EX:txtPg3Pt6S2I4_7Col1",
+    "frm1702EX:txtPg3Pt6S2I4_7Col2",
+    "frm1702EX:txtPg3Pt6S2I4_7Col3",
+    "frm1702EX:txtPg3Pt6S2I4_8Col1",
+    "frm1702EX:txtPg3Pt6S2I4_8Col2",
+    "frm1702EX:txtPg3Pt6S2I4_8Col3",
+    "frm1702EX:txtPg3Pt6S2I4_9Col1",
+    "frm1702EX:txtPg3Pt6S2I4_9Col2",
+    "frm1702EX:txtPg3Pt6S2I4_9Col3",
+    "frm1702EX:txtPg3Pt6S3I3_10Col1",
+    "frm1702EX:txtPg3Pt6S3I3_10Col2",
+    "frm1702EX:txtPg3Pt6S3I3_11Col1",
+    "frm1702EX:txtPg3Pt6S3I3_11Col2",
+    "frm1702EX:txtPg3Pt6S3I3_12Col1",
+    "frm1702EX:txtPg3Pt6S3I3_12Col2",
+    "frm1702EX:txtPg3Pt6S3I3_13Col1",
+    "frm1702EX:txtPg3Pt6S3I3_13Col2",
+    "frm1702EX:txtPg3Pt6S3I3_1Col1",
+    "frm1702EX:txtPg3Pt6S3I3_1Col2",
+    "frm1702EX:txtPg3Pt6S3I3_2Col1",
+    "frm1702EX:txtPg3Pt6S3I3_2Col2",
+    "frm1702EX:txtPg3Pt6S3I3_3Col1",
+    "frm1702EX:txtPg3Pt6S3I3_3Col2",
+    "frm1702EX:txtPg3Pt6S3I3_4Col1",
+    "frm1702EX:txtPg3Pt6S3I3_4Col2",
+    "frm1702EX:txtPg3Pt6S3I3_5Col1",
+    "frm1702EX:txtPg3Pt6S3I3_5Col2",
+    "frm1702EX:txtPg3Pt6S3I3_6Col1",
+    "frm1702EX:txtPg3Pt6S3I3_6Col2",
+    "frm1702EX:txtPg3Pt6S3I3_7Col1",
+    "frm1702EX:txtPg3Pt6S3I3_7Col2",
+    "frm1702EX:txtPg3Pt6S3I3_8Col1",
+    "frm1702EX:txtPg3Pt6S3I3_8Col2",
+    "frm1702EX:txtPg3Pt6S3I3_9Col1",
+    "frm1702EX:txtPg3Pt6S3I3_9Col2",
+    "frm1702EX:txtPg3Pt6S3I6_10Col1",
+    "frm1702EX:txtPg3Pt6S3I6_10Col2",
+    "frm1702EX:txtPg3Pt6S3I6_11Col1",
+    "frm1702EX:txtPg3Pt6S3I6_11Col2",
+    "frm1702EX:txtPg3Pt6S3I6_12Col1",
+    "frm1702EX:txtPg3Pt6S3I6_12Col2",
+    "frm1702EX:txtPg3Pt6S3I6_1Col1",
+    "frm1702EX:txtPg3Pt6S3I6_1Col2",
+    "frm1702EX:txtPg3Pt6S3I6_2Col1",
+    "frm1702EX:txtPg3Pt6S3I6_2Col2",
+    "frm1702EX:txtPg3Pt6S3I6_3Col1",
+    "frm1702EX:txtPg3Pt6S3I6_3Col2",
+    "frm1702EX:txtPg3Pt6S3I6_4Col1",
+    "frm1702EX:txtPg3Pt6S3I6_4Col2",
+    "frm1702EX:txtPg3Pt6S3I6_5Col1",
+    "frm1702EX:txtPg3Pt6S3I6_5Col2",
+    "frm1702EX:txtPg3Pt6S3I6_6Col1",
+    "frm1702EX:txtPg3Pt6S3I6_6Col2",
+    "frm1702EX:txtPg3Pt6S3I6_7Col1",
+    "frm1702EX:txtPg3Pt6S3I6_7Col2",
+    "frm1702EX:txtPg3Pt6S3I6_8Col1",
+    "frm1702EX:txtPg3Pt6S3I6_8Col2",
+    "frm1702EX:txtPg3Pt6S3I6_9Col1",
+    "frm1702EX:txtPg3Pt6S3I6_9Col2",
+    "frm1702EX:txtPg3Pt6S3I8_10Col1",
+    "frm1702EX:txtPg3Pt6S3I8_10Col2",
+    "frm1702EX:txtPg3Pt6S3I8_11Col1",
+    "frm1702EX:txtPg3Pt6S3I8_11Col2",
+    "frm1702EX:txtPg3Pt6S3I8_12Col1",
+    "frm1702EX:txtPg3Pt6S3I8_12Col2",
+    "frm1702EX:txtPg3Pt6S3I8_1Col1",
+    "frm1702EX:txtPg3Pt6S3I8_1Col2",
+    "frm1702EX:txtPg3Pt6S3I8_2Col1",
+    "frm1702EX:txtPg3Pt6S3I8_2Col2",
+    "frm1702EX:txtPg3Pt6S3I8_3Col1",
+    "frm1702EX:txtPg3Pt6S3I8_3Col2",
+    "frm1702EX:txtPg3Pt6S3I8_4Col1",
+    "frm1702EX:txtPg3Pt6S3I8_4Col2",
+    "frm1702EX:txtPg3Pt6S3I8_5Col1",
+    "frm1702EX:txtPg3Pt6S3I8_5Col2",
+    "frm1702EX:txtPg3Pt6S3I8_6Col1",
+    "frm1702EX:txtPg3Pt6S3I8_6Col2",
+    "frm1702EX:txtPg3Pt6S3I8_7Col1",
+    "frm1702EX:txtPg3Pt6S3I8_7Col2",
+    "frm1702EX:txtPg3Pt6S3I8_8Col1",
+    "frm1702EX:txtPg3Pt6S3I8_8Col2",
+    "frm1702EX:txtPg3Pt6S3I8_9Col1",
+    "frm1702EX:txtPg3Pt6S3I8_9Col2"
+   ],
+   "reason": "row of the '(more...)' popup (the schedule's last fixed line and every later row): the fixed line prints OTHERS with the popup subtotal, so the popup rows have no box of their own on the sheet"
+  }
+ ]
+}

@@ -1,0 +1,91 @@
+[
+ {
+  "set": "frm1601EQ:txtYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1601EQ:optQuarter:1"
+ },
+ {
+  "click": "frm1601EQ:optAmend:N"
+ },
+ {
+  "click": "frm1601EQ:optWithheld:Y"
+ },
+ {
+  "set": "frm1601EQ:txtNoSheets",
+  "value": "0"
+ },
+ {
+  "call": "// loadBGData(): profile fields, no blur events.\nvar d = document; d.getElementById('frm1601EQ:txtTIN1').value = '123'; d.getElementById('frm1601EQ:txtTIN2').value = '456'; d.getElementById('frm1601EQ:txtTIN3').value = '788'; d.getElementById('frm1601EQ:txtBranchCode').value = '00000'; d.getElementById('frm1601EQ:txtRDOCode').value = '039'; d.getElementById('frm1601EQ:txtTaxpayerName').value = unescape(escape('Sample Dummy Taxpayer')).toUpperCase(); d.getElementById('frm1601EQ:txtLineBus').value = escape('Sample Consulting Services'); d.getElementById('frm1601EQ:txtAddress').value = unescape(escape('123 Sample Street, Barangay Example, Quezon City').toUpperCase()); d.getElementById('frm1601EQ:txtAddress2').value = ''; d.getElementById('frm1601EQ:txtZipCode').value = '1100'; d.getElementById('frm1601EQ:txtTelNum').value = '09170000000'; d.getElementById('txtEmail').value = 'sample.taxpayer@example.com'; globalEmail = 'sample.taxpayer@example.com';"
+ },
+ {
+  "click": "frm1601EQ:optCategory:P"
+ },
+ {
+  "click": "btnAddATCPartII"
+ },
+ {
+  "call": "document.getElementById('AtcCode1').checked = true; document.getElementById('AtcCode19').checked = true; document.getElementById('AtcCode21').checked = true; document.getElementById('AtcCode31').checked = true; document.getElementById('AtcCode33').checked = true; document.getElementById('AtcCode34').checked = true; document.getElementById('AtcCode52').checked = true; document.getElementById('AtcCode79').checked = true"
+ },
+ {
+  "call": "window.__timers = []; window.__setTimeout = window.setTimeout; window.setTimeout = function (f) { window.__timers.push(f); return 0; };"
+ },
+ {
+  "click": "btnOkPop"
+ },
+ {
+  "call": "window.setTimeout = window.__setTimeout; window.__timers.forEach(function (f) { if (typeof f === 'string') { window.eval(f); } else { f(); } });"
+ },
+ {
+  "set": "frm1601EQ:txtTaxBase1",
+  "value": "123456.789"
+ },
+ {
+  "set": "frm1601EQ:txtTaxBase2",
+  "value": "1000.005"
+ },
+ {
+  "set": "frm1601EQ:txtTaxBase3",
+  "value": "999.995"
+ },
+ {
+  "set": "frm1601EQ:txtTaxBase4",
+  "value": "50000"
+ },
+ {
+  "set": "frm1601EQ:txtTaxBase5",
+  "value": "250000"
+ },
+ {
+  "set": "frm1601EQ:txtTaxBase6",
+  "value": "12345.675"
+ },
+ {
+  "set": "frm1601EQ:txtTaxBase7",
+  "value": "88888.88"
+ },
+ {
+  "set": "frm1601EQ:txtTaxBase8",
+  "value": "75432.1"
+ },
+ {
+  "set": "frm1601EQ:txtTax20",
+  "value": "1000"
+ },
+ {
+  "set": "frm1601EQ:txtTax21",
+  "value": "2000.505"
+ },
+ {
+  "set": "frm1601EQ:txtTax26",
+  "value": "25.5"
+ },
+ {
+  "set": "frm1601EQ:txtTax27",
+  "value": "10"
+ },
+ {
+  "click": "frm1601EQ:cmdValidate"
+ }
+]

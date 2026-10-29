@@ -1,0 +1,93 @@
+{
+  "calibration_only": true,
+  "official_package_evidence": {
+    "editable_saved_xml": {
+      "address_controls_combined_as": "frm1701q:txtAddress",
+      "field_count": 172,
+      "field_ids_newline_terminated_sha256": "a135fd015a3e3c349f4e6baffce52317734cb478e8a3a1d62072901c050acb3d",
+      "javascript_escape_fields": [
+        "frm1701q:txtTaxpayerName",
+        "frm1701q:txtAddress",
+        "frm1701q:txtLOB"
+      ],
+      "source_function": "saveXML(false)",
+      "supported_by_rust": true,
+      "trailing_marker": "All Rights Reserved BIR 2012."
+    },
+    "file_version": "7.9.5.0",
+    "manifest": {
+      "form_path": "forms\\BIR-Form1701Qv2018.hta",
+      "index": 41,
+      "resource_id": 129,
+      "resource_mapping_rule": "129 + manifest index"
+    },
+    "package_file": "external:BIRForms.exe",
+    "package_sha256": "3d087545564531de1fbe8fb28f086ce6398e18608c54a0ea33353042665917eb",
+    "product_version": "7.9.5.0",
+    "resource_encoding": "type-23 resources are XOR 0xff except raw UTF-16 manifest resource 129",
+    "runtime_form_elements": {
+      "count": 173,
+      "ids_newline_terminated_sha256": "f6ad924c5263f7c543b5ebadc939258bf0e3182f6ff07cd92a0e6fa1195f453e"
+    },
+    "source_resources": {
+      "environment_js_decoded_sha256": "01de5f90ad3c5a65af5c1ccdb61a8968d3c61e5d542eb160b6e0eb3432a3be4e",
+      "hta_decoded_sha256": "42f25e268aefe881a2e1fa1d73ac4c47ef17d3ad236b3cbfb7b62af22949592d",
+      "hta_decoded_size": 377887,
+      "hta_resource_id": 170,
+      "string_util_js_decoded_sha256": "8d3f3527e044a5325b1f9019d234717d60c5bb1f72692ea302eb4f9e9cb43d6f",
+      "tools_vbs_decoded_sha256": "aaf5dbe9593ca81f808540e537353f297f9bd8638e488ea5161673e3985a91bc"
+    },
+    "submission_boundary": {
+      "external_helpers_referenced": [
+        "Encrypt.exe",
+        "cFTPSend.exe"
+      ],
+      "helpers_present_in_reviewed_manifest": false,
+      "outbound_field_count": 173,
+      "outbound_includes_credentials_and_enrollment_state": true,
+      "queue_submission_supported": false,
+      "source_path_observed": "saveEncryptedProfile(true) -> EncryptFile -> RenameAndSendFile",
+      "unresolved_evidence": [
+        "hash-locked runtime-produced editable and decrypted outbound replay samples",
+        "exact companion binaries and current accepted endpoint semantics",
+        "reviewed secure handling or accepted blank values for credential and enrollment fields"
+      ]
+    }
+  },
+  "form": {
+    "code": "1701Q",
+    "dpi": 144,
+    "form_id": "1701Qv2018",
+    "official_source": "https://bir-cdn.bir.gov.ph/local/pdf/1701Q%20Jan%202018%20final%20rev2_copy.pdf",
+    "official_source_file": "external:1701Q Jan 2018 final rev2_copy.pdf",
+    "official_source_sha256": "c731d3f12556e6f19ab81f6113ca7c4a23f7ed099675c03451ac0074d96b85ed",
+    "page_count": 2,
+    "page_height_pt": 936.0,
+    "page_width_pt": 612.0,
+    "pages": [
+      {
+        "page": 1,
+        "reference_height_px": 1872,
+        "reference_png": "packages/form-renderer/references/1701q-2018-page-1.png",
+        "reference_png_sha256": "dcd98d06dde89732f4d340d6add017e2bf4b7040f3eda755a618ba43f01172ef",
+        "reference_width_px": 1224
+      },
+      {
+        "page": 2,
+        "reference_height_px": 1872,
+        "reference_png": "packages/form-renderer/references/1701q-2018-page-2.png",
+        "reference_png_sha256": "d69c01b30c6f86a92d090b3f81965a6e5f1464444012c425cece6a1ac84e1bf8",
+        "reference_width_px": 1224
+      }
+    ],
+    "reference_provenance": {
+      "kind": "official_pdf",
+      "replacement_required": false,
+      "runtime_eligible": false
+    },
+    "revision": "2018"
+  },
+  "generator": "prepare_official_reference.py (Poppler)",
+  "runtime_background_allowed": false,
+  "schema_version": 1
+}

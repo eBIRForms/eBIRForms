@@ -1,0 +1,1391 @@
+{
+ "form_id": "1702rt-v2018c",
+ "html_slug": "1702rt-2018c",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page text layer) sits directly left of or above it, or the printed item number on its row. Items 1, 3, 4, 13 and 21 options take xbox_joins (box immediately left of the printed option). Name and address continuation lines join under the item 8/9 captions. Item 7 RDO takes drpPg1Pt1I7RDOCode (txtRDO holds the same code, one cell only). Part II, Part IV, Schedule I, Schedule III, Schedule IV items 1 to 4 and Schedule V amounts are whole-peso combs with no centavo comb, so no money_joins pair exists and each takes a peso_joins entry that prints the amount rounded to whole pesos; Schedule II rows 1-4, Schedule IIIA items 4-7 and the Schedule IV continuation take the printed row order under their column headers (the layout numbers them in the same order). Item 2 Year Ended prints over its four digit boxes and the page 2-4 TIN combs the nine TIN digits (derived: keys of Form1702RTDraft::to_print_field_map); Item 10 and the Part III dates print through date_joins. Stamped TIN combs (name=) take no join. Since #113 every value the print map carries has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm1702RT:txtPg1Pt1I8Name1",
+   "html_id": "p1c36",
+   "printed": "8 Registered Name, line 1",
+   "reason": "item 8 caption sits above the first name line"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt1I8Name2",
+   "html_id": "p1c37",
+   "printed": "8 Registered Name, line 2",
+   "reason": "second line of the item 8 block"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt1I8Name3",
+   "html_id": "p1c38",
+   "printed": "8 Registered Name, line 3",
+   "reason": "third line of the item 8 block"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt1I9Address1",
+   "html_id": "p1c40",
+   "printed": "9 Registered Address, line 1",
+   "reason": "item 9 caption sits above the first address line"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt1I9Address2",
+   "html_id": "p1c41",
+   "printed": "9 Registered Address, line 2",
+   "reason": "second line of the item 9 block"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt1I9Address3",
+   "html_id": "p1c42",
+   "printed": "9 Registered Address, line 3",
+   "reason": "third line of the item 9 block (30-slot comb)"
+  },
+  {
+   "writer_key": "frm1702RT:txtZIP",
+   "html_id": "p1c44",
+   "printed": "9A ZIP Code",
+   "reason": "caption \"9A ZIP Code\" directly left of the 4-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:drpPg1Pt1I7RDOCode",
+   "html_id": "p1c33",
+   "printed": "7 RDO Code",
+   "reason": "caption \"7 RDO Code\" directly left of the 3-slot comb; txtRDO carries the same code and gets no second cell"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt1I11Contact",
+   "html_id": "p1c52",
+   "printed": "11 Contact Number",
+   "reason": "caption directly left of the 11-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt1I12Email",
+   "html_id": "p1c54",
+   "printed": "12 Email Address",
+   "reason": "caption directly left of the 32-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt2SignatoryTin1",
+   "html_id": "p1c91",
+   "printed": "TIN (first signatory block)",
+   "reason": "caption \"TIN\" directly left of the cell"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt2SignatoryTin2",
+   "html_id": "p1c95",
+   "printed": "TIN (second signatory block)",
+   "reason": "caption \"TIN\" directly left of the cell"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I23DebitMemoC1",
+   "html_id": "p1c103",
+   "printed": "23 Cash/Bank Debit Memo, Drawee Bank/Agency",
+   "reason": "column header \"Drawee Bank/Agency\" above the 5-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I23DebitMemoC2",
+   "html_id": "p1c104",
+   "printed": "23 Cash/Bank Debit Memo, Number",
+   "reason": "column header \"Number\" above the 7-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I24CheckC1",
+   "html_id": "p1c110",
+   "printed": "24 Check, Drawee Bank/Agency",
+   "reason": "item 24 caption left; same column as item 23 bank cell"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I24CheckC2",
+   "html_id": "p1c111",
+   "printed": "24 Check, Number",
+   "reason": "item 24 caption left; same column as item 23 number cell"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I25TaxDebitC2",
+   "html_id": "p1c117",
+   "printed": "25 Tax Debit Memo, Number",
+   "reason": "item 25 caption left; Number column"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I26Others",
+   "html_id": "p1c123",
+   "printed": "26 Others (specify below)",
+   "reason": "item 26 caption above the 7-slot description comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I26OthersC1",
+   "html_id": "p1c124",
+   "printed": "26 Others, Drawee Bank/Agency",
+   "reason": "item 26 row, Drawee Bank/Agency column"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I26OthersC2",
+   "html_id": "p1c125",
+   "printed": "26 Others, Number",
+   "reason": "item 26 row, Number column"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2RegisteredName",
+   "html_id": "p2c6",
+   "printed": "Registered Name",
+   "reason": "caption \"Registered Name\" directly above the 24-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:Pg2Pt4I40IncomeTaxRate",
+   "html_id": "p2c37",
+   "printed": "40 Applicable Income Tax Rate",
+   "reason": "caption directly left of the 2-slot rate comb, \"%\" follows"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I53C1",
+   "html_id": "p2c66",
+   "printed": "53 Other Tax Credits/Payments (specify), description",
+   "reason": "item 53 caption left of the 23-slot description comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I54C1",
+   "html_id": "p2c70",
+   "printed": "54 description",
+   "reason": "item 54 caption left of the 23-slot description comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3RegisteredName",
+   "html_id": "p3c6",
+   "printed": "Registered Name",
+   "reason": "caption \"Registered Name\" directly above the 24-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17dC1",
+   "html_id": "p3c52",
+   "printed": "17 d description",
+   "reason": "item d caption left of the 23-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17eC1",
+   "html_id": "p3c56",
+   "printed": "17 e description",
+   "reason": "item e caption left of the 23-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17fC1",
+   "html_id": "p3c60",
+   "printed": "17 f description",
+   "reason": "item f caption left of the 23-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17gC1",
+   "html_id": "p3c64",
+   "printed": "17 g description",
+   "reason": "item g caption left of the 23-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17hC1",
+   "html_id": "p3c68",
+   "printed": "17 h description",
+   "reason": "item h caption left of the 23-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17iC1",
+   "html_id": "p3c72",
+   "printed": "17 i description",
+   "reason": "item i caption left of the 23-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4RegisteredName",
+   "html_id": "p4c6",
+   "printed": "Registered Name",
+   "reason": "caption \"Registered Name\" directly above the 24-slot comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I1C1",
+   "html_id": "p4c76",
+   "printed": "Schedule IV item 1, Year",
+   "reason": "item 1 row label; 4-slot Year column comb (column header \"Year\")"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I2C1",
+   "html_id": "p4c81",
+   "printed": "Schedule IV item 2, Year",
+   "reason": "item 2 row label; 4-slot Year column comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I3C1",
+   "html_id": "p4c86",
+   "printed": "Schedule IV item 3, Year",
+   "reason": "item 3 row label; 4-slot Year column comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I2C1",
+   "html_id": "p4c118",
+   "printed": "Schedule V item 2 description",
+   "reason": "item 2 row label; 24-slot description comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I3C1",
+   "html_id": "p4c122",
+   "printed": "Schedule V item 3 description",
+   "reason": "item 3 row label; 24-slot description comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I5C1",
+   "html_id": "p4c129",
+   "printed": "Schedule V item 5 description",
+   "reason": "item 5 row label; 24-slot description comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I6C1",
+   "html_id": "p4c133",
+   "printed": "Schedule V item 6 description",
+   "reason": "item 6 row label; 24-slot description comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I7C1",
+   "html_id": "p4c138",
+   "printed": "Schedule V item 7 description",
+   "reason": "item 7 row label; 24-slot description comb"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I8C1",
+   "html_id": "p4c142",
+   "printed": "Schedule V item 8 description",
+   "reason": "item 8 row label; 24-slot description comb"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "html_ids": [
+    "p3c5",
+    "p4c5"
+   ],
+   "printed": "Pages 2-4 header TIN",
+   "reason": "the 14-slot comb under each later page's TIN caption: the nine TIN digits (the sheet preprints the branch 0 0 0 0 0 after them)"
+  },
+  {
+   "writer_key": "derived:year_end_mm1",
+   "html_id": "p1c19",
+   "printed": "2 Year Ended (MM/20YY), mm1",
+   "reason": "digit box 1 of the four single-character boxes under the item 2 caption (MM / 20 YY)"
+  },
+  {
+   "writer_key": "derived:year_end_mm2",
+   "html_id": "p1c20",
+   "printed": "2 Year Ended (MM/20YY), mm2",
+   "reason": "digit box 2 of the four single-character boxes under the item 2 caption (MM / 20 YY)"
+  },
+  {
+   "writer_key": "derived:year_end_yy1",
+   "html_id": "p1c21",
+   "printed": "2 Year Ended (MM/20YY), yy1",
+   "reason": "digit box 3 of the four single-character boxes under the item 2 caption (MM / 20 YY)"
+  },
+  {
+   "writer_key": "derived:year_end_yy2",
+   "html_id": "p1c22",
+   "printed": "2 Year Ended (MM/20YY), yy2",
+   "reason": "digit box 4 of the four single-character boxes under the item 2 caption (MM / 20 YY)"
+  },
+  {
+   "writer_key": "frm1702RT:drpPg1I5AtcOther",
+   "html_id": "p1c16",
+   "printed": "5 ATC, other code",
+   "reason": "the code cell at the start of the second ATC row; the model: other_code"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt2PagesFilled",
+   "html_id": "p1c85",
+   "printed": "22 Number of Attachments",
+   "reason": "the 3-slot comb under the item 22 caption; the model writes number_of_attachments under this control"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt2Signatory1",
+   "html_id": "p1c89",
+   "printed": "Title of Signatory (President/Principal Officer)",
+   "reason": "the cell left of the first TIN cell under Title of Signatory; the model: president_signatory_title, printed under Title of Signatory"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt2Signatory2",
+   "html_id": "p1c93",
+   "printed": "Title of Signatory (Treasurer)",
+   "reason": "the cell left of the second TIN cell under Title of Signatory; the model: treasurer_signatory_title"
+  },
+  {
+   "writer_key": "frm1702RT:txtSignaturePresident",
+   "html_id": "p1c82",
+   "printed": "Signature over Printed Name of President/Principal Officer/Authorized Representative",
+   "reason": "the left signature line cell above that caption; the printed name"
+  },
+  {
+   "writer_key": "frm1702RT:txtSignatureTreasurer",
+   "html_id": "p1c83",
+   "printed": "Signature over Printed Name of Treasurer/Assistant Treasurer",
+   "reason": "the right signature line cell above that caption; the printed name"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc2I1C1",
+   "html_id": "p3c81",
+   "printed": "Schedule II row 1, Description",
+   "reason": "the cell under the Description header; Schedule II row 1 (rows carry no printed number: row 1 is the 1th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc2I1C2",
+   "html_id": "p3c82",
+   "printed": "Schedule II row 1, Legal Basis",
+   "reason": "the cell under the Legal Basis header; Schedule II row 1 (rows carry no printed number: row 1 is the 1th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc2I2C1",
+   "html_id": "p3c85",
+   "printed": "Schedule II row 2, Description",
+   "reason": "the cell under the Description header; Schedule II row 2 (rows carry no printed number: row 2 is the 2th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc2I2C2",
+   "html_id": "p3c86",
+   "printed": "Schedule II row 2, Legal Basis",
+   "reason": "the cell under the Legal Basis header; Schedule II row 2 (rows carry no printed number: row 2 is the 2th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc2I3C1",
+   "html_id": "p3c89",
+   "printed": "Schedule II row 3, Description",
+   "reason": "the cell under the Description header; Schedule II row 3 (rows carry no printed number: row 3 is the 3th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc2I3C2",
+   "html_id": "p3c90",
+   "printed": "Schedule II row 3, Legal Basis",
+   "reason": "the cell under the Legal Basis header; Schedule II row 3 (rows carry no printed number: row 3 is the 3th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc2I4C1",
+   "html_id": "p3c93",
+   "printed": "Schedule II row 4, Description",
+   "reason": "the cell under the Description header; Schedule II row 4 (rows carry no printed number: row 4 is the 4th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc2I4C2",
+   "html_id": "p3c94",
+   "printed": "Schedule II row 4, Legal Basis",
+   "reason": "the cell under the Legal Basis header; Schedule II row 4 (rows carry no printed number: row 4 is the 4th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI4C1",
+   "html_id": "p4c21",
+   "printed": "Schedule IIIA item 4, Year Incurred",
+   "reason": "the 4-slot comb under Year Incurred; Schedule IIIA item 4 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI5C1",
+   "html_id": "p4c28",
+   "printed": "Schedule IIIA item 5, Year Incurred",
+   "reason": "the 4-slot comb under Year Incurred; Schedule IIIA item 5 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI6C1",
+   "html_id": "p4c35",
+   "printed": "Schedule IIIA item 6, Year Incurred",
+   "reason": "the 4-slot comb under Year Incurred; Schedule IIIA item 6 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI7C1",
+   "html_id": "p4c42",
+   "printed": "Schedule IIIA item 7, Year Incurred",
+   "reason": "the 4-slot comb under Year Incurred; Schedule IIIA item 7 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  }
+ ],
+ "money_joins": [],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1702RT:rdoPg1I1Calendar",
+   "html_id": "p1c8",
+   "printed": "1 For the Calendar",
+   "reason": "box immediately left of \"Calendar\""
+  },
+  {
+   "writer_key": "frm1702RT:rdoPg1I1Fiscal",
+   "html_id": "p1c7",
+   "printed": "1 For the Fiscal",
+   "reason": "box immediately left of \"Fiscal\""
+  },
+  {
+   "writer_key": "frm1702RT:rdoPg1I3AmmendYes",
+   "html_id": "p1c12",
+   "printed": "3 Amended Return? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm1702RT:rdoPg1I3AmmendNo",
+   "html_id": "p1c13",
+   "printed": "3 Amended Return? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm1702RT:rdoPg1I4ShortPeriodYes",
+   "html_id": "p1c14",
+   "printed": "4 Short Period Return? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm1702RT:rdoPg1I4ShortPeriodNo",
+   "html_id": "p1c15",
+   "printed": "4 Short Period Return? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm1702RT:rdoPg1Pt1I13ItemizedDeduction",
+   "html_id": "p1c56",
+   "printed": "13 Itemized Deductions [Section 34 (A-J), NIRC]",
+   "reason": "box immediately left of the Itemized option"
+  },
+  {
+   "writer_key": "frm1702RT:rdoPg1Pt1I13OptionalStandard",
+   "html_id": "p1c57",
+   "printed": "13 Optional Standard Deduction (OSD)",
+   "reason": "box immediately left of the OSD option"
+  },
+  {
+   "writer_key": "frm1702RT:rdoPg1Pt2I21OverpaymentRefunded",
+   "html_id": "p1c78",
+   "printed": "21 To be refunded",
+   "reason": "box immediately left of \"To be refunded\""
+  },
+  {
+   "writer_key": "frm1702RT:rdoPg1Pt2I21OverpaymentIssued",
+   "html_id": "p1c79",
+   "printed": "21 To be issued a Tax Credit Certificate (TCC)",
+   "reason": "box immediately left of \"To be issued a TCC\""
+  },
+  {
+   "writer_key": "frm1702RT:rdoPg1Pt2I21OverpaymentCarried",
+   "html_id": "p1c80",
+   "printed": "21 To be carried over as tax credit",
+   "reason": "box immediately left of \"To be carried over\""
+  },
+  {
+   "writer_key": "frm1702RT:rdoPg1I5Atc",
+   "html_id": "p1c11",
+   "printed": "5 ATC IC 055 Minimum Corporate Income Tax (MCIT)",
+   "reason": "the box at the end of the printed IC 055 MCIT row; the model: printed_mcit_selected"
+  },
+  {
+   "writer_key": "frm1702RT:rdoPg1I5AtcOther",
+   "html_id": "p1c18",
+   "printed": "5 ATC, other code",
+   "reason": "the box at the end of the second ATC row (the other-code row); the model: other_selected"
+  }
+ ],
+ "peso_joins": [
+  {
+   "writer_key": "frm1702RT:txtPg1Pt2I14IncomeTax",
+   "html_id": "p1c60",
+   "printed": "14 Tax Due",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt2I15TotalTaxCredits",
+   "html_id": "p1c62",
+   "printed": "15 Less: Total Tax Credits/Payments",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt2I16NetTax",
+   "html_id": "p1c64",
+   "printed": "16 Net Tax Payable/(Overpayment)",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt2I17Surcharge",
+   "html_id": "p1c67",
+   "printed": "17 Surcharge",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt2I18Interest",
+   "html_id": "p1c69",
+   "printed": "18 Interest",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt2I19Compromise",
+   "html_id": "p1c71",
+   "printed": "19 Compromise",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt2I20TotalPenalties",
+   "html_id": "p1c73",
+   "printed": "20 Total Penalties",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt2I21TotalAmount",
+   "html_id": "p1c75",
+   "printed": "21 Total Amount Payable/(Overpayment)",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I23DebitMemoC4Amount",
+   "html_id": "p1c108",
+   "printed": "23 Cash/Bank Debit Memo, Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I24CheckC4Amount",
+   "html_id": "p1c115",
+   "printed": "24 Check, Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I25TaxDebitC4Amount",
+   "html_id": "p1c121",
+   "printed": "25 Tax Debit Memo, Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I26OthersC4Amount",
+   "html_id": "p1c129",
+   "printed": "26 Others (specify below), Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I27Sales",
+   "html_id": "p2c9",
+   "printed": "27 Sales/Receipts/Revenues/Fees",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I28LessSales",
+   "html_id": "p2c11",
+   "printed": "28 Less: Sales Returns, Allowances and Discounts",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I29NetSales",
+   "html_id": "p2c13",
+   "printed": "29 Net Sales/Receipts/Revenues/Fees",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I30LessCost",
+   "html_id": "p2c15",
+   "printed": "30 Less: Cost of Sales/Services",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I31GrossIncome",
+   "html_id": "p2c17",
+   "printed": "31 Gross Income from Operation",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I32AddOtherTaxable",
+   "html_id": "p2c19",
+   "printed": "32 Add: Other Taxable Income Not Subjected to Final Tax",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I33TotalGross",
+   "html_id": "p2c21",
+   "printed": "33 Total Taxable Income",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I34OrdinaryAllowable",
+   "html_id": "p2c24",
+   "printed": "34 Ordinary Allowable Itemized Deductions",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I35SpecialAllowable",
+   "html_id": "p2c26",
+   "printed": "35 Special Allowable Itemized Deductions",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I36Nolco",
+   "html_id": "p2c28",
+   "printed": "36 N O L C O",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I37TotalItemized",
+   "html_id": "p2c30",
+   "printed": "37 Total Deductions",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I38OptionalStandard",
+   "html_id": "p2c33",
+   "printed": "38 Optional Standard Deduction (OSD)",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I39NetTaxable",
+   "html_id": "p2c35",
+   "printed": "39 Net Taxable Income/(Loss)",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I41IncomeTaxDue",
+   "html_id": "p2c40",
+   "printed": "41 Income Tax Due other than MCIT",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I42MinimumCorporate",
+   "html_id": "p2c42",
+   "printed": "42 MCIT Due",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I43TotalIncomeTax",
+   "html_id": "p2c44",
+   "printed": "43 Tax Due",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I44ExcessCredits",
+   "html_id": "p2c47",
+   "printed": "44 Prior Year's Excess Credits other than MCIT",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I45IncomeTaxPaymentUnderMCIT",
+   "html_id": "p2c49",
+   "printed": "45 Income Tax Payment under MCIT from Previous Quarter/s",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I46IncomeTaxUnderRegular",
+   "html_id": "p2c51",
+   "printed": "46 Income Tax Payment under Regular/Normal Rate",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I47ExcessMCIT",
+   "html_id": "p2c53",
+   "printed": "47 Excess MCIT Applied this Current Taxable Year",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I48CreditableTaxWithheldFromPrevious",
+   "html_id": "p2c55",
+   "printed": "48 Creditable Tax Withheld from Previous Quarter/s",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I49CreditableTaxWithheldFor4thQuarter",
+   "html_id": "p2c57",
+   "printed": "49 Creditable Tax Withheld for the 4th Quarter",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I50ForeignTaxCredits",
+   "html_id": "p2c59",
+   "printed": "50 Foreign Tax Credits, if applicable",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I51TaxPaidInReturn",
+   "html_id": "p2c61",
+   "printed": "51 Tax Paid in Return Previously Filed",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt452SpecialTaxCredits",
+   "html_id": "p2c63",
+   "printed": "52 Special Tax Credits",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I53C2",
+   "html_id": "p2c68",
+   "printed": "53 Other Tax Credits/Payments (specify), Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I54C2",
+   "html_id": "p2c72",
+   "printed": "54 Other Tax Credits/Payments (specify), Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I55TotalTaxCredits",
+   "html_id": "p2c74",
+   "printed": "55 Total Tax Credits/Payments",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt4I56NetTax",
+   "html_id": "p2c76",
+   "printed": "56 Net Tax Payable/(Overpayment)",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt5I57SpecialAllowable",
+   "html_id": "p2c79",
+   "printed": "57 Special Allowable Itemized Deductions",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt5I58AddSpecialTax",
+   "html_id": "p2c81",
+   "printed": "58 Add: Special Tax Credits",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg2Pt5I59TotalTax",
+   "html_id": "p2c83",
+   "printed": "59 Total Tax Relief Availment",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I1Amortization",
+   "html_id": "p3c10",
+   "printed": "Sch I 1 Amortizations",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I2BadDebts",
+   "html_id": "p3c12",
+   "printed": "Sch I 2 Bad Debts",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I3CharitableContributions",
+   "html_id": "p3c14",
+   "printed": "Sch I 3 Charitable and Other Contributions",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I4Depletion",
+   "html_id": "p3c16",
+   "printed": "Sch I 4 Depletion",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I5Depreciation",
+   "html_id": "p3c18",
+   "printed": "Sch I 5 Depreciation",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I6Entertainment",
+   "html_id": "p3c20",
+   "printed": "Sch I 6 Entertainment, Amusement and Recreation",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I7FringeBenefits",
+   "html_id": "p3c22",
+   "printed": "Sch I 7 Fringe Benefits",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I8Interest",
+   "html_id": "p3c24",
+   "printed": "Sch I 8 Interest",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I9Losses",
+   "html_id": "p3c26",
+   "printed": "Sch I 9 Losses",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I10PensionTrust",
+   "html_id": "p3c28",
+   "printed": "Sch I 10 Pension Trusts",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I11Rental",
+   "html_id": "p3c30",
+   "printed": "Sch I 11 Rental",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I12Research",
+   "html_id": "p3c32",
+   "printed": "Sch I 12 Research and Development",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I13Salaries",
+   "html_id": "p3c34",
+   "printed": "Sch I 13 Salaries, Wages and Allowances",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I14Contributions",
+   "html_id": "p3c36",
+   "printed": "Sch I 14 SSS, GSIS, Philhealth, HDMF and Other Contributions",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I15TaxesandLicenses",
+   "html_id": "p3c38",
+   "printed": "Sch I 15 Taxes and Licenses",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I16TransportationandTravel",
+   "html_id": "p3c40",
+   "printed": "Sch I 16 Transportation and Travel",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17aJanitorial",
+   "html_id": "p3c44",
+   "printed": "Sch I 17a Janitorial and Messengerial Services",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17bProfessionalFees",
+   "html_id": "p3c47",
+   "printed": "Sch I 17b Professional Fees",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17cSecurityServices",
+   "html_id": "p3c50",
+   "printed": "Sch I 17c Security Services",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17dC2",
+   "html_id": "p3c54",
+   "printed": "Sch I 17d Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17eC2",
+   "html_id": "p3c58",
+   "printed": "Sch I 17e Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17fC2",
+   "html_id": "p3c62",
+   "printed": "Sch I 17f Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17gC2",
+   "html_id": "p3c66",
+   "printed": "Sch I 17g Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17hC2",
+   "html_id": "p3c70",
+   "printed": "Sch I 17h Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I17iC2",
+   "html_id": "p3c74",
+   "printed": "Sch I 17i Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc1I18TotalOrdinaryAllowable",
+   "html_id": "p3c76",
+   "printed": "Sch I 18 Total Ordinary Allowable Itemized Deductions",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc2I5TotalSpecialAllowable",
+   "html_id": "p3c97",
+   "printed": "Sch II 5 Total Special Allowable Itemized Deductions",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3I1GrossIncome",
+   "html_id": "p4c9",
+   "printed": "Sch III 1 Gross Income",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3I2TotalDeductions",
+   "html_id": "p4c11",
+   "printed": "Sch III 2 Less: Ordinary Allowable Itemized Deductions",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3I3NetOperatingLoss",
+   "html_id": "p4c13",
+   "printed": "Sch III 3 Net Operating Loss",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I1C2",
+   "html_id": "p4c77",
+   "printed": "Sch IV 1 A) Normal Income Tax as Adjusted",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I1C3",
+   "html_id": "p4c78",
+   "printed": "Sch IV 1 B) MCIT",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I1C4",
+   "html_id": "p4c79",
+   "printed": "Sch IV 1 C) Excess MCIT over Normal Income Tax",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I2C2",
+   "html_id": "p4c82",
+   "printed": "Sch IV 2 A) Normal Income Tax as Adjusted",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I2C3",
+   "html_id": "p4c83",
+   "printed": "Sch IV 2 B) MCIT",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I2C4",
+   "html_id": "p4c84",
+   "printed": "Sch IV 2 C) Excess MCIT over Normal Income Tax",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I3C2",
+   "html_id": "p4c87",
+   "printed": "Sch IV 3 A) Normal Income Tax as Adjusted",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I3C3",
+   "html_id": "p4c88",
+   "printed": "Sch IV 3 B) MCIT",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I3C4",
+   "html_id": "p4c89",
+   "printed": "Sch IV 3 C) Excess MCIT over Normal Income Tax",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I4TotalExcessMCIT",
+   "html_id": "p4c111",
+   "printed": "Sch IV 4 Total Excess MCIT Applied",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I1NetIncome",
+   "html_id": "p4c115",
+   "printed": "Sch V 1 Net Income/(Loss) per Books",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I2C2",
+   "html_id": "p4c120",
+   "printed": "Sch V 2 Add: Non-Deductible Expenses/Taxable Other Income, Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I3C2",
+   "html_id": "p4c124",
+   "printed": "Sch V 3 Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I4Total",
+   "html_id": "p4c126",
+   "printed": "Sch V 4 Total (Sum of Items 1 to 3)",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I5C2",
+   "html_id": "p4c131",
+   "printed": "Sch V 5 Less: A) Non-Taxable Income, Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I6C2",
+   "html_id": "p4c135",
+   "printed": "Sch V 6 Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I7C2",
+   "html_id": "p4c140",
+   "printed": "Sch V 7 B) Special Deductions, Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I8C2",
+   "html_id": "p4c144",
+   "printed": "Sch V 8 Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I9Total",
+   "html_id": "p4c146",
+   "printed": "Sch V 9 Total (Sum of Items 5 to 8)",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc5I10NetTaxableIncome",
+   "html_id": "p4c148",
+   "printed": "Sch V 10 Net Taxable Income/(Loss)",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc2I1C3",
+   "html_id": "p3c83",
+   "printed": "Schedule II row 1, Amount",
+   "reason": "the whole-peso comb under the Amount header; Schedule II row 1 (rows carry no printed number: row 1 is the 1th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc2I2C3",
+   "html_id": "p3c87",
+   "printed": "Schedule II row 2, Amount",
+   "reason": "the whole-peso comb under the Amount header; Schedule II row 2 (rows carry no printed number: row 2 is the 2th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc2I3C3",
+   "html_id": "p3c91",
+   "printed": "Schedule II row 3, Amount",
+   "reason": "the whole-peso comb under the Amount header; Schedule II row 3 (rows carry no printed number: row 3 is the 3th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg3Sc2I4C3",
+   "html_id": "p3c95",
+   "printed": "Schedule II row 4, Amount",
+   "reason": "the whole-peso comb under the Amount header; Schedule II row 4 (rows carry no printed number: row 4 is the 4th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI4C2",
+   "html_id": "p4c23",
+   "printed": "Schedule IIIA item 4, A) Amount",
+   "reason": "the whole-peso comb under the A) Amount header; Schedule IIIA item 4 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI4C3",
+   "html_id": "p4c25",
+   "printed": "Schedule IIIA item 4, B) NOLCO Applied Previous Year/s",
+   "reason": "the whole-peso comb under the B) NOLCO Applied Previous Year/s header; Schedule IIIA item 4 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI4C4",
+   "html_id": "p4c52",
+   "printed": "Schedule IIIA item 4, C) NOLCO Expired",
+   "reason": "the whole-peso comb under the C) NOLCO Expired header; Schedule IIIA item 4 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI4C5",
+   "html_id": "p4c53",
+   "printed": "Schedule IIIA item 4, D) NOLCO Applied Current Year",
+   "reason": "the whole-peso comb under the D) NOLCO Applied Current Year header; Schedule IIIA item 4 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI4C6",
+   "html_id": "p4c54",
+   "printed": "Schedule IIIA item 4, E) Net Operating Loss (Unapplied)",
+   "reason": "the whole-peso comb under the E) Net Operating Loss (Unapplied) header; Schedule IIIA item 4 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI5C2",
+   "html_id": "p4c30",
+   "printed": "Schedule IIIA item 5, A) Amount",
+   "reason": "the whole-peso comb under the A) Amount header; Schedule IIIA item 5 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI5C3",
+   "html_id": "p4c32",
+   "printed": "Schedule IIIA item 5, B) NOLCO Applied Previous Year/s",
+   "reason": "the whole-peso comb under the B) NOLCO Applied Previous Year/s header; Schedule IIIA item 5 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI5C4",
+   "html_id": "p4c56",
+   "printed": "Schedule IIIA item 5, C) NOLCO Expired",
+   "reason": "the whole-peso comb under the C) NOLCO Expired header; Schedule IIIA item 5 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI5C5",
+   "html_id": "p4c57",
+   "printed": "Schedule IIIA item 5, D) NOLCO Applied Current Year",
+   "reason": "the whole-peso comb under the D) NOLCO Applied Current Year header; Schedule IIIA item 5 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI5C6",
+   "html_id": "p4c58",
+   "printed": "Schedule IIIA item 5, E) Net Operating Loss (Unapplied)",
+   "reason": "the whole-peso comb under the E) Net Operating Loss (Unapplied) header; Schedule IIIA item 5 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI6C2",
+   "html_id": "p4c37",
+   "printed": "Schedule IIIA item 6, A) Amount",
+   "reason": "the whole-peso comb under the A) Amount header; Schedule IIIA item 6 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI6C3",
+   "html_id": "p4c39",
+   "printed": "Schedule IIIA item 6, B) NOLCO Applied Previous Year/s",
+   "reason": "the whole-peso comb under the B) NOLCO Applied Previous Year/s header; Schedule IIIA item 6 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI6C4",
+   "html_id": "p4c60",
+   "printed": "Schedule IIIA item 6, C) NOLCO Expired",
+   "reason": "the whole-peso comb under the C) NOLCO Expired header; Schedule IIIA item 6 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI6C5",
+   "html_id": "p4c61",
+   "printed": "Schedule IIIA item 6, D) NOLCO Applied Current Year",
+   "reason": "the whole-peso comb under the D) NOLCO Applied Current Year header; Schedule IIIA item 6 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI6C6",
+   "html_id": "p4c62",
+   "printed": "Schedule IIIA item 6, E) Net Operating Loss (Unapplied)",
+   "reason": "the whole-peso comb under the E) Net Operating Loss (Unapplied) header; Schedule IIIA item 6 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI7C2",
+   "html_id": "p4c44",
+   "printed": "Schedule IIIA item 7, A) Amount",
+   "reason": "the whole-peso comb under the A) Amount header; Schedule IIIA item 7 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI7C3",
+   "html_id": "p4c46",
+   "printed": "Schedule IIIA item 7, B) NOLCO Applied Previous Year/s",
+   "reason": "the whole-peso comb under the B) NOLCO Applied Previous Year/s header; Schedule IIIA item 7 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI7C4",
+   "html_id": "p4c64",
+   "printed": "Schedule IIIA item 7, C) NOLCO Expired",
+   "reason": "the whole-peso comb under the C) NOLCO Expired header; Schedule IIIA item 7 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI7C5",
+   "html_id": "p4c65",
+   "printed": "Schedule IIIA item 7, D) NOLCO Applied Current Year",
+   "reason": "the whole-peso comb under the D) NOLCO Applied Current Year header; Schedule IIIA item 7 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc3AI7C6",
+   "html_id": "p4c66",
+   "printed": "Schedule IIIA item 7, E) Net Operating Loss (Unapplied)",
+   "reason": "the whole-peso comb under the E) Net Operating Loss (Unapplied) header; Schedule IIIA item 7 (the table numbers its rows 4-7 under the column headers, the continuation table follows the same rows)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I8TotalNOLCO",
+   "html_id": "p4c68",
+   "printed": "Schedule IIIA item 8 Total NOLCO (Sum of Items 4D to 7D)",
+   "reason": "the whole-peso comb under column D on the Total NOLCO row (To Part IV, Item 36)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I1C5",
+   "html_id": "p4c96",
+   "printed": "Schedule IV item 1, D) Excess MCIT Applied/Used in Previous Years",
+   "reason": "the whole-peso comb under the continuation header D) Excess MCIT Applied/Used in Previous Years on Schedule IV item 1 (the continuation keeps the item numbers of the table above)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I1C6",
+   "html_id": "p4c97",
+   "printed": "Schedule IV item 1, E) Expired Portion of Excess MCIT",
+   "reason": "the whole-peso comb under the continuation header E) Expired Portion of Excess MCIT on Schedule IV item 1 (the continuation keeps the item numbers of the table above)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I1C7",
+   "html_id": "p4c98",
+   "printed": "Schedule IV item 1, F) Excess MCIT Applied this Current Taxable Year",
+   "reason": "the whole-peso comb under the continuation header F) Excess MCIT Applied this Current Taxable Year on Schedule IV item 1 (the continuation keeps the item numbers of the table above)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I1C8",
+   "html_id": "p4c99",
+   "printed": "Schedule IV item 1, G) Balance of Excess MCIT Allowable",
+   "reason": "the whole-peso comb under the continuation header G) Balance of Excess MCIT Allowable on Schedule IV item 1 (the continuation keeps the item numbers of the table above)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I2C5",
+   "html_id": "p4c101",
+   "printed": "Schedule IV item 2, D) Excess MCIT Applied/Used in Previous Years",
+   "reason": "the whole-peso comb under the continuation header D) Excess MCIT Applied/Used in Previous Years on Schedule IV item 2 (the continuation keeps the item numbers of the table above)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I2C6",
+   "html_id": "p4c102",
+   "printed": "Schedule IV item 2, E) Expired Portion of Excess MCIT",
+   "reason": "the whole-peso comb under the continuation header E) Expired Portion of Excess MCIT on Schedule IV item 2 (the continuation keeps the item numbers of the table above)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I2C7",
+   "html_id": "p4c103",
+   "printed": "Schedule IV item 2, F) Excess MCIT Applied this Current Taxable Year",
+   "reason": "the whole-peso comb under the continuation header F) Excess MCIT Applied this Current Taxable Year on Schedule IV item 2 (the continuation keeps the item numbers of the table above)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I2C8",
+   "html_id": "p4c104",
+   "printed": "Schedule IV item 2, G) Balance of Excess MCIT Allowable",
+   "reason": "the whole-peso comb under the continuation header G) Balance of Excess MCIT Allowable on Schedule IV item 2 (the continuation keeps the item numbers of the table above)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I3C5",
+   "html_id": "p4c106",
+   "printed": "Schedule IV item 3, D) Excess MCIT Applied/Used in Previous Years",
+   "reason": "the whole-peso comb under the continuation header D) Excess MCIT Applied/Used in Previous Years on Schedule IV item 3 (the continuation keeps the item numbers of the table above)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I3C6",
+   "html_id": "p4c107",
+   "printed": "Schedule IV item 3, E) Expired Portion of Excess MCIT",
+   "reason": "the whole-peso comb under the continuation header E) Expired Portion of Excess MCIT on Schedule IV item 3 (the continuation keeps the item numbers of the table above)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I3C7",
+   "html_id": "p4c108",
+   "printed": "Schedule IV item 3, F) Excess MCIT Applied this Current Taxable Year",
+   "reason": "the whole-peso comb under the continuation header F) Excess MCIT Applied this Current Taxable Year on Schedule IV item 3 (the continuation keeps the item numbers of the table above)"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg4Sc4I3C8",
+   "html_id": "p4c109",
+   "printed": "Schedule IV item 3, G) Balance of Excess MCIT Allowable",
+   "reason": "the whole-peso comb under the continuation header G) Balance of Excess MCIT Allowable on Schedule IV item 3 (the continuation keeps the item numbers of the table above)"
+  }
+ ],
+ "date_joins": [
+  {
+   "writer_key": "frm1702RT:txtPg1Pt1I10",
+   "mm_html_id": "p1c46",
+   "dd_html_id": "p1c48",
+   "yyyy_html_id": "p1c50",
+   "printed": "10 Date of Incorporation/Organization (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs right of the item 10 caption; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I23DebitMemoC3Date",
+   "mm_html_id": "p1c105",
+   "dd_html_id": "p1c106",
+   "yyyy_html_id": "p1c107",
+   "printed": "Part III 3D, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part III Date column on that payment row; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I24CheckC3Date",
+   "mm_html_id": "p1c112",
+   "dd_html_id": "p1c113",
+   "yyyy_html_id": "p1c114",
+   "printed": "Part III 4C, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part III Date column on that payment row; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I25TaxDebitDate",
+   "mm_html_id": "p1c118",
+   "dd_html_id": "p1c119",
+   "yyyy_html_id": "p1c120",
+   "printed": "Part III 5T, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part III Date column on that payment row; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1702RT:txtPg1Pt3I26OthersC3Date",
+   "mm_html_id": "p1c126",
+   "dd_html_id": "p1c127",
+   "yyyy_html_id": "p1c128",
+   "printed": "Part III 6O, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part III Date column on that payment row; one writer date split across the three"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm1702RT:txtPg2TIN1",
+    "frm1702RT:txtPg2TIN2",
+    "frm1702RT:txtPg2TIN3",
+    "frm1702RT:txtPg3TIN1",
+    "frm1702RT:txtPg3TIN2",
+    "frm1702RT:txtPg3TIN3",
+    "frm1702RT:txtPg4TIN1",
+    "frm1702RT:txtPg4TIN2",
+    "frm1702RT:txtPg4TIN3"
+   ],
+   "reason": "prints from derived:tin_digits (the print map shapes the nine TIN digits of the page 2-4 headers for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1702RT:txtPg1Pt1I6TIN4",
+    "frm1702RT:txtPg2TIN4",
+    "frm1702RT:txtPg3TIN4",
+    "frm1702RT:txtPg4TIN4",
+    "BranchMaskP1",
+    "txtBranchMaskP2",
+    "txtBranchMaskP3",
+    "txtBranchMaskP4"
+   ],
+   "reason": "branch code: the sheet preprints 0 0 0 0 0 beside each TIN comb (no fillable branch cells)"
+  },
+  {
+   "writer_keys": [
+    "frm1702RT:ddlPg1I2Month",
+    "frm1702RT:txtPg1I2Year"
+   ],
+   "reason": "prints from derived:year_end_mm1/mm2/yy1/yy2 (the print map shapes Item 2 over its four digit boxes for the sheet)"
+  },
+  {
+   "writer_key": "frm1702RT:txtRDO",
+   "reason": "duplicate of drpPg1Pt1I7RDOCode (same RDO), which prints in item 7"
+  },
+  {
+   "writer_keys": [
+    "frm1702RT:txtPg2Pt4I54CtrModal",
+    "frm1702RT:txtPg2Pt4I54Subtotal",
+    "frm1702RT:txtPg3Sc1I17iCtrModal",
+    "frm1702RT:txtPg3Sc1I17iSubtotal",
+    "frm1702RT:txtPg3Sc2I4CtrModal",
+    "frm1702RT:txtPg3Sc2I4Subtotal",
+    "frm1702RT:txtPg4Sc3AI7C2Subtotal",
+    "frm1702RT:txtPg4Sc3AI7C3Subtotal",
+    "frm1702RT:txtPg4Sc3AI7C4Subtotal",
+    "frm1702RT:txtPg4Sc3AI7C5Subtotal",
+    "frm1702RT:txtPg4Sc3AI7C6Subtotal",
+    "frm1702RT:txtPg4Sc3I3Subtotal",
+    "frm1702RT:txtPg4Sc4I4Subtotal",
+    "frm1702RT:txtPg4Sc5I3CtrModal",
+    "frm1702RT:txtPg4Sc5I3Subtotal",
+    "frm1702RT:txtPg4Sc5I6CtrModal",
+    "frm1702RT:txtPg4Sc5I6Subtotal",
+    "frm1702RT:txtPg4Sc5I8CtrModal",
+    "frm1702RT:txtPg4Sc5I8Subtotal"
+   ],
+   "reason": "add-more popup row counter or popup subtotal of the page; the sheet prints the rows the return carries, not the popup bookkeeping"
+  },
+  {
+   "writer_keys": [
+    "frm1702RT:txtCurrentPage",
+    "frm1702RT:txtMaxPage"
+   ],
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  },
+  {
+   "writer_keys": [
+    "txtEnroll",
+    "txtFinalFlag",
+    "driveSelectTPExport"
+   ],
+   "reason": "eBIRForms system field (enrolment flag, final flag, export drive, online-filing credentials), not on the paper form"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c17",
+   "reason": "Item 5 ATC: the IC 055 and Other boxes and code cells have no unambiguous box-to-option mapping on this sheet; the ATC keys (rdoPg1I5Atc, drpPg1I5AtcOther, rdoPg1I5AtcOther) stay blank"
+  }
+ ]
+}

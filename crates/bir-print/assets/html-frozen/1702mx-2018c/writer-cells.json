@@ -1,0 +1,3066 @@
+{
+ "form_id": "1702mx-v2018c",
+ "html_slug": "1702mx-2018c",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption sits directly left of or above it, or the printed item number on its row. Schedule amounts in single text cells (Schedules 1-5, 10 and the Schedule 6 total) take plain text joins and print as the writer holds them. Items 1, 3, 4, 13 and 21 options and the Instructions A/B boxes take xbox_joins (box immediately left of the printed option). Part II and the 12-slot Schedule 7, 8 and 9 amounts (Schedule 9 continuation columns excepted) have no centavo comb, so no money_joins pair exists and each one takes a peso_joins entry that prints the amount rounded to whole pesos. Schedule 6 rows 1-4 and Schedule 7.1/8.1 rows 4-7 print no row number: they take the printed row order under their column headers (the layout numbers them in the same order). Item 5 takes the MCIT box, the other-code box and code cell by the model's meaning. Schedule 1 effectivity dates have no layout keys and stay blank. Stamped TIN combs (name=) take no join. Since #113: Item 2, Item 10, the Part III dates and the page 2-4 TIN combs print (derived: keys of Form1702MXDraft::to_print_field_map, date_joins); every other value has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm1702MX:drpPg1Pt1I7RDO",
+   "html_id": "p1c33",
+   "printed": "7 RDO Code",
+   "reason": "caption \"7 RDO Code\" directly left of the 3-slot comb; txtPg1Pt1I7RDO holds the same code and gets no second cell"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I9RegisteredName",
+   "html_id": "p1c36",
+   "printed": "8 Registered Name, line 1",
+   "reason": "item 8 caption sits above the first name line"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I9RegisteredName2",
+   "html_id": "p1c37",
+   "printed": "8 Registered Name, line 2",
+   "reason": "second line of the item 8 block"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I9RegisteredName3",
+   "html_id": "p1c38",
+   "printed": "8 Registered Name, line 3",
+   "reason": "third line of the item 8 block"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I10RegisteredAddress",
+   "html_id": "p1c40",
+   "printed": "9 Registered Address, line 1",
+   "reason": "item 9 caption sits above the first address line"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I10RegisteredAddress2",
+   "html_id": "p1c41",
+   "printed": "9 Registered Address, line 2",
+   "reason": "second line of the item 9 block"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I10RegisteredAddress3",
+   "html_id": "p1c42",
+   "printed": "9 Registered Address, line 3",
+   "reason": "third line of the item 9 block (30-slot comb)"
+  },
+  {
+   "writer_key": "frm1702MX:txtZIP",
+   "html_id": "p1c44",
+   "printed": "9A ZIP Code",
+   "reason": "caption \"9A ZIP Code\" directly left of the 4-slot comb"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I11ContactNumber",
+   "html_id": "p1c52",
+   "printed": "11 Contact Number",
+   "reason": "caption directly left of the 11-slot comb"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I12Email",
+   "html_id": "p1c54",
+   "printed": "12 Email Address",
+   "reason": "caption directly left of the 32-slot comb"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1P2I23NumOfAttachments",
+   "html_id": "p1c84",
+   "printed": "22 Number of Attachments",
+   "reason": "caption \"Number of Attachments\" directly above the 3-slot comb"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt2TitleofSignatory",
+   "html_id": "p1c88",
+   "printed": "Title of Signatory (first signatory)",
+   "reason": "caption \"Title of Signatory\" directly left of the cell"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt2TINofSignatory",
+   "html_id": "p1c90",
+   "printed": "TIN (first signatory)",
+   "reason": "caption \"TIN\" directly left of the cell"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt2TitleofSignatory2",
+   "html_id": "p1c92",
+   "printed": "Title of Signatory (second signatory)",
+   "reason": "caption \"Title of Signatory\" directly left of the cell"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt2TINofSignatory2",
+   "html_id": "p1c94",
+   "printed": "TIN (second signatory)",
+   "reason": "caption \"TIN\" directly left of the cell"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I26CashC1",
+   "html_id": "p1c102",
+   "printed": "23 Cash/Bank Debit Memo, Drawee Bank/Agency",
+   "reason": "column header \"Drawee Bank/Agency\" above the 5-slot comb"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I26CashC2",
+   "html_id": "p1c103",
+   "printed": "23 Cash/Bank Debit Memo, Number",
+   "reason": "column header \"Number\" above the 7-slot comb"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I27CheckC1",
+   "html_id": "p1c109",
+   "printed": "24 Check, Drawee Bank/Agency",
+   "reason": "item 24 caption left; Drawee Bank column"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I27CheckC2",
+   "html_id": "p1c110",
+   "printed": "24 Check, Number",
+   "reason": "item 24 caption left; Number column"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I28TaxDebitC2",
+   "html_id": "p1c116",
+   "printed": "25 Tax Debit Memo, Number",
+   "reason": "item 25 caption left; Number column"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I29Others",
+   "html_id": "p1c122",
+   "printed": "26 Others (specify below)",
+   "reason": "item 26 caption above the 7-slot description comb"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I29OthersC1",
+   "html_id": "p1c123",
+   "printed": "26 Others, Drawee Bank/Agency",
+   "reason": "item 26 row, Drawee Bank/Agency column"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I29OthersC2",
+   "html_id": "p1c124",
+   "printed": "26 Others, Number",
+   "reason": "item 26 row, Number column"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2RegisteredName",
+   "html_id": "p2c6",
+   "printed": "Registered Name",
+   "reason": "caption \"Registered Name\" directly above the 24-slot comb"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3RegisteredName",
+   "html_id": "p3c6",
+   "printed": "Registered Name",
+   "reason": "caption \"Registered Name\" directly above the 24-slot comb"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4RegisteredName",
+   "html_id": "p4c6",
+   "printed": "Registered Name",
+   "reason": "caption \"Registered Name\" directly above the 24-slot comb"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed78D",
+   "html_id": "p4c45",
+   "printed": "8 Total NOLCO, column D",
+   "reason": "item 8 label left of the column D cell"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed88D",
+   "html_id": "p4c92",
+   "printed": "8 Total NOLCO, column D (Schedule 8.1)",
+   "reason": "item 8 label left of the column D cell"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg7Sc9I1",
+   "html_id": "p4c100",
+   "printed": "Schedule 9 item 1, Year",
+   "reason": "item 1 row label; 4-slot Year column comb"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg7Sc9I2",
+   "html_id": "p4c105",
+   "printed": "Schedule 9 item 2, Year",
+   "reason": "item 2 row label; 4-slot Year column comb"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg7Sc9I3",
+   "html_id": "p4c110",
+   "printed": "Schedule 9 item 3, Year",
+   "reason": "item 3 row label; 4-slot Year column comb"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg6Sc6I5CA",
+   "html_id": "p3c212",
+   "printed": "5 Total Special Allowable Itemized Deductions, A",
+   "reason": "item 5 total label left; column A"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg6Sc6I5CB",
+   "html_id": "p3c213",
+   "printed": "5 Total Special Allowable Itemized Deductions, B",
+   "reason": "item 5 total label left; column B"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg6Sc6I5CC",
+   "html_id": "p3c214",
+   "printed": "5 Total Special Allowable Itemized Deductions, C",
+   "reason": "item 5 total label left; column C"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg6Sc6I5CD",
+   "html_id": "p3c215",
+   "printed": "5 Total Special Allowable Itemized Deductions, D",
+   "reason": "item 5 total label left; column D"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Pt4I31CA",
+   "html_id": "p2c17",
+   "printed": "Schedule 1 item 1 Investment Promotion Agency, column A",
+   "reason": "Schedule 1 item 1 Investment Promotion Agency: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Pt4I31CB",
+   "html_id": "p2c18",
+   "printed": "Schedule 1 item 1 Investment Promotion Agency, column B",
+   "reason": "Schedule 1 item 1 Investment Promotion Agency: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Pt4I31CC",
+   "html_id": "p2c19",
+   "printed": "Schedule 1 item 1 Investment Promotion Agency, column C",
+   "reason": "Schedule 1 item 1 Investment Promotion Agency: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Pt4I32CA",
+   "html_id": "p2c21",
+   "printed": "Schedule 1 item 2 Legal Basis, column A",
+   "reason": "Schedule 1 item 2 Legal Basis: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Pt4I32CB",
+   "html_id": "p2c22",
+   "printed": "Schedule 1 item 2 Legal Basis, column B",
+   "reason": "Schedule 1 item 2 Legal Basis: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Pt4I32CC",
+   "html_id": "p2c23",
+   "printed": "Schedule 1 item 2 Legal Basis, column C",
+   "reason": "Schedule 1 item 2 Legal Basis: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Pt4I33CA",
+   "html_id": "p2c25",
+   "printed": "Schedule 1 item 3 Registered Activity/Program, column A",
+   "reason": "Schedule 1 item 3 Registered Activity/Program: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Pt4I33CB",
+   "html_id": "p2c26",
+   "printed": "Schedule 1 item 3 Registered Activity/Program, column B",
+   "reason": "Schedule 1 item 3 Registered Activity/Program: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Pt4I33CC",
+   "html_id": "p2c27",
+   "printed": "Schedule 1 item 3 Registered Activity/Program, column C",
+   "reason": "Schedule 1 item 3 Registered Activity/Program: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm1A",
+   "html_id": "p2c70",
+   "printed": "Schedule 2 item 1 Sales/Receipts/Revenues/Fees, column A",
+   "reason": "Schedule 2 item 1 Sales/Receipts/Revenues/Fees: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm1B",
+   "html_id": "p2c71",
+   "printed": "Schedule 2 item 1 Sales/Receipts/Revenues/Fees, column B",
+   "reason": "Schedule 2 item 1 Sales/Receipts/Revenues/Fees: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm1C",
+   "html_id": "p2c72",
+   "printed": "Schedule 2 item 1 Sales/Receipts/Revenues/Fees, column C",
+   "reason": "Schedule 2 item 1 Sales/Receipts/Revenues/Fees: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm1D",
+   "html_id": "p2c73",
+   "printed": "Schedule 2 item 1 Sales/Receipts/Revenues/Fees, column D",
+   "reason": "Schedule 2 item 1 Sales/Receipts/Revenues/Fees: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm2A",
+   "html_id": "p2c75",
+   "printed": "Schedule 2 item 2 Sales Returns, column A",
+   "reason": "Schedule 2 item 2 Sales Returns: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm2B",
+   "html_id": "p2c76",
+   "printed": "Schedule 2 item 2 Sales Returns, column B",
+   "reason": "Schedule 2 item 2 Sales Returns: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm2C",
+   "html_id": "p2c77",
+   "printed": "Schedule 2 item 2 Sales Returns, column C",
+   "reason": "Schedule 2 item 2 Sales Returns: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm2D",
+   "html_id": "p2c78",
+   "printed": "Schedule 2 item 2 Sales Returns, column D",
+   "reason": "Schedule 2 item 2 Sales Returns: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm3A",
+   "html_id": "p2c80",
+   "printed": "Schedule 2 item 3 Net Sales, column A",
+   "reason": "Schedule 2 item 3 Net Sales: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm3B",
+   "html_id": "p2c81",
+   "printed": "Schedule 2 item 3 Net Sales, column B",
+   "reason": "Schedule 2 item 3 Net Sales: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm3C",
+   "html_id": "p2c82",
+   "printed": "Schedule 2 item 3 Net Sales, column C",
+   "reason": "Schedule 2 item 3 Net Sales: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm3D",
+   "html_id": "p2c83",
+   "printed": "Schedule 2 item 3 Net Sales, column D",
+   "reason": "Schedule 2 item 3 Net Sales: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm4A",
+   "html_id": "p2c85",
+   "printed": "Schedule 2 item 4 Cost of Sales, column A",
+   "reason": "Schedule 2 item 4 Cost of Sales: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm4B",
+   "html_id": "p2c86",
+   "printed": "Schedule 2 item 4 Cost of Sales, column B",
+   "reason": "Schedule 2 item 4 Cost of Sales: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm4C",
+   "html_id": "p2c87",
+   "printed": "Schedule 2 item 4 Cost of Sales, column C",
+   "reason": "Schedule 2 item 4 Cost of Sales: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm4D",
+   "html_id": "p2c88",
+   "printed": "Schedule 2 item 4 Cost of Sales, column D",
+   "reason": "Schedule 2 item 4 Cost of Sales: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm5A",
+   "html_id": "p2c90",
+   "printed": "Schedule 2 item 5 Gross Income, column A",
+   "reason": "Schedule 2 item 5 Gross Income: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm5B",
+   "html_id": "p2c91",
+   "printed": "Schedule 2 item 5 Gross Income, column B",
+   "reason": "Schedule 2 item 5 Gross Income: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm5C",
+   "html_id": "p2c92",
+   "printed": "Schedule 2 item 5 Gross Income, column C",
+   "reason": "Schedule 2 item 5 Gross Income: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm5D",
+   "html_id": "p2c93",
+   "printed": "Schedule 2 item 5 Gross Income, column D",
+   "reason": "Schedule 2 item 5 Gross Income: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm6A",
+   "html_id": "p2c95",
+   "printed": "Schedule 2 item 6 Other Taxable Income, column A",
+   "reason": "Schedule 2 item 6 Other Taxable Income: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm6B",
+   "html_id": "p2c96",
+   "printed": "Schedule 2 item 6 Other Taxable Income, column B",
+   "reason": "Schedule 2 item 6 Other Taxable Income: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm6C",
+   "html_id": "p2c97",
+   "printed": "Schedule 2 item 6 Other Taxable Income, column C",
+   "reason": "Schedule 2 item 6 Other Taxable Income: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm6D",
+   "html_id": "p2c98",
+   "printed": "Schedule 2 item 6 Other Taxable Income, column D",
+   "reason": "Schedule 2 item 6 Other Taxable Income: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm7A",
+   "html_id": "p2c100",
+   "printed": "Schedule 2 item 7 Total Taxable Income, column A",
+   "reason": "Schedule 2 item 7 Total Taxable Income: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm7B",
+   "html_id": "p2c101",
+   "printed": "Schedule 2 item 7 Total Taxable Income, column B",
+   "reason": "Schedule 2 item 7 Total Taxable Income: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm7C",
+   "html_id": "p2c102",
+   "printed": "Schedule 2 item 7 Total Taxable Income, column C",
+   "reason": "Schedule 2 item 7 Total Taxable Income: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm7D",
+   "html_id": "p2c103",
+   "printed": "Schedule 2 item 7 Total Taxable Income, column D",
+   "reason": "Schedule 2 item 7 Total Taxable Income: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm8A",
+   "html_id": "p2c106",
+   "printed": "Schedule 2 item 8 Ordinary Allowable Itemized Deductions, column A",
+   "reason": "Schedule 2 item 8 Ordinary Allowable Itemized Deductions: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm8B",
+   "html_id": "p2c107",
+   "printed": "Schedule 2 item 8 Ordinary Allowable Itemized Deductions, column B",
+   "reason": "Schedule 2 item 8 Ordinary Allowable Itemized Deductions: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm8C",
+   "html_id": "p2c108",
+   "printed": "Schedule 2 item 8 Ordinary Allowable Itemized Deductions, column C",
+   "reason": "Schedule 2 item 8 Ordinary Allowable Itemized Deductions: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm8D",
+   "html_id": "p2c109",
+   "printed": "Schedule 2 item 8 Ordinary Allowable Itemized Deductions, column D",
+   "reason": "Schedule 2 item 8 Ordinary Allowable Itemized Deductions: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm9A",
+   "html_id": "p2c111",
+   "printed": "Schedule 2 item 9 Special Allowable Itemized Deductions, column A",
+   "reason": "Schedule 2 item 9 Special Allowable Itemized Deductions: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm9B",
+   "html_id": "p2c112",
+   "printed": "Schedule 2 item 9 Special Allowable Itemized Deductions, column B",
+   "reason": "Schedule 2 item 9 Special Allowable Itemized Deductions: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm9C",
+   "html_id": "p2c113",
+   "printed": "Schedule 2 item 9 Special Allowable Itemized Deductions, column C",
+   "reason": "Schedule 2 item 9 Special Allowable Itemized Deductions: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm9D",
+   "html_id": "p2c114",
+   "printed": "Schedule 2 item 9 Special Allowable Itemized Deductions, column D",
+   "reason": "Schedule 2 item 9 Special Allowable Itemized Deductions: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It10B",
+   "html_id": "p2c117",
+   "printed": "Schedule 2 item 10 NOLCO, column B",
+   "reason": "Schedule 2 item 10 NOLCO: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It10C",
+   "html_id": "p2c118",
+   "printed": "Schedule 2 item 10 NOLCO, column C",
+   "reason": "Schedule 2 item 10 NOLCO: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It10D",
+   "html_id": "p2c119",
+   "printed": "Schedule 2 item 10 NOLCO, column D",
+   "reason": "Schedule 2 item 10 NOLCO: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It11A",
+   "html_id": "p2c121",
+   "printed": "Schedule 2 item 11 Total Itemized Deductions, column A",
+   "reason": "Schedule 2 item 11 Total Itemized Deductions: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It11B",
+   "html_id": "p2c122",
+   "printed": "Schedule 2 item 11 Total Itemized Deductions, column B",
+   "reason": "Schedule 2 item 11 Total Itemized Deductions: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It11C",
+   "html_id": "p2c123",
+   "printed": "Schedule 2 item 11 Total Itemized Deductions, column C",
+   "reason": "Schedule 2 item 11 Total Itemized Deductions: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It11D",
+   "html_id": "p2c124",
+   "printed": "Schedule 2 item 11 Total Itemized Deductions, column D",
+   "reason": "Schedule 2 item 11 Total Itemized Deductions: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It12C",
+   "html_id": "p2c133",
+   "printed": "Schedule 2 item 12 Optional Standard Deduction, column C",
+   "reason": "Schedule 2 item 12 Optional Standard Deduction: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It12D",
+   "html_id": "p2c134",
+   "printed": "Schedule 2 item 12 Optional Standard Deduction, column D",
+   "reason": "Schedule 2 item 12 Optional Standard Deduction: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It13A",
+   "html_id": "p2c257",
+   "printed": "Schedule 2 item 13 Net Taxable Income, column A",
+   "reason": "Schedule 2 item 13 Net Taxable Income: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It13B",
+   "html_id": "p2c262",
+   "printed": "Schedule 2 item 13 Net Taxable Income, column B",
+   "reason": "Schedule 2 item 13 Net Taxable Income: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It13C",
+   "html_id": "p2c268",
+   "printed": "Schedule 2 item 13 Net Taxable Income, column C",
+   "reason": "Schedule 2 item 13 Net Taxable Income: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It13D",
+   "html_id": "p2c139",
+   "printed": "Schedule 2 item 13 Net Taxable Income, column D",
+   "reason": "Schedule 2 item 13 Net Taxable Income: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It15B",
+   "html_id": "p2c158",
+   "printed": "Schedule 2 item 15 Income Tax Due other than MCIT, column B",
+   "reason": "Schedule 2 item 15 Income Tax Due other than MCIT: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It15C",
+   "html_id": "p2c159",
+   "printed": "Schedule 2 item 15 Income Tax Due other than MCIT, column C",
+   "reason": "Schedule 2 item 15 Income Tax Due other than MCIT: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It15D",
+   "html_id": "p2c160",
+   "printed": "Schedule 2 item 15 Income Tax Due other than MCIT, column D",
+   "reason": "Schedule 2 item 15 Income Tax Due other than MCIT: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It16B",
+   "html_id": "p2c163",
+   "printed": "Schedule 2 item 16 Share of Other Government Agency, column B",
+   "reason": "Schedule 2 item 16 Share of Other Government Agency: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It16D",
+   "html_id": "p2c165",
+   "printed": "Schedule 2 item 16 Share of Other Government Agency, column D",
+   "reason": "Schedule 2 item 16 Share of Other Government Agency: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It17B",
+   "html_id": "p2c167",
+   "printed": "Schedule 2 item 17 Net Income Tax Due, column B",
+   "reason": "Schedule 2 item 17 Net Income Tax Due: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It17C",
+   "html_id": "p2c168",
+   "printed": "Schedule 2 item 17 Net Income Tax Due, column C",
+   "reason": "Schedule 2 item 17 Net Income Tax Due: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It17D",
+   "html_id": "p2c169",
+   "printed": "Schedule 2 item 17 Net Income Tax Due, column D",
+   "reason": "Schedule 2 item 17 Net Income Tax Due: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It18C",
+   "html_id": "p2c172",
+   "printed": "Schedule 2 item 18 MCIT, column C",
+   "reason": "Schedule 2 item 18 MCIT: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It18D",
+   "html_id": "p2c173",
+   "printed": "Schedule 2 item 18 MCIT, column D",
+   "reason": "Schedule 2 item 18 MCIT: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It19B",
+   "html_id": "p2c175",
+   "printed": "Schedule 2 item 19 Total Income Tax Due, column B",
+   "reason": "Schedule 2 item 19 Total Income Tax Due: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It19C",
+   "html_id": "p2c176",
+   "printed": "Schedule 2 item 19 Total Income Tax Due, column C",
+   "reason": "Schedule 2 item 19 Total Income Tax Due: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2It19D",
+   "html_id": "p2c177",
+   "printed": "Schedule 2 item 19 Total Income Tax Due, column D",
+   "reason": "Schedule 2 item 19 Total Income Tax Due: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It20A",
+   "html_id": "p2c180",
+   "printed": "Schedule 3 item 20 Prior Year Excess Credits, column A",
+   "reason": "Schedule 3 item 20 Prior Year Excess Credits: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It20B",
+   "html_id": "p2c181",
+   "printed": "Schedule 3 item 20 Prior Year Excess Credits, column B",
+   "reason": "Schedule 3 item 20 Prior Year Excess Credits: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It20C",
+   "html_id": "p2c182",
+   "printed": "Schedule 3 item 20 Prior Year Excess Credits, column C",
+   "reason": "Schedule 3 item 20 Prior Year Excess Credits: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It20D",
+   "html_id": "p2c183",
+   "printed": "Schedule 3 item 20 Prior Year Excess Credits, column D",
+   "reason": "Schedule 3 item 20 Prior Year Excess Credits: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It21C",
+   "html_id": "p2c187",
+   "printed": "Schedule 3 item 21 MCIT payment from previous quarters, column C",
+   "reason": "Schedule 3 item 21 MCIT payment from previous quarters: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It21D",
+   "html_id": "p2c188",
+   "printed": "Schedule 3 item 21 MCIT payment from previous quarters, column D",
+   "reason": "Schedule 3 item 21 MCIT payment from previous quarters: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It22A",
+   "html_id": "p2c190",
+   "printed": "Schedule 3 item 22 Regular rate payment, column A",
+   "reason": "Schedule 3 item 22 Regular rate payment: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It22B",
+   "html_id": "p2c191",
+   "printed": "Schedule 3 item 22 Regular rate payment, column B",
+   "reason": "Schedule 3 item 22 Regular rate payment: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It22C",
+   "html_id": "p2c192",
+   "printed": "Schedule 3 item 22 Regular rate payment, column C",
+   "reason": "Schedule 3 item 22 Regular rate payment: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It22D",
+   "html_id": "p2c193",
+   "printed": "Schedule 3 item 22 Regular rate payment, column D",
+   "reason": "Schedule 3 item 22 Regular rate payment: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It23C",
+   "html_id": "p2c197",
+   "printed": "Schedule 3 item 23 Excess MCIT applied, column C",
+   "reason": "Schedule 3 item 23 Excess MCIT applied: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It23D",
+   "html_id": "p2c198",
+   "printed": "Schedule 3 item 23 Excess MCIT applied, column D",
+   "reason": "Schedule 3 item 23 Excess MCIT applied: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It24A",
+   "html_id": "p2c200",
+   "printed": "Schedule 3 item 24 Creditable tax withheld, previous quarters, column A",
+   "reason": "Schedule 3 item 24 Creditable tax withheld, previous quarters: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It24B",
+   "html_id": "p2c201",
+   "printed": "Schedule 3 item 24 Creditable tax withheld, previous quarters, column B",
+   "reason": "Schedule 3 item 24 Creditable tax withheld, previous quarters: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It24C",
+   "html_id": "p2c202",
+   "printed": "Schedule 3 item 24 Creditable tax withheld, previous quarters, column C",
+   "reason": "Schedule 3 item 24 Creditable tax withheld, previous quarters: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It24D",
+   "html_id": "p2c203",
+   "printed": "Schedule 3 item 24 Creditable tax withheld, previous quarters, column D",
+   "reason": "Schedule 3 item 24 Creditable tax withheld, previous quarters: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It25A",
+   "html_id": "p2c205",
+   "printed": "Schedule 3 item 25 Creditable tax withheld, 4th quarter, column A",
+   "reason": "Schedule 3 item 25 Creditable tax withheld, 4th quarter: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It25B",
+   "html_id": "p2c206",
+   "printed": "Schedule 3 item 25 Creditable tax withheld, 4th quarter, column B",
+   "reason": "Schedule 3 item 25 Creditable tax withheld, 4th quarter: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It25C",
+   "html_id": "p2c207",
+   "printed": "Schedule 3 item 25 Creditable tax withheld, 4th quarter, column C",
+   "reason": "Schedule 3 item 25 Creditable tax withheld, 4th quarter: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It25D",
+   "html_id": "p2c208",
+   "printed": "Schedule 3 item 25 Creditable tax withheld, 4th quarter, column D",
+   "reason": "Schedule 3 item 25 Creditable tax withheld, 4th quarter: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It26A",
+   "html_id": "p2c210",
+   "printed": "Schedule 3 item 26 Foreign tax credits, column A",
+   "reason": "Schedule 3 item 26 Foreign tax credits: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It26B",
+   "html_id": "p2c211",
+   "printed": "Schedule 3 item 26 Foreign tax credits, column B",
+   "reason": "Schedule 3 item 26 Foreign tax credits: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It26C",
+   "html_id": "p2c212",
+   "printed": "Schedule 3 item 26 Foreign tax credits, column C",
+   "reason": "Schedule 3 item 26 Foreign tax credits: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It26D",
+   "html_id": "p2c213",
+   "printed": "Schedule 3 item 26 Foreign tax credits, column D",
+   "reason": "Schedule 3 item 26 Foreign tax credits: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It27A",
+   "html_id": "p2c215",
+   "printed": "Schedule 3 item 27 Tax paid in amended return, column A",
+   "reason": "Schedule 3 item 27 Tax paid in amended return: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It27B",
+   "html_id": "p2c216",
+   "printed": "Schedule 3 item 27 Tax paid in amended return, column B",
+   "reason": "Schedule 3 item 27 Tax paid in amended return: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It27C",
+   "html_id": "p2c217",
+   "printed": "Schedule 3 item 27 Tax paid in amended return, column C",
+   "reason": "Schedule 3 item 27 Tax paid in amended return: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It27D",
+   "html_id": "p2c218",
+   "printed": "Schedule 3 item 27 Tax paid in amended return, column D",
+   "reason": "Schedule 3 item 27 Tax paid in amended return: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It28A",
+   "html_id": "p2c220",
+   "printed": "Schedule 3 item 28 Special rate payments, column A",
+   "reason": "Schedule 3 item 28 Special rate payments: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It28B",
+   "html_id": "p2c221",
+   "printed": "Schedule 3 item 28 Special rate payments, column B",
+   "reason": "Schedule 3 item 28 Special rate payments: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It28C",
+   "html_id": "p2c222",
+   "printed": "Schedule 3 item 28 Special rate payments, column C",
+   "reason": "Schedule 3 item 28 Special rate payments: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It28D",
+   "html_id": "p2c223",
+   "printed": "Schedule 3 item 28 Special rate payments, column D",
+   "reason": "Schedule 3 item 28 Special rate payments: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It29A",
+   "html_id": "p2c225",
+   "printed": "Schedule 3 item 29 Special tax credits, column A",
+   "reason": "Schedule 3 item 29 Special tax credits: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It29B",
+   "html_id": "p2c226",
+   "printed": "Schedule 3 item 29 Special tax credits, column B",
+   "reason": "Schedule 3 item 29 Special tax credits: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It29C",
+   "html_id": "p2c227",
+   "printed": "Schedule 3 item 29 Special tax credits, column C",
+   "reason": "Schedule 3 item 29 Special tax credits: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It29D",
+   "html_id": "p2c228",
+   "printed": "Schedule 3 item 29 Special tax credits, column D",
+   "reason": "Schedule 3 item 29 Special tax credits: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It30A",
+   "html_id": "p2c231",
+   "printed": "Schedule 3 item 30 Other tax credits (specify), column A",
+   "reason": "Schedule 3 item 30 Other tax credits (specify): column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It30B",
+   "html_id": "p2c232",
+   "printed": "Schedule 3 item 30 Other tax credits (specify), column B",
+   "reason": "Schedule 3 item 30 Other tax credits (specify): column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It30C",
+   "html_id": "p2c233",
+   "printed": "Schedule 3 item 30 Other tax credits (specify), column C",
+   "reason": "Schedule 3 item 30 Other tax credits (specify): column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It30D",
+   "html_id": "p2c234",
+   "printed": "Schedule 3 item 30 Other tax credits (specify), column D",
+   "reason": "Schedule 3 item 30 Other tax credits (specify): column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It31A",
+   "html_id": "p2c236",
+   "printed": "Schedule 3 item 31 Other tax credits (specify), column A",
+   "reason": "Schedule 3 item 31 Other tax credits (specify): column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It31B",
+   "html_id": "p2c237",
+   "printed": "Schedule 3 item 31 Other tax credits (specify), column B",
+   "reason": "Schedule 3 item 31 Other tax credits (specify): column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It31C",
+   "html_id": "p2c238",
+   "printed": "Schedule 3 item 31 Other tax credits (specify), column C",
+   "reason": "Schedule 3 item 31 Other tax credits (specify): column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It31D",
+   "html_id": "p2c239",
+   "printed": "Schedule 3 item 31 Other tax credits (specify), column D",
+   "reason": "Schedule 3 item 31 Other tax credits (specify): column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It32A",
+   "html_id": "p2c241",
+   "printed": "Schedule 3 item 32 Total Tax Credits/Payments, column A",
+   "reason": "Schedule 3 item 32 Total Tax Credits/Payments: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It32B",
+   "html_id": "p2c242",
+   "printed": "Schedule 3 item 32 Total Tax Credits/Payments, column B",
+   "reason": "Schedule 3 item 32 Total Tax Credits/Payments: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It32C",
+   "html_id": "p2c243",
+   "printed": "Schedule 3 item 32 Total Tax Credits/Payments, column C",
+   "reason": "Schedule 3 item 32 Total Tax Credits/Payments: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It32D",
+   "html_id": "p2c244",
+   "printed": "Schedule 3 item 32 Total Tax Credits/Payments, column D",
+   "reason": "Schedule 3 item 32 Total Tax Credits/Payments: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It33A",
+   "html_id": "p2c246",
+   "printed": "Schedule 3 item 33 Net Tax Payable, column A",
+   "reason": "Schedule 3 item 33 Net Tax Payable: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It33B",
+   "html_id": "p2c247",
+   "printed": "Schedule 3 item 33 Net Tax Payable, column B",
+   "reason": "Schedule 3 item 33 Net Tax Payable: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It33C",
+   "html_id": "p2c248",
+   "printed": "Schedule 3 item 33 Net Tax Payable, column C",
+   "reason": "Schedule 3 item 33 Net Tax Payable: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It33D",
+   "html_id": "p2c249",
+   "printed": "Schedule 3 item 33 Net Tax Payable, column D",
+   "reason": "Schedule 3 item 33 Net Tax Payable: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc4Itm1A",
+   "html_id": "p3c14",
+   "printed": "Schedule 4 item 1 Regular Income Tax Otherwise Due, column A",
+   "reason": "Schedule 4 item 1 Regular Income Tax Otherwise Due: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc4Itm1B",
+   "html_id": "p3c15",
+   "printed": "Schedule 4 item 1 Regular Income Tax Otherwise Due, column B",
+   "reason": "Schedule 4 item 1 Regular Income Tax Otherwise Due: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc4Itm1D",
+   "html_id": "p3c17",
+   "printed": "Schedule 4 item 1 Regular Income Tax Otherwise Due, column D",
+   "reason": "Schedule 4 item 1 Regular Income Tax Otherwise Due: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm2A",
+   "html_id": "p3c19",
+   "printed": "Schedule 4 item 2 Tax Relief, column A",
+   "reason": "Schedule 4 item 2 Tax Relief: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm2B",
+   "html_id": "p3c20",
+   "printed": "Schedule 4 item 2 Tax Relief, column B",
+   "reason": "Schedule 4 item 2 Tax Relief: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm2C",
+   "html_id": "p3c21",
+   "printed": "Schedule 4 item 2 Tax Relief, column C",
+   "reason": "Schedule 4 item 2 Tax Relief: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm2D",
+   "html_id": "p3c22",
+   "printed": "Schedule 4 item 2 Tax Relief, column D",
+   "reason": "Schedule 4 item 2 Tax Relief: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm3A",
+   "html_id": "p3c24",
+   "printed": "Schedule 4 item 3 Sub-Total Tax Relief, column A",
+   "reason": "Schedule 4 item 3 Sub-Total Tax Relief: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm3B",
+   "html_id": "p3c25",
+   "printed": "Schedule 4 item 3 Sub-Total Tax Relief, column B",
+   "reason": "Schedule 4 item 3 Sub-Total Tax Relief: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm3C",
+   "html_id": "p3c26",
+   "printed": "Schedule 4 item 3 Sub-Total Tax Relief, column C",
+   "reason": "Schedule 4 item 3 Sub-Total Tax Relief: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm3D",
+   "html_id": "p3c27",
+   "printed": "Schedule 4 item 3 Sub-Total Tax Relief, column D",
+   "reason": "Schedule 4 item 3 Sub-Total Tax Relief: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm4B",
+   "html_id": "p3c30",
+   "printed": "Schedule 4 item 4 Less: Income Tax Due, column B",
+   "reason": "Schedule 4 item 4 Less: Income Tax Due: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm4D",
+   "html_id": "p3c32",
+   "printed": "Schedule 4 item 4 Less: Income Tax Due, column D",
+   "reason": "Schedule 4 item 4 Less: Income Tax Due: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm5A",
+   "html_id": "p3c34",
+   "printed": "Schedule 4 item 5 Tax Relief Availment, column A",
+   "reason": "Schedule 4 item 5 Tax Relief Availment: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm5B",
+   "html_id": "p3c35",
+   "printed": "Schedule 4 item 5 Tax Relief Availment, column B",
+   "reason": "Schedule 4 item 5 Tax Relief Availment: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm5C",
+   "html_id": "p3c36",
+   "printed": "Schedule 4 item 5 Tax Relief Availment, column C",
+   "reason": "Schedule 4 item 5 Tax Relief Availment: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm5D",
+   "html_id": "p3c37",
+   "printed": "Schedule 4 item 5 Tax Relief Availment, column D",
+   "reason": "Schedule 4 item 5 Tax Relief Availment: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm6A",
+   "html_id": "p3c39",
+   "printed": "Schedule 4 item 6 Special Tax Credit, column A",
+   "reason": "Schedule 4 item 6 Special Tax Credit: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm6B",
+   "html_id": "p3c40",
+   "printed": "Schedule 4 item 6 Special Tax Credit, column B",
+   "reason": "Schedule 4 item 6 Special Tax Credit: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm6C",
+   "html_id": "p3c41",
+   "printed": "Schedule 4 item 6 Special Tax Credit, column C",
+   "reason": "Schedule 4 item 6 Special Tax Credit: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm6D",
+   "html_id": "p3c42",
+   "printed": "Schedule 4 item 6 Special Tax Credit, column D",
+   "reason": "Schedule 4 item 6 Special Tax Credit: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm7A",
+   "html_id": "p3c44",
+   "printed": "Schedule 4 item 7 Total Tax Relief Availment, column A",
+   "reason": "Schedule 4 item 7 Total Tax Relief Availment: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm7B",
+   "html_id": "p3c45",
+   "printed": "Schedule 4 item 7 Total Tax Relief Availment, column B",
+   "reason": "Schedule 4 item 7 Total Tax Relief Availment: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm7C",
+   "html_id": "p3c46",
+   "printed": "Schedule 4 item 7 Total Tax Relief Availment, column C",
+   "reason": "Schedule 4 item 7 Total Tax Relief Availment: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc4Itm7D",
+   "html_id": "p3c47",
+   "printed": "Schedule 4 item 7 Total Tax Relief Availment, column D",
+   "reason": "Schedule 4 item 7 Total Tax Relief Availment: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm1A",
+   "html_id": "p3c50",
+   "printed": "Schedule 5 item 1 Amortizations, column A",
+   "reason": "Schedule 5 item 1 Amortizations: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm1B",
+   "html_id": "p3c51",
+   "printed": "Schedule 5 item 1 Amortizations, column B",
+   "reason": "Schedule 5 item 1 Amortizations: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm1C",
+   "html_id": "p3c52",
+   "printed": "Schedule 5 item 1 Amortizations, column C",
+   "reason": "Schedule 5 item 1 Amortizations: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm1D",
+   "html_id": "p3c53",
+   "printed": "Schedule 5 item 1 Amortizations, column D",
+   "reason": "Schedule 5 item 1 Amortizations: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm2A",
+   "html_id": "p3c55",
+   "printed": "Schedule 5 item 2 Bad Debts, column A",
+   "reason": "Schedule 5 item 2 Bad Debts: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm2B",
+   "html_id": "p3c56",
+   "printed": "Schedule 5 item 2 Bad Debts, column B",
+   "reason": "Schedule 5 item 2 Bad Debts: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm2C",
+   "html_id": "p3c57",
+   "printed": "Schedule 5 item 2 Bad Debts, column C",
+   "reason": "Schedule 5 item 2 Bad Debts: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm2D",
+   "html_id": "p3c58",
+   "printed": "Schedule 5 item 2 Bad Debts, column D",
+   "reason": "Schedule 5 item 2 Bad Debts: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm3A",
+   "html_id": "p3c60",
+   "printed": "Schedule 5 item 3 Charitable Contributions, column A",
+   "reason": "Schedule 5 item 3 Charitable Contributions: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm3B",
+   "html_id": "p3c61",
+   "printed": "Schedule 5 item 3 Charitable Contributions, column B",
+   "reason": "Schedule 5 item 3 Charitable Contributions: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm3C",
+   "html_id": "p3c62",
+   "printed": "Schedule 5 item 3 Charitable Contributions, column C",
+   "reason": "Schedule 5 item 3 Charitable Contributions: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm3D",
+   "html_id": "p3c63",
+   "printed": "Schedule 5 item 3 Charitable Contributions, column D",
+   "reason": "Schedule 5 item 3 Charitable Contributions: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm4A",
+   "html_id": "p3c65",
+   "printed": "Schedule 5 item 4 Depletion, column A",
+   "reason": "Schedule 5 item 4 Depletion: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm4B",
+   "html_id": "p3c66",
+   "printed": "Schedule 5 item 4 Depletion, column B",
+   "reason": "Schedule 5 item 4 Depletion: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm4C",
+   "html_id": "p3c67",
+   "printed": "Schedule 5 item 4 Depletion, column C",
+   "reason": "Schedule 5 item 4 Depletion: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm4D",
+   "html_id": "p3c68",
+   "printed": "Schedule 5 item 4 Depletion, column D",
+   "reason": "Schedule 5 item 4 Depletion: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm5A",
+   "html_id": "p3c70",
+   "printed": "Schedule 5 item 5 Depreciation, column A",
+   "reason": "Schedule 5 item 5 Depreciation: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm5B",
+   "html_id": "p3c71",
+   "printed": "Schedule 5 item 5 Depreciation, column B",
+   "reason": "Schedule 5 item 5 Depreciation: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm5C",
+   "html_id": "p3c72",
+   "printed": "Schedule 5 item 5 Depreciation, column C",
+   "reason": "Schedule 5 item 5 Depreciation: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm5D",
+   "html_id": "p3c73",
+   "printed": "Schedule 5 item 5 Depreciation, column D",
+   "reason": "Schedule 5 item 5 Depreciation: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm6A",
+   "html_id": "p3c75",
+   "printed": "Schedule 5 item 6 Entertainment, column A",
+   "reason": "Schedule 5 item 6 Entertainment: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm6B",
+   "html_id": "p3c76",
+   "printed": "Schedule 5 item 6 Entertainment, column B",
+   "reason": "Schedule 5 item 6 Entertainment: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm6C",
+   "html_id": "p3c77",
+   "printed": "Schedule 5 item 6 Entertainment, column C",
+   "reason": "Schedule 5 item 6 Entertainment: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm6D",
+   "html_id": "p3c78",
+   "printed": "Schedule 5 item 6 Entertainment, column D",
+   "reason": "Schedule 5 item 6 Entertainment: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm7A",
+   "html_id": "p3c80",
+   "printed": "Schedule 5 item 7 Fringe Benefits, column A",
+   "reason": "Schedule 5 item 7 Fringe Benefits: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm7B",
+   "html_id": "p3c81",
+   "printed": "Schedule 5 item 7 Fringe Benefits, column B",
+   "reason": "Schedule 5 item 7 Fringe Benefits: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm7C",
+   "html_id": "p3c82",
+   "printed": "Schedule 5 item 7 Fringe Benefits, column C",
+   "reason": "Schedule 5 item 7 Fringe Benefits: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm7D",
+   "html_id": "p3c83",
+   "printed": "Schedule 5 item 7 Fringe Benefits, column D",
+   "reason": "Schedule 5 item 7 Fringe Benefits: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm8A",
+   "html_id": "p3c85",
+   "printed": "Schedule 5 item 8 Interest, column A",
+   "reason": "Schedule 5 item 8 Interest: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm8B",
+   "html_id": "p3c86",
+   "printed": "Schedule 5 item 8 Interest, column B",
+   "reason": "Schedule 5 item 8 Interest: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm8C",
+   "html_id": "p3c87",
+   "printed": "Schedule 5 item 8 Interest, column C",
+   "reason": "Schedule 5 item 8 Interest: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm8D",
+   "html_id": "p3c88",
+   "printed": "Schedule 5 item 8 Interest, column D",
+   "reason": "Schedule 5 item 8 Interest: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm9A",
+   "html_id": "p3c90",
+   "printed": "Schedule 5 item 9 Losses, column A",
+   "reason": "Schedule 5 item 9 Losses: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm9B",
+   "html_id": "p3c91",
+   "printed": "Schedule 5 item 9 Losses, column B",
+   "reason": "Schedule 5 item 9 Losses: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm9C",
+   "html_id": "p3c92",
+   "printed": "Schedule 5 item 9 Losses, column C",
+   "reason": "Schedule 5 item 9 Losses: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm9D",
+   "html_id": "p3c93",
+   "printed": "Schedule 5 item 9 Losses, column D",
+   "reason": "Schedule 5 item 9 Losses: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm10A",
+   "html_id": "p3c95",
+   "printed": "Schedule 5 item 10 Pension Trusts, column A",
+   "reason": "Schedule 5 item 10 Pension Trusts: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm10B",
+   "html_id": "p3c96",
+   "printed": "Schedule 5 item 10 Pension Trusts, column B",
+   "reason": "Schedule 5 item 10 Pension Trusts: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm10C",
+   "html_id": "p3c97",
+   "printed": "Schedule 5 item 10 Pension Trusts, column C",
+   "reason": "Schedule 5 item 10 Pension Trusts: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm10D",
+   "html_id": "p3c98",
+   "printed": "Schedule 5 item 10 Pension Trusts, column D",
+   "reason": "Schedule 5 item 10 Pension Trusts: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm11A",
+   "html_id": "p3c100",
+   "printed": "Schedule 5 item 11 Rental, column A",
+   "reason": "Schedule 5 item 11 Rental: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm11B",
+   "html_id": "p3c101",
+   "printed": "Schedule 5 item 11 Rental, column B",
+   "reason": "Schedule 5 item 11 Rental: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm11C",
+   "html_id": "p3c102",
+   "printed": "Schedule 5 item 11 Rental, column C",
+   "reason": "Schedule 5 item 11 Rental: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm11D",
+   "html_id": "p3c103",
+   "printed": "Schedule 5 item 11 Rental, column D",
+   "reason": "Schedule 5 item 11 Rental: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm12A",
+   "html_id": "p3c105",
+   "printed": "Schedule 5 item 12 Research and Development, column A",
+   "reason": "Schedule 5 item 12 Research and Development: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm12B",
+   "html_id": "p3c106",
+   "printed": "Schedule 5 item 12 Research and Development, column B",
+   "reason": "Schedule 5 item 12 Research and Development: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm12C",
+   "html_id": "p3c107",
+   "printed": "Schedule 5 item 12 Research and Development, column C",
+   "reason": "Schedule 5 item 12 Research and Development: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm12D",
+   "html_id": "p3c108",
+   "printed": "Schedule 5 item 12 Research and Development, column D",
+   "reason": "Schedule 5 item 12 Research and Development: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm13A",
+   "html_id": "p3c110",
+   "printed": "Schedule 5 item 13 Salaries, Wages and Allowances, column A",
+   "reason": "Schedule 5 item 13 Salaries, Wages and Allowances: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm13B",
+   "html_id": "p3c111",
+   "printed": "Schedule 5 item 13 Salaries, Wages and Allowances, column B",
+   "reason": "Schedule 5 item 13 Salaries, Wages and Allowances: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm13C",
+   "html_id": "p3c112",
+   "printed": "Schedule 5 item 13 Salaries, Wages and Allowances, column C",
+   "reason": "Schedule 5 item 13 Salaries, Wages and Allowances: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm13D",
+   "html_id": "p3c113",
+   "printed": "Schedule 5 item 13 Salaries, Wages and Allowances, column D",
+   "reason": "Schedule 5 item 13 Salaries, Wages and Allowances: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm14A",
+   "html_id": "p3c115",
+   "printed": "Schedule 5 item 14 SSS, GSIS, Philhealth, HDMF, column A",
+   "reason": "Schedule 5 item 14 SSS, GSIS, Philhealth, HDMF: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm14B",
+   "html_id": "p3c116",
+   "printed": "Schedule 5 item 14 SSS, GSIS, Philhealth, HDMF, column B",
+   "reason": "Schedule 5 item 14 SSS, GSIS, Philhealth, HDMF: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm14C",
+   "html_id": "p3c117",
+   "printed": "Schedule 5 item 14 SSS, GSIS, Philhealth, HDMF, column C",
+   "reason": "Schedule 5 item 14 SSS, GSIS, Philhealth, HDMF: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm14D",
+   "html_id": "p3c118",
+   "printed": "Schedule 5 item 14 SSS, GSIS, Philhealth, HDMF, column D",
+   "reason": "Schedule 5 item 14 SSS, GSIS, Philhealth, HDMF: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm15A",
+   "html_id": "p3c120",
+   "printed": "Schedule 5 item 15 Taxes and Licenses, column A",
+   "reason": "Schedule 5 item 15 Taxes and Licenses: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm15B",
+   "html_id": "p3c121",
+   "printed": "Schedule 5 item 15 Taxes and Licenses, column B",
+   "reason": "Schedule 5 item 15 Taxes and Licenses: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm15C",
+   "html_id": "p3c122",
+   "printed": "Schedule 5 item 15 Taxes and Licenses, column C",
+   "reason": "Schedule 5 item 15 Taxes and Licenses: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm15D",
+   "html_id": "p3c123",
+   "printed": "Schedule 5 item 15 Taxes and Licenses, column D",
+   "reason": "Schedule 5 item 15 Taxes and Licenses: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm16A",
+   "html_id": "p3c125",
+   "printed": "Schedule 5 item 16 Transportation and Travel, column A",
+   "reason": "Schedule 5 item 16 Transportation and Travel: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm16B",
+   "html_id": "p3c126",
+   "printed": "Schedule 5 item 16 Transportation and Travel, column B",
+   "reason": "Schedule 5 item 16 Transportation and Travel: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm16C",
+   "html_id": "p3c127",
+   "printed": "Schedule 5 item 16 Transportation and Travel, column C",
+   "reason": "Schedule 5 item 16 Transportation and Travel: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm16D",
+   "html_id": "p3c128",
+   "printed": "Schedule 5 item 16 Transportation and Travel, column D",
+   "reason": "Schedule 5 item 16 Transportation and Travel: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17aA",
+   "html_id": "p3c131",
+   "printed": "Schedule 5 item 17 a Janitorial and Messengerial Services, column A",
+   "reason": "Schedule 5 item 17 a Janitorial and Messengerial Services: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17aB",
+   "html_id": "p3c132",
+   "printed": "Schedule 5 item 17 a Janitorial and Messengerial Services, column B",
+   "reason": "Schedule 5 item 17 a Janitorial and Messengerial Services: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17aC",
+   "html_id": "p3c133",
+   "printed": "Schedule 5 item 17 a Janitorial and Messengerial Services, column C",
+   "reason": "Schedule 5 item 17 a Janitorial and Messengerial Services: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17aD",
+   "html_id": "p3c134",
+   "printed": "Schedule 5 item 17 a Janitorial and Messengerial Services, column D",
+   "reason": "Schedule 5 item 17 a Janitorial and Messengerial Services: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17bA",
+   "html_id": "p3c136",
+   "printed": "Schedule 5 item 17 b Professional Fees, column A",
+   "reason": "Schedule 5 item 17 b Professional Fees: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17bB",
+   "html_id": "p3c137",
+   "printed": "Schedule 5 item 17 b Professional Fees, column B",
+   "reason": "Schedule 5 item 17 b Professional Fees: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17bC",
+   "html_id": "p3c138",
+   "printed": "Schedule 5 item 17 b Professional Fees, column C",
+   "reason": "Schedule 5 item 17 b Professional Fees: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17bD",
+   "html_id": "p3c139",
+   "printed": "Schedule 5 item 17 b Professional Fees, column D",
+   "reason": "Schedule 5 item 17 b Professional Fees: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17cA",
+   "html_id": "p3c141",
+   "printed": "Schedule 5 item 17 c Security Services, column A",
+   "reason": "Schedule 5 item 17 c Security Services: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17cB",
+   "html_id": "p3c142",
+   "printed": "Schedule 5 item 17 c Security Services, column B",
+   "reason": "Schedule 5 item 17 c Security Services: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17cC",
+   "html_id": "p3c143",
+   "printed": "Schedule 5 item 17 c Security Services, column C",
+   "reason": "Schedule 5 item 17 c Security Services: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17cD",
+   "html_id": "p3c144",
+   "printed": "Schedule 5 item 17 c Security Services, column D",
+   "reason": "Schedule 5 item 17 c Security Services: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17dA",
+   "html_id": "p3c146",
+   "printed": "Schedule 5 item 17 d, column A",
+   "reason": "Schedule 5 item 17 d: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17dB",
+   "html_id": "p3c147",
+   "printed": "Schedule 5 item 17 d, column B",
+   "reason": "Schedule 5 item 17 d: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17dC",
+   "html_id": "p3c148",
+   "printed": "Schedule 5 item 17 d, column C",
+   "reason": "Schedule 5 item 17 d: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17dD",
+   "html_id": "p3c149",
+   "printed": "Schedule 5 item 17 d, column D",
+   "reason": "Schedule 5 item 17 d: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17eA",
+   "html_id": "p3c151",
+   "printed": "Schedule 5 item 17 e, column A",
+   "reason": "Schedule 5 item 17 e: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17eB",
+   "html_id": "p3c152",
+   "printed": "Schedule 5 item 17 e, column B",
+   "reason": "Schedule 5 item 17 e: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17eC",
+   "html_id": "p3c153",
+   "printed": "Schedule 5 item 17 e, column C",
+   "reason": "Schedule 5 item 17 e: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17eD",
+   "html_id": "p3c154",
+   "printed": "Schedule 5 item 17 e, column D",
+   "reason": "Schedule 5 item 17 e: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17fA",
+   "html_id": "p3c156",
+   "printed": "Schedule 5 item 17 f, column A",
+   "reason": "Schedule 5 item 17 f: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17fB",
+   "html_id": "p3c157",
+   "printed": "Schedule 5 item 17 f, column B",
+   "reason": "Schedule 5 item 17 f: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17fC",
+   "html_id": "p3c158",
+   "printed": "Schedule 5 item 17 f, column C",
+   "reason": "Schedule 5 item 17 f: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17fD",
+   "html_id": "p3c159",
+   "printed": "Schedule 5 item 17 f, column D",
+   "reason": "Schedule 5 item 17 f: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17gA",
+   "html_id": "p3c161",
+   "printed": "Schedule 5 item 17 g, column A",
+   "reason": "Schedule 5 item 17 g: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17gB",
+   "html_id": "p3c162",
+   "printed": "Schedule 5 item 17 g, column B",
+   "reason": "Schedule 5 item 17 g: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17gC",
+   "html_id": "p3c163",
+   "printed": "Schedule 5 item 17 g, column C",
+   "reason": "Schedule 5 item 17 g: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17gD",
+   "html_id": "p3c164",
+   "printed": "Schedule 5 item 17 g, column D",
+   "reason": "Schedule 5 item 17 g: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17hA",
+   "html_id": "p3c166",
+   "printed": "Schedule 5 item 17 h, column A",
+   "reason": "Schedule 5 item 17 h: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17hB",
+   "html_id": "p3c167",
+   "printed": "Schedule 5 item 17 h, column B",
+   "reason": "Schedule 5 item 17 h: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17hC",
+   "html_id": "p3c168",
+   "printed": "Schedule 5 item 17 h, column C",
+   "reason": "Schedule 5 item 17 h: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17hD",
+   "html_id": "p3c169",
+   "printed": "Schedule 5 item 17 h, column D",
+   "reason": "Schedule 5 item 17 h: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17iA",
+   "html_id": "p3c171",
+   "printed": "Schedule 5 item 17 i, column A",
+   "reason": "Schedule 5 item 17 i: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17iB",
+   "html_id": "p3c172",
+   "printed": "Schedule 5 item 17 i, column B",
+   "reason": "Schedule 5 item 17 i: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17iC",
+   "html_id": "p3c173",
+   "printed": "Schedule 5 item 17 i, column C",
+   "reason": "Schedule 5 item 17 i: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm17iD",
+   "html_id": "p3c174",
+   "printed": "Schedule 5 item 17 i, column D",
+   "reason": "Schedule 5 item 17 i: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm18A",
+   "html_id": "p3c176",
+   "printed": "Schedule 5 item 18 Total Ordinary Allowable Itemized Deductions, column A",
+   "reason": "Schedule 5 item 18 Total Ordinary Allowable Itemized Deductions: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm18B",
+   "html_id": "p3c177",
+   "printed": "Schedule 5 item 18 Total Ordinary Allowable Itemized Deductions, column B",
+   "reason": "Schedule 5 item 18 Total Ordinary Allowable Itemized Deductions: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm18C",
+   "html_id": "p3c178",
+   "printed": "Schedule 5 item 18 Total Ordinary Allowable Itemized Deductions, column C",
+   "reason": "Schedule 5 item 18 Total Ordinary Allowable Itemized Deductions: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5Itm18D",
+   "html_id": "p3c179",
+   "printed": "Schedule 5 item 18 Total Ordinary Allowable Itemized Deductions, column D",
+   "reason": "Schedule 5 item 18 Total Ordinary Allowable Itemized Deductions: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm1A",
+   "html_id": "p4c144",
+   "printed": "Schedule 10 item 1 Net Income/(Loss) per Books, column A",
+   "reason": "Schedule 10 item 1 Net Income/(Loss) per Books: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm1B",
+   "html_id": "p4c145",
+   "printed": "Schedule 10 item 1 Net Income/(Loss) per Books, column B",
+   "reason": "Schedule 10 item 1 Net Income/(Loss) per Books: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm1C",
+   "html_id": "p4c146",
+   "printed": "Schedule 10 item 1 Net Income/(Loss) per Books, column C",
+   "reason": "Schedule 10 item 1 Net Income/(Loss) per Books: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm1D",
+   "html_id": "p4c147",
+   "printed": "Schedule 10 item 1 Net Income/(Loss) per Books, column D",
+   "reason": "Schedule 10 item 1 Net Income/(Loss) per Books: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm2A",
+   "html_id": "p4c150",
+   "printed": "Schedule 10 item 2 Add: Non-Deductible Expenses, column A",
+   "reason": "Schedule 10 item 2 Add: Non-Deductible Expenses: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm2B",
+   "html_id": "p4c151",
+   "printed": "Schedule 10 item 2 Add: Non-Deductible Expenses, column B",
+   "reason": "Schedule 10 item 2 Add: Non-Deductible Expenses: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm2C",
+   "html_id": "p4c152",
+   "printed": "Schedule 10 item 2 Add: Non-Deductible Expenses, column C",
+   "reason": "Schedule 10 item 2 Add: Non-Deductible Expenses: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm2D",
+   "html_id": "p4c153",
+   "printed": "Schedule 10 item 2 Add: Non-Deductible Expenses, column D",
+   "reason": "Schedule 10 item 2 Add: Non-Deductible Expenses: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm3A",
+   "html_id": "p4c155",
+   "printed": "Schedule 10 item 3 Add: Taxable Other Income, column A",
+   "reason": "Schedule 10 item 3 Add: Taxable Other Income: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm3B",
+   "html_id": "p4c156",
+   "printed": "Schedule 10 item 3 Add: Taxable Other Income, column B",
+   "reason": "Schedule 10 item 3 Add: Taxable Other Income: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm3C",
+   "html_id": "p4c157",
+   "printed": "Schedule 10 item 3 Add: Taxable Other Income, column C",
+   "reason": "Schedule 10 item 3 Add: Taxable Other Income: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm3D",
+   "html_id": "p4c158",
+   "printed": "Schedule 10 item 3 Add: Taxable Other Income, column D",
+   "reason": "Schedule 10 item 3 Add: Taxable Other Income: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm4A",
+   "html_id": "p4c160",
+   "printed": "Schedule 10 item 4 Total, column A",
+   "reason": "Schedule 10 item 4 Total: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm4B",
+   "html_id": "p4c161",
+   "printed": "Schedule 10 item 4 Total, column B",
+   "reason": "Schedule 10 item 4 Total: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm4C",
+   "html_id": "p4c162",
+   "printed": "Schedule 10 item 4 Total, column C",
+   "reason": "Schedule 10 item 4 Total: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm4D",
+   "html_id": "p4c163",
+   "printed": "Schedule 10 item 4 Total, column D",
+   "reason": "Schedule 10 item 4 Total: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm5A",
+   "html_id": "p4c166",
+   "printed": "Schedule 10 item 5 Less: Non-Taxable Income, column A",
+   "reason": "Schedule 10 item 5 Less: Non-Taxable Income: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm5B",
+   "html_id": "p4c167",
+   "printed": "Schedule 10 item 5 Less: Non-Taxable Income, column B",
+   "reason": "Schedule 10 item 5 Less: Non-Taxable Income: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm5C",
+   "html_id": "p4c168",
+   "printed": "Schedule 10 item 5 Less: Non-Taxable Income, column C",
+   "reason": "Schedule 10 item 5 Less: Non-Taxable Income: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm5D",
+   "html_id": "p4c169",
+   "printed": "Schedule 10 item 5 Less: Non-Taxable Income, column D",
+   "reason": "Schedule 10 item 5 Less: Non-Taxable Income: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm6A",
+   "html_id": "p4c171",
+   "printed": "Schedule 10 item 6 Less: Special Deductions, column A",
+   "reason": "Schedule 10 item 6 Less: Special Deductions: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm6B",
+   "html_id": "p4c172",
+   "printed": "Schedule 10 item 6 Less: Special Deductions, column B",
+   "reason": "Schedule 10 item 6 Less: Special Deductions: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm6C",
+   "html_id": "p4c173",
+   "printed": "Schedule 10 item 6 Less: Special Deductions, column C",
+   "reason": "Schedule 10 item 6 Less: Special Deductions: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm6D",
+   "html_id": "p4c174",
+   "printed": "Schedule 10 item 6 Less: Special Deductions, column D",
+   "reason": "Schedule 10 item 6 Less: Special Deductions: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm7A",
+   "html_id": "p4c177",
+   "printed": "Schedule 10 item 7 Special Deductions, column A",
+   "reason": "Schedule 10 item 7 Special Deductions: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm7B",
+   "html_id": "p4c178",
+   "printed": "Schedule 10 item 7 Special Deductions, column B",
+   "reason": "Schedule 10 item 7 Special Deductions: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm7C",
+   "html_id": "p4c179",
+   "printed": "Schedule 10 item 7 Special Deductions, column C",
+   "reason": "Schedule 10 item 7 Special Deductions: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm7D",
+   "html_id": "p4c180",
+   "printed": "Schedule 10 item 7 Special Deductions, column D",
+   "reason": "Schedule 10 item 7 Special Deductions: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm8A",
+   "html_id": "p4c182",
+   "printed": "Schedule 10 item 8 Special Deductions, column A",
+   "reason": "Schedule 10 item 8 Special Deductions: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm8B",
+   "html_id": "p4c183",
+   "printed": "Schedule 10 item 8 Special Deductions, column B",
+   "reason": "Schedule 10 item 8 Special Deductions: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm8C",
+   "html_id": "p4c184",
+   "printed": "Schedule 10 item 8 Special Deductions, column C",
+   "reason": "Schedule 10 item 8 Special Deductions: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm8D",
+   "html_id": "p4c185",
+   "printed": "Schedule 10 item 8 Special Deductions, column D",
+   "reason": "Schedule 10 item 8 Special Deductions: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm9A",
+   "html_id": "p4c187",
+   "printed": "Schedule 10 item 9 Total, column A",
+   "reason": "Schedule 10 item 9 Total: column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm9B",
+   "html_id": "p4c188",
+   "printed": "Schedule 10 item 9 Total, column B",
+   "reason": "Schedule 10 item 9 Total: column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm9C",
+   "html_id": "p4c189",
+   "printed": "Schedule 10 item 9 Total, column C",
+   "reason": "Schedule 10 item 9 Total: column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm9D",
+   "html_id": "p4c190",
+   "printed": "Schedule 10 item 9 Total, column D",
+   "reason": "Schedule 10 item 9 Total: column D header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm10A",
+   "html_id": "p4c192",
+   "printed": "Schedule 10 item 10 Net Taxable Income/(Loss) (key carries the Sc2 prefix), column A",
+   "reason": "Schedule 10 item 10 Net Taxable Income/(Loss) (key carries the Sc2 prefix): column A header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm10B",
+   "html_id": "p4c193",
+   "printed": "Schedule 10 item 10 Net Taxable Income/(Loss) (key carries the Sc2 prefix), column B",
+   "reason": "Schedule 10 item 10 Net Taxable Income/(Loss) (key carries the Sc2 prefix): column B header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm10C",
+   "html_id": "p4c194",
+   "printed": "Schedule 10 item 10 Net Taxable Income/(Loss) (key carries the Sc2 prefix), column C",
+   "reason": "Schedule 10 item 10 Net Taxable Income/(Loss) (key carries the Sc2 prefix): column C header and row label"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc2Itm10D",
+   "html_id": "p4c195",
+   "printed": "Schedule 10 item 10 Net Taxable Income/(Loss) (key carries the Sc2 prefix), column D",
+   "reason": "Schedule 10 item 10 Net Taxable Income/(Loss) (key carries the Sc2 prefix): column D header and row label"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "html_ids": [
+    "p3c5",
+    "p4c5"
+   ],
+   "printed": "Pages 2-4 header TIN",
+   "reason": "the 14-slot comb under each later page's TIN caption: the nine TIN digits (the sheet preprints the branch 0 0 0 0 0 after them)"
+  },
+  {
+   "writer_key": "derived:year_end_mm1",
+   "html_id": "p1c19",
+   "printed": "2 Year Ended (MM/20YY), mm1",
+   "reason": "digit box 1 of the four single-character boxes under the item 2 caption (MM / 20 YY)"
+  },
+  {
+   "writer_key": "derived:year_end_mm2",
+   "html_id": "p1c20",
+   "printed": "2 Year Ended (MM/20YY), mm2",
+   "reason": "digit box 2 of the four single-character boxes under the item 2 caption (MM / 20 YY)"
+  },
+  {
+   "writer_key": "derived:year_end_yy1",
+   "html_id": "p1c21",
+   "printed": "2 Year Ended (MM/20YY), yy1",
+   "reason": "digit box 3 of the four single-character boxes under the item 2 caption (MM / 20 YY)"
+  },
+  {
+   "writer_key": "derived:year_end_yy2",
+   "html_id": "p1c22",
+   "printed": "2 Year Ended (MM/20YY), yy2",
+   "reason": "digit box 4 of the four single-character boxes under the item 2 caption (MM / 20 YY)"
+  },
+  {
+   "writer_key": "frm1702MX:drpPg1I5ATCR2",
+   "html_id": "p1c16",
+   "printed": "5 ATC, other code",
+   "reason": "the code cell at the start of the second ATC row; the model: other_code"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It30",
+   "html_id": "p2c278",
+   "printed": "Schedule 3 item 30 description",
+   "reason": "the description cell left of the Schedule 3 item 30 A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg2Sc3It31",
+   "html_id": "p2c280",
+   "printed": "Schedule 3 item 31 description",
+   "reason": "the description cell left of the Schedule 3 item 31 A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5It17d",
+   "html_id": "p3c223",
+   "printed": "Schedule 5 item 17d description",
+   "reason": "the description cell left of the item 17d A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5It17e",
+   "html_id": "p3c225",
+   "printed": "Schedule 5 item 17e description",
+   "reason": "the description cell left of the item 17e A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5It17f",
+   "html_id": "p3c227",
+   "printed": "Schedule 5 item 17f description",
+   "reason": "the description cell left of the item 17f A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5It17g",
+   "html_id": "p3c229",
+   "printed": "Schedule 5 item 17g description",
+   "reason": "the description cell left of the item 17g A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5It17h",
+   "html_id": "p3c231",
+   "printed": "Schedule 5 item 17h description",
+   "reason": "the description cell left of the item 17h A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc5It17i",
+   "html_id": "p3c233",
+   "printed": "Schedule 5 item 17i description",
+   "reason": "the description cell left of the item 17i A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm2",
+   "html_id": "p4c196",
+   "printed": "Schedule 10 item 2 description",
+   "reason": "the description cell left of the item 2 A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm3",
+   "html_id": "p4c198",
+   "printed": "Schedule 10 item 3 description",
+   "reason": "the description cell left of the item 3 A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm5",
+   "html_id": "p4c200",
+   "printed": "Schedule 10 item 5 description",
+   "reason": "the description cell left of the item 5 A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm6",
+   "html_id": "p4c202",
+   "printed": "Schedule 10 item 6 description",
+   "reason": "the description cell left of the item 6 A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm7",
+   "html_id": "p4c204",
+   "printed": "Schedule 10 item 7 description",
+   "reason": "the description cell left of the item 7 A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc10Itm8",
+   "html_id": "p4c206",
+   "printed": "Schedule 10 item 8 description",
+   "reason": "the description cell left of the item 8 A-D amount cells"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg6Sc6I1description",
+   "html_id": "p3c187",
+   "printed": "Schedule 6 row 1, Description",
+   "reason": "the cell under the Description header; Schedule 6 row 1 (rows carry no printed number: row 1 is the 1th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg6Sc6I1legal",
+   "html_id": "p3c188",
+   "printed": "Schedule 6 row 1, Legal Basis",
+   "reason": "the cell under the Legal Basis header; Schedule 6 row 1 (rows carry no printed number: row 1 is the 1th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg6Sc6I2description",
+   "html_id": "p3c193",
+   "printed": "Schedule 6 row 2, Description",
+   "reason": "the cell under the Description header; Schedule 6 row 2 (rows carry no printed number: row 2 is the 2th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg6Sc6I2legal",
+   "html_id": "p3c194",
+   "printed": "Schedule 6 row 2, Legal Basis",
+   "reason": "the cell under the Legal Basis header; Schedule 6 row 2 (rows carry no printed number: row 2 is the 2th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg6Sc6I3description",
+   "html_id": "p3c199",
+   "printed": "Schedule 6 row 3, Description",
+   "reason": "the cell under the Description header; Schedule 6 row 3 (rows carry no printed number: row 3 is the 3th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg6Sc6I3legal",
+   "html_id": "p3c200",
+   "printed": "Schedule 6 row 3, Legal Basis",
+   "reason": "the cell under the Legal Basis header; Schedule 6 row 3 (rows carry no printed number: row 3 is the 3th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc6I4description",
+   "html_id": "p3c205",
+   "printed": "Schedule 6 row 4, Description",
+   "reason": "the cell under the Description header; Schedule 6 row 4 (rows carry no printed number: row 4 is the 4th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3Sc6I4legal",
+   "html_id": "p3c206",
+   "printed": "Schedule 6 row 4, Legal Basis",
+   "reason": "the cell under the Legal Basis header; Schedule 6 row 4 (rows carry no printed number: row 4 is the 4th printed row under the headers, as the layout numbers I1-I4)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_4Year",
+   "html_id": "p4c16",
+   "printed": "Schedule 7.1 item 4, Year",
+   "reason": "the cell under the Schedule 7.1 Year column header on the item 4 row (the table rows 4-7 carry no printed number; row 4 is the 1th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_4A",
+   "html_id": "p4c17",
+   "printed": "Schedule 7.1 item 4, A",
+   "reason": "the cell under the Schedule 7.1 A column header on the item 4 row (the table rows 4-7 carry no printed number; row 4 is the 1th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_4B",
+   "html_id": "p4c18",
+   "printed": "Schedule 7.1 item 4, B",
+   "reason": "the cell under the Schedule 7.1 B column header on the item 4 row (the table rows 4-7 carry no printed number; row 4 is the 1th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_4C",
+   "html_id": "p4c19",
+   "printed": "Schedule 7.1 item 4, C",
+   "reason": "the cell under the Schedule 7.1 C column header on the item 4 row (the table rows 4-7 carry no printed number; row 4 is the 1th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_4D",
+   "html_id": "p4c20",
+   "printed": "Schedule 7.1 item 4, D",
+   "reason": "the cell under the Schedule 7.1 D column header on the item 4 row (the table rows 4-7 carry no printed number; row 4 is the 1th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_4E",
+   "html_id": "p4c21",
+   "printed": "Schedule 7.1 item 4, E",
+   "reason": "the cell under the Schedule 7.1 E column header on the item 4 row (the table rows 4-7 carry no printed number; row 4 is the 1th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_5Year",
+   "html_id": "p4c23",
+   "printed": "Schedule 7.1 item 5, Year",
+   "reason": "the cell under the Schedule 7.1 Year column header on the item 5 row (the table rows 4-7 carry no printed number; row 5 is the 2th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_5A",
+   "html_id": "p4c24",
+   "printed": "Schedule 7.1 item 5, A",
+   "reason": "the cell under the Schedule 7.1 A column header on the item 5 row (the table rows 4-7 carry no printed number; row 5 is the 2th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_5B",
+   "html_id": "p4c25",
+   "printed": "Schedule 7.1 item 5, B",
+   "reason": "the cell under the Schedule 7.1 B column header on the item 5 row (the table rows 4-7 carry no printed number; row 5 is the 2th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_5C",
+   "html_id": "p4c26",
+   "printed": "Schedule 7.1 item 5, C",
+   "reason": "the cell under the Schedule 7.1 C column header on the item 5 row (the table rows 4-7 carry no printed number; row 5 is the 2th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_5D",
+   "html_id": "p4c27",
+   "printed": "Schedule 7.1 item 5, D",
+   "reason": "the cell under the Schedule 7.1 D column header on the item 5 row (the table rows 4-7 carry no printed number; row 5 is the 2th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_5E",
+   "html_id": "p4c28",
+   "printed": "Schedule 7.1 item 5, E",
+   "reason": "the cell under the Schedule 7.1 E column header on the item 5 row (the table rows 4-7 carry no printed number; row 5 is the 2th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_6Year",
+   "html_id": "p4c30",
+   "printed": "Schedule 7.1 item 6, Year",
+   "reason": "the cell under the Schedule 7.1 Year column header on the item 6 row (the table rows 4-7 carry no printed number; row 6 is the 3th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_6A",
+   "html_id": "p4c31",
+   "printed": "Schedule 7.1 item 6, A",
+   "reason": "the cell under the Schedule 7.1 A column header on the item 6 row (the table rows 4-7 carry no printed number; row 6 is the 3th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_6B",
+   "html_id": "p4c32",
+   "printed": "Schedule 7.1 item 6, B",
+   "reason": "the cell under the Schedule 7.1 B column header on the item 6 row (the table rows 4-7 carry no printed number; row 6 is the 3th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_6C",
+   "html_id": "p4c33",
+   "printed": "Schedule 7.1 item 6, C",
+   "reason": "the cell under the Schedule 7.1 C column header on the item 6 row (the table rows 4-7 carry no printed number; row 6 is the 3th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_6D",
+   "html_id": "p4c34",
+   "printed": "Schedule 7.1 item 6, D",
+   "reason": "the cell under the Schedule 7.1 D column header on the item 6 row (the table rows 4-7 carry no printed number; row 6 is the 3th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_6E",
+   "html_id": "p4c35",
+   "printed": "Schedule 7.1 item 6, E",
+   "reason": "the cell under the Schedule 7.1 E column header on the item 6 row (the table rows 4-7 carry no printed number; row 6 is the 3th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_7Year",
+   "html_id": "p4c37",
+   "printed": "Schedule 7.1 item 7, Year",
+   "reason": "the cell under the Schedule 7.1 Year column header on the item 7 row (the table rows 4-7 carry no printed number; row 7 is the 4th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_7A",
+   "html_id": "p4c38",
+   "printed": "Schedule 7.1 item 7, A",
+   "reason": "the cell under the Schedule 7.1 A column header on the item 7 row (the table rows 4-7 carry no printed number; row 7 is the 4th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_7B",
+   "html_id": "p4c39",
+   "printed": "Schedule 7.1 item 7, B",
+   "reason": "the cell under the Schedule 7.1 B column header on the item 7 row (the table rows 4-7 carry no printed number; row 7 is the 4th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_7C",
+   "html_id": "p4c40",
+   "printed": "Schedule 7.1 item 7, C",
+   "reason": "the cell under the Schedule 7.1 C column header on the item 7 row (the table rows 4-7 carry no printed number; row 7 is the 4th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_7D",
+   "html_id": "p4c41",
+   "printed": "Schedule 7.1 item 7, D",
+   "reason": "the cell under the Schedule 7.1 D column header on the item 7 row (the table rows 4-7 carry no printed number; row 7 is the 4th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed7_7E",
+   "html_id": "p4c42",
+   "printed": "Schedule 7.1 item 7, E",
+   "reason": "the cell under the Schedule 7.1 E column header on the item 7 row (the table rows 4-7 carry no printed number; row 7 is the 4th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed8_4Year",
+   "html_id": "p4c63",
+   "printed": "Schedule 8.1 item 4, Year",
+   "reason": "the cell under the Schedule 8.1 Year column header on the item 4 row (the table rows 4-7 carry no printed number; row 4 is the 1th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_4A",
+   "html_id": "p4c64",
+   "printed": "Schedule 8.1 item 4, A",
+   "reason": "the cell under the Schedule 8.1 A column header on the item 4 row (the table rows 4-7 carry no printed number; row 4 is the 1th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_4B",
+   "html_id": "p4c65",
+   "printed": "Schedule 8.1 item 4, B",
+   "reason": "the cell under the Schedule 8.1 B column header on the item 4 row (the table rows 4-7 carry no printed number; row 4 is the 1th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_4C",
+   "html_id": "p4c66",
+   "printed": "Schedule 8.1 item 4, C",
+   "reason": "the cell under the Schedule 8.1 C column header on the item 4 row (the table rows 4-7 carry no printed number; row 4 is the 1th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_4D",
+   "html_id": "p4c67",
+   "printed": "Schedule 8.1 item 4, D",
+   "reason": "the cell under the Schedule 8.1 D column header on the item 4 row (the table rows 4-7 carry no printed number; row 4 is the 1th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_4E",
+   "html_id": "p4c68",
+   "printed": "Schedule 8.1 item 4, E",
+   "reason": "the cell under the Schedule 8.1 E column header on the item 4 row (the table rows 4-7 carry no printed number; row 4 is the 1th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed8_5Year",
+   "html_id": "p4c70",
+   "printed": "Schedule 8.1 item 5, Year",
+   "reason": "the cell under the Schedule 8.1 Year column header on the item 5 row (the table rows 4-7 carry no printed number; row 5 is the 2th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_5A",
+   "html_id": "p4c71",
+   "printed": "Schedule 8.1 item 5, A",
+   "reason": "the cell under the Schedule 8.1 A column header on the item 5 row (the table rows 4-7 carry no printed number; row 5 is the 2th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_5B",
+   "html_id": "p4c72",
+   "printed": "Schedule 8.1 item 5, B",
+   "reason": "the cell under the Schedule 8.1 B column header on the item 5 row (the table rows 4-7 carry no printed number; row 5 is the 2th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_5C",
+   "html_id": "p4c73",
+   "printed": "Schedule 8.1 item 5, C",
+   "reason": "the cell under the Schedule 8.1 C column header on the item 5 row (the table rows 4-7 carry no printed number; row 5 is the 2th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_5D",
+   "html_id": "p4c74",
+   "printed": "Schedule 8.1 item 5, D",
+   "reason": "the cell under the Schedule 8.1 D column header on the item 5 row (the table rows 4-7 carry no printed number; row 5 is the 2th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_5E",
+   "html_id": "p4c75",
+   "printed": "Schedule 8.1 item 5, E",
+   "reason": "the cell under the Schedule 8.1 E column header on the item 5 row (the table rows 4-7 carry no printed number; row 5 is the 2th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed8_6Year",
+   "html_id": "p4c77",
+   "printed": "Schedule 8.1 item 6, Year",
+   "reason": "the cell under the Schedule 8.1 Year column header on the item 6 row (the table rows 4-7 carry no printed number; row 6 is the 3th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_6A",
+   "html_id": "p4c78",
+   "printed": "Schedule 8.1 item 6, A",
+   "reason": "the cell under the Schedule 8.1 A column header on the item 6 row (the table rows 4-7 carry no printed number; row 6 is the 3th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_6B",
+   "html_id": "p4c79",
+   "printed": "Schedule 8.1 item 6, B",
+   "reason": "the cell under the Schedule 8.1 B column header on the item 6 row (the table rows 4-7 carry no printed number; row 6 is the 3th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg3IShed8_6C",
+   "html_id": "p4c80",
+   "printed": "Schedule 8.1 item 6, C",
+   "reason": "the cell under the Schedule 8.1 C column header on the item 6 row (the table rows 4-7 carry no printed number; row 6 is the 3th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_6D",
+   "html_id": "p4c81",
+   "printed": "Schedule 8.1 item 6, D",
+   "reason": "the cell under the Schedule 8.1 D column header on the item 6 row (the table rows 4-7 carry no printed number; row 6 is the 3th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_6E",
+   "html_id": "p4c82",
+   "printed": "Schedule 8.1 item 6, E",
+   "reason": "the cell under the Schedule 8.1 E column header on the item 6 row (the table rows 4-7 carry no printed number; row 6 is the 3th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_7Year",
+   "html_id": "p4c84",
+   "printed": "Schedule 8.1 item 7, Year",
+   "reason": "the cell under the Schedule 8.1 Year column header on the item 7 row (the table rows 4-7 carry no printed number; row 7 is the 4th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_7A",
+   "html_id": "p4c85",
+   "printed": "Schedule 8.1 item 7, A",
+   "reason": "the cell under the Schedule 8.1 A column header on the item 7 row (the table rows 4-7 carry no printed number; row 7 is the 4th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_7B",
+   "html_id": "p4c86",
+   "printed": "Schedule 8.1 item 7, B",
+   "reason": "the cell under the Schedule 8.1 B column header on the item 7 row (the table rows 4-7 carry no printed number; row 7 is the 4th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_7C",
+   "html_id": "p4c87",
+   "printed": "Schedule 8.1 item 7, C",
+   "reason": "the cell under the Schedule 8.1 C column header on the item 7 row (the table rows 4-7 carry no printed number; row 7 is the 4th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_7D",
+   "html_id": "p4c88",
+   "printed": "Schedule 8.1 item 7, D",
+   "reason": "the cell under the Schedule 8.1 D column header on the item 7 row (the table rows 4-7 carry no printed number; row 7 is the 4th printed row, as the layout numbers them)"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4IShed8_7E",
+   "html_id": "p4c89",
+   "printed": "Schedule 8.1 item 7, E",
+   "reason": "the cell under the Schedule 8.1 E column header on the item 7 row (the table rows 4-7 carry no printed number; row 7 is the 4th printed row, as the layout numbers them)"
+  }
+ ],
+ "money_joins": [],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1702MX:rdoPg1I1Calendar",
+   "html_id": "p1c8",
+   "printed": "1 For the Calendar",
+   "reason": "box immediately left of \"Calendar\""
+  },
+  {
+   "writer_key": "frm1702MX:rdoPg1I1Fiscal",
+   "html_id": "p1c7",
+   "printed": "1 For the Fiscal",
+   "reason": "box immediately left of \"Fiscal\""
+  },
+  {
+   "writer_key": "frm1702MX:rdoPg1I3AmendedYes",
+   "html_id": "p1c12",
+   "printed": "3 Amended Return? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm1702MX:rdoPg1I3AmendedNo",
+   "html_id": "p1c13",
+   "printed": "3 Amended Return? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm1702MX:rdoPg1I4ShortPeriodYes",
+   "html_id": "p1c14",
+   "printed": "4 Short Period Return? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm1702MX:rdoPg1I4ShortPeriodNo",
+   "html_id": "p1c15",
+   "printed": "4 Short Period Return? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm1702MX:rdoPg1Pt1I13MethodOfDeducOptional",
+   "html_id": "p1c56",
+   "printed": "13 Optional Standard Deduction (OSD)",
+   "reason": "box immediately left of the OSD option"
+  },
+  {
+   "writer_key": "frm1702MX:rdoPg1Pt2I21Refund",
+   "html_id": "p1c77",
+   "printed": "21 To be refunded",
+   "reason": "box immediately left of \"To be refunded\""
+  },
+  {
+   "writer_key": "frm1702MX:rdoPg1Pt2I21IssueTCC",
+   "html_id": "p1c78",
+   "printed": "21 To be issued a Tax Credit Certificate (TCC)",
+   "reason": "box immediately left of \"To be issued a TCC\""
+  },
+  {
+   "writer_key": "frm1702MX:rdoPg1Pt2I21CarriedOver",
+   "html_id": "p1c79",
+   "printed": "21 To be carried over as tax credit",
+   "reason": "box immediately left of \"To be carried over\""
+  },
+  {
+   "writer_key": "frm1702MX:InstAPg2Part4",
+   "html_id": "p2c9",
+   "printed": "Instructions A (one activity)",
+   "reason": "box immediately left of \"A. Only one activity/project\""
+  },
+  {
+   "writer_key": "frm1702MX:InstBPg2Part4",
+   "html_id": "p2c10",
+   "printed": "Instructions B (two or more activities)",
+   "reason": "box immediately left of \"B. Two or more activities\""
+  },
+  {
+   "writer_key": "frm1702MX:chkPg1I5ATCR1",
+   "html_id": "p1c11",
+   "printed": "5 ATC IC 055 Minimum Corporate Income Tax (MCIT)",
+   "reason": "the box at the end of the printed IC 055 MCIT row; the model: mcit_selected"
+  },
+  {
+   "writer_key": "frm1702MX:chkPg1I5ATCR2",
+   "html_id": "p1c18",
+   "printed": "5 ATC, other code",
+   "reason": "the box at the end of the second ATC row (the other-code row); the model: other_selected"
+  }
+ ],
+ "peso_joins": [
+  {
+   "writer_key": "frm1702MX:txtPg1Pt2I14TotalIncome",
+   "html_id": "p1c59",
+   "printed": "14 Total Tax Due/(Overpayment)",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt2I15LessTotalTax",
+   "html_id": "p1c61",
+   "printed": "15 Less: Total Tax Credits/Payments",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt2I16NetTaxPayable",
+   "html_id": "p1c63",
+   "printed": "16 Net Tax Payable/(Overpayment)",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt2I17",
+   "html_id": "p1c66",
+   "printed": "17 Surcharge",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt2I18",
+   "html_id": "p1c68",
+   "printed": "18 Interest",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt2I19",
+   "html_id": "p1c70",
+   "printed": "19 Compromise",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt2I20TotalPenalties",
+   "html_id": "p1c72",
+   "printed": "20 Total Penalties",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt2I21TotalAmount",
+   "html_id": "p1c74",
+   "printed": "21 Total Amount Payable/(Overpayment)",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I26CashC4",
+   "html_id": "p1c107",
+   "printed": "23 Cash/Bank Debit Memo, Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I27CheckC4",
+   "html_id": "p1c114",
+   "printed": "24 Check, Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I28TaxDebitC4",
+   "html_id": "p1c120",
+   "printed": "25 Tax Debit Memo, Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I29OthersC4",
+   "html_id": "p1c128",
+   "printed": "26 Others, Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg6Sc7I1",
+   "html_id": "p3c218",
+   "printed": "Sch 7 item 1 Gross Income",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg6Sc7I2",
+   "html_id": "p3c220",
+   "printed": "Sch 7 item 2 Less: Ordinary Allowable Itemized Deductions",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg6Sc7I3",
+   "html_id": "p3c222",
+   "printed": "Sch 7 item 3 Net Operating Loss",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc8It1",
+   "html_id": "p4c49",
+   "printed": "Sch 8 item 1 Gross Income",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc8It2",
+   "html_id": "p4c51",
+   "printed": "Sch 8 item 2 Less: Ordinary Allowable Itemized Deductions",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg4Sc8It3",
+   "html_id": "p4c53",
+   "printed": "Sch 8 item 3 Net Operating Loss",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg7Sc9I1CA",
+   "html_id": "p4c101",
+   "printed": "Sch 9 item 1 A) Normal Income Tax as Adjusted",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg7Sc9I1CB",
+   "html_id": "p4c102",
+   "printed": "Sch 9 item 1 B) MCIT",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg7Sc9I1CC",
+   "html_id": "p4c103",
+   "printed": "Sch 9 item 1 C) Excess MCIT over Normal Income Tax",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg7Sc9I2CA",
+   "html_id": "p4c106",
+   "printed": "Sch 9 item 2 A) Normal Income Tax as Adjusted",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg7Sc9I2CB",
+   "html_id": "p4c107",
+   "printed": "Sch 9 item 2 B) MCIT",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg7Sc9I2CC",
+   "html_id": "p4c108",
+   "printed": "Sch 9 item 2 C) Excess MCIT over Normal Income Tax",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg7Sc9I3CA",
+   "html_id": "p4c111",
+   "printed": "Sch 9 item 3 A) Normal Income Tax as Adjusted",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg7Sc9I3CB",
+   "html_id": "p4c112",
+   "printed": "Sch 9 item 3 B) MCIT",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg7Sc9I3CC",
+   "html_id": "p4c113",
+   "printed": "Sch 9 item 3 C) Excess MCIT over Normal Income Tax",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg7Sc9I4",
+   "html_id": "p4c135",
+   "printed": "Sch 9 item 4 Total Excess MCIT Applied",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  }
+ ],
+ "date_joins": [
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I8",
+   "mm_html_id": "p1c46",
+   "dd_html_id": "p1c48",
+   "yyyy_html_id": "p1c50",
+   "printed": "10 Date of Incorporation/Organization (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs right of the item 10 caption; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I26CashC3",
+   "mm_html_id": "p1c104",
+   "dd_html_id": "p1c105",
+   "yyyy_html_id": "p1c106",
+   "printed": "Part III item I2, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part III Date column on that payment row (column C3 between Number C2 and Amount C4); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I27CheckC3",
+   "mm_html_id": "p1c111",
+   "dd_html_id": "p1c112",
+   "yyyy_html_id": "p1c113",
+   "printed": "Part III item I2, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part III Date column on that payment row (column C3 between Number C2 and Amount C4); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I28TaxDebitC3",
+   "mm_html_id": "p1c117",
+   "dd_html_id": "p1c118",
+   "yyyy_html_id": "p1c119",
+   "printed": "Part III item I2, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part III Date column on that payment row (column C3 between Number C2 and Amount C4); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I29OthersC3",
+   "mm_html_id": "p1c125",
+   "dd_html_id": "p1c126",
+   "yyyy_html_id": "p1c127",
+   "printed": "Part III item I2, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part III Date column on that payment row (column C3 between Number C2 and Amount C4); one writer date split across the three"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm1702MX:txtPg2TIN1",
+    "frm1702MX:txtPg2TIN2",
+    "frm1702MX:txtPg2TIN3",
+    "frm1702MX:txtPg3TIN1",
+    "frm1702MX:txtPg3TIN2",
+    "frm1702MX:txtPg3TIN3",
+    "frm1702MX:txtPg4TIN1",
+    "frm1702MX:txtPg4TIN2",
+    "frm1702MX:txtPg4TIN3"
+   ],
+   "reason": "prints from derived:tin_digits (the print map shapes the nine TIN digits of the page 2-4 headers for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1702MX:txtPg1Pt1I6TINC4",
+    "frm1702MX:txtPg2TIN4",
+    "frm1702MX:txtPg3TIN4",
+    "frm1702MX:txtPg4TIN4",
+    "frm1702MX:txtPg1TINMASK",
+    "frm1702MX:txtPg2TINMASK",
+    "frm1702MX:txtPg3TINMASK",
+    "frm1702MX:txtPg4TINMASK"
+   ],
+   "reason": "branch code: the sheet preprints 0 0 0 0 0 beside each TIN comb (no fillable branch cells)"
+  },
+  {
+   "writer_keys": [
+    "frm1702MX:ddlPg1I2Date",
+    "frm1702MX:txtPg1I2YearEnd"
+   ],
+   "reason": "prints from derived:year_end_mm1/mm2/yy1/yy2 (the print map shapes Item 2 over its four digit boxes for the sheet)"
+  },
+  {
+   "writer_key": "frm1702MX:rdoPg1Pt1I13MethodOfDeducItemized",
+   "reason": "item 13 Itemized Deduction box: the frozen sheet draws it without an input (only the OSD box p1c56 has one); printing it needs a fillable box in html-frozen/1702mx-2018c/index.html (reported on #113)"
+  },
+  {
+   "writer_keys": [
+    "attachmentCurrent",
+    "attachmentTotal",
+    "frm1702MX:rdoPg1AttMExempt",
+    "frm1702MX:rdoPg1AttMSpecialRate",
+    "frm1702MX:totalEXAttach",
+    "frm1702MX:totalSPAttach",
+    "frm1702MX:txtPg1AttMPt5ScAIt5",
+    "frm1702MX:txtPg1AttMPt5ScAIt6",
+    "frm1702MX:txtPg1AttMTIN1",
+    "frm1702MX:txtPg1AttMTIN2",
+    "frm1702MX:txtPg1AttMTIN3",
+    "frm1702MX:txtPg1AttMTIN4",
+    "frm1702MX:txtPg1AttMTINMASK",
+    "frm1702MX:txtPg2AttMDesc20",
+    "frm1702MX:txtPg2AttMDesc21",
+    "frm1702MX:txtPg2AttMDesc22",
+    "frm1702MX:txtPg2AttMDesc23",
+    "frm1702MX:txtPg2AttMDesc24",
+    "frm1702MX:txtPg2AttMScDI17iother",
+    "frm1702MX:txtPg2AttMScF1I4year",
+    "frm1702MX:txtPg2AttMTIN1",
+    "frm1702MX:txtPg2AttMTIN2",
+    "frm1702MX:txtPg2AttMTIN3",
+    "frm1702MX:txtPg2AttMTIN4",
+    "frm1702MX:txtPg2AttMTINMASK"
+   ],
+   "reason": "annex (Attachment M / exempt and special-rate attachment) control of the page; the four-page frozen sheet has no annex pages"
+  },
+  {
+   "writer_keys": [
+    "frm1702MX:txtCtrmodalPg3Sc5I17i",
+    "frm1702MX:txtCtrmodalPg6Sc6",
+    "frm1702MX:txtCtrmodalPg7Sc10I3",
+    "frm1702MX:txtCtrmodalPg7Sc10I6",
+    "frm1702MX:txtCtrmodalPg7Sc10I8",
+    "frm1702MX:txtCtrmodalPg7Sc8"
+   ],
+   "reason": "add-more popup row counter of the page; the sheet prints the rows the return carries, not the popup bookkeeping"
+  },
+  {
+   "writer_key": "frm1702MX:txtPg1Pt1I7RDO",
+   "reason": "duplicate of frm1702MX:drpPg1Pt1I7RDO (same RDO), which prints in item 7"
+  },
+  {
+   "writer_keys": [
+    "frm1702MX:txtCurrentPage",
+    "frm1702MX:txtMaxPage"
+   ],
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  },
+  {
+   "writer_keys": [
+    "txtEnroll",
+    "txtFinalFlag",
+    "driveSelectTPExport"
+   ],
+   "reason": "eBIRForms system field (enrolment flag, final flag, export drive, online-filing credentials), not on the paper form"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c17",
+   "reason": "Item 5 ATC: the IC 055 and Other boxes and code cells have no unambiguous box-to-option mapping on this sheet; chkPg1I5ATCR1B, drpPg1I5ATCR2 and chkPg1I5ATCR2B stay blank"
+  },
+  {
+   "html_id": "p1c81",
+   "reason": "attach authorization letter line: no layout key"
+  },
+  {
+   "html_id": "p1c82",
+   "reason": "attach authorization letter line: no layout key"
+  },
+  {
+   "html_id": "p2c30",
+   "reason": "Applicable rate row (Schedule 1 item 4 and Schedule 2 item 14): a 2-slot and a 15-wide box per column with no single rate key; left blank"
+  },
+  {
+   "html_id": "p2c32",
+   "reason": "Applicable rate row (Schedule 1 item 4 and Schedule 2 item 14): a 2-slot and a 15-wide box per column with no single rate key; left blank"
+  },
+  {
+   "html_id": "p2c36",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c37",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c38",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c41",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c42",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c43",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c46",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c47",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c48",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c50",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c51",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c52",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c55",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c56",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c57",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c60",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c61",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c62",
+   "reason": "Schedule 1 item 5/6 effectivity date (MM/DD/YYYY): three combs per activity under one layout key; left blank"
+  },
+  {
+   "html_id": "p2c126",
+   "reason": "Schedule 2 \"OR\" line under item 11 (Sec 27(A) and 28(A)(1) alternative): no layout key for this line; left blank"
+  },
+  {
+   "html_id": "p2c127",
+   "reason": "Schedule 2 \"OR\" line under item 11 (Sec 27(A) and 28(A)(1) alternative): no layout key for this line; left blank"
+  },
+  {
+   "html_id": "p2c128",
+   "reason": "Schedule 2 \"OR\" line under item 11 (Sec 27(A) and 28(A)(1) alternative): no layout key for this line; left blank"
+  },
+  {
+   "html_id": "p2c129",
+   "reason": "Schedule 2 \"OR\" line under item 11 (Sec 27(A) and 28(A)(1) alternative): no layout key for this line; left blank"
+  },
+  {
+   "html_id": "p2c146",
+   "reason": "Applicable rate row (Schedule 1 item 4 and Schedule 2 item 14): a 2-slot and a 15-wide box per column with no single rate key; left blank"
+  },
+  {
+   "html_id": "p2c148",
+   "reason": "Applicable rate row (Schedule 1 item 4 and Schedule 2 item 14): a 2-slot and a 15-wide box per column with no single rate key; left blank"
+  },
+  {
+   "html_id": "p2c151",
+   "reason": "Applicable rate row (Schedule 1 item 4 and Schedule 2 item 14): a 2-slot and a 15-wide box per column with no single rate key; left blank"
+  },
+  {
+   "html_id": "p2c153",
+   "reason": "Applicable rate row (Schedule 1 item 4 and Schedule 2 item 14): a 2-slot and a 15-wide box per column with no single rate key; left blank"
+  },
+  {
+   "html_id": "p3c189",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c190",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c191",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c192",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c195",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c196",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c197",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c198",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c201",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c202",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c203",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c204",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c207",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c208",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c209",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p3c210",
+   "reason": "Schedule 6 rows 1-4: rows print no item number and the Description/Legal Basis headers sit above row 1 only; row identity is positional, so left blank"
+  },
+  {
+   "html_id": "p4c120",
+   "reason": "money comb with no 2-slot centavo comb beside it (the form says do not enter centavos); left blank"
+  },
+  {
+   "html_id": "p4c121",
+   "reason": "money comb with no 2-slot centavo comb beside it (the form says do not enter centavos); left blank"
+  },
+  {
+   "html_id": "p4c122",
+   "reason": "money comb with no 2-slot centavo comb beside it (the form says do not enter centavos); left blank"
+  },
+  {
+   "html_id": "p4c123",
+   "reason": "money comb with no 2-slot centavo comb beside it (the form says do not enter centavos); left blank"
+  },
+  {
+   "html_id": "p4c125",
+   "reason": "money comb with no 2-slot centavo comb beside it (the form says do not enter centavos); left blank"
+  },
+  {
+   "html_id": "p4c126",
+   "reason": "money comb with no 2-slot centavo comb beside it (the form says do not enter centavos); left blank"
+  },
+  {
+   "html_id": "p4c127",
+   "reason": "money comb with no 2-slot centavo comb beside it (the form says do not enter centavos); left blank"
+  },
+  {
+   "html_id": "p4c128",
+   "reason": "money comb with no 2-slot centavo comb beside it (the form says do not enter centavos); left blank"
+  },
+  {
+   "html_id": "p4c130",
+   "reason": "money comb with no 2-slot centavo comb beside it (the form says do not enter centavos); left blank"
+  },
+  {
+   "html_id": "p4c131",
+   "reason": "money comb with no 2-slot centavo comb beside it (the form says do not enter centavos); left blank"
+  },
+  {
+   "html_id": "p4c132",
+   "reason": "money comb with no 2-slot centavo comb beside it (the form says do not enter centavos); left blank"
+  },
+  {
+   "html_id": "p4c133",
+   "reason": "money comb with no 2-slot centavo comb beside it (the form says do not enter centavos); left blank"
+  }
+ ]
+}

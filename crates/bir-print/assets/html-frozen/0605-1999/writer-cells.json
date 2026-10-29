@@ -1,0 +1,548 @@
+{
+ "form_id": "0605-v2003",
+ "html_slug": "0605-1999",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page text layer) names the item. Text cells and combs: caption left of or above the cell. TIN combs and the branch comb carry catalog name stamps and take no join. Booleans: X in the box immediately left of (or directly above, for the 1st-4th quarter boxes) the printed option. Item 17 and 18 boxes follow the printed option order within each column; the Per Audit column takes itemMannerOfPaymentB. Amounts (items 19-21, 20A-20D) print in one text cell each (no centavo comb). Part III (rows 23-26) has no keys in this layout and stays blank. The No. of Installment value and the Others (Specify) text stay blank where the cell cannot be tied to one item. Layout keys with no printed cell (txtFinalFlag, txtEnroll, ebirOnline*, txtEmail, driveSelectTPExport, itemApprovedYN) have no cell to fill. Since #113 every value the print map carries has a box or a reviewed not_joined reason (the ATC and Tax Type picker radios print as the chosen codes in items 6 and 8).",
+ "joins": [
+  {
+   "writer_key": "frm0605:itemYearEndMonth",
+   "html_id": "p1c3",
+   "printed": "2 Year Ended (MM/YYYY), month",
+   "reason": "2-slot MM comb under \"2 Year Ended\""
+  },
+  {
+   "writer_key": "frm0605:txtYearEnded",
+   "html_id": "p1c4",
+   "printed": "2 Year Ended (YYYY)",
+   "reason": "4-slot YYYY comb after the MM comb"
+  },
+  {
+   "writer_key": "frm0605:txtDueDateMonth",
+   "html_id": "p1c9",
+   "printed": "4 Due Date (MM/DD/YYYY), month",
+   "reason": "2-slot MM comb under \"4 Due Date\""
+  },
+  {
+   "writer_key": "frm0605:txtDueDateDay",
+   "html_id": "p1c10",
+   "printed": "4 Due Date (DD)",
+   "reason": "2-slot DD comb after the MM comb"
+  },
+  {
+   "writer_key": "frm0605:txtDueDateYear",
+   "html_id": "p1c11",
+   "printed": "4 Due Date (YYYY)",
+   "reason": "4-slot YYYY comb after the DD comb"
+  },
+  {
+   "writer_key": "frm0605:txtNoOfSheets",
+   "html_id": "p1c12",
+   "printed": "5 No. of Sheets Attached",
+   "reason": "2-slot comb right of \"5 No. of Sheets Attached\""
+  },
+  {
+   "writer_key": "txtATCCode",
+   "html_id": "p1c13",
+   "printed": "6 ATC",
+   "reason": "text cell right of \"6 ATC\""
+  },
+  {
+   "writer_key": "frm0605:txtReturnPeriodMonth",
+   "html_id": "p1c14",
+   "printed": "7 Return Period (MM)",
+   "reason": "2-slot MM comb under \"7 Return Period\""
+  },
+  {
+   "writer_key": "frm0605:txtReturnPeriodDay",
+   "html_id": "p1c15",
+   "printed": "7 Return Period (DD)",
+   "reason": "2-slot DD comb after the MM comb"
+  },
+  {
+   "writer_key": "frm0605:txtReturnPeriodYear",
+   "html_id": "p1c16",
+   "printed": "7 Return Period (YYYY)",
+   "reason": "4-slot YYYY comb after the DD comb"
+  },
+  {
+   "writer_key": "txtTaxTypeCode",
+   "html_id": "p1c18",
+   "printed": "8 Tax Type Code",
+   "reason": "2-slot comb under \"8 Tax Type Code\""
+  },
+  {
+   "writer_key": "frm0605:txtRDOCode",
+   "html_id": "p1c30",
+   "printed": "10 RDO Code",
+   "reason": "3-slot comb under \"10 RDO Code\""
+  },
+  {
+   "writer_key": "frm0605:txtLineBus",
+   "html_id": "p1c33",
+   "printed": "12 Line of Business/Occupation",
+   "reason": "text cell under \"12 Line of Business/Occupation\""
+  },
+  {
+   "writer_key": "frm0605:txtTaxPayerName",
+   "html_id": "p1c35",
+   "printed": "13 Taxpayer's Name",
+   "reason": "text cell right of \"13 Taxpayer's Name\""
+  },
+  {
+   "writer_key": "frm0605:txtTelNum",
+   "html_id": "p1c36",
+   "printed": "14 Telephone Number",
+   "reason": "7-slot comb under \"14 Telephone Number\""
+  },
+  {
+   "writer_key": "frm0605:txtZipCode",
+   "html_id": "p1c37",
+   "printed": "16 Zip Code",
+   "reason": "4-slot comb under \"16 Zip Code\""
+  },
+  {
+   "writer_key": "frm0605:txtAddress",
+   "html_id": "p1c38",
+   "printed": "15 Registered Address",
+   "reason": "text cell right of \"15 Registered Address\""
+  },
+  {
+   "writer_key": "frm0605:txtTax19",
+   "html_id": "p1c56",
+   "printed": "19 Basic Tax / Deposit / Advance Payment",
+   "reason": "amount text cell right of item 19"
+  },
+  {
+   "writer_key": "frm0605:txtTax20A",
+   "html_id": "p1c58",
+   "printed": "20A Surcharge",
+   "reason": "amount text cell under the 20A column"
+  },
+  {
+   "writer_key": "frm0605:txtTax20B",
+   "html_id": "p1c59",
+   "printed": "20B Interest",
+   "reason": "amount text cell under the 20B column"
+  },
+  {
+   "writer_key": "frm0605:txtTax20C",
+   "html_id": "p1c60",
+   "printed": "20C Compromise",
+   "reason": "amount text cell under the 20C column"
+  },
+  {
+   "writer_key": "frm0605:txtTax20D",
+   "html_id": "p1c57",
+   "printed": "20D Total Penalties",
+   "reason": "amount text cell under the 20D column"
+  },
+  {
+   "writer_key": "frm0605:txtTax21",
+   "html_id": "p1c61",
+   "printed": "21 Total Amount Payable (Sum of Items 19 & 20D)",
+   "reason": "amount text cell right of item 21"
+  }
+ ],
+ "money_joins": [],
+ "xbox_joins": [
+  {
+   "writer_key": "frm0605:itemFiscalStartMonth:_1",
+   "html_id": "p1c1",
+   "printed": "1 For the Calendar",
+   "reason": "box before \"Calendar\", first option of item 1"
+  },
+  {
+   "writer_key": "frm0605:itemFiscalStartMonth:_2",
+   "html_id": "p1c2",
+   "printed": "1 Fiscal",
+   "reason": "box before \"Fiscal\", second option of item 1"
+  },
+  {
+   "writer_key": "itemQuarter_1",
+   "html_id": "p1c5",
+   "printed": "3 Quarter: 1st",
+   "reason": "box directly above the printed 1st"
+  },
+  {
+   "writer_key": "itemQuarter_2",
+   "html_id": "p1c6",
+   "printed": "3 Quarter: 2nd",
+   "reason": "box directly above the printed 2nd"
+  },
+  {
+   "writer_key": "itemQuarter_3",
+   "html_id": "p1c7",
+   "printed": "3 Quarter: 3rd",
+   "reason": "box directly above the printed 3rd"
+  },
+  {
+   "writer_key": "itemQuarter_4",
+   "html_id": "p1c8",
+   "printed": "3 Quarter: 4th",
+   "reason": "box directly above the printed 4th"
+  },
+  {
+   "writer_key": "frm0605:txtClassification:_1",
+   "html_id": "p1c31",
+   "printed": "11 Taxpayer Classification: I",
+   "reason": "box beside printed letter I, first option"
+  },
+  {
+   "writer_key": "frm0605:txtClassification:_2",
+   "html_id": "p1c32",
+   "printed": "11 Taxpayer Classification: N",
+   "reason": "box beside printed letter N, second option"
+  },
+  {
+   "writer_key": "frm0605:itemMannerOfPayment:_1",
+   "html_id": "p1c43",
+   "printed": "17 Manner of Payment: Self-Assessment",
+   "reason": "box immediately left of \"Self-Assessment\""
+  },
+  {
+   "writer_key": "frm0605:itemMannerOfPayment:_2",
+   "html_id": "p1c44",
+   "printed": "17 Manner of Payment: Penalties",
+   "reason": "box immediately left of \"Penalties\""
+  },
+  {
+   "writer_key": "frm0605:itemMannerOfPayment:_3",
+   "html_id": "p1c47",
+   "printed": "17 Manner of Payment: Tax Deposit/Advance Payment",
+   "reason": "box immediately left of \"Tax Deposit/Advance Payment\""
+  },
+  {
+   "writer_key": "frm0605:itemMannerOfPayment:_4",
+   "html_id": "p1c50",
+   "printed": "17 Manner of Payment: Income Tax Second Installment",
+   "reason": "box immediately left of \"Income Tax Second Installment\""
+  },
+  {
+   "writer_key": "frm0605:itemMannerOfPayment:_5",
+   "html_id": "p1c53",
+   "printed": "17 Manner of Payment: Others (Specify)",
+   "reason": "box immediately left of \"Others (Specify)\""
+  },
+  {
+   "writer_key": "frm0605:itemMannerOfPaymentB:_1",
+   "html_id": "p1c45",
+   "printed": "17 Manner of Payment: Preliminary/Final Assessment/Deficiency Tax",
+   "reason": "box immediately left of the printed option, first of the Per Audit group"
+  },
+  {
+   "writer_key": "frm0605:itemMannerOfPaymentB:_2",
+   "html_id": "p1c48",
+   "printed": "17 Manner of Payment: Accounts Receivable/Delinquent Account",
+   "reason": "box immediately left of the printed option, second of the Per Audit group"
+  },
+  {
+   "writer_key": "frm0605:itemModeOfPayment:_1",
+   "html_id": "p1c42",
+   "printed": "18 Type of Payment: Installment",
+   "reason": "box immediately left of \"Installment\""
+  },
+  {
+   "writer_key": "frm0605:itemModeOfPayment:_2",
+   "html_id": "p1c49",
+   "printed": "18 Type of Payment: Partial Payment",
+   "reason": "box immediately left of \"Partial Payment\", printed order after No. of Installment"
+  },
+  {
+   "writer_key": "frm0605:itemModeOfPayment:_3",
+   "html_id": "p1c51",
+   "printed": "18 Type of Payment: Full Payment",
+   "reason": "box immediately left of \"Full Payment\""
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "AtcCode1",
+    "AtcCode2",
+    "AtcCode3",
+    "AtcCode4",
+    "AtcCode5",
+    "AtcCode6",
+    "AtcCode7",
+    "AtcCode8",
+    "AtcCode9",
+    "AtcCode10",
+    "AtcCode11",
+    "AtcCode12",
+    "AtcCode13",
+    "AtcCode14",
+    "AtcCode15",
+    "AtcCode16",
+    "AtcCode17",
+    "AtcCode18",
+    "AtcCode19",
+    "AtcCode20",
+    "AtcCode21",
+    "AtcCode22",
+    "AtcCode23",
+    "AtcCode24",
+    "AtcCode25",
+    "AtcCode26",
+    "AtcCode27",
+    "AtcCode28",
+    "AtcCode29",
+    "AtcCode30",
+    "AtcCode31",
+    "AtcCode32",
+    "AtcCode33",
+    "AtcCode34",
+    "AtcCode35",
+    "AtcCode36",
+    "AtcCode37",
+    "AtcCode38",
+    "AtcCode39",
+    "AtcCode40",
+    "AtcCode41",
+    "AtcCode42",
+    "AtcCode43",
+    "AtcCode44",
+    "AtcCode45",
+    "AtcCode46",
+    "AtcCode47",
+    "AtcCode48",
+    "AtcCode49",
+    "AtcCode50",
+    "AtcCode51",
+    "AtcCode52",
+    "AtcCode53",
+    "AtcCode54",
+    "AtcCode55",
+    "AtcCode56",
+    "AtcCode57",
+    "AtcCode58",
+    "AtcCode59",
+    "AtcCode60",
+    "AtcCode61",
+    "AtcCode62",
+    "AtcCode63",
+    "AtcCode64",
+    "AtcCode65",
+    "AtcCode66",
+    "AtcCode67",
+    "AtcCode68",
+    "AtcCode69",
+    "AtcCode70",
+    "AtcCode71",
+    "AtcCode72",
+    "AtcCode73",
+    "AtcCode74",
+    "AtcCode75",
+    "AtcCode76",
+    "AtcCode77",
+    "AtcCode78",
+    "AtcCode79",
+    "AtcCode80",
+    "AtcCode81",
+    "AtcCode82",
+    "AtcCode83",
+    "AtcCode84",
+    "AtcCode85",
+    "AtcCode86",
+    "AtcCode87",
+    "AtcCode88",
+    "AtcCode89",
+    "AtcCode90",
+    "AtcCode91",
+    "AtcCode92",
+    "AtcCode93",
+    "AtcCode94",
+    "AtcCode95",
+    "AtcCode96",
+    "AtcCode97",
+    "AtcCode98",
+    "AtcCode99",
+    "AtcCode100",
+    "AtcCode101",
+    "AtcCode102",
+    "AtcCode103",
+    "AtcCode104",
+    "AtcCode105",
+    "AtcCode106",
+    "AtcCode107",
+    "AtcCode108",
+    "AtcCode109",
+    "AtcCode110",
+    "AtcCode111",
+    "AtcCode112",
+    "AtcCode113",
+    "AtcCode114",
+    "AtcCode115",
+    "AtcCode116",
+    "AtcCode117",
+    "AtcCode118",
+    "AtcCode119",
+    "AtcCode120",
+    "AtcCode121",
+    "AtcCode122",
+    "AtcCode123",
+    "AtcCode124",
+    "AtcCode125",
+    "AtcCode126",
+    "AtcCode127",
+    "AtcCode128",
+    "AtcCode129",
+    "AtcCode130",
+    "AtcCode131",
+    "AtcCode132",
+    "AtcCode133",
+    "AtcCode134",
+    "AtcCode135",
+    "AtcCode136",
+    "AtcCode137",
+    "AtcCode138",
+    "AtcCode139",
+    "AtcCode140",
+    "AtcCode141",
+    "AtcCode142"
+   ],
+   "reason": "one radio per row of the page's ATC picker list, not on the paper form; item 6 prints the chosen code from txtATCCode"
+  },
+  {
+   "writer_keys": [
+    "TaxTypeCode1",
+    "TaxTypeCode2",
+    "TaxTypeCode3",
+    "TaxTypeCode4",
+    "TaxTypeCode5",
+    "TaxTypeCode6",
+    "TaxTypeCode7",
+    "TaxTypeCode8",
+    "TaxTypeCode9",
+    "TaxTypeCode10",
+    "TaxTypeCode11",
+    "TaxTypeCode12",
+    "TaxTypeCode13",
+    "TaxTypeCode14",
+    "TaxTypeCode15",
+    "TaxTypeCode16",
+    "TaxTypeCode17",
+    "TaxTypeCode18",
+    "TaxTypeCode19",
+    "TaxTypeCode20",
+    "TaxTypeCode21",
+    "TaxTypeCode22",
+    "TaxTypeCode23",
+    "TaxTypeCode24",
+    "TaxTypeCode25",
+    "TaxTypeCode26",
+    "TaxTypeCode27",
+    "TaxTypeCode28",
+    "TaxTypeCode29",
+    "TaxTypeCode30",
+    "TaxTypeCode31",
+    "TaxTypeCode32",
+    "TaxTypeCode33",
+    "TaxTypeCode34",
+    "TaxTypeCode35",
+    "TaxTypeCode36",
+    "TaxTypeCode37"
+   ],
+   "reason": "one radio per row of the page's Tax Type picker list, not on the paper form; item 8 prints the chosen code from txtTaxTypeCode"
+  },
+  {
+   "writer_keys": [
+    "frm0605:itemApprovedYN:_1",
+    "frm0605:itemApprovedYN:_2"
+   ],
+   "reason": "approval radio of the eBIRForms page, not on the paper form"
+  },
+  {
+   "writer_key": "txtEmail",
+   "reason": "not on the paper form: the 1999 sheet has no email box"
+  },
+  {
+   "writer_keys": [
+    "txtEnroll",
+    "txtFinalFlag",
+    "driveSelectTPExport"
+   ],
+   "reason": "eBIRForms system field (enrolment flag, final flag, export drive, online-filing credentials), not on the paper form"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c46",
+   "reason": "box before the printed \"No. of Installment\" label; layout key txtNumOfInstallment is a number value with no unambiguous cell, so both stay blank"
+  },
+  {
+   "html_id": "p1c52",
+   "reason": "\"Others (Specify)\" text cell sits on the \"(Individual)\" line, not on the Others line; the owning row is ambiguous, so txtOthersName stays blank"
+  },
+  {
+   "html_id": "p1c63",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c64",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c65",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c66",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c67",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c68",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c69",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c70",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c71",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c72",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c73",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c74",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c75",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c76",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c77",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c78",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c79",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  },
+  {
+   "html_id": "p1c80",
+   "reason": "Part III Details of Payment (rows 23-26): no Part III keys in the 0605 layout"
+  }
+ ]
+}

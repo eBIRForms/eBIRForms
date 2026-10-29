@@ -1,0 +1,445 @@
+[
+ {
+  "call": "document.getElementById('responseBG').innerHTML = '<div>fn=Sample%20Dummy%20Taxpayerfn=</div><div>tin1=123tin1=</div><div>tin2=456tin2=</div><div>tin3=788tin3=</div><div>tin4=00000tin4=</div><div>rdo=039rdo=</div><div>lob=Sample%20Consulting%20Serviceslob=</div><div>regAddr=123%20Sample%20Street%2C%20Barangay%20Example%2C%20Quezon%20CityregAddr=</div><div>zip=1100zip=</div><div>telNo=09170000000telNo=</div><div>email=sample.taxpayer@example.comemail=</div><div>formType=1800v2018formType=</div>'; loadBGData(); xmlFileName = 'savefile/12345678800000-1800v2018-03102025.xml';"
+ },
+ {
+  "call": "addScheduleA(); addScheduleA(); addScheduleA(); addScheduleB1(); addScheduleB1(); addScheduleB2(); addScheduleB2(); "
+ },
+ {
+  "set": "frm1800v2018:txtMonth",
+  "value": "03"
+ },
+ {
+  "set": "frm1800v2018:txtDate",
+  "value": "10"
+ },
+ {
+  "set": "frm1800v2018:txtYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1800v2018:AmendedRtn_2"
+ },
+ {
+  "set": "frm1800v2018:txtSheets",
+  "value": "01"
+ },
+ {
+  "click": "frm1800v2018:TaxTreatyYN_Y"
+ },
+ {
+  "set": "frm1800v2018:TaxTreaty",
+  "value": "Special law relief"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtParticulars0",
+  "value": "Sedan, 2020 model"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtFairMarketValue0",
+  "value": "750000.005"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtParticulars1",
+  "value": "Shares of Sample Corp"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtFairMarketValue1",
+  "value": "1234567.894"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtOCT0",
+  "value": "T-98765"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtTaxDecNo0",
+  "value": "TD-0001"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLocation0",
+  "value": "Lot 1, Sample Subd., Quezon City"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLotImprovement0",
+  "value": "Lot"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtClassification0",
+  "value": "RR"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtArea0",
+  "value": "150"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFTD0",
+  "value": "900000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue0",
+  "value": "1200000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFairMarketValue0",
+  "value": "1200000"
+ },
+ {
+  "set": "frm1800v2018:TaxCredit17A",
+  "value": "1000"
+ },
+ {
+  "set": "frm1800v2018:Surcharge",
+  "value": "25.5"
+ },
+ {
+  "set": "frm1800v2018:Interest",
+  "value": "10.005"
+ },
+ {
+  "set": "frm1800v2018:txtDoneeNameA",
+  "value": "Maria Sample-Donee"
+ },
+ {
+  "set": "frm1800v2018:txtDoneeTINA",
+  "value": "111222333000"
+ },
+ {
+  "set": "frm1800v2018:txtDoneeNameB",
+  "value": "Pedro Example"
+ },
+ {
+  "set": "frm1800v2018:txtDoneeTINB",
+  "value": "444555666"
+ },
+ {
+  "set": "frm1800v2018:txtDate",
+  "value": "11"
+ },
+ {
+  "set": "frm1800v2018:txtDoneeNameA",
+  "value": "MARIA SAMPLE-DONEE"
+ },
+ {
+  "set": "frm1800v2018:txtDoneeNameB",
+  "value": "PEDRO EXAMPLE"
+ },
+ {
+  "set": "frm1800v2018:TaxTreaty",
+  "value": "SPECIAL LAW RELIEF"
+ },
+ {
+  "set": "frm1800v2018:TaxCredit17A",
+  "value": "1000.00"
+ },
+ {
+  "set": "frm1800v2018:Surcharge",
+  "value": "25.50"
+ },
+ {
+  "set": "frm1800v2018:Interest",
+  "value": "10.01"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtParticulars0",
+  "value": "SEDAN, 2020 MODEL"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtFairMarketValue0",
+  "value": "750000.01"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtParticulars1",
+  "value": "SHARES OF SAMPLE CORP"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtFairMarketValue1",
+  "value": "1234567.89"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtParticulars2",
+  "value": "ITEM 3 JEWELRY"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtFairMarketValue2",
+  "value": "30000.38"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtParticulars3",
+  "value": "ITEM 4 JEWELRY"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtFairMarketValue3",
+  "value": "40000.50"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtParticulars4",
+  "value": "ITEM 5 JEWELRY"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtFairMarketValue4",
+  "value": "50000.63"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtParticulars5",
+  "value": "ITEM 6 JEWELRY"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtFairMarketValue5",
+  "value": "60,000.75"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtParticulars6",
+  "value": "ITEM 7 JEWELRY"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtFairMarketValue6",
+  "value": "70,000.88"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtParticulars7",
+  "value": "ITEM 8 JEWELRY"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtFairMarketValue7",
+  "value": "80,001.00"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtTotalPayment1",
+  "value": "2,314,572.04"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLocation0",
+  "value": "LOT 1, SAMPLE SUBD., QUEZON CITY"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLotImprovement0",
+  "value": "LOT"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtOCT1",
+  "value": "T-222"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtTaxDecNo1",
+  "value": "TD-002"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLocation1",
+  "value": "LOT 2, SAMPLE SUBD., PASIG CITY"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLotImprovement1",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtClassification1",
+  "value": "CR"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtOCT2",
+  "value": "T-333"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtTaxDecNo2",
+  "value": "TD-003"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLocation2",
+  "value": "LOT 3, SAMPLE SUBD., PASIG CITY"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLotImprovement2",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtClassification2",
+  "value": "CR"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtOCT3",
+  "value": "T-444"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtTaxDecNo3",
+  "value": "TD-004"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLocation3",
+  "value": "LOT 4, SAMPLE SUBD., PASIG CITY"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLotImprovement3",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtClassification3",
+  "value": "CR"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtOCT4",
+  "value": "T-555"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtTaxDecNo4",
+  "value": "TD-005"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLocation4",
+  "value": "LOT 5, SAMPLE SUBD., PASIG CITY"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLotImprovement4",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtClassification4",
+  "value": "CR"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtOCT5",
+  "value": "T-666"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtTaxDecNo5",
+  "value": "TD-006"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLocation5",
+  "value": "LOT 6, SAMPLE SUBD., PASIG CITY"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLotImprovement5",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtClassification5",
+  "value": "CR"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtOCT6",
+  "value": "T-777"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtTaxDecNo6",
+  "value": "TD-007"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLocation6",
+  "value": "LOT 7, SAMPLE SUBD., PASIG CITY"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLotImprovement6",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtClassification6",
+  "value": "CR"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFairMarketValue0",
+  "value": "1200000.00"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtArea1",
+  "value": "20"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFTD1",
+  "value": "200000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue1",
+  "value": "240000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFairMarketValue1",
+  "value": "240000.00"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtArea2",
+  "value": "30"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFTD2",
+  "value": "300000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue2",
+  "value": "360000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFairMarketValue2",
+  "value": "360000.00"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtArea3",
+  "value": "40"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFTD3",
+  "value": "400000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue3",
+  "value": "480000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFairMarketValue3",
+  "value": "480000.00"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtArea4",
+  "value": "50"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFTD4",
+  "value": "500000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue4",
+  "value": "600000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFairMarketValue4",
+  "value": "600000.00"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtArea5",
+  "value": "60"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFTD5",
+  "value": "600000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue5",
+  "value": "720000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFairMarketValue5",
+  "value": "720,000.00"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtArea6",
+  "value": "70"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFTD6",
+  "value": "700000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue6",
+  "value": "840000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFairMarketValue6",
+  "value": "840,000.00"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtTotal",
+  "value": "4,440,000.00"
+ },
+ {
+  "call": "validate()"
+ }
+]

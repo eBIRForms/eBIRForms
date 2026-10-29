@@ -1,0 +1,92 @@
+{
+  "slug": "1601c-2018",
+  "code": "1601C",
+  "revision": "2018",
+  "variant": "",
+  "in_corpus": true,
+  "source_file": "1601C final Jan 2018 with DPA.pdf",
+  "sha256": "c8faaa71015337a73b4ceb96bfb265c539589ab5e10eb27899bb81f87f417397",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 3,
+  "pages": 2,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Calibri",
+    "Times New Roman",
+    "Wingdings"
+  ],
+  "rules": 944,
+  "text_runs": 397,
+  "images": 3,
+  "cells": 308,
+  "comb_cells": 132,
+  "growables": [
+    {
+      "page": 2,
+      "rows": 3,
+      "capacity": 3,
+      "pitch_pt": 16.32
+    },
+    {
+      "page": 2,
+      "rows": 3,
+      "capacity": 3,
+      "pitch_pt": 16.2
+    }
+  ],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1601C final Jan 2018 with DPA.pdf",
+      "sha256": "c8faaa71015337a73b4ceb96bfb265c539589ab5e10eb27899bb81f87f417397"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "inline-region"
+    ],
+    "moved_from_form": [
+      {
+        "page": 2,
+        "cut_y_pt": 303.11,
+        "reclaimed_pt": 632.89,
+        "reclaimed_pct": 68,
+        "marker": "Guidelines and Instructions for BIR Form No. 1601-C",
+        "marker_pattern": "guidelines-and-instructions",
+        "moved": {
+          "rules": 0,
+          "cells": 0,
+          "text_runs": 145,
+          "area_fills": 0,
+          "images": 0
+        },
+        "straddlers_kept_by_form": 0,
+        "moved_to": "guide.html"
+      }
+    ],
+    "standalone_pdfs": [],
+    "reclaimed_pt_total": 632.89,
+    "reclaimed_pct_mean": 68,
+    "reclaimed_pct_min": 68,
+    "reclaimed_pct_max": 68,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [
+      2
+    ],
+    "standalone_pdfs": []
+  },
+  "html_bytes": 649465,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

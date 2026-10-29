@@ -1,0 +1,173 @@
+[
+ {
+  "set": "frm2550m:RtnYear",
+  "value": "09"
+ },
+ {
+  "set": "frm2550m:txtYear",
+  "value": "2022"
+ },
+ {
+  "set": "frm2550m:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm2550m:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm2550m:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm2550m:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm2550m:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm2550m:txtLineBus",
+  "value": "Sample Consulting Services"
+ },
+ {
+  "set": "frm2550m:txtTaxPayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm2550m:txtTelephoneNum",
+  "value": "09170000000"
+ },
+ {
+  "set": "frm2550m:txtAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm2550m:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "call": "d.getElementById('AtcCode1').checked = true; showModalAtc(); getATCCode();"
+ },
+ {
+  "set": "frm2550m:txtAmountSales1",
+  "value": "500000"
+ },
+ {
+  "call": "getSched1Modal()"
+ },
+ {
+  "set": "frm2550m:txtTax13A",
+  "value": "200000"
+ },
+ {
+  "call": "addlistSched6()"
+ },
+ {
+  "set": "txtPeriodCovered0",
+  "value": "09/30/2022"
+ },
+ {
+  "set": "txtNameAgent0",
+  "value": "Sample Agent Corp"
+ },
+ {
+  "set": "txtIncomePayment0",
+  "value": "100000"
+ },
+ {
+  "set": "txtTotalWithheld0",
+  "value": "5000"
+ },
+ {
+  "set": "txtAppliedCurr0",
+  "value": "4000.5"
+ },
+ {
+  "call": "addlistSched6()"
+ },
+ {
+  "set": "txtPeriodCovered1",
+  "value": "09/15/2022"
+ },
+ {
+  "set": "txtNameAgent1",
+  "value": "agent two"
+ },
+ {
+  "set": "txtIncomePayment1",
+  "value": "50000"
+ },
+ {
+  "set": "txtTotalWithheld1",
+  "value": "2500"
+ },
+ {
+  "set": "txtAppliedCurr1",
+  "value": "2500"
+ },
+ {
+  "call": "getSched6Modal()"
+ },
+ {
+  "call": "addlistSched7()"
+ },
+ {
+  "set": "txtPeriodCoveredSch70",
+  "value": "09/10/2022"
+ },
+ {
+  "set": "txtNameMillerSch70",
+  "value": "Sample Rice Mill"
+ },
+ {
+  "set": "txtNameTaxPayerSch70",
+  "value": "Sample Dummy"
+ },
+ {
+  "set": "txtORNumSch70",
+  "value": "or-12345"
+ },
+ {
+  "set": "txtAmountPaidSch70",
+  "value": "3000"
+ },
+ {
+  "set": "txtAppliedCurrSch70",
+  "value": "1500.25"
+ },
+ {
+  "call": "getSched7Modal()"
+ },
+ {
+  "call": "addlistSched8()"
+ },
+ {
+  "set": "txtPeriodCoveredSch80",
+  "value": "09/30/2022"
+ },
+ {
+  "set": "txtNameAgentSch80",
+  "value": "Sample Gov Agency"
+ },
+ {
+  "set": "txtIncomePaymentSch80",
+  "value": "200000"
+ },
+ {
+  "set": "txtTotalWithheldSch80",
+  "value": "10000"
+ },
+ {
+  "set": "txtAppliedCurrSch80",
+  "value": "10000"
+ },
+ {
+  "call": "getSched8Modal()"
+ }
+]

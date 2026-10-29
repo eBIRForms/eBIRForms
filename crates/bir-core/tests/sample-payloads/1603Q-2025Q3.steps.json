@@ -1,0 +1,119 @@
+[
+ {
+  "call": "document.getElementById('frm1603Q:txtYear').value = '2025';"
+ },
+ {
+  "click": "frm1603Q:optQuarter3"
+ },
+ {
+  "click": "frm1603Q:AmendedRtn_2"
+ },
+ {
+  "click": "frm1603Q:TaxWithheld_1"
+ },
+ {
+  "set": "frm1603Q:txtSheets",
+  "value": "0"
+ },
+ {
+  "set": "frm1603Q:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1603Q:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1603Q:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1603Q:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1603Q:rdoCode",
+  "value": "039"
+ },
+ {
+  "set": "frm1603Q:txtTaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1603Q:txtAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm1603Q:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "frm1603Q:txtTelNum",
+  "value": "09170000000"
+ },
+ {
+  "click": "frm1603Q:CatAgent_G"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "click": "frm1603Q:SpecialTax_1"
+ },
+ {
+  "set": "frm1603Q:selTreaty",
+  "value": "3"
+ },
+ {
+  "set": "frm1603Q:txtPg2TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1603Q:txtPg2TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1603Q:txtPg2TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1603Q:txtPg2BranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1603Q:txtPg2TaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1603Q:txtLineBus",
+  "value": "Sample Consulting Services"
+ },
+ {
+  "set": "frm1603Q:Sched1:txtValue1",
+  "value": "100000.005"
+ },
+ {
+  "set": "frm1603Q:Sched1:txtValue2",
+  "value": "54321.1"
+ },
+ {
+  "set": "frm1603Q:txt16Other",
+  "value": "Bank remittance"
+ },
+ {
+  "set": "frm1603Q:txtTax16",
+  "value": "1000.505"
+ },
+ {
+  "set": "frm1603Q:txtTax19",
+  "value": "25.5"
+ },
+ {
+  "set": "frm1603Q:txtTax20",
+  "value": "10"
+ },
+ {
+  "click": "frm1603Q:cmdValidate"
+ }
+]

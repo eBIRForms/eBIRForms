@@ -1,0 +1,29 @@
+/* 2200S rev 2018 -- form-specific rules.
+ * Shared scaffolding is in ../base.css. */
+@page { size:612pt 936pt;margin:0 }
+@font-face { font-family:"eBIRForms Arimo";font-style:italic;font-weight:100 900;font-display:block;src:url("../fonts/arimo-latin-wght-italic.woff2") format("woff2") }
+.fi { position:absolute;inset:0;appearance:none;-webkit-appearance:none;border:0;margin:0;padding:0;background:transparent;box-shadow:none;outline:0;border-radius:0;caret-color:#000000;text-rendering:geometricPrecision;font-family:"eBIRForms Arimo", Arimo, Arial, Helvetica, sans-serif;font-weight:400;font-style:normal;font-kerning:none;font-variant-ligatures:none;font-feature-settings:normal;font-variation-settings:"wght" 400;color:#000000 }
+.fh0 { font-size:8.91pt;line-height:9.96pt }
+.fh1 { font-size:9pt;line-height:10.0548pt }
+.fh10 { font-size:9pt;line-height:14.27pt }
+.fh11 { font-size:9pt;line-height:14.28pt }
+.fh12 { font-size:9pt;line-height:14.3pt }
+.fh13 { font-size:9pt;line-height:14.4pt }
+.fh14 { font-size:9pt;line-height:14.64pt }
+.fh15 { font-size:9pt;line-height:14.94pt }
+.fh16 { font-size:9pt;line-height:15.12pt }
+.fh17 { font-size:9pt;line-height:15.3pt }
+.fh18 { font-size:9pt;line-height:18.24pt }
+.fh19 { font-size:9pt;line-height:20.16pt }
+.fh2 { font-size:9pt;line-height:10.08pt }
+.fh20 { font-size:9pt;line-height:30.6pt }
+.fh21 { font-size:9pt;line-height:40.94pt }
+.fh3 { font-size:9pt;line-height:12.96pt }
+.fh4 { font-size:9pt;line-height:13.44pt }
+.fh5 { font-size:9pt;line-height:13.8pt }
+.fh6 { font-size:9pt;line-height:13.92pt }
+.fh7 { font-size:9pt;line-height:13.95pt }
+.fh8 { font-size:9pt;line-height:14.04pt }
+.fh9 { font-size:9pt;line-height:14.16pt }
+.doc-link { position:absolute;left:0;top:0;z-index:9;font:12px/1.5 system-ui,-apple-system,sans-serif;padding:2px 8px;background:#fff;color:#0645ad;text-decoration:underline }
+@media print { .doc-link{display:none} }

@@ -1,0 +1,621 @@
+{
+ "form_id": "1600vt-v2018",
+ "html_slug": "1600-vt-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page's own text layer) names the item. Part II amounts split into the peso comb and the 2-slot cents comb; Schedule 1 cells print the writer's official text. The 2-slot rate cells print the rate without its decimal (derived: keys of to_print_field_map, never submitted); page 2's TIN comb takes the 14-digit TIN the same way. Unexposed items stay blank on print; the submitted XML always carries them. Since #113 every value the print map carries has a box or a reviewed not_joined reason (the sixth ATC onward belongs on an attached sheet).",
+ "joins": [
+  {
+   "writer_key": "frm1600VT:txtPg1I1Month",
+   "html_id": "p1c4",
+   "printed": "1 For the month MM",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1I1Year",
+   "html_id": "p1c5",
+   "printed": "1 For the month 20YY",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1I4NoOfSheets",
+   "html_id": "p1c9",
+   "printed": "4 Number of Sheet/s Attached",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1TIN1",
+   "html_id": "p1c16",
+   "printed": "5 TIN (1-3)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1TIN2",
+   "html_id": "p1c18",
+   "printed": "5 TIN (4-6)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1TIN3",
+   "html_id": "p1c20",
+   "printed": "5 TIN (7-9)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1TIN4",
+   "html_id": "p1c22",
+   "printed": "5 TIN branch",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1I6RDO",
+   "html_id": "p1c24",
+   "printed": "6 RDO Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1Pt1I7WithholdingAgentsName",
+   "html_id": "p1c26",
+   "printed": "7 Withholding Agent's Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1Pt1I8RegisteredAddress",
+   "html_id": "p1c28",
+   "printed": "8 Registered Address",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1Pt1I8RegisteredAddress2",
+   "html_id": "p1c29",
+   "printed": "8 Registered Address (line 2)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txPg1I8ZipCode",
+   "html_id": "p1c31",
+   "printed": "8A ZIP Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1Pt1I9ContactNumber",
+   "html_id": "p1c33",
+   "printed": "9 Contact Number",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1Pt1I11Email",
+   "html_id": "p1c38",
+   "printed": "11 Email Address",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1Pt1I12TaxReliefSpec",
+   "html_id": "p1c41",
+   "printed": "12A If Yes, specify",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg2RegisteredName",
+   "html_id": "p2c6",
+   "printed": "Page 2 Withholding Agent's Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:txtAtcCd1",
+   "html_id": "p1c50",
+   "printed": "13 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:rate1",
+   "html_id": "p1c54",
+   "printed": "13 Tax Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1600VT:txtAtcCd2",
+   "html_id": "p1c60",
+   "printed": "14 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:rate2",
+   "html_id": "p1c64",
+   "printed": "14 Tax Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1600VT:txtAtcCd3",
+   "html_id": "p1c70",
+   "printed": "15 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:rate3",
+   "html_id": "p1c74",
+   "printed": "15 Tax Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1600VT:txtAtcCd4",
+   "html_id": "p1c80",
+   "printed": "16 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:rate4",
+   "html_id": "p1c84",
+   "printed": "16 Tax Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1600VT:txtAtcCd5",
+   "html_id": "p1c90",
+   "printed": "17 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:rate5",
+   "html_id": "p1c94",
+   "printed": "17 Tax Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1TIN1",
+   "html_id": "p2c16",
+   "printed": "Schedule 1 row 1 TIN",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1Name1",
+   "html_id": "p2c17",
+   "printed": "Schedule 1 row 1 Name of Payees",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1ATC1",
+   "html_id": "p2c18",
+   "printed": "Schedule 1 row 1 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1AmtOfIncPmt1",
+   "html_id": "p2c19",
+   "printed": "Schedule 1 row 1 Amount of Income Payment",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1TaxRate1",
+   "html_id": "p2c20",
+   "printed": "Schedule 1 row 1 Tax Rate",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1AmtOfTxWthhld1",
+   "html_id": "p2c21",
+   "printed": "Schedule 1 row 1 Amount of Tax Withheld",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1TIN2",
+   "html_id": "p2c23",
+   "printed": "Schedule 1 row 2 TIN",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1Name2",
+   "html_id": "p2c24",
+   "printed": "Schedule 1 row 2 Name of Payees",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1ATC2",
+   "html_id": "p2c25",
+   "printed": "Schedule 1 row 2 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1AmtOfIncPmt2",
+   "html_id": "p2c26",
+   "printed": "Schedule 1 row 2 Amount of Income Payment",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1TaxRate2",
+   "html_id": "p2c27",
+   "printed": "Schedule 1 row 2 Tax Rate",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1AmtOfTxWthhld2",
+   "html_id": "p2c28",
+   "printed": "Schedule 1 row 2 Amount of Tax Withheld",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1TIN3",
+   "html_id": "p2c30",
+   "printed": "Schedule 1 row 3 TIN",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1Name3",
+   "html_id": "p2c31",
+   "printed": "Schedule 1 row 3 Name of Payees",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1ATC3",
+   "html_id": "p2c32",
+   "printed": "Schedule 1 row 3 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1AmtOfIncPmt3",
+   "html_id": "p2c33",
+   "printed": "Schedule 1 row 3 Amount of Income Payment",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1TaxRate3",
+   "html_id": "p2c34",
+   "printed": "Schedule 1 row 3 Tax Rate",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1AmtOfTxWthhld3",
+   "html_id": "p2c35",
+   "printed": "Schedule 1 row 3 Amount of Tax Withheld",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1TIN4",
+   "html_id": "p2c37",
+   "printed": "Schedule 1 row 4 TIN",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1Name4",
+   "html_id": "p2c38",
+   "printed": "Schedule 1 row 4 Name of Payees",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1ATC4",
+   "html_id": "p2c39",
+   "printed": "Schedule 1 row 4 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1AmtOfIncPmt4",
+   "html_id": "p2c40",
+   "printed": "Schedule 1 row 4 Amount of Income Payment",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1TaxRate4",
+   "html_id": "p2c41",
+   "printed": "Schedule 1 row 4 Tax Rate",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1AmtOfTxWthhld4",
+   "html_id": "p2c42",
+   "printed": "Schedule 1 row 4 Amount of Tax Withheld",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1TIN5",
+   "html_id": "p2c44",
+   "printed": "Schedule 1 row 5 TIN",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1Name5",
+   "html_id": "p2c45",
+   "printed": "Schedule 1 row 5 Name of Payees",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1ATC5",
+   "html_id": "p2c46",
+   "printed": "Schedule 1 row 5 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1AmtOfIncPmt5",
+   "html_id": "p2c47",
+   "printed": "Schedule 1 row 5 Amount of Income Payment",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1TaxRate5",
+   "html_id": "p2c48",
+   "printed": "Schedule 1 row 5 Tax Rate",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1AmtOfTxWthhld5",
+   "html_id": "p2c49",
+   "printed": "Schedule 1 row 5 Amount of Tax Withheld",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1600VT:Pg2Sc1TotTxWthhldAndRmtted",
+   "html_id": "p2c51",
+   "printed": "Schedule 1 Total Taxes Withheld and Remitted",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-VT (January 2018) sheet"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm1600VT:txtPg1P2TaxBase1",
+   "peso_html_id": "p1c51",
+   "cent_html_id": "p1c53",
+   "printed": "13 Tax Base",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2TaxWithheld1",
+   "peso_html_id": "p1c56",
+   "cent_html_id": "p1c58",
+   "printed": "13 Tax Withheld",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2TaxBase2",
+   "peso_html_id": "p1c61",
+   "cent_html_id": "p1c63",
+   "printed": "14 Tax Base",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2TaxWithheld2",
+   "peso_html_id": "p1c66",
+   "cent_html_id": "p1c68",
+   "printed": "14 Tax Withheld",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2TaxBase3",
+   "peso_html_id": "p1c71",
+   "cent_html_id": "p1c73",
+   "printed": "15 Tax Base",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2TaxWithheld3",
+   "peso_html_id": "p1c76",
+   "cent_html_id": "p1c78",
+   "printed": "15 Tax Withheld",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2TaxBase4",
+   "peso_html_id": "p1c81",
+   "cent_html_id": "p1c83",
+   "printed": "16 Tax Base",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2TaxWithheld4",
+   "peso_html_id": "p1c86",
+   "cent_html_id": "p1c88",
+   "printed": "16 Tax Withheld",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2TaxBase5",
+   "peso_html_id": "p1c91",
+   "cent_html_id": "p1c93",
+   "printed": "17 Tax Base",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2TaxWithheld5",
+   "peso_html_id": "p1c96",
+   "cent_html_id": "p1c98",
+   "printed": "17 Tax Withheld",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2I18TotTaxWithheld",
+   "peso_html_id": "p1c100",
+   "cent_html_id": "p1c102",
+   "printed": "18 Total Taxes Withheld",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2I19TaxRemittedInRtrn",
+   "peso_html_id": "p1c104",
+   "cent_html_id": "p1c106",
+   "printed": "19 Less: Taxes Remitted in Return Previously Filed",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2I20OthrPymntsMade",
+   "peso_html_id": "p1c108",
+   "cent_html_id": "p1c110",
+   "printed": "20 Other Payments Made",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2I21TotTaxPymntsMade",
+   "peso_html_id": "p1c112",
+   "cent_html_id": "p1c114",
+   "printed": "21 Total Tax Payments Made",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2I22TaxStillDueOverremit",
+   "peso_html_id": "p1c116",
+   "cent_html_id": "p1c118",
+   "printed": "22 Tax Still Due/(Overremittance)",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2I23Surcharge",
+   "peso_html_id": "p1c120",
+   "cent_html_id": "p1c122",
+   "printed": "23 Surcharge",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2I24Interest",
+   "peso_html_id": "p1c124",
+   "cent_html_id": "p1c126",
+   "printed": "24 Interest",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2I25Compromise",
+   "peso_html_id": "p1c128",
+   "cent_html_id": "p1c130",
+   "printed": "25 Compromise",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2I26TotPenalties",
+   "peso_html_id": "p1c132",
+   "cent_html_id": "p1c134",
+   "printed": "26 Total Penalties",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  },
+  {
+   "writer_key": "frm1600VT:txtPg1P2I27TotAmtStillDueOverremit",
+   "peso_html_id": "p1c136",
+   "cent_html_id": "p1c138",
+   "printed": "27 Total Amount Still Due/(Overremittance)",
+   "reason": "peso comb plus 2-slot cents comb with the printed decimal between them; split the writer amount, pesos right-aligned"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1600VT:rdoPg1I2AmendedYes",
+   "html_id": "p1c10",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600VT:rdoPg1I2AmendedNo",
+   "html_id": "p1c11",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600VT:rdoPg1I3TaxWithheldYes",
+   "html_id": "p1c12",
+   "printed": "3 Any Tax Withheld? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600VT:rdoPg1I3TaxWithheldNo",
+   "html_id": "p1c13",
+   "printed": "3 Any Tax Withheld? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600VT:rdoPg1I10CategoryofWthholdAgentPriv",
+   "html_id": "p1c36",
+   "printed": "10 Category of Withholding Agent Private",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600VT:rdoPg1I10CategoryofWthholdAgentGovt",
+   "html_id": "p1c35",
+   "printed": "10 Category of Withholding Agent Government",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600VT:rdoPg1I12TaxReliefYes",
+   "html_id": "p1c42",
+   "printed": "12 Tax relief? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600VT:rdoPg1I12TaxReliefNo",
+   "html_id": "p1c43",
+   "printed": "12 Tax relief? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm1600VT:txtAtcCd6",
+    "frm1600VT:txtPg1P2TaxBase6",
+    "frm1600VT:txtPg1P2TaxRate6",
+    "frm1600VT:txtPg1P2TaxWithheld6",
+    "frm1600VT:txtAtcCd7",
+    "frm1600VT:txtPg1P2TaxBase7",
+    "frm1600VT:txtPg1P2TaxRate7",
+    "frm1600VT:txtPg1P2TaxWithheld7",
+    "frm1600VT:txtAtcCd8",
+    "frm1600VT:txtPg1P2TaxBase8",
+    "frm1600VT:txtPg1P2TaxRate8",
+    "frm1600VT:txtPg1P2TaxWithheld8",
+    "frm1600VT:txtAtcCd9",
+    "frm1600VT:txtPg1P2TaxBase9",
+    "frm1600VT:txtPg1P2TaxRate9",
+    "frm1600VT:txtPg1P2TaxWithheld9",
+    "frm1600VT:txtAtcCd10",
+    "frm1600VT:txtPg1P2TaxBase10",
+    "frm1600VT:txtPg1P2TaxRate10",
+    "frm1600VT:txtPg1P2TaxWithheld10",
+    "frm1600VT:txtAtcCd11",
+    "frm1600VT:txtPg1P2TaxBase11",
+    "frm1600VT:txtPg1P2TaxRate11",
+    "frm1600VT:txtPg1P2TaxWithheld11",
+    "frm1600VT:txtAtcCd12",
+    "frm1600VT:txtPg1P2TaxBase12",
+    "frm1600VT:txtPg1P2TaxRate12",
+    "frm1600VT:txtPg1P2TaxWithheld12",
+    "frm1600VT:txtAtcCd13",
+    "frm1600VT:txtPg1P2TaxBase13",
+    "frm1600VT:txtPg1P2TaxRate13",
+    "frm1600VT:txtPg1P2TaxWithheld13"
+   ],
+   "reason": "Other Selected ATC rows (the sixth ATC onward): Part II prints five ATC rows (items 13-17); the rest belong on an attached sheet, and their tax withheld reaches Item 18 through txtTotalOtherTax"
+  },
+  {
+   "writer_key": "frm1600VT:txtTotalOtherTax",
+   "reason": "sum of the Other Selected ATC rows (sixth onward); the sheet has no box for it, Item 18 Total Taxes Withheld includes it"
+  },
+  {
+   "writer_keys": [
+    "frm1600VT:txtPg1P2TaxRate1",
+    "frm1600VT:txtPg1P2TaxRate2",
+    "frm1600VT:txtPg1P2TaxRate3",
+    "frm1600VT:txtPg1P2TaxRate4",
+    "frm1600VT:txtPg1P2TaxRate5"
+   ],
+   "reason": "prints from derived:rate1..5 (the print map shapes the rate without its decimal for the 2-slot Tax Rate comb for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1600VT:txtPg2TinC1",
+    "frm1600VT:txtPg2TinC2",
+    "frm1600VT:txtPg2TinC3",
+    "frm1600VT:txtPg2TinC4"
+   ],
+   "reason": "page 2 TIN is one 14-slot comb (p2c5); it prints from derived:tin_digits"
+  },
+  {
+   "writer_key": "frm1600VT:rdoPg1Pt1I6RDO",
+   "reason": "duplicate of frm1600VT:txtPg1I6RDO (same RDO), which prints in item 6"
+  },
+  {
+   "writer_key": "frm1600VT:txtLOB",
+   "reason": "not on the paper form: this sheet has no line-of-business box"
+  },
+  {
+   "writer_key": "frm1600VT:txtCurrentPage",
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  }
+ ]
+}

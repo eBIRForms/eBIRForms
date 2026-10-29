@@ -1,0 +1,2374 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "1702ex-v2018c",
+  "generated_by": "oracle/gen_layout.js (official saveXMLsubmit loop run in jsdom)",
+  "official_hta": "BIR-Form1702EXv2018C.hta",
+  "official_hta_sha256": "1c2f990e08d6ad02bd488bffdcd1b6cf1666d3c173ed0b5617f5faa0c546a7ed",
+  "header": "<?xml version='1.0'?>",
+  "lead": "    \n            ",
+  "value_rules": [
+    {
+      "probe": "1,234.50",
+      "key": "frm1702EX:txtPg1Pt2TitleofSignatory",
+      "expected": "1,234.50",
+      "official": "1234.50"
+    },
+    {
+      "probe": "1,234.50",
+      "key": "frm1702EX:txtPg1Pt2TitleofSignatory2",
+      "expected": "1,234.50",
+      "official": "1234.50"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702EX:txtPg1Pt2TitleofSignatory",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702EX:txtPg1Pt2TitleofSignatory2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    }
+  ],
+  "entries": [
+    {
+      "key": "frm1702EX:rdoPg1I1Calendar",
+      "kind": "bool",
+      "default": "true",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:rdoPg1I1Fiscal",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:ddlPg1I2Date",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:ddlPg1I2Date",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "12",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1I2YearEnd",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1I2YearEnd",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:rdoPg1I3AmendedYes",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:rdoPg1I3AmendedNo",
+      "kind": "bool",
+      "default": "true",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:rdoPg1I4ShortPeriodYes",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:rdoPg1I4ShortPeriodNo",
+      "kind": "bool",
+      "default": "true",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1I5ATCR1C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1I5ATCR1C1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "IC 011",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1I5ATCR1C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1I5ATCR1C2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": " EXEMPT CORPORATION ON EXEMPT ACTIVITIES",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:rdoPg1I5ATCR1C3",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1I5ATCR2C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1I5ATCR2C1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "IC 021",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1I5ATCR2C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1I5ATCR2C2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": " GENERAL PROFESSIONAL PARTNERSHIP",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:rdoPg1I5ATCR2C3",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I6TINC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I6TINC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I6TINC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I6TINC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I6TINC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I6TINC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I6TINC4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I6TINC4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:hdnPg1Pt1I7RDO",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:hdnPg1Pt1I7RDO",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:rdoPg1Pt1I7RDO",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:rdoPg1Pt1I7RDO",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "000",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I8RegisteredName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I8RegisteredName",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I8RegisteredName2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I8RegisteredName2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I8RegisteredName3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I8RegisteredName3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I9RegisteredAddress",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I9RegisteredAddress",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I9RegisteredAddress2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I9RegisteredAddress2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I9RegisteredAddress3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I9RegisteredAddress3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txPg1I9ZipCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txPg1I9ZipCode",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I10DateofIncorporation",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I10DateofIncorporation",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I11ContactNumber",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I11ContactNumber",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I12Email",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I12Email",
+          "codec": "js-escape"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:rdoPg1Pt1I13MethodOfDeducItemized",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:rdoPg1Pt1I13MethodOfDeducOptional",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I14LegalBasis",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I14LegalBasis",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I15Investment",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I15Investment",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I16RegisteredActivity",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I16RegisteredActivity",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I17EffectivityFrom",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I17EffectivityFrom",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt1I17EffectivityTo",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt1I17EffectivityTo",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt2I18TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt2I18TaxDue",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt2I19TotalTaxCrPmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt2I19TotalTaxCrPmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt2I20TotalOverpmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt2I20TotalOverpmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt2I21PenaltyCompromise",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt2I21PenaltyCompromise",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt2I22TotalAmtPayable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt2I22TotalAmtPayable",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:rdoPg1OverpaymentRefund",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:rdoPg1OverpaymentTCC",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:rdoPg1OverpaymentCarryOver",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt2AuthorizedRepresentative",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt2AuthorizedRepresentative",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt2Treasurer",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt2Treasurer",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1P2I23NumOfAttachments",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1P2I23NumOfAttachments",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt2TitleofSignatory",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt2TitleofSignatory",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt2TINofSignatory",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt2TINofSignatory",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt2TitleofSignatory2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt2TitleofSignatory2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt2TINofSignatory2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt2TINofSignatory2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I24CashC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I24CashC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I24CashC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I24CashC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I24Date",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I24Date",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I24CashC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I24CashC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I25CheckC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I25CheckC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I25CheckC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I25CheckC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I25Date",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I25Date",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I25CheckC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I25CheckC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I26TaxDebitC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I26TaxDebitC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I26Date",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I26Date",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I26TaxDebitC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I26TaxDebitC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I27OthersC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I27OthersC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I27OthersC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I27OthersC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I27OthersC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I27OthersC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I27Date",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I27Date",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg1Pt3I27OthersC4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg1Pt3I27OthersC4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2TinC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2TinC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2TinC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2TinC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2TinC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2TinC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2TinC4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2TinC4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2RegisteredName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2RegisteredName",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I28SalesReceiptsRevFees",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I28SalesReceiptsRevFees",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I29SalesRetAllowanceDisc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I29SalesRetAllowanceDisc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I30NetSalesReceiptsRevFees",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I30NetSalesReceiptsRevFees",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I31CostOfSalesServ",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I31CostOfSalesServ",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I32GrossIncomeFromOper",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I32GrossIncomeFromOper",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I33AddOther",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I33AddOther",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I34TotalGross",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I34TotalGross",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I35OrdinaryAllowable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I35OrdinaryAllowable",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I36SpecialAllowable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I36SpecialAllowable",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I37TotalItemized",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I37TotalItemized",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I38OptionalStandardDeduc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I38OptionalStandardDeduc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I39NetTaxable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I39NetTaxable",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I40TaxRate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I40TaxRate",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I41TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I41TaxDue",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I42PriorYearExcessCr",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I42PriorYearExcessCr",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I43IncomeTaxPmtFromPreviousQrt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I43IncomeTaxPmtFromPreviousQrt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I44CreditableTaxWithheldFromPrevQrt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I44CreditableTaxWithheldFromPrevQrt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I45CreditableTaxWithheldFor4thQrt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I45CreditableTaxWithheldFor4thQrt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I46ForeignTaxCr",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I46ForeignTaxCr",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I47TaxPaidInReturnPrevFiled",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I47TaxPaidInReturnPrevFiled",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I48OtherTaxCrPmtDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I48OtherTaxCrPmtDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I48OtherTaxCrPmtAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I48OtherTaxCrPmtAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I49OtherTaxCrPmtDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I49OtherTaxCrPmtDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I49OtherTaxCrPmtAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I49OtherTaxCrPmtAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I50TotalTaxCrPmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I50TotalTaxCrPmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt4I51TotalOverpayment",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt4I51TotalOverpayment",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt5I52RegularIncomeOtherwiseDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt5I52RegularIncomeOtherwiseDue",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt5I53SpecialAllowableItemizedDeduc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt5I53SpecialAllowableItemizedDeduc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg2Pt5I54TotalTaxReliefAvailment",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg2Pt5I54TotalTaxReliefAvailment",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3TinC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3TinC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3TinC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3TinC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3TinC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3TinC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3TinC4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3TinC4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3RegisteredName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3RegisteredName",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I1Ammortization",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I1Ammortization",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I2BadDebts",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I2BadDebts",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I3CharitableContrib",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I3CharitableContrib",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I4Depletion",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I4Depletion",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I5Depreciation",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I5Depreciation",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I6EntertainmentAmuseRecreate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I6EntertainmentAmuseRecreate",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I7FringeBenefits",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I7FringeBenefits",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I8Interest",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I8Interest",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I9Losses",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I9Losses",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I10PensionTrust",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I10PensionTrust",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I11Rental",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I11Rental",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I12RnD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I12RnD",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I13SalaryWageAllowance",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I13SalaryWageAllowance",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I14SssGsisPHealthHDMFOthers",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I14SssGsisPHealthHDMFOthers",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I15TaxAndLicense",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I15TaxAndLicense",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I16TranspoAndTravel",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I16TranspoAndTravel",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I17aJanitorAndMessengerServ",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I17aJanitorAndMessengerServ",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I17bProfessionalFee",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I17bProfessionalFee",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I17cSecurityServices",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I17cSecurityServices",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6I17OthersDDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6I17OthersDDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6I17OthersDAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6I17OthersDAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6I17OthersEDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6I17OthersEDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6I17OthersEAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6I17OthersEAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6I17OthersFDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6I17OthersFDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6I17OthersFAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6I17OthersFAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6I17OthersGDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6I17OthersGDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6I17OthersGAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6I17OthersGAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6I17OthersHDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6I17OthersHDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6I17OthersHAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6I17OthersHAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6I17OthersIDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6I17OthersIDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6I17OthersIAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6I17OthersIAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S1I18TotOrdinaryAllowableItemDeduc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S1I18TotOrdinaryAllowableItemDeduc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S2I1Description",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S2I1Description",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S2I1LegalBasis",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S2I1LegalBasis",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S2I1Amount",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S2I1Amount",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S2I2Description",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S2I2Description",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S2I2LegalBasis",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S2I2LegalBasis",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S2I2Amount",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S2I2Amount",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S2I3Description",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S2I3Description",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S2I3LegalBasis",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S2I3LegalBasis",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S2I3Amount",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S2I3Amount",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S2I4Description",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S2I4Description",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S2I4LegalBasis",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S2I4LegalBasis",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S2I4Amount",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S2I4Amount",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S2I5TotSpecialAllowedItemDeduc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S2I5TotSpecialAllowedItemDeduc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I1NetIncomePerBook",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I1NetIncomePerBook",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I3NonDeductExpenseOtherIncomeDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I3NonDeductExpenseOtherIncomeDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I3NonDeductExpenseOtherIncomeAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I3NonDeductExpenseOtherIncomeAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I4Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I4Total",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I6NonTaxIncomeAndIncomeSubjectToFinTaxDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I6NonTaxIncomeAndIncomeSubjectToFinTaxDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I6NonTaxIncomeAndIncomeSubjectToFinTaxAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I6NonTaxIncomeAndIncomeSubjectToFinTaxAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I7SpecialDeductDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I7SpecialDeductDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I7SpecialDeductAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I7SpecialDeductAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I8SpecialDeductDesc",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I8SpecialDeductDesc",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I8SpecialDeductAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I8SpecialDeductAmt",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I9Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I9Total",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtPg3Pt6S3I10NetTaxableIncome",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtPg3Pt6S3I10NetTaxableIncome",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtLOB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtLOB",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtCurrentPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtCurrentPage",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm1702EX:txtMaxPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702EX:txtMaxPage",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "3",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg3Pt6S1I17SubTotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg3Pt6S1I17SubTotal",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg3Pt6S2I4SubTotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg3Pt6S2I4SubTotal",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg3Pt6S3I3SubTotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg3Pt6S3I3SubTotal",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg3Pt6S3I6SubTotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg3Pt6S3I6SubTotal",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg3Pt6S3I8SubTotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg3Pt6S3I8SubTotal",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "driveSelectTPExport",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "driveSelectTPExport",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "    \n            "
+    },
+    {
+      "key": "txtFinalFlag",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtFinalFlag",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "txtEnroll",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEnroll",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "N",
+      "after": "    \n            "
+    },
+    {
+      "key": "ebirOnlineConfirmUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineConfirmUsername",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "ebirOnlineUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineUsername",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "ebirOnlineSecret",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineSecret",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg3Pt6S1I17PopLength",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg3Pt6S1I17PopLength",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg3Pt6S2I4PopLength",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg3Pt6S2I4PopLength",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg3Pt6S3I3PopLength",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg3Pt6S3I3PopLength",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg3Pt6S3I6PopLength",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg3Pt6S3I6PopLength",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "Pg3Pt6S3I8PopLength",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "Pg3Pt6S3I8PopLength",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "    \n                \n            All Rights Reserved BIR 2014.0"
+    }
+  ]
+}

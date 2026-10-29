@@ -1,9 +1,13 @@
 [package]
 name = "bir-rules"
-description = "Runtime for pinned BIR rule sets."
 version.workspace = true
 edition.workspace = true
 license.workspace = true
+description = "BIR form field rules used by eBIRForms."
 publish.workspace = true
 
 [dependencies]
+num-bigint = "0.4"
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }

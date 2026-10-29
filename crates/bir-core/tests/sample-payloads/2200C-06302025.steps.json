@@ -1,0 +1,159 @@
+[
+ {
+  "call": "Object.defineProperty(window.HTMLSpanElement.prototype,'value',{configurable:true,get:function(){return this.getAttribute('value');},set:function(v){this.setAttribute('value',v);}})"
+ },
+ {
+  "call": "(function(){var d=document,v=function(i,x){d.getElementById(i).value=x;};v('frm2200C:txtPg1Pt1I7RegisteredName','Sample Dummy Taxpayer'.toUpperCase());var n=['TIN1','TIN2','TIN3','TIN4'],t=['123','456','788','00000'];for(var k=0;k<4;k++){var e=d.getElementsByName('frm2200C:'+n[k]);for(var j=0;j<e.length;j++){e[j].value=t[k];}}v('frm2200C:txtPg1I6RDO','039');v('frm2200C:rdoPg1Pt1I6RDO','039');v('frm2200C:txtLOB','Sample Consulting Services');v('frm2200C:txtPg1Pt1I8RegisteredAddress','123 Sample Street, Barangay Example, Quezon City');v('frm2200C:txtPg1Pt1I8RegisteredAddress2','');v('frm2200C:txtPg1Pt1I9ContactNumber','09170000000');v('frm2200C:txPg1I8ZipCode','1100');v('frm2200C:txtPg1Pt1I10Email','sample.taxpayer@example.com');})()"
+ },
+ {
+  "set": "frm2200C:txtPg1I1Month",
+  "value": "06"
+ },
+ {
+  "set": "frm2200C:txtPg1I1Day",
+  "value": "30"
+ },
+ {
+  "set": "frm2200C:txtPg1I1Year",
+  "value": "2025"
+ },
+ {
+  "click": "frm2200C:rdoPg1I2AmendedYes"
+ },
+ {
+  "set": "frm2200C:txtPg1P3I19PmntOnRtrnPrevFiled",
+  "value": "400"
+ },
+ {
+  "set": "frm2200C:txtPg1Pt1I11Region",
+  "value": "130000000"
+ },
+ {
+  "set": "frm2200C:txtPg1Pt1I11Province",
+  "value": "137400000"
+ },
+ {
+  "set": "frm2200C:txtPg1Pt1I11City",
+  "value": "137404000"
+ },
+ {
+  "click": "frm2200C:rdoPg1I12TaxReliefYes"
+ },
+ {
+  "set": "frm2200C:txtPg1I12TaxReliefSpecify",
+  "value": "special law sample"
+ },
+ {
+  "click": "frm2200C:rdoPg1Pt2MOPPaymentActual"
+ },
+ {
+  "set": "frm2200C:CPPexmpt1",
+  "value": "1"
+ },
+ {
+  "set": "frm2200C:CPPexcise1",
+  "value": "3"
+ },
+ {
+  "set": "frm2200C:CPPnonexcise1",
+  "value": "2"
+ },
+ {
+  "set": "frm2200C:GRnetVat1",
+  "value": "10000"
+ },
+ {
+  "set": "frm2200C:GRexciseNet1",
+  "value": "50010"
+ },
+ {
+  "set": "frm2200C:GRexciseExmpt1",
+  "value": "0"
+ },
+ {
+  "set": "frm2200C:GRnonexcise1",
+  "value": "5000"
+ },
+ {
+  "set": "frm2200C:CPPexmpt2",
+  "value": "2"
+ },
+ {
+  "set": "frm2200C:CPPexcise2",
+  "value": "5"
+ },
+ {
+  "set": "frm2200C:CPPnonexcise2",
+  "value": "1"
+ },
+ {
+  "set": "frm2200C:GRnetVat2",
+  "value": "0"
+ },
+ {
+  "set": "frm2200C:GRexciseNet2",
+  "value": "12345"
+ },
+ {
+  "set": "frm2200C:GRexciseExmpt2",
+  "value": "6789"
+ },
+ {
+  "set": "frm2200C:GRnonexcise2",
+  "value": "0"
+ },
+ {
+  "set": "frm2200C:CPPexmpt3",
+  "value": "1"
+ },
+ {
+  "set": "frm2200C:CPPexcise3",
+  "value": "1"
+ },
+ {
+  "set": "frm2200C:CPPnonexcise3",
+  "value": "1"
+ },
+ {
+  "set": "frm2200C:GRnetVat3",
+  "value": "2500"
+ },
+ {
+  "set": "frm2200C:GRexciseNet3",
+  "value": "999"
+ },
+ {
+  "set": "frm2200C:GRexciseExmpt3",
+  "value": "1"
+ },
+ {
+  "set": "frm2200C:GRnonexcise3",
+  "value": "0"
+ },
+ {
+  "set": "frm2200C:txtPg1P3I17ABalCarriedOver",
+  "value": "100"
+ },
+ {
+  "set": "frm2200C:txtPg1P3I17BCredExciseTax",
+  "value": "8"
+ },
+ {
+  "set": "frm2200C:txtPg1P3I21ASurcharge",
+  "value": "25"
+ },
+ {
+  "set": "frm2200C:txtPg1P3I21CCompromise",
+  "value": "10"
+ },
+ {
+  "set": "frm2200C:txtPg1P3I23ATaxPmntDposit",
+  "value": "3000"
+ },
+ {
+  "click": "frm2200C:btnValidate"
+ },
+ {
+  "call": "var xmlFileName = createXMLFileName('savefile/')"
+ }
+]

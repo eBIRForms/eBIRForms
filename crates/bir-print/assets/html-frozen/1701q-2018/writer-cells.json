@@ -1,0 +1,989 @@
+{
+ "form_id": "1701q-v2018",
+ "html_slug": "1701q-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page text layer) names the item. Text cells and combs: caption left of or above the cell. Booleans: X in the box immediately left of the printed option (quarter, amended, type, ATC, foreign tax credit, tax rate, method, spouse options). ATC booleans follow the printed grid order, read row by row (Part I: II012, II014, II013 / II015, II017, II016; Part II first row: II012, II014, II013, II011, then II015, II017, II016). Part III, Part IV and Part V (page 2) amounts are whole-peso 8-slot combs with no centavo comb (the print says not to enter centavos), so each one takes a peso_joins entry that prints the amount rounded to whole pesos. Part IV dates are three combs per row under one key: date_joins split the writer date across them. The page 2 TIN is one 14-slot comb: it prints derived:tin_digits (Form1701QDraft::to_print_field_map). The item 5 and item 17 branch combs (p1c22, p1c72) are mixed cells with no input element, so they stay blank. TIN combs carry catalog name stamps and take no join. Layout keys with no printed cell (txtCurrentPage, txtMaxPage, txtLOB, txtTelno, txtFinalFlag, txtEnroll, ebirOnline*, driveSelectTPExport) have no cell to fill. Since #113 the Part V (specify) boxes print too and every other value has a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm1701q:txtYear",
+   "html_id": "p1c4",
+   "printed": "1 For the Year",
+   "reason": "4-slot comb right of \"1 For the Year\""
+  },
+  {
+   "writer_key": "frm1701q:txtSheets",
+   "html_id": "p1c8",
+   "printed": "4 Number of Sheet/s Attached",
+   "reason": "2-slot comb under \"Number of Sheet/s Attached\""
+  },
+  {
+   "writer_key": "frm1701q:txtRDOCode",
+   "html_id": "p1c24",
+   "printed": "6 RDO Code",
+   "reason": "3-slot comb under \"6 RDO Code\""
+  },
+  {
+   "writer_key": "frm1701q:txtTaxpayerName",
+   "html_id": "p1c39",
+   "printed": "9 Taxpayer/Filer's Name",
+   "reason": "40-slot name comb under \"9 Taxpayer/Filer's Name\""
+  },
+  {
+   "writer_key": "frm1701q:txtAddress",
+   "html_id": "p1c41",
+   "printed": "10 Registered Address",
+   "reason": "40-slot address comb under \"10 Registered Address\""
+  },
+  {
+   "writer_key": "frm1701q:txtAddress2",
+   "html_id": "p1c42",
+   "printed": "10 Registered Address (second line)",
+   "reason": "32-slot comb directly under the item 10 first line"
+  },
+  {
+   "writer_key": "frm1701q:txtZipCode",
+   "html_id": "p1c44",
+   "printed": "10A ZIP Code",
+   "reason": "4-slot comb right of \"10A ZIP Code\""
+  },
+  {
+   "writer_key": "frm1701q:txtBirthMonth",
+   "html_id": "p1c47",
+   "printed": "11 Date of Birth (MM)",
+   "reason": "2-slot MM comb under \"11 Date of Birth\""
+  },
+  {
+   "writer_key": "frm1701q:txtBirthDay",
+   "html_id": "p1c48",
+   "printed": "11 Date of Birth (DD)",
+   "reason": "2-slot DD comb after the MM comb"
+  },
+  {
+   "writer_key": "frm1701q:txtBirthYear",
+   "html_id": "p1c49",
+   "printed": "11 Date of Birth (YYYY)",
+   "reason": "4-slot YYYY comb after the DD comb"
+  },
+  {
+   "writer_key": "txtEmail",
+   "html_id": "p1c50",
+   "printed": "12 Email Address",
+   "reason": "32-slot comb under \"12 Email Address\""
+  },
+  {
+   "writer_key": "frm1701q:txtCitizenship",
+   "html_id": "p1c54",
+   "printed": "13 Citizenship",
+   "reason": "16-slot comb under \"13 Citizenship\""
+  },
+  {
+   "writer_key": "frm1701q:txtForeignTaxNumber",
+   "html_id": "p1c55",
+   "printed": "14 Foreign Tax Number",
+   "reason": "16-slot comb under \"14 Foreign Tax Number\""
+  },
+  {
+   "writer_key": "frm1701q:txtSpouseRDOCode",
+   "html_id": "p1c74",
+   "printed": "18 RDO Code (spouse)",
+   "reason": "3-slot comb under \"18 RDO Code\""
+  },
+  {
+   "writer_key": "frm1701q:txtSpouseName",
+   "html_id": "p1c89",
+   "printed": "21 Spouse's Name",
+   "reason": "40-slot name comb under \"21 Spouse's Name\""
+  },
+  {
+   "writer_key": "frm1701q:txtSpouseCitizenship",
+   "html_id": "p1c93",
+   "printed": "22 Citizenship (spouse)",
+   "reason": "16-slot comb under \"22 Citizenship\""
+  },
+  {
+   "writer_key": "frm1701q:txtSpouseForeignTaxNum",
+   "html_id": "p1c94",
+   "printed": "23 Foreign Tax Number (spouse)",
+   "reason": "16-slot comb under \"23 Foreign Tax Number\""
+  },
+  {
+   "writer_key": "frm1701q:txtAgency32",
+   "html_id": "p1c134",
+   "printed": "32 Cash/Bank Debit Memo, Drawee Bank/Agency",
+   "reason": "6-slot comb under \"Drawee Bank/Agency\", row 32"
+  },
+  {
+   "writer_key": "frm1701q:txtNumber32",
+   "html_id": "p1c135",
+   "printed": "32 Cash/Bank Debit Memo, Number",
+   "reason": "11-slot comb under \"Number\", row 32"
+  },
+  {
+   "writer_key": "frm1701q:txtAgency33",
+   "html_id": "p1c141",
+   "printed": "33 Check, Drawee Bank/Agency",
+   "reason": "6-slot comb under \"Drawee Bank/Agency\", row 33"
+  },
+  {
+   "writer_key": "frm1701q:txtNumber33",
+   "html_id": "p1c142",
+   "printed": "33 Check, Number",
+   "reason": "11-slot comb under \"Number\", row 33"
+  },
+  {
+   "writer_key": "frm1701q:txtNumber34",
+   "html_id": "p1c148",
+   "printed": "34 Tax Debit Memo, Number",
+   "reason": "11-slot comb under \"Number\", row 34 (no Drawee Bank comb on this row)"
+  },
+  {
+   "writer_key": "frm1701q:txtParticular35",
+   "html_id": "p1c154",
+   "printed": "35 Others (specify)",
+   "reason": "7-slot comb under \"35 Others (specify)\""
+  },
+  {
+   "writer_key": "frm1701q:txtAgency35",
+   "html_id": "p1c155",
+   "printed": "35 Others, Drawee Bank/Agency",
+   "reason": "6-slot comb under the \"Drawee Bank/Agency\" column, row 35"
+  },
+  {
+   "writer_key": "frm1701q:txtNumber35",
+   "html_id": "p1c156",
+   "printed": "35 Others, Number",
+   "reason": "11-slot comb under the \"Number\" column, row 35"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN",
+   "reason": "the 14-slot comb under the page 2 TIN caption: TIN then branch, from the page-2 TIN keys"
+  },
+  {
+   "writer_key": "frm1701q:txt43Desc",
+   "html_id": "p2c148",
+   "printed": "43 (specify)",
+   "reason": "the specify box on the item 43 row, after the printed caption (input inset past the caption), left of the A/B amount combs"
+  },
+  {
+   "writer_key": "frm1701q:txt48Desc",
+   "html_id": "p2c150",
+   "printed": "48 (specify)",
+   "reason": "the specify box on the item 48 row, after the printed caption (input inset past the caption), left of the A/B amount combs"
+  },
+  {
+   "writer_key": "frm1701q:txt61Desc",
+   "html_id": "p2c152",
+   "printed": "61 (specify)",
+   "reason": "the specify box on the item 61 row, after the printed caption (input inset past the caption), left of the A/B amount combs"
+  },
+  {
+   "writer_key": "derived:page2_name",
+   "html_id": "p2c6",
+   "printed": "Page 2 Taxpayer/Filer's Last Name",
+   "reason": "the 26-slot comb under the page 2 name caption: the last name, or the taxpayer name's part before its comma when the draft holds no separate last name (a new return leaves it blank)"
+  }
+ ],
+ "money_joins": [],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1701q:DateQuarter_1",
+   "html_id": "p1c10",
+   "printed": "2 Quarter: First",
+   "reason": "box immediately left of \"First\""
+  },
+  {
+   "writer_key": "frm1701q:DateQuarter_2",
+   "html_id": "p1c11",
+   "printed": "2 Quarter: Second",
+   "reason": "box immediately left of \"Second\""
+  },
+  {
+   "writer_key": "frm1701q:DateQuarter_3",
+   "html_id": "p1c9",
+   "printed": "2 Quarter: Third",
+   "reason": "box immediately left of \"Third\""
+  },
+  {
+   "writer_key": "frm1701q:AmendedRtn_1",
+   "html_id": "p1c12",
+   "printed": "3 Amended Return? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm1701q:AmendedRtn_2",
+   "html_id": "p1c13",
+   "printed": "3 Amended Return? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm1701q:optType_1",
+   "html_id": "p1c27",
+   "printed": "7 Taxpayer/Filer Type: Single Proprietor",
+   "reason": "box immediately left of \"Single Proprietor\""
+  },
+  {
+   "writer_key": "frm1701q:optType_2",
+   "html_id": "p1c28",
+   "printed": "7 Taxpayer/Filer Type: Professional",
+   "reason": "box immediately left of \"Professional\""
+  },
+  {
+   "writer_key": "frm1701q:optType_3",
+   "html_id": "p1c29",
+   "printed": "7 Taxpayer/Filer Type: Estate",
+   "reason": "box immediately left of \"Estate\""
+  },
+  {
+   "writer_key": "frm1701q:optType_4",
+   "html_id": "p1c30",
+   "printed": "7 Taxpayer/Filer Type: Trust",
+   "reason": "box immediately left of \"Trust\""
+  },
+  {
+   "writer_key": "frm1701q:optATC_1",
+   "html_id": "p1c33",
+   "printed": "8 ATC: II012 Business Income-Graduated IT Rates",
+   "reason": "box immediately left of the printed ATC, row 1 col 1 (printed order)"
+  },
+  {
+   "writer_key": "frm1701q:optATC_2",
+   "html_id": "p1c32",
+   "printed": "8 ATC: II014 Income from Profession-Graduated IT Rates",
+   "reason": "box immediately left of the printed ATC, row 1 col 2 (printed order)"
+  },
+  {
+   "writer_key": "frm1701q:optATC_3",
+   "html_id": "p1c34",
+   "printed": "8 ATC: II013 Mixed Income-Graduated IT Rates",
+   "reason": "box immediately left of the printed ATC, row 1 col 3 (printed order)"
+  },
+  {
+   "writer_key": "frm1701q:optATC_4",
+   "html_id": "p1c36",
+   "printed": "8 ATC: II015 Business Income-8% IT Rate",
+   "reason": "box immediately left of the printed ATC, row 2 col 1 (printed order)"
+  },
+  {
+   "writer_key": "frm1701q:optATC_5",
+   "html_id": "p1c35",
+   "printed": "8 ATC: II017 Income from Profession-8% IT Rate",
+   "reason": "box immediately left of the printed ATC, row 2 col 2 (printed order)"
+  },
+  {
+   "writer_key": "frm1701q:optATC_6",
+   "html_id": "p1c37",
+   "printed": "8 ATC: II016 Mixed Income-8% IT Rate",
+   "reason": "box immediately left of the printed ATC, row 2 col 3 (printed order)"
+  },
+  {
+   "writer_key": "frm1701q:optForeignTaxCredits_1",
+   "html_id": "p1c57",
+   "printed": "13/14 Claiming Foreign Tax Credits? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm1701q:optForeignTaxCredits_2",
+   "html_id": "p1c58",
+   "printed": "13/14 Claiming Foreign Tax Credits? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm1701q:optTaxRate_1",
+   "html_id": "p1c62",
+   "printed": "16 Tax Rate: Graduated Rates",
+   "reason": "box immediately left of \"Graduated Rates\""
+  },
+  {
+   "writer_key": "frm1701q:optTaxRate_2",
+   "html_id": "p1c63",
+   "printed": "16 Tax Rate: 8%",
+   "reason": "box immediately left of \"8% on gross sales\""
+  },
+  {
+   "writer_key": "frm1701q:optMethodOfDeduction:_1",
+   "html_id": "p1c60",
+   "printed": "16A Method of Deduction: Itemized Deduction",
+   "reason": "box immediately left of \"Itemized Deduction\""
+  },
+  {
+   "writer_key": "frm1701q:optMethodOfDeduction:_2",
+   "html_id": "p1c61",
+   "printed": "16A Method of Deduction: Optional Standard Deduction",
+   "reason": "box immediately left of \"Optional Standard Deduction (OSD)\""
+  },
+  {
+   "writer_key": "frm1701q:optSpouseType_1",
+   "html_id": "p1c77",
+   "printed": "19 Filer's Spouse Type: Single Proprietor",
+   "reason": "box immediately left of \"Single Proprietor\""
+  },
+  {
+   "writer_key": "frm1701q:optSpouseType_2",
+   "html_id": "p1c78",
+   "printed": "19 Filer's Spouse Type: Professional",
+   "reason": "box immediately left of \"Professional\""
+  },
+  {
+   "writer_key": "frm1701q:optSpouseType_3",
+   "html_id": "p1c79",
+   "printed": "19 Filer's Spouse Type: Compensation Earner",
+   "reason": "box immediately left of \"Compensation Earner\""
+  },
+  {
+   "writer_key": "frm1701q:optSpouseATC_1",
+   "html_id": "p1c82",
+   "printed": "20 ATC (spouse): II012 Business Income-Graduated IT Rates",
+   "reason": "box immediately left of the printed ATC, row 1 col 1 (printed order)"
+  },
+  {
+   "writer_key": "frm1701q:optSpouseATC_2",
+   "html_id": "p1c83",
+   "printed": "20 ATC (spouse): II014 Income from Profession-Graduated IT Rates",
+   "reason": "box immediately left of the printed ATC, row 1 col 2 (printed order)"
+  },
+  {
+   "writer_key": "frm1701q:optSpouseATC_3",
+   "html_id": "p1c81",
+   "printed": "20 ATC (spouse): II013 Mixed Income-Graduated IT Rates",
+   "reason": "box immediately left of the printed ATC, row 1 col 3 (printed order)"
+  },
+  {
+   "writer_key": "frm1701q:optSpouseATC_4",
+   "html_id": "p1c84",
+   "printed": "20 ATC (spouse): II011 Compensation Income",
+   "reason": "box immediately left of \"II011 Compensation Income\", row 1 col 4 (printed order)"
+  },
+  {
+   "writer_key": "frm1701q:optSpouseATC_5",
+   "html_id": "p1c85",
+   "printed": "20 ATC (spouse): II015 Business Income-8% IT Rate",
+   "reason": "box immediately left of the printed ATC, row 2 col 1 (printed order)"
+  },
+  {
+   "writer_key": "frm1701q:optSpouseATC_6",
+   "html_id": "p1c86",
+   "printed": "20 ATC (spouse): II017 Income from Profession-8% IT Rate",
+   "reason": "box immediately left of the printed ATC, row 2 col 2 (printed order)"
+  },
+  {
+   "writer_key": "frm1701q:optSpouseATC_7",
+   "html_id": "p1c87",
+   "printed": "20 ATC (spouse): II016 Mixed Income-8% IT Rate",
+   "reason": "box immediately left of the printed ATC, row 2 col 3 (printed order)"
+  },
+  {
+   "writer_key": "frm1701q:optSpouseForeignTaxCred_1",
+   "html_id": "p1c96",
+   "printed": "24 Claiming Foreign Tax Credits (spouse): Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm1701q:optSpouseForeignTaxCred_2",
+   "html_id": "p1c97",
+   "printed": "24 Claiming Foreign Tax Credits (spouse): No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm1701q:optSpouseMethod:_1",
+   "html_id": "p1c99",
+   "printed": "25A Method of Deduction (spouse): Itemized Deduction",
+   "reason": "box immediately left of \"Itemized Deduction\""
+  },
+  {
+   "writer_key": "frm1701q:optSpouseMethod:_2",
+   "html_id": "p1c100",
+   "printed": "25A Method of Deduction (spouse): Optional Standard Deduction",
+   "reason": "box immediately left of \"Optional Standard Deduction (OSD)\""
+  },
+  {
+   "writer_key": "frm1701q:optSpouseTaxRate_1",
+   "html_id": "p1c101",
+   "printed": "25 Tax Rate (spouse): Graduated Rates",
+   "reason": "box immediately left of \"Graduated Rates\""
+  },
+  {
+   "writer_key": "frm1701q:optSpouseTaxRate_2",
+   "html_id": "p1c102",
+   "printed": "25 Tax Rate (spouse): 8%",
+   "reason": "box immediately left of \"8% on gross sales\""
+  }
+ ],
+ "peso_joins": [
+  {
+   "writer_key": "frm1701q:txt26A",
+   "html_id": "p1c108",
+   "printed": "26 Tax Due, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt26B",
+   "html_id": "p1c109",
+   "printed": "26 Tax Due, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt27A",
+   "html_id": "p1c111",
+   "printed": "27 Less: Tax Credits/Payments, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt27B",
+   "html_id": "p1c112",
+   "printed": "27 Less: Tax Credits/Payments, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt28A",
+   "html_id": "p1c114",
+   "printed": "28 Tax Payable/(Overpayment), A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt28B",
+   "html_id": "p1c115",
+   "printed": "28 Tax Payable/(Overpayment), B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt29A",
+   "html_id": "p1c117",
+   "printed": "29 Add: Total Penalties, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt29B",
+   "html_id": "p1c118",
+   "printed": "29 Add: Total Penalties, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt30A",
+   "html_id": "p1c120",
+   "printed": "30 Total Amount Payable/(Overpayment), A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt30B",
+   "html_id": "p1c121",
+   "printed": "30 Total Amount Payable/(Overpayment), B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt31",
+   "html_id": "p1c123",
+   "printed": "31 Aggregate Amount Payable/(Overpayment)",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txtAmount32",
+   "html_id": "p1c139",
+   "printed": "32 Cash/Bank Debit Memo, Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txtAmount33",
+   "html_id": "p1c146",
+   "printed": "33 Check, Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txtAmount34",
+   "html_id": "p1c152",
+   "printed": "34 Tax Debit Memo, Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txtAmount35",
+   "html_id": "p1c160",
+   "printed": "35 Others (specify), Amount",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt36A",
+   "html_id": "p2c14",
+   "printed": "36 Sales/Revenues/Receipts/Fees, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt36B",
+   "html_id": "p2c15",
+   "printed": "36 Sales/Revenues/Receipts/Fees, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt37A",
+   "html_id": "p2c17",
+   "printed": "37 Less: Cost of Sales/Services, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt37B",
+   "html_id": "p2c18",
+   "printed": "37 Less: Cost of Sales/Services, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt38A",
+   "html_id": "p2c20",
+   "printed": "38 Gross Income/(Loss) from Operation, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt38B",
+   "html_id": "p2c21",
+   "printed": "38 Gross Income/(Loss) from Operation, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt39A",
+   "html_id": "p2c24",
+   "printed": "39 Total Allowable Itemized Deductions, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt39B",
+   "html_id": "p2c25",
+   "printed": "39 Total Allowable Itemized Deductions, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt40A",
+   "html_id": "p2c28",
+   "printed": "40 Optional Standard Deduction (OSD), A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt40B",
+   "html_id": "p2c29",
+   "printed": "40 Optional Standard Deduction (OSD), B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt41A",
+   "html_id": "p2c31",
+   "printed": "41 Net Income/(Loss) This Quarter, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt41B",
+   "html_id": "p2c32",
+   "printed": "41 Net Income/(Loss) This Quarter, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt42A",
+   "html_id": "p2c34",
+   "printed": "42 Taxable Income/(Loss) Previous Quarter/s, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt42B",
+   "html_id": "p2c35",
+   "printed": "42 Taxable Income/(Loss) Previous Quarter/s, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt43A",
+   "html_id": "p2c37",
+   "printed": "43 Non-Operating Income (specify), A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt43B",
+   "html_id": "p2c38",
+   "printed": "43 Non-Operating Income (specify), B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt44A",
+   "html_id": "p2c40",
+   "printed": "44 Amount Received/Share in Income by a Partner from GPP, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt44B",
+   "html_id": "p2c41",
+   "printed": "44 Amount Received/Share in Income by a Partner from GPP, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt45A",
+   "html_id": "p2c43",
+   "printed": "45 Taxable Income/(Loss) To Date, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt45B",
+   "html_id": "p2c44",
+   "printed": "45 Taxable Income/(Loss) To Date, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt46A",
+   "html_id": "p2c46",
+   "printed": "46 TAX DUE (graduated rate), A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt46B",
+   "html_id": "p2c47",
+   "printed": "46 TAX DUE (graduated rate), B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt47A",
+   "html_id": "p2c50",
+   "printed": "47 Sales/Revenues/Receipts/Fees (8%), A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt47B",
+   "html_id": "p2c51",
+   "printed": "47 Sales/Revenues/Receipts/Fees (8%), B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt48A",
+   "html_id": "p2c53",
+   "printed": "48 Add: Non-Operating Income (specify), A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt48B",
+   "html_id": "p2c54",
+   "printed": "48 Add: Non-Operating Income (specify), B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt49A",
+   "html_id": "p2c56",
+   "printed": "49 Total Income for the quarter, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt49B",
+   "html_id": "p2c57",
+   "printed": "49 Total Income for the quarter, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt50A",
+   "html_id": "p2c59",
+   "printed": "50 Add: Total Taxable Income/(Loss) Previous Quarter, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt50B",
+   "html_id": "p2c60",
+   "printed": "50 Add: Total Taxable Income/(Loss) Previous Quarter, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt51A",
+   "html_id": "p2c62",
+   "printed": "51 Taxable Income/(Loss) as of This Quarter, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt51B",
+   "html_id": "p2c63",
+   "printed": "51 Taxable Income/(Loss) as of This Quarter, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt52A",
+   "html_id": "p2c65",
+   "printed": "52 Allowable reduction (purely self-employed/professionals), A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt52B",
+   "html_id": "p2c66",
+   "printed": "52 Allowable reduction (purely self-employed/professionals), B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt53A",
+   "html_id": "p2c68",
+   "printed": "53 Taxable Income/(Loss) To Date (8%), A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt53B",
+   "html_id": "p2c69",
+   "printed": "53 Taxable Income/(Loss) To Date (8%), B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt54A",
+   "html_id": "p2c71",
+   "printed": "54 TAX DUE (8%), A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt54B",
+   "html_id": "p2c72",
+   "printed": "54 TAX DUE (8%), B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt55A",
+   "html_id": "p2c75",
+   "printed": "55 Prior Year's Excess Credits, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt55B",
+   "html_id": "p2c76",
+   "printed": "55 Prior Year's Excess Credits, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt56A",
+   "html_id": "p2c78",
+   "printed": "56 Tax Payment/s for the Previous Quarter/s, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt56B",
+   "html_id": "p2c79",
+   "printed": "56 Tax Payment/s for the Previous Quarter/s, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt57A",
+   "html_id": "p2c81",
+   "printed": "57 Creditable Tax Withheld for the Previous Quarter/s, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt57B",
+   "html_id": "p2c82",
+   "printed": "57 Creditable Tax Withheld for the Previous Quarter/s, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt58A",
+   "html_id": "p2c84",
+   "printed": "58 Creditable Tax Withheld per BIR Form No. 2307 for this Quarter, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt58B",
+   "html_id": "p2c85",
+   "printed": "58 Creditable Tax Withheld per BIR Form No. 2307 for this Quarter, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt59A",
+   "html_id": "p2c87",
+   "printed": "59 Tax Paid in Return Previously Filed, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt59B",
+   "html_id": "p2c88",
+   "printed": "59 Tax Paid in Return Previously Filed, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt60A",
+   "html_id": "p2c90",
+   "printed": "60 Foreign Tax Credits, if applicable, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt60B",
+   "html_id": "p2c91",
+   "printed": "60 Foreign Tax Credits, if applicable, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt61A",
+   "html_id": "p2c93",
+   "printed": "61 Other Tax Credits/Payments (specify), A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt61B",
+   "html_id": "p2c94",
+   "printed": "61 Other Tax Credits/Payments (specify), B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt62A",
+   "html_id": "p2c96",
+   "printed": "62 Total Tax Credits/Payments, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt62B",
+   "html_id": "p2c97",
+   "printed": "62 Total Tax Credits/Payments, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt63A",
+   "html_id": "p2c99",
+   "printed": "63 Tax Payable/(Overpayment), A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt63B",
+   "html_id": "p2c100",
+   "printed": "63 Tax Payable/(Overpayment), B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt64A",
+   "html_id": "p2c103",
+   "printed": "64 Surcharge, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt64B",
+   "html_id": "p2c104",
+   "printed": "64 Surcharge, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt65A",
+   "html_id": "p2c106",
+   "printed": "65 Interest, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt65B",
+   "html_id": "p2c107",
+   "printed": "65 Interest, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt66A",
+   "html_id": "p2c109",
+   "printed": "66 Compromise, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt66B",
+   "html_id": "p2c110",
+   "printed": "66 Compromise, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt67A",
+   "html_id": "p2c112",
+   "printed": "67 Total Penalties, A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt67B",
+   "html_id": "p2c113",
+   "printed": "67 Total Penalties, B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt68A",
+   "html_id": "p2c115",
+   "printed": "68 Total Amount Payable/(Overpayment), A) Taxpayer/Filer",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  },
+  {
+   "writer_key": "frm1701q:txt68B",
+   "html_id": "p2c116",
+   "printed": "68 Total Amount Payable/(Overpayment), B) Spouse",
+   "reason": "whole-peso comb with no centavo comb; the print says do not enter centavos"
+  }
+ ],
+ "date_joins": [
+  {
+   "writer_key": "frm1701q:txtDate32",
+   "mm_html_id": "p1c136",
+   "dd_html_id": "p1c137",
+   "yyyy_html_id": "p1c138",
+   "printed": "Part IV row 32, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part IV Date column on the row 32 line; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1701q:txtDate33",
+   "mm_html_id": "p1c143",
+   "dd_html_id": "p1c144",
+   "yyyy_html_id": "p1c145",
+   "printed": "Part IV row 33, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part IV Date column on the row 33 line; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1701q:txtDate34",
+   "mm_html_id": "p1c149",
+   "dd_html_id": "p1c150",
+   "yyyy_html_id": "p1c151",
+   "printed": "Part IV row 34, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part IV Date column on the row 34 line; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1701q:txtDate35",
+   "mm_html_id": "p1c157",
+   "dd_html_id": "p1c158",
+   "yyyy_html_id": "p1c159",
+   "printed": "Part IV row 35, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Part IV Date column on the row 35 line; one writer date split across the three"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm1701q:txtPg2TIN1",
+    "frm1701q:txtPg2TIN2",
+    "frm1701q:txtPg2TIN3",
+    "frm1701q:txtPg2BranchCode"
+   ],
+   "reason": "page 2 TIN is one 14-slot comb (p2c5); it prints from derived:tin_digits, built from these four keys"
+  },
+  {
+   "writer_key": "frm1701q:txtBranchCode",
+   "reason": "item 5 branch is preprinted 0 0 0 0 0 inside a mixed cell with no input on the frozen sheet; there is no box to fill"
+  },
+  {
+   "writer_key": "frm1701q:txtLOB",
+   "reason": "not on the paper form: this sheet has no line-of-business box"
+  },
+  {
+   "writer_key": "frm1701q:txtTelno",
+   "reason": "not on the paper form: the 1701Q (2018) sheet has no contact number box (item 12 is the email)"
+  },
+  {
+   "writer_keys": [
+    "frm1701q:txtCurrentPage",
+    "frm1701q:txtMaxPage"
+   ],
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  },
+  {
+   "writer_keys": [
+    "txtEnroll",
+    "txtFinalFlag"
+   ],
+   "reason": "eBIRForms system field (enrolment flag, final flag, export drive, online-filing credentials), not on the paper form"
+  },
+  {
+   "writer_key": "frm1701q:txtPg2TaxpayerName",
+   "reason": "prints from derived:page2_name (the print map shapes the page 2 last name, falling back to the taxpayer name for the sheet)"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c259",
+   "reason": "Authorized Representative TIN text cell under the signature block: no layout key"
+  },
+  {
+   "html_id": "p1c22",
+   "reason": "branch comb (5 slots) under item 5 is a mixed cell with no input element in the frozen sheet, so the fill path cannot target it; left blank"
+  },
+  {
+   "html_id": "p1c72",
+   "reason": "spouse branch comb (5 slots) under item 17 is a mixed cell with no input element in the frozen sheet, so the fill path cannot target it; left blank"
+  }
+ ]
+}

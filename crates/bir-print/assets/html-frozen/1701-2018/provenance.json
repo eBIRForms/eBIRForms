@@ -1,0 +1,98 @@
+{
+  "slug": "1701-2018",
+  "code": "1701",
+  "revision": "2018",
+  "variant": "",
+  "in_corpus": true,
+  "source_file": "1701 Jan 2018 final with rates.pdf",
+  "sha256": "19be91d78258eb7c255f2615610db2739f10c378f8ac97adc0887c1bf40d1b2e",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 5,
+  "pages": 4,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0",
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Calibri"
+  ],
+  "rules": 3141,
+  "text_runs": 698,
+  "images": 5,
+  "cells": 848,
+  "comb_cells": 283,
+  "growables": [
+    {
+      "page": 3,
+      "rows": 4,
+      "capacity": 4,
+      "pitch_pt": 10.8
+    },
+    {
+      "page": 4,
+      "rows": 4,
+      "capacity": 4,
+      "pitch_pt": 10.8
+    },
+    {
+      "page": 4,
+      "rows": 3,
+      "capacity": 3,
+      "pitch_pt": 14.76
+    }
+  ],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1701 Jan 2018 final with rates.pdf",
+      "sha256": "19be91d78258eb7c255f2615610db2739f10c378f8ac97adc0887c1bf40d1b2e"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "inline-region"
+    ],
+    "moved_from_form": [
+      {
+        "page": 4,
+        "cut_y_pt": 856.16,
+        "reclaimed_pt": 79.84,
+        "reclaimed_pct": 9,
+        "marker": "TABLE 1 \u2013 Tax Rates (effective January 1, 2018 to December 31, 2022)",
+        "marker_pattern": "reference-band",
+        "moved": {
+          "rules": 30,
+          "cells": 31,
+          "text_runs": 22,
+          "area_fills": 20,
+          "images": 0
+        },
+        "straddlers_kept_by_form": 0,
+        "moved_to": "guide.html"
+      }
+    ],
+    "standalone_pdfs": [],
+    "reclaimed_pt_total": 79.84,
+    "reclaimed_pct_mean": 9,
+    "reclaimed_pct_min": 9,
+    "reclaimed_pct_max": 9,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [
+      4
+    ],
+    "standalone_pdfs": []
+  },
+  "html_bytes": 1687998,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

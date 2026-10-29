@@ -1,0 +1,1111 @@
+{
+ "form_id": "1602q-v2018",
+ "html_slug": "1602q-2019",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page text layer) names the item. Text and TIN combs: caption left of or above the comb, or the header over the column. Amounts: the peso comb plus the 2-slot centavo comb directly right of it form one money_joins pair. Booleans and radios: X in the box immediately left of the printed option; the first printed option of a pair takes _1. Schedule 1 rows 13-14 rate boxes, the Schedule 2/3 row-3 lines, and the Part III/tax agent blocks have no safe key and stay blank. Since #113: the item 9 second line, Item 13A, the Schedule 1 items 13-14 BSP exchange rate (peso+2-slot comb) and the page 2/3 TIN headers print too (derived: keys from Form1602QDraft::to_print_field_map); every other value has a reviewed not_joined reason. One writer key may fill several cells (html_ids).",
+ "joins": [
+  {
+   "writer_key": "frm1602Q:txtYear",
+   "html_id": "p1c9",
+   "printed": "1 For the Year",
+   "reason": "caption \"1 For the Year\" left of the 4-slot comb"
+  },
+  {
+   "writer_key": "frm1602Q:txtSheets",
+   "html_id": "p1c15",
+   "printed": "5 (Number of sheets attached)",
+   "reason": "item 5 caption left of the 2-slot comb"
+  },
+  {
+   "writer_key": "frm1602Q:txtTIN1",
+   "html_id": "p1c27",
+   "printed": "6 TIN (first 3 digits)",
+   "reason": "first of the 3-3-3 TIN combs under item 6; \"/\" separators between combs"
+  },
+  {
+   "writer_key": "frm1602Q:txtTIN2",
+   "html_id": "p1c29",
+   "printed": "6 TIN (second 3 digits)",
+   "reason": "second TIN comb under item 6"
+  },
+  {
+   "writer_key": "frm1602Q:txtTIN3",
+   "html_id": "p1c31",
+   "printed": "6 TIN (third 3 digits)",
+   "reason": "third TIN comb under item 6"
+  },
+  {
+   "writer_key": "frm1602Q:txtBranchCode",
+   "html_id": "p1c33",
+   "printed": "6 TIN branch",
+   "reason": "5-slot comb after the TIN separator under item 6"
+  },
+  {
+   "writer_key": "frm1602Q:txtRDOCode",
+   "html_id": "p1c35",
+   "printed": "7 RDO Code",
+   "reason": "caption \"RDO Code\" left of the 3-slot comb"
+  },
+  {
+   "writer_key": "frm1602Q:txtTaxpayerName",
+   "html_id": "p1c37",
+   "printed": "8 (Registered Name of Non-Individual)",
+   "reason": "caption above the 40-slot comb"
+  },
+  {
+   "writer_key": "frm1602Q:txtZipCode",
+   "html_id": "p1c42",
+   "printed": "9A ZIP Code",
+   "reason": "caption \"9A ZIP Code\" left of the 4-slot comb"
+  },
+  {
+   "writer_key": "frm1602Q:txtTelNum",
+   "html_id": "p1c44",
+   "printed": "10 Contact Number",
+   "reason": "caption left of the 12-slot comb"
+  },
+  {
+   "writer_key": "txtEmail",
+   "html_id": "p1c49",
+   "printed": "12 Email Address",
+   "reason": "caption left of the 34-slot comb"
+  },
+  {
+   "writer_key": "frm1602Q:txtPage2Agent",
+   "html_id": "p2c6",
+   "printed": "Withholding Agent's Name (page 2)",
+   "reason": "header above the 26-slot comb"
+  },
+  {
+   "writer_key": "frm1602Q:txtPage3Agent",
+   "html_id": "p3c6",
+   "printed": "Withholding Agent's Name (page 3)",
+   "reason": "header above the 26-slot comb"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched2TreatyCode1",
+   "html_id": "p2c161",
+   "printed": "Schedule 2 Treaty Code, row 1",
+   "reason": "header \"Treaty Code\" above the 3-slot comb, row 1"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched2ATC1",
+   "html_id": "p2c162",
+   "printed": "Schedule 2 ATC, row 1",
+   "reason": "header \"ATC\" above the 5-slot comb, row 1"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched2TaxRate1",
+   "html_id": "p2c166",
+   "printed": "Schedule 2 Rate, row 1",
+   "reason": "header \"Rate\" above the rate cell, row 1"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched2TreatyCode2",
+   "html_id": "p2c171",
+   "printed": "Schedule 2 Treaty Code, row 2",
+   "reason": "same column as row 1, row 2"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched2ATC2",
+   "html_id": "p2c172",
+   "printed": "Schedule 2 ATC, row 2",
+   "reason": "same column as row 1, row 2"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched2TaxRate2",
+   "html_id": "p2c176",
+   "printed": "Schedule 2 Rate, row 2",
+   "reason": "same column as row 1, row 2"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched3IPA1",
+   "html_id": "p2c201",
+   "printed": "Schedule 3 IPA Code, row 1",
+   "reason": "header \"Investment Promotion Agency (IPA) Code\" above the 6-slot comb, row 1"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched3TaxRate1",
+   "html_id": "p2c206",
+   "printed": "Schedule 3 Rate, row 1",
+   "reason": "header \"Rate\" above the rate cell, row 1"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched3IPA2",
+   "html_id": "p2c211",
+   "printed": "Schedule 3 IPA Code, row 2",
+   "reason": "same column as row 1, row 2"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched3TaxRate2",
+   "html_id": "p2c216",
+   "printed": "Schedule 3 Rate, row 2",
+   "reason": "same column as row 1, row 2"
+  },
+  {
+   "writer_key": "derived:address_line1",
+   "html_id": "p1c39",
+   "printed": "9 Registered Address, line 1",
+   "reason": "full-width 40-slot comb under the item 9 caption; the print map breaks the address at the last space that fits"
+  },
+  {
+   "writer_key": "derived:line:address_line2",
+   "html_id": "p1c40",
+   "printed": "9 Registered Address, line 2",
+   "reason": "31-slot comb left of 9A ZIP Code on the second item 9 row: the rest of the address; a longer line prints whole in smaller type"
+  },
+  {
+   "writer_key": "derived:line:tax_relief_specify",
+   "html_id": "p1c52",
+   "printed": "13A If yes, specify",
+   "reason": "17-slot comb right of the 13A If yes, specify caption; the relief named on a Yes (the upload carries the lstSpecialTax code)"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "html_ids": [
+    "p3c5"
+   ],
+   "printed": "Page 2 and page 3 TIN",
+   "reason": "the 14-slot comb under each later page's TIN caption: the TIN digits then branch (the upload's txtPage2TIN/txtPage3TIN are dashed and would not fit the 14 boxes)"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm1602Q:txt14",
+   "peso_html_id": "p1c57",
+   "cent_html_id": "p1c59",
+   "printed": "14 Taxes Withheld, Regular Rates",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt15",
+   "peso_html_id": "p1c61",
+   "cent_html_id": "p1c63",
+   "printed": "15 Taxes Withheld, Tax Treaty Rates",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt16",
+   "peso_html_id": "p1c65",
+   "cent_html_id": "p1c67",
+   "printed": "16 Taxes Withheld, Preferential Rates",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt17",
+   "peso_html_id": "p1c69",
+   "cent_html_id": "p1c71",
+   "printed": "17 Total Taxes Withheld for the Quarter",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt18",
+   "peso_html_id": "p1c73",
+   "cent_html_id": "p1c75",
+   "printed": "18 Less: Remittances, 1st Month of the Quarter",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt19",
+   "peso_html_id": "p1c77",
+   "cent_html_id": "p1c79",
+   "printed": "19 Remittances, 2nd Month of the Quarter",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt20",
+   "peso_html_id": "p1c81",
+   "cent_html_id": "p1c83",
+   "printed": "20 Tax Remitted in Return Previously Filed",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt21",
+   "peso_html_id": "p1c85",
+   "cent_html_id": "p1c87",
+   "printed": "21 Over-remittance from Previous Quarter",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt22",
+   "peso_html_id": "p1c89",
+   "cent_html_id": "p1c91",
+   "printed": "22 Total Remittances Made",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt23",
+   "peso_html_id": "p1c93",
+   "cent_html_id": "p1c95",
+   "printed": "23 Tax Still Due / (Over-remittance)",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt24",
+   "peso_html_id": "p1c97",
+   "cent_html_id": "p1c99",
+   "printed": "24 Surcharge",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt25",
+   "peso_html_id": "p1c101",
+   "cent_html_id": "p1c103",
+   "printed": "25 Interest",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt26",
+   "peso_html_id": "p1c105",
+   "cent_html_id": "p1c107",
+   "printed": "26 Compromise",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt27",
+   "peso_html_id": "p1c109",
+   "cent_html_id": "p1c111",
+   "printed": "27 Total Penalties",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txt28",
+   "peso_html_id": "p1c113",
+   "cent_html_id": "p1c115",
+   "printed": "28 Total Amount Still Due / (Over-remittance)",
+   "reason": "money row: peso comb with 2-slot centavo comb directly right, same row caption"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount1",
+   "peso_html_id": "p2c16",
+   "cent_html_id": "p2c18",
+   "printed": "Schedule 1 item 1, Total Interest/Yield",
+   "reason": "Schedule 1 row 1 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax1",
+   "peso_html_id": "p2c21",
+   "cent_html_id": "p2c23",
+   "printed": "Schedule 1 item 1, Taxes Withheld",
+   "reason": "Schedule 1 row 1 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount2",
+   "peso_html_id": "p2c25",
+   "cent_html_id": "p2c27",
+   "printed": "Schedule 1 item 2, Total Interest/Yield",
+   "reason": "Schedule 1 row 2 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax2",
+   "peso_html_id": "p2c30",
+   "cent_html_id": "p2c32",
+   "printed": "Schedule 1 item 2, Taxes Withheld",
+   "reason": "Schedule 1 row 2 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount3",
+   "peso_html_id": "p2c35",
+   "cent_html_id": "p2c37",
+   "printed": "Schedule 1 item 3, Total Interest/Yield",
+   "reason": "Schedule 1 row 3 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax3",
+   "peso_html_id": "p2c40",
+   "cent_html_id": "p2c42",
+   "printed": "Schedule 1 item 3, Taxes Withheld",
+   "reason": "Schedule 1 row 3 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount4",
+   "peso_html_id": "p2c44",
+   "cent_html_id": "p2c46",
+   "printed": "Schedule 1 item 4, Total Interest/Yield",
+   "reason": "Schedule 1 row 4 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax4",
+   "peso_html_id": "p2c49",
+   "cent_html_id": "p2c51",
+   "printed": "Schedule 1 item 4, Taxes Withheld",
+   "reason": "Schedule 1 row 4 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount5",
+   "peso_html_id": "p2c54",
+   "cent_html_id": "p2c56",
+   "printed": "Schedule 1 item 5, Total Interest/Yield",
+   "reason": "Schedule 1 row 5 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax5",
+   "peso_html_id": "p2c59",
+   "cent_html_id": "p2c61",
+   "printed": "Schedule 1 item 5, Taxes Withheld",
+   "reason": "Schedule 1 row 5 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount6",
+   "peso_html_id": "p2c63",
+   "cent_html_id": "p2c65",
+   "printed": "Schedule 1 item 6, Total Interest/Yield",
+   "reason": "Schedule 1 row 6 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax6",
+   "peso_html_id": "p2c68",
+   "cent_html_id": "p2c70",
+   "printed": "Schedule 1 item 6, Taxes Withheld",
+   "reason": "Schedule 1 row 6 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount7",
+   "peso_html_id": "p2c73",
+   "cent_html_id": "p2c75",
+   "printed": "Schedule 1 item 7, Total Interest/Yield",
+   "reason": "Schedule 1 row 7 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax7",
+   "peso_html_id": "p2c78",
+   "cent_html_id": "p2c80",
+   "printed": "Schedule 1 item 7, Taxes Withheld",
+   "reason": "Schedule 1 row 7 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount8",
+   "peso_html_id": "p2c82",
+   "cent_html_id": "p2c84",
+   "printed": "Schedule 1 item 8, Total Interest/Yield",
+   "reason": "Schedule 1 row 8 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax8",
+   "peso_html_id": "p2c87",
+   "cent_html_id": "p2c89",
+   "printed": "Schedule 1 item 8, Taxes Withheld",
+   "reason": "Schedule 1 row 8 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount9",
+   "peso_html_id": "p2c92",
+   "cent_html_id": "p2c94",
+   "printed": "Schedule 1 item 9, Total Interest/Yield",
+   "reason": "Schedule 1 row 9 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax9",
+   "peso_html_id": "p2c97",
+   "cent_html_id": "p2c99",
+   "printed": "Schedule 1 item 9, Taxes Withheld",
+   "reason": "Schedule 1 row 9 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount10",
+   "peso_html_id": "p2c101",
+   "cent_html_id": "p2c103",
+   "printed": "Schedule 1 item 10, Total Interest/Yield",
+   "reason": "Schedule 1 row 10 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax10",
+   "peso_html_id": "p2c106",
+   "cent_html_id": "p2c108",
+   "printed": "Schedule 1 item 10, Taxes Withheld",
+   "reason": "Schedule 1 row 10 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount11",
+   "peso_html_id": "p2c110",
+   "cent_html_id": "p2c112",
+   "printed": "Schedule 1 item 11, Total Interest/Yield",
+   "reason": "Schedule 1 row 11 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax11",
+   "peso_html_id": "p2c115",
+   "cent_html_id": "p2c117",
+   "printed": "Schedule 1 item 11, Taxes Withheld",
+   "reason": "Schedule 1 row 11 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount12",
+   "peso_html_id": "p2c119",
+   "cent_html_id": "p2c121",
+   "printed": "Schedule 1 item 12, Total Interest/Yield",
+   "reason": "Schedule 1 row 12 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax12",
+   "peso_html_id": "p2c124",
+   "cent_html_id": "p2c126",
+   "printed": "Schedule 1 item 12, Taxes Withheld",
+   "reason": "Schedule 1 row 12 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount13",
+   "peso_html_id": "p2c129",
+   "cent_html_id": "p2c131",
+   "printed": "Schedule 1 item 13, Total Interest/Yield",
+   "reason": "Schedule 1 row 13 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax13",
+   "peso_html_id": "p2c136",
+   "cent_html_id": "p2c138",
+   "printed": "Schedule 1 item 13, Taxes Withheld",
+   "reason": "Schedule 1 row 13 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Amount14",
+   "peso_html_id": "p2c140",
+   "cent_html_id": "p2c142",
+   "printed": "Schedule 1 item 14, Total Interest/Yield",
+   "reason": "Schedule 1 row 14 amount: 12-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Tax14",
+   "peso_html_id": "p2c147",
+   "cent_html_id": "p2c149",
+   "printed": "Schedule 1 item 14, Taxes Withheld",
+   "reason": "Schedule 1 row 14 tax: 11-slot comb + cents"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Total",
+   "peso_html_id": "p2c151",
+   "cent_html_id": "p2c153",
+   "printed": "Schedule 1 item 15 total taxes withheld (regular rates)",
+   "reason": "the row-15 total cell is the only Schedule 1 total cell"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched2Interest1",
+   "peso_html_id": "p2c163",
+   "cent_html_id": "p2c165",
+   "printed": "Schedule 2 row 1 Total Interest",
+   "reason": "interest comb + cents, row 1"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched2TaxesWithheld1",
+   "peso_html_id": "p2c167",
+   "cent_html_id": "p2c169",
+   "printed": "Schedule 2 row 1 Taxes Withheld",
+   "reason": "tax comb + cents, row 1"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched2Interest2",
+   "peso_html_id": "p2c173",
+   "cent_html_id": "p2c175",
+   "printed": "Schedule 2 row 2 Total Interest",
+   "reason": "interest comb + cents, row 2"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched2TaxesWithheld2",
+   "peso_html_id": "p2c177",
+   "cent_html_id": "p2c179",
+   "printed": "Schedule 2 row 2 Taxes Withheld",
+   "reason": "tax comb + cents, row 2"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched2Total",
+   "peso_html_id": "p2c191",
+   "cent_html_id": "p2c193",
+   "printed": "Schedule 2 total taxes withheld (tax treaty rates)",
+   "reason": "Total row cell"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched3TotInterest1",
+   "peso_html_id": "p2c203",
+   "cent_html_id": "p2c205",
+   "printed": "Schedule 3 row 1 Total Interest",
+   "reason": "interest comb + cents, row 1"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched3TaxWithheld1",
+   "peso_html_id": "p2c207",
+   "cent_html_id": "p2c209",
+   "printed": "Schedule 3 row 1 Taxes Withheld",
+   "reason": "tax comb + cents, row 1"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched3TotInterest2",
+   "peso_html_id": "p2c213",
+   "cent_html_id": "p2c215",
+   "printed": "Schedule 3 row 2 Total Interest",
+   "reason": "interest comb + cents, row 2"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched3TaxWithheld2",
+   "peso_html_id": "p2c217",
+   "cent_html_id": "p2c219",
+   "printed": "Schedule 3 row 2 Taxes Withheld",
+   "reason": "tax comb + cents, row 2"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched3Total",
+   "peso_html_id": "p2c231",
+   "cent_html_id": "p2c233",
+   "printed": "Schedule 3 total taxes withheld (preferential rates)",
+   "reason": "Total row cell"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Rate13",
+   "peso_html_id": "p2c133",
+   "cent_html_id": "p2c135",
+   "printed": "Schedule 1 item 13, BSP Exchange Rate on the Date of Remittance",
+   "reason": "3-slot peso comb plus 2-slot comb under the BSP Exchange Rate column header on the item 13 row (the writer exchange rate, e.g. 56.79)"
+  },
+  {
+   "writer_key": "frm1602Q:txtSched1Rate14",
+   "peso_html_id": "p2c144",
+   "cent_html_id": "p2c146",
+   "printed": "Schedule 1 item 14, BSP Exchange Rate on the Date of Remittance",
+   "reason": "3-slot peso comb plus 2-slot comb under the BSP Exchange Rate column header on the item 14 row (the writer exchange rate, e.g. 56.79)"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1602Q:qtr_1",
+   "html_id": "p1c17",
+   "printed": "2 Quarter 1st",
+   "reason": "box immediately left of \"1st\""
+  },
+  {
+   "writer_key": "frm1602Q:qtr_2",
+   "html_id": "p1c18",
+   "printed": "2 Quarter 2nd",
+   "reason": "box immediately left of \"2nd\""
+  },
+  {
+   "writer_key": "frm1602Q:qtr_3",
+   "html_id": "p1c19",
+   "printed": "2 Quarter 3rd",
+   "reason": "box immediately left of \"3rd\""
+  },
+  {
+   "writer_key": "frm1602Q:qtr_4",
+   "html_id": "p1c20",
+   "printed": "2 Quarter 4th",
+   "reason": "box immediately left of \"4th\""
+  },
+  {
+   "writer_key": "frm1602Q:AmendedRtn1",
+   "html_id": "p1c21",
+   "printed": "3 Amended Return? Yes",
+   "reason": "box immediately left of \"Yes\"; first printed option of the pair"
+  },
+  {
+   "writer_key": "frm1602Q:AmendedRtn2",
+   "html_id": "p1c22",
+   "printed": "3 Amended Return? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm1602Q:OptTaxWithheld1",
+   "html_id": "p1c23",
+   "printed": "4 Any Taxes Withheld? Yes",
+   "reason": "box immediately left of \"Yes\"; first printed option of the pair"
+  },
+  {
+   "writer_key": "frm1602Q:OptTaxWithheld2",
+   "html_id": "p1c24",
+   "printed": "4 Any Taxes Withheld? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm1602Q:OptCategoryAgent1",
+   "html_id": "p1c46",
+   "printed": "11 Category of Withholding Agent: Private",
+   "reason": "box immediately left of \"Private\"; first printed option"
+  },
+  {
+   "writer_key": "frm1602Q:OptCategoryAgent2",
+   "html_id": "p1c47",
+   "printed": "11 Category of Withholding Agent: Government",
+   "reason": "box immediately left of \"Government\""
+  },
+  {
+   "writer_key": "frm1602Q:OptSpecialTax1",
+   "html_id": "p1c53",
+   "printed": "13 Special Law or International Tax Treaty? Yes",
+   "reason": "box immediately left of \"Yes\"; first printed option"
+  },
+  {
+   "writer_key": "frm1602Q:OptSpecialTax2",
+   "html_id": "p1c54",
+   "printed": "13 Special Law or International Tax Treaty? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm1602Q:OverRemittance1",
+   "html_id": "p1c118",
+   "printed": "If over-remittance: To be refunded",
+   "reason": "box immediately left of \"To be refunded\"; first printed option"
+  },
+  {
+   "writer_key": "frm1602Q:OverRemittance2",
+   "html_id": "p1c119",
+   "printed": "If over-remittance: To be issued Tax Credit Certificate",
+   "reason": "box immediately left of \"To be issued Tax Credit Certificate\""
+  },
+  {
+   "writer_key": "frm1602Q:OverRemittance3",
+   "html_id": "p1c117",
+   "printed": "If over-remittance: To be carried over to the next quarter within the same calendar year",
+   "reason": "box immediately left of the third printed option (x431, lower line)"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_key": "frm1602Q:txtAddress",
+   "reason": "prints from derived:address_line1 / derived:line:address_line2 (the print map shapes the address over both item 9 combs for the sheet)"
+  },
+  {
+   "writer_key": "frm1602Q:lstSpecialTax",
+   "reason": "dropdown code (0 none, 1 special rate, 2 treaty, 3 both); item 13A prints the relief name from derived:line:tax_relief_specify"
+  },
+  {
+   "writer_keys": [
+    "frm1602Q:txtPage2TIN",
+    "frm1602Q:txtPage3TIN"
+   ],
+   "reason": "dashed TIN (17 characters) for a 14-slot comb; the page headers print derived:tin_digits"
+  },
+  {
+   "writer_keys": [
+    "frm1602Q:txtSched1TaxRate13",
+    "frm1602Q:txtSched1TaxRate14"
+   ],
+   "reason": "the Tax Rate column of items 13-14 is preprinted (15%); there is no box to fill"
+  },
+  {
+   "writer_keys": [
+    "frm1602Q:txtSched1Amount15",
+    "frm1602Q:txtSched1Tax15"
+   ],
+   "reason": "the 2019 sheet prints 14 Schedule 1 rows; its item 15 is the Total line (txtSched1Total), so the layout row 15 has no printed row"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c123",
+   "reason": "Tax Agent Accreditation No.: no layout key"
+  },
+  {
+   "html_id": "p1c125",
+   "reason": "Date of Issue (tax agent): no layout key"
+  },
+  {
+   "html_id": "p1c127",
+   "reason": "Date of Expiry (tax agent): no layout key"
+  },
+  {
+   "html_id": "p1c135",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c136",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c137",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c138",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c139",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c140",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c142",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c144",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c145",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c146",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c147",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c148",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c149",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c151",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c153",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c154",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c155",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c156",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c157",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c159",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c161",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c162",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c163",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c164",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c165",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c166",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c167",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c169",
+   "reason": "Part III payment details, signature or tax agent block: no layout key"
+  },
+  {
+   "html_id": "p1c205",
+   "reason": "blank text cell under Part II with no printed caption and no layout key"
+  },
+  {
+   "html_id": "p2c181",
+   "reason": "Schedule 2 row 3: layout has only rows 1-2"
+  },
+  {
+   "html_id": "p2c182",
+   "reason": "Schedule 2 row 3: layout has only rows 1-2"
+  },
+  {
+   "html_id": "p2c183",
+   "reason": "Schedule 2 row 3: layout has only rows 1-2"
+  },
+  {
+   "html_id": "p2c185",
+   "reason": "Schedule 2 row 3: layout has only rows 1-2"
+  },
+  {
+   "html_id": "p2c186",
+   "reason": "Schedule 2 row 3: layout has only rows 1-2"
+  },
+  {
+   "html_id": "p2c187",
+   "reason": "Schedule 2 row 3: layout has only rows 1-2"
+  },
+  {
+   "html_id": "p2c189",
+   "reason": "Schedule 2 row 3: layout has only rows 1-2"
+  },
+  {
+   "html_id": "p2c221",
+   "reason": "Schedule 3 row 3: layout has only rows 1-2"
+  },
+  {
+   "html_id": "p2c223",
+   "reason": "Schedule 3 row 3: layout has only rows 1-2"
+  },
+  {
+   "html_id": "p2c225",
+   "reason": "Schedule 3 row 3: layout has only rows 1-2"
+  },
+  {
+   "html_id": "p2c226",
+   "reason": "Schedule 3 row 3: layout has only rows 1-2"
+  },
+  {
+   "html_id": "p2c227",
+   "reason": "Schedule 3 row 3: layout has only rows 1-2"
+  },
+  {
+   "html_id": "p2c229",
+   "reason": "Schedule 3 row 3: layout has only rows 1-2"
+  },
+  {
+   "html_id": "p2c242",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c243",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c244",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c245",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c247",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c248",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c249",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c250",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c252",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c253",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c254",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c255",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c257",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c258",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c259",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c260",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c262",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c263",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c264",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c265",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c267",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c268",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c269",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c270",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c272",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c273",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c274",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c275",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c277",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c278",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c279",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c280",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c282",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c283",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c284",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c285",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c287",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c288",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c289",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c290",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c292",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c293",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c294",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c295",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c297",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c298",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c299",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c300",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c302",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c303",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c304",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c305",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c307",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c308",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c309",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c310",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c312",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c313",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c314",
+   "reason": "Schedule 4 summary table: no layout key"
+  },
+  {
+   "html_id": "p2c315",
+   "reason": "Schedule 4 summary table: no layout key"
+  }
+ ]
+}

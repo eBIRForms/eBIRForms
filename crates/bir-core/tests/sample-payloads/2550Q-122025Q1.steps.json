@@ -1,0 +1,337 @@
+[
+  {
+    "click": "frm2550qv2024:calendarNo1"
+  },
+  {
+    "set": "frm2550qv2024:selectedMonthNo2",
+    "value": "12"
+  },
+  {
+    "set": "frm2550qv2024:txtYearNo2",
+    "value": "2025"
+  },
+  {
+    "click": "frm2550qv2024:OptQuarter1"
+  },
+  {
+    "set": "frm2550qv2024:RtnPeriodFromNo4",
+    "value": "1/01/2025"
+  },
+  {
+    "set": "frm2550qv2024:RtnPeriodToNo4",
+    "value": "3/31/2025"
+  },
+  {
+    "click": "frm2550qv2024:amendedReturnNo5"
+  },
+  {
+    "click": "frm2550qv2024:OptShortPrd2"
+  },
+  {
+    "set": "frm2550qv2024:txtTIN1",
+    "value": "123"
+  },
+  {
+    "set": "frm2550qv2024:txtTIN2",
+    "value": "456"
+  },
+  {
+    "set": "frm2550qv2024:txtTIN3",
+    "value": "788"
+  },
+  {
+    "set": "frm2550qv2024:branchCode",
+    "value": "00000"
+  },
+  {
+    "set": "frm2550qv2024:txtRDOCode",
+    "value": "039"
+  },
+  {
+    "call": "document.getElementById(\"frm2550qv2024:taxpayerName\").value=\"Sample Dummy Taxpayer\""
+  },
+  {
+    "call": "document.getElementById(\"frm2550qv2024:taxpayerAddress\").value=\"123 Sample Street, Barangay Example, Quezon City\""
+  },
+  {
+    "call": "document.getElementById(\"frm2550qv2024:taxpayerZip\").value=\"1100\""
+  },
+  {
+    "call": "document.getElementById(\"frm2550qv2024:taxpayerContactNumber\").value=\"09170000000\""
+  },
+  {
+    "call": "document.getElementById(\"frm2550qv2024:taxpayerEmailAddress\").value=\"sample.taxpayer@example.com\""
+  },
+  {
+    "click": "frm2550qv2024:taxPayerClassification2"
+  },
+  {
+    "click": "frm2550qv2024:specialRateYn"
+  },
+  {
+    "set": "frm2550qv2024:vatPaidReturn",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:surcharge",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:interest",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:compromise",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:txtPg2TIN1",
+    "value": "123"
+  },
+  {
+    "set": "frm2550qv2024:txtPg2TIN2",
+    "value": "456"
+  },
+  {
+    "set": "frm2550qv2024:txtPg2TIN3",
+    "value": "788"
+  },
+  {
+    "set": "frm2550qv2024:txtPg2BranchCode",
+    "value": "00000"
+  },
+  {
+    "call": "document.getElementById(\"frm2550qv2024:Pg2TaxPayer\").value=\"Sample Dummy Taxpayer\""
+  },
+  {
+    "set": "frm2550qv2024:vatableSales",
+    "value": "1250000.00"
+  },
+  {
+    "set": "frm2550qv2024:zeroRatedSales",
+    "value": "200000.00"
+  },
+  {
+    "set": "frm2550qv2024:exemptSales",
+    "value": "50000.00"
+  },
+  {
+    "set": "frm2550qv2024:lessOutputVat",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:addOutputVat",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:inputTaxCarried",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:transitionalInputTax",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:presumptiveInputTax",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:domesticPurchase",
+    "value": "400000.00"
+  },
+  {
+    "set": "frm2550qv2024:servicesPurchase",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:importPurchase",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:domesticPurchaseNoTax",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:vatExemptImports",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:vatRefund",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:inputVatUnpaid",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:addInputVat",
+    "value": "0.00"
+  },
+  {
+    "set": "txtAmountPurchase10",
+    "value": "0.00"
+  },
+  {
+    "set": "txtInputTax10",
+    "value": "0.00"
+  },
+  {
+    "set": "txtEstimatedLife10",
+    "value": "0.00"
+  },
+  {
+    "set": "txtRecognizedLife10",
+    "value": "0.00"
+  },
+  {
+    "set": "txtAllowedInputTax10",
+    "value": "0.00"
+  },
+  {
+    "set": "txtBalanceInputTax10",
+    "value": "0.00"
+  },
+  {
+    "set": "txtAmountPurchase11",
+    "value": "0.00"
+  },
+  {
+    "set": "txtInputTax11",
+    "value": "0.00"
+  },
+  {
+    "set": "txtEstimatedLife11",
+    "value": "0.00"
+  },
+  {
+    "set": "txtRecognizedLife11",
+    "value": "0.00"
+  },
+  {
+    "set": "txtAllowedInputTax11",
+    "value": "0.00"
+  },
+  {
+    "set": "txtBalanceInputTax11",
+    "value": "0.00"
+  },
+  {
+    "set": "sched1TotalBalPrev",
+    "value": "0.00"
+  },
+  {
+    "set": "sched1TotalBalNext",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:sched2InputTaxDirect",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:sched2AmountInputTax",
+    "value": "0.00"
+  },
+  {
+    "set": "txtIncomePayment30",
+    "value": "0.00"
+  },
+  {
+    "set": "txtTotalTaxWithHeld30",
+    "value": "0.00"
+  },
+  {
+    "set": "txtIncomePayment31",
+    "value": "0.00"
+  },
+  {
+    "set": "txtTotalTaxWithHeld31",
+    "value": "0.00"
+  },
+  {
+    "set": "sched3TotalIncome",
+    "value": "0.00"
+  },
+  {
+    "set": "sched3TotalTax",
+    "value": "0.00"
+  },
+  {
+    "set": "txtOfficialReceiptNumber40",
+    "value": "0.00"
+  },
+  {
+    "set": "txtAmountPaid40",
+    "value": "0.00"
+  },
+  {
+    "set": "txtOfficialReceiptNumber41",
+    "value": "0.00"
+  },
+  {
+    "set": "txtAmountPaid41",
+    "value": "0.00"
+  },
+  {
+    "set": "sched4AmountPaid",
+    "value": "0.00"
+  },
+  {
+    "set": "frm2550qv2024:txtCurrentPage",
+    "value": "2"
+  },
+  {
+    "set": "frm2550qv2024:txtMaxPage",
+    "value": "2"
+  },
+  {
+    "set": "resultOtherCreditsNo19",
+    "value": "0.00"
+  },
+  {
+    "set": "resultOtherCreditsNo42",
+    "value": "0.00"
+  },
+  {
+    "set": "resultOtherCreditsNo47",
+    "value": "0.00"
+  },
+  {
+    "set": "resultOtherCreditsNo56",
+    "value": "0.00"
+  },
+  {
+    "set": "txtTotalAmountOfBalanceofInputTaxFromPrevious",
+    "value": "0.00"
+  },
+  {
+    "set": "txtTotalAmountOfBalanceofInputTaxToBeCarried",
+    "value": "0.00"
+  },
+  {
+    "set": "txtTotalAmountofIncomePayment",
+    "value": "0.00"
+  },
+  {
+    "set": "txtTotalAmoungOfTaxWithHeld",
+    "value": "0.00"
+  },
+  {
+    "set": "txtAmountPaidSched4",
+    "value": "0.00"
+  },
+  {
+    "set": "txtFinalFlag",
+    "value": "1"
+  },
+  {
+    "set": "txtEnroll",
+    "value": "Y"
+  },
+  {
+    "set": "driveSelectTPExport",
+    "value": "0"
+  },
+  {
+    "call": "(function(){var R=Date;var F=function(y,m,d,h,mi,se,ms){if(!arguments.length){return new R(2025,3,25,9,0,0);}return arguments.length==1?new R(y):new R(y,m,d||1,h||0,mi||0,se||0,ms||0);};F.prototype=R.prototype;F.now=function(){return new R(2025,3,25,9,0,0).getTime();};F.UTC=R.UTC;F.parse=R.parse;window.Date=F;})()"
+  }
+]

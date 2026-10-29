@@ -1,0 +1,13 @@
+[
+ {"call": "var name = 'Sample Dummy Taxpayer', regAddr = '123 Sample Street, Barangay Example, Quezon City'; ['TIN1','TIN2','TIN3','TIN4'].forEach(function (n, i) { var v = ['123','456','788','00000'][i]; var els = d.getElementsByName('frm1600PT:' + n); for (var k = 0; k < els.length; k++) els[k].value = v; }); d.getElementById('frm1600PT:txtPg1Pt1I7WithholdingAgentsName').value = name.toUpperCase(); d.getElementById('frm1600PT:txtPg1I6RDO').value = '039'; $('select[id=\"frm1600PT:rdoPg1Pt1I6RDO\"] option[value = 039]').attr('selected', 'selected'); d.getElementById('frm1600PT:txtLOB').value = 'Sample Consulting Services'; d.getElementById('frm1600PT:txtPg1Pt1I8RegisteredAddress').value = regAddr.substring(0, 80).toUpperCase(); d.getElementById('frm1600PT:txtPg1Pt1I8RegisteredAddress2').value = regAddr.substring(80, 160).toUpperCase(); d.getElementById('frm1600PT:txtPg1Pt1I9ContactNumber').value = '09170000000'; d.getElementById('frm1600PT:txPg1I8ZipCode').value = '1100'; d.getElementById('frm1600PT:txtPg1Pt1I11Email').value = 'sample.taxpayer@example.com'; $(\"input[name='frm1600PT\\\\:RegName']\").val(d.getElementById('frm1600PT:txtPg1Pt1I7WithholdingAgentsName').value);"},
+ {"set": "frm1600PT:txtPg1I1Month", "value": "07"},
+ {"set": "frm1600PT:txtPg1I1Year", "value": "25"},
+ {"click": "frm1600PT:rdoPg1I3TaxWithheldYes"},
+ {"click": "frm1600PT:rdoPg1I10CategoryofWthholdAgentPriv"},
+ {"call": "for (var i = 1; d.getElementById('AtcCode' + i); i++) { var v = d.getElementById('AtcCode' + i).value; d.getElementById('AtcCode' + i).checked = ((v == 'WB082' && d.getElementById('txtRate' + i).innerHTML.trim() == '3.0') || (v == 'WB084' && d.getElementById('txtRate' + i).innerHTML.trim() == '1.0')); } getATCCode();"},
+ {"wait": 400},
+ {"set": "frm1600PT:txtPg1P2TaxBase1", "value": "41666.665"},
+ {"set": "frm1600PT:txtPg1P2TaxBase2", "value": "1000000"},
+ {"set": "frm1600PT:txtPg1P2I25Compromise", "value": "1000"},
+ {"click": "frm1600PT:btnValidate"}
+]

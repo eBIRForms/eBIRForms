@@ -1,0 +1,72 @@
+{
+  "slug": "1801-2018",
+  "code": "1801",
+  "revision": "2018",
+  "variant": "",
+  "in_corpus": false,
+  "source_file": "1801 Jan 2018 ENCS.pdf",
+  "sha256": "ec49207aab9b035d1913d41091b677d9df690e01b391ed2c2f4c34cf43a524c6",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 3,
+  "pages": 2,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Berlin Sans FB Demi",
+    "Times New Roman"
+  ],
+  "rules": 1118,
+  "text_runs": 386,
+  "images": 3,
+  "cells": 459,
+  "comb_cells": 102,
+  "growables": [],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1801 Jan 2018 ENCS.pdf",
+      "sha256": "ec49207aab9b035d1913d41091b677d9df690e01b391ed2c2f4c34cf43a524c6"
+    },
+    {
+      "role": "guide",
+      "file": "1801 Guidelines.pdf",
+      "sha256": "06cbd878536d2960ef556fbfb29a23e9a58896f1ae4e43623a6f389c916f7e0a"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "standalone-pdf"
+    ],
+    "moved_from_form": [],
+    "standalone_pdfs": [
+      {
+        "file": "1801 Guidelines.pdf",
+        "sha256": "06cbd878536d2960ef556fbfb29a23e9a58896f1ae4e43623a6f389c916f7e0a",
+        "linked_as": "guides/1801 Guidelines.pdf",
+        "reflowed_into": "guide.html"
+      }
+    ],
+    "reclaimed_pt_total": 0,
+    "reclaimed_pct_mean": 0,
+    "reclaimed_pct_min": 0,
+    "reclaimed_pct_max": 0,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [],
+    "standalone_pdfs": [
+      "1801 Guidelines.pdf"
+    ]
+  },
+  "html_bytes": 991218,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

@@ -1,0 +1,139 @@
+[
+ {
+  "call": "Date.prototype.getYear = function () { var y = this.getFullYear(); return (y >= 1900 && y < 2000) ? y - 1900 : y; };"
+ },
+ {
+  "call": "document.getElementById('frm1604e:txtTIN1').value=\"123\"; document.getElementById('frm1604e:txtTIN2').value=\"456\"; document.getElementById('frm1604e:txtTIN3').value=\"788\"; document.getElementById('frm1604e:txtBranchCode').value=\"00000\"; document.getElementById('frm1604e:txtRDOCode').value=\"039\"; document.getElementById('frm1604e:txtWthhldngAgntsNme').value=\"Sample Dummy Taxpayer\"; document.getElementById('frm1604e:txtPg2TaxpayerName').value=\"Sample Dummy Taxpayer\"; document.getElementById('frm1604e:txtPg2TIN1').value=\"123\"; document.getElementById('frm1604e:txtPg2TIN2').value=\"456\"; document.getElementById('frm1604e:txtPg2TIN3').value=\"788\"; document.getElementById('frm1604e:txtPg2BranchCode').value=\"00000\"; document.getElementById('frm1604e:txtLineBus').value=\"Sample Consulting Services\"; document.getElementById('frm1604e:txtAddress').value=\"123 Sample Street, Barangay Example, Quezon City\"; document.getElementById('frm1604e:txtAddress2').value=\"\"; document.getElementById('frm1604e:txtZipCode').value=\"1100\"; document.getElementById('frm1604e:txtTelNum').value=\"09170000000\"; document.getElementById('txtEmail').value='sample.taxpayer@example.com'"
+ },
+ {
+  "call": "changeReturnPeriodValue()"
+ },
+ {
+  "set": "frm1604e:txtYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1604e:AmendedRtn_2"
+ },
+ {
+  "set": "frm1604e:txtSheets",
+  "value": "0"
+ },
+ {
+  "click": "frm1604e:WthldngAgntCtgry_1"
+ },
+ {
+  "click": "frm1604e:TpWthldngAgnt_2"
+ },
+ {
+  "set": "frm1604e:txtSched1RemDate1",
+  "value": "04/30/2025"
+ },
+ {
+  "set": "frm1604e:txtSched1BankCode1",
+  "value": "SampleBank01"
+ },
+ {
+  "set": "frm1604e:txtSched1TRANo1",
+  "value": "traQ1"
+ },
+ {
+  "set": "frm1604e:txtSched1TaxWithheld1",
+  "value": "12345.675"
+ },
+ {
+  "set": "frm1604e:txtSched1Penalties1",
+  "value": "100.005"
+ },
+ {
+  "set": "frm1604e:txtSched1RemDate2",
+  "value": "07/31/2025"
+ },
+ {
+  "set": "frm1604e:txtSched1BankCode2",
+  "value": "Agency2"
+ },
+ {
+  "set": "frm1604e:txtSched1TRANo2",
+  "value": "eROR2"
+ },
+ {
+  "set": "frm1604e:txtSched1TaxWithheld2",
+  "value": "999.995"
+ },
+ {
+  "set": "frm1604e:txtSched1RemDate4",
+  "value": "01/30/2026"
+ },
+ {
+  "set": "frm1604e:txtSched1BankCode4",
+  "value": "bank4"
+ },
+ {
+  "set": "frm1604e:txtSched1TRANo4",
+  "value": "Ear4"
+ },
+ {
+  "set": "frm1604e:txtSched1TaxWithheld4",
+  "value": "250000"
+ },
+ {
+  "set": "frm1604e:txtSched2RemDate1",
+  "value": "02/10/2025"
+ },
+ {
+  "set": "frm1604e:txtSched2BankCode1",
+  "value": "BankJan"
+ },
+ {
+  "set": "frm1604e:txtSched2TRANo1",
+  "value": "TRA0101"
+ },
+ {
+  "set": "frm1604e:txtSched2TaxWithheld1",
+  "value": "1000.5"
+ },
+ {
+  "set": "frm1604e:txtSched2Penalties1",
+  "value": "0.5"
+ },
+ {
+  "set": "frm1604e:txtSched2RemDate6",
+  "value": "07/10/2025"
+ },
+ {
+  "set": "frm1604e:txtSched2BankCode6",
+  "value": "bankjun"
+ },
+ {
+  "set": "frm1604e:txtSched2TRANo6",
+  "value": "tra06"
+ },
+ {
+  "set": "frm1604e:txtSched2TaxWithheld6",
+  "value": "2500.125"
+ },
+ {
+  "set": "frm1604e:txtSched2RemDate12",
+  "value": "01/15/2026"
+ },
+ {
+  "set": "frm1604e:txtSched2BankCode12",
+  "value": "BANKDEC"
+ },
+ {
+  "set": "frm1604e:txtSched2TRANo12",
+  "value": "TRA12"
+ },
+ {
+  "set": "frm1604e:txtSched2TaxWithheld12",
+  "value": "333.333"
+ },
+ {
+  "set": "frm1604e:txtSched2Penalties12",
+  "value": "12"
+ },
+ {
+  "call": "var xmlFileName = createXMLFileName('savefile/');"
+ }
+]

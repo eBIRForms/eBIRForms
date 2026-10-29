@@ -1,0 +1,285 @@
+[
+ {
+  "click": "frm2551Qv2018:forThe_1"
+ },
+ {
+  "set": "frm2551Qv2018:rtnMonth",
+  "value": "12"
+ },
+ {
+  "set": "frm2551Qv2018:txtYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm2551Qv2018:qtr_1"
+ },
+ {
+  "click": "frm2551Qv2018:amendedRtn_2"
+ },
+ {
+  "set": "frm2551Qv2018:txtSheets",
+  "value": "0"
+ },
+ {
+  "set": "frm2551Qv2018:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm2551Qv2018:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm2551Qv2018:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm2551Qv2018:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm2551Qv2018:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm2551Qv2018:registeredName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm2551Qv2018:registeredAddress",
+  "value": "123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITY"
+ },
+ {
+  "set": "frm2551Qv2018:zipCode",
+  "value": "1100"
+ },
+ {
+  "set": "frm2551Qv2018:telNo",
+  "value": "09170000000"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "click": "frm2551Qv2018:taxTreaty_2"
+ },
+ {
+  "set": "frm2551Qv2018:txtTaxReliefSpecify",
+  "value": "0"
+ },
+ {
+  "click": "frm2551Qv2018:taxRate1"
+ },
+ {
+  "set": "frm2551Qv2018:txt15",
+  "value": "500.00"
+ },
+ {
+  "set": "frm2551Qv2018:txt17Specify",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txt17",
+  "value": "0.00"
+ },
+ {
+  "set": "frm2551Qv2018:txt20",
+  "value": "0.00"
+ },
+ {
+  "set": "frm2551Qv2018:txt21",
+  "value": "0.00"
+ },
+ {
+  "set": "frm2551Qv2018:txt22",
+  "value": "0.00"
+ },
+ {
+  "set": "txtTaxAgentNo",
+  "value": ""
+ },
+ {
+  "set": "txtDateIssue",
+  "value": ""
+ },
+ {
+  "set": "txtDateExpiry",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtAgency25",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtNumber25",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtDate25",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtAmount25",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtAgency26",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtNumber26",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtDate26",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtAmount26",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtAgency27",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtNumber27",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtDate27",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtAmount27",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtParticular28",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtAgency28",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtNumber28",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtDate28",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtAmount28",
+  "value": ""
+ },
+ {
+  "set": "frm2551Qv2018:txtPg2TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm2551Qv2018:txtPg2TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm2551Qv2018:txtPg2TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm2551Qv2018:txtPg2BranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm2551Qv2018:txtPg2TaxpayerName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "drpATC1",
+  "value": "1"
+ },
+ {
+  "set": "txtATCAmt1",
+  "value": "180000.00"
+ },
+ {
+  "set": "txtATCDue1",
+  "value": "5,400.00"
+ },
+ {
+  "set": "drpATC2",
+  "value": "0"
+ },
+ {
+  "set": "txtATCDue2",
+  "value": "0.00"
+ },
+ {
+  "set": "drpATC3",
+  "value": "0"
+ },
+ {
+  "set": "txtATCDue3",
+  "value": "0.00"
+ },
+ {
+  "set": "drpATC4",
+  "value": "0"
+ },
+ {
+  "set": "txtATCDue4",
+  "value": "0.00"
+ },
+ {
+  "set": "drpATC5",
+  "value": "0"
+ },
+ {
+  "set": "txtATCDue5",
+  "value": "0.00"
+ },
+ {
+  "set": "drpATC6",
+  "value": "0"
+ },
+ {
+  "set": "txtATCDue6",
+  "value": "0.00"
+ },
+ {
+  "set": "txtTotalSched1",
+  "value": "5,400.00"
+ },
+ {
+  "set": "frm2551Qv2018:txtCurrentPage",
+  "value": "1"
+ },
+ {
+  "set": "frm2551Qv2018:txtMaxPage",
+  "value": "2"
+ },
+ {
+  "set": "txtFinalFlag",
+  "value": "1"
+ },
+ {
+  "set": "txtEnroll",
+  "value": "Y"
+ },
+ {
+  "set": "ebirOnlineConfirmUsername",
+  "value": ""
+ },
+ {
+  "set": "ebirOnlineUsername",
+  "value": ""
+ },
+ {
+  "set": "ebirOnlineSecret",
+  "value": ""
+ },
+ {
+  "set": "driveSelectTPExport",
+  "value": "0"
+ }
+]

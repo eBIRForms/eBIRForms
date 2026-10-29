@@ -1,0 +1,154 @@
+[
+ {
+  "call": "[['TIN1','123'],['TIN2','456'],['TIN3','788'],['TIN4','00000']].forEach(function(p){[].forEach.call(document.getElementsByName('frm1702EX:'+p[0]),function(e){e.value=p[1]})})"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:hdnPg1Pt1I7RDO').value='039'"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:rdoPg1Pt1I7RDO').value='039'"
+ },
+ {
+  "call": "[].forEach.call(document.getElementsByName('frm1702EX:RegName'),function(e){e.value='SAMPLE DUMMY FOUNDATION INC'})"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:txtPg1Pt1I9RegisteredAddress').value='123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITY'"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:txPg1I9ZipCode').value='1100'"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:txtPg1Pt1I11ContactNumber').value='09170000000'"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:txtPg1Pt1I12Email').value='sample.taxpayer@example.com'"
+ },
+ {
+  "call": "document.getElementById('frm1702EX:txtLOB').value='SAMPLE CONSULTING SERVICES'"
+ },
+ {
+  "click": "frm1702EX:rdoPg1I1Calendar"
+ },
+ {
+  "click": "frm1702EX:rdoPg1I3AmendedNo"
+ },
+ {
+  "click": "frm1702EX:rdoPg1I4ShortPeriodNo"
+ },
+ {
+  "click": "frm1702EX:rdoPg1I5ATCR1C3"
+ },
+ {
+  "set": "frm1702EX:txtPg1Pt1I10DateofIncorporation",
+  "value": "03/01/2010"
+ },
+ {
+  "click": "frm1702EX:rdoPg1Pt1I13MethodOfDeducItemized"
+ },
+ {
+  "set": "frm1702EX:txtPg1Pt1I14LegalBasis",
+  "value": "Sec 30 NIRC"
+ },
+ {
+  "set": "frm1702EX:txtPg1Pt1I15Investment",
+  "value": "Sample Agency"
+ },
+ {
+  "set": "frm1702EX:txtPg1Pt1I16RegisteredActivity",
+  "value": "REG-0001"
+ },
+ {
+  "set": "frm1702EX:txtPg1Pt1I17EffectivityFrom",
+  "value": "01/01/2010"
+ },
+ {
+  "set": "frm1702EX:txtPg1Pt1I17EffectivityTo",
+  "value": "12/31/2030"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt4I28SalesReceiptsRevFees",
+  "value": "5000000.50"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt4I29SalesRetAllowanceDisc",
+  "value": "100000"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt4I31CostOfSalesServ",
+  "value": "2000000"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt4I33AddOther",
+  "value": "50000"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt4I45CreditableTaxWithheldFor4thQrt",
+  "value": "1000"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt5I52RegularIncomeOtherwiseDue",
+  "value": "600000"
+ },
+ {
+  "set": "frm1702EX:txtPg2Pt5I53SpecialAllowableItemizedDeduc",
+  "value": "15000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S1I2BadDebts",
+  "value": "10000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S1I13SalaryWageAllowance",
+  "value": "500000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S1I17aJanitorAndMessengerServ",
+  "value": "20000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersDDesc",
+  "value": "Sample expense"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6I17OthersDAmt",
+  "value": "5000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I1Description",
+  "value": "Sample deduction"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I1LegalBasis",
+  "value": "RA 0000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S2I1Amount",
+  "value": "15000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I1NetIncomePerBook",
+  "value": "2300000"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeDesc",
+  "value": "Nondeductible expense"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I2NonDeductExpenseOtherIncomeAmt",
+  "value": "120001"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxDesc",
+  "value": "Interest income"
+ },
+ {
+  "set": "frm1702EX:txtPg3Pt6S3I5NonTaxIncomeAndIncomeSubjectToFinTaxAmt",
+  "value": "20000"
+ },
+ {
+  "click": "frm1702EX:rdoPg1OverpaymentRefund"
+ },
+ {
+  "call": "validate()"
+ }
+]

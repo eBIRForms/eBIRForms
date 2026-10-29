@@ -1,0 +1,1000 @@
+{
+ "form_id": "1700-v2013",
+ "html_slug": "1700-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page's own text layer) names the item. Parts III and V and Schedule 1 print every amount in one comb per column with no centavo comb ('DO NOT enter Centavos'), so amounts come from derived:amount_* keys of to_print_field_map: whole pesos (49 centavos or less drop down, 50 or more round up), digits only, right-aligned in the comb; an overpayment prints in parentheses; a zero amount, column B of a non-joint return, and an amount wider than the comb stay blank. The sheet numbers Part III Item 31 Surcharge and 32 Interest (the page's own controls are the other way round), so those derived amounts follow the printed captions. The address splits over the item 8 combs (40 + 32 slots) at a word break; the date of birth, the page 2 TIN (nine fillable slots), each employer's 14-digit TIN, Item 37's two digits and the spouse RDO (blank unless joint) are derived: keys too. Never submitted. Schedule 1 Item 4 prints what the return files: OTHERS with the add-more popup subtotal when more than four employers are filed; the popup rows themselves have no cells. Since #113 the Items 6, 20, 24 and Schedule 1 mark cells hold two boxes under one input name, so their xbox_joins name each box by its input id (<cell>-i0/-i1), and the Items 45/49/51/57 (specify) inputs, inset past the caption, print the descriptions. Left blank on print: the Items 4 and 18 TIN branch combs (the frozen sheet has no inputs in them), Item 3 ATC (II011 is preprinted), the signature block and Part IV payment details (Items 38-41, no writer values). The submitted XML always carries every value. Booleans fill X in the box left of the printed option. Every value the print map carries has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm1700:txtPg1I1Year",
+   "html_id": "p1c4",
+   "printed": "1 For the Year",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I4TIN1",
+   "html_id": "p1c14",
+   "printed": "4 TIN (1-3)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I4TIN2",
+   "html_id": "p1c16",
+   "printed": "4 TIN (4-6)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I4TIN3",
+   "html_id": "p1c18",
+   "printed": "4 TIN (7-9)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtRDOCode",
+   "html_id": "p1c21",
+   "printed": "5 RDO Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I7TaxpayerName",
+   "html_id": "p1c23",
+   "printed": "7 Taxpayer's Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:address_line1",
+   "html_id": "p1c25",
+   "printed": "8 Registered Address",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:address_line2",
+   "html_id": "p1c26",
+   "printed": "8 Registered Address (line 2)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I8AZipCode",
+   "html_id": "p1c28",
+   "printed": "8A ZIP Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:birth_mm",
+   "html_id": "p1c31",
+   "printed": "9 Date of Birth MM",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:birth_dd",
+   "html_id": "p1c32",
+   "printed": "9 Date of Birth DD",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:birth_yyyy",
+   "html_id": "p1c33",
+   "printed": "9 Date of Birth YYYY",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I10Email",
+   "html_id": "p1c34",
+   "printed": "10 Email Address",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I11Citizenship",
+   "html_id": "p1c38",
+   "printed": "11 Citizenship",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I13ForeignTaxNumber",
+   "html_id": "p1c40",
+   "printed": "13 Foreign Tax Number, if applicable",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I14TelNum",
+   "html_id": "p1c45",
+   "printed": "14 Contact Number",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I18STIN1",
+   "html_id": "p1c61",
+   "printed": "18 Spouse's TIN (1-3)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I18STIN2",
+   "html_id": "p1c63",
+   "printed": "18 Spouse's TIN (4-6)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I18STIN3",
+   "html_id": "p1c65",
+   "printed": "18 Spouse's TIN (7-9)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:spouse_rdo",
+   "html_id": "p1c68",
+   "printed": "19 RDO Code",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I21SpouseName",
+   "html_id": "p1c70",
+   "printed": "21 Spouse's Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I22TSpouseTelNum",
+   "html_id": "p1c72",
+   "printed": "22 Contact Number",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I23SpouseCitizenship",
+   "html_id": "p1c74",
+   "printed": "23 Citizenship",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I25SpouseForeignTaxNumber",
+   "html_id": "p1c77",
+   "printed": "25 Foreign Tax Number (if applicable)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:attachments",
+   "html_id": "p1c118",
+   "printed": "37 Number of Attachments",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1700:txtPg2TaxpayerName",
+   "html_id": "p2c6",
+   "printed": "Page 2 Taxpayer's Last Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:amount_26A",
+   "html_id": "p1c83",
+   "printed": "26 Tax Due A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_26B",
+   "html_id": "p1c84",
+   "printed": "26 Tax Due B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_27A",
+   "html_id": "p1c86",
+   "printed": "27 Less: Total Tax Credits/Payments A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_27B",
+   "html_id": "p1c87",
+   "printed": "27 Less: Total Tax Credits/Payments B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_28A",
+   "html_id": "p1c89",
+   "printed": "28 Net Tax Payable/(Overpayment) A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_28B",
+   "html_id": "p1c90",
+   "printed": "28 Net Tax Payable/(Overpayment) B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_29A",
+   "html_id": "p1c92",
+   "printed": "29 Less: Portion of Tax Payable Allowed for 2nd Installment A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_29B",
+   "html_id": "p1c93",
+   "printed": "29 Less: Portion of Tax Payable Allowed for 2nd Installment B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_30A",
+   "html_id": "p1c95",
+   "printed": "30 Amount of Tax Payable/(Overpayment) A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_30B",
+   "html_id": "p1c96",
+   "printed": "30 Amount of Tax Payable/(Overpayment) B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_31A",
+   "html_id": "p1c98",
+   "printed": "31 Surcharge A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_31B",
+   "html_id": "p1c99",
+   "printed": "31 Surcharge B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_32A",
+   "html_id": "p1c101",
+   "printed": "32 Interest A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_32B",
+   "html_id": "p1c102",
+   "printed": "32 Interest B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_33A",
+   "html_id": "p1c104",
+   "printed": "33 Compromise A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_33B",
+   "html_id": "p1c105",
+   "printed": "33 Compromise B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_34A",
+   "html_id": "p1c107",
+   "printed": "34 Total Penalties A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_34B",
+   "html_id": "p1c108",
+   "printed": "34 Total Penalties B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_35A",
+   "html_id": "p1c110",
+   "printed": "35 Total Amount Payable/(Overpayment) A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_35B",
+   "html_id": "p1c111",
+   "printed": "35 Total Amount Payable/(Overpayment) B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_36",
+   "html_id": "p1c113",
+   "printed": "36 Aggregate Amount Payable/(Overpayment)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_42A",
+   "html_id": "p2c13",
+   "printed": "42 Gross Compensation Income A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_42B",
+   "html_id": "p2c14",
+   "printed": "42 Gross Compensation Income B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_43A",
+   "html_id": "p2c16",
+   "printed": "43 Less: Non-Taxable/Exempt Compensation A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_43B",
+   "html_id": "p2c17",
+   "printed": "43 Less: Non-Taxable/Exempt Compensation B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_44A",
+   "html_id": "p2c19",
+   "printed": "44 Gross Taxable Compensation Income A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_44B",
+   "html_id": "p2c20",
+   "printed": "44 Gross Taxable Compensation Income B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_45A",
+   "html_id": "p2c22",
+   "printed": "45 Add: Other Taxable Income (specify) A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_45B",
+   "html_id": "p2c23",
+   "printed": "45 Add: Other Taxable Income (specify) B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_46A",
+   "html_id": "p2c25",
+   "printed": "46 Total Taxable Income A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_46B",
+   "html_id": "p2c26",
+   "printed": "46 Total Taxable Income B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_47A",
+   "html_id": "p2c28",
+   "printed": "47 Tax Due A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_47B",
+   "html_id": "p2c29",
+   "printed": "47 Tax Due B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_48A",
+   "html_id": "p2c32",
+   "printed": "48 Gross Compensation Income A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_48B",
+   "html_id": "p2c33",
+   "printed": "48 Gross Compensation Income B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_49A",
+   "html_id": "p2c35",
+   "printed": "49 Less: Non-Taxable/Exempt Compensation (please specify) A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_49B",
+   "html_id": "p2c36",
+   "printed": "49 Less: Non-Taxable/Exempt Compensation (please specify) B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_50A",
+   "html_id": "p2c38",
+   "printed": "50 Gross Taxable Compensation Income A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_50B",
+   "html_id": "p2c39",
+   "printed": "50 Gross Taxable Compensation Income B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_51A",
+   "html_id": "p2c41",
+   "printed": "51 Add: Other Taxable Income (please specify) A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_51B",
+   "html_id": "p2c42",
+   "printed": "51 Add: Other Taxable Income (please specify) B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_52A",
+   "html_id": "p2c44",
+   "printed": "52 Total Taxable Income A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_52B",
+   "html_id": "p2c45",
+   "printed": "52 Total Taxable Income B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_53A",
+   "html_id": "p2c47",
+   "printed": "53 Tax Due A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_53B",
+   "html_id": "p2c48",
+   "printed": "53 Tax Due B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_54A",
+   "html_id": "p2c51",
+   "printed": "54 Tax Withheld per BIR Form No. 2316 A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_54B",
+   "html_id": "p2c52",
+   "printed": "54 Tax Withheld per BIR Form No. 2316 B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_55A",
+   "html_id": "p2c54",
+   "printed": "55 Tax Paid in Return Previously Filed A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_55B",
+   "html_id": "p2c55",
+   "printed": "55 Tax Paid in Return Previously Filed B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_56A",
+   "html_id": "p2c57",
+   "printed": "56 Foreign Tax Credits A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_56B",
+   "html_id": "p2c58",
+   "printed": "56 Foreign Tax Credits B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_57A",
+   "html_id": "p2c60",
+   "printed": "57 Other Tax Credits/Payments (specify) A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_57B",
+   "html_id": "p2c61",
+   "printed": "57 Other Tax Credits/Payments (specify) B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_58A",
+   "html_id": "p2c63",
+   "printed": "58 Total Tax Credits/Payments A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_58B",
+   "html_id": "p2c64",
+   "printed": "58 Total Tax Credits/Payments B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_59A",
+   "html_id": "p2c66",
+   "printed": "59 Tax Payable/(Overpayment) A) Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_59B",
+   "html_id": "p2c67",
+   "printed": "59 Tax Payable/(Overpayment) B) Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "frm1700:txtPg2I1PartVIEmployerName1",
+   "html_id": "p2c73",
+   "printed": "Schedule 1 Item 1a Name of Employer",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg2I1PartVIEmployerName2",
+   "html_id": "p2c74",
+   "printed": "Schedule 1 Item 1a Name of Employer (line 2)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:employer1_tin",
+   "html_id": "p2c76",
+   "printed": "Schedule 1 Item 1b Employer's TIN",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1700:txtPg2I2PartVIEmployerName1",
+   "html_id": "p2c78",
+   "printed": "Schedule 1 Item 2a Name of Employer",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg2I2PartVIEmployerName2",
+   "html_id": "p2c79",
+   "printed": "Schedule 1 Item 2a Name of Employer (line 2)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:employer2_tin",
+   "html_id": "p2c81",
+   "printed": "Schedule 1 Item 2b Employer's TIN",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1700:txtPg2I3PartVIEmployerName1",
+   "html_id": "p2c83",
+   "printed": "Schedule 1 Item 3a Name of Employer",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg2I3PartVIEmployerName2",
+   "html_id": "p2c84",
+   "printed": "Schedule 1 Item 3a Name of Employer (line 2)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:employer3_tin",
+   "html_id": "p2c86",
+   "printed": "Schedule 1 Item 3b Employer's TIN",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1700:txtPg2I4PartVIEmployerName1",
+   "html_id": "p2c88",
+   "printed": "Schedule 1 Item 4a Name of Employer",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "frm1700:txtPg2I4PartVIEmployerName2",
+   "html_id": "p2c89",
+   "printed": "Schedule 1 Item 4a Name of Employer (line 2)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1700 (January 2018) sheet"
+  },
+  {
+   "writer_key": "derived:employer4_tin",
+   "html_id": "p2c91",
+   "printed": "Schedule 1 Item 4b Employer's TIN",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:amount_sched1_1c",
+   "html_id": "p2c97",
+   "printed": "Schedule 1 Item 1 c. Compensation Income Subject to Regular/Graduated Rates",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_1d",
+   "html_id": "p2c98",
+   "printed": "Schedule 1 Item 1 d. Compensation Income Subject to 25% Flat Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_1e",
+   "html_id": "p2c99",
+   "printed": "Schedule 1 Item 1 e. Tax Withheld",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_2c",
+   "html_id": "p2c101",
+   "printed": "Schedule 1 Item 2 c. Compensation Income Subject to Regular/Graduated Rates",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_2d",
+   "html_id": "p2c102",
+   "printed": "Schedule 1 Item 2 d. Compensation Income Subject to 25% Flat Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_2e",
+   "html_id": "p2c103",
+   "printed": "Schedule 1 Item 2 e. Tax Withheld",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_3c",
+   "html_id": "p2c105",
+   "printed": "Schedule 1 Item 3 c. Compensation Income Subject to Regular/Graduated Rates",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_3d",
+   "html_id": "p2c106",
+   "printed": "Schedule 1 Item 3 d. Compensation Income Subject to 25% Flat Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_3e",
+   "html_id": "p2c107",
+   "printed": "Schedule 1 Item 3 e. Tax Withheld",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_4c",
+   "html_id": "p2c109",
+   "printed": "Schedule 1 Item 4 c. Compensation Income Subject to Regular/Graduated Rates",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_4d",
+   "html_id": "p2c110",
+   "printed": "Schedule 1 Item 4 d. Compensation Income Subject to 25% Flat Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_4e",
+   "html_id": "p2c111",
+   "printed": "Schedule 1 Item 4 e. Tax Withheld",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_5Ac",
+   "html_id": "p2c113",
+   "printed": "Schedule 1 Item 5A c. Compensation Income Subject to Regular/Graduated Rates",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_5Ad",
+   "html_id": "p2c114",
+   "printed": "Schedule 1 Item 5A d. Compensation Income Subject to 25% Flat Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_5Ae",
+   "html_id": "p2c115",
+   "printed": "Schedule 1 Item 5A e. Tax Withheld",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_5Bc",
+   "html_id": "p2c117",
+   "printed": "Schedule 1 Item 5B c. Compensation Income Subject to Regular/Graduated Rates",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_5Bd",
+   "html_id": "p2c118",
+   "printed": "Schedule 1 Item 5B d. Compensation Income Subject to 25% Flat Rate",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "derived:amount_sched1_5Be",
+   "html_id": "p2c119",
+   "printed": "Schedule 1 Item 5B e. Tax Withheld",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML; whole pesos (the sheet says DO NOT enter Centavos; 49 centavos or less drop down, 50 or more round up), right-aligned in the comb"
+  },
+  {
+   "writer_key": "frm1700:txtPg2I45Desc",
+   "html_id": "p2c151",
+   "printed": "45 (specify)",
+   "reason": "the input of the item 45 row cell, inset past the printed caption and (specify), left of the A/B amount combs"
+  },
+  {
+   "writer_key": "frm1700:txtPg2I49Desc",
+   "html_id": "p2c153",
+   "printed": "49 (specify)",
+   "reason": "the input of the item 49 row cell, inset past the printed caption and (specify), left of the A/B amount combs"
+  },
+  {
+   "writer_key": "frm1700:txtPg2I51Desc",
+   "html_id": "p2c155",
+   "printed": "51 (specify)",
+   "reason": "the input of the item 51 row cell, inset past the printed caption and (specify), left of the A/B amount combs"
+  },
+  {
+   "writer_key": "frm1700:txtPg2I57Desc",
+   "html_id": "p2c157",
+   "printed": "57 (specify)",
+   "reason": "the input of the item 57 row cell, inset past the printed caption and (specify), left of the A/B amount combs"
+  }
+ ],
+ "money_joins": [],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1700:rdoPg1I2AmendedYes",
+   "html_id": "p1c8",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I2AmendedNo",
+   "html_id": "p1c9",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I12ForeignTaxCreditsYes",
+   "html_id": "p1c41",
+   "printed": "12 Claiming Foreign Tax Credits? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I12ForeignTaxCreditsNo",
+   "html_id": "p1c42",
+   "printed": "12 Claiming Foreign Tax Credits? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I15CivilStatusS",
+   "html_id": "p1c47",
+   "printed": "15 Civil Status Single",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I15CivilStatusM",
+   "html_id": "p1c48",
+   "printed": "15 Civil Status Married",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I15CivilStatusLS",
+   "html_id": "p1c49",
+   "printed": "15 Civil Status Legally Separated",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I15CivilStatusW",
+   "html_id": "p1c50",
+   "printed": "15 Civil Status Widow/er",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I16SpouseHasIncomeY",
+   "html_id": "p1c53",
+   "printed": "16 If married, spouse has income? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I16SpouseHasIncomeN",
+   "html_id": "p1c54",
+   "printed": "16 If married, spouse has income? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I17FilingStatusJ",
+   "html_id": "p1c55",
+   "printed": "17 Filing Status Joint Filing",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I17FilingStatusS",
+   "html_id": "p1c56",
+   "printed": "17 Filing Status Separate Filing",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I6TaxpayerTypeE",
+   "html_id": "p1c13-i0",
+   "printed": "6 Taxpayer Type: Employee",
+   "reason": "cell with two boxes under one input name: the join names the box's own input id (the first box, inset 32.7pt), left of the printed Employee option"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I6TaxpayerTypeN",
+   "html_id": "p1c13-i1",
+   "printed": "6 Taxpayer Type: NRANETB",
+   "reason": "cell with two boxes under one input name: the join names the box's own input id (the second box, inset 123.1pt), left of the printed NRANETB* option"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I20SpouseTaxpayerTypeE",
+   "html_id": "p1c60-i1",
+   "printed": "20 Spouse Taxpayer Type: Employee",
+   "reason": "cell with two boxes under one input name: the join names the box's own input id (p1c60-i1, inset 32.7pt), left of the printed Employee option"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I20SpouseTaxpayerTypeN",
+   "html_id": "p1c60-i0",
+   "printed": "20 Spouse Taxpayer Type: NRANETB",
+   "reason": "cell with two boxes under one input name: the join names the box's own input id (p1c60-i0, inset 125.2pt), left of the printed NRANETB* option"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I24SpouseForeignTaxCreditsYes",
+   "html_id": "p1c75-i0",
+   "printed": "24 Spouse claiming Foreign Tax Credits? Yes",
+   "reason": "cell with two boxes under one input name: the join names the box's own input id (the first box, inset 144.8pt), left of the printed Yes"
+  },
+  {
+   "writer_key": "frm1700:rdoPg1I24SpouseForeignTaxCreditsNo",
+   "html_id": "p1c75-i1",
+   "printed": "24 Spouse claiming Foreign Tax Credits? No",
+   "reason": "cell with two boxes under one input name: the join names the box's own input id (the second box, inset 185.9pt), left of the printed No"
+  },
+  {
+   "writer_key": "frm1700:rdoPg2I1PartVIEmployeeT",
+   "html_id": "p2c72-i0",
+   "printed": "Schedule 1 row 1: Taxpayer",
+   "reason": "the upper box of the row 1 mark cell (p2c72-i0), left of the printed Taxpayer label"
+  },
+  {
+   "writer_key": "frm1700:rdoPg2I1PartVIEmployeeS",
+   "html_id": "p2c72-i1",
+   "printed": "Schedule 1 row 1: Spouse",
+   "reason": "the lower box of the row 1 mark cell (p2c72-i1), left of the printed Spouse label"
+  },
+  {
+   "writer_key": "frm1700:rdoPg2I2PartVIEmployeeT",
+   "html_id": "p2c77-i0",
+   "printed": "Schedule 1 row 2: Taxpayer",
+   "reason": "the upper box of the row 2 mark cell (p2c77-i0), left of the printed Taxpayer label"
+  },
+  {
+   "writer_key": "frm1700:rdoPg2I2PartVIEmployeeS",
+   "html_id": "p2c77-i1",
+   "printed": "Schedule 1 row 2: Spouse",
+   "reason": "the lower box of the row 2 mark cell (p2c77-i1), left of the printed Spouse label"
+  },
+  {
+   "writer_key": "frm1700:rdoPg2I3PartVIEmployeeT",
+   "html_id": "p2c82-i0",
+   "printed": "Schedule 1 row 3: Taxpayer",
+   "reason": "the upper box of the row 3 mark cell (p2c82-i0), left of the printed Taxpayer label"
+  },
+  {
+   "writer_key": "frm1700:rdoPg2I3PartVIEmployeeS",
+   "html_id": "p2c82-i1",
+   "printed": "Schedule 1 row 3: Spouse",
+   "reason": "the lower box of the row 3 mark cell (p2c82-i1), left of the printed Spouse label"
+  },
+  {
+   "writer_key": "frm1700:rdoPg2I4PartVIEmployeeT",
+   "html_id": "p2c87-i0",
+   "printed": "Schedule 1 row 4: Taxpayer",
+   "reason": "the upper box of the row 4 mark cell (p2c87-i0), left of the printed Taxpayer label"
+  },
+  {
+   "writer_key": "frm1700:rdoPg2I4PartVIEmployeeS",
+   "html_id": "p2c87-i1",
+   "printed": "Schedule 1 row 4: Spouse",
+   "reason": "the lower box of the row 4 mark cell (p2c87-i1), left of the printed Spouse label"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm1700:txtPg1I26A",
+    "frm1700:txtPg1I26B",
+    "frm1700:txtPg1I27A",
+    "frm1700:txtPg1I27B",
+    "frm1700:txtPg1I28A",
+    "frm1700:txtPg1I28B",
+    "frm1700:txtPg1I29A",
+    "frm1700:txtPg1I29B",
+    "frm1700:txtPg1I30A",
+    "frm1700:txtPg1I30B",
+    "frm1700:txtPg1I31A",
+    "frm1700:txtPg1I31B",
+    "frm1700:txtPg1I32A",
+    "frm1700:txtPg1I32B",
+    "frm1700:txtPg1I33A",
+    "frm1700:txtPg1I33B",
+    "frm1700:txtPg1I34A",
+    "frm1700:txtPg1I34B",
+    "frm1700:txtPg1I35A",
+    "frm1700:txtPg1I35B",
+    "frm1700:txtPg1I36",
+    "frm1700:txtPg2I42A",
+    "frm1700:txtPg2I42B",
+    "frm1700:txtPg2I43A",
+    "frm1700:txtPg2I43B",
+    "frm1700:txtPg2I44A",
+    "frm1700:txtPg2I44B",
+    "frm1700:txtPg2I45A",
+    "frm1700:txtPg2I45B",
+    "frm1700:txtPg2I46A",
+    "frm1700:txtPg2I46B",
+    "frm1700:txtPg2I47A",
+    "frm1700:txtPg2I47B",
+    "frm1700:txtPg2I48A",
+    "frm1700:txtPg2I48B",
+    "frm1700:txtPg2I49A",
+    "frm1700:txtPg2I49B",
+    "frm1700:txtPg2I50A",
+    "frm1700:txtPg2I50B",
+    "frm1700:txtPg2I51A",
+    "frm1700:txtPg2I51B",
+    "frm1700:txtPg2I52A",
+    "frm1700:txtPg2I52B",
+    "frm1700:txtPg2I53A",
+    "frm1700:txtPg2I53B",
+    "frm1700:txtPg2I54A",
+    "frm1700:txtPg2I54B",
+    "frm1700:txtPg2I55A",
+    "frm1700:txtPg2I55B",
+    "frm1700:txtPg2I56A",
+    "frm1700:txtPg2I56B",
+    "frm1700:txtPg2I57A",
+    "frm1700:txtPg2I57B",
+    "frm1700:txtPg2I58A",
+    "frm1700:txtPg2I58B",
+    "frm1700:txtPg2I59A",
+    "frm1700:txtPg2I59B",
+    "frm1700:txtPg2ISched1c_1REG",
+    "frm1700:txtPg2ISched1c_2REG",
+    "frm1700:txtPg2ISched1c_3REG",
+    "frm1700:txtPg2ISched1c_4REG",
+    "frm1700:txtPg2ISched1c_5AREG",
+    "frm1700:txtPg2ISched1c_5BREG",
+    "frm1700:txtPg2ISched1d_1CIFR",
+    "frm1700:txtPg2ISched1d_2CIFR",
+    "frm1700:txtPg2ISched1d_3CIFR",
+    "frm1700:txtPg2ISched1d_4CIFR",
+    "frm1700:txtPg2ISched1d_5ACIFR",
+    "frm1700:txtPg2ISched1d_5BCIFR",
+    "frm1700:txtPg2ISched1e_1TW",
+    "frm1700:txtPg2ISched1e_2TW",
+    "frm1700:txtPg2ISched1e_3TW",
+    "frm1700:txtPg2ISched1e_4TW",
+    "frm1700:txtPg2ISched1e_5ATW",
+    "frm1700:txtPg2ISched1e_5BTW"
+   ],
+   "reason": "prints from its derived:amount_* key (whole pesos right-aligned in the comb, the sheet says DO NOT enter centavos; an overpayment in parentheses; zero and a non-joint column B blank)"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I8Address",
+   "reason": "prints from derived:address_line1 / derived:address_line2 (the print map shapes the address over the item 8 combs for the sheet)"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I9BirthDate",
+   "reason": "prints from derived:birth_mm / _dd / _yyyy (the print map shapes the item 9 date over its three combs for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1700:txtPg2TIN1",
+    "frm1700:txtPg2TIN2",
+    "frm1700:txtPg2TIN3"
+   ],
+   "reason": "prints from derived:tin_digits (the print map shapes the page 2 TIN, nine fillable slots for the sheet)"
+  },
+  {
+   "writer_key": "frm1700:txtPg2BranchCode",
+   "reason": "page 2 branch: the page 2 TIN comb has nine fillable slots and the branch 00000 preprinted"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I4BranchCode",
+   "reason": "item 4 branch comb: the frozen sheet has no inputs in it (branch preprinted 0 0 0 0 0)"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I37NumberOfAttachments",
+   "reason": "prints from derived:attachments (the print map shapes Item 37 as two digits for the sheet)"
+  },
+  {
+   "writer_key": "frm1700:txtSpouseRDOCode",
+   "reason": "prints from derived:spouse_rdo (the print map shapes the spouse RDO, blank unless joint for the sheet)"
+  },
+  {
+   "writer_key": "frm1700:txtPg1I3ATC",
+   "reason": "item 3 ATC II011 is preprinted on the sheet; there is no box to fill"
+  },
+  {
+   "writer_key": "frm1700:txtLOB",
+   "reason": "not on the paper form: this sheet has no line-of-business box"
+  },
+  {
+   "writer_key": "frm1700:txtCurrentPage",
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  }
+ ]
+}

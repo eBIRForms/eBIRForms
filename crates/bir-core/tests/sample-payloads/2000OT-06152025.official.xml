@@ -1,0 +1,139 @@
+<?xml version='1.0'?>    
+            <div>frm2000OT:txtTransactionDate=06/15/2025frm2000OT:txtTransactionDate=</div>    
+            <div>frm2000OT:AmendedRtn_1=truefrm2000OT:AmendedRtn_1=</div>    
+            <div>frm2000OT:AmendedRtn_2=falsefrm2000OT:AmendedRtn_2=</div>    
+            <div>frm2000OT:ATC_1=falsefrm2000OT:ATC_1=</div>    
+            <div>frm2000OT:ATC_2=truefrm2000OT:ATC_2=</div>    
+            <div>frm2000OT:ATC_3=falsefrm2000OT:ATC_3=</div>    
+            <div>frm2000OT:txtSheets=0frm2000OT:txtSheets=</div>    
+            <div>frm2000OT:txtTIN1=123frm2000OT:txtTIN1=</div>    
+            <div>frm2000OT:txtTIN2=456frm2000OT:txtTIN2=</div>    
+            <div>frm2000OT:txtTIN3=788frm2000OT:txtTIN3=</div>    
+            <div>frm2000OT:txtBranchCode=00000frm2000OT:txtBranchCode=</div>    
+            <div>frm2000OT:txtRDOCode=039frm2000OT:txtRDOCode=</div>    
+            <div>frm2000OT:txtTaxpayerName=SAMPLE DUMMY TAXPAYERfrm2000OT:txtTaxpayerName=</div>    
+            <div>frm2000OT:txtAddress=123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITYfrm2000OT:txtAddress=</div>    
+            <div>frm2000OT:txtAddress2=frm2000OT:txtAddress2=</div>    
+            <div>frm2000OT:txtZipCode=1100frm2000OT:txtZipCode=</div>    
+            <div>frm2000OT:txtTelNum=09170000000frm2000OT:txtTelNum=</div>    
+            <div>txtEmail=sample.taxpayer@example.comtxtEmail=</div>    
+            <div>frm2000OT:optParty_1=truefrm2000OT:optParty_1=</div>    
+            <div>frm2000OT:optParty_2=falsefrm2000OT:optParty_2=</div>    
+            <div>frm2000OT:txtOtherName=SAMPLE BUYER CORPfrm2000OT:txtOtherName=</div>    
+            <div>frm2000OT:txtOtherName2=frm2000OT:txtOtherName2=</div>    
+            <div>frm2000OT:txtOtherTIN=987654321000frm2000OT:txtOtherTIN=</div>    
+            <div>frm2000OT:rbTransNature_1=falsefrm2000OT:rbTransNature_1=</div>    
+            <div>frm2000OT:rbTransNature_2=truefrm2000OT:rbTransNature_2=</div>    
+            <div>frm2000OT:rbTransNature_3=falsefrm2000OT:rbTransNature_3=</div>    
+            <div>frm2000OT:txtRealLocation=LOT 1 BLOCK 2, SAMPLE SUBDIVISION, QUEZON CITYfrm2000OT:txtRealLocation=</div>    
+            <div>frm2000OT:txtTax14=0.00frm2000OT:txtTax14=</div>    
+            <div>frm2000OT:txtTax15=3,500,000.00frm2000OT:txtTax15=</div>    
+            <div>frm2000OT:txtTax16=P15 / P1,000frm2000OT:txtTax16=</div>    
+            <div>frm2000OT:txtTax17=52,500.00frm2000OT:txtTax17=</div>    
+            <div>frm2000OT:txtTax18=1,000.00frm2000OT:txtTax18=</div>    
+            <div>frm2000OT:txtTax19=51,500.00frm2000OT:txtTax19=</div>    
+            <div>frm2000OT:txtTax20A=25.50frm2000OT:txtTax20A=</div>    
+            <div>frm2000OT:txtTax20B=0.00frm2000OT:txtTax20B=</div>    
+            <div>frm2000OT:txtTax20C=0.00frm2000OT:txtTax20C=</div>    
+            <div>frm2000OT:txtTax20D=25.50frm2000OT:txtTax20D=</div>    
+            <div>frm2000OT:txtTax21=51,525.50frm2000OT:txtTax21=</div>    
+            <div>frm2000OT:txtPg2TIN1=123frm2000OT:txtPg2TIN1=</div>    
+            <div>frm2000OT:txtPg2TIN2=456frm2000OT:txtPg2TIN2=</div>    
+            <div>frm2000OT:txtPg2TIN3=788frm2000OT:txtPg2TIN3=</div>    
+            <div>frm2000OT:txtPg2BranchCode=00000frm2000OT:txtPg2BranchCode=</div>    
+            <div>frm2000OT:txtPg2TaxpayerName=SAMPLE DUMMY TAXPAYERfrm2000OT:txtPg2TaxpayerName=</div>    
+            <div>chkSchedule1ADelete0=falsechkSchedule1ADelete0=</div>    
+            <div>frm2000OT:sched1A:txtOCTNo0=TCT-12345frm2000OT:sched1A:txtOCTNo0=</div>    
+            <div>frm2000OT:sched1A:txtTaxDecNo0=TD-0001frm2000OT:sched1A:txtTaxDecNo0=</div>    
+            <div>frm2000OT:sched1A:txtLoc0=BARANGAY EXAMPLEfrm2000OT:sched1A:txtLoc0=</div>    
+            <div>chkSchedule1ADelete1=falsechkSchedule1ADelete1=</div>    
+            <div>frm2000OT:sched1A:txtOCTNo1=TCT-12346frm2000OT:sched1A:txtOCTNo1=</div>    
+            <div>frm2000OT:sched1A:txtTaxDecNo1=TD-0002frm2000OT:sched1A:txtTaxDecNo1=</div>    
+            <div>frm2000OT:sched1A:txtLoc1=BARANGAY EXAMPLEfrm2000OT:sched1A:txtLoc1=</div>    
+            <div>chkSchedule1ADelete2=falsechkSchedule1ADelete2=</div>    
+            <div>frm2000OT:sched1A:txtOCTNo2=TCT-20002frm2000OT:sched1A:txtOCTNo2=</div>    
+            <div>frm2000OT:sched1A:txtTaxDecNo2=TD-0002frm2000OT:sched1A:txtTaxDecNo2=</div>    
+            <div>frm2000OT:sched1A:txtLoc2=BARANGAY EXAMPLEfrm2000OT:sched1A:txtLoc2=</div>    
+            <div>chkSchedule1ADelete3=falsechkSchedule1ADelete3=</div>    
+            <div>frm2000OT:sched1A:txtOCTNo3=TCT-20003frm2000OT:sched1A:txtOCTNo3=</div>    
+            <div>frm2000OT:sched1A:txtTaxDecNo3=TD-0003frm2000OT:sched1A:txtTaxDecNo3=</div>    
+            <div>frm2000OT:sched1A:txtLoc3=BARANGAY EXAMPLEfrm2000OT:sched1A:txtLoc3=</div>    
+            <div>chkSchedule1ADelete4=falsechkSchedule1ADelete4=</div>    
+            <div>frm2000OT:sched1A:txtOCTNo4=TCT-20004frm2000OT:sched1A:txtOCTNo4=</div>    
+            <div>frm2000OT:sched1A:txtTaxDecNo4=TD-0004frm2000OT:sched1A:txtTaxDecNo4=</div>    
+            <div>frm2000OT:sched1A:txtLoc4=BARANGAY EXAMPLEfrm2000OT:sched1A:txtLoc4=</div>    
+            <div>chkSchedule1ADelete5=falsechkSchedule1ADelete5=</div>    
+            <div>frm2000OT:sched1A:txtOCTNo5=TCT-20005frm2000OT:sched1A:txtOCTNo5=</div>    
+            <div>frm2000OT:sched1A:txtTaxDecNo5=TD-0005frm2000OT:sched1A:txtTaxDecNo5=</div>    
+            <div>frm2000OT:sched1A:txtLoc5=BARANGAY EXAMPLEfrm2000OT:sched1A:txtLoc5=</div>    
+            <div>chkSchedule1A1Delete0=falsechkSchedule1A1Delete0=</div>    
+            <div>frm2000OT:sched1A:txtLot0=LOT 1frm2000OT:sched1A:txtLot0=</div>    
+            <div>frm2000OT:sched1A:txtClassification0=RESIDENTIALfrm2000OT:sched1A:txtClassification0=</div>    
+            <div>frm2000OT:sched1A:txtArea0=250frm2000OT:sched1A:txtArea0=</div>    
+            <div>frm2000OT:sched1A:txtFMVCol10=1,250,000.00frm2000OT:sched1A:txtFMVCol10=</div>    
+            <div>frm2000OT:sched1A:txtFMVCol20=1,300,000.00frm2000OT:sched1A:txtFMVCol20=</div>    
+            <div>frm2000OT:sched1A:txtFMVSubTot0=1,300,000.00frm2000OT:sched1A:txtFMVSubTot0=</div>    
+            <div>chkSchedule1A1Delete1=falsechkSchedule1A1Delete1=</div>    
+            <div>frm2000OT:sched1A:txtLot1=IMPROVEMENTfrm2000OT:sched1A:txtLot1=</div>    
+            <div>frm2000OT:sched1A:txtClassification1=RESIDENTIALfrm2000OT:sched1A:txtClassification1=</div>    
+            <div>frm2000OT:sched1A:txtArea1=120frm2000OT:sched1A:txtArea1=</div>    
+            <div>frm2000OT:sched1A:txtFMVCol11=800,000.00frm2000OT:sched1A:txtFMVCol11=</div>    
+            <div>frm2000OT:sched1A:txtFMVCol21=750,000.50frm2000OT:sched1A:txtFMVCol21=</div>    
+            <div>frm2000OT:sched1A:txtFMVSubTot1=800,000.00frm2000OT:sched1A:txtFMVSubTot1=</div>    
+            <div>chkSchedule1A1Delete2=falsechkSchedule1A1Delete2=</div>    
+            <div>frm2000OT:sched1A:txtLot2=LOT 2frm2000OT:sched1A:txtLot2=</div>    
+            <div>frm2000OT:sched1A:txtClassification2=RESIDENTIALfrm2000OT:sched1A:txtClassification2=</div>    
+            <div>frm2000OT:sched1A:txtArea2=100frm2000OT:sched1A:txtArea2=</div>    
+            <div>frm2000OT:sched1A:txtFMVCol12=200,000.00frm2000OT:sched1A:txtFMVCol12=</div>    
+            <div>frm2000OT:sched1A:txtFMVCol22=90,000.00frm2000OT:sched1A:txtFMVCol22=</div>    
+            <div>frm2000OT:sched1A:txtFMVSubTot2=200,000.00frm2000OT:sched1A:txtFMVSubTot2=</div>    
+            <div>chkSchedule1A1Delete3=falsechkSchedule1A1Delete3=</div>    
+            <div>frm2000OT:sched1A:txtLot3=LOT 3frm2000OT:sched1A:txtLot3=</div>    
+            <div>frm2000OT:sched1A:txtClassification3=RESIDENTIALfrm2000OT:sched1A:txtClassification3=</div>    
+            <div>frm2000OT:sched1A:txtArea3=100frm2000OT:sched1A:txtArea3=</div>    
+            <div>frm2000OT:sched1A:txtFMVCol13=300,000.00frm2000OT:sched1A:txtFMVCol13=</div>    
+            <div>frm2000OT:sched1A:txtFMVCol23=90,000.00frm2000OT:sched1A:txtFMVCol23=</div>    
+            <div>frm2000OT:sched1A:txtFMVSubTot3=300,000.00frm2000OT:sched1A:txtFMVSubTot3=</div>    
+            <div>chkSchedule1A1Delete4=falsechkSchedule1A1Delete4=</div>    
+            <div>frm2000OT:sched1A:txtLot4=LOT 4frm2000OT:sched1A:txtLot4=</div>    
+            <div>frm2000OT:sched1A:txtClassification4=RESIDENTIALfrm2000OT:sched1A:txtClassification4=</div>    
+            <div>frm2000OT:sched1A:txtArea4=100frm2000OT:sched1A:txtArea4=</div>    
+            <div>frm2000OT:sched1A:txtFMVCol14=400,000.00frm2000OT:sched1A:txtFMVCol14=</div>    
+            <div>frm2000OT:sched1A:txtFMVCol24=90,000.00frm2000OT:sched1A:txtFMVCol24=</div>    
+            <div>frm2000OT:sched1A:txtFMVSubTot4=400,000.00frm2000OT:sched1A:txtFMVSubTot4=</div>    
+            <div>chkSchedule1A1Delete5=falsechkSchedule1A1Delete5=</div>    
+            <div>frm2000OT:sched1A:txtLot5=LOT 5frm2000OT:sched1A:txtLot5=</div>    
+            <div>frm2000OT:sched1A:txtClassification5=RESIDENTIALfrm2000OT:sched1A:txtClassification5=</div>    
+            <div>frm2000OT:sched1A:txtArea5=100frm2000OT:sched1A:txtArea5=</div>    
+            <div>frm2000OT:sched1A:txtFMVCol15=500,000.00frm2000OT:sched1A:txtFMVCol15=</div>    
+            <div>frm2000OT:sched1A:txtFMVCol25=90,000.00frm2000OT:sched1A:txtFMVCol25=</div>    
+            <div>frm2000OT:sched1A:txtFMVSubTot5=500,000.00frm2000OT:sched1A:txtFMVSubTot5=</div>    
+            <div>frm2000OT:sched1A:txtFMVTotal=3,500,000.00frm2000OT:sched1A:txtFMVTotal=</div>    
+            <div>chkSchedule1BDelete0=falsechkSchedule1BDelete0=</div>    
+            <div>frm2000OT:sched1B:txtNameOfCorpStock0=frm2000OT:sched1B:txtNameOfCorpStock0=</div>    
+            <div>frm2000OT:sched1B:txtNoOfSharesSold0=frm2000OT:sched1B:txtNoOfSharesSold0=</div>    
+            <div>frm2000OT:sched1B:txtStockCertNo0=frm2000OT:sched1B:txtStockCertNo0=</div>    
+            <div>frm2000OT:sched1B:txtParValOfShares0=0.00frm2000OT:sched1B:txtParValOfShares0=</div>    
+            <div>frm2000OT:sched1B:txtDSTPaid0=0.00frm2000OT:sched1B:txtDSTPaid0=</div>    
+            <div>chkSchedule1BDelete1=falsechkSchedule1BDelete1=</div>    
+            <div>frm2000OT:sched1B:txtNameOfCorpStock1=frm2000OT:sched1B:txtNameOfCorpStock1=</div>    
+            <div>frm2000OT:sched1B:txtNoOfSharesSold1=frm2000OT:sched1B:txtNoOfSharesSold1=</div>    
+            <div>frm2000OT:sched1B:txtStockCertNo1=frm2000OT:sched1B:txtStockCertNo1=</div>    
+            <div>frm2000OT:sched1B:txtParValOfShares1=0.00frm2000OT:sched1B:txtParValOfShares1=</div>    
+            <div>frm2000OT:sched1B:txtDSTPaid1=0.00frm2000OT:sched1B:txtDSTPaid1=</div>    
+            <div>chkSchedule1BDelete2=falsechkSchedule1BDelete2=</div>    
+            <div>frm2000OT:sched1B:txtNameOfCorpStock2=frm2000OT:sched1B:txtNameOfCorpStock2=</div>    
+            <div>frm2000OT:sched1B:txtNoOfSharesSold2=frm2000OT:sched1B:txtNoOfSharesSold2=</div>    
+            <div>frm2000OT:sched1B:txtStockCertNo2=frm2000OT:sched1B:txtStockCertNo2=</div>    
+            <div>frm2000OT:sched1B:txtParValOfShares2=0.00frm2000OT:sched1B:txtParValOfShares2=</div>    
+            <div>frm2000OT:sched1B:txtDSTPaid2=0.00frm2000OT:sched1B:txtDSTPaid2=</div>    
+            <div>frm2000OT:Sched2:txtGrossSellingPrice=2,750,000.01frm2000OT:Sched2:txtGrossSellingPrice=</div>    
+            <div>frm2000OT:Sched2:txtTotalFairMarket=3,500,000.00frm2000OT:Sched2:txtTotalFairMarket=</div>    
+            <div>frm2000OT:Sched2:txtOthers=frm2000OT:Sched2:txtOthers=</div>    
+            <div>frm2000OT:Sched2:txtOthersAmount=0.00frm2000OT:Sched2:txtOthersAmount=</div>    
+            <div>frm2000OT:Sched2:txtTaxableBase=3,500,000.00frm2000OT:Sched2:txtTaxableBase=</div>    
+            <div>frm2000OT:txtCurrentPage=1frm2000OT:txtCurrentPage=</div>    
+            <div>frm2000OT:txtMaxPage=2frm2000OT:txtMaxPage=</div>    
+            <div>frm2000OT:txtLineBus=SAMPLE CONSULTING SERVICESfrm2000OT:txtLineBus=</div>    
+                
+            All Rights Reserved BIR 2012.0

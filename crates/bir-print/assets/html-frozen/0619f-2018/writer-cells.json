@@ -1,0 +1,336 @@
+{
+ "form_id": "0619f-v2018",
+ "html_slug": "0619f-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page text layer) names the item. Text cells and combs: caption left of or above the cell, or the column header of a Part III row. Amounts: the 11-slot peso comb with the 2-slot centavo comb directly right form one money_joins pair. Booleans: X in the box immediately left of the printed option (Amended, Withheld, Category). TIN rows: three TIN combs and the 5-slot branch comb carry catalog name stamps and are filled by name, so they take no join. Part III dates are three combs per row under one layout date key and stay blank. Layout keys with no printed cell on this sheet (txtLineBus, txtDate20-23, ebirOnline*, txtFinalFlag, txtEnroll, driveSelectTPExport, txtOthers) have no cell to fill. Since #113: Part III dates print through date_joins (one writer date split across the MM, DD and YYYY combs of its payment row); every other value has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm0619F:txtMonth",
+   "html_id": "p1c9",
+   "printed": "1 For the month of (MM/YYYY)",
+   "reason": "2-slot MM comb under \"1 For the month of\""
+  },
+  {
+   "writer_key": "frm0619F:txtYear",
+   "html_id": "p1c10",
+   "printed": "1 For the month of (YYYY)",
+   "reason": "4-slot YYYY comb after the MM comb"
+  },
+  {
+   "writer_key": "frm0619F:txtDueMonth",
+   "html_id": "p1c13",
+   "printed": "2 Due Date (MM)",
+   "reason": "2-slot MM comb under \"2 Due Date\""
+  },
+  {
+   "writer_key": "frm0619F:txtDueDay",
+   "html_id": "p1c14",
+   "printed": "2 Due Date (DD)",
+   "reason": "2-slot DD comb after the MM comb"
+  },
+  {
+   "writer_key": "frm0619F:txtDueYear",
+   "html_id": "p1c15",
+   "printed": "2 Due Date (YYYY)",
+   "reason": "4-slot YYYY comb after the DD comb"
+  },
+  {
+   "writer_key": "frm0619F:txtTaxTypeCode",
+   "html_id": "p1c20",
+   "printed": "5 Tax Type Code**",
+   "reason": "text cell under \"5 Tax Type Code**\""
+  },
+  {
+   "writer_key": "frm0619F:txtRDOCode",
+   "html_id": "p1c36",
+   "printed": "7 RDO Code",
+   "reason": "3-slot comb right of \"7 RDO Code\""
+  },
+  {
+   "writer_key": "frm0619F:txtTaxpayerName",
+   "html_id": "p1c39",
+   "printed": "8 Withholding Agent's Name",
+   "reason": "40-slot name comb under \"8 Withholding Agent's Name\""
+  },
+  {
+   "writer_key": "frm0619F:txtAddress",
+   "html_id": "p1c41",
+   "printed": "9 Registered Address",
+   "reason": "40-slot address comb under \"9 Registered Address\""
+  },
+  {
+   "writer_key": "frm0619F:txtAddress2",
+   "html_id": "p1c42",
+   "printed": "9 Registered Address (second line)",
+   "reason": "second address comb directly under the item 9 first line"
+  },
+  {
+   "writer_key": "frm0619F:txtZipCode",
+   "html_id": "p1c44",
+   "printed": "9A ZIP Code",
+   "reason": "4-slot comb right of \"9A ZIP Code\""
+  },
+  {
+   "writer_key": "frm0619F:txtTelNum",
+   "html_id": "p1c46",
+   "printed": "10 Contact Number",
+   "reason": "12-slot comb right of \"10 Contact Number\""
+  },
+  {
+   "writer_key": "txtEmail",
+   "html_id": "p1c51",
+   "printed": "12 Email Address",
+   "reason": "40-slot comb under \"12 Email Address\""
+  },
+  {
+   "writer_key": "txtAgency20",
+   "html_id": "p1c118",
+   "printed": "20 Cash/Bank Debit Memo, Drawee Bank/Agency",
+   "reason": "5-slot comb under the \"Drawee Bank/Agency\" column, row 20"
+  },
+  {
+   "writer_key": "txtNumber20",
+   "html_id": "p1c119",
+   "printed": "20 Cash/Bank Debit Memo, Number",
+   "reason": "6-slot comb under the \"Number\" column, row 20"
+  },
+  {
+   "writer_key": "txtAgency21",
+   "html_id": "p1c127",
+   "printed": "21 Check, Drawee Bank/Agency",
+   "reason": "5-slot comb under the \"Drawee Bank/Agency\" column, row 21"
+  },
+  {
+   "writer_key": "txtNumber21",
+   "html_id": "p1c128",
+   "printed": "21 Check, Number",
+   "reason": "6-slot comb under the \"Number\" column, row 21"
+  },
+  {
+   "writer_key": "txtNumber22",
+   "html_id": "p1c136",
+   "printed": "22 Tax Debit Memo, Number",
+   "reason": "6-slot comb under the \"Number\" column, row 22 (no Drawee Bank comb on this row)"
+  },
+  {
+   "writer_key": "txtParticular23",
+   "html_id": "p1c144",
+   "printed": "23 Others (specify below)",
+   "reason": "7-slot comb under \"23 Others (specify below)\""
+  },
+  {
+   "writer_key": "txtAgency23",
+   "html_id": "p1c145",
+   "printed": "23 Others, Drawee Bank/Agency",
+   "reason": "5-slot comb under the \"Drawee Bank/Agency\" column, row 23"
+  },
+  {
+   "writer_key": "txtNumber23",
+   "html_id": "p1c146",
+   "printed": "23 Others, Number",
+   "reason": "6-slot comb under the \"Number\" column, row 23"
+  },
+  {
+   "writer_key": "txtTaxAgentNo",
+   "html_id": "p1c105",
+   "printed": "Tax Agent Accreditation No.",
+   "reason": "text cell right of \"Tax Agent Accreditation No./\""
+  },
+  {
+   "writer_key": "txtDateIssue",
+   "html_id": "p1c107",
+   "printed": "Date of Issue (tax agent)",
+   "reason": "text cell right of \"Date of Issue\""
+  },
+  {
+   "writer_key": "txtDateExpiry",
+   "html_id": "p1c109",
+   "printed": "Date of Expiry (tax agent)",
+   "reason": "text cell right of \"Date of Expiry\""
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm0619F:txtTax13",
+   "peso_html_id": "p1c58",
+   "cent_html_id": "p1c60",
+   "printed": "13 Remittance of Final Income Taxes Withheld on Interest Paid on Deposits",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm0619F:txtTax14",
+   "peso_html_id": "p1c63",
+   "cent_html_id": "p1c65",
+   "printed": "14 Remittance of Final Income Taxes Withheld on Other Final Income Taxes",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm0619F:txtTax15",
+   "peso_html_id": "p1c67",
+   "cent_html_id": "p1c69",
+   "printed": "15 Total (Sum of Items 13 and 14)",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm0619F:txtTax16",
+   "peso_html_id": "p1c71",
+   "cent_html_id": "p1c73",
+   "printed": "16 Less: Amount Remitted from Previously Filed Form",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm0619F:txtTax17",
+   "peso_html_id": "p1c75",
+   "cent_html_id": "p1c77",
+   "printed": "17 Net Amount of Remittance (Item 15 Less Item 16)",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm0619F:txtTax18A",
+   "peso_html_id": "p1c80",
+   "cent_html_id": "p1c82",
+   "printed": "18A Surcharge",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm0619F:txtTax18B",
+   "peso_html_id": "p1c84",
+   "cent_html_id": "p1c86",
+   "printed": "18B Interest",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm0619F:txtTax18C",
+   "peso_html_id": "p1c88",
+   "cent_html_id": "p1c90",
+   "printed": "18C Compromise",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm0619F:txtTax18D",
+   "peso_html_id": "p1c92",
+   "cent_html_id": "p1c94",
+   "printed": "18D Total Penalties (Sum of Items 18A to 18C)",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm0619F:txtTax19",
+   "peso_html_id": "p1c96",
+   "cent_html_id": "p1c98",
+   "printed": "19 Total Amount of Remittance (Sum of Item 17 and 18D)",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "txtAmount20",
+   "peso_html_id": "p1c123",
+   "cent_html_id": "p1c125",
+   "printed": "20 Cash/Bank Debit Memo, Amount",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "txtAmount21",
+   "peso_html_id": "p1c132",
+   "cent_html_id": "p1c134",
+   "printed": "21 Check, Amount",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "txtAmount22",
+   "peso_html_id": "p1c140",
+   "cent_html_id": "p1c142",
+   "printed": "22 Tax Debit Memo, Amount",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "txtAmount23",
+   "peso_html_id": "p1c150",
+   "cent_html_id": "p1c152",
+   "printed": "23 Others, Amount",
+   "reason": "11-slot peso comb with the 2-slot centavo comb directly right"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm0619F:optAmend:Y",
+   "html_id": "p1c22",
+   "printed": "3 Amended Form? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm0619F:optAmend:N",
+   "html_id": "p1c23",
+   "printed": "3 Amended Form? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm0619F:optWithheld:Y",
+   "html_id": "p1c24",
+   "printed": "4 Any Taxes Withheld? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm0619F:optWithheld:N",
+   "html_id": "p1c25",
+   "printed": "4 Any Taxes Withheld? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm0619F:optCategory:P",
+   "html_id": "p1c48",
+   "printed": "11 Category of Withholding Agent: Private",
+   "reason": "box immediately left of \"Private\""
+  },
+  {
+   "writer_key": "frm0619F:optCategory:G",
+   "html_id": "p1c49",
+   "printed": "11 Category of Withholding Agent: Government",
+   "reason": "box immediately left of \"Government\""
+  }
+ ],
+ "date_joins": [
+  {
+   "writer_key": "txtDate20",
+   "mm_html_id": "p1c120",
+   "dd_html_id": "p1c121",
+   "yyyy_html_id": "p1c122",
+   "printed": "Payment row 20, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs left of the Amount combs on the same Part III payment row (the row whose amount this key family fills); one writer date split across the three"
+  },
+  {
+   "writer_key": "txtDate21",
+   "mm_html_id": "p1c129",
+   "dd_html_id": "p1c130",
+   "yyyy_html_id": "p1c131",
+   "printed": "Payment row 21, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs left of the Amount combs on the same Part III payment row (the row whose amount this key family fills); one writer date split across the three"
+  },
+  {
+   "writer_key": "txtDate22",
+   "mm_html_id": "p1c137",
+   "dd_html_id": "p1c138",
+   "yyyy_html_id": "p1c139",
+   "printed": "Payment row 22, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs left of the Amount combs on the same Part III payment row (the row whose amount this key family fills); one writer date split across the three"
+  },
+  {
+   "writer_key": "txtDate23",
+   "mm_html_id": "p1c147",
+   "dd_html_id": "p1c148",
+   "yyyy_html_id": "p1c149",
+   "printed": "Payment row 23, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs left of the Amount combs on the same Part III payment row (the row whose amount this key family fills); one writer date split across the three"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_key": "frm0619F:txtLineBus",
+   "reason": "not on the paper form: this sheet has no line-of-business box"
+  },
+  {
+   "writer_keys": [
+    "txtEnroll",
+    "txtFinalFlag"
+   ],
+   "reason": "eBIRForms system field (enrolment flag, final flag, export drive, online-filing credentials), not on the paper form"
+  }
+ ]
+}

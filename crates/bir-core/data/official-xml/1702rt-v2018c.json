@@ -1,0 +1,4501 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "1702rt-v2018c",
+  "generated_by": "oracle/gen_layout.js (official saveXMLsubmit loop run in jsdom)",
+  "official_hta": "BIR-Form1702RTv2018C.hta",
+  "official_hta_sha256": "fbbaa75784bb054f3658ab0a357ad50b65807c59c437c2d010e69aa1ad64081a",
+  "header": "<?xml version='1.0'?>",
+  "lead": "\t\n            ",
+  "value_rules": [
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:ddlPg1I2Month",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1I2Year",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:drpPg1I5AtcOther",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt1I6TIN1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt1I6TIN2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt1I6TIN3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt1I6TIN4",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "BranchMaskP1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtRDO",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:drpPg1Pt1I7RDOCode",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt1I8Name1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt1I8Name2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt1I8Name3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt1I9Address1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt1I9Address2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt1I9Address3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtZIP",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt1I10",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt1I11Contact",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt1I12Email",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt2I14IncomeTax",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt2I15TotalTaxCredits",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt2I16NetTax",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt2I17Surcharge",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt2I18Interest",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt2I19Compromise",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt2I20TotalPenalties",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt2I21TotalAmount",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtSignaturePresident",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtSignatureTreasurer",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt2PagesFilled",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt2Signatory1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt2SignatoryTin1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt2Signatory2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt2SignatoryTin2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I23DebitMemoC1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I23DebitMemoC2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I23DebitMemoC3Date",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I23DebitMemoC4Amount",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I24CheckC1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I24CheckC2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I24CheckC3Date",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I24CheckC4Amount",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I25TaxDebitC2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I25TaxDebitDate",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I25TaxDebitC4Amount",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I26Others",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I26OthersC1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I26OthersC2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I26OthersC3Date",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg1Pt3I26OthersC4Amount",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2TIN1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2TIN2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2TIN3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2TIN4",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "txtBranchMaskP2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2RegisteredName",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I27Sales",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I28LessSales",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I29NetSales",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I30LessCost",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I31GrossIncome",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I32AddOtherTaxable",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I33TotalGross",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I34OrdinaryAllowable",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I35SpecialAllowable",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I36Nolco",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I37TotalItemized",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I38OptionalStandard",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I39NetTaxable",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:Pg2Pt4I40IncomeTaxRate",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I41IncomeTaxDue",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I42MinimumCorporate",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I43TotalIncomeTax",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I44ExcessCredits",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I45IncomeTaxPaymentUnderMCIT",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I46IncomeTaxUnderRegular",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I47ExcessMCIT",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I48CreditableTaxWithheldFromPrevious",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I49CreditableTaxWithheldFor4thQuarter",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I50ForeignTaxCredits",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I51TaxPaidInReturn",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt452SpecialTaxCredits",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I53C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I53C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I54C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I54C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I55TotalTaxCredits",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I56NetTax",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt5I57SpecialAllowable",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt5I58AddSpecialTax",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt5I59TotalTax",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3TIN1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3TIN2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3TIN3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3TIN4",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "txtBranchMaskP3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3RegisteredName",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I1Amortization",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I2BadDebts",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I3CharitableContributions",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I4Depletion",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I5Depreciation",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I6Entertainment",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I7FringeBenefits",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I8Interest",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I9Losses",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I10PensionTrust",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I11Rental",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I12Research",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I13Salaries",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I14Contributions",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I15TaxesandLicenses",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I16TransportationandTravel",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17aJanitorial",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17bProfessionalFees",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17cSecurityServices",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17dC1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17dC2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17eC1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17eC2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17fC1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17fC2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17gC1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17gC2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17hC1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17hC2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17iC1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17iC2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I18TotalOrdinaryAllowable",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I1C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I1C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I1C3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I2C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I2C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I2C3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I3C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I3C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I3C3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I4C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I4C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I4C3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I5TotalSpecialAllowable",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4TIN1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4TIN2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4TIN3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4TIN4",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "txtBranchMaskP4",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4RegisteredName",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3I1GrossIncome",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3I2TotalDeductions",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3I3NetOperatingLoss",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI4C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI4C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI4C3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI5C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI5C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI5C3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI6C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI6C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI6C3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI7C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI7C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI7C3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI4C4",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI4C5",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI4C6",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI5C4",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI5C5",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI5C6",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI6C4",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI6C5",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI6C6",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI7C4",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI7C5",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI7C6",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I8TotalNOLCO",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I1C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I1C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I1C3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I1C4",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I2C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I2C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I2C3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I2C4",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I3C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I3C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I3C3",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I3C4",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I1C5",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I1C6",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I1C7",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I1C8",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I2C5",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I2C6",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I2C7",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I2C8",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I3C5",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I3C6",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I3C7",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I3C8",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I4TotalExcessMCIT",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I1NetIncome",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I2C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I2C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I3C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I3C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I4Total",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I5C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I5C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I6C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I6C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I7C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I7C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I8C1",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I8C2",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I9Total",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I10NetTaxableIncome",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I54CtrModal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17iCtrModal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I4CtrModal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I3CtrModal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I6CtrModal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I8CtrModal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtCurrentPage",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtMaxPage",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3I3Subtotal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc4I4Subtotal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc1I17iSubtotal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg3Sc2I4Subtotal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI7C2Subtotal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI7C3Subtotal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI7C4Subtotal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI7C5Subtotal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc3AI7C6Subtotal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg2Pt4I54Subtotal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I3Subtotal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I6Subtotal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "frm1702RT:txtPg4Sc5I8Subtotal",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "driveSelectTPExport",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "txtFinalFlag",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "txtEnroll",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "ebirOnlineConfirmUsername",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "ebirOnlineUsername",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    },
+    {
+      "probe": "(5.00)",
+      "key": "ebirOnlineSecret",
+      "expected": "(5.00)",
+      "official": "-5.00"
+    }
+  ],
+  "entries": [
+    {
+      "key": "frm1702RT:rdoPg1I1Calendar",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:rdoPg1I1Fiscal",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:ddlPg1I2Month",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:ddlPg1I2Month",
+          "codec": "raw"
+        }
+      ],
+      "default": "12",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1I2Year",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1I2Year",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:rdoPg1I3AmmendYes",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:rdoPg1I3AmmendNo",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:rdoPg1I4ShortPeriodYes",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:rdoPg1I4ShortPeriodNo",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:rdoPg1I5Atc",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:drpPg1I5AtcOther",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:drpPg1I5AtcOther",
+          "codec": "raw"
+        }
+      ],
+      "default": "IC010",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:rdoPg1I5AtcOther",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt1I6TIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt1I6TIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt1I6TIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt1I6TIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt1I6TIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt1I6TIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt1I6TIN4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt1I6TIN4",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "BranchMaskP1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "BranchMaskP1",
+          "codec": "raw"
+        }
+      ],
+      "default": "00000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtRDO",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtRDO",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:drpPg1Pt1I7RDOCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:drpPg1Pt1I7RDOCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt1I8Name1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt1I8Name1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt1I8Name2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt1I8Name2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt1I8Name3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt1I8Name3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt1I9Address1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt1I9Address1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt1I9Address2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt1I9Address2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt1I9Address3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt1I9Address3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtZIP",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtZIP",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt1I10",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt1I10",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt1I11Contact",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt1I11Contact",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt1I12Email",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt1I12Email",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:rdoPg1Pt1I13ItemizedDeduction",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:rdoPg1Pt1I13OptionalStandard",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt2I14IncomeTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt2I14IncomeTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt2I15TotalTaxCredits",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt2I15TotalTaxCredits",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt2I16NetTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt2I16NetTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt2I17Surcharge",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt2I17Surcharge",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt2I18Interest",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt2I18Interest",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt2I19Compromise",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt2I19Compromise",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt2I20TotalPenalties",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt2I20TotalPenalties",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt2I21TotalAmount",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt2I21TotalAmount",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:rdoPg1Pt2I21OverpaymentRefunded",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:rdoPg1Pt2I21OverpaymentIssued",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:rdoPg1Pt2I21OverpaymentCarried",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtSignaturePresident",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtSignaturePresident",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtSignatureTreasurer",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtSignatureTreasurer",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt2PagesFilled",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt2PagesFilled",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt2Signatory1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt2Signatory1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt2SignatoryTin1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt2SignatoryTin1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt2Signatory2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt2Signatory2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt2SignatoryTin2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt2SignatoryTin2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I23DebitMemoC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I23DebitMemoC1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I23DebitMemoC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I23DebitMemoC2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I23DebitMemoC3Date",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I23DebitMemoC3Date",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I23DebitMemoC4Amount",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I23DebitMemoC4Amount",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I24CheckC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I24CheckC1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I24CheckC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I24CheckC2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I24CheckC3Date",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I24CheckC3Date",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I24CheckC4Amount",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I24CheckC4Amount",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I25TaxDebitC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I25TaxDebitC2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I25TaxDebitDate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I25TaxDebitDate",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I25TaxDebitC4Amount",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I25TaxDebitC4Amount",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I26Others",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I26Others",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I26OthersC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I26OthersC1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I26OthersC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I26OthersC2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I26OthersC3Date",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I26OthersC3Date",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg1Pt3I26OthersC4Amount",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg1Pt3I26OthersC4Amount",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2TIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2TIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2TIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2TIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2TIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2TIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2TIN4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2TIN4",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtBranchMaskP2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtBranchMaskP2",
+          "codec": "raw"
+        }
+      ],
+      "default": "00000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2RegisteredName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2RegisteredName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I27Sales",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I27Sales",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I28LessSales",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I28LessSales",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I29NetSales",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I29NetSales",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I30LessCost",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I30LessCost",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I31GrossIncome",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I31GrossIncome",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I32AddOtherTaxable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I32AddOtherTaxable",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I33TotalGross",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I33TotalGross",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I34OrdinaryAllowable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I34OrdinaryAllowable",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I35SpecialAllowable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I35SpecialAllowable",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I36Nolco",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I36Nolco",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I37TotalItemized",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I37TotalItemized",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I38OptionalStandard",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I38OptionalStandard",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I39NetTaxable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I39NetTaxable",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:Pg2Pt4I40IncomeTaxRate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:Pg2Pt4I40IncomeTaxRate",
+          "codec": "raw"
+        }
+      ],
+      "default": "30",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I41IncomeTaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I41IncomeTaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I42MinimumCorporate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I42MinimumCorporate",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I43TotalIncomeTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I43TotalIncomeTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I44ExcessCredits",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I44ExcessCredits",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I45IncomeTaxPaymentUnderMCIT",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I45IncomeTaxPaymentUnderMCIT",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I46IncomeTaxUnderRegular",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I46IncomeTaxUnderRegular",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I47ExcessMCIT",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I47ExcessMCIT",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I48CreditableTaxWithheldFromPrevious",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I48CreditableTaxWithheldFromPrevious",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I49CreditableTaxWithheldFor4thQuarter",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I49CreditableTaxWithheldFor4thQuarter",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I50ForeignTaxCredits",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I50ForeignTaxCredits",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I51TaxPaidInReturn",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I51TaxPaidInReturn",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt452SpecialTaxCredits",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt452SpecialTaxCredits",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I53C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I53C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I53C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I53C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I54C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I54C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I54C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I54C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I55TotalTaxCredits",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I55TotalTaxCredits",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I56NetTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I56NetTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt5I57SpecialAllowable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt5I57SpecialAllowable",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt5I58AddSpecialTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt5I58AddSpecialTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt5I59TotalTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt5I59TotalTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3TIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3TIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3TIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3TIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3TIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3TIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3TIN4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3TIN4",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtBranchMaskP3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtBranchMaskP3",
+          "codec": "raw"
+        }
+      ],
+      "default": "00000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3RegisteredName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3RegisteredName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I1Amortization",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I1Amortization",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I2BadDebts",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I2BadDebts",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I3CharitableContributions",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I3CharitableContributions",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I4Depletion",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I4Depletion",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I5Depreciation",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I5Depreciation",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I6Entertainment",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I6Entertainment",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I7FringeBenefits",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I7FringeBenefits",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I8Interest",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I8Interest",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I9Losses",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I9Losses",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I10PensionTrust",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I10PensionTrust",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I11Rental",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I11Rental",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I12Research",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I12Research",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I13Salaries",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I13Salaries",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I14Contributions",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I14Contributions",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I15TaxesandLicenses",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I15TaxesandLicenses",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I16TransportationandTravel",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I16TransportationandTravel",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17aJanitorial",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17aJanitorial",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17bProfessionalFees",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17bProfessionalFees",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17cSecurityServices",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17cSecurityServices",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17dC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17dC1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17dC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17dC2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17eC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17eC1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17eC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17eC2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17fC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17fC1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17fC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17fC2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17gC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17gC1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17gC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17gC2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17hC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17hC1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17hC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17hC2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17iC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17iC1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17iC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17iC2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I18TotalOrdinaryAllowable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I18TotalOrdinaryAllowable",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I1C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I1C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I1C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I1C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I1C3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I1C3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I2C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I2C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I2C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I2C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I2C3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I2C3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I3C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I3C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I3C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I3C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I3C3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I3C3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I4C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I4C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I4C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I4C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I4C3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I4C3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I5TotalSpecialAllowable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I5TotalSpecialAllowable",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4TIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4TIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4TIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4TIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4TIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4TIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4TIN4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4TIN4",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtBranchMaskP4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtBranchMaskP4",
+          "codec": "raw"
+        }
+      ],
+      "default": "00000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4RegisteredName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4RegisteredName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3I1GrossIncome",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3I1GrossIncome",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3I2TotalDeductions",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3I2TotalDeductions",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3I3NetOperatingLoss",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3I3NetOperatingLoss",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI4C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI4C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI4C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI4C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI4C3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI4C3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI5C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI5C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI5C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI5C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI5C3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI5C3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI6C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI6C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI6C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI6C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI6C3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI6C3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI7C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI7C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI7C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI7C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI7C3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI7C3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI4C4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI4C4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI4C5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI4C5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI4C6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI4C6",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI5C4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI5C4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI5C5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI5C5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI5C6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI5C6",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI6C4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI6C4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI6C5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI6C5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI6C6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI6C6",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI7C4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI7C4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI7C5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI7C5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI7C6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI7C6",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I8TotalNOLCO",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I8TotalNOLCO",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I1C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I1C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I1C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I1C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I1C3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I1C3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I1C4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I1C4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I2C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I2C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I2C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I2C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I2C3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I2C3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I2C4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I2C4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I3C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I3C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I3C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I3C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I3C3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I3C3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I3C4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I3C4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I1C5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I1C5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I1C6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I1C6",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I1C7",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I1C7",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I1C8",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I1C8",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I2C5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I2C5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I2C6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I2C6",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I2C7",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I2C7",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I2C8",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I2C8",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I3C5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I3C5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I3C6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I3C6",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I3C7",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I3C7",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I3C8",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I3C8",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I4TotalExcessMCIT",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I4TotalExcessMCIT",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I1NetIncome",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I1NetIncome",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I2C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I2C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I2C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I2C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I3C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I3C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I3C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I3C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I4Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I4Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I5C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I5C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I5C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I5C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I6C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I6C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I6C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I6C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I7C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I7C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I7C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I7C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I8C1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I8C1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I8C2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I8C2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I9Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I9Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I10NetTaxableIncome",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I10NetTaxableIncome",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I54CtrModal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I54CtrModal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17iCtrModal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17iCtrModal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I4CtrModal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I4CtrModal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I3CtrModal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I3CtrModal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I6CtrModal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I6CtrModal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I8CtrModal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I8CtrModal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtCurrentPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtCurrentPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "1",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtMaxPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtMaxPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "4",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3I3Subtotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3I3Subtotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc4I4Subtotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc4I4Subtotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc1I17iSubtotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc1I17iSubtotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg3Sc2I4Subtotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg3Sc2I4Subtotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI7C2Subtotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI7C2Subtotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI7C3Subtotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI7C3Subtotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI7C4Subtotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI7C4Subtotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI7C5Subtotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI7C5Subtotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc3AI7C6Subtotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc3AI7C6Subtotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg2Pt4I54Subtotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg2Pt4I54Subtotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I3Subtotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I3Subtotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I6Subtotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I6Subtotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702RT:txtPg4Sc5I8Subtotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702RT:txtPg4Sc5I8Subtotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "driveSelectTPExport",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "driveSelectTPExport",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtFinalFlag",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtFinalFlag",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEnroll",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEnroll",
+          "codec": "raw"
+        }
+      ],
+      "default": "N",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineConfirmUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineConfirmUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineSecret",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineSecret",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            \t\n            All Rights Reserved BIR 2014.0"
+    }
+  ]
+}

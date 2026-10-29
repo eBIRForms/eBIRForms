@@ -1,0 +1,192 @@
+[
+ {
+  "set": "frm1706:txtDateMonth",
+  "value": "03"
+ },
+ {
+  "set": "frm1706:txtDateDay",
+  "value": "15"
+ },
+ {
+  "set": "frm1706:txtDateYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1706:j_id217:_2"
+ },
+ {
+  "set": "frm1706:txtSheets",
+  "value": "1"
+ },
+ {
+  "click": "frm1706:opt4"
+ },
+ {
+  "set": "frm1706:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1706:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1706:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1706:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1706:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm1706:txtTINB1",
+  "value": "111"
+ },
+ {
+  "set": "frm1706:txtTINB2",
+  "value": "222"
+ },
+ {
+  "set": "frm1706:txtTINB3",
+  "value": "333"
+ },
+ {
+  "set": "frm1706:txtBranchCodeB",
+  "value": "00000"
+ },
+ {
+  "set": "frm1706:txtRDOCodeB",
+  "value": "040"
+ },
+ {
+  "set": "frm1706:txtSellerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1706:txtBuyerName",
+  "value": "Maria Dela Cruz-Santos"
+ },
+ {
+  "set": "frm1706:txtSellerAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm1706:txtBuyerAddress",
+  "value": "45 Example Ave., Makati City"
+ },
+ {
+  "set": "frm1706:txtSellerRAddress",
+  "value": "Unit 5, Sample Residences"
+ },
+ {
+  "set": "frm1706:txtLocation",
+  "value": "Lot 7 Blk 2, Sample Subd., Quezon City"
+ },
+ {
+  "set": "frm1706:txtRDOCode14A",
+  "value": "039"
+ },
+ {
+  "click": "frm1706:j_id391:_8"
+ },
+ {
+  "set": "frm1706:j_id391:_7",
+  "value": "Mixed use lot"
+ },
+ {
+  "set": "frm1706:txtTCT",
+  "value": "T-123456"
+ },
+ {
+  "set": "frm1706:txtArea",
+  "value": "250.5"
+ },
+ {
+  "set": "frm1706:txtTaxDC",
+  "value": "0123456"
+ },
+ {
+  "set": "frm1706:txtOthers",
+  "value": "Corner lot"
+ },
+ {
+  "click": "frm1706:j_id392:_1"
+ },
+ {
+  "click": "frm1706:j_id393:_2"
+ },
+ {
+  "click": "frm1706:j_id394:_2"
+ },
+ {
+  "click": "frm1706:rdTreaty:_1"
+ },
+ {
+  "set": "frm1706:selTreaty",
+  "value": "2"
+ },
+ {
+  "click": "frm1706:j_id395:_1"
+ },
+ {
+  "set": "frm1706:txtFMVLand",
+  "value": "1234567.005"
+ },
+ {
+  "set": "frm1706:txtFMVZonal",
+  "value": "1500000.125"
+ },
+ {
+  "set": "frm1706:txtFMVImprovements",
+  "value": "300000.555"
+ },
+ {
+  "set": "frm1706:txtFMVBIR",
+  "value": "250000"
+ },
+ {
+  "click": "frm1706:opt30A"
+ },
+ {
+  "set": "frm1706:txtGross",
+  "value": "1800000.995"
+ },
+ {
+  "set": "frm1706:txtSchedModal1",
+  "value": "Sales proceeds"
+ },
+ {
+  "set": "frm1706:txtSchedModal2",
+  "value": "1,800,001.00"
+ },
+ {
+  "set": "frm1706:txtSchedModal3",
+  "value": "Utilized"
+ },
+ {
+  "set": "frm1706:txtSchedModal4",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1706:txtSurcharge",
+  "value": "25.5"
+ },
+ {
+  "set": "frm1706:txtInterest",
+  "value": "10.005"
+ },
+ {
+  "set": "frm1706:txtCompromise",
+  "value": "1000"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "call": "validate()"
+ }
+]

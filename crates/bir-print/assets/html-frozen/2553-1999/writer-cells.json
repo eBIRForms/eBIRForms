@@ -1,0 +1,351 @@
+{
+ "form_id": "2553-v1999",
+ "html_slug": "2553-1999",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the single fillable cell whose printed caption (from the frozen page's own text layer) names the item. Amounts print the writer's official text (1,234.56) in one text cell. On this 1999 sheet rows 14-17 expose only some columns as fillable cells (14-16: C and E; 17: C, D, E); row 18 exposes A-E. Unexposed columns stay blank on print; the submitted XML always carries them. Item 13 'If yes, specify' prints the relief name from derived:line:tax_relief_specify (Form2553Draft::to_print_field_map); the upload keeps the option code. Booleans fill X in the box left of the printed option. Since #113 every value has a box or a reviewed not_joined reason; the unexposed row 14-17 columns are listed there.",
+ "joins": [
+  {
+   "writer_key": "frm2553:itemYearEndMonth",
+   "html_id": "p1c4",
+   "printed": "2 Year Ended MM",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txtYearEnded",
+   "html_id": "p1c5",
+   "printed": "2 Year Ended YYYY",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txtSheets",
+   "html_id": "p1c6",
+   "printed": "5 Number of sheets attached",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txtTIN1",
+   "html_id": "p1c18",
+   "printed": "6 TIN (1-3)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txtTIN2",
+   "html_id": "p1c20",
+   "printed": "6 TIN (4-6)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txtTIN3",
+   "html_id": "p1c22",
+   "printed": "6 TIN (7-9)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txtBranchCode",
+   "html_id": "p1c24",
+   "printed": "6 TIN branch",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txtRDOCode",
+   "html_id": "p1c16",
+   "printed": "7 RDO Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txtDescription",
+   "html_id": "p1c17",
+   "printed": "8 Line of Business/Occupation",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txtTPName",
+   "html_id": "p1c26",
+   "printed": "9 Taxpayer's Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txtTelNum",
+   "html_id": "p1c27",
+   "printed": "10 Telephone Number",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txtAddress",
+   "html_id": "p1c29",
+   "printed": "11 Registered Address",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txtZipCode",
+   "html_id": "p1c30",
+   "printed": "12 Zip Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt14C",
+   "html_id": "p1c38",
+   "printed": "14C Taxable Amount",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt14E",
+   "html_id": "p1c40",
+   "printed": "14E Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt15C",
+   "html_id": "p1c43",
+   "printed": "15C Taxable Amount",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt15E",
+   "html_id": "p1c45",
+   "printed": "15E Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt16C",
+   "html_id": "p1c48",
+   "printed": "16C Taxable Amount",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt16E",
+   "html_id": "p1c50",
+   "printed": "16E Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt17C",
+   "html_id": "p1c53",
+   "printed": "17C Taxable Amount",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt17D",
+   "html_id": "p1c54",
+   "printed": "17D Tax Rate",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt17E",
+   "html_id": "p1c55",
+   "printed": "17E Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt18A",
+   "html_id": "p1c56",
+   "printed": "18A Taxable Transaction/Industry Classification",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt18B",
+   "html_id": "p1c57",
+   "printed": "18B ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt18C",
+   "html_id": "p1c58",
+   "printed": "18C Taxable Amount",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt18D",
+   "html_id": "p1c59",
+   "printed": "18D Tax Rate",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt18E",
+   "html_id": "p1c60",
+   "printed": "18E Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt19",
+   "html_id": "p1c61",
+   "printed": "19 Total Tax Due",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt20A",
+   "html_id": "p1c62",
+   "printed": "20A Tax Paid in Return Previously Filed",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt20B",
+   "html_id": "p1c63",
+   "printed": "20B Creditable Tax Withheld",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt20C",
+   "html_id": "p1c64",
+   "printed": "20C Total Tax Credits/Payments",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt21",
+   "html_id": "p1c65",
+   "printed": "21 Tax Payable/(Overpayment)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt22A",
+   "html_id": "p1c66",
+   "printed": "22A Surcharge",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt22B",
+   "html_id": "p1c67",
+   "printed": "22B Interest",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt22C",
+   "html_id": "p1c68",
+   "printed": "22C Compromise",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt22D",
+   "html_id": "p1c69",
+   "printed": "22D Total Penalties",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "frm2553:txt23",
+   "html_id": "p1c70",
+   "printed": "23 Total Amount Payable/(Overpayment)",
+   "reason": "geometry: the only fillable cell for this printed item on the 2553 (1999) sheet"
+  },
+  {
+   "writer_key": "derived:line:tax_relief_specify",
+   "html_id": "p1c32",
+   "printed": "13 If yes, specify",
+   "reason": "the text box right of the item 13 caption, above If yes, specify; the relief named on a Yes (the upload carries the lstTaxTreaty code)"
+  }
+ ],
+ "money_joins": [],
+ "xbox_joins": [
+  {
+   "writer_key": "frm2553:itemFiscalStartMonth:_1",
+   "html_id": "p1c2",
+   "printed": "1 For the Calendar",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2553:itemFiscalStartMonth:_2",
+   "html_id": "p1c3",
+   "printed": "1 For the Fiscal",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2553:optQtr:_1",
+   "html_id": "p1c7",
+   "printed": "3 Quarter 1",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2553:optQtr:_2",
+   "html_id": "p1c8",
+   "printed": "3 Quarter 2",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2553:optQtr:_3",
+   "html_id": "p1c9",
+   "printed": "3 Quarter 3",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2553:optQtr:_4",
+   "html_id": "p1c10",
+   "printed": "3 Quarter 4",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2553:optAmended_1",
+   "html_id": "p1c11",
+   "printed": "4 Amended Return Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2553:optAmended_2",
+   "html_id": "p1c12",
+   "printed": "4 Amended Return No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2553:optTreaty_1",
+   "html_id": "p1c33",
+   "printed": "13 Tax relief Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2553:optTreaty_2",
+   "html_id": "p1c34",
+   "printed": "13 Tax relief No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2553:ifoverpay_1",
+   "html_id": "p1c71",
+   "printed": "23 To be Refunded",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm2553:ifoverpay_2",
+   "html_id": "p1c72",
+   "printed": "23 To be issued a Tax Credit Certificate",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_key": "frm2553:lstTaxTreaty",
+   "reason": "dropdown code (0 none, 1 special rate, 2 treaty); item 13 prints the relief name from derived:line:tax_relief_specify"
+  },
+  {
+   "writer_keys": [
+    "frm2553:txt14A",
+    "frm2553:txt14B",
+    "frm2553:txt14D"
+   ],
+   "reason": "item 14 A/B/D: the 1999 freeze sheet draws this box as a label cell with no input (rows 14-17 expose only some columns); printing it needs a fillable cell in html-frozen/2553-1999/index.html (buwiz-forms-html), reported on #113"
+  },
+  {
+   "writer_keys": [
+    "frm2553:txt15A",
+    "frm2553:txt15B",
+    "frm2553:txt15D"
+   ],
+   "reason": "item 15 A/B/D: the 1999 freeze sheet draws this box as a label cell with no input (rows 14-17 expose only some columns); printing it needs a fillable cell in html-frozen/2553-1999/index.html (buwiz-forms-html), reported on #113"
+  },
+  {
+   "writer_keys": [
+    "frm2553:txt16A",
+    "frm2553:txt16B",
+    "frm2553:txt16D"
+   ],
+   "reason": "item 16 A/B/D: the 1999 freeze sheet draws this box as a label cell with no input (rows 14-17 expose only some columns); printing it needs a fillable cell in html-frozen/2553-1999/index.html (buwiz-forms-html), reported on #113"
+  },
+  {
+   "writer_keys": [
+    "frm2553:txt17A",
+    "frm2553:txt17B"
+   ],
+   "reason": "item 17 A/B: the 1999 freeze sheet draws this box as a label cell with no input (rows 14-17 expose only some columns); printing it needs a fillable cell in html-frozen/2553-1999/index.html (buwiz-forms-html), reported on #113"
+  },
+  {
+   "writer_key": "txtEmail",
+   "reason": "not on the paper form: the 1999 sheet has no email box"
+  }
+ ]
+}

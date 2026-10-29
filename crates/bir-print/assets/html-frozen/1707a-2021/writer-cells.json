@@ -1,0 +1,1135 @@
+{
+ "form_id": "1707a-v2021",
+ "html_slug": "1707a-2021",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page text layer) sits beside or just above it. The sheet numbers items differently from the layout keys, so items are matched by caption text, not by key names. Amounts print the writer official text: a peso comb plus a 2-slot centavo comb where the sheet has one, otherwise one text cell. Booleans fill X in the box left of the printed option. Item 2 MM and DD follow the printed (MM/DD/YYYY) order; the schedule row dates print through date_joins; the item 9 second line and the page 2 TIN print from derived: keys of Form1707ADraft::to_print_field_map. Left out: the TIN branch comb, the Part III grid (unnamed keys), and items with no fillable cell on the sheet. Since #113 every value the print map carries has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm1707Av2021:txtI1YearEndYear",
+   "html_id": "p1c11",
+   "printed": "2 For the Year Ended (YYYY)",
+   "reason": "only 4-slot comb on the item 2 Year Ended row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI3Sheets",
+   "html_id": "p1c12",
+   "printed": "4 No. of Sheet/s Attached",
+   "reason": "caption \"No. of Sheet/s Attached\" sits directly above this 2-slot comb"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI5TIN1",
+   "html_id": "p1c21",
+   "printed": "6 TIN (1-3)",
+   "reason": "first TIN comb on the item 6 row, left to right"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI5TIN2",
+   "html_id": "p1c23",
+   "printed": "6 TIN (4-6)",
+   "reason": "second TIN comb on the item 6 row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI5TIN3",
+   "html_id": "p1c25",
+   "printed": "6 TIN (7-9)",
+   "reason": "third TIN comb on the item 6 row"
+  },
+  {
+   "writer_key": "frm1707Av2021:rdoI6RDO",
+   "html_id": "p1c29",
+   "printed": "7 RDO Code",
+   "reason": "caption \"7 RDO Code\" immediately left of this 3-slot comb"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI8RegisteredName",
+   "html_id": "p1c32",
+   "printed": "8 Seller's Name",
+   "reason": "caption \"Seller's Name (Last Name, First Name ...)\" directly above"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI10ZipCode",
+   "html_id": "p1c37",
+   "printed": "9A ZIP Code",
+   "reason": "caption \"9A ZIP Code\" immediately left of this 4-slot comb"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt4TaxAcredNo",
+   "html_id": "p1c107",
+   "printed": "Tax Agent Accreditation No./ Attorney's Roll No.",
+   "reason": "caption immediately left of the cell"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt4DateOfIssue",
+   "html_id": "p1c109",
+   "printed": "Date of Issue (MM/DD/YYYY)",
+   "reason": "caption \"Date of Issue\" immediately left of the cell"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt4DateOfExpiry",
+   "html_id": "p1c111",
+   "printed": "Date of Expiry (MM/DD/YYYY)",
+   "reason": "caption \"Date of Expiry\" immediately left of the cell"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI8RegisteredNameP2",
+   "html_id": "p2c6",
+   "printed": "Taxpayer's Name (page 2)",
+   "reason": "caption \"Taxpayer's Name\" directly above"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C2NameOfCorporateStockI1",
+   "html_id": "p2c16",
+   "printed": "Schedule 1 row 1 (B) Name of Corporate Stock",
+   "reason": "column (B) header above; Schedule 1 row 1"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C2NameOfCorporateStockI2",
+   "html_id": "p2c22",
+   "printed": "Schedule 1 row 2 (B) Name of Corporate Stock",
+   "reason": "column (B); row 2"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C2NameOfCorporateStockI3",
+   "html_id": "p2c28",
+   "printed": "Schedule 1 row 3 (B) Name of Corporate Stock",
+   "reason": "column (B); row 3"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C2NameOfCorporateStockI4",
+   "html_id": "p2c34",
+   "printed": "Schedule 1 row 4 (B) Name of Corporate Stock",
+   "reason": "column (B); row 4"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C3SellingPriceI1",
+   "html_id": "p2c17",
+   "printed": "Schedule 1 row 1 (C) Selling Price",
+   "reason": "column (C) header; row 1"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C3SellingPriceI2",
+   "html_id": "p2c23",
+   "printed": "Schedule 1 row 2 (C) Selling Price",
+   "reason": "column (C); row 2"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C3SellingPriceI3",
+   "html_id": "p2c29",
+   "printed": "Schedule 1 row 3 (C) Selling Price",
+   "reason": "column (C); row 3"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C3SellingPriceI4",
+   "html_id": "p2c35",
+   "printed": "Schedule 1 row 4 (C) Selling Price",
+   "reason": "column (C); row 4"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C4CostI1",
+   "html_id": "p2c41",
+   "printed": "Schedule 1 continuation row 1 (D) Cost",
+   "reason": "column (D) header; continuation row 1"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C4CostI2",
+   "html_id": "p2c45",
+   "printed": "Schedule 1 continuation row 2 (D) Cost",
+   "reason": "column (D); row 2"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C4CostI3",
+   "html_id": "p2c49",
+   "printed": "Schedule 1 continuation row 3 (D) Cost",
+   "reason": "column (D); row 3"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C4CostI4",
+   "html_id": "p2c53",
+   "printed": "Schedule 1 continuation row 4 (D) Cost",
+   "reason": "column (D); row 4"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C5CapitalGainsI1",
+   "html_id": "p2c42",
+   "printed": "Schedule 1 continuation row 1 (E = C-D) Capital Gains",
+   "reason": "column (E) header; row 1"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C5CapitalGainsI2",
+   "html_id": "p2c46",
+   "printed": "Schedule 1 continuation row 2 (E) Capital Gains",
+   "reason": "column (E); row 2"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C5CapitalGainsI3",
+   "html_id": "p2c50",
+   "printed": "Schedule 1 continuation row 3 (E) Capital Gains",
+   "reason": "column (E); row 3"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C5CapitalGainsI4",
+   "html_id": "p2c54",
+   "printed": "Schedule 1 continuation row 4 (E) Capital Gains",
+   "reason": "column (E); row 4"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C6TaxPaidI1",
+   "html_id": "p2c43",
+   "printed": "Schedule 1 continuation row 1 (F) Tax Paid",
+   "reason": "column (F) header; row 1"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C6TaxPaidI2",
+   "html_id": "p2c47",
+   "printed": "Schedule 1 continuation row 2 (F) Tax Paid",
+   "reason": "column (F); row 2"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C6TaxPaidI3",
+   "html_id": "p2c51",
+   "printed": "Schedule 1 continuation row 3 (F) Tax Paid",
+   "reason": "column (F); row 3"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C6TaxPaidI4",
+   "html_id": "p2c55",
+   "printed": "Schedule 1 continuation row 4 (F) Tax Paid",
+   "reason": "column (F); row 4"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1I20TotalCapitalGains",
+   "html_id": "p2c57",
+   "printed": "5 TOTAL (E) Capital Gains",
+   "reason": "TOTAL row of the Schedule 1 continuation, column (E)"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1I20TotalTaxPaid",
+   "html_id": "p2c58",
+   "printed": "5 TOTAL (F) Tax Paid",
+   "reason": "TOTAL row, column (F)"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C2NameOfCorporateStockI1",
+   "html_id": "p2c66",
+   "printed": "Schedule 2 row 1 (B) Name of Corporate Stock",
+   "reason": "column (B) header; Schedule 2 row 1"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C2NameOfCorporateStockI2",
+   "html_id": "p2c71",
+   "printed": "Schedule 2 row 2 (B) Name of Corporate Stock",
+   "reason": "column (B); row 2"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C2NameOfCorporateStockI3",
+   "html_id": "p2c76",
+   "printed": "Schedule 2 row 3 (B) Name of Corporate Stock",
+   "reason": "column (B); row 3"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C2NameOfCorporateStockI4",
+   "html_id": "p2c81",
+   "printed": "Schedule 2 row 4 (B) Name of Corporate Stock",
+   "reason": "column (B); row 4"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C3SellingPriceI1",
+   "html_id": "p2c87",
+   "printed": "Schedule 2 continuation row 1 (C) Selling Price",
+   "reason": "column (C) header; continuation row 1"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C3SellingPriceI2",
+   "html_id": "p2c91",
+   "printed": "Schedule 2 continuation row 2 (C) Selling Price",
+   "reason": "column (C); row 2"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C3SellingPriceI3",
+   "html_id": "p2c95",
+   "printed": "Schedule 2 continuation row 3 (C) Selling Price",
+   "reason": "column (C); row 3"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C3SellingPriceI4",
+   "html_id": "p2c99",
+   "printed": "Schedule 2 continuation row 4 (C) Selling Price",
+   "reason": "column (C); row 4"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C4CostI1",
+   "html_id": "p2c88",
+   "printed": "Schedule 2 continuation row 1 (D) Cost",
+   "reason": "column (D) header; row 1"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C4CostI2",
+   "html_id": "p2c92",
+   "printed": "Schedule 2 continuation row 2 (D) Cost",
+   "reason": "column (D); row 2"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C4CostI3",
+   "html_id": "p2c96",
+   "printed": "Schedule 2 continuation row 3 (D) Cost",
+   "reason": "column (D); row 3"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C4CostI4",
+   "html_id": "p2c100",
+   "printed": "Schedule 2 continuation row 4 (D) Cost",
+   "reason": "column (D); row 4"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C5CapitalLossI1",
+   "html_id": "p2c89",
+   "printed": "Schedule 2 continuation row 1 (E = C-D) Capital Loss",
+   "reason": "column (E) header; row 1"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C5CapitalLossI2",
+   "html_id": "p2c93",
+   "printed": "Schedule 2 continuation row 2 (E) Capital Loss",
+   "reason": "column (E); row 2"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C5CapitalLossI3",
+   "html_id": "p2c97",
+   "printed": "Schedule 2 continuation row 3 (E) Capital Loss",
+   "reason": "column (E); row 3"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C5CapitalLossI4",
+   "html_id": "p2c101",
+   "printed": "Schedule 2 continuation row 4 (E) Capital Loss",
+   "reason": "column (E); row 4"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2I21TotalCapitalLoss",
+   "html_id": "p2c104",
+   "printed": "5 TOTAL (E) Capital Loss",
+   "reason": "TOTAL row of the Schedule 2 continuation, column (E)"
+  },
+  {
+   "writer_key": "derived:contact_email",
+   "html_id": "p1c39",
+   "printed": "10 Contact Number / 11 Email Address",
+   "reason": "one 40-slot comb under both captions: the print map puts the contact number from slot 0 (caption x 23.04pt) and the email from slot 12 (caption text x 189.02pt; comb from x 17.64pt, pitch 14.4pt)"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI1YearEndMonth",
+   "html_id": "p1c9",
+   "printed": "2 For the Year Ended (MM/DD/YYYY), MM",
+   "reason": "the first 2-slot comb under the item 2 caption, whose printed format is (MM/DD/YYYY): MM, then DD, then the YYYY comb txtI1YearEndYear"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI1YearEndDay",
+   "html_id": "p1c10",
+   "printed": "2 For the Year Ended (MM/DD/YYYY), DD",
+   "reason": "the second 2-slot comb under the item 2 (MM/DD/YYYY) caption, between MM and YYYY"
+  },
+  {
+   "writer_key": "derived:address_line1",
+   "html_id": "p1c34",
+   "printed": "9 Registered Address, line 1",
+   "reason": "full-width 40-slot comb under the item 9 caption; the print map breaks the address at the last space that fits"
+  },
+  {
+   "writer_key": "derived:line:address_line2",
+   "html_id": "p1c35",
+   "printed": "9 Registered Address, line 2",
+   "reason": "31-slot comb left of the ZIP Code on the second item 9 row: the rest of the address; a longer line prints whole in smaller type"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN",
+   "reason": "the 14-slot comb under the page 2 TIN caption: TIN then branch"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm1707Av2021:txtI12TotalCapitalGains",
+   "peso_html_id": "p1c46",
+   "cent_html_id": "p1c48",
+   "printed": "13 Total Capital Gains",
+   "reason": "peso comb + 2-slot cents, item 13 row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI13TotalCapitalLoss",
+   "peso_html_id": "p1c50",
+   "cent_html_id": "p1c52",
+   "printed": "14 Less: Total Capital Loss",
+   "reason": "peso comb + 2-slot cents, item 14 row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI14NetCapitalGainLoss",
+   "peso_html_id": "p1c54",
+   "cent_html_id": "p1c56",
+   "printed": "15 Net Capital Gain/(Loss)",
+   "reason": "peso comb + 2-slot cents, item 15 row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI15TaxDue",
+   "peso_html_id": "p1c60",
+   "cent_html_id": "p1c62",
+   "printed": "17 Tax Due",
+   "reason": "peso comb + 2-slot cents, item 17 row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI16ATotalTaxPaid",
+   "peso_html_id": "p1c65",
+   "cent_html_id": "p1c67",
+   "printed": "18A Total Tax Paid",
+   "reason": "peso comb + 2-slot cents, item 18A row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI16BTotalTaxPaid",
+   "peso_html_id": "p1c69",
+   "cent_html_id": "p1c71",
+   "printed": "18B Tax Paid in Return Previously Filed",
+   "reason": "peso comb + 2-slot cents, item 18B row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI16CTotalTaxPaid",
+   "peso_html_id": "p1c73",
+   "cent_html_id": "p1c75",
+   "printed": "18C Total Tax Credits/Payments",
+   "reason": "peso comb + 2-slot cents, item 18C row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI17TaxStillPayable",
+   "peso_html_id": "p1c77",
+   "cent_html_id": "p1c79",
+   "printed": "19 Net Tax Payable/(Overpayment)",
+   "reason": "peso comb + 2-slot cents, item 19 row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI18ASurcharge",
+   "peso_html_id": "p1c81",
+   "cent_html_id": "p1c83",
+   "printed": "20A Surcharge",
+   "reason": "peso comb + 2-slot cents, item 20A row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI18BInterest",
+   "peso_html_id": "p1c85",
+   "cent_html_id": "p1c87",
+   "printed": "20B Interest",
+   "reason": "peso comb + 2-slot cents, item 20B row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI18CCompromise",
+   "peso_html_id": "p1c89",
+   "cent_html_id": "p1c91",
+   "printed": "20C Compromise",
+   "reason": "peso comb + 2-slot cents, item 20C row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI18DPenalties",
+   "peso_html_id": "p1c93",
+   "cent_html_id": "p1c95",
+   "printed": "20D Total Penalties",
+   "reason": "peso comb + 2-slot cents, item 20D row"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI19TotalAmountPayable",
+   "peso_html_id": "p1c97",
+   "cent_html_id": "p1c99",
+   "printed": "21 Total Amount Payable/(Overpayment)",
+   "reason": "peso comb + 2-slot cents, item 21 row"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1707Av2021:rdoI1Calendar",
+   "html_id": "p1c7",
+   "printed": "1 For the Calendar",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1707Av2021:rdoI1Fiscal",
+   "html_id": "p1c8",
+   "printed": "1 For the Fiscal",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1707Av2021:rdoI2AmemdedYes",
+   "html_id": "p1c15",
+   "printed": "3 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1707Av2021:rdoI2AmemdedNo",
+   "html_id": "p1c16",
+   "printed": "3 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1707Av2021:rdoI4ATCII030",
+   "html_id": "p1c17",
+   "printed": "5 II030 Individual",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1707Av2021:rdoI4ATCIC110",
+   "html_id": "p1c18",
+   "printed": "5 IC110 Corporation",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1707Av2021:rdoI11TaxTreatyYes",
+   "html_id": "p1c42",
+   "printed": "12 Tax relief under Special Law / Tax Treaty: Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1707Av2021:rdoI11TaxTreatyNo",
+   "html_id": "p1c43",
+   "printed": "12 Tax relief under Special Law / Tax Treaty: No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  }
+ ],
+ "date_joins": [
+  {
+   "writer_key": "frm1707Av2021:txtS1C1DateOfTransactionI1",
+   "mm_html_id": "p2c13",
+   "dd_html_id": "p2c14",
+   "yyyy_html_id": "p2c15",
+   "printed": "Schedule 1 row 1 (A) Date of Transaction (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the (A) Date of Transaction header on Schedule 1 row 1; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C1DateOfTransactionI2",
+   "mm_html_id": "p2c19",
+   "dd_html_id": "p2c20",
+   "yyyy_html_id": "p2c21",
+   "printed": "Schedule 1 row 2 (A) Date of Transaction (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the (A) Date of Transaction header on Schedule 1 row 2; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C1DateOfTransactionI3",
+   "mm_html_id": "p2c25",
+   "dd_html_id": "p2c26",
+   "yyyy_html_id": "p2c27",
+   "printed": "Schedule 1 row 3 (A) Date of Transaction (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the (A) Date of Transaction header on Schedule 1 row 3; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1C1DateOfTransactionI4",
+   "mm_html_id": "p2c31",
+   "dd_html_id": "p2c32",
+   "yyyy_html_id": "p2c33",
+   "printed": "Schedule 1 row 4 (A) Date of Transaction (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the (A) Date of Transaction header on Schedule 1 row 4; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C1DateOfTransactionI1",
+   "mm_html_id": "p2c63",
+   "dd_html_id": "p2c64",
+   "yyyy_html_id": "p2c65",
+   "printed": "Schedule 2 row 1 (A) Date of Transaction (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the (A) Date of Transaction header on Schedule 2 row 1; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C1DateOfTransactionI2",
+   "mm_html_id": "p2c68",
+   "dd_html_id": "p2c69",
+   "yyyy_html_id": "p2c70",
+   "printed": "Schedule 2 row 2 (A) Date of Transaction (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the (A) Date of Transaction header on Schedule 2 row 2; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C1DateOfTransactionI3",
+   "mm_html_id": "p2c73",
+   "dd_html_id": "p2c74",
+   "yyyy_html_id": "p2c75",
+   "printed": "Schedule 2 row 3 (A) Date of Transaction (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the (A) Date of Transaction header on Schedule 2 row 3; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2C1DateOfTransactionI4",
+   "mm_html_id": "p2c78",
+   "dd_html_id": "p2c79",
+   "yyyy_html_id": "p2c80",
+   "printed": "Schedule 2 row 4 (A) Date of Transaction (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the (A) Date of Transaction header on Schedule 2 row 4; one writer date split across the three"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_key": "frm1707Av2021:txtI4TCII030",
+   "reason": "no separate text cell for the II030 code; the box rdoI4ATCII030 is the only cell for that item"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI4ATCIC110",
+   "reason": "no separate text cell for the IC110 code; the box rdoI4ATCIC110 is the only cell for that item"
+  },
+  {
+   "writer_key": "frm1707Av2021:hdnI5TIN4",
+   "reason": "hidden field, no fillable cell"
+  },
+  {
+   "writer_key": "frm1707Av2021:hdnRDO",
+   "reason": "hidden field, no fillable cell"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI5BranchMask",
+   "reason": "TIN branch cell p1c27 is 5 slots with no printed branch caption; the layout mask is 3 digits, so not guessed"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtLineOfBusiness",
+   "reason": "no line-of-business item on this sheet"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI11ASpecify",
+   "reason": "12A \"If yes, please specify\" has no fillable cell; the writer holds an option code, not printable text"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI16ApplicableTaxRate",
+   "reason": "item 16 rate 15% is preprinted; no fillable cell"
+  },
+  {
+   "writer_key": "frm1707:txtPg1Pt4Indiv",
+   "reason": "signature-block name cell not on this sheet"
+  },
+  {
+   "writer_key": "frm1707:txtPg1Pt4NonIndiv",
+   "reason": "signature-block name cell not on this sheet"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2BankDebitMemoCol1",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2BankDebitMemoCol2",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2BankDebitMemoCol3",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2BankDebitMemoCol4",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2CheckCol1",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2CheckCol2",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2CheckCol3",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2CheckCol4",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2TaxDebitMemoCol1",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2TaxDebitMemoCol2",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2TaxDebitMemoCol3",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2TaxDebitMemoCol4",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2OthersCol1",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2OthersCol2",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2OthersCol3",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2OthersCol4",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtPg1Pt2OthersCol5",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI5TIN1P2",
+   "reason": "page 2 TIN is one 14-slot comb (p2c5) for the TIN parts and branch; not split"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI5TIN2P2",
+   "reason": "page 2 TIN is one 14-slot comb (p2c5) for the TIN parts and branch; not split"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI5TIN3P2",
+   "reason": "page 2 TIN is one 14-slot comb (p2c5) for the TIN parts and branch; not split"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI5BranchMaskP2",
+   "reason": "page 2 TIN is one 14-slot comb (p2c5) for the TIN parts and branch; not split"
+  },
+  {
+   "writer_key": "frm1707Av2021:hdnI5TIN4P2",
+   "reason": "hidden field, no fillable cell"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1I20TotalCost",
+   "reason": "Schedule 1 TOTAL row has no cost-column cell (column D is blank there)"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1I20TotalSellingPrice",
+   "reason": "Schedule 1 TOTAL row has no selling-price cell"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2I21TotalSellingPrice",
+   "reason": "Schedule 2 TOTAL row has no selling-price cell"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2I21TotalCost",
+   "reason": "Schedule 2 TOTAL row has no cost cell"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtLOB",
+   "reason": "no line-of-business field on this sheet"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtCurrentPage",
+   "reason": "page counter, not a fillable cell"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtMaxPage",
+   "reason": "page counter, not a fillable cell"
+  },
+  {
+   "writer_key": "ModalSched1Length",
+   "reason": "modal helper, no fillable cell on the sheet"
+  },
+  {
+   "writer_key": "ModalSched2Length",
+   "reason": "modal helper, no fillable cell on the sheet"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1ModalTotalSellingPrice",
+   "reason": "modal helper, no fillable cell on the sheet"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1ModalTotalCost",
+   "reason": "modal helper, no fillable cell on the sheet"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1ModalTotalCapitalGains",
+   "reason": "modal helper, no fillable cell on the sheet"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS1ModalTotalTaxPaid",
+   "reason": "modal helper, no fillable cell on the sheet"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2ModalTotalSellingPrice",
+   "reason": "modal helper, no fillable cell on the sheet"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2ModalTotalCost",
+   "reason": "modal helper, no fillable cell on the sheet"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtS2ModalTotalCapitalLoss",
+   "reason": "modal helper, no fillable cell on the sheet"
+  },
+  {
+   "writer_key": "txtFinalFlag",
+   "reason": "system field, not printed on the sheet"
+  },
+  {
+   "writer_key": "txtEnroll",
+   "reason": "system field, not printed on the sheet"
+  },
+  {
+   "writer_key": "ebirOnlineConfirmUsername",
+   "reason": "system field, not printed on the sheet"
+  },
+  {
+   "writer_key": "ebirOnlineUsername",
+   "reason": "system field, not printed on the sheet"
+  },
+  {
+   "writer_key": "ebirOnlineSecret",
+   "reason": "system field, not printed on the sheet"
+  },
+  {
+   "writer_key": "driveSelectTPExport",
+   "reason": "system field, not printed on the sheet"
+  },
+  {
+   "writer_key": "frm1707Av2021:txtI9RegisteredAddress",
+   "reason": "prints from derived:address_line1 / derived:line:address_line2 (the print map shapes the address over both item 9 combs for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1707Av2021:txtI7TelNo",
+    "frm1707Av2021:txtI11Email"
+   ],
+   "reason": "prints from derived:contact_email (the print map shapes Items 10 and 11 on one shared 40-slot comb for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1707Av2021:txtS1C1DateOfTransaction_1",
+    "frm1707Av2021:txtS1C1DateOfTransaction_10",
+    "frm1707Av2021:txtS1C1DateOfTransaction_11",
+    "frm1707Av2021:txtS1C1DateOfTransaction_2",
+    "frm1707Av2021:txtS1C1DateOfTransaction_3",
+    "frm1707Av2021:txtS1C1DateOfTransaction_4",
+    "frm1707Av2021:txtS1C1DateOfTransaction_5",
+    "frm1707Av2021:txtS1C1DateOfTransaction_6",
+    "frm1707Av2021:txtS1C1DateOfTransaction_7",
+    "frm1707Av2021:txtS1C1DateOfTransaction_8",
+    "frm1707Av2021:txtS1C1DateOfTransaction_9",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_1",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_10",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_11",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_2",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_3",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_4",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_5",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_6",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_7",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_8",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_9",
+    "frm1707Av2021:txtS1C3SellingPrice_1",
+    "frm1707Av2021:txtS1C3SellingPrice_10",
+    "frm1707Av2021:txtS1C3SellingPrice_11",
+    "frm1707Av2021:txtS1C3SellingPrice_2",
+    "frm1707Av2021:txtS1C3SellingPrice_3",
+    "frm1707Av2021:txtS1C3SellingPrice_4",
+    "frm1707Av2021:txtS1C3SellingPrice_5",
+    "frm1707Av2021:txtS1C3SellingPrice_6",
+    "frm1707Av2021:txtS1C3SellingPrice_7",
+    "frm1707Av2021:txtS1C3SellingPrice_8",
+    "frm1707Av2021:txtS1C3SellingPrice_9",
+    "frm1707Av2021:txtS1C4Cost_1",
+    "frm1707Av2021:txtS1C4Cost_10",
+    "frm1707Av2021:txtS1C4Cost_11",
+    "frm1707Av2021:txtS1C4Cost_2",
+    "frm1707Av2021:txtS1C4Cost_3",
+    "frm1707Av2021:txtS1C4Cost_4",
+    "frm1707Av2021:txtS1C4Cost_5",
+    "frm1707Av2021:txtS1C4Cost_6",
+    "frm1707Av2021:txtS1C4Cost_7",
+    "frm1707Av2021:txtS1C4Cost_8",
+    "frm1707Av2021:txtS1C4Cost_9",
+    "frm1707Av2021:txtS1C5CapitalGains_1",
+    "frm1707Av2021:txtS1C5CapitalGains_10",
+    "frm1707Av2021:txtS1C5CapitalGains_11",
+    "frm1707Av2021:txtS1C5CapitalGains_2",
+    "frm1707Av2021:txtS1C5CapitalGains_3",
+    "frm1707Av2021:txtS1C5CapitalGains_4",
+    "frm1707Av2021:txtS1C5CapitalGains_5",
+    "frm1707Av2021:txtS1C5CapitalGains_6",
+    "frm1707Av2021:txtS1C5CapitalGains_7",
+    "frm1707Av2021:txtS1C5CapitalGains_8",
+    "frm1707Av2021:txtS1C5CapitalGains_9",
+    "frm1707Av2021:txtS1C6TaxPaid_1",
+    "frm1707Av2021:txtS1C6TaxPaid_10",
+    "frm1707Av2021:txtS1C6TaxPaid_11",
+    "frm1707Av2021:txtS1C6TaxPaid_2",
+    "frm1707Av2021:txtS1C6TaxPaid_3",
+    "frm1707Av2021:txtS1C6TaxPaid_4",
+    "frm1707Av2021:txtS1C6TaxPaid_5",
+    "frm1707Av2021:txtS1C6TaxPaid_6",
+    "frm1707Av2021:txtS1C6TaxPaid_7",
+    "frm1707Av2021:txtS1C6TaxPaid_8",
+    "frm1707Av2021:txtS1C6TaxPaid_9",
+    "frm1707Av2021:txtS2C1DateOfTransaction_1",
+    "frm1707Av2021:txtS2C1DateOfTransaction_2",
+    "frm1707Av2021:txtS2C1DateOfTransaction_3",
+    "frm1707Av2021:txtS2C1DateOfTransaction_4",
+    "frm1707Av2021:txtS2C1DateOfTransaction_5",
+    "frm1707Av2021:txtS2C1DateOfTransaction_6",
+    "frm1707Av2021:txtS2C1DateOfTransaction_7",
+    "frm1707Av2021:txtS2C1DateOfTransaction_8",
+    "frm1707Av2021:txtS2C1DateOfTransaction_9",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_1",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_2",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_3",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_4",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_5",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_6",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_7",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_8",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_9",
+    "frm1707Av2021:txtS2C3SellingPrice_1",
+    "frm1707Av2021:txtS2C3SellingPrice_2",
+    "frm1707Av2021:txtS2C3SellingPrice_3",
+    "frm1707Av2021:txtS2C3SellingPrice_4",
+    "frm1707Av2021:txtS2C3SellingPrice_5",
+    "frm1707Av2021:txtS2C3SellingPrice_6",
+    "frm1707Av2021:txtS2C3SellingPrice_7",
+    "frm1707Av2021:txtS2C3SellingPrice_8",
+    "frm1707Av2021:txtS2C3SellingPrice_9",
+    "frm1707Av2021:txtS2C4Cost_1",
+    "frm1707Av2021:txtS2C4Cost_2",
+    "frm1707Av2021:txtS2C4Cost_3",
+    "frm1707Av2021:txtS2C4Cost_4",
+    "frm1707Av2021:txtS2C4Cost_5",
+    "frm1707Av2021:txtS2C4Cost_6",
+    "frm1707Av2021:txtS2C4Cost_7",
+    "frm1707Av2021:txtS2C4Cost_8",
+    "frm1707Av2021:txtS2C4Cost_9",
+    "frm1707Av2021:txtS2C5CapitalLoss_1",
+    "frm1707Av2021:txtS2C5CapitalLoss_2",
+    "frm1707Av2021:txtS2C5CapitalLoss_3",
+    "frm1707Av2021:txtS2C5CapitalLoss_4",
+    "frm1707Av2021:txtS2C5CapitalLoss_5",
+    "frm1707Av2021:txtS2C5CapitalLoss_6",
+    "frm1707Av2021:txtS2C5CapitalLoss_7",
+    "frm1707Av2021:txtS2C5CapitalLoss_8",
+    "frm1707Av2021:txtS2C5CapitalLoss_9",
+    "frm1707Av2021:txtS1C1DateOfTransaction_12",
+    "frm1707Av2021:txtS1C1DateOfTransaction_13",
+    "frm1707Av2021:txtS1C1DateOfTransaction_14",
+    "frm1707Av2021:txtS1C1DateOfTransaction_15",
+    "frm1707Av2021:txtS1C1DateOfTransaction_16",
+    "frm1707Av2021:txtS1C1DateOfTransaction_17",
+    "frm1707Av2021:txtS1C1DateOfTransaction_18",
+    "frm1707Av2021:txtS1C1DateOfTransaction_19",
+    "frm1707Av2021:txtS1C1DateOfTransaction_20",
+    "frm1707Av2021:txtS1C1DateOfTransaction_21",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_12",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_13",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_14",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_15",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_16",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_17",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_18",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_19",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_20",
+    "frm1707Av2021:txtS1C2NameOfCorporateStock_21",
+    "frm1707Av2021:txtS1C3SellingPrice_12",
+    "frm1707Av2021:txtS1C3SellingPrice_13",
+    "frm1707Av2021:txtS1C3SellingPrice_14",
+    "frm1707Av2021:txtS1C3SellingPrice_15",
+    "frm1707Av2021:txtS1C3SellingPrice_16",
+    "frm1707Av2021:txtS1C3SellingPrice_17",
+    "frm1707Av2021:txtS1C3SellingPrice_18",
+    "frm1707Av2021:txtS1C3SellingPrice_19",
+    "frm1707Av2021:txtS1C3SellingPrice_20",
+    "frm1707Av2021:txtS1C3SellingPrice_21",
+    "frm1707Av2021:txtS1C4Cost_12",
+    "frm1707Av2021:txtS1C4Cost_13",
+    "frm1707Av2021:txtS1C4Cost_14",
+    "frm1707Av2021:txtS1C4Cost_15",
+    "frm1707Av2021:txtS1C4Cost_16",
+    "frm1707Av2021:txtS1C4Cost_17",
+    "frm1707Av2021:txtS1C4Cost_18",
+    "frm1707Av2021:txtS1C4Cost_19",
+    "frm1707Av2021:txtS1C4Cost_20",
+    "frm1707Av2021:txtS1C4Cost_21",
+    "frm1707Av2021:txtS1C5CapitalGains_12",
+    "frm1707Av2021:txtS1C5CapitalGains_13",
+    "frm1707Av2021:txtS1C5CapitalGains_14",
+    "frm1707Av2021:txtS1C5CapitalGains_15",
+    "frm1707Av2021:txtS1C5CapitalGains_16",
+    "frm1707Av2021:txtS1C5CapitalGains_17",
+    "frm1707Av2021:txtS1C5CapitalGains_18",
+    "frm1707Av2021:txtS1C5CapitalGains_19",
+    "frm1707Av2021:txtS1C5CapitalGains_20",
+    "frm1707Av2021:txtS1C5CapitalGains_21",
+    "frm1707Av2021:txtS1C6TaxPaid_12",
+    "frm1707Av2021:txtS1C6TaxPaid_13",
+    "frm1707Av2021:txtS1C6TaxPaid_14",
+    "frm1707Av2021:txtS1C6TaxPaid_15",
+    "frm1707Av2021:txtS1C6TaxPaid_16",
+    "frm1707Av2021:txtS1C6TaxPaid_17",
+    "frm1707Av2021:txtS1C6TaxPaid_18",
+    "frm1707Av2021:txtS1C6TaxPaid_19",
+    "frm1707Av2021:txtS1C6TaxPaid_20",
+    "frm1707Av2021:txtS1C6TaxPaid_21",
+    "frm1707Av2021:txtS2C1DateOfTransaction_10",
+    "frm1707Av2021:txtS2C1DateOfTransaction_11",
+    "frm1707Av2021:txtS2C1DateOfTransaction_12",
+    "frm1707Av2021:txtS2C1DateOfTransaction_13",
+    "frm1707Av2021:txtS2C1DateOfTransaction_14",
+    "frm1707Av2021:txtS2C1DateOfTransaction_15",
+    "frm1707Av2021:txtS2C1DateOfTransaction_16",
+    "frm1707Av2021:txtS2C1DateOfTransaction_17",
+    "frm1707Av2021:txtS2C1DateOfTransaction_18",
+    "frm1707Av2021:txtS2C1DateOfTransaction_19",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_10",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_11",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_12",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_13",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_14",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_15",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_16",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_17",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_18",
+    "frm1707Av2021:txtS2C2NameOfCorporateStock_19",
+    "frm1707Av2021:txtS2C3SellingPrice_10",
+    "frm1707Av2021:txtS2C3SellingPrice_11",
+    "frm1707Av2021:txtS2C3SellingPrice_12",
+    "frm1707Av2021:txtS2C3SellingPrice_13",
+    "frm1707Av2021:txtS2C3SellingPrice_14",
+    "frm1707Av2021:txtS2C3SellingPrice_15",
+    "frm1707Av2021:txtS2C3SellingPrice_16",
+    "frm1707Av2021:txtS2C3SellingPrice_17",
+    "frm1707Av2021:txtS2C3SellingPrice_18",
+    "frm1707Av2021:txtS2C3SellingPrice_19",
+    "frm1707Av2021:txtS2C4Cost_10",
+    "frm1707Av2021:txtS2C4Cost_11",
+    "frm1707Av2021:txtS2C4Cost_12",
+    "frm1707Av2021:txtS2C4Cost_13",
+    "frm1707Av2021:txtS2C4Cost_14",
+    "frm1707Av2021:txtS2C4Cost_15",
+    "frm1707Av2021:txtS2C4Cost_16",
+    "frm1707Av2021:txtS2C4Cost_17",
+    "frm1707Av2021:txtS2C4Cost_18",
+    "frm1707Av2021:txtS2C4Cost_19",
+    "frm1707Av2021:txtS2C5CapitalLoss_10",
+    "frm1707Av2021:txtS2C5CapitalLoss_11",
+    "frm1707Av2021:txtS2C5CapitalLoss_12",
+    "frm1707Av2021:txtS2C5CapitalLoss_13",
+    "frm1707Av2021:txtS2C5CapitalLoss_14",
+    "frm1707Av2021:txtS2C5CapitalLoss_15",
+    "frm1707Av2021:txtS2C5CapitalLoss_16",
+    "frm1707Av2021:txtS2C5CapitalLoss_17",
+    "frm1707Av2021:txtS2C5CapitalLoss_18",
+    "frm1707Av2021:txtS2C5CapitalLoss_19"
+   ],
+   "reason": "add-more popup row of the page; the sheet prints rows 1-3 and, past them, row 4 as OTHERS with the popup subtotal (the I1-I4 keys)"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c119",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c120",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c27",
+   "reason": "TIN branch cell (5 slots) on the item 6 row; see txtI5BranchMask"
+  },
+  {
+   "html_id": "p1c121",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess; a date part of a three-comb date"
+  },
+  {
+   "html_id": "p1c122",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess; a date part of a three-comb date"
+  },
+  {
+   "html_id": "p1c123",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess; a date part of a three-comb date"
+  },
+  {
+   "html_id": "p1c124",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c126",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c128",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c129",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c130",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess; a date part of a three-comb date"
+  },
+  {
+   "html_id": "p1c131",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess; a date part of a three-comb date"
+  },
+  {
+   "html_id": "p1c132",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess; a date part of a three-comb date"
+  },
+  {
+   "html_id": "p1c133",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c135",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c137",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c138",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c139",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess; a date part of a three-comb date"
+  },
+  {
+   "html_id": "p1c140",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess; a date part of a three-comb date"
+  },
+  {
+   "html_id": "p1c141",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess; a date part of a three-comb date"
+  },
+  {
+   "html_id": "p1c142",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c144",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c146",
+   "reason": "Part III \"Others (specify below)\" text on the item 25 row; no layout key names it"
+  },
+  {
+   "html_id": "p1c147",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c148",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c149",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess; a date part of a three-comb date"
+  },
+  {
+   "html_id": "p1c150",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess; a date part of a three-comb date"
+  },
+  {
+   "html_id": "p1c151",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess; a date part of a three-comb date"
+  },
+  {
+   "html_id": "p1c152",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  },
+  {
+   "html_id": "p1c154",
+   "reason": "Part III payment grid: the layout key has no column name in the layout or fields.json, so no order-only guess"
+  }
+ ]
+}

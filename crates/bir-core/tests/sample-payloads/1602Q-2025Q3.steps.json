@@ -1,0 +1,144 @@
+[
+ {
+  "call": "window.xmlFileName = '';"
+ },
+ {
+  "call": "document.getElementById('frm1602Q:txtYear').value = '2025'; changeYear();"
+ },
+ {
+  "click": "frm1602Q:qtr_3"
+ },
+ {
+  "click": "frm1602Q:AmendedRtn2"
+ },
+ {
+  "click": "frm1602Q:OptTaxWithheld1"
+ },
+ {
+  "set": "frm1602Q:txtSheets",
+  "value": "0"
+ },
+ {
+  "set": "frm1602Q:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1602Q:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1602Q:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1602Q:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1602Q:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "call": "document.getElementById('frm1602Q:txtTaxpayerName').value = 'Sample Dummy Taxpayer'; document.getElementById('frm1602Q:txtAddress').value = '123 Sample Street, Barangay Example, Quezon City'; document.getElementById('frm1602Q:txtPage2Agent').value = 'Sample Dummy Taxpayer'; document.getElementById('frm1602Q:txtPage3Agent').value = 'Sample Dummy Taxpayer'; document.getElementById('frm1602Q:txtPage2TIN').value = '123-456-788-00000'; document.getElementById('frm1602Q:txtPage3TIN').value = '123-456-788-00000';"
+ },
+ {
+  "set": "frm1602Q:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "frm1602Q:txtTelNum",
+  "value": "09170000000"
+ },
+ {
+  "click": "frm1602Q:OptCategoryAgent1"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "click": "frm1602Q:OptSpecialTax1"
+ },
+ {
+  "set": "frm1602Q:lstSpecialTax",
+  "value": "2"
+ },
+ {
+  "call": "for (var n = 1; n <= 12; n++) { var f = document.getElementById('frm1602Q:fntSched1TaxRate' + n); f.value = f.getAttribute('value'); }"
+ },
+ {
+  "set": "frm1602Q:txtSched1Amount1",
+  "value": "100000.005"
+ },
+ {
+  "set": "frm1602Q:txtSched1Amount3",
+  "value": "250000"
+ },
+ {
+  "set": "frm1602Q:txtSched1Amount9",
+  "value": "50000"
+ },
+ {
+  "set": "frm1602Q:txtSched1Amount10",
+  "value": "1234.565"
+ },
+ {
+  "set": "frm1602Q:txtSched1Amount13",
+  "value": "10000"
+ },
+ {
+  "set": "frm1602Q:txtSched1Rate13",
+  "value": "56.789"
+ },
+ {
+  "set": "frm1602Q:txtSched2TreatyCode1",
+  "value": "US"
+ },
+ {
+  "set": "frm1602Q:txtSched2ATC1",
+  "value": "WC161"
+ },
+ {
+  "set": "frm1602Q:txtSched2Interest1",
+  "value": "30000"
+ },
+ {
+  "set": "frm1602Q:txtSched2TaxRate1",
+  "value": "10"
+ },
+ {
+  "set": "frm1602Q:txtSched3IPA1",
+  "value": "PEZA"
+ },
+ {
+  "set": "frm1602Q:txtSched3TotInterest1",
+  "value": "5000"
+ },
+ {
+  "set": "frm1602Q:txtSched3TaxRate1",
+  "value": "5"
+ },
+ {
+  "set": "frm1602Q:txt18",
+  "value": "1000"
+ },
+ {
+  "set": "frm1602Q:txt19",
+  "value": "2000.505"
+ },
+ {
+  "set": "frm1602Q:txt21",
+  "value": "500"
+ },
+ {
+  "set": "frm1602Q:txt24",
+  "value": "25.5"
+ },
+ {
+  "set": "frm1602Q:txt25",
+  "value": "10"
+ },
+ {
+  "click": "frm1602Q:cmdValidate"
+ }
+]

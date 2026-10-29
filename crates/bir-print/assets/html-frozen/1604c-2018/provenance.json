@@ -1,0 +1,45 @@
+{
+  "slug": "1604c-2018",
+  "code": "1604C",
+  "revision": "2018",
+  "variant": "",
+  "in_corpus": true,
+  "source_file": "1604-C Jan 2018 Final.pdf",
+  "sha256": "5239dd7f94bfc9d8a1b2e330e2da955bd5a0223762f41e95112d6b3822325dfd",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 4,
+  "pages": 1,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Calibri",
+    "Times New Roman"
+  ],
+  "rules": 322,
+  "text_runs": 128,
+  "images": 4,
+  "cells": 204,
+  "comb_cells": 19,
+  "growables": [],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1604-C Jan 2018 Final.pdf",
+      "sha256": "5239dd7f94bfc9d8a1b2e330e2da955bd5a0223762f41e95112d6b3822325dfd"
+    }
+  ],
+  "guide": null,
+  "guide_detected": {
+    "inline_pages": [],
+    "standalone_pdfs": []
+  },
+  "html_bytes": 283018,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

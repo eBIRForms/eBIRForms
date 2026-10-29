@@ -1,0 +1,305 @@
+[
+ {
+  "set": "frm1701:txtPg1I4TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg1I4TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg1I4TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg1I4BranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg2TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg2TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg2TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg2BranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg3TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg3TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg3TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg3BranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg4TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg4TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg4TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg4BranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg1mTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg1mTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg1mTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg1mBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg2mTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg2mTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg2mTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg2mBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg3mTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg3mTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg3mTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg3mBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg4mTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg4mTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg4mTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg4mBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg1I8TaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg2TaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg3TaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg4TaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg1mTaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg2mTaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg3mTaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg4mTaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg1I5RDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm1701:txtLineBus",
+  "value": "Sample Consulting Services"
+ },
+ {
+  "set": "frm1701:txtPg1I9Address",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm1701:txtPg1I9AZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "frm1701:txtPg1I15TelNum",
+  "value": "09170000000"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "set": "frm1701:txtPg1I1Year",
+  "value": "2025"
+ },
+ {
+  "set": "frm1701:rdoPg1I6TaxpayerTypeS",
+  "value": "true"
+ },
+ {
+  "call": "TPFilerType()"
+ },
+ {
+  "set": "frm1701:rdoPg1I6TaxpayerTypeC",
+  "value": "true"
+ },
+ {
+  "call": "TPFilerType()"
+ },
+ {
+  "click": "frm1701:rdoPg1I7ATC_II013"
+ },
+ {
+  "set": "frm1701:txtPg1I10BirthDate",
+  "value": "01/15/1980"
+ },
+ {
+  "set": "frm1701:txtPg1I12Citizenship",
+  "value": "Filipino"
+ },
+ {
+  "click": "frm1701:rdoPg1I13ForeignTaxCreditsNo"
+ },
+ {
+  "click": "frm1701:rdoPg1I16CivilStatusS"
+ },
+ {
+  "click": "frm1701:rdoPg1I19IncomeExemptNo"
+ },
+ {
+  "click": "frm1701:rdoPg1I20IncomeSpecialNo"
+ },
+ {
+  "click": "frm1701:rdoPg1I21AMethodDeductionO"
+ },
+ {
+  "click": "frm1701:chkPg2IShed1a_1Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg2IShed1a_1TPName",
+  "value": "Sample Employer, Inc."
+ },
+ {
+  "set": "frm1701:txtPg2IShed1a_TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg2IShed1a_TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg2IShed1a_TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg2IShed1a_BranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg2IShed1c_1CI",
+  "value": "480000.005"
+ },
+ {
+  "set": "frm1701:txtPg2IShed1c_1TW",
+  "value": "25000"
+ },
+ {
+  "set": "frm1701:txtPg2IShed1c_3ACI",
+  "value": "480000.005"
+ },
+ {
+  "set": "frm1701:txtPg2IShed1c_3ATW",
+  "value": "25000"
+ },
+ {
+  "set": "frm1701:txtPg2IShed2_5A",
+  "value": "90000"
+ },
+ {
+  "set": "frm1701:txtPg2IShed3_8A",
+  "value": "1250000.5"
+ },
+ {
+  "set": "frm1701:txtPg2IShed3_9A",
+  "value": "300000.25"
+ },
+ {
+  "set": "frm1701:txtPg2IShed3_19Desc",
+  "value": "Rental income"
+ },
+ {
+  "set": "frm1701:txtPg2IShed3_19A",
+  "value": "12345.67"
+ },
+ {
+  "set": "frm1701:txtPg4IPart7_1A",
+  "value": "10000"
+ },
+ {
+  "set": "frm1701:txtPg4IPart7_2A",
+  "value": "20000.5"
+ },
+ {
+  "set": "frm1701:txtPg1I27A",
+  "value": "500"
+ },
+ {
+  "set": "frm1701:txtPg1I28A",
+  "value": "250.25"
+ }
+]

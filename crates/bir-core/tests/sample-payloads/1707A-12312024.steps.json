@@ -1,0 +1,249 @@
+[
+ {
+  "call": "document.getElementById('responseBG').innerHTML = '<div>fn=Sample%20Dummy%20Taxpayerfn=</div><div>tin1=123tin1=</div><div>tin2=456tin2=</div><div>tin3=788tin3=</div><div>tin4=00000tin4=</div><div>rdo=039rdo=</div><div>lob=Sample%20Consulting%20Serviceslob=</div><div>regAddr=123%20Sample%20Street%2C%20Barangay%20Example%2C%20Quezon%20CityregAddr=</div><div>zip=1100zip=</div><div>telNo=09170000000telNo=</div><div>email=sample.taxpayer@example.comemail=</div><div>formType=1707Av2021formType=</div>'; loadBGData(); document.getElementById('frm1707Av2021:txtI9RegisteredAddress').value = document.getElementById('frm1707Av2021:txtI9RegisteredAddress').value.toUpperCase(); document.getElementById('frm1707Av2021:txtI8RegisteredName').value = document.getElementById('frm1707Av2021:txtI8RegisteredName').value.toUpperCase();"
+ },
+ {
+  "click": "frm1707Av2021:rdoI4ATCII030"
+ },
+ {
+  "set": "frm1707Av2021:txtI1YearEndYear",
+  "value": "2024"
+ },
+ {
+  "click": "frm1707Av2021:rdoI2AmemdedNo"
+ },
+ {
+  "set": "frm1707Av2021:txtI3Sheets",
+  "value": "1"
+ },
+ {
+  "click": "frm1707Av2021:rdoI11TaxTreatyYes"
+ },
+ {
+  "set": "frm1707Av2021:txtI11ASpecify",
+  "value": "Treaty relief"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C1DateOfTransactionI1",
+  "value": "02/15/2024"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C2NameOfCorporateStockI1",
+  "value": "Sample Corp"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C3SellingPriceI1",
+  "value": "500000.009"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C4CostI1",
+  "value": "120000"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C6TaxPaidI1",
+  "value": "15000.5"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C1DateOfTransactionI2",
+  "value": "06/30/2024"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C2NameOfCorporateStockI2",
+  "value": "Example Mining"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C3SellingPriceI2",
+  "value": "1234567.891"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C4CostI2",
+  "value": "1000000.105"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C6TaxPaidI2",
+  "value": "0"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C1DateOfTransactionI1",
+  "value": "09/01/2024"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C2NameOfCorporateStockI1",
+  "value": "Loss Co"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C3SellingPriceI1",
+  "value": "50000"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C4CostI1",
+  "value": "80000.55"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C1DateOfTransactionI3",
+  "value": "07/01/2024"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C2NameOfCorporateStockI3",
+  "value": "Third Co"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C3SellingPriceI3",
+  "value": "1000"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C4CostI3",
+  "value": "500"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C6TaxPaidI3",
+  "value": "0"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C1DateOfTransactionI4",
+  "value": "08/01/2024"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C2NameOfCorporateStockI4",
+  "value": "Fourth Co"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C3SellingPriceI4",
+  "value": "20000.509"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C4CostI4",
+  "value": "15000"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C6TaxPaidI4",
+  "value": "100"
+ },
+ {
+  "call": "sched1More(); modalSched1Add(); modalSched1Add();"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C1DateOfTransaction_2",
+  "value": "09/01/2024"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C2NameOfCorporateStock_2",
+  "value": "Fifth Co"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C3SellingPrice_2",
+  "value": "3000.25"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C4Cost_2",
+  "value": "1000"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C6TaxPaid_2",
+  "value": "50"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C1DateOfTransaction_3",
+  "value": "10/01/2024"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C2NameOfCorporateStock_3",
+  "value": "Sixth Co"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C3SellingPrice_3",
+  "value": "1234567.891"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C4Cost_3",
+  "value": "1000000"
+ },
+ {
+  "set": "frm1707Av2021:txtS1C6TaxPaid_3",
+  "value": "0"
+ },
+ {
+  "call": "btnSched1SaveAndClose();"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C1DateOfTransactionI2",
+  "value": "10/05/2024"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C2NameOfCorporateStockI2",
+  "value": "Loss Two"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C3SellingPriceI2",
+  "value": "10000"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C4CostI2",
+  "value": "12000"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C1DateOfTransactionI3",
+  "value": "11/01/2024"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C2NameOfCorporateStockI3",
+  "value": "Loss Three"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C3SellingPriceI3",
+  "value": "5000"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C4CostI3",
+  "value": "5000.5"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C1DateOfTransactionI4",
+  "value": "11/15/2024"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C2NameOfCorporateStockI4",
+  "value": "Loss Four"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C3SellingPriceI4",
+  "value": "1000"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C4CostI4",
+  "value": "1500"
+ },
+ {
+  "call": "sched2More(); modalSched2Add();"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C1DateOfTransaction_2",
+  "value": "12/01/2024"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C2NameOfCorporateStock_2",
+  "value": "Loss Five"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C3SellingPrice_2",
+  "value": "200"
+ },
+ {
+  "set": "frm1707Av2021:txtS2C4Cost_2",
+  "value": "300.25"
+ },
+ {
+  "call": "btnSched2SaveAndClose();"
+ },
+ {
+  "set": "frm1707Av2021:txtI18ASurcharge",
+  "value": "25.5"
+ },
+ {
+  "set": "frm1707Av2021:txtI18BInterest",
+  "value": "10.009"
+ },
+ {
+  "call": "validate()"
+ }
+]

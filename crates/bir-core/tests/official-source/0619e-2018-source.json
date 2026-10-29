@@ -1,0 +1,122 @@
+{
+  "calibration_only": true,
+  "official_package_evidence": {
+    "file_version": "7.9.5.0",
+    "manifest": {
+      "form_path": "forms\\BIR-Form0619E.hta",
+      "index": 12,
+      "resource_id": 129,
+      "resource_mapping_rule": "129 + manifest index"
+    },
+    "package_file": "external:BIRForms.exe",
+    "package_sha256": "3d087545564531de1fbe8fb28f086ce6398e18608c54a0ea33353042665917eb",
+    "product_version": "7.9.5.0",
+    "resource_encoding": "type-23 resources are XOR 0xff except raw UTF-16 manifest resource 129",
+    "reviewed_outbound_candidate": {
+      "credential_fields": {
+        "ebirOnlineConfirmUsername": "",
+        "ebirOnlineSecret": "",
+        "ebirOnlineUsername": ""
+      },
+      "decrypted_field_count": 59,
+      "decrypted_sha256": "6a1911a359efedae7e35fa21c2def9af62c7cc1194e768d4bca5f3193c33fef4",
+      "encrypted_sha256": "1c49950df1197906bb73ddbb5d0f5f5e1c3f488f376e05b6d53febc1b32016ab",
+      "enrollment_value": "Y",
+      "rust_ciphertext_replay": {
+        "decrypts_and_semantically_replays": true,
+        "matches_locked_ciphertext": false,
+        "reencrypted_sha256": "46903e58ce8b09500dc87fc63823209b8ab119990d6aee0d8073c5968a32f3a6"
+      },
+      "final_flag": "0"
+    },
+    "source_resources": {
+      "environment_js_decoded_sha256": "01de5f90ad3c5a65af5c1ccdb61a8968d3c61e5d542eb160b6e0eb3432a3be4e",
+      "hta_decoded_sha256": "a0ef4d8958b28e63c511e7bc961e67e8ec254a6cb5f4e9f93f6d92fc9fe56f47",
+      "hta_decoded_size": 198185,
+      "hta_resource_id": 141,
+      "string_util_js_decoded_sha256": "8d3f3527e044a5325b1f9019d234717d60c5bb1f72692ea302eb4f9e9cb43d6f",
+      "tools_vbs_decoded_sha256": "aaf5dbe9593ca81f808540e537353f297f9bd8638e488ea5161673e3985a91bc"
+    },
+    "submission_boundary": {
+      "bir_validation_response_parsed_by_hta": false,
+      "credential_handling": "The locked payload has blank login fields; Rust rejects nonblank login fields and never persists them. The HTA registered-user flow can copy the entered password into ebirOnlineSecret before encryption.",
+      "dynamic_dispatch_request": "GET to the BIR dispatcher with the TIN, form and client version (endpoint kept server-side)",
+      "dynamic_dispatch_response_fields": [
+        "mode",
+        "server",
+        "SSLPort",
+        "port",
+        "username",
+        "password"
+      ],
+      "external_helpers_referenced": [
+        "Encrypt.exe",
+        "cFTPSend.exe"
+      ],
+      "helpers_present_in_reviewed_manifest": false,
+      "native_success_signal": "cFTPSend process exit code 0; HTA labels the result subject to BIR validation and waits for email evidence",
+      "queue_submission_supported": false,
+      "rust_durable_queue_contract": false,
+      "source_path_observed": "sendEmail -> saveEncryptedProfile(true) -> EncryptFile -> RenameAndSendFile",
+      "unresolved_evidence": [
+        "exact Rust byte-for-byte reproduction of the reviewed encrypted candidate",
+        "hash-locked Encrypt.exe and cFTPSend.exe companion binaries",
+        "current accepted dispatcher response, endpoint, transfer mode, ports, and service credentials",
+        "reviewed 0619-E BIR confirmation response or email parsing contract",
+        "immutable 0619-E queue fingerprint, durable pre-network claim, and unknown-outcome reconciliation persistence"
+      ]
+    }
+  },
+  "form": {
+    "code": "0619E",
+    "dpi": 144,
+    "form_id": "0619Ev2018",
+    "official_source": "https://bir-cdn.bir.gov.ph/local/pdf/0619-E%20Jan%202018%20rev%20final.pdf",
+    "official_source_file": "external:0619-E Jan 2018 rev final.pdf",
+    "official_source_sha256": "0418160d63d4e6f68c34f2bad553273a5d148c3686d8562d338d35fcdd0c5215",
+    "page_count": 1,
+    "page_height_pt": 792.0,
+    "page_width_pt": 612.0,
+    "reviewed_supporting_sources": [
+      {
+        "field_count": 58,
+        "kind": "editable_xml",
+        "semantic_replay": "exact_after_typed_lexical_canonicalization",
+        "source_file": "external:00000000000000-0619E-042026.xml",
+        "source_sha256": "a6f21e372a1ce6d707ede13f2447290683ab302d859c3b684a06c55788cbfade"
+      },
+      {
+        "decrypted_extra_fields": [
+          "frm0619E:txtAddress2"
+        ],
+        "field_count": 59,
+        "kind": "encrypted_editable_xml",
+        "semantic_differences": [
+          "txtFinalFlag is 0 instead of 1 and is preserved without inferred lifecycle meaning",
+          "frm0619E:txtLineBus uses one fewer URL-encoding layer but resolves to the same typed text"
+        ],
+        "semantic_replay": "exact_after_decryption_and_typed_lexical_canonicalization",
+        "source_file": "external:00000000000000-0619E-042026#taxpayer@example.com#.xml",
+        "source_sha256": "1c49950df1197906bb73ddbb5d0f5f5e1c3f488f376e05b6d53febc1b32016ab"
+      }
+    ],
+    "pages": [
+      {
+        "page": 1,
+        "reference_height_px": 1584,
+        "reference_png": "packages/form-renderer/references/0619e-2018-page-1.png",
+        "reference_png_sha256": "924db11df80f2ee4e5df63838ac6b93980725d677632c9739690c9ec9aacb83a",
+        "reference_width_px": 1224
+      }
+    ],
+    "reference_provenance": {
+      "kind": "official_pdf",
+      "replacement_required": false,
+      "runtime_eligible": false
+    },
+    "revision": "2018"
+  },
+  "generator": "prepare_official_reference.py (Poppler)",
+  "runtime_background_allowed": false,
+  "schema_version": 1
+}

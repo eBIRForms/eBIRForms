@@ -1,0 +1,652 @@
+{
+ "form_id": "1600wp-v2010",
+ "html_slug": "1600wp-2010",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page's own text layer) names the item. Amounts print the writer's official text (1,234.56) in single text cells. Part II has one printed row per ATC (WB191-WB194) while the page numbers rows by ticked ATC, so Part II amounts, the one-comb 'From' date and the attachment header come from derived: keys of to_print_field_map, never from the submitted XML. Schedule 1.1 prints its first six rows (the page has ten). Unexposed items stay blank on print; the submitted XML always carries them. Since #113 every value the print map carries has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "derived:from_date",
+   "html_id": "p1c1",
+   "printed": "1 For the Period From (MM/DD/YYYY)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1600WP:DateWithholdingToMonth",
+   "html_id": "p1c2",
+   "printed": "1 To MM",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:DateWithholdingToDay",
+   "html_id": "p1c3",
+   "printed": "1 To DD",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:DateWithholdingToYear",
+   "html_id": "p1c4",
+   "printed": "1 To YYYY",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtSheets",
+   "html_id": "p1c7",
+   "printed": "3 No. of Sheet/s Attached",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtTIN1",
+   "html_id": "p1c10",
+   "printed": "5 TIN (1-3)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtTIN2",
+   "html_id": "p1c12",
+   "printed": "5 TIN (4-6)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtTIN3",
+   "html_id": "p1c14",
+   "printed": "5 TIN (7-9)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtBranchCode",
+   "html_id": "p1c16",
+   "printed": "5 TIN branch",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtRDOCode",
+   "html_id": "p1c17",
+   "printed": "6 RDO Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtTaxpayerName",
+   "html_id": "p1c21",
+   "printed": "8 Withholding Agent's Name",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtAddress",
+   "html_id": "p1c25",
+   "printed": "9 Registered Address",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtZipCode",
+   "html_id": "p1c24",
+   "printed": "10 Zip Code",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "derived:WB191_base",
+   "html_id": "p1c32",
+   "printed": "WB191 Tax Base",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:WB191_withheld",
+   "html_id": "p1c34",
+   "printed": "WB191 Tax Required to be Withheld",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:WB192_base",
+   "html_id": "p1c37",
+   "printed": "WB192 Tax Base",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:WB192_withheld",
+   "html_id": "p1c39",
+   "printed": "WB192 Tax Required to be Withheld",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:WB193_base",
+   "html_id": "p1c42",
+   "printed": "WB193 Tax Base",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:WB193_withheld",
+   "html_id": "p1c44",
+   "printed": "WB193 Tax Required to be Withheld",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:WB194_base",
+   "html_id": "p1c47",
+   "printed": "WB194 Tax Base",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:WB194_withheld",
+   "html_id": "p1c49",
+   "printed": "WB194 Tax Required to be Withheld",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1600WP:txtTax12",
+   "html_id": "p1c51",
+   "printed": "12 Tax Required to be Withheld and Remitted",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtTax13",
+   "html_id": "p1c52",
+   "printed": "13 Less: Tax Remitted in Return Previously Filed",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtTax14",
+   "html_id": "p1c53",
+   "printed": "14 Tax Still Due/(Overremittance)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtTax15A",
+   "html_id": "p1c54",
+   "printed": "15A Surcharge",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtTax15B",
+   "html_id": "p1c55",
+   "printed": "15B Interest",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtTax15C",
+   "html_id": "p1c56",
+   "printed": "15C Compromise",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtTax15D",
+   "html_id": "p1c57",
+   "printed": "15D Total Penalties",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:txtTax16",
+   "html_id": "p1c58",
+   "printed": "16 Total Amount Still Due/(Overremittance)",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "derived:att_from_mm",
+   "html_id": "p1c62",
+   "printed": "Attachment period FROM MM",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:att_from_dd",
+   "html_id": "p1c63",
+   "printed": "FROM DD",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:att_from_yyyy",
+   "html_id": "p1c64",
+   "printed": "FROM YYYY",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:att_to_mm",
+   "html_id": "p1c65",
+   "printed": "TO MM",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:att_to_dd",
+   "html_id": "p1c66",
+   "printed": "TO DD",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:att_to_yyyy",
+   "html_id": "p1c67",
+   "printed": "TO YYYY",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:att_tin1",
+   "html_id": "p1c68",
+   "printed": "Attachment Withholding Agent TIN (1-3)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:att_tin2",
+   "html_id": "p1c70",
+   "printed": "TIN (4-6)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:att_tin3",
+   "html_id": "p1c72",
+   "printed": "TIN (7-9)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:att_branch",
+   "html_id": "p1c74",
+   "printed": "TIN branch",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtTin1",
+   "html_id": "p1c95",
+   "printed": "Schedule 1.1 row 1 TIN",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtFullname1",
+   "html_id": "p1c96",
+   "printed": "Schedule 1.1 row 1 Individual/Corporation",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:drpAtcCode1",
+   "html_id": "p1c97",
+   "printed": "Schedule 1.1 row 1 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:naturePayment1",
+   "html_id": "p1c98",
+   "printed": "Schedule 1.1 row 1 Nature of Payment",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:amount1",
+   "html_id": "p1c99",
+   "printed": "Schedule 1.1 row 1 Amount",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtRatePercent1",
+   "html_id": "p1c100",
+   "printed": "Schedule 1.1 row 1 Tax Rate",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:taxWithheld1",
+   "html_id": "p1c101",
+   "printed": "Schedule 1.1 row 1 Tax Required to be Withheld",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtTin2",
+   "html_id": "p1c103",
+   "printed": "Schedule 1.1 row 2 TIN",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtFullname2",
+   "html_id": "p1c104",
+   "printed": "Schedule 1.1 row 2 Individual/Corporation",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:drpAtcCode2",
+   "html_id": "p1c105",
+   "printed": "Schedule 1.1 row 2 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:naturePayment2",
+   "html_id": "p1c106",
+   "printed": "Schedule 1.1 row 2 Nature of Payment",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:amount2",
+   "html_id": "p1c107",
+   "printed": "Schedule 1.1 row 2 Amount",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtRatePercent2",
+   "html_id": "p1c108",
+   "printed": "Schedule 1.1 row 2 Tax Rate",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:taxWithheld2",
+   "html_id": "p1c109",
+   "printed": "Schedule 1.1 row 2 Tax Required to be Withheld",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtTin3",
+   "html_id": "p1c111",
+   "printed": "Schedule 1.1 row 3 TIN",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtFullname3",
+   "html_id": "p1c112",
+   "printed": "Schedule 1.1 row 3 Individual/Corporation",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:drpAtcCode3",
+   "html_id": "p1c113",
+   "printed": "Schedule 1.1 row 3 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:naturePayment3",
+   "html_id": "p1c114",
+   "printed": "Schedule 1.1 row 3 Nature of Payment",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:amount3",
+   "html_id": "p1c115",
+   "printed": "Schedule 1.1 row 3 Amount",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtRatePercent3",
+   "html_id": "p1c116",
+   "printed": "Schedule 1.1 row 3 Tax Rate",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:taxWithheld3",
+   "html_id": "p1c117",
+   "printed": "Schedule 1.1 row 3 Tax Required to be Withheld",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtTin4",
+   "html_id": "p1c119",
+   "printed": "Schedule 1.1 row 4 TIN",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtFullname4",
+   "html_id": "p1c120",
+   "printed": "Schedule 1.1 row 4 Individual/Corporation",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:drpAtcCode4",
+   "html_id": "p1c121",
+   "printed": "Schedule 1.1 row 4 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:naturePayment4",
+   "html_id": "p1c122",
+   "printed": "Schedule 1.1 row 4 Nature of Payment",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:amount4",
+   "html_id": "p1c123",
+   "printed": "Schedule 1.1 row 4 Amount",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtRatePercent4",
+   "html_id": "p1c124",
+   "printed": "Schedule 1.1 row 4 Tax Rate",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:taxWithheld4",
+   "html_id": "p1c125",
+   "printed": "Schedule 1.1 row 4 Tax Required to be Withheld",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtTin5",
+   "html_id": "p1c127",
+   "printed": "Schedule 1.1 row 5 TIN",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtFullname5",
+   "html_id": "p1c128",
+   "printed": "Schedule 1.1 row 5 Individual/Corporation",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:drpAtcCode5",
+   "html_id": "p1c129",
+   "printed": "Schedule 1.1 row 5 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:naturePayment5",
+   "html_id": "p1c130",
+   "printed": "Schedule 1.1 row 5 Nature of Payment",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:amount5",
+   "html_id": "p1c131",
+   "printed": "Schedule 1.1 row 5 Amount",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtRatePercent5",
+   "html_id": "p1c132",
+   "printed": "Schedule 1.1 row 5 Tax Rate",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:taxWithheld5",
+   "html_id": "p1c133",
+   "printed": "Schedule 1.1 row 5 Tax Required to be Withheld",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtTin6",
+   "html_id": "p1c135",
+   "printed": "Schedule 1.1 row 6 TIN",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtFullname6",
+   "html_id": "p1c136",
+   "printed": "Schedule 1.1 row 6 Individual/Corporation",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:drpAtcCode6",
+   "html_id": "p1c137",
+   "printed": "Schedule 1.1 row 6 ATC",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:naturePayment6",
+   "html_id": "p1c138",
+   "printed": "Schedule 1.1 row 6 Nature of Payment",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:amount6",
+   "html_id": "p1c139",
+   "printed": "Schedule 1.1 row 6 Amount",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:txtRatePercent6",
+   "html_id": "p1c140",
+   "printed": "Schedule 1.1 row 6 Tax Rate",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:taxWithheld6",
+   "html_id": "p1c141",
+   "printed": "Schedule 1.1 row 6 Tax Required to be Withheld",
+   "reason": "geometry: the only fillable cell for this printed item on the 1600-WP (January 2010) sheet"
+  }
+ ],
+ "money_joins": [],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1600WP:AmendedReturn_1",
+   "html_id": "p1c5",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600WP:AmendedReturn_2",
+   "html_id": "p1c6",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600WP:AnyTaxHeld_1",
+   "html_id": "p1c8",
+   "printed": "4 Any Taxes Withheld? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600WP:AnyTaxHeld_2",
+   "html_id": "p1c9",
+   "printed": "4 Any Taxes Withheld? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600WP:CategoryAgent_P",
+   "html_id": "p1c18",
+   "printed": "7 Category Private",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600WP:CategoryAgent_G",
+   "html_id": "p1c19",
+   "printed": "7 Category Government",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600WP:SpecialLaw_1",
+   "html_id": "p1c28",
+   "printed": "11 Tax relief? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1600WP:SpecialLaw_2",
+   "html_id": "p1c29",
+   "printed": "11 Tax relief? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm1600WP:DateWithholdingMonth",
+    "frm1600WP:DateWithholdingDay",
+    "frm1600WP:DateWithholdingYear"
+   ],
+   "reason": "prints from derived:from_date (the print map shapes Item 1 From, one 8-slot MMDDYYYY comb on this sheet for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1600WP:dtSched:txtTin7",
+    "frm1600WP:dtSched:txtFullname7",
+    "frm1600WP:dtSched:drpAtcCode7",
+    "frm1600WP:dtSched:naturePayment7",
+    "frm1600WP:dtSched:amount7",
+    "frm1600WP:dtSched:txtRatePercent7",
+    "frm1600WP:dtSched:taxWithheld7",
+    "frm1600WP:dtSched:txtTin8",
+    "frm1600WP:dtSched:txtFullname8",
+    "frm1600WP:dtSched:drpAtcCode8",
+    "frm1600WP:dtSched:naturePayment8",
+    "frm1600WP:dtSched:amount8",
+    "frm1600WP:dtSched:txtRatePercent8",
+    "frm1600WP:dtSched:taxWithheld8",
+    "frm1600WP:dtSched:txtTin9",
+    "frm1600WP:dtSched:txtFullname9",
+    "frm1600WP:dtSched:drpAtcCode9",
+    "frm1600WP:dtSched:naturePayment9",
+    "frm1600WP:dtSched:amount9",
+    "frm1600WP:dtSched:txtRatePercent9",
+    "frm1600WP:dtSched:taxWithheld9",
+    "frm1600WP:dtSched:txtTin10",
+    "frm1600WP:dtSched:txtFullname10",
+    "frm1600WP:dtSched:drpAtcCode10",
+    "frm1600WP:dtSched:naturePayment10",
+    "frm1600WP:dtSched:amount10",
+    "frm1600WP:dtSched:txtRatePercent10",
+    "frm1600WP:dtSched:taxWithheld10"
+   ],
+   "reason": "Schedule 1.1 prints six rows; rows 7-10 of the page belong on an attached sheet"
+  },
+  {
+   "writer_key": "frm1600WP:dtSched:TotaltaxWithheld",
+   "reason": "the 2010 sheet has no Schedule 1.1 total box; Part II items 14-16 carry the totals"
+  },
+  {
+   "writer_key": "hPartIITableSize",
+   "reason": "row counter of the page, not on the paper form"
+  },
+  {
+   "writer_key": "txtEmail",
+   "reason": "not on the paper form: the 2010 sheet has no email box"
+  },
+  {
+   "writer_keys": [
+    "frm1600WP:txtAtcCode1",
+    "frm1600WP:txtAtcCode2",
+    "frm1600WP:txtAtcCode3",
+    "frm1600WP:txtAtcCode4",
+    "frm1600WP:txtAtcCode5",
+    "frm1600WP:txtAtcCode6",
+    "frm1600WP:txtAtcCode7",
+    "frm1600WP:txtAtcCode8",
+    "frm1600WP:txtAtcCode9",
+    "frm1600WP:txtAtcCode10",
+    "frm1600WP:txtAtcCode11",
+    "frm1600WP:txtAtcCode12",
+    "frm1600WP:txtTaxBase1",
+    "frm1600WP:txtTaxBase2",
+    "frm1600WP:txtTaxBase3",
+    "frm1600WP:txtTaxBase4",
+    "frm1600WP:txtTaxBase5",
+    "frm1600WP:txtTaxBase6",
+    "frm1600WP:txtTaxBase7",
+    "frm1600WP:txtTaxBase8",
+    "frm1600WP:txtTaxBase9",
+    "frm1600WP:txtTaxBase10",
+    "frm1600WP:txtTaxBase11",
+    "frm1600WP:txtTaxBase12",
+    "frm1600WP:txtTaxRate1",
+    "frm1600WP:txtTaxRate2",
+    "frm1600WP:txtTaxRate3",
+    "frm1600WP:txtTaxRate4",
+    "frm1600WP:txtTaxRate5",
+    "frm1600WP:txtTaxRate6",
+    "frm1600WP:txtTaxRate7",
+    "frm1600WP:txtTaxRate8",
+    "frm1600WP:txtTaxRate9",
+    "frm1600WP:txtTaxRate10",
+    "frm1600WP:txtTaxRate11",
+    "frm1600WP:txtTaxRate12",
+    "frm1600WP:txtTaxbeWithHeld1",
+    "frm1600WP:txtTaxbeWithHeld2",
+    "frm1600WP:txtTaxbeWithHeld3",
+    "frm1600WP:txtTaxbeWithHeld4",
+    "frm1600WP:txtTaxbeWithHeld5",
+    "frm1600WP:txtTaxbeWithHeld6",
+    "frm1600WP:txtTaxbeWithHeld7",
+    "frm1600WP:txtTaxbeWithHeld8",
+    "frm1600WP:txtTaxbeWithHeld9",
+    "frm1600WP:txtTaxbeWithHeld10",
+    "frm1600WP:txtTaxbeWithHeld11",
+    "frm1600WP:txtTaxbeWithHeld12"
+   ],
+   "reason": "Part II popup row: the 2010 sheet has one fixed row per ATC (WB191-WB194), and the row prints there from derived:<ATC>_base / derived:<ATC>_withheld"
+  }
+ ]
+}

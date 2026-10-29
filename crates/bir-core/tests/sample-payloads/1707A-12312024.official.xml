@@ -1,0 +1,171 @@
+<?xml version='1.0'?>    
+                <div>frm1707Av2021:rdoI1Calendar=truefrm1707Av2021:rdoI1Calendar=</div>    
+                <div>frm1707Av2021:rdoI1Fiscal=falsefrm1707Av2021:rdoI1Fiscal=</div>    
+                <div>frm1707Av2021:txtI1YearEndMonth=12frm1707Av2021:txtI1YearEndMonth=</div>    
+                <div>frm1707Av2021:txtI1YearEndDay=31frm1707Av2021:txtI1YearEndDay=</div>    
+                <div>frm1707Av2021:txtI1YearEndYear=2024frm1707Av2021:txtI1YearEndYear=</div>    
+                <div>frm1707Av2021:rdoI2AmemdedYes=falsefrm1707Av2021:rdoI2AmemdedYes=</div>    
+                <div>frm1707Av2021:rdoI2AmemdedNo=truefrm1707Av2021:rdoI2AmemdedNo=</div>    
+                <div>frm1707Av2021:txtI3Sheets=1frm1707Av2021:txtI3Sheets=</div>    
+                <div>frm1707Av2021:rdoI4ATCII030=truefrm1707Av2021:rdoI4ATCII030=</div>    
+                <div>frm1707Av2021:txtI4TCII030=II030frm1707Av2021:txtI4TCII030=</div>    
+                <div>frm1707Av2021:rdoI4ATCIC110=falsefrm1707Av2021:rdoI4ATCIC110=</div>    
+                <div>frm1707Av2021:txtI4ATCIC110=IC110frm1707Av2021:txtI4ATCIC110=</div>    
+                <div>frm1707Av2021:txtI5TIN1=123frm1707Av2021:txtI5TIN1=</div>    
+                <div>frm1707Av2021:txtI5TIN2=456frm1707Av2021:txtI5TIN2=</div>    
+                <div>frm1707Av2021:txtI5TIN3=788frm1707Av2021:txtI5TIN3=</div>    
+                <div>frm1707Av2021:txtI5BranchMask=00000frm1707Av2021:txtI5BranchMask=</div>    
+                <div>frm1707Av2021:hdnI5TIN4=00000frm1707Av2021:hdnI5TIN4=</div>    
+                <div>frm1707Av2021:hdnRDO=039frm1707Av2021:hdnRDO=</div>    
+                <div>frm1707Av2021:rdoI6RDO=039frm1707Av2021:rdoI6RDO=</div>    
+                <div>frm1707Av2021:txtI8RegisteredName=SAMPLE DUMMY TAXPAYERfrm1707Av2021:txtI8RegisteredName=</div>    
+                <div>frm1707Av2021:txtLineOfBusiness=SAMPLE CONSULTING SERVICESfrm1707Av2021:txtLineOfBusiness=</div>    
+                <div>frm1707Av2021:txtI9RegisteredAddress=123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITYfrm1707Av2021:txtI9RegisteredAddress=</div>    
+                <div>frm1707Av2021:txtI10ZipCode=1100frm1707Av2021:txtI10ZipCode=</div>    
+                <div>frm1707Av2021:txtI7TelNo=09170000000frm1707Av2021:txtI7TelNo=</div>    
+                <div>frm1707Av2021:txtI11Email=SAMPLE.TAXPAYER@EXAMPLE.COMfrm1707Av2021:txtI11Email=</div>    
+                <div>frm1707Av2021:rdoI11TaxTreatyYes=truefrm1707Av2021:rdoI11TaxTreatyYes=</div>    
+                <div>frm1707Av2021:rdoI11TaxTreatyNo=falsefrm1707Av2021:rdoI11TaxTreatyNo=</div>    
+                <div>frm1707Av2021:txtI11ASpecify=TREATY RELIEFfrm1707Av2021:txtI11ASpecify=</div>    
+                <div>frm1707Av2021:txtI12TotalCapitalGains=856,636.43frm1707Av2021:txtI12TotalCapitalGains=</div>    
+                <div>frm1707Av2021:txtI13TotalCapitalLoss=32,601.30frm1707Av2021:txtI13TotalCapitalLoss=</div>    
+                <div>frm1707Av2021:txtI14NetCapitalGainLoss=824,035.13frm1707Av2021:txtI14NetCapitalGainLoss=</div>    
+                <div>frm1707Av2021:txtI16ApplicableTaxRate=15frm1707Av2021:txtI16ApplicableTaxRate=</div>    
+                <div>frm1707Av2021:txtI15TaxDue=123,605.27frm1707Av2021:txtI15TaxDue=</div>    
+                <div>frm1707Av2021:txtI16ATotalTaxPaid=15,150.50frm1707Av2021:txtI16ATotalTaxPaid=</div>    
+                <div>frm1707Av2021:txtI16BTotalTaxPaid=0.00frm1707Av2021:txtI16BTotalTaxPaid=</div>    
+                <div>frm1707Av2021:txtI16CTotalTaxPaid=15,150.50frm1707Av2021:txtI16CTotalTaxPaid=</div>    
+                <div>frm1707Av2021:txtI17TaxStillPayable=108,454.77frm1707Av2021:txtI17TaxStillPayable=</div>    
+                <div>frm1707Av2021:txtI18ASurcharge=25.50frm1707Av2021:txtI18ASurcharge=</div>    
+                <div>frm1707Av2021:txtI18BInterest=10.00frm1707Av2021:txtI18BInterest=</div>    
+                <div>frm1707Av2021:txtI18CCompromise=0.00frm1707Av2021:txtI18CCompromise=</div>    
+                <div>frm1707Av2021:txtI18DPenalties=35.50frm1707Av2021:txtI18DPenalties=</div>    
+                <div>frm1707Av2021:txtI19TotalAmountPayable=108,490.27frm1707Av2021:txtI19TotalAmountPayable=</div>    
+                <div>frm1707:txtPg1Pt4Indiv=frm1707:txtPg1Pt4Indiv=</div>    
+                <div>frm1707:txtPg1Pt4NonIndiv=frm1707:txtPg1Pt4NonIndiv=</div>    
+                <div>frm1707Av2021:txtPg1Pt4TaxAcredNo=frm1707Av2021:txtPg1Pt4TaxAcredNo=</div>    
+                <div>frm1707Av2021:txtPg1Pt4DateOfIssue=frm1707Av2021:txtPg1Pt4DateOfIssue=</div>    
+                <div>frm1707Av2021:txtPg1Pt4DateOfExpiry=frm1707Av2021:txtPg1Pt4DateOfExpiry=</div>    
+                <div>frm1707Av2021:txtPg1Pt2BankDebitMemoCol1=frm1707Av2021:txtPg1Pt2BankDebitMemoCol1=</div>    
+                <div>frm1707Av2021:txtPg1Pt2BankDebitMemoCol2=frm1707Av2021:txtPg1Pt2BankDebitMemoCol2=</div>    
+                <div>frm1707Av2021:txtPg1Pt2BankDebitMemoCol3=frm1707Av2021:txtPg1Pt2BankDebitMemoCol3=</div>    
+                <div>frm1707Av2021:txtPg1Pt2BankDebitMemoCol4=frm1707Av2021:txtPg1Pt2BankDebitMemoCol4=</div>    
+                <div>frm1707Av2021:txtPg1Pt2CheckCol1=frm1707Av2021:txtPg1Pt2CheckCol1=</div>    
+                <div>frm1707Av2021:txtPg1Pt2CheckCol2=frm1707Av2021:txtPg1Pt2CheckCol2=</div>    
+                <div>frm1707Av2021:txtPg1Pt2CheckCol3=frm1707Av2021:txtPg1Pt2CheckCol3=</div>    
+                <div>frm1707Av2021:txtPg1Pt2CheckCol4=frm1707Av2021:txtPg1Pt2CheckCol4=</div>    
+                <div>frm1707Av2021:txtPg1Pt2TaxDebitMemoCol1=frm1707Av2021:txtPg1Pt2TaxDebitMemoCol1=</div>    
+                <div>frm1707Av2021:txtPg1Pt2TaxDebitMemoCol2=frm1707Av2021:txtPg1Pt2TaxDebitMemoCol2=</div>    
+                <div>frm1707Av2021:txtPg1Pt2TaxDebitMemoCol3=frm1707Av2021:txtPg1Pt2TaxDebitMemoCol3=</div>    
+                <div>frm1707Av2021:txtPg1Pt2TaxDebitMemoCol4=frm1707Av2021:txtPg1Pt2TaxDebitMemoCol4=</div>    
+                <div>frm1707Av2021:txtPg1Pt2OthersCol1=frm1707Av2021:txtPg1Pt2OthersCol1=</div>    
+                <div>frm1707Av2021:txtPg1Pt2OthersCol2=frm1707Av2021:txtPg1Pt2OthersCol2=</div>    
+                <div>frm1707Av2021:txtPg1Pt2OthersCol3=frm1707Av2021:txtPg1Pt2OthersCol3=</div>    
+                <div>frm1707Av2021:txtPg1Pt2OthersCol4=frm1707Av2021:txtPg1Pt2OthersCol4=</div>    
+                <div>frm1707Av2021:txtPg1Pt2OthersCol5=frm1707Av2021:txtPg1Pt2OthersCol5=</div>    
+                <div>frm1707Av2021:txtI5TIN1P2=123frm1707Av2021:txtI5TIN1P2=</div>    
+                <div>frm1707Av2021:txtI5TIN2P2=456frm1707Av2021:txtI5TIN2P2=</div>    
+                <div>frm1707Av2021:txtI5TIN3P2=456frm1707Av2021:txtI5TIN3P2=</div>    
+                <div>frm1707Av2021:txtI5BranchMaskP2=00000frm1707Av2021:txtI5BranchMaskP2=</div>    
+                <div>frm1707Av2021:hdnI5TIN4P2=00000frm1707Av2021:hdnI5TIN4P2=</div>    
+                <div>frm1707Av2021:txtI8RegisteredNameP2=SAMPLE DUMMY TAXPAYERfrm1707Av2021:txtI8RegisteredNameP2=</div>    
+                <div>frm1707Av2021:txtS1C1DateOfTransactionI1=02/15/2024frm1707Av2021:txtS1C1DateOfTransactionI1=</div>    
+                <div>frm1707Av2021:txtS1C2NameOfCorporateStockI1=SAMPLE CORPfrm1707Av2021:txtS1C2NameOfCorporateStockI1=</div>    
+                <div>frm1707Av2021:txtS1C3SellingPriceI1=500,000.00frm1707Av2021:txtS1C3SellingPriceI1=</div>    
+                <div>frm1707Av2021:txtS1C1DateOfTransactionI2=06/30/2024frm1707Av2021:txtS1C1DateOfTransactionI2=</div>    
+                <div>frm1707Av2021:txtS1C2NameOfCorporateStockI2=EXAMPLE MININGfrm1707Av2021:txtS1C2NameOfCorporateStockI2=</div>    
+                <div>frm1707Av2021:txtS1C3SellingPriceI2=1,234,567.89frm1707Av2021:txtS1C3SellingPriceI2=</div>    
+                <div>frm1707Av2021:txtS1C1DateOfTransactionI3=07/01/2024frm1707Av2021:txtS1C1DateOfTransactionI3=</div>    
+                <div>frm1707Av2021:txtS1C2NameOfCorporateStockI3=THIRD COfrm1707Av2021:txtS1C2NameOfCorporateStockI3=</div>    
+                <div>frm1707Av2021:txtS1C3SellingPriceI3=1,000.00frm1707Av2021:txtS1C3SellingPriceI3=</div>    
+                <div>frm1707Av2021:txtS1C1DateOfTransactionI4=frm1707Av2021:txtS1C1DateOfTransactionI4=</div>    
+                <div>frm1707Av2021:txtS1C2NameOfCorporateStockI4=OTHERSfrm1707Av2021:txtS1C2NameOfCorporateStockI4=</div>    
+                <div>frm1707Av2021:txtS1C3SellingPriceI4=1,257,568.64frm1707Av2021:txtS1C3SellingPriceI4=</div>    
+                <div>frm1707Av2021:txtS1C4CostI1=120,000.00frm1707Av2021:txtS1C4CostI1=</div>    
+                <div>frm1707Av2021:txtS1C5CapitalGainsI1=380,000.00frm1707Av2021:txtS1C5CapitalGainsI1=</div>    
+                <div>frm1707Av2021:txtS1C6TaxPaidI1=15,000.50frm1707Av2021:txtS1C6TaxPaidI1=</div>    
+                <div>frm1707Av2021:txtS1C4CostI2=1,000,000.10frm1707Av2021:txtS1C4CostI2=</div>    
+                <div>frm1707Av2021:txtS1C5CapitalGainsI2=234,567.79frm1707Av2021:txtS1C5CapitalGainsI2=</div>    
+                <div>frm1707Av2021:txtS1C6TaxPaidI2=0.00frm1707Av2021:txtS1C6TaxPaidI2=</div>    
+                <div>frm1707Av2021:txtS1C4CostI3=500.00frm1707Av2021:txtS1C4CostI3=</div>    
+                <div>frm1707Av2021:txtS1C5CapitalGainsI3=500.00frm1707Av2021:txtS1C5CapitalGainsI3=</div>    
+                <div>frm1707Av2021:txtS1C6TaxPaidI3=0.00frm1707Av2021:txtS1C6TaxPaidI3=</div>    
+                <div>frm1707Av2021:txtS1C4CostI4=1,016,000.00frm1707Av2021:txtS1C4CostI4=</div>    
+                <div>frm1707Av2021:txtS1C5CapitalGainsI4=241,568.64frm1707Av2021:txtS1C5CapitalGainsI4=</div>    
+                <div>frm1707Av2021:txtS1C6TaxPaidI4=150.00frm1707Av2021:txtS1C6TaxPaidI4=</div>    
+                <div>frm1707Av2021:txtS1I20TotalCost=2,136,500.10frm1707Av2021:txtS1I20TotalCost=</div>    
+                <div>frm1707Av2021:txtS1I20TotalSellingPrice=2,993,136.53frm1707Av2021:txtS1I20TotalSellingPrice=</div>    
+                <div>frm1707Av2021:txtS1I20TotalCapitalGains=856,636.43frm1707Av2021:txtS1I20TotalCapitalGains=</div>    
+                <div>frm1707Av2021:txtS1I20TotalTaxPaid=15,150.50frm1707Av2021:txtS1I20TotalTaxPaid=</div>    
+                <div>frm1707Av2021:txtS2C1DateOfTransactionI1=09/01/2024frm1707Av2021:txtS2C1DateOfTransactionI1=</div>    
+                <div>frm1707Av2021:txtS2C2NameOfCorporateStockI1=LOSS COfrm1707Av2021:txtS2C2NameOfCorporateStockI1=</div>    
+                <div>frm1707Av2021:txtS2C1DateOfTransactionI2=10/05/2024frm1707Av2021:txtS2C1DateOfTransactionI2=</div>    
+                <div>frm1707Av2021:txtS2C2NameOfCorporateStockI2=LOSS TWOfrm1707Av2021:txtS2C2NameOfCorporateStockI2=</div>    
+                <div>frm1707Av2021:txtS2C1DateOfTransactionI3=11/01/2024frm1707Av2021:txtS2C1DateOfTransactionI3=</div>    
+                <div>frm1707Av2021:txtS2C2NameOfCorporateStockI3=LOSS THREEfrm1707Av2021:txtS2C2NameOfCorporateStockI3=</div>    
+                <div>frm1707Av2021:txtS2C1DateOfTransactionI4=frm1707Av2021:txtS2C1DateOfTransactionI4=</div>    
+                <div>frm1707Av2021:txtS2C2NameOfCorporateStockI4=OTHERSfrm1707Av2021:txtS2C2NameOfCorporateStockI4=</div>    
+                <div>frm1707Av2021:txtS2C3SellingPriceI1=50,000.00frm1707Av2021:txtS2C3SellingPriceI1=</div>    
+                <div>frm1707Av2021:txtS2C4CostI1=80,000.55frm1707Av2021:txtS2C4CostI1=</div>    
+                <div>frm1707Av2021:txtS2C5CapitalLossI1=30,000.55frm1707Av2021:txtS2C5CapitalLossI1=</div>    
+                <div>frm1707Av2021:txtS2C3SellingPriceI2=10,000.00frm1707Av2021:txtS2C3SellingPriceI2=</div>    
+                <div>frm1707Av2021:txtS2C4CostI2=12,000.00frm1707Av2021:txtS2C4CostI2=</div>    
+                <div>frm1707Av2021:txtS2C5CapitalLossI2=2,000.00frm1707Av2021:txtS2C5CapitalLossI2=</div>    
+                <div>frm1707Av2021:txtS2C3SellingPriceI3=5,000.00frm1707Av2021:txtS2C3SellingPriceI3=</div>    
+                <div>frm1707Av2021:txtS2C4CostI3=5,000.50frm1707Av2021:txtS2C4CostI3=</div>    
+                <div>frm1707Av2021:txtS2C5CapitalLossI3=0.50frm1707Av2021:txtS2C5CapitalLossI3=</div>    
+                <div>frm1707Av2021:txtS2C3SellingPriceI4=1,200.00frm1707Av2021:txtS2C3SellingPriceI4=</div>    
+                <div>frm1707Av2021:txtS2C4CostI4=1,800.25frm1707Av2021:txtS2C4CostI4=</div>    
+                <div>frm1707Av2021:txtS2C5CapitalLossI4=600.25frm1707Av2021:txtS2C5CapitalLossI4=</div>    
+                <div>frm1707Av2021:txtS2I21TotalSellingPrice=66,200.00frm1707Av2021:txtS2I21TotalSellingPrice=</div>    
+                <div>frm1707Av2021:txtS2I21TotalCost=98,801.30frm1707Av2021:txtS2I21TotalCost=</div>    
+                <div>frm1707Av2021:txtS2I21TotalCapitalLoss=32,601.30frm1707Av2021:txtS2I21TotalCapitalLoss=</div>    
+                <div>frm1707Av2021:txtLOB=frm1707Av2021:txtLOB=</div>    
+                <div>frm1707Av2021:txtCurrentPage=1frm1707Av2021:txtCurrentPage=</div>    
+                <div>frm1707Av2021:txtMaxPage=2frm1707Av2021:txtMaxPage=</div>    
+                <div>ModalSched1Length=3ModalSched1Length=</div>    
+                <div>ModalSched2Length=2ModalSched2Length=</div>    
+                <div>frm1707Av2021:txtS1C1DateOfTransaction_1=08/01/2024frm1707Av2021:txtS1C1DateOfTransaction_1=</div>    
+                <div>frm1707Av2021:txtS1C2NameOfCorporateStock_1=FOURTH COfrm1707Av2021:txtS1C2NameOfCorporateStock_1=</div>    
+                <div>frm1707Av2021:txtS1C3SellingPrice_1=20,000.50frm1707Av2021:txtS1C3SellingPrice_1=</div>    
+                <div>frm1707Av2021:txtS1C4Cost_1=15,000.00frm1707Av2021:txtS1C4Cost_1=</div>    
+                <div>frm1707Av2021:txtS1C5CapitalGains_1=5,000.50frm1707Av2021:txtS1C5CapitalGains_1=</div>    
+                <div>frm1707Av2021:txtS1C6TaxPaid_1=100.00frm1707Av2021:txtS1C6TaxPaid_1=</div>    
+                <div>frm1707Av2021:txtS1C1DateOfTransaction_2=09/01/2024frm1707Av2021:txtS1C1DateOfTransaction_2=</div>    
+                <div>frm1707Av2021:txtS1C2NameOfCorporateStock_2=FIFTH COfrm1707Av2021:txtS1C2NameOfCorporateStock_2=</div>    
+                <div>frm1707Av2021:txtS1C3SellingPrice_2=3,000.25frm1707Av2021:txtS1C3SellingPrice_2=</div>    
+                <div>frm1707Av2021:txtS1C4Cost_2=1,000.00frm1707Av2021:txtS1C4Cost_2=</div>    
+                <div>frm1707Av2021:txtS1C5CapitalGains_2=2,000.25frm1707Av2021:txtS1C5CapitalGains_2=</div>    
+                <div>frm1707Av2021:txtS1C6TaxPaid_2=50.00frm1707Av2021:txtS1C6TaxPaid_2=</div>    
+                <div>frm1707Av2021:txtS1C1DateOfTransaction_3=10/01/2024frm1707Av2021:txtS1C1DateOfTransaction_3=</div>    
+                <div>frm1707Av2021:txtS1C2NameOfCorporateStock_3=SIXTH COfrm1707Av2021:txtS1C2NameOfCorporateStock_3=</div>    
+                <div>frm1707Av2021:txtS1C3SellingPrice_3=1,234,567.89frm1707Av2021:txtS1C3SellingPrice_3=</div>    
+                <div>frm1707Av2021:txtS1C4Cost_3=1,000,000.00frm1707Av2021:txtS1C4Cost_3=</div>    
+                <div>frm1707Av2021:txtS1C5CapitalGains_3=234,567.89frm1707Av2021:txtS1C5CapitalGains_3=</div>    
+                <div>frm1707Av2021:txtS1C6TaxPaid_3=0.00frm1707Av2021:txtS1C6TaxPaid_3=</div>    
+                <div>frm1707Av2021:txtS1ModalTotalSellingPrice=1,257,568.64frm1707Av2021:txtS1ModalTotalSellingPrice=</div>    
+                <div>frm1707Av2021:txtS1ModalTotalCost=1,016,000.00frm1707Av2021:txtS1ModalTotalCost=</div>    
+                <div>frm1707Av2021:txtS1ModalTotalCapitalGains=241,568.64frm1707Av2021:txtS1ModalTotalCapitalGains=</div>    
+                <div>frm1707Av2021:txtS1ModalTotalTaxPaid=150.00frm1707Av2021:txtS1ModalTotalTaxPaid=</div>    
+                <div>frm1707Av2021:txtS2C1DateOfTransaction_1=11/15/2024frm1707Av2021:txtS2C1DateOfTransaction_1=</div>    
+                <div>frm1707Av2021:txtS2C2NameOfCorporateStock_1=LOSS FOURfrm1707Av2021:txtS2C2NameOfCorporateStock_1=</div>    
+                <div>frm1707Av2021:txtS2C3SellingPrice_1=1,000.00frm1707Av2021:txtS2C3SellingPrice_1=</div>    
+                <div>frm1707Av2021:txtS2C4Cost_1=1,500.00frm1707Av2021:txtS2C4Cost_1=</div>    
+                <div>frm1707Av2021:txtS2C5CapitalLoss_1=500.00frm1707Av2021:txtS2C5CapitalLoss_1=</div>    
+                <div>frm1707Av2021:txtS2C1DateOfTransaction_2=12/01/2024frm1707Av2021:txtS2C1DateOfTransaction_2=</div>    
+                <div>frm1707Av2021:txtS2C2NameOfCorporateStock_2=LOSS FIVEfrm1707Av2021:txtS2C2NameOfCorporateStock_2=</div>    
+                <div>frm1707Av2021:txtS2C3SellingPrice_2=200.00frm1707Av2021:txtS2C3SellingPrice_2=</div>    
+                <div>frm1707Av2021:txtS2C4Cost_2=300.25frm1707Av2021:txtS2C4Cost_2=</div>    
+                <div>frm1707Av2021:txtS2C5CapitalLoss_2=100.25frm1707Av2021:txtS2C5CapitalLoss_2=</div>    
+                <div>frm1707Av2021:txtS2ModalTotalSellingPrice=1,200.00frm1707Av2021:txtS2ModalTotalSellingPrice=</div>    
+                <div>frm1707Av2021:txtS2ModalTotalCost=1,800.25frm1707Av2021:txtS2ModalTotalCost=</div>    
+                <div>frm1707Av2021:txtS2ModalTotalCapitalLoss=600.25frm1707Av2021:txtS2ModalTotalCapitalLoss=</div>    
+                <div>txtFinalFlag=0txtFinalFlag=</div>    
+                <div>txtEnroll=NtxtEnroll=</div>    
+                <div>ebirOnlineConfirmUsername=ebirOnlineConfirmUsername=</div>    
+                <div>ebirOnlineUsername=ebirOnlineUsername=</div>    
+                <div>ebirOnlineSecret=ebirOnlineSecret=</div>    
+                <div>frm1707Av2021:txtI11Email=frm1707Av2021:txtI11Email=</div>    
+                <div>driveSelectTPExport=0driveSelectTPExport=</div>    
+                    
+                All Rights Reserved BIR 2014.0

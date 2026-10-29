@@ -1,0 +1,91 @@
+{
+  "slug": "2000-ot-2018",
+  "code": "2000-OT",
+  "revision": "2018",
+  "variant": "",
+  "in_corpus": true,
+  "source_file": "2000-OT January 2018 ENCS v3.pdf",
+  "sha256": "64d987ef79ed57005c1f13f8c9a5732bde2bf40f57dd4ec9f2067ef96c3c492d",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 3,
+  "pages": 2,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Calibri",
+    "Times New Roman"
+  ],
+  "rules": 755,
+  "text_runs": 284,
+  "images": 3,
+  "cells": 317,
+  "comb_cells": 73,
+  "growables": [
+    {
+      "page": 2,
+      "rows": 4,
+      "capacity": 4,
+      "pitch_pt": 14.28
+    },
+    {
+      "page": 2,
+      "rows": 5,
+      "capacity": 5,
+      "pitch_pt": 14.28
+    }
+  ],
+  "sources": [
+    {
+      "role": "form",
+      "file": "2000-OT January 2018 ENCS v3.pdf",
+      "sha256": "64d987ef79ed57005c1f13f8c9a5732bde2bf40f57dd4ec9f2067ef96c3c492d"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "inline-region"
+    ],
+    "moved_from_form": [
+      {
+        "page": 2,
+        "cut_y_pt": 581.41,
+        "reclaimed_pt": 354.59,
+        "reclaimed_pct": 38,
+        "marker": "Documentary Stamp Tax (DST)/Alphanumeric Tax Code (ATC) Table",
+        "marker_pattern": "reference-band",
+        "moved": {
+          "rules": 17,
+          "cells": 13,
+          "text_runs": 40,
+          "area_fills": 10,
+          "images": 0
+        },
+        "straddlers_kept_by_form": 0,
+        "moved_to": "guide.html"
+      }
+    ],
+    "standalone_pdfs": [],
+    "reclaimed_pt_total": 354.59,
+    "reclaimed_pct_mean": 38,
+    "reclaimed_pct_min": 38,
+    "reclaimed_pct_max": 38,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [
+      2
+    ],
+    "standalone_pdfs": []
+  },
+  "html_bytes": 563212,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

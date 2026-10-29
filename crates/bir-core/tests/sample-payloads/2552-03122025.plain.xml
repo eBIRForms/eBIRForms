@@ -1,0 +1,265 @@
+<?xml version='1.0'?>    
+            <div>frm2552:txtPg1I1Month=03frm2552:txtPg1I1Month=</div>    
+            <div>frm2552:txtPg1I1Day=12frm2552:txtPg1I1Day=</div>    
+            <div>frm2552:txtPg1I1Year=2025frm2552:txtPg1I1Year=</div>    
+            <div>frm2552:rdoPg1I2AmendedYes=falsefrm2552:rdoPg1I2AmendedYes=</div>    
+            <div>frm2552:rdoPg1I2AmendedNo=truefrm2552:rdoPg1I2AmendedNo=</div>    
+            <div>frm2552:txtPg1I3NoOfSheets=0frm2552:txtPg1I3NoOfSheets=</div>    
+            <div>frm2552:txtPg1TIN1=123frm2552:txtPg1TIN1=</div>    
+            <div>frm2552:txtPg1TIN2=456frm2552:txtPg1TIN2=</div>    
+            <div>frm2552:txtPg1TIN3=788frm2552:txtPg1TIN3=</div>    
+            <div>frm2552:txtPg1TIN4=00000frm2552:txtPg1TIN4=</div>    
+            <div>frm2552:txtPg1I5RDO=039frm2552:txtPg1I5RDO=</div>    
+            <div>frm2552:rdoPg1Pt1I5RDO=039frm2552:rdoPg1Pt1I5RDO=</div>    
+            <div>frm2552:txtPg1Pt1I6Name=SAMPLE DUMMY TAXPAYERfrm2552:txtPg1Pt1I6Name=</div>    
+            <div>frm2552:txtPg1Pt1I7RegisteredAddress=123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITYfrm2552:txtPg1Pt1I7RegisteredAddress=</div>    
+            <div>frm2552:txtPg1Pt1I7RegisteredAddress2=frm2552:txtPg1Pt1I7RegisteredAddress2=</div>    
+            <div>frm2552:txPg1I7ZipCode=1100frm2552:txPg1I7ZipCode=</div>    
+            <div>frm2552:txtPg1Pt1I8ContactNumber=09170000000frm2552:txtPg1Pt1I8ContactNumber=</div>    
+            <div>frm2552:txtPg1Pt1I9Email=sample.taxpayer@example.comfrm2552:txtPg1Pt1I9Email=</div>    
+            <div>frm2552:rdoPg1I10TaxReliefYes=falsefrm2552:rdoPg1I10TaxReliefYes=</div>    
+            <div>frm2552:rdoPg1I10TaxReliefNo=truefrm2552:rdoPg1I10TaxReliefNo=</div>    
+            <div>frm2552:txtPg1Pt1I10TaxReliefSpec=frm2552:txtPg1Pt1I10TaxReliefSpec=</div>    
+            <div>frm2552:rdoPg1I11TransactionLSE=falsefrm2552:rdoPg1I11TransactionLSE=</div>    
+            <div>frm2552:rdoPg1I11TransactionPrimary=truefrm2552:rdoPg1I11TransactionPrimary=</div>    
+            <div>frm2552:rdoPg1I11TransactionSecondary=falsefrm2552:rdoPg1I11TransactionSecondary=</div>    
+            <div>frm2552:txtPg1Pt1I12NumOfShare=1000000frm2552:txtPg1Pt1I12NumOfShare=</div>    
+            <div>frm2552:txtPg1Pt1I12TotShare=5000000frm2552:txtPg1Pt1I12TotShare=</div>    
+            <div>frm2552:txtPg1P2I13TaxATC=PT 200frm2552:txtPg1P2I13TaxATC=</div>    
+            <div>frm2552:txtPg1P2I13TaxDue=0.00frm2552:txtPg1P2I13TaxDue=</div>    
+            <div>frm2552:txtPg1P2I14TaxATC=PT 201frm2552:txtPg1P2I14TaxATC=</div>    
+            <div>frm2552:txtPg1P2I14TaxDue=22,046.00frm2552:txtPg1P2I14TaxDue=</div>    
+            <div>frm2552:txtPg1P2I15TaxATC=PT 202frm2552:txtPg1P2I15TaxATC=</div>    
+            <div>frm2552:txtPg1P2I15TaxDue=0.00frm2552:txtPg1P2I15TaxDue=</div>    
+            <div>frm2552:txtPg1P2I16TotTaxDue=22,046.00frm2552:txtPg1P2I16TotTaxDue=</div>    
+            <div>frm2552:txtPg1P2I17TaxPaidInPrevRtrn=0.00frm2552:txtPg1P2I17TaxPaidInPrevRtrn=</div>    
+            <div>frm2552:txtPg1P2I18CredTaxWthhld=500.00frm2552:txtPg1P2I18CredTaxWthhld=</div>    
+            <div>frm2552:txtPg1P2I19TotTaxCredPmnt=500.00frm2552:txtPg1P2I19TotTaxCredPmnt=</div>    
+            <div>frm2552:txtPg1P2I20TotTaxStllDueOvrPmnt=21,546.00frm2552:txtPg1P2I20TotTaxStllDueOvrPmnt=</div>    
+            <div>frm2552:txtPg1P2I21Surcharge=0.00frm2552:txtPg1P2I21Surcharge=</div>    
+            <div>frm2552:txtPg1P2I22Interest=0.00frm2552:txtPg1P2I22Interest=</div>    
+            <div>frm2552:txtPg1P2I23Compromise=0.00frm2552:txtPg1P2I23Compromise=</div>    
+            <div>frm2552:txtPg1P2I24TotPenalties=0.00frm2552:txtPg1P2I24TotPenalties=</div>    
+            <div>frm2552:txtPg1P2I25TotAmntPyable=21,546.00frm2552:txtPg1P2I25TotAmntPyable=</div>    
+            <div>frm2552:rdoPg1OverpaymentRefund=falsefrm2552:rdoPg1OverpaymentRefund=</div>    
+            <div>frm2552:rdoPg1OverpaymentTaxCredCert=falsefrm2552:rdoPg1OverpaymentTaxCredCert=</div>    
+            <div>frm2552:txtPg1Pt4Indiv=frm2552:txtPg1Pt4Indiv=</div>    
+            <div>frm2552:txtPg1Pt4NonIndiv=frm2552:txtPg1Pt4NonIndiv=</div>    
+            <div>frm2552:txtPg1Pt4TaxAcredNo=frm2552:txtPg1Pt4TaxAcredNo=</div>    
+            <div>frm2552:txtPg1Pt4DateOfIssue=frm2552:txtPg1Pt4DateOfIssue=</div>    
+            <div>frm2552:txtPg1Pt4DateOfExpiry=frm2552:txtPg1Pt4DateOfExpiry=</div>    
+            <div>frm2552:txtPg1Pt3I28CashC1=frm2552:txtPg1Pt3I28CashC1=</div>    
+            <div>frm2552:txtPg1Pt3I28CashC2=frm2552:txtPg1Pt3I28CashC2=</div>    
+            <div>frm2552:txtPg1Pt3I28Date=frm2552:txtPg1Pt3I28Date=</div>    
+            <div>frm2552:txtPg1Pt3I28CashC3=frm2552:txtPg1Pt3I28CashC3=</div>    
+            <div>frm2552:txtPg1Pt3I29CheckC1=frm2552:txtPg1Pt3I29CheckC1=</div>    
+            <div>frm2552:txtPg1Pt3I29CheckC2=frm2552:txtPg1Pt3I29CheckC2=</div>    
+            <div>frm2552:txtPg1Pt3I29Date=frm2552:txtPg1Pt3I29Date=</div>    
+            <div>frm2552:txtPg1Pt3I29CheckC3=frm2552:txtPg1Pt3I29CheckC3=</div>    
+            <div>frm2552:txtPg1Pt3I30TaxDebitC2=frm2552:txtPg1Pt3I30TaxDebitC2=</div>    
+            <div>frm2552:txtPg1Pt3I30Date=frm2552:txtPg1Pt3I30Date=</div>    
+            <div>frm2552:txtPg1Pt3I30TaxDebitC3=frm2552:txtPg1Pt3I30TaxDebitC3=</div>    
+            <div>frm2552:txtPg1Pt3I31OthersC1=frm2552:txtPg1Pt3I31OthersC1=</div>    
+            <div>frm2552:txtPg1Pt3I31OthersC2=frm2552:txtPg1Pt3I31OthersC2=</div>    
+            <div>frm2552:txtPg1Pt3I31OthersC3=frm2552:txtPg1Pt3I31OthersC3=</div>    
+            <div>frm2552:txtPg1Pt3I31Date=frm2552:txtPg1Pt3I31Date=</div>    
+            <div>frm2552:txtPg1Pt3I31OthersC4=frm2552:txtPg1Pt3I31OthersC4=</div>    
+            <div>frm2552:txtPg2P4I1TransClass=frm2552:txtPg2P4I1TransClass=</div>    
+            <div>frm2552:txtPg2P4I1Amount=0.00frm2552:txtPg2P4I1Amount=</div>    
+            <div>frm2552:txtPg2P4I2TransClass=frm2552:txtPg2P4I2TransClass=</div>    
+            <div>frm2552:txtPg2P4I2Amount=0.00frm2552:txtPg2P4I2Amount=</div>    
+            <div>frm2552:txtPg2P4I3TransClass=frm2552:txtPg2P4I3TransClass=</div>    
+            <div>frm2552:txtPg2P4I3Amount=0.00frm2552:txtPg2P4I3Amount=</div>    
+            <div>frm2552:txtPg2P4I4TransClass=frm2552:txtPg2P4I4TransClass=</div>    
+            <div>frm2552:txtPg2P4I4Amount=0.00frm2552:txtPg2P4I4Amount=</div>    
+            <div>frm2552:txtPg2P4I5TransClass=frm2552:txtPg2P4I5TransClass=</div>    
+            <div>frm2552:txtPg2P4I5Amount=0.00frm2552:txtPg2P4I5Amount=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Date1=frm2552:txtPg2Pt5Sch1Date1=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Seller1=frm2552:txtPg2Pt5Sch1Seller1=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Buyer1=frm2552:txtPg2Pt5Sch1Buyer1=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Date2=frm2552:txtPg2Pt5Sch1Date2=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Seller2=frm2552:txtPg2Pt5Sch1Seller2=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Buyer2=frm2552:txtPg2Pt5Sch1Buyer2=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Date3=frm2552:txtPg2Pt5Sch1Date3=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Seller3=frm2552:txtPg2Pt5Sch1Seller3=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Buyer3=frm2552:txtPg2Pt5Sch1Buyer3=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Date4=frm2552:txtPg2Pt5Sch1Date4=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Seller4=frm2552:txtPg2Pt5Sch1Seller4=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Buyer4=frm2552:txtPg2Pt5Sch1Buyer4=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Date5=frm2552:txtPg2Pt5Sch1Date5=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Seller5=frm2552:txtPg2Pt5Sch1Seller5=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Buyer5=frm2552:txtPg2Pt5Sch1Buyer5=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Corp1=frm2552:txtPg2Pt5Sch1Corp1=</div>    
+            <div>frm2552:txtPg2Pt5Sch1NumShares1=0.00frm2552:txtPg2Pt5Sch1NumShares1=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxBase1=0.00frm2552:txtPg2Pt5Sch1TaxBase1=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxRate1=6/10 OF 1%frm2552:txtPg2Pt5Sch1TaxRate1=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxDue1=0.00frm2552:txtPg2Pt5Sch1TaxDue1=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Corp2=frm2552:txtPg2Pt5Sch1Corp2=</div>    
+            <div>frm2552:txtPg2Pt5Sch1NumShares2=0.00frm2552:txtPg2Pt5Sch1NumShares2=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxBase2=0.00frm2552:txtPg2Pt5Sch1TaxBase2=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxRate2=6/10 OF 1%frm2552:txtPg2Pt5Sch1TaxRate2=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxDue2=0.00frm2552:txtPg2Pt5Sch1TaxDue2=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Corp3=frm2552:txtPg2Pt5Sch1Corp3=</div>    
+            <div>frm2552:txtPg2Pt5Sch1NumShares3=0.00frm2552:txtPg2Pt5Sch1NumShares3=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxBase3=0.00frm2552:txtPg2Pt5Sch1TaxBase3=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxRate3=6/10 OF 1%frm2552:txtPg2Pt5Sch1TaxRate3=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxDue3=0.00frm2552:txtPg2Pt5Sch1TaxDue3=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Corp4=frm2552:txtPg2Pt5Sch1Corp4=</div>    
+            <div>frm2552:txtPg2Pt5Sch1NumShares4=0.00frm2552:txtPg2Pt5Sch1NumShares4=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxBase4=0.00frm2552:txtPg2Pt5Sch1TaxBase4=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxRate4=6/10 OF 1%frm2552:txtPg2Pt5Sch1TaxRate4=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxDue4=0.00frm2552:txtPg2Pt5Sch1TaxDue4=</div>    
+            <div>frm2552:txtPg2Pt5Sch1Corp5=frm2552:txtPg2Pt5Sch1Corp5=</div>    
+            <div>frm2552:txtPg2Pt5Sch1NumShares5=0.00frm2552:txtPg2Pt5Sch1NumShares5=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxBase5=0.00frm2552:txtPg2Pt5Sch1TaxBase5=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxRate5=6/10 OF 1%frm2552:txtPg2Pt5Sch1TaxRate5=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxDue5=0.00frm2552:txtPg2Pt5Sch1TaxDue5=</div>    
+            <div>frm2552:txtPg2Pt5Sch1TaxDueTot=0.00frm2552:txtPg2Pt5Sch1TaxDueTot=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Date1=03/10/2025frm2552:txtPg2Pt5Sch2Date1=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Seller1=ISSUER ONEfrm2552:txtPg2Pt5Sch2Seller1=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Buyer1=SAMPLE PUBLIC BUYERfrm2552:txtPg2Pt5Sch2Buyer1=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Date2=03/10/2025frm2552:txtPg2Pt5Sch2Date2=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Seller2=ISSUER TWOfrm2552:txtPg2Pt5Sch2Seller2=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Buyer2=SAMPLE PUBLIC BUYERfrm2552:txtPg2Pt5Sch2Buyer2=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Date3=03/11/2025frm2552:txtPg2Pt5Sch2Date3=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Seller3=ISSUER THREEfrm2552:txtPg2Pt5Sch2Seller3=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Buyer3=SAMPLE PUBLIC BUYERfrm2552:txtPg2Pt5Sch2Buyer3=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Date4=03/11/2025frm2552:txtPg2Pt5Sch2Date4=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Seller4=ISSUER FOURfrm2552:txtPg2Pt5Sch2Seller4=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Buyer4=SAMPLE PUBLIC BUYERfrm2552:txtPg2Pt5Sch2Buyer4=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Date5=OTHERSfrm2552:txtPg2Pt5Sch2Date5=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Seller5=OTHERSfrm2552:txtPg2Pt5Sch2Seller5=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Buyer5=OTHERSfrm2552:txtPg2Pt5Sch2Buyer5=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Corp1=SAMPLE LISTED CORPfrm2552:txtPg2Pt5Sch2Corp1=</div>    
+            <div>frm2552:txtPg2Pt5Sch2NumShares1=1,000.00frm2552:txtPg2Pt5Sch2NumShares1=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxBase1=250,000.75frm2552:txtPg2Pt5Sch2TaxBase1=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxRate1=4.00frm2552:txtPg2Pt5Sch2TaxRate1=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxDue1=10,000.00frm2552:txtPg2Pt5Sch2TaxDue1=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Corp2=SAMPLE LISTED CORPfrm2552:txtPg2Pt5Sch2Corp2=</div>    
+            <div>frm2552:txtPg2Pt5Sch2NumShares2=2,000.00frm2552:txtPg2Pt5Sch2NumShares2=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxBase2=500,000.00frm2552:txtPg2Pt5Sch2TaxBase2=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxRate2=2.00frm2552:txtPg2Pt5Sch2TaxRate2=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxDue2=10,000.00frm2552:txtPg2Pt5Sch2TaxDue2=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Corp3=SAMPLE LISTED CORPfrm2552:txtPg2Pt5Sch2Corp3=</div>    
+            <div>frm2552:txtPg2Pt5Sch2NumShares3=300.50frm2552:txtPg2Pt5Sch2NumShares3=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxBase3=75,000.25frm2552:txtPg2Pt5Sch2TaxBase3=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxRate3=1.00frm2552:txtPg2Pt5Sch2TaxRate3=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxDue3=750.00frm2552:txtPg2Pt5Sch2TaxDue3=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Corp4=SAMPLE LISTED CORPfrm2552:txtPg2Pt5Sch2Corp4=</div>    
+            <div>frm2552:txtPg2Pt5Sch2NumShares4=400.00frm2552:txtPg2Pt5Sch2NumShares4=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxBase4=999.99frm2552:txtPg2Pt5Sch2TaxBase4=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxRate4=4.00frm2552:txtPg2Pt5Sch2TaxRate4=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxDue4=40.00frm2552:txtPg2Pt5Sch2TaxDue4=</div>    
+            <div>frm2552:txtPg2Pt5Sch2Corp5=OTHERSfrm2552:txtPg2Pt5Sch2Corp5=</div>    
+            <div>frm2552:txtPg2Pt5Sch2NumShares5=OTHERSfrm2552:txtPg2Pt5Sch2NumShares5=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxBase5=OTHERSfrm2552:txtPg2Pt5Sch2TaxBase5=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxRate5=OTHERSfrm2552:txtPg2Pt5Sch2TaxRate5=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxDue5=1,256.00frm2552:txtPg2Pt5Sch2TaxDue5=</div>    
+            <div>frm2552:txtPg2Pt5Sch2TaxDueTot=22,046.00frm2552:txtPg2Pt5Sch2TaxDueTot=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Date1=frm2552:txtPg2Pt5Sch3Date1=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Seller1=frm2552:txtPg2Pt5Sch3Seller1=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Buyer1=frm2552:txtPg2Pt5Sch3Buyer1=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Date2=frm2552:txtPg2Pt5Sch3Date2=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Seller2=frm2552:txtPg2Pt5Sch3Seller2=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Buyer2=frm2552:txtPg2Pt5Sch3Buyer2=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Date3=frm2552:txtPg2Pt5Sch3Date3=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Seller3=frm2552:txtPg2Pt5Sch3Seller3=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Buyer3=frm2552:txtPg2Pt5Sch3Buyer3=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Date4=frm2552:txtPg2Pt5Sch3Date4=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Seller4=frm2552:txtPg2Pt5Sch3Seller4=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Buyer4=frm2552:txtPg2Pt5Sch3Buyer4=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Date5=frm2552:txtPg2Pt5Sch3Date5=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Seller5=frm2552:txtPg2Pt5Sch3Seller5=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Buyer5=frm2552:txtPg2Pt5Sch3Buyer5=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Corp1=frm2552:txtPg2Pt5Sch3Corp1=</div>    
+            <div>frm2552:txtPg2Pt5Sch3NumShares1=0.00frm2552:txtPg2Pt5Sch3NumShares1=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxBase1=0.00frm2552:txtPg2Pt5Sch3TaxBase1=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxRate1=0.00frm2552:txtPg2Pt5Sch3TaxRate1=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxDue1=0.00frm2552:txtPg2Pt5Sch3TaxDue1=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Corp2=frm2552:txtPg2Pt5Sch3Corp2=</div>    
+            <div>frm2552:txtPg2Pt5Sch3NumShares2=0.00frm2552:txtPg2Pt5Sch3NumShares2=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxBase2=0.00frm2552:txtPg2Pt5Sch3TaxBase2=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxRate2=0.00frm2552:txtPg2Pt5Sch3TaxRate2=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxDue2=0.00frm2552:txtPg2Pt5Sch3TaxDue2=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Corp3=frm2552:txtPg2Pt5Sch3Corp3=</div>    
+            <div>frm2552:txtPg2Pt5Sch3NumShares3=0.00frm2552:txtPg2Pt5Sch3NumShares3=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxBase3=0.00frm2552:txtPg2Pt5Sch3TaxBase3=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxRate3=0.00frm2552:txtPg2Pt5Sch3TaxRate3=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxDue3=0.00frm2552:txtPg2Pt5Sch3TaxDue3=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Corp4=frm2552:txtPg2Pt5Sch3Corp4=</div>    
+            <div>frm2552:txtPg2Pt5Sch3NumShares4=0.00frm2552:txtPg2Pt5Sch3NumShares4=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxBase4=0.00frm2552:txtPg2Pt5Sch3TaxBase4=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxRate4=0.00frm2552:txtPg2Pt5Sch3TaxRate4=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxDue4=0.00frm2552:txtPg2Pt5Sch3TaxDue4=</div>    
+            <div>frm2552:txtPg2Pt5Sch3Corp5=frm2552:txtPg2Pt5Sch3Corp5=</div>    
+            <div>frm2552:txtPg2Pt5Sch3NumShares5=0.00frm2552:txtPg2Pt5Sch3NumShares5=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxBase5=0.00frm2552:txtPg2Pt5Sch3TaxBase5=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxRate5=0.00frm2552:txtPg2Pt5Sch3TaxRate5=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxDue5=0.00frm2552:txtPg2Pt5Sch3TaxDue5=</div>    
+            <div>frm2552:txtPg2Pt5Sch3TaxDueTot=0.00frm2552:txtPg2Pt5Sch3TaxDueTot=</div>    
+            <div>frm2552:txtPg2Pt6Date1=frm2552:txtPg2Pt6Date1=</div>    
+            <div>frm2552:txtPg2Pt6Seller1=frm2552:txtPg2Pt6Seller1=</div>    
+            <div>frm2552:txtPg2Pt6Buyer1=frm2552:txtPg2Pt6Buyer1=</div>    
+            <div>frm2552:txtPg2Pt6Corp1=frm2552:txtPg2Pt6Corp1=</div>    
+            <div>frm2552:txtPg2Pt6NumShares1=0.00frm2552:txtPg2Pt6NumShares1=</div>    
+            <div>frm2552:txtPg2Pt6Date2=frm2552:txtPg2Pt6Date2=</div>    
+            <div>frm2552:txtPg2Pt6Seller2=frm2552:txtPg2Pt6Seller2=</div>    
+            <div>frm2552:txtPg2Pt6Buyer2=frm2552:txtPg2Pt6Buyer2=</div>    
+            <div>frm2552:txtPg2Pt6Corp2=frm2552:txtPg2Pt6Corp2=</div>    
+            <div>frm2552:txtPg2Pt6NumShares2=0.00frm2552:txtPg2Pt6NumShares2=</div>    
+            <div>frm2552:txtPg2Pt6Date3=frm2552:txtPg2Pt6Date3=</div>    
+            <div>frm2552:txtPg2Pt6Seller3=frm2552:txtPg2Pt6Seller3=</div>    
+            <div>frm2552:txtPg2Pt6Buyer3=frm2552:txtPg2Pt6Buyer3=</div>    
+            <div>frm2552:txtPg2Pt6Corp3=frm2552:txtPg2Pt6Corp3=</div>    
+            <div>frm2552:txtPg2Pt6NumShares3=0.00frm2552:txtPg2Pt6NumShares3=</div>    
+            <div>frm2552:txtPg2Pt6Date4=frm2552:txtPg2Pt6Date4=</div>    
+            <div>frm2552:txtPg2Pt6Seller4=frm2552:txtPg2Pt6Seller4=</div>    
+            <div>frm2552:txtPg2Pt6Buyer4=frm2552:txtPg2Pt6Buyer4=</div>    
+            <div>frm2552:txtPg2Pt6Corp4=frm2552:txtPg2Pt6Corp4=</div>    
+            <div>frm2552:txtPg2Pt6NumShares4=0.00frm2552:txtPg2Pt6NumShares4=</div>    
+            <div>frm2552:txtPg2Pt6Date5=frm2552:txtPg2Pt6Date5=</div>    
+            <div>frm2552:txtPg2Pt6Seller5=frm2552:txtPg2Pt6Seller5=</div>    
+            <div>frm2552:txtPg2Pt6Buyer5=frm2552:txtPg2Pt6Buyer5=</div>    
+            <div>frm2552:txtPg2Pt6Corp5=frm2552:txtPg2Pt6Corp5=</div>    
+            <div>frm2552:txtPg2Pt6NumShares5=0.00frm2552:txtPg2Pt6NumShares5=</div>    
+            <div>frm2552:txtLOB=SAMPLE CONSULTING SERVICESfrm2552:txtLOB=</div>    
+            <div>frm2552:txtCurrentPage=1frm2552:txtCurrentPage=</div>    
+            <div>frm2552:txtMaxPage=2frm2552:txtMaxPage=</div>    
+            <div>Pg2Pt5Sch1SubTotal=Pg2Pt5Sch1SubTotal=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_1Col1=03/12/2025frm2552:txtPg2Pt5Sch2_1Col1=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_1Col2=ISSUER FIVEfrm2552:txtPg2Pt5Sch2_1Col2=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_1Col3=SAMPLE PUBLIC BUYERfrm2552:txtPg2Pt5Sch2_1Col3=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_2Col1=03/12/2025frm2552:txtPg2Pt5Sch2_2Col1=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_2Col2=ISSUER SIXfrm2552:txtPg2Pt5Sch2_2Col2=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_2Col3=SAMPLE PUBLIC BUYERfrm2552:txtPg2Pt5Sch2_2Col3=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_3Col1=03/12/2025frm2552:txtPg2Pt5Sch2_3Col1=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_3Col2=ISSUER SEVENfrm2552:txtPg2Pt5Sch2_3Col2=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_3Col3=SAMPLE PUBLIC BUYERfrm2552:txtPg2Pt5Sch2_3Col3=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_1Col4=SAMPLE LISTED CORPfrm2552:txtPg2Pt5Sch2_1Col4=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_1Col5=50.00frm2552:txtPg2Pt5Sch2_1Col5=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_1Col6=12,345.67frm2552:txtPg2Pt5Sch2_1Col6=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_1Col7=2.50frm2552:txtPg2Pt5Sch2_1Col7=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_1Col8=309.00frm2552:txtPg2Pt5Sch2_1Col8=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_2Col4=SAMPLE LISTED CORPfrm2552:txtPg2Pt5Sch2_2Col4=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_2Col5=60.00frm2552:txtPg2Pt5Sch2_2Col5=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_2Col6=23,456.00frm2552:txtPg2Pt5Sch2_2Col6=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_2Col7=4.00frm2552:txtPg2Pt5Sch2_2Col7=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_2Col8=938.00frm2552:txtPg2Pt5Sch2_2Col8=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_3Col4=SAMPLE LISTED CORPfrm2552:txtPg2Pt5Sch2_3Col4=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_3Col5=70.00frm2552:txtPg2Pt5Sch2_3Col5=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_3Col6=888.00frm2552:txtPg2Pt5Sch2_3Col6=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_3Col7=1.00frm2552:txtPg2Pt5Sch2_3Col7=</div>    
+            <div>frm2552:txtPg2Pt5Sch2_3Col8=9.00frm2552:txtPg2Pt5Sch2_3Col8=</div>    
+            <div>Pg2Pt5Sch2SubTotal=1,256.00Pg2Pt5Sch2SubTotal=</div>    
+            <div>Pg2Pt5Sch3SubTotal=Pg2Pt5Sch3SubTotal=</div>    
+            <div>driveSelectTPExport=0driveSelectTPExport=</div>    
+            <div>txtFinalFlag=0.00txtFinalFlag=</div>    
+            <div>txtEnroll=NtxtEnroll=</div>    
+            <div>ebirOnlineConfirmUsername=ebirOnlineConfirmUsername=</div>    
+            <div>ebirOnlineUsername=ebirOnlineUsername=</div>    
+            <div>ebirOnlineSecret=ebirOnlineSecret=</div>    
+            <div>Pg2Pt5Sch1PopLength=Pg2Pt5Sch1PopLength=</div>    
+            <div>Pg2Pt5Sch2PopLength=3Pg2Pt5Sch2PopLength=</div>    
+            <div>Pg2Pt5Sch3PopLength=Pg2Pt5Sch3PopLength=</div>    
+                
+            All Rights Reserved BIR 2014.0

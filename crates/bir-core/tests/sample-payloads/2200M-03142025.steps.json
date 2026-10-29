@@ -1,0 +1,267 @@
+[
+ {
+  "set": "frm2200M:txtPg1I1Month",
+  "value": "03"
+ },
+ {
+  "set": "frm2200M:txtPg1I1Day",
+  "value": "14"
+ },
+ {
+  "set": "frm2200M:txtPg1I1Year",
+  "value": "2025"
+ },
+ {
+  "click": "frm2200M:rdoPg1I2AmendedNo"
+ },
+ {
+  "set": "frm2200M:txtPg1I3NoSheets",
+  "value": "2"
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg1TIN1').value = \"123\""
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg1TIN2').value = \"456\""
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg1TIN3').value = \"788\""
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg1TIN4').value = \"00000\""
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg1I5RDO').value = \"039\""
+ },
+ {
+  "call": "var s = document.getElementById('frm2200M:rdoPg1Pt1I6RDO'); s.innerHTML = \"<option value='000'>000</option><option value='039'>039</option>\"; s.value = '039'"
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg1Pt1I6RegisteredName').value = \"SAMPLE DUMMY TAXPAYER\""
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg1Pt1I7RegisteredAddress').value = \"123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITY\""
+ },
+ {
+  "call": "document.getElementById('frm2200M:txPg1I7ZipCode').value = \"1100\""
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg1Pt1I8ContactNumber').value = \"09170000000\""
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg1Pt1I9Email').value = \"sample.taxpayer@example.com\""
+ },
+ {
+  "set": "frm2200M:txtPg1Pt1I10Region",
+  "value": "130000000"
+ },
+ {
+  "set": "frm2200M:txtPg1Pt1I10Province",
+  "value": "137400000"
+ },
+ {
+  "set": "frm2200M:txtPg1Pt1I10City",
+  "value": "137403000"
+ },
+ {
+  "set": "frm2200M:txtPg1Pt1I11Region",
+  "value": "040000000"
+ },
+ {
+  "set": "frm2200M:txtPg1Pt1I11Province",
+  "value": "042100000"
+ },
+ {
+  "set": "frm2200M:txtPg1Pt1I11City",
+  "value": "042103000"
+ },
+ {
+  "click": "frm2200M:rdoPg1I12TaxReliefYes"
+ },
+ {
+  "set": "frm2200M:txtPg1I12TaxReliefSpecify",
+  "value": "Sample relief law"
+ },
+ {
+  "click": "frm2200M:rdoPg1Pt2MOPPrepayment"
+ },
+ {
+  "click": "frm2200M:rdoPg1Pt2MOPOther"
+ },
+ {
+  "set": "frm2200M:txtPg1Pt2MOPOtherDesc",
+  "value": "Sample scheme"
+ },
+ {
+  "set": "frm2200M:txtPg1P3I17ABalCarriedOver",
+  "value": "1000"
+ },
+ {
+  "set": "frm2200M:txtPg1P3I17BCredExciseTax",
+  "value": "234.565"
+ },
+ {
+  "set": "frm2200M:txtPg1P3I21ASurcharge",
+  "value": "25.5"
+ },
+ {
+  "set": "frm2200M:txtPg1P3I21BInterest",
+  "value": "10"
+ },
+ {
+  "set": "frm2200M:txtPg1P3I21CCompromise",
+  "value": "1000"
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg2TinC1').value = \"123\""
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg2TinC2').value = \"456\""
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg2TinC3').value = \"788\""
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg2TinC4').value = \"00000\""
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtPg2RegisteredName').value = \"SAMPLE DUMMY TAXPAYER\""
+ },
+ {
+  "set": "frm2200M:txtSched1_PlaceOfRemoval1",
+  "value": "Pasig yard"
+ },
+ {
+  "set": "frm2200M:txtSched1_VOMRITaxableA1",
+  "value": "1234.567"
+ },
+ {
+  "set": "frm2200M:txtSched1_VOMRIExemptB1",
+  "value": "10"
+ },
+ {
+  "set": "frm2200M:LocallyExtractedRate1",
+  "value": "250000"
+ },
+ {
+  "set": "frm2200M:txtSched1_LocallyExtractedTaxDueF1",
+  "value": "61728.355"
+ },
+ {
+  "set": "frm2200M:txtSched1_PlaceOfRemoval4",
+  "value": "Rizal quarry"
+ },
+ {
+  "set": "frm2200M:txtSched1_LocallyExtractedRateC4",
+  "value": "999999.995"
+ },
+ {
+  "set": "frm2200M:txtSched1_LocallyExtractedRateD4",
+  "value": "0"
+ },
+ {
+  "set": "frm2200M:txtSched1_LocallyExtractedTaxDueF4",
+  "value": "40000"
+ },
+ {
+  "set": "frm2200M:txtSched1_description9",
+  "value": "Sand and gravel"
+ },
+ {
+  "set": "frm2200M:txtSched1_description10",
+  "value": "Marble"
+ },
+ {
+  "set": "frm2200M:txtSched1_PlaceOfRemoval9",
+  "value": "Laguna site"
+ },
+ {
+  "set": "frm2200M:txtSched1_PlaceOfRemoval10",
+  "value": "Romblon"
+ },
+ {
+  "set": "frm2200M:txtSched1_VOMRITaxableA10",
+  "value": "3"
+ },
+ {
+  "set": "frm2200M:txtSched1_LocallyExtractedTaxRateE9",
+  "value": "4"
+ },
+ {
+  "set": "frm2200M:txtSched1_LocallyExtractedTaxDueF9",
+  "value": "5.005"
+ },
+ {
+  "set": "frm2200M:txtSched1_LocallyExtractedTaxDueF10",
+  "value": "120"
+ },
+ {
+  "set": "frm2200M:txtSched1_TotalTaxDue1",
+  "value": "61728.36"
+ },
+ {
+  "set": "frm2200M:txtSched1_ImportedTaxableG4",
+  "value": "12345.6"
+ },
+ {
+  "set": "frm2200M:txtSched1_ImportedExemptH4",
+  "value": "1"
+ },
+ {
+  "set": "frm2200M:txtSched1_ImportedTaxDue4",
+  "value": "493.82"
+ },
+ {
+  "set": "frm2200M:txtSched1_TaxDueAdjustment4",
+  "value": "0.5"
+ },
+ {
+  "set": "frm2200M:txtSched1_TotalTaxDue4",
+  "value": "40494.32"
+ },
+ {
+  "set": "frm2200M:txtSched1_ImportedTaxRate9",
+  "value": "2.5"
+ },
+ {
+  "call": "document.getElementById('frm2200M:txtLOB').value = 'Sample Consulting Services'"
+ },
+ {
+  "call": "addRowSched1()"
+ },
+ {
+  "set": "frm2200M:txtSched1_description11",
+  "value": "Clay x"
+ },
+ {
+  "set": "frm2200M:txtSched1_PlaceOfRemoval11",
+  "value": "Rizal"
+ },
+ {
+  "set": "frm2200M:txtSched1_LocallyExtractedTaxDueF11",
+  "value": "10"
+ },
+ {
+  "set": "frm2200M:txtSched1_ImportedTaxableG11",
+  "value": "7"
+ },
+ {
+  "call": "addRowSched1()"
+ },
+ {
+  "set": "frm2200M:txtSched1_description12",
+  "value": "Shale"
+ },
+ {
+  "set": "frm2200M:txtSched1_PlaceOfRemoval12",
+  "value": "Bulacan"
+ },
+ {
+  "set": "frm2200M:txtSched1_TotalTaxDue12",
+  "value": "3"
+ },
+ {
+  "set": "frm2200M:txtPg1P3I23ATaxPmntDposit",
+  "value": "100728.8"
+ }
+]

@@ -1,0 +1,128 @@
+[
+ {
+  "click": "frm0605:itemFiscalStartMonth:_1"
+ },
+ {
+  "set": "frm0605:txtYearEnded",
+  "value": "2025"
+ },
+ {
+  "click": "itemQuarter_4"
+ },
+ {
+  "set": "frm0605:txtDueDateMonth",
+  "value": "01"
+ },
+ {
+  "set": "frm0605:txtDueDateDay",
+  "value": "25"
+ },
+ {
+  "set": "frm0605:txtDueDateYear",
+  "value": "2026"
+ },
+ {
+  "set": "frm0605:txtNoOfSheets",
+  "value": "2"
+ },
+ {
+  "set": "frm0605:txtReturnPeriodMonth",
+  "value": "12"
+ },
+ {
+  "set": "frm0605:txtReturnPeriodDay",
+  "value": "31"
+ },
+ {
+  "set": "frm0605:txtReturnPeriodYear",
+  "value": "2025"
+ },
+ {
+  "click": "TaxTypeCode9"
+ },
+ {
+  "call": "getTaxTypeCode()"
+ },
+ {
+  "click": "AtcCode24"
+ },
+ {
+  "call": "getATCCode()"
+ },
+ {
+  "set": "frm0605:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm0605:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm0605:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm0605:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm0605:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "click": "frm0605:txtClassification:_1"
+ },
+ {
+  "set": "frm0605:txtLineBus",
+  "value": "Sample Consulting Services"
+ },
+ {
+  "set": "frm0605:txtTaxPayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm0605:txtTelNum",
+  "value": "09170000000"
+ },
+ {
+  "set": "frm0605:txtAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm0605:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "click": "frm0605:itemModeOfPayment:_1"
+ },
+ {
+  "set": "frm0605:txtNumOfInstallment",
+  "value": "3"
+ },
+ {
+  "click": "frm0605:itemMannerOfPaymentB:_1"
+ },
+ {
+  "click": "frm0605:itemApprovedYN:_1"
+ },
+ {
+  "set": "frm0605:txtTax19",
+  "value": "12345.675"
+ },
+ {
+  "set": "frm0605:txtTax20A",
+  "value": "1234.5"
+ },
+ {
+  "set": "frm0605:txtTax20B",
+  "value": "99.995"
+ },
+ {
+  "set": "frm0605:txtTax20C",
+  "value": "1000"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ }
+]

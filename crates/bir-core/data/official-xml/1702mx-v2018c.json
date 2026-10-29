@@ -1,0 +1,7536 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "1702mx-v2018c",
+  "generated_by": "oracle/gen_layout_runtime.js (official saveXMLsubmit loop run on the loaded page in jsdom); numbertext entries marked number: normalize (commas stripped, (x) -> -x, zeros kept)",
+  "official_hta": "BIR-Form1702MXv2018C.hta",
+  "official_hta_sha256": "34dbe79d6bf934718e86c73d8fdea4eb4a4e6a86c939ab0ecf231282d744acf7",
+  "header": "<?xml version='1.0'?>",
+  "lead": "\t\n            ",
+  "value_rules": [],
+  "entries": [
+    {
+      "key": "frm1702MX:rdoPg1I1Calendar",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:rdoPg1I1Fiscal",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:ddlPg1I2Date",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:ddlPg1I2Date",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "12",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1I2YearEnd",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1I2YearEnd",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "-1",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:rdoPg1I3AmendedYes",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:rdoPg1I3AmendedNo",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:rdoPg1I4ShortPeriodYes",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:rdoPg1I4ShortPeriodNo",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:chkPg1I5ATCR1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:drpPg1I5ATCR2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:drpPg1I5ATCR2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "IC010",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:chkPg1I5ATCR2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I6TINC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I6TINC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I6TINC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I6TINC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I6TINC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I6TINC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I6TINC4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I6TINC4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1TINMASK",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1TINMASK",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "00000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I7RDO",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I7RDO",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:drpPg1Pt1I7RDO",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:drpPg1Pt1I7RDO",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I9RegisteredName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I9RegisteredName",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I9RegisteredName2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I9RegisteredName2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I9RegisteredName3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I9RegisteredName3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I10RegisteredAddress",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I10RegisteredAddress",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I10RegisteredAddress2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I10RegisteredAddress2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I10RegisteredAddress3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I10RegisteredAddress3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtZIP",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtZIP",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I8",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I8",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I11ContactNumber",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I11ContactNumber",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I12Email",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I12Email",
+          "codec": "js-escape"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:rdoPg1Pt1I13MethodOfDeducItemized",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:rdoPg1Pt1I13MethodOfDeducOptional",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2I14TotalIncome",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2I14TotalIncome",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2I15LessTotalTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2I15LessTotalTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2I16NetTaxPayable",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2I16NetTaxPayable",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2I17",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2I17",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2I18",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2I18",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2I19",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2I19",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2I20TotalPenalties",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2I20TotalPenalties",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2I21TotalAmount",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2I21TotalAmount",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:rdoPg1Pt2I21Refund",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:rdoPg1Pt2I21IssueTCC",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:rdoPg1Pt2I21CarriedOver",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2AuthorizedRepresentative",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2AuthorizedRepresentative",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2Treasurer",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2Treasurer",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1P2I23NumOfAttachments",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1P2I23NumOfAttachments",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2TitleofSignatory",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2TitleofSignatory",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2TINofSignatory",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2TINofSignatory",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2TitleofSignatory2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2TitleofSignatory2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt2TINofSignatory2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt2TINofSignatory2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I26CashC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I26CashC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I26CashC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I26CashC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I26CashC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I26CashC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I26CashC4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I26CashC4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I27CheckC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I27CheckC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I27CheckC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I27CheckC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I27CheckC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I27CheckC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I27CheckC4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I27CheckC4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I28TaxDebitC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I28TaxDebitC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I28TaxDebitC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I28TaxDebitC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I28TaxDebitC4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I28TaxDebitC4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I29Others",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I29Others",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I29OthersC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I29OthersC1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I29OthersC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I29OthersC2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I29OthersC3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I29OthersC3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1Pt1I29OthersC4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1Pt1I29OthersC4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2TIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2TIN1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2TIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2TIN2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2TIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2TIN3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2TIN4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2TIN4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2TINMASK",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2TINMASK",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "00000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2RegisteredName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2RegisteredName",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:InstAPg2Part4",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:InstBPg2Part4",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I31CA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I31CA",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I31CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I31CB",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I31CC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I31CC",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I32CA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I32CA",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I32CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I32CB",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I32CC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I32CC",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I33CA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I33CA",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I33CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I33CB",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I33CC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I33CC",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I34SpecialTaxRate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I34SpecialTaxRate",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I35CA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I35CA",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I35CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I35CB",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I35CC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I35CC",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I36CA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I36CA",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I36CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I36CB",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Pt4I36CC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Pt4I36CC",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm1A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm1A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm1B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm1B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm1C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm1C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm1D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm1D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm2A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm2A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm2B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm2B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm2C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm2C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm2D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm2D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm3A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm3A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm3B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm3B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm3C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm3C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm3D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm3D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm4A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm4A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm4B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm4B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm4C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm4C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm4D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm4D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm5A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm5A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm5B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm5B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm5C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm5C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm5D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm5D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm6A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm6A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm6B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm6B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm6C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm6C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm6D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm6D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm7A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm7A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm7B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm7B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm7C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm7C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm7D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm7D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm8A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm8A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm8B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm8B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm8C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm8C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm8D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm8D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm9A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm9A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm9B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm9B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm9C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm9C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm9D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm9D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It10B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It10B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It10C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It10C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It10D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It10D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It11A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It11A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It11B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It11B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It11C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It11C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It11D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It11D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It12C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It12C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It12D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It12D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It13A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It13A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It13B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It13B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It13C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It13C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It13D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It13D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It14B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It14B",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It14C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It14C",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It15B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It15B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It15C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It15C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It15D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It15D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It16B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It16B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It16D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It16D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It17B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It17B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It17C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It17C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It17D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It17D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It18C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It18C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It18D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It18D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It19B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It19B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It19C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It19C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2It19D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2It19D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It20A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It20A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It20B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It20B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It20C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It20C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It20D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It20D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It21C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It21C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It21D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It21D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It22A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It22A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It22B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It22B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It22C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It22C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It22D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It22D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It23C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It23C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It23D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It23D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It24A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It24A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It24B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It24B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It24C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It24C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It24D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It24D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It25A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It25A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It25B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It25B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It25C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It25C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It25D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It25D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It26A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It26A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It26B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It26B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It26C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It26C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It26D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It26D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It27A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It27A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It27B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It27B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It27C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It27C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It27D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It27D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It28A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It28A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It28B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It28B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It28C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It28C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It28D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It28D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It29A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It29A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It29B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It29B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It29C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It29C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It29D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It29D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It30",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It30",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It30A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It30A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It30B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It30B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It30C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It30C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It30D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It30D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It31",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It31",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It31A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It31A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It31B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It31B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It31C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It31C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It31D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It31D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It32A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It32A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It32B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It32B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It32C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It32C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It32D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It32D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It33A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It33A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It33B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It33B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It33C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It33C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3It33D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3It33D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3TIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3TIN1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3TIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3TIN2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3TIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3TIN3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3TIN4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3TIN4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3TINMASK",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3TINMASK",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "00000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3RegisteredName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3RegisteredName",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:drpPg3Sc1I11CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:drpPg3Sc1I11CB",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc4Itm1A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc4Itm1A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc4Itm1B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc4Itm1B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc4Itm1D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc4Itm1D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm2A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm2A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm2B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm2B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm2C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm2C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm2D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm2D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm3A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm3A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm3B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm3B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm3C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm3C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm3D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm3D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm4B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm4B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm4D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm4D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm5A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm5A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm5B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm5B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm5C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm5C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm5D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm5D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm6A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm6A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm6B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm6B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm6C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm6C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm6D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm6D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm7A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm7A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm7B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm7B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm7C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm7C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc4Itm7D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc4Itm7D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm1A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm1A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm1B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm1B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm1C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm1C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm1D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm1D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm2A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm2A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm2B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm2B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm2C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm2C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm2D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm2D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm3A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm3A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm3B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm3B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm3C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm3C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm3D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm3D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm4A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm4A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm4B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm4B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm4C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm4C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm4D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm4D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm5A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm5A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm5B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm5B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm5C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm5C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm5D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm5D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm6A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm6A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm6B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm6B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm6C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm6C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm6D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm6D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm7A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm7A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm7B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm7B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm7C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm7C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm7D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm7D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm8A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm8A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm8B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm8B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm8C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm8C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm8D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm8D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm9A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm9A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm9B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm9B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm9C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm9C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm9D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm9D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm10A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm10A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm10B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm10B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm10C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm10C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm10D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm10D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm11A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm11A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm11B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm11B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm11C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm11C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm11D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm11D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm12A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm12A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm12B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm12B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm12C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm12C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm12D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm12D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm13A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm13A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm13B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm13B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm13C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm13C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm13D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm13D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm14A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm14A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm14B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm14B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm14C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm14C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm14D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm14D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm15A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm15A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm15B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm15B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm15C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm15C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm15D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm15D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm16A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm16A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm16B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm16B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm16C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm16C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm16D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm16D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17aA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17aA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17aB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17aB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17aC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17aC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17aD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17aD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17bA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17bA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17bB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17bB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17bC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17bC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17bD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17bD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17cA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17cA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17cB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17cB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17cC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17cC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17cD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17cD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5It17d",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5It17d",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17dA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17dA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17dB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17dB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17dC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17dC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17dD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17dD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5It17e",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5It17e",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17eA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17eA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17eB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17eB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17eC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17eC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17eD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17eD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5It17f",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5It17f",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17fA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17fA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17fB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17fB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17fC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17fC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17fD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17fD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5It17g",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5It17g",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17gA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17gA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17gB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17gB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17gC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17gC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17gD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17gD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5It17h",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5It17h",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17hA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17hA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17hB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17hB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17hC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17hC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17hD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17hD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5It17i",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5It17i",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17iA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17iA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17iB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17iB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17iC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17iC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17iD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17iD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm18A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm18A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm18B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm18B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm18C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm18C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm18D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm18D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I1description",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I1description",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I1legal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I1legal",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I1CA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I1CA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc6I1CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc6I1CB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I1CC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I1CC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I1CD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I1CD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I2description",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I2description",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I2legal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I2legal",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I2CA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I2CA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc6I2CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc6I2CB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I2CC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I2CC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I2CD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I2CD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I3description",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I3description",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I3legal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I3legal",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I3CA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I3CA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc6I3CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc6I3CB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I3CC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I3CC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I3CD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I3CD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc6I4description",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc6I4description",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc6I4legal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc6I4legal",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc6I4CA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc6I4CA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc6I4CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc6I4CB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc6I4CC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc6I4CC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc6I4CD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc6I4CD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I5CA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I5CA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I5CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I5CB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I5CC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I5CC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6I5CD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6I5CD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc7I1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc7I1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc7I2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc7I2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc7I3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc7I3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4TIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4TIN1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4TIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4TIN2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4TIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4TIN3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4TIN4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4TIN4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4TINMASK",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4TINMASK",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "00000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4RegisteredName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4RegisteredName",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_4Year",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_4Year",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_4A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_4A",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_4B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_4B",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_4C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_4C",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_4D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_4D",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_4E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_4E",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_5Year",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_5Year",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_5A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_5A",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_5B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_5B",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_5C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_5C",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_5D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_5D",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_5E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_5E",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_6Year",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_6Year",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_6A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_6A",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_6B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_6B",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_6C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_6C",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_6D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_6D",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_6E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_6E",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_7Year",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_7Year",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": " ",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_7A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_7A",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_7B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_7B",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_7C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_7C",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_7D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_7D",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed7_7E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed7_7E",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed78D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed78D",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc8It1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc8It1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc8It2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc8It2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc8It3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc8It3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed8_4Year",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed8_4Year",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_4A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_4A",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_4B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_4B",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_4C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_4C",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_4D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_4D",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_4E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_4E",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed8_5Year",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed8_5Year",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_5A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_5A",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_5B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_5B",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_5C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_5C",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_5D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_5D",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_5E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_5E",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed8_6Year",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed8_6Year",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_6A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_6A",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_6B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_6B",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed8_6C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed8_6C",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_6D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_6D",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_6E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_6E",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_7Year",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_7Year",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": " ",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_7A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_7A",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_7B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_7B",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_7C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_7C",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_7D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_7D",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4IShed8_7E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4IShed8_7E",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3IShed88D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3IShed88D",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I1CA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I1CA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I1CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I1CB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I1CC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I1CC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I2CA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I2CA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I2CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I2CB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I2CC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I2CC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I3CA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I3CA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I3CB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I3CB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I3CC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I3CC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I1CD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I1CD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I1CE",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I1CE",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I1CF",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I1CF",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I1CG",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I1CG",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I2CD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I2CD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I2CE",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I2CE",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I2CF",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I2CF",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I2CG",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I2CG",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I3CD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I3CD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I3CE",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I3CE",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I3CF",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I3CF",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I3CG",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I3CG",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg7Sc9I4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg7Sc9I4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm1A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm1A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm1B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm1B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm1C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm1C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm1D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm1D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm2A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm2A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm2B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm2B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm2C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm2C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm2D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm2D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm3A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm3A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm3B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm3B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm3C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm3C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm3D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm3D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm4A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm4A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm4B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm4B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm4C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm4C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm4D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm4D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm5",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm5A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm5A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm5B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm5B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm5C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm5C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm5D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm5D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm6",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm6A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm6A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm6B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm6B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm6C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm6C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm6D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm6D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm7",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm7",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm7A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm7A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm7B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm7B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm7C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm7C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm7D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm7D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm8",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm8",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm8A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm8A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm8B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm8B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm8C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm8C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm8D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm8D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm9A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm9A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm9B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm9B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm9C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm9C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm9D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm9D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm10A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm10A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm10B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm10B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm10C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm10C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc2Itm10D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc2Itm10D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "attachmentCurrent",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "attachmentCurrent",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "attachmentTotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "attachmentTotal",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1AttMTIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1AttMTIN1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1AttMTIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1AttMTIN2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1AttMTIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1AttMTIN3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1AttMTIN4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1AttMTIN4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1AttMTINMASK",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1AttMTINMASK",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:rdoPg1AttMExempt",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:rdoPg1AttMSpecialRate",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1AttMPt5ScAIt5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1AttMPt5ScAIt5",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1AttMPt5ScAIt6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1AttMPt5ScAIt6",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1AttMScBI1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1AttMScBI1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1AttMScBI2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1AttMScBI2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg1AttMScBI3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg1AttMScBI3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2AttMTIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2AttMTIN1",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2AttMTIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2AttMTIN2",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2AttMTIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2AttMTIN3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2AttMTIN4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2AttMTIN4",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2AttMTINMASK",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2AttMTINMASK",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2AttMDesc20",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2AttMDesc20",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2AttMDesc21",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2AttMDesc21",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2AttMDesc22",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2AttMDesc22",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2AttMDesc23",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2AttMDesc23",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2AttMDesc24",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2AttMDesc24",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2AttMScDI17iother",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2AttMScDI17iother",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2AttMScF1I4year",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2AttMScF1I4year",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtCurrentPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtCurrentPage",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "1",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtMaxPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtMaxPage",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "4",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtCtrmodalPg7Sc8",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtCtrmodalPg7Sc8",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtCtrmodalPg3Sc5I17i",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtCtrmodalPg3Sc5I17i",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtCtrmodalPg6Sc6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtCtrmodalPg6Sc6",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtCtrmodalPg7Sc10I3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtCtrmodalPg7Sc10I3",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtCtrmodalPg7Sc10I6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtCtrmodalPg7Sc10I6",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtCtrmodalPg7Sc10I8",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtCtrmodalPg7Sc10I8",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:totalEXAttach",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:totalEXAttach",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:totalSPAttach",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:totalSPAttach",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17iD_SubTotalA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17iD_SubTotalA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17iD_SubTotalB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17iD_SubTotalB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17iD_SubTotalC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17iD_SubTotalC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg3Sc5Itm17iD_SubTotalD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg3Sc5Itm17iD_SubTotalD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg5Sc4I3_SubTotalCA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg5Sc4I3_SubTotalCA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg5Sc4I3_SubTotalCB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg5Sc4I3_SubTotalCB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg5Sc4I3_SubTotalCC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg5Sc4I3_SubTotalCC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg5Sc4I3_SubTotalCD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg5Sc4I3_SubTotalCD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg5Sc5I4_SubTotalCA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg5Sc5I4_SubTotalCA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg5Sc5I4_SubTotalCB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg5Sc5I4_SubTotalCB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg5Sc5I4_SubTotalCC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg5Sc5I4_SubTotalCC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg5Sc5I4_SubTotalCD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg5Sc5I4_SubTotalCD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc5I39_SubTotalCA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc5I39_SubTotalCA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc5I39_SubTotalCB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc5I39_SubTotalCB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc5I39_SubTotalCC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc5I39_SubTotalCC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc5I39_SubTotalCD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc5I39_SubTotalCD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6_SubTotalCA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6_SubTotalCA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6_SubTotalCB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6_SubTotalCB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6_SubTotalCC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6_SubTotalCC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg6Sc6_SubTotalCD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg6Sc6_SubTotalCD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3_SubTotalCA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3_SubTotalCA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3_SubTotalCB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3_SubTotalCB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3_SubTotalCC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3_SubTotalCC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg2Sc3_SubTotalCD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg2Sc3_SubTotalCD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm3_SubTotalCA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm3_SubTotalCA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm3_SubTotalCB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm3_SubTotalCB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm3_SubTotalCC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm3_SubTotalCC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm3_SubTotalCD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm3_SubTotalCD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm6_SubTotalCA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm6_SubTotalCA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm6_SubTotalCB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm6_SubTotalCB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm6_SubTotalCC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm6_SubTotalCC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm6_SubTotalCD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm6_SubTotalCD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm8_SubTotalCA",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm8_SubTotalCA",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm8_SubTotalCB",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm8_SubTotalCB",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm8_SubTotalCC",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm8_SubTotalCC",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg4Sc10Itm8_SubTotalCD",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg4Sc10Itm8_SubTotalCD",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1702MX:txtPg9Sc13I_SubTotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1702MX:txtPg9Sc13I_SubTotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "number": "normalize",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtFinalFlag",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtFinalFlag",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEnroll",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEnroll",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "N",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineConfirmUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineConfirmUsername",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineUsername",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineSecret",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineSecret",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "driveSelectTPExport",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "driveSelectTPExport",
+          "codec": "raw",
+          "uppercase": true
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            \t\n            All Rights Reserved BIR 2014.0"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "form_id": "2551q-v2018",
+  "html_slug": "2551q-2018",
+  "rule": "Stamp name= only where the identity catalog has a 1:1 official_field_key that exists in fields.json. Remaining writer keys stay on cell-id name=. Do not invent a join. Mixed combs with no empty input are catalog identities but unwritable.",
+  "stamped": [
+    {
+      "catalog_id": "2551q-2018/p1/tin-1",
+      "html_id": "p1c20",
+      "name": "frm2551Qv2018:txtTIN1"
+    },
+    {
+      "catalog_id": "2551q-2018/p1/tin-2",
+      "html_id": "p1c22",
+      "name": "frm2551Qv2018:txtTIN2"
+    },
+    {
+      "catalog_id": "2551q-2018/p1/tin-3",
+      "html_id": "p1c24",
+      "name": "frm2551Qv2018:txtTIN3"
+    },
+    {
+      "catalog_id": "2551q-2018/p1/tin-branch",
+      "html_id": "p1c26",
+      "name": "frm2551Qv2018:txtBranchCode"
+    }
+  ],
+  "stamped_names": [
+    "frm2551Qv2018:txtTIN1",
+    "frm2551Qv2018:txtTIN2",
+    "frm2551Qv2018:txtTIN3",
+    "frm2551Qv2018:txtBranchCode"
+  ],
+  "unwritable_mixed": [],
+  "unstamped_writer_keys_in_fields_json": [
+    "frm2551Qv2018:amendedRtn_1",
+    "frm2551Qv2018:amendedRtn_2",
+    "frm2551Qv2018:forThe_1",
+    "frm2551Qv2018:forThe_2",
+    "frm2551Qv2018:overPayment1",
+    "frm2551Qv2018:overPayment2",
+    "frm2551Qv2018:qtr_1",
+    "frm2551Qv2018:qtr_2",
+    "frm2551Qv2018:qtr_3",
+    "frm2551Qv2018:qtr_4",
+    "frm2551Qv2018:registeredAddress",
+    "frm2551Qv2018:registeredName",
+    "frm2551Qv2018:rtnMonth",
+    "frm2551Qv2018:taxRate1",
+    "frm2551Qv2018:taxRate2",
+    "frm2551Qv2018:taxTreaty_1",
+    "frm2551Qv2018:taxTreaty_2",
+    "frm2551Qv2018:telNo",
+    "frm2551Qv2018:txt14",
+    "frm2551Qv2018:txt15",
+    "frm2551Qv2018:txt16",
+    "frm2551Qv2018:txt17",
+    "frm2551Qv2018:txt17Specify",
+    "frm2551Qv2018:txt18",
+    "frm2551Qv2018:txt19",
+    "frm2551Qv2018:txt20",
+    "frm2551Qv2018:txt21",
+    "frm2551Qv2018:txt22",
+    "frm2551Qv2018:txt23",
+    "frm2551Qv2018:txt24",
+    "frm2551Qv2018:txtAgency25",
+    "frm2551Qv2018:txtAgency26",
+    "frm2551Qv2018:txtAgency27",
+    "frm2551Qv2018:txtAgency28",
+    "frm2551Qv2018:txtAmount25",
+    "frm2551Qv2018:txtAmount26",
+    "frm2551Qv2018:txtAmount27",
+    "frm2551Qv2018:txtAmount28",
+    "frm2551Qv2018:txtCurrentPage",
+    "frm2551Qv2018:txtDate25",
+    "frm2551Qv2018:txtDate26",
+    "frm2551Qv2018:txtDate27",
+    "frm2551Qv2018:txtDate28",
+    "frm2551Qv2018:txtMaxPage",
+    "frm2551Qv2018:txtNumber25",
+    "frm2551Qv2018:txtNumber26",
+    "frm2551Qv2018:txtNumber27",
+    "frm2551Qv2018:txtNumber28",
+    "frm2551Qv2018:txtParticular28",
+    "frm2551Qv2018:txtPg2BranchCode",
+    "frm2551Qv2018:txtPg2TIN1",
+    "frm2551Qv2018:txtPg2TIN2",
+    "frm2551Qv2018:txtPg2TIN3",
+    "frm2551Qv2018:txtPg2TaxpayerName",
+    "frm2551Qv2018:txtRDOCode",
+    "frm2551Qv2018:txtSheets",
+    "frm2551Qv2018:txtTaxReliefSpecify",
+    "frm2551Qv2018:txtYear",
+    "frm2551Qv2018:zipCode"
+  ],
+  "writer_frm_keys_absent_from_fields_json": [
+    "frm2551Qv2018:txt25",
+    "frm2551Qv2018:txt26",
+    "frm2551Qv2018:txt27",
+    "frm2551Qv2018:txt28"
+  ],
+  "writer_frm_keys_absent_from_fields_json_reason": "form_2551q_xml.rs emits collapsed frm2551Qv2018:txt25..txt28 blanks; fields.json inventories the payment columns as txtAgency/txtAmount/txtDate/txtNumber instead. The writer is not reminted in this freeze."
+}

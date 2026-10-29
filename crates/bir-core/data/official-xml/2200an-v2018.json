@@ -1,0 +1,2586 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "2200an-v2018",
+  "generated_by": "oracle/gen_layout.js (official saveXMLsubmit loop run in jsdom)",
+  "official_hta": "BIR-Form2200ANv2018.hta",
+  "official_hta_sha256": "23b5502509383379d993fe724e28fdf2d13010b75cd2694c394bc8c72af34f29",
+  "header": "<?xml version='1.0'?>",
+  "lead": "\t\n            ",
+  "value_rules": [],
+  "entries": [
+    {
+      "key": "frm2200ANv2018:txtMonth",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtMonth",
+          "codec": "raw"
+        }
+      ],
+      "default": "01",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtDate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtDate",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtYear",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtYear",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:AmendedRtn1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:AmendedRtn2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtSheets",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtSheets",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtTIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtTIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtTIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtTIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtTIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtTIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtBranchCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtBranchCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtRDOCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtRDOCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtTaxpayerName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtTaxpayerName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtAddress",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtAddress",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtZipCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtZipCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtTelNum",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtTelNum",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEmail",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEmail",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018optRegion",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018optRegion",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018optProvince",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018optProvince",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018optCity",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018optCity",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018optRegion1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018optRegion1",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018optProvince1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018optProvince1",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018optCity1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018optCity1",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:OptSpecialTax1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:OptSpecialTax2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:lstSpecialTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:lstSpecialTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:MannerOfPayment1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:MannerOfPayment2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:MannerOfPayment3",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:MannerOfPaymentOthers",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:MannerOfPaymentOthers",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt16",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt16",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt17A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt17A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt17B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt17B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt17C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt17C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt18",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt18",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt19",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt19",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt20",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt20",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt21A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt21A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt21B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt21B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt21C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt21C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt21D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt21D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt22",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt22",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt23A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt23A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt23B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt23B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt23C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt23C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txt24",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txt24",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtTaxAgentNo",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTaxAgentNo",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtDateIssue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDateIssue",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtDateExpiry",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtDateExpiry",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtAgency24",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtAgency24",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtNumber24",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtNumber24",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtDate24",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtDate24",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtAmount24",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtAmount24",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtAgency25",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtAgency25",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtNumber25",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtNumber25",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtDate25",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtDate25",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtAmount25",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtAmount25",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtNumber26",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtNumber26",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtDate26",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtDate26",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtAmount26",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtAmount26",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtParticular27",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtParticular27",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtAgency27",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtAgency27",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtNumber27",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtNumber27",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtDate27",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtDate27",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtAmount27",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtAmount27",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtPage2TIN",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtPage2TIN",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtPage2Taxpayer",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtPage2Taxpayer",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG021Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG021Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG021Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG021Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG021Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG021Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG021Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG021Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG021TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG021TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG022Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG022Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG022Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG022Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG022Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG022Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG022Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG022Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG022TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG022TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG023Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG023Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG023Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG023Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG023Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG023Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG023Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG023Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG023TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG023TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG024Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG024Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG024Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG024Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG024Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG024Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG024Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG024Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG024TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG024TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG031Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG031Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG031Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG031Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG031Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG031Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG031Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG031Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG031TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG031TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG032Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG032Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG032Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG032Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG032Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG032Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG032Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG032Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG032TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG032TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG033Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG033Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG033Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG033Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG033Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG033Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG033Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG033Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG033TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG033TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG034Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG034Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG034Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG034Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG034Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG034Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG034Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG034Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG034TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG034TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG055Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG055Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG055Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG055Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG055Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG055Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG055Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG055Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG055TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG055TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG041Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG041Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG041Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG041Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG041Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG041Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG041Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG041Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG041TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG041TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG042Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG042Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG042Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG042Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG042Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG042Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG042Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG042Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG042TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG042TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG043Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG043Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG043Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG043Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG043Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG043Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG043Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG043Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG043TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG043TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG044Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG044Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG044Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG044Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG044Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG044Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG044Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG044Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG044TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG044TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG065Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG065Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG065Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG065Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG065Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG065Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG065Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG065Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG065TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG065TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG071Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG071Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG071Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG071Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG071Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG071Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG071Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG071Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG071TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG071TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG072Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG072Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG072Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG072Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG072Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG072Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG072Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG072Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG072TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG072TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG073Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG073Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG073Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG073Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG073Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG073Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG073Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG073Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG073TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG073TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG068Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG068Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG068Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG068Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG068Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG068Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG068Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG068Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG068TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG068TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG061Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG061Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG061Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG061Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG061Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG061Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG061Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG061Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG061TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG061TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG062Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG062Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG062Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG062Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG062Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG062Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG062Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG062Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG062TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG062TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG063Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG063Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG063Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG063Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG063Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG063Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG063Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG063Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG063TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG063TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG064Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG064Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG064Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG064Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG064Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG064Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG064Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG064Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG064TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG064TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtBasicExciseTaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtBasicExciseTaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG100Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG100Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG100Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG100Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG100Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG100Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG100Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG100Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG100TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG100TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG110Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG110Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG110Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG110Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG110Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG110Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG110Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG110Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG110TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG110TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG120Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG120Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG120Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG120Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG120Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG120Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG120Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG120Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXG120TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXG120TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers1",
+          "codec": "raw"
+        }
+      ],
+      "default": "XG",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers1Name",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers1Name",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers1Tax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers1Tax",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers1Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers1Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers1Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers1Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers1Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers1Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers1Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers1Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers1TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers1TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers2",
+          "codec": "raw"
+        }
+      ],
+      "default": "XG",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers2Name",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers2Name",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers2Tax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers2Tax",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers2Exempt1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers2Exempt1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers2Taxable1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers2Taxable1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers2Exempt2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers2Exempt2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers2Taxable2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers2Taxable2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtXGOthers2TaxDue",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtXGOthers2TaxDue",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtBasicExciseTaxDueNonEssentialGoods",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtBasicExciseTaxDueNonEssentialGoods",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtSchedule1C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtSchedule1C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtCurrentPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtCurrentPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "1",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2200ANv2018:txtMaxPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2200ANv2018:txtMaxPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "2",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtFinalFlag",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtFinalFlag",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEnroll",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEnroll",
+          "codec": "raw"
+        }
+      ],
+      "default": "N",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineConfirmUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineConfirmUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineSecret",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineSecret",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "driveSelectTPExport",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "driveSelectTPExport",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            \t\n            All Rights Reserved BIR 2012.0"
+    }
+  ]
+}

@@ -1,0 +1,1227 @@
+{
+ "form_id": "1701ms-v2024",
+ "html_slug": "1701ms-2024",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page's own text layer, including runs positioned by transform) names the item and column (A. Taxpayer/Filer left, B. Spouse right). The sheet has no stamped name= inputs. The official submit loop writes only the radios/check boxes and the taxpayer name, so those come from the field map; every other printed value (identity, Items 13-18, all Part II/IV/V/VI amounts, Item 31 amounts, page 2 header) comes from derived: keys of to_print_field_map, never submitted. Amount boxes are 9-slot whole-peso combs (no cents comb): amounts print as digits without separators, right-aligned by left blanks, an overpayment in parentheses; Item 31 amounts keep centavos. The spouse column prints only on a joint return. Boxes print X when the writer value is true. Page 2's TIN comb has nine inputs and a preprinted 00000 branch, so it prints the 9-digit TIN only. Left blank on print because the model has no value for them: Item 33 signature line (p1c286), Item 35 number of attachments (p1c154, p1c155), Part III payment details (p1c164-p1c190). p1c51 is a 1pt sliver left of the Item 12 graduated box, not a box, and stays empty. Since #113 every value the print map carries has a box or a reviewed not_joined reason (the upload controls behind the derived: keys are listed there).",
+ "joins": [
+  {
+   "writer_key": "derived:month",
+   "html_id": "p1c4",
+   "printed": "1 For the Year (MM)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:year",
+   "html_id": "p1c5",
+   "printed": "1 For the Year (YYYY)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:civil_status",
+   "html_id": "p1c13",
+   "printed": "4 Civil Status",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_tin",
+   "html_id": "p1c23",
+   "printed": "6 TIN A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_tin",
+   "html_id": "p1c24",
+   "printed": "6 TIN B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_rdo",
+   "html_id": "p1c26",
+   "printed": "7 RDO Code A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_rdo",
+   "html_id": "p1c27",
+   "printed": "7 RDO Code B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo8a",
+   "html_id": "p1c29",
+   "printed": "8 Taxpayer's Name A. Taxpayer/Filer",
+   "reason": "geometry: the only fillable cell for this printed item on the 1701-MS (August 2024) sheet"
+  },
+  {
+   "writer_key": "derived:sp_name",
+   "html_id": "p1c30",
+   "printed": "8 Taxpayer's Name B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_email",
+   "html_id": "p1c32",
+   "printed": "9 Email Address A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_email",
+   "html_id": "p1c33",
+   "printed": "9 Email Address B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_contact",
+   "html_id": "p1c35",
+   "printed": "10 Contact Number A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_contact",
+   "html_id": "p1c36",
+   "printed": "10 Contact Number B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_legal_basis",
+   "html_id": "p1c61",
+   "printed": "13 Legal Basis of Tax Relief/Exemption A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_agency",
+   "html_id": "p1c64",
+   "printed": "14 Investment Promotion Agency (IPA)/Government Agency A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_activity",
+   "html_id": "p1c67",
+   "printed": "15 Registered Activity/Program A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_effectivity_from",
+   "html_id": "p1c71",
+   "printed": "16 Effectivity Date From A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_effectivity_to",
+   "html_id": "p1c72",
+   "printed": "16 Effectivity Date To A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_atc",
+   "html_id": "p1c85",
+   "printed": "18 ATC code A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_atc_description",
+   "html_id": "p1c87",
+   "printed": "18 ATC (option text beside the code) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_legal_basis",
+   "html_id": "p1c62",
+   "printed": "13 Legal Basis of Tax Relief/Exemption B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_agency",
+   "html_id": "p1c65",
+   "printed": "14 Investment Promotion Agency (IPA)/Government Agency B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_activity",
+   "html_id": "p1c68",
+   "printed": "15 Registered Activity/Program B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_effectivity_from",
+   "html_id": "p1c74",
+   "printed": "16 Effectivity Date From B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_effectivity_to",
+   "html_id": "p1c75",
+   "printed": "16 Effectivity Date To B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_atc",
+   "html_id": "p1c90",
+   "printed": "18 ATC code B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_atc_description",
+   "html_id": "p1c92",
+   "printed": "18 ATC (option text beside the code) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_19",
+   "html_id": "p1c99",
+   "printed": "Part II 19 Income Tax Due - Special/Preferential Rate A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_19",
+   "html_id": "p1c100",
+   "printed": "Part II 19 Income Tax Due - Special/Preferential Rate B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_20",
+   "html_id": "p1c102",
+   "printed": "Part II 20 Less: Share of Other Government Agency A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_20",
+   "html_id": "p1c103",
+   "printed": "Part II 20 Less: Share of Other Government Agency B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_21",
+   "html_id": "p1c105",
+   "printed": "Part II 21 Net Income Tax Due/Share of National Govt - Special/Preferential Rate A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_21",
+   "html_id": "p1c106",
+   "printed": "Part II 21 Net Income Tax Due/Share of National Govt - Special/Preferential Rate B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_22",
+   "html_id": "p1c108",
+   "printed": "Part II 22 Income Tax Due - Regular Rate A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_22",
+   "html_id": "p1c109",
+   "printed": "Part II 22 Income Tax Due - Regular Rate B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_23",
+   "html_id": "p1c111",
+   "printed": "Part II 23 Total Income Tax Due A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_23",
+   "html_id": "p1c112",
+   "printed": "Part II 23 Total Income Tax Due B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_24",
+   "html_id": "p1c114",
+   "printed": "Part II 24 Less: Total Tax Credits/Payments A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_24",
+   "html_id": "p1c115",
+   "printed": "Part II 24 Less: Total Tax Credits/Payments B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_25",
+   "html_id": "p1c117",
+   "printed": "Part II 25 Tax Payable/(Overpayment) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_25",
+   "html_id": "p1c118",
+   "printed": "Part II 25 Tax Payable/(Overpayment) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_26",
+   "html_id": "p1c120",
+   "printed": "Part II 26 Less: Tax Due Allowed for 2nd Installment A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_26",
+   "html_id": "p1c121",
+   "printed": "Part II 26 Less: Tax Due Allowed for 2nd Installment B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_27",
+   "html_id": "p1c123",
+   "printed": "Part II 27 Amount of Tax Payable/(Overpayment) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_27",
+   "html_id": "p1c124",
+   "printed": "Part II 27 Amount of Tax Payable/(Overpayment) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_28a",
+   "html_id": "p1c126",
+   "printed": "Part II 28A Surcharge A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_28a",
+   "html_id": "p1c127",
+   "printed": "Part II 28A Surcharge B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_28b",
+   "html_id": "p1c129",
+   "printed": "Part II 28B Interest A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_28b",
+   "html_id": "p1c130",
+   "printed": "Part II 28B Interest B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_28c",
+   "html_id": "p1c132",
+   "printed": "Part II 28C Compromise A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_28c",
+   "html_id": "p1c133",
+   "printed": "Part II 28C Compromise B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_28d",
+   "html_id": "p1c135",
+   "printed": "Part II 28D Total Penalties A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_28d",
+   "html_id": "p1c136",
+   "printed": "Part II 28D Total Penalties B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p2_29",
+   "html_id": "p1c138",
+   "printed": "Part II 29 Total Amount Payable/(Overpayment) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p2_29",
+   "html_id": "p1c139",
+   "printed": "Part II 29 Total Amount Payable/(Overpayment) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:aggregate",
+   "html_id": "p1c141",
+   "printed": "30 Aggregate Amount Payable/(Overpayment)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:refund_amount",
+   "html_id": "p1c147",
+   "printed": "31 To be refunded (amount)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tcc_amount",
+   "html_id": "p1c148",
+   "printed": "31 To be issued a Tax Credit Certificate (amount)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:carry_over_amount",
+   "html_id": "p1c149",
+   "printed": "31 To be carried over (amount)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN (nine inputs; branch 00000 preprinted)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:page2_name",
+   "html_id": "p2c6",
+   "printed": "Page 2 Tax Filer's Name",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_1",
+   "html_id": "p2c13",
+   "printed": "Part IV 1 Gross Compensation Income A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_1",
+   "html_id": "p2c14",
+   "printed": "Part IV 1 Gross Compensation Income B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_2",
+   "html_id": "p2c16",
+   "printed": "Part IV 2 Less: Non-Taxable/Exempt Compensation A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_2",
+   "html_id": "p2c17",
+   "printed": "Part IV 2 Less: Non-Taxable/Exempt Compensation B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_3",
+   "html_id": "p2c19",
+   "printed": "Part IV 3 Taxable Compensation Income A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_3",
+   "html_id": "p2c20",
+   "printed": "Part IV 3 Taxable Compensation Income B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_4",
+   "html_id": "p2c22",
+   "printed": "Part IV 4 Tax Due-Compensation Income A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_4",
+   "html_id": "p2c23",
+   "printed": "Part IV 4 Tax Due-Compensation Income B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_5",
+   "html_id": "p2c27",
+   "printed": "Part IV 5 Sales/Revenues/Fees A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_5",
+   "html_id": "p2c28",
+   "printed": "Part IV 5 Sales/Revenues/Fees B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_6",
+   "html_id": "p2c30",
+   "printed": "Part IV 6 Less: Sales Returns, Allowances and Discounts A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_6",
+   "html_id": "p2c31",
+   "printed": "Part IV 6 Less: Sales Returns, Allowances and Discounts B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_7",
+   "html_id": "p2c33",
+   "printed": "Part IV 7 Net Sales/Revenues/Fees A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_7",
+   "html_id": "p2c34",
+   "printed": "Part IV 7 Net Sales/Revenues/Fees B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_8",
+   "html_id": "p2c36",
+   "printed": "Part IV 8 Less: Cost of Sales/Services A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_8",
+   "html_id": "p2c37",
+   "printed": "Part IV 8 Less: Cost of Sales/Services B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_9",
+   "html_id": "p2c39",
+   "printed": "Part IV 9 Gross Income/(Loss) from Operation A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_9",
+   "html_id": "p2c40",
+   "printed": "Part IV 9 Gross Income/(Loss) from Operation B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_10a",
+   "html_id": "p2c43",
+   "printed": "Part IV 10A Ordinary Allowable Itemized Deductions A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_10a",
+   "html_id": "p2c44",
+   "printed": "Part IV 10A Ordinary Allowable Itemized Deductions B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_10b",
+   "html_id": "p2c46",
+   "printed": "Part IV 10B Special Allowable Itemized Deductions A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_10b",
+   "html_id": "p2c47",
+   "printed": "Part IV 10B Special Allowable Itemized Deductions B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_10c",
+   "html_id": "p2c49",
+   "printed": "Part IV 10C NOLCO A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_10c",
+   "html_id": "p2c50",
+   "printed": "Part IV 10C NOLCO B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_10d",
+   "html_id": "p2c52",
+   "printed": "Part IV 10D Total Allowable Itemized Deductions A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_10d",
+   "html_id": "p2c53",
+   "printed": "Part IV 10D Total Allowable Itemized Deductions B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_11",
+   "html_id": "p2c56",
+   "printed": "Part IV 11 Optional Standard Deduction (OSD) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_11",
+   "html_id": "p2c57",
+   "printed": "Part IV 11 Optional Standard Deduction (OSD) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_12",
+   "html_id": "p2c59",
+   "printed": "Part IV 12 Net Income/(Loss) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_12",
+   "html_id": "p2c60",
+   "printed": "Part IV 12 Net Income/(Loss) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_13",
+   "html_id": "p2c62",
+   "printed": "Part IV 13 Add: Other Non-Operating Income A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_13",
+   "html_id": "p2c63",
+   "printed": "Part IV 13 Add: Other Non-Operating Income B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_14",
+   "html_id": "p2c65",
+   "printed": "Part IV 14 Taxable Income-Business A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_14",
+   "html_id": "p2c66",
+   "printed": "Part IV 14 Taxable Income-Business B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_15",
+   "html_id": "p2c68",
+   "printed": "Part IV 15 Total Taxable Income A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_15",
+   "html_id": "p2c69",
+   "printed": "Part IV 15 Total Taxable Income B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_17",
+   "html_id": "p2c82",
+   "printed": "Part IV 17 Tax Due-Special/Preferential Rate or Exempt A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_17",
+   "html_id": "p2c83",
+   "printed": "Part IV 17 Tax Due-Special/Preferential Rate or Exempt B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_18a",
+   "html_id": "p2c85",
+   "printed": "Part IV 18A Total Tax Due (special/preferential rate or exempt) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_18a",
+   "html_id": "p2c86",
+   "printed": "Part IV 18A Total Tax Due (special/preferential rate or exempt) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_18b",
+   "html_id": "p2c88",
+   "printed": "Part IV 18B Total Tax Due (graduated rates) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_18b",
+   "html_id": "p2c89",
+   "printed": "Part IV 18B Total Tax Due (graduated rates) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_19",
+   "html_id": "p2c92",
+   "printed": "Part IV 19 Sales/Revenues/Fees (8%) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_19",
+   "html_id": "p2c93",
+   "printed": "Part IV 19 Sales/Revenues/Fees (8%) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_20",
+   "html_id": "p2c95",
+   "printed": "Part IV 20 Add: Other Non-Operating Income (8%) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_20",
+   "html_id": "p2c96",
+   "printed": "Part IV 20 Add: Other Non-Operating Income (8%) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_21",
+   "html_id": "p2c98",
+   "printed": "Part IV 21 Total Income (8%) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_21",
+   "html_id": "p2c99",
+   "printed": "Part IV 21 Total Income (8%) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_22",
+   "html_id": "p2c101",
+   "printed": "Part IV 22 Less: Allowable reduction (P250,000) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_22",
+   "html_id": "p2c102",
+   "printed": "Part IV 22 Less: Allowable reduction (P250,000) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_23",
+   "html_id": "p2c104",
+   "printed": "Part IV 23 Taxable Income/(Loss) (8%) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_23",
+   "html_id": "p2c105",
+   "printed": "Part IV 23 Taxable Income/(Loss) (8%) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_24",
+   "html_id": "p2c107",
+   "printed": "Part IV 24 Tax Due - Business Income (8%) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_24",
+   "html_id": "p2c108",
+   "printed": "Part IV 24 Tax Due - Business Income (8%) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p4_25",
+   "html_id": "p2c110",
+   "printed": "Part IV 25 Total Tax Due (8%) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p4_25",
+   "html_id": "p2c111",
+   "printed": "Part IV 25 Total Tax Due (8%) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p5_1",
+   "html_id": "p2c114",
+   "printed": "Part V 1 Prior Year’s Excess Credits A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p5_1",
+   "html_id": "p2c115",
+   "printed": "Part V 1 Prior Year’s Excess Credits B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p5_2",
+   "html_id": "p2c117",
+   "printed": "Part V 2 Tax Payments for the First Three Quarters A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p5_2",
+   "html_id": "p2c118",
+   "printed": "Part V 2 Tax Payments for the First Three Quarters B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p5_3",
+   "html_id": "p2c120",
+   "printed": "Part V 3 Creditable Tax Withheld for the First Three Quarters A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p5_3",
+   "html_id": "p2c121",
+   "printed": "Part V 3 Creditable Tax Withheld for the First Three Quarters B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p5_4",
+   "html_id": "p2c123",
+   "printed": "Part V 4 Creditable Tax Withheld per 2307/1606 for the 4th Quarter A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p5_4",
+   "html_id": "p2c124",
+   "printed": "Part V 4 Creditable Tax Withheld per 2307/1606 for the 4th Quarter B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p5_5",
+   "html_id": "p2c126",
+   "printed": "Part V 5 Creditable Tax Withheld per BIR Form No. 2316 A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p5_5",
+   "html_id": "p2c127",
+   "printed": "Part V 5 Creditable Tax Withheld per BIR Form No. 2316 B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p5_6",
+   "html_id": "p2c129",
+   "printed": "Part V 6 Tax Paid in Return Previously Filed A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p5_6",
+   "html_id": "p2c130",
+   "printed": "Part V 6 Tax Paid in Return Previously Filed B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p5_7",
+   "html_id": "p2c132",
+   "printed": "Part V 7 Foreign Tax Credits A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p5_7",
+   "html_id": "p2c133",
+   "printed": "Part V 7 Foreign Tax Credits B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p5_8",
+   "html_id": "p2c135",
+   "printed": "Part V 8 Special Tax Credits A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p5_8",
+   "html_id": "p2c136",
+   "printed": "Part V 8 Special Tax Credits B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p5_9",
+   "html_id": "p2c138",
+   "printed": "Part V 9 Other Tax Credits/Payments A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p5_9",
+   "html_id": "p2c139",
+   "printed": "Part V 9 Other Tax Credits/Payments B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p5_10",
+   "html_id": "p2c141",
+   "printed": "Part V 10 Total Tax Credits/Payments A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p5_10",
+   "html_id": "p2c142",
+   "printed": "Part V 10 Total Tax Credits/Payments B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_p6_1",
+   "html_id": "p2c145",
+   "printed": "Part VI 1 Total Tax Relief Availment A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_p6_1",
+   "html_id": "p2c146",
+   "printed": "Part VI 1 Total Tax Relief Availment B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_rate_whole",
+   "html_id": "p2c72",
+   "printed": "Part IV 16 Tax Rate (whole percent) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:tp_rate_fraction",
+   "html_id": "p2c74",
+   "printed": "Part IV 16 Tax Rate (decimals) A. Taxpayer/Filer",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_rate_whole",
+   "html_id": "p2c77",
+   "printed": "Part IV 16 Tax Rate (whole percent) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:sp_rate_fraction",
+   "html_id": "p2c79",
+   "printed": "Part IV 16 Tax Rate (decimals) B. Spouse",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:foreign_tax_credits_description",
+   "html_id": "p2c177",
+   "printed": "Part V 7 Foreign Tax Credits (specify)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:other_credits_description",
+   "html_id": "p2c179",
+   "printed": "Part V 9 Other Tax Credits/Payments (specify)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  }
+ ],
+ "money_joins": [],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1701MS:txtAmendedYesNo2",
+   "html_id": "p1c8",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtAmendedNoNo2",
+   "html_id": "p1c9",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtReturnPeriodYesNo3",
+   "html_id": "p1c10",
+   "printed": "3 Short Period Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtReturnPeriodNoNo3",
+   "html_id": "p1c11",
+   "printed": "3 Short Period Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtIfMarriedJointlyNo5",
+   "html_id": "p1c15",
+   "printed": "5 Jointly",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtIfMarriedSeparatelyNo5",
+   "html_id": "p1c16",
+   "printed": "5 Separately",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtIfMarriedNotApplicableNo5",
+   "html_id": "p1c17",
+   "printed": "5 Not applicable, spouse has no income",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo11a",
+   "html_id": "p1c43",
+   "printed": "11 Income from Business A. Taxpayer/Filer",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo11b",
+   "html_id": "p1c44",
+   "printed": "11 Mixed Income A. Taxpayer/Filer",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo11c",
+   "html_id": "p1c47",
+   "printed": "11 Income from Profession A. Taxpayer/Filer",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo11a1",
+   "html_id": "p1c42",
+   "printed": "11 Income from Business B. Spouse",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo11b1",
+   "html_id": "p1c41",
+   "printed": "11 Mixed Income B. Spouse",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo11c1",
+   "html_id": "p1c45",
+   "printed": "11 Income from Profession B. Spouse",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo11d1",
+   "html_id": "p1c46",
+   "printed": "11 Compensation Income B. Spouse",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo12b",
+   "html_id": "p1c52",
+   "printed": "12 Graduated Income Tax Rates A. Taxpayer/Filer",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo12c",
+   "html_id": "p1c53",
+   "printed": "12 8% Income Tax Rate A. Taxpayer/Filer",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo12d",
+   "html_id": "p1c56",
+   "printed": "12 Exempt from Income Tax A. Taxpayer/Filer",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo12e",
+   "html_id": "p1c57",
+   "printed": "12 Special/Preferential Rate A. Taxpayer/Filer",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo12b1",
+   "html_id": "p1c54",
+   "printed": "12 Graduated Income Tax Rates B. Spouse",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo12c1",
+   "html_id": "p1c55",
+   "printed": "12 8% Income Tax Rate B. Spouse",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo12d1",
+   "html_id": "p1c58",
+   "printed": "12 Exempt from Income Tax B. Spouse",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo12e1",
+   "html_id": "p1c59",
+   "printed": "12 Special/Preferential Rate B. Spouse",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo17a",
+   "html_id": "p1c79",
+   "printed": "17 Itemized Deduction A. Taxpayer/Filer",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtTaxpayerNo17b",
+   "html_id": "p1c81",
+   "printed": "17 Optional Standard Deduction A. Taxpayer/Filer",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtSpouseNo17a",
+   "html_id": "p1c80",
+   "printed": "17 Itemized Deduction B. Spouse",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtSpouseNo17b",
+   "html_id": "p1c82",
+   "printed": "17 Optional Standard Deduction B. Spouse",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtToBeRefunded",
+   "html_id": "p1c144",
+   "printed": "31 To be refunded",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtToBeIssued",
+   "html_id": "p1c145",
+   "printed": "31 To be issued a Tax Credit Certificate",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:txtToBeCarried",
+   "html_id": "p1c146",
+   "printed": "31 To be carried over as tax credit",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1701MS:perjuryClause",
+   "html_id": "p1c153",
+   "printed": "32 Agree (perjury declaration)",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm1701MS:txtPg1BranchCode",
+    "frm1701MS:txtPg1TIN1",
+    "frm1701MS:txtPg1TIN2",
+    "frm1701MS:txtPg1TIN3",
+    "frm1701MS:txtPg2BranchCode",
+    "frm1701MS:txtPg2TIN1",
+    "frm1701MS:txtPg2TIN2",
+    "frm1701MS:txtPg2TIN3"
+   ],
+   "reason": "prints from derived:tp_tin (item 6) / derived:tin_digits (page 2 header, nine inputs, branch 00000 preprinted) (the print map shapes the TIN for its combs for the sheet)"
+  },
+  {
+   "writer_key": "frm1701MS:Pg2TaxPayer",
+   "reason": "prints from derived:page2_name (the print map shapes the page 2 header name for the sheet)"
+  },
+  {
+   "writer_key": "frm1701MS:civilStatus",
+   "reason": "select value of the page; Item 11 prints from its civil-status boxes, which the field map writes as radios"
+  },
+  {
+   "writer_keys": [
+    "frm1701MS:addForeignTaxCredits",
+    "frm1701MS:addOtherCreditsPayments"
+   ],
+   "reason": "prints from derived:foreign_tax_credits_description / derived:other_credits_description (the print map shapes the Part V items 7 and 9 (specify) text for the sheet)"
+  },
+  {
+   "writer_key": "frm1701MS:txtPg1I33NumberOfAttachments",
+   "reason": "the upload always writes 00 (the model holds no attachment count); the item 35 boxes stay blank"
+  },
+  {
+   "writer_keys": [
+    "frm1701MS:txtCurrentPage",
+    "frm1701MS:txtMaxPage"
+   ],
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  },
+  {
+   "writer_keys": [
+    "frm1701MS:TotalTaxDueCompensationASP",
+    "frm1701MS:TotalTaxDueCompensationATP",
+    "frm1701MS:TotalTaxDueCompensationBSP",
+    "frm1701MS:TotalTaxDueCompensationBTP",
+    "frm1701MS:totalTaxReliefAvailmentA",
+    "frm1701MS:totalTaxReliefAvailmentB",
+    "frm1701MS:txtAggregateAmountPayable30a",
+    "frm1701MS:txtAllowableItemizedDeductionsNo10a",
+    "frm1701MS:txtAllowableItemizedDeductionsNo10aSpouse",
+    "frm1701MS:txtAmountPayableNo27a",
+    "frm1701MS:txtAmountPayableNo27b",
+    "frm1701MS:txtCompensationBusinessNo15a",
+    "frm1701MS:txtCompensationBusinessNo15b",
+    "frm1701MS:txtCompensationBusinessNo25a",
+    "frm1701MS:txtCompensationBusinessNo25b",
+    "frm1701MS:txtCompromise28a",
+    "frm1701MS:txtCompromise28b",
+    "frm1701MS:txtCostofSalesNo8a",
+    "frm1701MS:txtCostofSalesNo8b",
+    "frm1701MS:txtCreditableForm2316No5a",
+    "frm1701MS:txtCreditableForm2316No5b",
+    "frm1701MS:txtCreditableFourthQuarterNo4a",
+    "frm1701MS:txtCreditableFourthQuarterNo4b",
+    "frm1701MS:txtCreditableTaxNo3a",
+    "frm1701MS:txtCreditableTaxNo3b",
+    "frm1701MS:txtEmaila",
+    "frm1701MS:txtForeignTaxCreditsNo7a",
+    "frm1701MS:txtForeignTaxCreditsNo7b",
+    "frm1701MS:txtGrossIncomeNo9a",
+    "frm1701MS:txtGrossIncomeNo9b",
+    "frm1701MS:txtGrossa",
+    "frm1701MS:txtGrossb",
+    "frm1701MS:txtIncomeTaxDueNo19a",
+    "frm1701MS:txtIncomeTaxDueNo19b",
+    "frm1701MS:txtIncomeTaxRegularNo22a",
+    "frm1701MS:txtIncomeTaxRegularNo22b",
+    "frm1701MS:txtInterestNo28a",
+    "frm1701MS:txtInterestNo28b",
+    "frm1701MS:txtLess22A",
+    "frm1701MS:txtLess22B",
+    "frm1701MS:txtLessNonTaxablea",
+    "frm1701MS:txtLessNonTaxableb",
+    "frm1701MS:txtMonthNo1",
+    "frm1701MS:txtNetIncomeLossNo12a",
+    "frm1701MS:txtNetIncomeLossNo12b",
+    "frm1701MS:txtNetOperatingLossNo10a",
+    "frm1701MS:txtNetOperatingLossNo10b",
+    "frm1701MS:txtNetSpecialRateNo21a",
+    "frm1701MS:txtNetSpecialRateNo21b",
+    "frm1701MS:txtNonOperatingIncomeNo13a",
+    "frm1701MS:txtNonOperatingIncomeNo13b",
+    "frm1701MS:txtOptionalDeductionNo11a",
+    "frm1701MS:txtOptionalDeductionNo11b",
+    "frm1701MS:txtOtherCreditsPaymentsNo9a",
+    "frm1701MS:txtOtherCreditsPaymentsNo9b",
+    "frm1701MS:txtOtherNonOperatingIncomeNo20a",
+    "frm1701MS:txtOtherNonOperatingIncomeNo20b",
+    "frm1701MS:txtPriorYearsNo1a",
+    "frm1701MS:txtPriorYearsNo1b",
+    "frm1701MS:txtRDOCodea",
+    "frm1701MS:txtSalesReturnsNo6a",
+    "frm1701MS:txtSalesReturnsNo6b",
+    "frm1701MS:txtSalesRevenueNo5a",
+    "frm1701MS:txtSalesRevenueNo5b",
+    "frm1701MS:txtSalesRevenuesFeesANo19a",
+    "frm1701MS:txtSalesRevenuesFeesANo19b",
+    "frm1701MS:txtShareOfOtherNo20a",
+    "frm1701MS:txtShareOfOtherNo20b",
+    "frm1701MS:txtSpecialAllowableNo10a",
+    "frm1701MS:txtSpecialAllowableNo10b",
+    "frm1701MS:txtSpecialTaxCreditsNo8a",
+    "frm1701MS:txtSpecialTaxCreditsNo8b",
+    "frm1701MS:txtSurchangeNo28a",
+    "frm1701MS:txtSurchangeNo28b",
+    "frm1701MS:txtTaxDueAllowedNo26a",
+    "frm1701MS:txtTaxDueAllowedNo26b",
+    "frm1701MS:txtTaxDueBusinessIncome24A",
+    "frm1701MS:txtTaxDueBusinessIncome24B",
+    "frm1701MS:txtTaxDueSpeciala",
+    "frm1701MS:txtTaxDueSpecialb",
+    "frm1701MS:txtTaxPaidPreviouslyFiledNo6a",
+    "frm1701MS:txtTaxPaidPreviouslyFiledNo6b",
+    "frm1701MS:txtTaxPayableNo25a",
+    "frm1701MS:txtTaxPayableNo25b",
+    "frm1701MS:txtTaxPaymentsNo2a",
+    "frm1701MS:txtTaxPaymentsNo2b",
+    "frm1701MS:txtTaxRatea",
+    "frm1701MS:txtTaxRateb",
+    "frm1701MS:txtTaxableCompensationIncomeNo7a",
+    "frm1701MS:txtTaxableCompensationIncomeNo7b",
+    "frm1701MS:txtTaxableCompensationIncomea",
+    "frm1701MS:txtTaxableCompensationIncomeb",
+    "frm1701MS:txtTaxableIncomeBusinesNo14a",
+    "frm1701MS:txtTaxableIncomeBusinesNo14b",
+    "frm1701MS:txtTaxableIncomeLoss23A",
+    "frm1701MS:txtTaxableIncomeLoss23B",
+    "frm1701MS:txtTaxpayerNo4a",
+    "frm1701MS:txtTaxpayerNo4b",
+    "frm1701MS:txtTelNum10a",
+    "frm1701MS:txtTotalAllowableItemixedDeductionsNo10a",
+    "frm1701MS:txtTotalAllowableItemixedDeductionsNo10b",
+    "frm1701MS:txtTotalAmountPayableNo29a",
+    "frm1701MS:txtTotalAmountPayableNo29b",
+    "frm1701MS:txtTotalIncomeNo21a",
+    "frm1701MS:txtTotalIncomeNo21b",
+    "frm1701MS:txtTotalIncomeTaxDueNo23a",
+    "frm1701MS:txtTotalIncomeTaxDueNo23b",
+    "frm1701MS:txtTotalPenaltiesNo28a",
+    "frm1701MS:txtTotalPenaltiesNo28b",
+    "frm1701MS:txtTotalTaxCreditsPartIINo24a",
+    "frm1701MS:txtTotalTaxCreditsPartIINo24b",
+    "frm1701MS:txtTotalTaxCreditsPaymentsPartVNo10a",
+    "frm1701MS:txtTotalTaxCreditsPaymentsPartVNo10b",
+    "frm1701MS:txtYearNo1"
+   ],
+   "reason": "upload control of a value the sheet prints from a derived: key of to_print_field_map (identity tp_*/sp_*, the period, Parts II, IV, V and VI amounts as whole pesos per column, Item 31 aggregate): the official submit loop writes only the radios and the name, so the print recomputes every other value from the draft"
+  },
+  {
+   "writer_keys": [
+    "frm1701MS:authorizeRepresentative",
+    "frm1701MS:printedName"
+   ],
+   "reason": "signatory printed name / authorized representative, uploaded as typed; the signature block (Printed Name and Signature of Taxpayer/Authorized Representative) has no fillable cell"
+  }
+ ]
+}

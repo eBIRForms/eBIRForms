@@ -1,0 +1,1333 @@
+{
+ "form_id": "2200an-v2018",
+ "html_slug": "2200an-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page text layer) sits directly left of or just above it. Booleans take xbox_joins: the box immediately left of the printed option. Part III items 16-24 pair the 11-slot peso comb with the 2-slot centavo comb directly right (money_joins). Part IV: the layout keys are numbered 24-27 and print as items 25-28; they are matched to the printed rows by their captions (Cash/Bank Debit Memo, Check, Tax Debit Memo, Others) and their Drawee Bank/Number/Amount columns. Schedule 1A/1B: each printed ATC code row (XG021 to XG120, plus the two Others rows) maps its five cells in print order to Exempt1, Taxable1, Exempt2, Taxable2, TaxDue; the Others rows also take the name and tax-rate cells. Region/province/city keys and lstSpecialTax hold option codes (default 00 or a code), not printable text, and stay blank. The second address line has no layout key and stays blank. Items 10 and 11 print the region, province and city names from derived:line: keys of to_print_field_map (the upload keeps the codes); a derived:line: value or an email wider than its comb prints whole on one line across the comb. date_joins split each payment-row date (MM/DD/YYYY) across the MM, DD and YYYY combs of the row whose Agency/Number/Amount joins share its suffix.",
+ "joins": [
+  {
+   "writer_key": "frm2200ANv2018:txtMonth",
+   "html_id": "p1c4",
+   "printed": "1 Date (MM/DD/YYYY), month",
+   "reason": "first of three combs under the item 1 Date caption"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtDate",
+   "html_id": "p1c6",
+   "printed": "1 Date (MM/DD/YYYY), day",
+   "reason": "middle comb under the item 1 Date caption"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtYear",
+   "html_id": "p1c8",
+   "printed": "1 Date (MM/DD/YYYY), year",
+   "reason": "last comb under the item 1 Date caption"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtSheets",
+   "html_id": "p1c11",
+   "printed": "3 Number of Sheet/s Attached",
+   "reason": "caption left of the 2-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtTIN1",
+   "html_id": "p1c16",
+   "printed": "Taxpayer Identification Number (TIN), part 1",
+   "reason": "caption left of the 3-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtTIN2",
+   "html_id": "p1c18",
+   "printed": "Taxpayer Identification Number (TIN), part 2",
+   "reason": "comb after the first dash"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtTIN3",
+   "html_id": "p1c20",
+   "printed": "Taxpayer Identification Number (TIN), part 3",
+   "reason": "comb after the second dash"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtBranchCode",
+   "html_id": "p1c22",
+   "printed": "Taxpayer Identification Number (TIN), branch",
+   "reason": "5-slot branch comb after the third dash"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtRDOCode",
+   "html_id": "p1c24",
+   "printed": "5 RDO Code",
+   "reason": "caption left of the 3-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtTaxpayerName",
+   "html_id": "p1c26",
+   "printed": "6 Taxpayer's Name",
+   "reason": "caption above the 40-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtAddress",
+   "html_id": "p1c28",
+   "printed": "7 Registered Address",
+   "reason": "caption above the 40-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtZipCode",
+   "html_id": "p1c31",
+   "printed": "7A ZIP Code",
+   "reason": "caption left of the 4-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtTelNum",
+   "html_id": "p1c34",
+   "printed": "8 Contact Number (Landline/Cellphone No.)",
+   "reason": "caption above the 12-slot comb"
+  },
+  {
+   "writer_key": "txtEmail",
+   "html_id": "p1c35",
+   "printed": "9 Email Address",
+   "reason": "caption above and left of the 28-slot comb"
+  },
+  {
+   "writer_key": "derived:line:item10_region",
+   "html_id": "p1c40",
+   "printed": "10 Place of Production — Region",
+   "reason": "print-only name derived by the model (to_print_field_map); the upload keeps the select code; a name wider than the comb prints whole on one line"
+  },
+  {
+   "writer_key": "derived:line:item10_province",
+   "html_id": "p1c41",
+   "printed": "10 Place of Production — Province",
+   "reason": "print-only name derived by the model (to_print_field_map); the upload keeps the select code; a name wider than the comb prints whole on one line"
+  },
+  {
+   "writer_key": "derived:line:item10_city",
+   "html_id": "p1c42",
+   "printed": "10 Place of Production — City/Municipality",
+   "reason": "print-only name derived by the model (to_print_field_map); the upload keeps the select code; a name wider than the comb prints whole on one line"
+  },
+  {
+   "writer_key": "derived:line:item11_region",
+   "html_id": "p1c47",
+   "printed": "11 Place of Removal — Region",
+   "reason": "print-only name derived by the model (to_print_field_map); the upload keeps the select code; a name wider than the comb prints whole on one line"
+  },
+  {
+   "writer_key": "derived:line:item11_province",
+   "html_id": "p1c48",
+   "printed": "11 Place of Removal — Province",
+   "reason": "print-only name derived by the model (to_print_field_map); the upload keeps the select code; a name wider than the comb prints whole on one line"
+  },
+  {
+   "writer_key": "derived:line:item11_city",
+   "html_id": "p1c49",
+   "printed": "11 Place of Removal — City/Municipality",
+   "reason": "print-only name derived by the model (to_print_field_map); the upload keeps the select code; a name wider than the comb prints whole on one line"
+  },
+  {
+   "writer_key": "frm2200ANv2018:lstSpecialTax",
+   "html_id": "p1c52",
+   "printed": "12A If yes, specify",
+   "reason": "the 12A text input (maxlength 20) prints as typed"
+  },
+  {
+   "writer_key": "frm2200ANv2018:MannerOfPaymentOthers",
+   "html_id": "p1c60",
+   "printed": "Other Similar Schemes (specify)",
+   "reason": "caption left of the 27-slot comb"
+  },
+  {
+   "writer_key": "txtTaxAgentNo",
+   "html_id": "p1c133",
+   "printed": "Tax Agent Accreditation No. / (Indicate Title/Designation and TIN)",
+   "reason": "caption left of the text cell"
+  },
+  {
+   "writer_key": "txtDateIssue",
+   "html_id": "p1c135",
+   "printed": "Date of Issue",
+   "reason": "caption left of the text cell"
+  },
+  {
+   "writer_key": "txtDateExpiry",
+   "html_id": "p1c137",
+   "printed": "Date of Expiry",
+   "reason": "caption left of the text cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtAgency24",
+   "html_id": "p1c145",
+   "printed": "25 Cash/Bank Debit Memo, Drawee Bank/Agency",
+   "reason": "Drawee Bank/Agency column, cash row, 5-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtNumber24",
+   "html_id": "p1c146",
+   "printed": "25 Cash/Bank Debit Memo, Number",
+   "reason": "Number column, cash row, 6-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtAgency25",
+   "html_id": "p1c154",
+   "printed": "26 Check, Drawee Bank/Agency",
+   "reason": "Drawee Bank/Agency column, check row, 5-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtNumber25",
+   "html_id": "p1c155",
+   "printed": "26 Check, Number",
+   "reason": "Number column, check row, 6-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtNumber26",
+   "html_id": "p1c164",
+   "printed": "27 Tax Debit Memo, Number",
+   "reason": "Number column, tax debit row, 6-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtParticular27",
+   "html_id": "p1c172",
+   "printed": "28 Others (specify), particulars",
+   "reason": "caption \"(specify)\" above the 7-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtAgency27",
+   "html_id": "p1c173",
+   "printed": "28 Others, Drawee Bank/Agency",
+   "reason": "Drawee Bank/Agency column, others row, 5-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtNumber27",
+   "html_id": "p1c174",
+   "printed": "28 Others, Number",
+   "reason": "Number column, others row, 6-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtPage2Taxpayer",
+   "html_id": "p2c5",
+   "printed": "Taxpayer's Name (page 2 header)",
+   "reason": "caption above the 26-slot comb"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG021Exempt1",
+   "html_id": "p2c23",
+   "printed": "ATC XG021 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG021Taxable1",
+   "html_id": "p2c24",
+   "printed": "ATC XG021 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG021Exempt2",
+   "html_id": "p2c25",
+   "printed": "ATC XG021 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG021Taxable2",
+   "html_id": "p2c26",
+   "printed": "ATC XG021 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG021TaxDue",
+   "html_id": "p2c27",
+   "printed": "ATC XG021 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG022Exempt1",
+   "html_id": "p2c31",
+   "printed": "ATC XG022 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG022Taxable1",
+   "html_id": "p2c32",
+   "printed": "ATC XG022 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG022Exempt2",
+   "html_id": "p2c33",
+   "printed": "ATC XG022 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG022Taxable2",
+   "html_id": "p2c34",
+   "printed": "ATC XG022 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG022TaxDue",
+   "html_id": "p2c35",
+   "printed": "ATC XG022 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG023Exempt1",
+   "html_id": "p2c39",
+   "printed": "ATC XG023 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG023Taxable1",
+   "html_id": "p2c40",
+   "printed": "ATC XG023 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG023Exempt2",
+   "html_id": "p2c41",
+   "printed": "ATC XG023 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG023Taxable2",
+   "html_id": "p2c42",
+   "printed": "ATC XG023 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG023TaxDue",
+   "html_id": "p2c43",
+   "printed": "ATC XG023 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG024Exempt1",
+   "html_id": "p2c47",
+   "printed": "ATC XG024 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG024Taxable1",
+   "html_id": "p2c48",
+   "printed": "ATC XG024 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG024Exempt2",
+   "html_id": "p2c49",
+   "printed": "ATC XG024 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG024Taxable2",
+   "html_id": "p2c50",
+   "printed": "ATC XG024 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG024TaxDue",
+   "html_id": "p2c51",
+   "printed": "ATC XG024 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG031Exempt1",
+   "html_id": "p2c56",
+   "printed": "ATC XG031 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG031Taxable1",
+   "html_id": "p2c57",
+   "printed": "ATC XG031 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG031Exempt2",
+   "html_id": "p2c58",
+   "printed": "ATC XG031 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG031Taxable2",
+   "html_id": "p2c59",
+   "printed": "ATC XG031 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG031TaxDue",
+   "html_id": "p2c60",
+   "printed": "ATC XG031 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG032Exempt1",
+   "html_id": "p2c64",
+   "printed": "ATC XG032 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG032Taxable1",
+   "html_id": "p2c65",
+   "printed": "ATC XG032 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG032Exempt2",
+   "html_id": "p2c66",
+   "printed": "ATC XG032 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG032Taxable2",
+   "html_id": "p2c67",
+   "printed": "ATC XG032 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG032TaxDue",
+   "html_id": "p2c68",
+   "printed": "ATC XG032 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG033Exempt1",
+   "html_id": "p2c72",
+   "printed": "ATC XG033 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG033Taxable1",
+   "html_id": "p2c73",
+   "printed": "ATC XG033 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG033Exempt2",
+   "html_id": "p2c74",
+   "printed": "ATC XG033 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG033Taxable2",
+   "html_id": "p2c75",
+   "printed": "ATC XG033 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG033TaxDue",
+   "html_id": "p2c76",
+   "printed": "ATC XG033 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG034Exempt1",
+   "html_id": "p2c80",
+   "printed": "ATC XG034 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG034Taxable1",
+   "html_id": "p2c81",
+   "printed": "ATC XG034 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG034Exempt2",
+   "html_id": "p2c82",
+   "printed": "ATC XG034 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG034Taxable2",
+   "html_id": "p2c83",
+   "printed": "ATC XG034 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG034TaxDue",
+   "html_id": "p2c84",
+   "printed": "ATC XG034 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG055Exempt1",
+   "html_id": "p2c88",
+   "printed": "ATC XG055 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG055Taxable1",
+   "html_id": "p2c89",
+   "printed": "ATC XG055 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG055Exempt2",
+   "html_id": "p2c90",
+   "printed": "ATC XG055 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG055Taxable2",
+   "html_id": "p2c91",
+   "printed": "ATC XG055 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG055TaxDue",
+   "html_id": "p2c92",
+   "printed": "ATC XG055 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG041Exempt1",
+   "html_id": "p2c97",
+   "printed": "ATC XG041 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG041Taxable1",
+   "html_id": "p2c98",
+   "printed": "ATC XG041 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG041Exempt2",
+   "html_id": "p2c99",
+   "printed": "ATC XG041 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG041Taxable2",
+   "html_id": "p2c100",
+   "printed": "ATC XG041 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG041TaxDue",
+   "html_id": "p2c101",
+   "printed": "ATC XG041 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG042Exempt1",
+   "html_id": "p2c105",
+   "printed": "ATC XG042 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG042Taxable1",
+   "html_id": "p2c106",
+   "printed": "ATC XG042 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG042Exempt2",
+   "html_id": "p2c107",
+   "printed": "ATC XG042 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG042Taxable2",
+   "html_id": "p2c108",
+   "printed": "ATC XG042 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG042TaxDue",
+   "html_id": "p2c109",
+   "printed": "ATC XG042 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG043Exempt1",
+   "html_id": "p2c113",
+   "printed": "ATC XG043 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG043Taxable1",
+   "html_id": "p2c114",
+   "printed": "ATC XG043 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG043Exempt2",
+   "html_id": "p2c115",
+   "printed": "ATC XG043 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG043Taxable2",
+   "html_id": "p2c116",
+   "printed": "ATC XG043 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG043TaxDue",
+   "html_id": "p2c117",
+   "printed": "ATC XG043 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG044Exempt1",
+   "html_id": "p2c121",
+   "printed": "ATC XG044 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG044Taxable1",
+   "html_id": "p2c122",
+   "printed": "ATC XG044 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG044Exempt2",
+   "html_id": "p2c123",
+   "printed": "ATC XG044 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG044Taxable2",
+   "html_id": "p2c124",
+   "printed": "ATC XG044 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG044TaxDue",
+   "html_id": "p2c125",
+   "printed": "ATC XG044 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG065Exempt1",
+   "html_id": "p2c130",
+   "printed": "ATC XG065 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG065Taxable1",
+   "html_id": "p2c131",
+   "printed": "ATC XG065 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG065Exempt2",
+   "html_id": "p2c132",
+   "printed": "ATC XG065 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG065Taxable2",
+   "html_id": "p2c133",
+   "printed": "ATC XG065 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG065TaxDue",
+   "html_id": "p2c134",
+   "printed": "ATC XG065 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG071Exempt1",
+   "html_id": "p2c138",
+   "printed": "ATC XG071 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG071Taxable1",
+   "html_id": "p2c139",
+   "printed": "ATC XG071 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG071Exempt2",
+   "html_id": "p2c140",
+   "printed": "ATC XG071 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG071Taxable2",
+   "html_id": "p2c141",
+   "printed": "ATC XG071 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG071TaxDue",
+   "html_id": "p2c142",
+   "printed": "ATC XG071 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG072Exempt1",
+   "html_id": "p2c146",
+   "printed": "ATC XG072 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG072Taxable1",
+   "html_id": "p2c147",
+   "printed": "ATC XG072 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG072Exempt2",
+   "html_id": "p2c148",
+   "printed": "ATC XG072 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG072Taxable2",
+   "html_id": "p2c149",
+   "printed": "ATC XG072 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG072TaxDue",
+   "html_id": "p2c150",
+   "printed": "ATC XG072 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG073Exempt1",
+   "html_id": "p2c154",
+   "printed": "ATC XG073 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG073Taxable1",
+   "html_id": "p2c155",
+   "printed": "ATC XG073 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG073Exempt2",
+   "html_id": "p2c156",
+   "printed": "ATC XG073 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG073Taxable2",
+   "html_id": "p2c157",
+   "printed": "ATC XG073 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG073TaxDue",
+   "html_id": "p2c158",
+   "printed": "ATC XG073 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG068Exempt1",
+   "html_id": "p2c162",
+   "printed": "ATC XG068 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG068Taxable1",
+   "html_id": "p2c163",
+   "printed": "ATC XG068 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG068Exempt2",
+   "html_id": "p2c164",
+   "printed": "ATC XG068 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG068Taxable2",
+   "html_id": "p2c165",
+   "printed": "ATC XG068 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG068TaxDue",
+   "html_id": "p2c166",
+   "printed": "ATC XG068 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG061Exempt1",
+   "html_id": "p2c171",
+   "printed": "ATC XG061 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG061Taxable1",
+   "html_id": "p2c172",
+   "printed": "ATC XG061 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG061Exempt2",
+   "html_id": "p2c173",
+   "printed": "ATC XG061 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG061Taxable2",
+   "html_id": "p2c174",
+   "printed": "ATC XG061 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG061TaxDue",
+   "html_id": "p2c175",
+   "printed": "ATC XG061 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG062Exempt1",
+   "html_id": "p2c179",
+   "printed": "ATC XG062 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG062Taxable1",
+   "html_id": "p2c180",
+   "printed": "ATC XG062 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG062Exempt2",
+   "html_id": "p2c181",
+   "printed": "ATC XG062 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG062Taxable2",
+   "html_id": "p2c182",
+   "printed": "ATC XG062 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG062TaxDue",
+   "html_id": "p2c183",
+   "printed": "ATC XG062 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG063Exempt1",
+   "html_id": "p2c187",
+   "printed": "ATC XG063 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG063Taxable1",
+   "html_id": "p2c188",
+   "printed": "ATC XG063 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG063Exempt2",
+   "html_id": "p2c189",
+   "printed": "ATC XG063 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG063Taxable2",
+   "html_id": "p2c190",
+   "printed": "ATC XG063 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG063TaxDue",
+   "html_id": "p2c191",
+   "printed": "ATC XG063 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG064Exempt1",
+   "html_id": "p2c195",
+   "printed": "ATC XG064 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG064Taxable1",
+   "html_id": "p2c196",
+   "printed": "ATC XG064 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG064Exempt2",
+   "html_id": "p2c197",
+   "printed": "ATC XG064 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG064Taxable2",
+   "html_id": "p2c198",
+   "printed": "ATC XG064 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG064TaxDue",
+   "html_id": "p2c199",
+   "printed": "ATC XG064 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG100Exempt1",
+   "html_id": "p2c217",
+   "printed": "ATC XG100 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG100Taxable1",
+   "html_id": "p2c218",
+   "printed": "ATC XG100 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG100Exempt2",
+   "html_id": "p2c219",
+   "printed": "ATC XG100 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG100Taxable2",
+   "html_id": "p2c220",
+   "printed": "ATC XG100 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG100TaxDue",
+   "html_id": "p2c221",
+   "printed": "ATC XG100 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG110Exempt1",
+   "html_id": "p2c225",
+   "printed": "ATC XG110 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG110Taxable1",
+   "html_id": "p2c226",
+   "printed": "ATC XG110 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG110Exempt2",
+   "html_id": "p2c227",
+   "printed": "ATC XG110 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG110Taxable2",
+   "html_id": "p2c228",
+   "printed": "ATC XG110 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG110TaxDue",
+   "html_id": "p2c229",
+   "printed": "ATC XG110 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG120Exempt1",
+   "html_id": "p2c233",
+   "printed": "ATC XG120 row, Exempt1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG120Taxable1",
+   "html_id": "p2c234",
+   "printed": "ATC XG120 row, Taxable1",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG120Exempt2",
+   "html_id": "p2c235",
+   "printed": "ATC XG120 row, Exempt2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG120Taxable2",
+   "html_id": "p2c236",
+   "printed": "ATC XG120 row, Taxable2",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXG120TaxDue",
+   "html_id": "p2c237",
+   "printed": "ATC XG120 row, TaxDue",
+   "reason": "printed ATC code on the row and the column position (x order) of the cell"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers1Name",
+   "html_id": "p2c246",
+   "printed": "Others (specify), name of item/product",
+   "reason": "Name of Item/Product column, others row 1"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers1Tax",
+   "html_id": "p2c247",
+   "printed": "Others, Tax Rate",
+   "reason": "Tax Rate column, others row 1"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers1Exempt1",
+   "html_id": "p2c248",
+   "printed": "Others row 1, Exempt/Underbond",
+   "reason": "column 1 of the Schedule 1B others row 1"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers1Taxable1",
+   "html_id": "p2c249",
+   "printed": "Others row 1, Taxable",
+   "reason": "column 2 of the Schedule 1B others row 1"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers1Exempt2",
+   "html_id": "p2c250",
+   "printed": "Others row 1, Exempt/Underbond",
+   "reason": "column 3 of the Schedule 1B others row 1"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers1Taxable2",
+   "html_id": "p2c251",
+   "printed": "Others row 1, Taxable",
+   "reason": "column 4 of the Schedule 1B others row 1"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers1TaxDue",
+   "html_id": "p2c252",
+   "printed": "Others row 1, Due",
+   "reason": "Excise Tax Due column of the others row 1"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers2Name",
+   "html_id": "p2c254",
+   "printed": "Others (specify), name of item/product",
+   "reason": "Name of Item/Product column, others row 2"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers2Tax",
+   "html_id": "p2c255",
+   "printed": "Others, Tax Rate",
+   "reason": "Tax Rate column, others row 2"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers2Exempt1",
+   "html_id": "p2c256",
+   "printed": "Others row 2, Exempt/Underbond",
+   "reason": "column 1 of the Schedule 1B others row 2"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers2Taxable1",
+   "html_id": "p2c257",
+   "printed": "Others row 2, Taxable",
+   "reason": "column 2 of the Schedule 1B others row 2"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers2Exempt2",
+   "html_id": "p2c258",
+   "printed": "Others row 2, Exempt/Underbond",
+   "reason": "column 3 of the Schedule 1B others row 2"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers2Taxable2",
+   "html_id": "p2c259",
+   "printed": "Others row 2, Taxable",
+   "reason": "column 4 of the Schedule 1B others row 2"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers2TaxDue",
+   "html_id": "p2c260",
+   "printed": "Others row 2, Due",
+   "reason": "Excise Tax Due column of the others row 2"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtBasicExciseTaxDue",
+   "html_id": "p2c201",
+   "printed": "BASIC EXCISE TAX DUE - AUTOMOBILES (To Schedule 1C)",
+   "reason": "caption left of the 58-wide cell on the same row"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtBasicExciseTaxDueNonEssentialGoods",
+   "html_id": "p2c262",
+   "printed": "BASIC EXCISE TAX DUE - NON-ESSENTIAL GOODS (To Schedule 1C)",
+   "reason": "caption left of the cell on the same row"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtSchedule1C",
+   "html_id": "p2c264",
+   "printed": "Schedule 1C total (Sum of Schedule 1A and 1B) (To Part III, Item 16)",
+   "reason": "caption left of the cell on the same row"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers1",
+   "html_id": "p2c245",
+   "printed": "Schedule 1B Others (specify) row 1, ATC",
+   "reason": "the ATC box at the left of the others row 1 (the XG prefix is printed inside it); left of the Name of Item/Product column"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtXGOthers2",
+   "html_id": "p2c253",
+   "printed": "Schedule 1B Others (specify) row 2, ATC",
+   "reason": "the ATC box at the left of the others row 2 (the XG prefix is printed inside it); left of the Name of Item/Product column"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c4",
+   "printed": "Page 2 TIN",
+   "reason": "the 14-slot comb under the page 2 TIN caption: TIN then branch as digits (the upload's txtPage2TIN is dashed and would not fit the 14 boxes)"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm2200ANv2018:txt16",
+   "peso_html_id": "p1c64",
+   "cent_html_id": "p1c66",
+   "printed": "16 Excise Tax Due (from Part V - Schedule 1C)",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt17A",
+   "peso_html_id": "p1c68",
+   "cent_html_id": "p1c70",
+   "printed": "17A Balance Carried Over from Previous Return",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt17B",
+   "peso_html_id": "p1c72",
+   "cent_html_id": "p1c74",
+   "printed": "17B Creditable Excise Tax, if applicable",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt17C",
+   "peso_html_id": "p1c76",
+   "cent_html_id": "p1c78",
+   "printed": "Total (Sum of Items 17A and 17B)",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt18",
+   "peso_html_id": "p1c80",
+   "cent_html_id": "p1c82",
+   "printed": "18 Net Tax Due (Item 16 less Item 17C)",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt19",
+   "peso_html_id": "p1c84",
+   "cent_html_id": "p1c86",
+   "printed": "19 Less: Payment on Returns Previously Filed",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt20",
+   "peso_html_id": "p1c88",
+   "cent_html_id": "p1c90",
+   "printed": "20 Tax Still Due/(Overpayment) (Item 18 less Item 19)",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt21A",
+   "peso_html_id": "p1c92",
+   "cent_html_id": "p1c94",
+   "printed": "21A Surcharge",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt21B",
+   "peso_html_id": "p1c96",
+   "cent_html_id": "p1c98",
+   "printed": "21B Interest",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt21C",
+   "peso_html_id": "p1c100",
+   "cent_html_id": "p1c102",
+   "printed": "21C Compromise",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt21D",
+   "peso_html_id": "p1c104",
+   "cent_html_id": "p1c106",
+   "printed": "Total Penalties (Sum of Items 21A to 21C)",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt22",
+   "peso_html_id": "p1c108",
+   "cent_html_id": "p1c110",
+   "printed": "22 Amount Payable/(Overpayment) (Sum of Items 20 and 21D)",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt23A",
+   "peso_html_id": "p1c112",
+   "cent_html_id": "p1c114",
+   "printed": "23A Tax Payment/Deposit",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt23B",
+   "peso_html_id": "p1c116",
+   "cent_html_id": "p1c118",
+   "printed": "23B Penalties (from Item 21D)",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt23C",
+   "peso_html_id": "p1c120",
+   "cent_html_id": "p1c122",
+   "printed": "23C Total Payment Made Today (Sum of Items 23A and 23B)",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txt24",
+   "peso_html_id": "p1c124",
+   "cent_html_id": "p1c126",
+   "printed": "24 Balance to be Carried Over to Next Return (Item 22 less Item 23C)",
+   "reason": "peso comb with centavo comb right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtAmount24",
+   "peso_html_id": "p1c150",
+   "cent_html_id": "p1c152",
+   "printed": "25 Cash/Bank Debit Memo, Amount",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtAmount25",
+   "peso_html_id": "p1c159",
+   "cent_html_id": "p1c161",
+   "printed": "26 Check, Amount",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtAmount26",
+   "peso_html_id": "p1c168",
+   "cent_html_id": "p1c170",
+   "printed": "27 Tax Debit Memo, Amount",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtAmount27",
+   "peso_html_id": "p1c178",
+   "cent_html_id": "p1c180",
+   "printed": "28 Others, Amount",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm2200ANv2018:AmendedRtn1",
+   "html_id": "p1c12",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm2200ANv2018:AmendedRtn2",
+   "html_id": "p1c13",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm2200ANv2018:OptSpecialTax1",
+   "html_id": "p1c53",
+   "printed": "12 Tax Relief, International Tax Treaty? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm2200ANv2018:OptSpecialTax2",
+   "html_id": "p1c54",
+   "printed": "12 Tax Relief, International Tax Treaty? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm2200ANv2018:MannerOfPayment1",
+   "html_id": "p1c57",
+   "printed": "13 Payment on Actual Removal",
+   "reason": "box immediately left of the printed option (item 13)"
+  },
+  {
+   "writer_key": "frm2200ANv2018:MannerOfPayment2",
+   "html_id": "p1c58",
+   "printed": "14 Prepayment/Advance Deposit",
+   "reason": "box immediately left of the printed option (item 14)"
+  },
+  {
+   "writer_key": "frm2200ANv2018:MannerOfPayment3",
+   "html_id": "p1c61",
+   "printed": "15 Other Similar Schemes",
+   "reason": "box immediately left of the printed option (item 15)"
+  }
+ ],
+ "date_joins": [
+  {
+   "writer_key": "frm2200ANv2018:txtDate24",
+   "mm_html_id": "p1c147",
+   "dd_html_id": "p1c148",
+   "yyyy_html_id": "p1c149",
+   "printed": "25 Cash/Bank Debit Memo: Date (MM/DD/YYYY)",
+   "reason": "the MM, DD and YYYY combs under the Date column on the item 25 row, between its Number and Amount cells (the row txtAmount24 fills); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtDate25",
+   "mm_html_id": "p1c156",
+   "dd_html_id": "p1c157",
+   "yyyy_html_id": "p1c158",
+   "printed": "26 Check: Date (MM/DD/YYYY)",
+   "reason": "the MM, DD and YYYY combs under the Date column on the item 26 row, between its Number and Amount cells (the row txtAmount25 fills); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtDate26",
+   "mm_html_id": "p1c165",
+   "dd_html_id": "p1c166",
+   "yyyy_html_id": "p1c167",
+   "printed": "27 Tax Debit Memo: Date (MM/DD/YYYY)",
+   "reason": "the MM, DD and YYYY combs under the Date column on the item 27 row, between its Number and Amount cells (the row txtAmount26 fills); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtDate27",
+   "mm_html_id": "p1c175",
+   "dd_html_id": "p1c176",
+   "yyyy_html_id": "p1c177",
+   "printed": "28 Others: Date (MM/DD/YYYY)",
+   "reason": "the MM, DD and YYYY combs under the Date column on the item 28 row, between its Number and Amount cells (the row txtAmount27 fills); one writer date split across the three"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm2200ANv2018optRegion",
+    "frm2200ANv2018optProvince",
+    "frm2200ANv2018optCity"
+   ],
+   "reason": "prints from derived:line:item10_region / _province / _city (the print map shapes Item 10 as place names instead of PSGC codes for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2200ANv2018optRegion1",
+    "frm2200ANv2018optProvince1",
+    "frm2200ANv2018optCity1"
+   ],
+   "reason": "prints from derived:line:item11_region / _province / _city (the print map shapes Item 11 as place names instead of PSGC codes for the sheet)"
+  },
+  {
+   "writer_key": "frm2200ANv2018:txtPage2TIN",
+   "reason": "dashed TIN (17 characters) for a 14-slot comb; the page 2 header prints derived:tin_digits"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c29",
+   "reason": "second address line; the layout has one address key (txtAddress) and it is already on p1c28"
+  },
+  {
+   "html_id": "p1c163",
+   "reason": "Tax Debit Memo row has a 5-slot comb under the Drawee Bank column, but the layout has no drawee key for that row (Number26/Date26/Amount26 only)"
+  }
+ ]
+}

@@ -1,0 +1,564 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "0605-v2003",
+  "generated_by": "oracle/gen_layout.js (official saveXMLsubmit loop run in jsdom)",
+  "official_hta": "BIR-Form0605.hta",
+  "official_hta_sha256": "6200b57ef2a3d9d296dc79cbdb9d2f7a605fb92d1dfcdcc4883f08de7c7fa324",
+  "header": "<?xml version='1.0'?>",
+  "lead": "\t\n            ",
+  "value_rules": [],
+  "entries": [
+    {
+      "key": "frm0605:itemFiscalStartMonth:_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemFiscalStartMonth:_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "itemQuarter_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "itemQuarter_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "itemQuarter_3",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "itemQuarter_4",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtDueDateMonth",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtDueDateMonth",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtDueDateDay",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtDueDateDay",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtDueDateYear",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtDueDateYear",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtNoOfSheets",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtNoOfSheets",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtATCCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtATCCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemYearEndMonth",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:itemYearEndMonth",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtYearEnded",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtYearEnded",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtReturnPeriodMonth",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtReturnPeriodMonth",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtReturnPeriodDay",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtReturnPeriodDay",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtReturnPeriodYear",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtReturnPeriodYear",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtTaxTypeCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTaxTypeCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtTIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtTIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtTIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtTIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtTIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtTIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtBranchCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtBranchCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtRDOCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtRDOCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtClassification:_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtClassification:_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtLineBus",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtLineBus",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtTaxPayerName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtTaxPayerName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtTelNum",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtTelNum",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtAddress",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtAddress",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtZipCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtZipCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemModeOfPayment:_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtNumOfInstallment",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtNumOfInstallment",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemModeOfPayment:_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemModeOfPayment:_3",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemMannerOfPayment:_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemMannerOfPayment:_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemMannerOfPayment:_3",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemMannerOfPayment:_4",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemMannerOfPayment:_5",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtOthersName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtOthersName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemMannerOfPaymentB:_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemMannerOfPaymentB:_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtTax19",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtTax19",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtTax20A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtTax20A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtTax20B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtTax20B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtTax20C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtTax20C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtTax20D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtTax20D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:txtTax21",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm0605:txtTax21",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemApprovedYN:_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm0605:itemApprovedYN:_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtFinalFlag",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtFinalFlag",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEnroll",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEnroll",
+          "codec": "raw"
+        }
+      ],
+      "default": "N",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineConfirmUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineConfirmUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineSecret",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineSecret",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEmail",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEmail",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "driveSelectTPExport",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "driveSelectTPExport",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            \t\n            All Rights Reserved BIR 2012.0"
+    }
+  ]
+}

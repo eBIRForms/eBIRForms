@@ -1,0 +1,84 @@
+{
+  "slug": "2200an-2018",
+  "code": "2200AN",
+  "revision": "2018",
+  "variant": "",
+  "in_corpus": false,
+  "source_file": "2200-AN Jan 2018 ENCS Final version.pdf",
+  "sha256": "832163890dc19297cd1f47004626aadcc840204b48124f3c788a31dd50fb5288",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 3,
+  "pages": 2,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Calibri",
+    "Times New Roman"
+  ],
+  "rules": 834,
+  "text_runs": 330,
+  "images": 3,
+  "cells": 463,
+  "comb_cells": 86,
+  "growables": [],
+  "sources": [
+    {
+      "role": "form",
+      "file": "2200-AN Jan 2018 ENCS Final version.pdf",
+      "sha256": "832163890dc19297cd1f47004626aadcc840204b48124f3c788a31dd50fb5288"
+    },
+    {
+      "role": "guide",
+      "file": "2200-AN Jan 2018 ENCS Annex A.pdf",
+      "sha256": "da64d008464d213c7c3ceb60f4fc752a4cae2d271abd2414bbd4f85a305915a2"
+    },
+    {
+      "role": "guide",
+      "file": "2200-AN Jan 2018 ENCS guidelines final.pdf",
+      "sha256": "d3b5599f459eeb354a05bd70dd9b9ea526a7660f8337c37dbc4ca48c643d6c25"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "standalone-pdf"
+    ],
+    "moved_from_form": [],
+    "standalone_pdfs": [
+      {
+        "file": "2200-AN Jan 2018 ENCS Annex A.pdf",
+        "sha256": "da64d008464d213c7c3ceb60f4fc752a4cae2d271abd2414bbd4f85a305915a2",
+        "linked_as": "guides/2200-AN Jan 2018 ENCS Annex A.pdf",
+        "reflowed_into": "guide.html"
+      },
+      {
+        "file": "2200-AN Jan 2018 ENCS guidelines final.pdf",
+        "sha256": "d3b5599f459eeb354a05bd70dd9b9ea526a7660f8337c37dbc4ca48c643d6c25",
+        "linked_as": "guides/2200-AN Jan 2018 ENCS guidelines final.pdf",
+        "reflowed_into": "guide.html"
+      }
+    ],
+    "reclaimed_pt_total": 0,
+    "reclaimed_pct_mean": 0,
+    "reclaimed_pct_min": 0,
+    "reclaimed_pct_max": 0,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [],
+    "standalone_pdfs": [
+      "2200-AN Jan 2018 ENCS Annex A.pdf",
+      "2200-AN Jan 2018 ENCS guidelines final.pdf"
+    ]
+  },
+  "html_bytes": 606927,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

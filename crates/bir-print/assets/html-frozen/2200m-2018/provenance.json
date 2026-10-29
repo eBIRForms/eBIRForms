@@ -1,0 +1,46 @@
+{
+  "slug": "2200m-2018",
+  "code": "2200M",
+  "revision": "2018",
+  "variant": "",
+  "in_corpus": true,
+  "source_file": "2200-M Jan 2018 ENCS v2 final version.pdf",
+  "sha256": "94161600eef26177a311e09d7b7e233a9582e1d2e56211b5f81f59d1891d9a90",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 3,
+  "pages": 2,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Calibri",
+    "Times New Roman"
+  ],
+  "rules": 815,
+  "text_runs": 310,
+  "images": 3,
+  "cells": 414,
+  "comb_cells": 86,
+  "growables": [],
+  "sources": [
+    {
+      "role": "form",
+      "file": "2200-M Jan 2018 ENCS v2 final version.pdf",
+      "sha256": "94161600eef26177a311e09d7b7e233a9582e1d2e56211b5f81f59d1891d9a90"
+    }
+  ],
+  "guide": null,
+  "guide_detected": {
+    "inline_pages": [],
+    "standalone_pdfs": []
+  },
+  "html_bytes": 589796,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

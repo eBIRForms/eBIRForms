@@ -1,0 +1,3701 @@
+{
+    "$schema":  "../../schema/fields.schema.json",
+    "schema_version":  "1.0.0",
+    "form_id":  "1606-v2018",
+    "revision":  "2018-01-01",
+    "field_count":  99,
+    "runtime_serializable_element_count":  99,
+    "inventory_sha256":  "01323df7e0eb8d81a5e9002ef834e8c19fda86c25870bf2fe73ff293fc627fbe",
+    "fields":  [
+                   {
+                       "field_key":  "frm1606:txtDateMonth",
+                       "serialized_key":  "frm1606:txtDateMonth",
+                       "serialized_occurrence":  1,
+                       "label":  "txtDateMonth",
+                       "page":  1,
+                       "item_number":  "1",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date-component-string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  2
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "MM/DD/YYYY components; no automatic padding"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtDateMonth",
+                                           "official-hta-runtime#control:L270"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtDateDay",
+                       "serialized_key":  "frm1606:txtDateDay",
+                       "serialized_occurrence":  1,
+                       "label":  "txtDateDay",
+                       "page":  1,
+                       "item_number":  "1",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date-component-string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  2
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "MM/DD/YYYY components; no automatic padding"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtDateDay",
+                                           "official-hta-runtime#control:L271"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtDateYear",
+                       "serialized_key":  "frm1606:txtDateYear",
+                       "serialized_occurrence":  1,
+                       "label":  "txtDateYear",
+                       "page":  1,
+                       "item_number":  "1",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date-component-string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  4
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "MM/DD/YYYY components; no automatic padding"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtDateYear",
+                                           "official-hta-runtime#control:L272"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id217:_1",
+                       "serialized_key":  "frm1606:j_id217:_1",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id217:_1",
+                       "page":  1,
+                       "item_number":  "2",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "Y",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id217:_1",
+                                           "official-hta-runtime#control:L291"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id217:_2",
+                       "serialized_key":  "frm1606:j_id217:_2",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id217:_2",
+                       "page":  1,
+                       "item_number":  "2",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "N",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id217:_2",
+                                           "official-hta-runtime#control:L292"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtSheets",
+                       "serialized_key":  "frm1606:txtSheets",
+                       "serialized_occurrence":  1,
+                       "label":  "txtSheets",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  2
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtSheets",
+                                           "official-hta-runtime#control:L310"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id252:_1",
+                       "serialized_key":  "frm1606:j_id252:_1",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id252:_1",
+                       "page":  1,
+                       "item_number":  "4",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "Y",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id252:_1",
+                                           "official-hta-runtime#control:L328"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id252:_2",
+                       "serialized_key":  "frm1606:j_id252:_2",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id252:_2",
+                       "page":  1,
+                       "item_number":  "4",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "N",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id252:_2",
+                                           "official-hta-runtime#control:L329"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTIN1",
+                       "serialized_key":  "frm1606:txtTIN1",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTIN1",
+                       "page":  1,
+                       "item_number":  "5",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTIN1",
+                                           "official-hta-runtime#control:L372"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTIN2",
+                       "serialized_key":  "frm1606:txtTIN2",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTIN2",
+                       "page":  1,
+                       "item_number":  "5",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTIN2",
+                                           "official-hta-runtime#control:L373"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTIN3",
+                       "serialized_key":  "frm1606:txtTIN3",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTIN3",
+                       "page":  1,
+                       "item_number":  "5",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTIN3",
+                                           "official-hta-runtime#control:L374"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtBranchCode",
+                       "serialized_key":  "frm1606:txtBranchCode",
+                       "serialized_occurrence":  1,
+                       "label":  "txtBranchCode",
+                       "page":  1,
+                       "item_number":  "5",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtBranchCode",
+                                           "official-hta-runtime#control:L375"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtRDOCode",
+                       "serialized_key":  "frm1606:txtRDOCode",
+                       "serialized_occurrence":  1,
+                       "label":  "txtRDOCode",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtRDOCode",
+                                           "official-hta-runtime#control:L388"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTINS1",
+                       "serialized_key":  "frm1606:txtTINS1",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTINS1",
+                       "page":  1,
+                       "item_number":  "7",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTINS1",
+                                           "official-hta-runtime#control:L540"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTINS2",
+                       "serialized_key":  "frm1606:txtTINS2",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTINS2",
+                       "page":  1,
+                       "item_number":  "7",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTINS2",
+                                           "official-hta-runtime#control:L541"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTINS3",
+                       "serialized_key":  "frm1606:txtTINS3",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTINS3",
+                       "page":  1,
+                       "item_number":  "7",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTINS3",
+                                           "official-hta-runtime#control:L542"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtBranchCodeS",
+                       "serialized_key":  "frm1606:txtBranchCodeS",
+                       "serialized_occurrence":  1,
+                       "label":  "txtBranchCodeS",
+                       "page":  1,
+                       "item_number":  "7",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtBranchCodeS",
+                                           "official-hta-runtime#control:L543"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtRDOCodeS",
+                       "serialized_key":  "frm1606:txtRDOCodeS",
+                       "serialized_occurrence":  1,
+                       "label":  "txtRDOCodeS",
+                       "page":  1,
+                       "item_number":  "8",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtRDOCodeS",
+                                           "official-hta-runtime#control:L556"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtBuyerName",
+                       "serialized_key":  "frm1606:txtBuyerName",
+                       "serialized_occurrence":  1,
+                       "label":  "txtBuyerName",
+                       "page":  1,
+                       "item_number":  "9",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtBuyerName",
+                                           "official-hta-runtime#control:L728"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtSellerName",
+                       "serialized_key":  "frm1606:txtSellerName",
+                       "serialized_occurrence":  1,
+                       "label":  "txtSellerName",
+                       "page":  1,
+                       "item_number":  "10",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtSellerName",
+                                           "official-hta-runtime#control:L752"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtBuyerAddress",
+                       "serialized_key":  "frm1606:txtBuyerAddress",
+                       "serialized_occurrence":  1,
+                       "label":  "txtBuyerAddress",
+                       "page":  1,
+                       "item_number":  "11",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  70
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtBuyerAddress",
+                                           "official-hta-runtime#control:L784"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtSellerAddress",
+                       "serialized_key":  "frm1606:txtSellerAddress",
+                       "serialized_occurrence":  1,
+                       "label":  "txtSellerAddress",
+                       "page":  1,
+                       "item_number":  "12",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  70
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtSellerAddress",
+                                           "official-hta-runtime#control:L808"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txt13",
+                       "serialized_key":  "frm1606:txt13",
+                       "serialized_occurrence":  1,
+                       "label":  "txt13",
+                       "page":  1,
+                       "item_number":  "13",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "WI155",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txt13",
+                                           "official-hta-runtime#control:L838"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:optATC13_2",
+                       "serialized_key":  "frm1606:optATC13_2",
+                       "serialized_occurrence":  1,
+                       "label":  "optATC13_2",
+                       "page":  1,
+                       "item_number":  "13",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "WI155",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:optATC13_2",
+                                           "official-hta-runtime#control:L842"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txt13C",
+                       "serialized_key":  "frm1606:txt13C",
+                       "serialized_occurrence":  1,
+                       "label":  "txt13C",
+                       "page":  1,
+                       "item_number":  "13",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "WC155",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txt13C",
+                                           "official-hta-runtime#control:L847"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:optATC13_3",
+                       "serialized_key":  "frm1606:optATC13_3",
+                       "serialized_occurrence":  1,
+                       "label":  "optATC13_3",
+                       "page":  1,
+                       "item_number":  "13",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "WC155",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:optATC13_3",
+                                           "official-hta-runtime#control:L851"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id392:_1",
+                       "serialized_key":  "frm1606:j_id392:_1",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id392:_1",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "P",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id392:_1",
+                                           "official-hta-runtime#control:L871"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id392:_2",
+                       "serialized_key":  "frm1606:j_id392:_2",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id392:_2",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "G",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id392:_2",
+                                           "official-hta-runtime#control:L872"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id393:_1",
+                       "serialized_key":  "frm1606:j_id393:_1",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id393:_1",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "R",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id393:_1",
+                                           "official-hta-runtime#control:L902"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id393:_3",
+                       "serialized_key":  "frm1606:j_id393:_3",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id393:_3",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "C",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id393:_3",
+                                           "official-hta-runtime#control:L903"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id393:_5",
+                       "serialized_key":  "frm1606:j_id393:_5",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id393:_5",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "CR",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id393:_5",
+                                           "official-hta-runtime#control:L904"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id393_8",
+                       "serialized_key":  "frm1606:j_id393_8",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id393_8",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id393_8",
+                                           "official-hta-runtime#control:L905"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id393_7",
+                       "serialized_key":  "frm1606:j_id393_7",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id393_7",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  "Item 15 classification is Others.",
+                       "enabled_when":  "Item 15 classification is Others.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  60
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id393_7",
+                                           "official-hta-runtime#control:L906"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id393:_2",
+                       "serialized_key":  "frm1606:j_id393:_2",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id393:_2",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "A",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id393:_2",
+                                           "official-hta-runtime#control:L908"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id393:_4",
+                       "serialized_key":  "frm1606:j_id393:_4",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id393:_4",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "I",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id393:_4",
+                                           "official-hta-runtime#control:L909"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id393:_6",
+                       "serialized_key":  "frm1606:j_id393:_6",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id393:_6",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "CC",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id393:_6",
+                                           "official-hta-runtime#control:L910"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtLocation",
+                       "serialized_key":  "frm1606:txtLocation",
+                       "serialized_occurrence":  1,
+                       "label":  "txtLocation",
+                       "page":  1,
+                       "item_number":  "16",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  125
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtLocation",
+                                           "official-hta-runtime#control:L948"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtRDOCode16A",
+                       "serialized_key":  "frm1606:txtRDOCode16A",
+                       "serialized_occurrence":  1,
+                       "label":  "txtRDOCode16A",
+                       "page":  1,
+                       "item_number":  "16A",
+                       "control_kind":  "runtime-injected-or-final-copy-control",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtRDOCode16A",
+                                           "official-hta-runtime#runtime-injected-or-final-copy-field"
+                                       ],
+                       "confidence":  "medium",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTCT",
+                       "serialized_key":  "frm1606:txtTCT",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTCT",
+                       "page":  1,
+                       "item_number":  "17",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  20
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTCT",
+                                           "official-hta-runtime#control:L1000"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtArea",
+                       "serialized_key":  "frm1606:txtArea",
+                       "serialized_occurrence":  1,
+                       "label":  "txtArea",
+                       "page":  1,
+                       "item_number":  "17",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  20
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtArea",
+                                           "official-hta-runtime#control:L1002"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTaxDC",
+                       "serialized_key":  "frm1606:txtTaxDC",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTaxDC",
+                       "page":  1,
+                       "item_number":  "17",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTaxDC",
+                                           "official-hta-runtime#control:L1004"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtOthers",
+                       "serialized_key":  "frm1606:txtOthers",
+                       "serialized_occurrence":  1,
+                       "label":  "txtOthers",
+                       "page":  1,
+                       "item_number":  "17",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtOthers",
+                                           "official-hta-runtime#control:L1006"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id394:_1",
+                       "serialized_key":  "frm1606:j_id394:_1",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id394:_1",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "Y",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id394:_1",
+                                           "official-hta-runtime#control:L1031"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id394:_2",
+                       "serialized_key":  "frm1606:j_id394:_2",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id394:_2",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "N",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id394:_2",
+                                           "official-hta-runtime#control:L1032"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:rdTreaty:_1",
+                       "serialized_key":  "frm1606:rdTreaty:_1",
+                       "serialized_occurrence":  1,
+                       "label":  "rdTreaty:_1",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "Y",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:rdTreaty:_1",
+                                           "official-hta-runtime#control:L1056"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:rdTreaty:_2",
+                       "serialized_key":  "frm1606:rdTreaty:_2",
+                       "serialized_occurrence":  1,
+                       "label":  "rdTreaty:_2",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "N",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:rdTreaty:_2",
+                                           "official-hta-runtime#control:L1057"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:selTreaty",
+                       "serialized_key":  "frm1606:selTreaty",
+                       "serialized_occurrence":  1,
+                       "label":  "selTreaty",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "select",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  "Item 19 indicates treaty or special-law relief.",
+                       "enabled_when":  "Item 19 indicates treaty or special-law relief.",
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:selTreaty",
+                                           "official-hta-runtime#control:L1064"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id395:_1",
+                       "serialized_key":  "frm1606:j_id395:_1",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id395:_1",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "CS",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id395:_1",
+                                           "official-hta-runtime#control:L1091"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id395:_4",
+                       "serialized_key":  "frm1606:j_id395:_4",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id395:_4",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "FS",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id395:_4",
+                                           "official-hta-runtime#control:L1092"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id395:_2",
+                       "serialized_key":  "frm1606:j_id395:_2",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id395:_2",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "E",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id395:_2",
+                                           "official-hta-runtime#control:L1094"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id395:_5",
+                       "serialized_key":  "frm1606:j_id395:_5",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id395:_5",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "O",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id395:_5",
+                                           "official-hta-runtime#control:L1095"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:j_id395:_3",
+                       "serialized_key":  "frm1606:j_id395:_3",
+                       "serialized_occurrence":  1,
+                       "label":  "j_id395:_3",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "IS",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:j_id395:_3",
+                                           "official-hta-runtime#control:L1098"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtOthers20",
+                       "serialized_key":  "frm1606:txtOthers20",
+                       "serialized_occurrence":  1,
+                       "label":  "txtOthers20",
+                       "page":  1,
+                       "item_number":  "20",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  "Item 20 is Exempt or Others.",
+                       "enabled_when":  "Item 20 is Exempt or Others.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  60
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtOthers20",
+                                           "official-hta-runtime#control:L1109"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtSelling",
+                       "serialized_key":  "frm1606:txtSelling",
+                       "serialized_occurrence":  1,
+                       "label":  "txtSelling",
+                       "page":  1,
+                       "item_number":  "21",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtSelling",
+                                           "official-hta-runtime#control:L1124"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtCost",
+                       "serialized_key":  "frm1606:txtCost",
+                       "serialized_occurrence":  1,
+                       "label":  "txtCost",
+                       "page":  1,
+                       "item_number":  "22",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtCost",
+                                           "official-hta-runtime#control:L1127"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtMortgage",
+                       "serialized_key":  "frm1606:txtMortgage",
+                       "serialized_occurrence":  1,
+                       "label":  "txtMortgage",
+                       "page":  1,
+                       "item_number":  "23",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtMortgage",
+                                           "official-hta-runtime#control:L1130"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTotalP",
+                       "serialized_key":  "frm1606:txtTotalP",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTotalP",
+                       "page":  1,
+                       "item_number":  "24",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTotalP",
+                                           "official-hta-runtime#control:L1133"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtAmount",
+                       "serialized_key":  "frm1606:txtAmount",
+                       "serialized_occurrence":  1,
+                       "label":  "txtAmount",
+                       "page":  1,
+                       "item_number":  "25",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtAmount",
+                                           "official-hta-runtime#control:L1136"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTotalN",
+                       "serialized_key":  "frm1606:txtTotalN",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTotalN",
+                       "page":  1,
+                       "item_number":  "26",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  20
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTotalN",
+                                           "official-hta-runtime#control:L1139"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:opt27A",
+                       "serialized_key":  "frm1606:opt27A",
+                       "serialized_occurrence":  1,
+                       "label":  "opt27A",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "checkbox",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:opt27A",
+                                           "official-hta-runtime#control:L1169"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtFMVLand",
+                       "serialized_key":  "frm1606:txtFMVLand",
+                       "serialized_occurrence":  1,
+                       "label":  "txtFMVLand",
+                       "page":  1,
+                       "item_number":  "27A",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtFMVLand",
+                                           "official-hta-runtime#control:L1170"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:opt27C",
+                       "serialized_key":  "frm1606:opt27C",
+                       "serialized_occurrence":  1,
+                       "label":  "opt27C",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "checkbox",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:opt27C",
+                                           "official-hta-runtime#control:L1173"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtFMVZonal",
+                       "serialized_key":  "frm1606:txtFMVZonal",
+                       "serialized_occurrence":  1,
+                       "label":  "txtFMVZonal",
+                       "page":  1,
+                       "item_number":  "27C",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtFMVZonal",
+                                           "official-hta-runtime#control:L1174"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:opt27B",
+                       "serialized_key":  "frm1606:opt27B",
+                       "serialized_occurrence":  1,
+                       "label":  "opt27B",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "checkbox",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:opt27B",
+                                           "official-hta-runtime#control:L1179"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtFMVImprovements",
+                       "serialized_key":  "frm1606:txtFMVImprovements",
+                       "serialized_occurrence":  1,
+                       "label":  "txtFMVImprovements",
+                       "page":  1,
+                       "item_number":  "27B",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtFMVImprovements",
+                                           "official-hta-runtime#control:L1180"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:opt27D",
+                       "serialized_key":  "frm1606:opt27D",
+                       "serialized_occurrence":  1,
+                       "label":  "opt27D",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "checkbox",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:opt27D",
+                                           "official-hta-runtime#control:L1183"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtFMVBIR",
+                       "serialized_key":  "frm1606:txtFMVBIR",
+                       "serialized_occurrence":  1,
+                       "label":  "txtFMVBIR",
+                       "page":  1,
+                       "item_number":  "27D",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtFMVBIR",
+                                           "official-hta-runtime#control:L1184"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:opt28A",
+                       "serialized_key":  "frm1606:opt28A",
+                       "serialized_occurrence":  1,
+                       "label":  "opt28A",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:opt28A",
+                                           "official-hta-runtime#control:L1210"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtGross",
+                       "serialized_key":  "frm1606:txtGross",
+                       "serialized_occurrence":  1,
+                       "label":  "txtGross",
+                       "page":  1,
+                       "item_number":  "28A",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtGross",
+                                           "official-hta-runtime#control:L1211"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:opt28D",
+                       "serialized_key":  "frm1606:opt28D",
+                       "serialized_occurrence":  1,
+                       "label":  "opt28D",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:opt28D",
+                                           "official-hta-runtime#control:L1214"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtInstallment",
+                       "serialized_key":  "frm1606:txtInstallment",
+                       "serialized_occurrence":  1,
+                       "label":  "txtInstallment",
+                       "page":  1,
+                       "item_number":  "28D",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtInstallment",
+                                           "official-hta-runtime#control:L1215"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:opt28B",
+                       "serialized_key":  "frm1606:opt28B",
+                       "serialized_occurrence":  1,
+                       "label":  "opt28B",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:opt28B",
+                                           "official-hta-runtime#control:L1220"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtFMVLI",
+                       "serialized_key":  "frm1606:txtFMVLI",
+                       "serialized_occurrence":  1,
+                       "label":  "txtFMVLI",
+                       "page":  1,
+                       "item_number":  "28B",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtFMVLI",
+                                           "official-hta-runtime#control:L1221"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:opt28E",
+                       "serialized_key":  "frm1606:opt28E",
+                       "serialized_occurrence":  1,
+                       "label":  "opt28E",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:opt28E",
+                                           "official-hta-runtime#control:L1225"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtOtherss28E",
+                       "serialized_key":  "frm1606:txtOtherss28E",
+                       "serialized_occurrence":  1,
+                       "label":  "txtOtherss28E",
+                       "page":  1,
+                       "item_number":  "28E",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtOtherss28E",
+                                           "official-hta-runtime#control:L1226"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtOthers28E",
+                       "serialized_key":  "frm1606:txtOthers28E",
+                       "serialized_occurrence":  1,
+                       "label":  "txtOthers28E",
+                       "page":  1,
+                       "item_number":  "28E",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtOthers28E",
+                                           "official-hta-runtime#control:L1226"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:opt28C",
+                       "serialized_key":  "frm1606:opt28C",
+                       "serialized_occurrence":  1,
+                       "label":  "opt28C",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:opt28C",
+                                           "official-hta-runtime#control:L1234"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtBid",
+                       "serialized_key":  "frm1606:txtBid",
+                       "serialized_occurrence":  1,
+                       "label":  "txtBid",
+                       "page":  1,
+                       "item_number":  "28C",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  40,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtBid",
+                                           "official-hta-runtime#control:L1235"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:Habitual_1",
+                       "serialized_key":  "frm1606:Habitual_1",
+                       "serialized_occurrence":  1,
+                       "label":  "Habitual_1",
+                       "page":  1,
+                       "item_number":  "29",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "Y",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:Habitual_1",
+                                           "official-hta-runtime#control:L1261"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:Habitual_2",
+                       "serialized_key":  "frm1606:Habitual_2",
+                       "serialized_occurrence":  1,
+                       "label":  "Habitual_2",
+                       "page":  1,
+                       "item_number":  "29",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "N",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:Habitual_2",
+                                           "official-hta-runtime#control:L1262"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTax",
+                       "serialized_key":  "frm1606:txtTax",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTax",
+                       "page":  1,
+                       "item_number":  "30",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTax",
+                                           "official-hta-runtime#control:L1302"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTaxRate",
+                       "serialized_key":  "frm1606:txtTaxRate",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTaxRate",
+                       "page":  1,
+                       "item_number":  "31",
+                       "control_kind":  "select",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  20,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTaxRate",
+                                           "official-hta-runtime#control:L1308"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTaxR",
+                       "serialized_key":  "frm1606:txtTaxR",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTaxR",
+                       "page":  1,
+                       "item_number":  "32",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTaxR",
+                                           "official-hta-runtime#control:L1314"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtLess",
+                       "serialized_key":  "frm1606:txtLess",
+                       "serialized_occurrence":  1,
+                       "label":  "txtLess",
+                       "page":  1,
+                       "item_number":  "33",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtLess",
+                                           "official-hta-runtime#control:L1320"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTaxDue",
+                       "serialized_key":  "frm1606:txtTaxDue",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTaxDue",
+                       "page":  1,
+                       "item_number":  "34",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTaxDue",
+                                           "official-hta-runtime#control:L1326"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtSurcharge",
+                       "serialized_key":  "frm1606:txtSurcharge",
+                       "serialized_occurrence":  1,
+                       "label":  "txtSurcharge",
+                       "page":  1,
+                       "item_number":  "35A",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtSurcharge",
+                                           "official-hta-runtime#control:L1356"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtInterest",
+                       "serialized_key":  "frm1606:txtInterest",
+                       "serialized_occurrence":  1,
+                       "label":  "txtInterest",
+                       "page":  1,
+                       "item_number":  "35B",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtInterest",
+                                           "official-hta-runtime#control:L1361"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtCompromise",
+                       "serialized_key":  "frm1606:txtCompromise",
+                       "serialized_occurrence":  1,
+                       "label":  "txtCompromise",
+                       "page":  1,
+                       "item_number":  "35C",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtCompromise",
+                                           "official-hta-runtime#control:L1366"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTotalPenalties",
+                       "serialized_key":  "frm1606:txtTotalPenalties",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTotalPenalties",
+                       "page":  1,
+                       "item_number":  "35D",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTotalPenalties",
+                                           "official-hta-runtime#control:L1376"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:txtTotal",
+                       "serialized_key":  "frm1606:txtTotal",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTotal",
+                       "page":  1,
+                       "item_number":  "36",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15,
+                                           "precision":  2,
+                                           "sign":  "signed"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency",
+                                             "round(...,2)"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:txtTotal",
+                                           "official-hta-runtime#control:L1386"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:opt37:_1",
+                       "serialized_key":  "frm1606:opt37:_1",
+                       "serialized_occurrence":  1,
+                       "label":  "opt37:_1",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  "Item 36 is negative.",
+                       "enabled_when":  "Item 36 is negative.",
+                       "visible_when":  null,
+                       "default_value":  "R",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:opt37:_1",
+                                           "official-hta-runtime#control:L1419"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1606:opt37:_2",
+                       "serialized_key":  "frm1606:opt37:_2",
+                       "serialized_occurrence":  1,
+                       "label":  "opt37:_2",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  "Item 36 is negative.",
+                       "enabled_when":  "Item 36 is negative.",
+                       "visible_when":  null,
+                       "default_value":  "I",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:frm1606:opt37:_2",
+                                           "official-hta-runtime#control:L1424"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtFinalFlag",
+                       "serialized_key":  "txtFinalFlag",
+                       "serialized_occurrence":  1,
+                       "label":  "txtFinalFlag",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "hidden",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  60
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:txtFinalFlag",
+                                           "official-hta-runtime#control:L1522"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtEnroll",
+                       "serialized_key":  "txtEnroll",
+                       "serialized_occurrence":  1,
+                       "label":  "txtEnroll",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "hidden",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "N",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  60
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:txtEnroll",
+                                           "official-hta-runtime#control:L1523"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "ebirOnlineConfirmUsername",
+                       "serialized_key":  "ebirOnlineConfirmUsername",
+                       "serialized_occurrence":  1,
+                       "label":  "ebirOnlineConfirmUsername",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "hidden",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:ebirOnlineConfirmUsername",
+                                           "official-hta-runtime#control:L1540"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "ebirOnlineUsername",
+                       "serialized_key":  "ebirOnlineUsername",
+                       "serialized_occurrence":  1,
+                       "label":  "ebirOnlineUsername",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "hidden",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:ebirOnlineUsername",
+                                           "official-hta-runtime#control:L1626"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "ebirOnlineSecret",
+                       "serialized_key":  "ebirOnlineSecret",
+                       "serialized_occurrence":  1,
+                       "label":  "ebirOnlineSecret",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "hidden",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:ebirOnlineSecret",
+                                           "official-hta-runtime#control:L1635"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtEmail",
+                       "serialized_key":  "txtEmail",
+                       "serialized_occurrence":  1,
+                       "label":  "txtEmail",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "email-string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  60
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:txtEmail",
+                                           "official-hta-runtime#control:L1650"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "driveSelectTPExport",
+                       "serialized_key":  "driveSelectTPExport",
+                       "serialized_occurrence":  1,
+                       "label":  "driveSelectTPExport",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "select",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "hidden",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-final-v1#field:driveSelectTPExport",
+                                           "official-hta-runtime#control:L1672"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Observed in the reviewed 99-key decrypted final-copy inventory; source value is excluded."
+                                 ]
+                   }
+               ]
+}

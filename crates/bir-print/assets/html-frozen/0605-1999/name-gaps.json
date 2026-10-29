@@ -1,0 +1,77 @@
+{
+  "form_id": "0605-v2003",
+  "html_slug": "0605-1999",
+  "rule": "Stamp name= only where the identity catalog has a 1:1 official_field_key that exists in fields.json. Remaining writer keys stay on cell-id name=. Do not invent a join. Mixed combs with no empty input are catalog identities but unwritable.",
+  "stamped": [
+    {
+      "catalog_id": "0605-1999/p1/tin-1",
+      "html_id": "p1c23",
+      "name": "frm0605:txtTIN1"
+    },
+    {
+      "catalog_id": "0605-1999/p1/tin-2",
+      "html_id": "p1c25",
+      "name": "frm0605:txtTIN2"
+    },
+    {
+      "catalog_id": "0605-1999/p1/tin-3",
+      "html_id": "p1c27",
+      "name": "frm0605:txtTIN3"
+    },
+    {
+      "catalog_id": "0605-1999/p1/tin-branch",
+      "html_id": "p1c29",
+      "name": "frm0605:txtBranchCode"
+    }
+  ],
+  "stamped_names": [
+    "frm0605:txtTIN1",
+    "frm0605:txtTIN2",
+    "frm0605:txtTIN3",
+    "frm0605:txtBranchCode"
+  ],
+  "unwritable_mixed": [],
+  "unstamped_writer_keys_in_fields_json": [
+    "frm0605:itemApprovedYN:_1",
+    "frm0605:itemApprovedYN:_2",
+    "frm0605:itemFiscalStartMonth:_1",
+    "frm0605:itemFiscalStartMonth:_2",
+    "frm0605:itemMannerOfPayment:_1",
+    "frm0605:itemMannerOfPayment:_2",
+    "frm0605:itemMannerOfPayment:_3",
+    "frm0605:itemMannerOfPayment:_4",
+    "frm0605:itemMannerOfPayment:_5",
+    "frm0605:itemMannerOfPaymentB:_1",
+    "frm0605:itemMannerOfPaymentB:_2",
+    "frm0605:itemModeOfPayment:_1",
+    "frm0605:itemModeOfPayment:_2",
+    "frm0605:itemModeOfPayment:_3",
+    "frm0605:itemYearEndMonth",
+    "frm0605:txtAddress",
+    "frm0605:txtClassification:_1",
+    "frm0605:txtClassification:_2",
+    "frm0605:txtDueDateDay",
+    "frm0605:txtDueDateMonth",
+    "frm0605:txtDueDateYear",
+    "frm0605:txtLineBus",
+    "frm0605:txtNoOfSheets",
+    "frm0605:txtNumOfInstallment",
+    "frm0605:txtOthersName",
+    "frm0605:txtRDOCode",
+    "frm0605:txtReturnPeriodDay",
+    "frm0605:txtReturnPeriodMonth",
+    "frm0605:txtReturnPeriodYear",
+    "frm0605:txtTax19",
+    "frm0605:txtTax20A",
+    "frm0605:txtTax20B",
+    "frm0605:txtTax20C",
+    "frm0605:txtTax20D",
+    "frm0605:txtTax21",
+    "frm0605:txtTaxPayerName",
+    "frm0605:txtTelNum",
+    "frm0605:txtYearEnded",
+    "frm0605:txtZipCode"
+  ],
+  "writer_frm_keys_absent_from_fields_json": [],
+  "writer_frm_keys_absent_from_fields_json_reason": ""
+}

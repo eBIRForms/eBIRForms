@@ -1,0 +1,414 @@
+[
+ {
+  "set": "frm1701:txtPg1I4TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg1I4TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg1I4TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg1I4BranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg2TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg2TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg2TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg2BranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg3TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg3TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg3TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg3BranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg4TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg4TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg4TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg4BranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg1mTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg1mTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg1mTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg1mBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg2mTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg2mTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg2mTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg2mBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg3mTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg3mTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg3mTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg3mBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg4mTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg4mTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg4mTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg4mBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1701:txtPg1I8TaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg2TaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg3TaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg4TaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg1mTaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg2mTaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg3mTaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg4mTaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1701:txtPg1I5RDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm1701:txtLineBus",
+  "value": "Sample Consulting Services"
+ },
+ {
+  "set": "frm1701:txtPg1I9Address",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm1701:txtPg1I9AZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "frm1701:txtPg1I15TelNum",
+  "value": "09170000000"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "set": "frm1701:txtPg1I1Year",
+  "value": "2025"
+ },
+ {
+  "set": "frm1701:rdoPg1I6TaxpayerTypeP",
+  "value": "true"
+ },
+ {
+  "call": "TPFilerType()"
+ },
+ {
+  "click": "frm1701:rdoPg1I7ATC_II017"
+ },
+ {
+  "set": "frm1701:txtPg1I10BirthDate",
+  "value": "03/01/1975"
+ },
+ {
+  "set": "frm1701:txtPg1I12Citizenship",
+  "value": "Filipino"
+ },
+ {
+  "click": "frm1701:rdoPg1I13ForeignTaxCreditsNo"
+ },
+ {
+  "click": "frm1701:rdoPg1I16CivilStatusM"
+ },
+ {
+  "click": "frm1701:rdoPg1I17SpouseIncomeYes"
+ },
+ {
+  "click": "frm1701:rdoPg1I18FilingStatusJ"
+ },
+ {
+  "click": "frm1701:rdoPg1I19IncomeExemptNo"
+ },
+ {
+  "click": "frm1701:rdoPg1I20IncomeSpecialNo"
+ },
+ {
+  "set": "frm1701:txtPg2I1TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg2I1TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg2I1TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg2I1BranchCode",
+  "value": "00001"
+ },
+ {
+  "set": "frm1701:txtPg2I2SpouseRDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm1701:rdoPg2I3SpouseTypeS",
+  "value": "true"
+ },
+ {
+  "call": "SPFilerType()"
+ },
+ {
+  "set": "frm1701:rdoPg2I3SpouseTypeC",
+  "value": "true"
+ },
+ {
+  "call": "SPFilerType()"
+ },
+ {
+  "click": "frm1701:rdoPg2I4ATC_II013"
+ },
+ {
+  "set": "frm1701:txtPg2I5SpouseName",
+  "value": "Sample Dummy Spouse"
+ },
+ {
+  "set": "frm1701:txtPg2I6TelNum",
+  "value": "09170000001"
+ },
+ {
+  "set": "frm1701:txtPg2I7Citizenship",
+  "value": "Filipino"
+ },
+ {
+  "click": "frm1701:rdoPg2I8ForeignTaxCreditsNo"
+ },
+ {
+  "click": "frm1701:rdoPg2I10IncomeExemptNo"
+ },
+ {
+  "click": "frm1701:rdoPg2I11IncomeSpecialNo"
+ },
+ {
+  "click": "frm1701:rdoPg2I12AMethodDeductionI"
+ },
+ {
+  "set": "frm1701:chkPg2IShed2a_2Spouse",
+  "value": "true"
+ },
+ {
+  "call": "emplyrDetails('Pg2IShed2a_2', 'SPS')"
+ },
+ {
+  "set": "frm1701:txtPg2IShed2a_2SName",
+  "value": "Spouse Employer Corp"
+ },
+ {
+  "set": "frm1701:txtPg2IShed2a_TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1701:txtPg2IShed2a_TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1701:txtPg2IShed2a_TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1701:txtPg2IShed2a_BranchCode",
+  "value": "00002"
+ },
+ {
+  "set": "frm1701:txtPg2IShed1c_2CI",
+  "value": "300000"
+ },
+ {
+  "set": "frm1701:txtPg2IShed1c_2TW",
+  "value": "5000"
+ },
+ {
+  "set": "frm1701:txtPg2IShed1c_3BCI",
+  "value": "300000"
+ },
+ {
+  "set": "frm1701:txtPg2IShed1c_3BTW",
+  "value": "5000"
+ },
+ {
+  "set": "frm1701:txtPg3IShed3_26A",
+  "value": "1800000.4"
+ },
+ {
+  "set": "frm1701:txtPg3IShed3_27Desc",
+  "value": "Interest income"
+ },
+ {
+  "set": "frm1701:txtPg3IShed3_27A",
+  "value": "100000"
+ },
+ {
+  "set": "frm1701:txtPg3IShed3_29A",
+  "value": "250000"
+ },
+ {
+  "set": "frm1701:txtPg2IShed3_8B",
+  "value": "800000"
+ },
+ {
+  "set": "frm1701:txtPg2IShed3_9B",
+  "value": "200000.5"
+ },
+ {
+  "set": "frm1701:txtPg2IShed3_11B",
+  "value": "10000"
+ },
+ {
+  "set": "frm1701:txtPg3IShed4_1B",
+  "value": "50000"
+ },
+ {
+  "set": "frm1701:txtPg3IShed4_2B",
+  "value": "20000.75"
+ },
+ {
+  "set": "frm1701:txtPg3IShed4_17dDesc",
+  "value": "Miscellaneous"
+ },
+ {
+  "set": "frm1701:txtPg3IShed4_17dB",
+  "value": "1000"
+ },
+ {
+  "set": "frm1701:txtPg3IShed5_4Desc",
+  "value": "Special deduction"
+ },
+ {
+  "set": "frm1701:txtPg3IShed5_4Legal",
+  "value": "RA 1234"
+ },
+ {
+  "set": "frm1701:txtPg3IShed5_4Amt",
+  "value": "5000"
+ },
+ {
+  "set": "frm1701:txtPg4IShed6_9Year",
+  "value": "2023"
+ },
+ {
+  "set": "frm1701:txtPg4IShed6_9A",
+  "value": "30000"
+ },
+ {
+  "set": "frm1701:txtPg4IShed6_9B",
+  "value": "10000"
+ },
+ {
+  "set": "frm1701:txtPg4IShed6_9D",
+  "value": "15000"
+ },
+ {
+  "set": "frm1701:txtPg4IPart7_3A",
+  "value": "1000"
+ },
+ {
+  "set": "frm1701:txtPg4IPart9_1A",
+  "value": "1650000"
+ },
+ {
+  "set": "frm1701:txtPg4IPart9_1B",
+  "value": "498999"
+ }
+]

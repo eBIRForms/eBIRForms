@@ -1,0 +1,1374 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "2000ot-v2018",
+  "generated_by": "oracle/gen_layout.js (official saveXMLsubmit loop run in jsdom)",
+  "official_hta": "BIR-Form2000OTv2018.hta",
+  "official_hta_sha256": "e44331e99dd8edb8d6fd01529f82e5d6612a9640307c7421b8be397ac87ebe33",
+  "header": "<?xml version='1.0'?>",
+  "lead": "    \n            ",
+  "value_rules": [],
+  "entries": [
+    {
+      "key": "frm2000OT:txtTransactionDate",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTransactionDate",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:AmendedRtn_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:AmendedRtn_2",
+      "kind": "bool",
+      "default": "true",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:ATC_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:ATC_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:ATC_3",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtSheets",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtSheets",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtBranchCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtBranchCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtRDOCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtRDOCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTaxpayerName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTaxpayerName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtAddress",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtAddress",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtAddress2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtAddress2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtZipCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtZipCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTelNum",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTelNum",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "txtEmail",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEmail",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:optParty_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:optParty_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtOtherName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtOtherName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtOtherName2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtOtherName2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtOtherTIN",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtOtherTIN",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:rbTransNature_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:rbTransNature_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:rbTransNature_3",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtRealLocation",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtRealLocation",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTax14",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTax14",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTax15",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTax15",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTax16",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTax16",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTax17",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTax17",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTax18",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTax18",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTax19",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTax19",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTax20A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTax20A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTax20B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTax20B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTax20C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTax20C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTax20D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTax20D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtTax21",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtTax21",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtPg2TIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtPg2TIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtPg2TIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtPg2TIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtPg2TIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtPg2TIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtPg2BranchCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtPg2BranchCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtPg2TaxpayerName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtPg2TaxpayerName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1ADelete0",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtOCTNo0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtOCTNo0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtTaxDecNo0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtTaxDecNo0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtLoc0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtLoc0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1ADelete1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtOCTNo1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtOCTNo1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtTaxDecNo1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtTaxDecNo1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtLoc1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtLoc1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1ADelete2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtOCTNo2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtOCTNo2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtTaxDecNo2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtTaxDecNo2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtLoc2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtLoc2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1ADelete3",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtOCTNo3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtOCTNo3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtTaxDecNo3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtTaxDecNo3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtLoc3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtLoc3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1ADelete4",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtOCTNo4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtOCTNo4",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtTaxDecNo4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtTaxDecNo4",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtLoc4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtLoc4",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1A1Delete0",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtLot0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtLot0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtClassification0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtClassification0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtArea0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtArea0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVCol10",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVCol10",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVCol20",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVCol20",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVSubTot0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVSubTot0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1A1Delete1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtLot1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtLot1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtClassification1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtClassification1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtArea1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtArea1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVCol11",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVCol11",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVCol21",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVCol21",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVSubTot1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVSubTot1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1A1Delete2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtLot2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtLot2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtClassification2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtClassification2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtArea2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtArea2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVCol12",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVCol12",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVCol22",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVCol22",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVSubTot2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVSubTot2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1A1Delete3",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtLot3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtLot3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtClassification3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtClassification3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtArea3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtArea3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVCol13",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVCol13",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVCol23",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVCol23",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVSubTot3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVSubTot3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1A1Delete4",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtLot4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtLot4",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtClassification4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtClassification4",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtArea4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtArea4",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVCol14",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVCol14",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVCol24",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVCol24",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVSubTot4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVSubTot4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1A:txtFMVTotal",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1A:txtFMVTotal",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1BDelete0",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtNameOfCorpStock0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtNameOfCorpStock0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtNoOfSharesSold0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtNoOfSharesSold0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtStockCertNo0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtStockCertNo0",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtParValOfShares0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtParValOfShares0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtDSTPaid0",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtDSTPaid0",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1BDelete1",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtNameOfCorpStock1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtNameOfCorpStock1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtNoOfSharesSold1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtNoOfSharesSold1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtStockCertNo1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtStockCertNo1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtParValOfShares1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtParValOfShares1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtDSTPaid1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtDSTPaid1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "chkSchedule1BDelete2",
+      "kind": "bool",
+      "default": "false",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtNameOfCorpStock2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtNameOfCorpStock2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtNoOfSharesSold2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtNoOfSharesSold2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtStockCertNo2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtStockCertNo2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtParValOfShares2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtParValOfShares2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:sched1B:txtDSTPaid2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:sched1B:txtDSTPaid2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:Sched2:txtGrossSellingPrice",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:Sched2:txtGrossSellingPrice",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:Sched2:txtTotalFairMarket",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:Sched2:txtTotalFairMarket",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:Sched2:txtOthers",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:Sched2:txtOthers",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:Sched2:txtOthersAmount",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:Sched2:txtOthersAmount",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:Sched2:txtTaxableBase",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:Sched2:txtTaxableBase",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtCurrentPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtCurrentPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtMaxPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtMaxPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "2",
+      "after": "    \n            "
+    },
+    {
+      "key": "frm2000OT:txtLineBus",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2000OT:txtLineBus",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "    \n                \n            All Rights Reserved BIR 2012.0"
+    }
+  ]
+}

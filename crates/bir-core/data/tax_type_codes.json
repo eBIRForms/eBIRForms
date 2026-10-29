@@ -1,0 +1,197 @@
+[
+  {
+    "code": "CG",
+    "description": "CAPITAL GAINS TAX-Real Property",
+    "form": "0605"
+  },
+  {
+    "code": "CS",
+    "description": "CAPITAL GAINS TAX-Stocks",
+    "form": "0605"
+  },
+  {
+    "code": "DN",
+    "description": "DONORS TAX",
+    "form": "0605"
+  },
+  {
+    "code": "DO",
+    "description": "DOCUMENTARY STAMP TAX-ONE TIME",
+    "form": "0605"
+  },
+  {
+    "code": "DS",
+    "description": "DOCUMENTARY STAMP TAX",
+    "form": "0605"
+  },
+  {
+    "code": "ES",
+    "description": "ESTATE TAX",
+    "form": "0605"
+  },
+  {
+    "code": "ET",
+    "description": "ENERGY TAX",
+    "form": "0605"
+  },
+  {
+    "code": "IE",
+    "description": "IMPROPERLY ACCUMULATED EARNINGS",
+    "form": "0605"
+  },
+  {
+    "code": "IT",
+    "description": "INCOME TAX",
+    "form": "0605"
+  },
+  {
+    "code": "MC",
+    "description": "MISCELLANEOUS TAX",
+    "form": "0605"
+  },
+  {
+    "code": "PM",
+    "description": "PERCENTAGE TAX-MONTHLY",
+    "form": "0605"
+  },
+  {
+    "code": "PT",
+    "description": "PERCENTAGE TAX-QUARTERLY",
+    "form": "0605"
+  },
+  {
+    "code": "QP",
+    "description": "QUALIFYING FEES-PAGCOR",
+    "form": "0605"
+  },
+  {
+    "code": "RF",
+    "description": "REGISTRATION FEE",
+    "form": "0605"
+  },
+  {
+    "code": "SL",
+    "description": "PERCENTAGE TAX-SPECIAL LAWS",
+    "form": "0605"
+  },
+  {
+    "code": "SO",
+    "description": "PERCENTAGE TAX-STOCKS(IPO)",
+    "form": "0605"
+  },
+  {
+    "code": "ST",
+    "description": "PERCENTAGE TAX-STOCKS",
+    "form": "0605"
+  },
+  {
+    "code": "TR",
+    "description": "TRAVEL TAX-PTA",
+    "form": "0605"
+  },
+  {
+    "code": "VT",
+    "description": "VALUE ADDED TAX",
+    "form": "0605"
+  },
+  {
+    "code": "WB",
+    "description": "WITHHOLDING TAX-BANKS AND OTHER FINANCIAL INSTITUTIONS",
+    "form": "0605"
+  },
+  {
+    "code": "WC",
+    "description": "WITHHOLDING TAX-COMPENSATION",
+    "form": "0605"
+  },
+  {
+    "code": "WE",
+    "description": "WITHHOLDING TAX-EXPANDED",
+    "form": "0605"
+  },
+  {
+    "code": "WF",
+    "description": "WITHHOLDING TAX-FINAL",
+    "form": "0605"
+  },
+  {
+    "code": "WG",
+    "description": "WITHHOLDING TAX-VAT AND OTHER PERCENTAGE TAXES",
+    "form": "0605"
+  },
+  {
+    "code": "WO",
+    "description": "WITHHOLDING TAX-OTHERS",
+    "form": "0605"
+  },
+  {
+    "code": "WR",
+    "description": "WITHHOLDING TAX-FRINGE BENEFITS",
+    "form": "0605"
+  },
+  {
+    "code": "WW",
+    "description": "WITHHOLDING TAX-PERCENTAGE TAX ON WINNING AND PRIZES",
+    "form": "0605"
+  },
+  {
+    "code": "WV",
+    "description": "WITHHOLDING TAX-VALUE ADDED TAX (VAT)",
+    "form": "0605"
+  },
+  {
+    "code": "WP",
+    "description": "WITHHOLDING TAX-PERCENTAGE TAX",
+    "form": "0605"
+  },
+  {
+    "code": "XA",
+    "description": "EXCISE TAX-ALCOHOL",
+    "form": "0605"
+  },
+  {
+    "code": "XB",
+    "description": "EXCISE TAX-SWEETENED BEVERAGES",
+    "form": "0605"
+  },
+  {
+    "code": "XF",
+    "description": "EXCISE TAX-TOBACCO INSPECTION AND MONITORING FESS",
+    "form": "0605"
+  },
+  {
+    "code": "XG",
+    "description": "EXCISE TAX-AUTOMOBILES AND NON-ESSENTIALS",
+    "form": "0605"
+  },
+  {
+    "code": "XM",
+    "description": "EXCISE TAX-MINERALS",
+    "form": "0605"
+  },
+  {
+    "code": "XP",
+    "description": "EXCISE TAX-PETROLEUM",
+    "form": "0605"
+  },
+  {
+    "code": "XS",
+    "description": "EXCISE TAX-SPECIFIC",
+    "form": "0605"
+  },
+  {
+    "code": "XT",
+    "description": "EXCISE TAX-TOBACCO",
+    "form": "0605"
+  },
+  {
+    "code": "XV",
+    "description": "EXCISE TAX-AD VALOREM",
+    "form": "0605"
+  },
+  {
+    "code": "XC",
+    "description": "EXCISE TAX-PERFORMANCE OF SERVICES ON INVASIVE COSMETICS PROCEDURES",
+    "form": "0605"
+  }
+]

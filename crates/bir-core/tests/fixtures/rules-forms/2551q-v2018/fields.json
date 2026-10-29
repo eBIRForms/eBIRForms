@@ -1,0 +1,3623 @@
+{
+    "$schema":  "../../schema/fields.schema.json",
+    "schema_version":  "1.0.0",
+    "form_id":  "2551q-v2018",
+    "revision":  "2018-01-01",
+    "field_count":  99,
+    "runtime_serializable_element_count":  99,
+    "inventory_sha256":  "0bfb31686a25728054659c1289431c32c90d7ad43a7dd2f4aa6906db6034cffb",
+    "fields":  [
+                   {
+                       "field_key":  "frm2551Qv2018:forThe_1",
+                       "serialized_key":  "frm2551Qv2018:forThe_1",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:forThe_1",
+                       "page":  1,
+                       "item_number":  "1",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L438",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:forThe_2",
+                       "serialized_key":  "frm2551Qv2018:forThe_2",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:forThe_2",
+                       "page":  1,
+                       "item_number":  "1",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L440",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:rtnMonth",
+                       "serialized_key":  "frm2551Qv2018:rtnMonth",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:rtnMonth",
+                       "page":  1,
+                       "item_number":  "2",
+                       "control_kind":  "select-one",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L453",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtYear",
+                       "serialized_key":  "frm2551Qv2018:txtYear",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtYear",
+                       "page":  1,
+                       "item_number":  "2",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "integer",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  4
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L469",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:qtr_1",
+                       "serialized_key":  "frm2551Qv2018:qtr_1",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:qtr_1",
+                       "page":  1,
+                       "item_number":  "3",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L495",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:qtr_2",
+                       "serialized_key":  "frm2551Qv2018:qtr_2",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:qtr_2",
+                       "page":  1,
+                       "item_number":  "3",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L500",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:qtr_3",
+                       "serialized_key":  "frm2551Qv2018:qtr_3",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:qtr_3",
+                       "page":  1,
+                       "item_number":  "3",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L505",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:qtr_4",
+                       "serialized_key":  "frm2551Qv2018:qtr_4",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:qtr_4",
+                       "page":  1,
+                       "item_number":  "3",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L510",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:amendedRtn_1",
+                       "serialized_key":  "frm2551Qv2018:amendedRtn_1",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:amendedRtn_1",
+                       "page":  1,
+                       "item_number":  "4",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L539",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:amendedRtn_2",
+                       "serialized_key":  "frm2551Qv2018:amendedRtn_2",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:amendedRtn_2",
+                       "page":  1,
+                       "item_number":  "4",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L543",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtSheets",
+                       "serialized_key":  "frm2551Qv2018:txtSheets",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtSheets",
+                       "page":  1,
+                       "item_number":  "5",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "integer",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  2
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L571",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtTIN1",
+                       "serialized_key":  "frm2551Qv2018:txtTIN1",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtTIN1",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  4
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L619",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtTIN2",
+                       "serialized_key":  "frm2551Qv2018:txtTIN2",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtTIN2",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  4
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L621",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtTIN3",
+                       "serialized_key":  "frm2551Qv2018:txtTIN3",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtTIN3",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  4
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L623",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtBranchCode",
+                       "serialized_key":  "frm2551Qv2018:txtBranchCode",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtBranchCode",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L625",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:registeredName",
+                       "serialized_key":  "frm2551Qv2018:registeredName",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:registeredName",
+                       "page":  1,
+                       "item_number":  "8",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L678",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:registeredAddress",
+                       "serialized_key":  "frm2551Qv2018:registeredAddress",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:registeredAddress",
+                       "page":  1,
+                       "item_number":  "9",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  100
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L720",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:zipCode",
+                       "serialized_key":  "frm2551Qv2018:zipCode",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:zipCode",
+                       "page":  1,
+                       "item_number":  "9",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  8
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L751",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:telNo",
+                       "serialized_key":  "frm2551Qv2018:telNo",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:telNo",
+                       "page":  1,
+                       "item_number":  "10",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  20
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L790",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtEmail#occurrence-1",
+                       "serialized_key":  "txtEmail",
+                       "serialized_occurrence":  1,
+                       "label":  "txtEmail",
+                       "page":  1,
+                       "item_number":  "11",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L821",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The DOM contains two controls with this ID; saveXML emits occurrence 1 under the same serialized key."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:taxTreaty_1",
+                       "serialized_key":  "frm2551Qv2018:taxTreaty_1",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:taxTreaty_1",
+                       "page":  1,
+                       "item_number":  "12",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "conditional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L853",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:taxTreaty_2",
+                       "serialized_key":  "frm2551Qv2018:taxTreaty_2",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:taxTreaty_2",
+                       "page":  1,
+                       "item_number":  "12",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "conditional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L857",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtTaxReliefSpecify",
+                       "serialized_key":  "frm2551Qv2018:txtTaxReliefSpecify",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtTaxReliefSpecify",
+                       "page":  1,
+                       "item_number":  "12",
+                       "control_kind":  "select-one",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "conditional",
+                       "required_when":  "Item 12 Yes is selected.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L874",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:taxRate1",
+                       "serialized_key":  "frm2551Qv2018:taxRate1",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:taxRate1",
+                       "page":  1,
+                       "item_number":  "13",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L925",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:taxRate2",
+                       "serialized_key":  "frm2551Qv2018:taxRate2",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:taxRate2",
+                       "page":  1,
+                       "item_number":  "13",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L935",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txt14",
+                       "serialized_key":  "frm2551Qv2018:txt14",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txt14",
+                       "page":  1,
+                       "item_number":  "14",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1019",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txt15",
+                       "serialized_key":  "frm2551Qv2018:txt15",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txt15",
+                       "page":  1,
+                       "item_number":  "15",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1084",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txt16",
+                       "serialized_key":  "frm2551Qv2018:txt16",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txt16",
+                       "page":  1,
+                       "item_number":  "16",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1125",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txt17Specify",
+                       "serialized_key":  "frm2551Qv2018:txt17Specify",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txt17Specify",
+                       "page":  1,
+                       "item_number":  "17",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1155",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txt17",
+                       "serialized_key":  "frm2551Qv2018:txt17",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txt17",
+                       "page":  1,
+                       "item_number":  "17",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1168",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txt18",
+                       "serialized_key":  "frm2551Qv2018:txt18",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txt18",
+                       "page":  1,
+                       "item_number":  "18",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1210",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txt19",
+                       "serialized_key":  "frm2551Qv2018:txt19",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txt19",
+                       "page":  1,
+                       "item_number":  "19",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1252",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txt20",
+                       "serialized_key":  "frm2551Qv2018:txt20",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txt20",
+                       "page":  1,
+                       "item_number":  "20",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1318",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txt21",
+                       "serialized_key":  "frm2551Qv2018:txt21",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txt21",
+                       "page":  1,
+                       "item_number":  "21",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1360",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txt22",
+                       "serialized_key":  "frm2551Qv2018:txt22",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txt22",
+                       "page":  1,
+                       "item_number":  "22",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1402",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txt23",
+                       "serialized_key":  "frm2551Qv2018:txt23",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txt23",
+                       "page":  1,
+                       "item_number":  "23",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  15
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1445",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txt24",
+                       "serialized_key":  "frm2551Qv2018:txt24",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txt24",
+                       "page":  1,
+                       "item_number":  "24",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  18
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1488",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:overPayment1",
+                       "serialized_key":  "frm2551Qv2018:overPayment1",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:overPayment1",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1517",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:overPayment2",
+                       "serialized_key":  "frm2551Qv2018:overPayment2",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:overPayment2",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1523",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtTaxAgentNo",
+                       "serialized_key":  "txtTaxAgentNo",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTaxAgentNo",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  20
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1595",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtDateIssue",
+                       "serialized_key":  "txtDateIssue",
+                       "serialized_occurrence":  1,
+                       "label":  "txtDateIssue",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1611",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtDateExpiry",
+                       "serialized_key":  "txtDateExpiry",
+                       "serialized_occurrence":  1,
+                       "label":  "txtDateExpiry",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1627",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtAgency25",
+                       "serialized_key":  "frm2551Qv2018:txtAgency25",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtAgency25",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1707",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtNumber25",
+                       "serialized_key":  "frm2551Qv2018:txtNumber25",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtNumber25",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1710",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtDate25",
+                       "serialized_key":  "frm2551Qv2018:txtDate25",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtDate25",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1713",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtAmount25",
+                       "serialized_key":  "frm2551Qv2018:txtAmount25",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtAmount25",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1716",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtAgency26",
+                       "serialized_key":  "frm2551Qv2018:txtAgency26",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtAgency26",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1726",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtNumber26",
+                       "serialized_key":  "frm2551Qv2018:txtNumber26",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtNumber26",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1729",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtDate26",
+                       "serialized_key":  "frm2551Qv2018:txtDate26",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtDate26",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1732",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtAmount26",
+                       "serialized_key":  "frm2551Qv2018:txtAmount26",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtAmount26",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1735",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtAgency27",
+                       "serialized_key":  "frm2551Qv2018:txtAgency27",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtAgency27",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1745",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtNumber27",
+                       "serialized_key":  "frm2551Qv2018:txtNumber27",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtNumber27",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1748",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtDate27",
+                       "serialized_key":  "frm2551Qv2018:txtDate27",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtDate27",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1751",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtAmount27",
+                       "serialized_key":  "frm2551Qv2018:txtAmount27",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtAmount27",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1754",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtParticular28",
+                       "serialized_key":  "frm2551Qv2018:txtParticular28",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtParticular28",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1768",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtAgency28",
+                       "serialized_key":  "frm2551Qv2018:txtAgency28",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtAgency28",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1771",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtNumber28",
+                       "serialized_key":  "frm2551Qv2018:txtNumber28",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtNumber28",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1774",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtDate28",
+                       "serialized_key":  "frm2551Qv2018:txtDate28",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtDate28",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1777",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtAmount28",
+                       "serialized_key":  "frm2551Qv2018:txtAmount28",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtAmount28",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1780",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtPg2TIN1",
+                       "serialized_key":  "frm2551Qv2018:txtPg2TIN1",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtPg2TIN1",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1888",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtPg2TIN2",
+                       "serialized_key":  "frm2551Qv2018:txtPg2TIN2",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtPg2TIN2",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1890",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtPg2TIN3",
+                       "serialized_key":  "frm2551Qv2018:txtPg2TIN3",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtPg2TIN3",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1892",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtPg2BranchCode",
+                       "serialized_key":  "frm2551Qv2018:txtPg2BranchCode",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtPg2BranchCode",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1894",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtPg2TaxpayerName",
+                       "serialized_key":  "frm2551Qv2018:txtPg2TaxpayerName",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtPg2TaxpayerName",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1899",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "drpATC1",
+                       "serialized_key":  "drpATC1",
+                       "serialized_occurrence":  1,
+                       "label":  "drpATC1",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "select-one",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1964",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCAmt1",
+                       "serialized_key":  "txtATCAmt1",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCAmt1",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  12
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1971",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCRate1",
+                       "serialized_key":  "txtATCRate1",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCRate1",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1974",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCDue1",
+                       "serialized_key":  "txtATCDue1",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCDue1",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1977",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "drpATC2",
+                       "serialized_key":  "drpATC2",
+                       "serialized_occurrence":  1,
+                       "label":  "drpATC2",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "select-one",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1986",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCAmt2",
+                       "serialized_key":  "txtATCAmt2",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCAmt2",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  12
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1993",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCRate2",
+                       "serialized_key":  "txtATCRate2",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCRate2",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1996",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCDue2",
+                       "serialized_key":  "txtATCDue2",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCDue2",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L1999",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "drpATC3",
+                       "serialized_key":  "drpATC3",
+                       "serialized_occurrence":  1,
+                       "label":  "drpATC3",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "select-one",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2008",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCAmt3",
+                       "serialized_key":  "txtATCAmt3",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCAmt3",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  12
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2015",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCRate3",
+                       "serialized_key":  "txtATCRate3",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCRate3",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2018",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCDue3",
+                       "serialized_key":  "txtATCDue3",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCDue3",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2021",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "drpATC4",
+                       "serialized_key":  "drpATC4",
+                       "serialized_occurrence":  1,
+                       "label":  "drpATC4",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "select-one",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2030",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCAmt4",
+                       "serialized_key":  "txtATCAmt4",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCAmt4",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  12
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2037",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCRate4",
+                       "serialized_key":  "txtATCRate4",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCRate4",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2040",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCDue4",
+                       "serialized_key":  "txtATCDue4",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCDue4",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2043",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "drpATC5",
+                       "serialized_key":  "drpATC5",
+                       "serialized_occurrence":  1,
+                       "label":  "drpATC5",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "select-one",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2052",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCAmt5",
+                       "serialized_key":  "txtATCAmt5",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCAmt5",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  12
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2059",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCRate5",
+                       "serialized_key":  "txtATCRate5",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCRate5",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2062",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCDue5",
+                       "serialized_key":  "txtATCDue5",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCDue5",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2065",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "drpATC6",
+                       "serialized_key":  "drpATC6",
+                       "serialized_occurrence":  1,
+                       "label":  "drpATC6",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "select-one",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2074",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCAmt6",
+                       "serialized_key":  "txtATCAmt6",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCAmt6",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  12
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2081",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCRate6",
+                       "serialized_key":  "txtATCRate6",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCRate6",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2084",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtATCDue6",
+                       "serialized_key":  "txtATCDue6",
+                       "serialized_occurrence":  1,
+                       "label":  "txtATCDue6",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2087",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtTotalSched1",
+                       "serialized_key":  "txtTotalSched1",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTotalSched1",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-money",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  20
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2108",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtCurrentPage",
+                       "serialized_key":  "frm2551Qv2018:txtCurrentPage",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtCurrentPage",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "integer",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2460",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtMaxPage",
+                       "serialized_key":  "frm2551Qv2018:txtMaxPage",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtMaxPage",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "integer",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2463",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtFinalFlag",
+                       "serialized_key":  "txtFinalFlag",
+                       "serialized_occurrence":  1,
+                       "label":  "txtFinalFlag",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  60
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2508",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtEnroll",
+                       "serialized_key":  "txtEnroll",
+                       "serialized_occurrence":  1,
+                       "label":  "txtEnroll",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  60
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2510",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "ebirOnlineConfirmUsername",
+                       "serialized_key":  "ebirOnlineConfirmUsername",
+                       "serialized_occurrence":  1,
+                       "label":  "ebirOnlineConfirmUsername",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2527",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "ebirOnlineUsername",
+                       "serialized_key":  "ebirOnlineUsername",
+                       "serialized_occurrence":  1,
+                       "label":  "ebirOnlineUsername",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2622",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "ebirOnlineSecret",
+                       "serialized_key":  "ebirOnlineSecret",
+                       "serialized_occurrence":  1,
+                       "label":  "ebirOnlineSecret",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2631",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtEmail#occurrence-2",
+                       "serialized_key":  "txtEmail",
+                       "serialized_occurrence":  2,
+                       "label":  "txtEmail",
+                       "page":  2,
+                       "item_number":  "11",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  60
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2649",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "The DOM contains two controls with this ID; saveXML emits occurrence 2 under the same serialized key."
+                                 ]
+                   },
+                   {
+                       "field_key":  "driveSelectTPExport",
+                       "serialized_key":  "driveSelectTPExport",
+                       "serialized_occurrence":  1,
+                       "label":  "driveSelectTPExport",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "select-one",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L2682",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Included by the deterministic frmMain.elements serialization predicate."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm2551Qv2018:txtRDOCode",
+                       "serialized_key":  "frm2551Qv2018:txtRDOCode",
+                       "serialized_occurrence":  1,
+                       "label":  "frm2551Qv2018:txtRDOCode",
+                       "page":  2,
+                       "item_number":  "7",
+                       "control_kind":  "select-one",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "official-hta-runtime#control:L4849",
+                                           "official-hta-runtime#saveXML:L3638-L3890"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Dynamically injected into frmMain by getRdo() before serialization."
+                                 ]
+                   }
+               ]
+}

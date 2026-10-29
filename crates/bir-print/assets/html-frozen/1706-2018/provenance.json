@@ -1,0 +1,58 @@
+{
+  "slug": "1706-2018",
+  "code": "1706",
+  "revision": "2018",
+  "variant": "",
+  "in_corpus": false,
+  "source_file": "1706 Jan 2018 ENCS Final version.pdf",
+  "sha256": "5237ba69d5fae6a26dceffc8f39dfcab32fe7d57081bfba74dcf5c5550c1afa3",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 3,
+  "pages": 2,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Times New Roman"
+  ],
+  "rules": 712,
+  "text_runs": 313,
+  "images": 3,
+  "cells": 385,
+  "comb_cells": 81,
+  "growables": [
+    {
+      "page": 2,
+      "rows": 4,
+      "capacity": 4,
+      "pitch_pt": 12.0
+    },
+    {
+      "page": 2,
+      "rows": 5,
+      "capacity": 5,
+      "pitch_pt": 12.0
+    }
+  ],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1706 Jan 2018 ENCS Final version.pdf",
+      "sha256": "5237ba69d5fae6a26dceffc8f39dfcab32fe7d57081bfba74dcf5c5550c1afa3"
+    }
+  ],
+  "guide": null,
+  "guide_detected": {
+    "inline_pages": [],
+    "standalone_pdfs": []
+  },
+  "html_bytes": 576283,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

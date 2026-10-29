@@ -1,0 +1,1476 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "2550m-v2007",
+  "generated_by": "oracle/gen_layout.js (official saveXMLsubmit loop run in jsdom)",
+  "official_hta": "BIR-Form2550M.hta",
+  "official_hta_sha256": "72f1422dab2f8523d140aa51fe5f54f7d9025acc2cf877b37c8d92b60c7668b5",
+  "header": "<?xml version='1.0'?>",
+  "lead": "\t\n            ",
+  "value_rules": [],
+  "entries": [
+    {
+      "key": "frm2550m:RtnYear",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:RtnYear",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtYear",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtYear",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:OptAmendedYN1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:OptAmendedYN2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtSheets",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtSheets",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtBranchCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtBranchCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtRDOCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtRDOCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtLineBus",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtLineBus",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTaxPayerName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTaxPayerName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTelephoneNum",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTelephoneNum",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtAddress",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtAddress",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtZipCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtZipCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:OptSpecialTax1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:OptSpecialTax2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:lstSpecialTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:lstSpecialTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax12A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax12A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax12B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax12B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax13A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax13A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax13B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax13B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax14",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax14",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax15",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax15",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax16A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax16A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax16B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax16B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax17A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax17A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax17B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax17B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax17C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax17C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax17D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax17D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax17E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax17E",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax17F",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax17F",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18E",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18F",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18F",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18G",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18G",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18H",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18H",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18I",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18I",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18J",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18J",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18K",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18K",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18L",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18L",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18M",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18M",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18N",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18N",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18O",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18O",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax18P",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax18P",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax19",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax19",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax20A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax20A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax20B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax20B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax20C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax20C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax20D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax20D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax20E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax20E",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax20F",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax20F",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax21",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax21",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax22",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax22",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax23A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax23A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax23B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax23B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax23C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax23C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax23D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax23D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax23E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax23E",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax23F",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax23F",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax23G",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax23G",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax24",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax24",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax25A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax25A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax25B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax25B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax25C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax25C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax25D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax25D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550m:txtTax26",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550m:txtTax26",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550M:txtmodaltxtTotal12A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550M:txtmodaltxtTotal12A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2550M:txtmodaltxtTotal12B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2550M:txtmodaltxtTotal12B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode3",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode4",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode5",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode6",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode7",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode8",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode9",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode10",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode11",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode12",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode13",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode14",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode15",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode16",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode17",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode18",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode19",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode20",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode21",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode22",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode23",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode24",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode25",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode26",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode27",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode28",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode29",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode30",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode31",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode32",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode33",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode34",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode35",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "AtcCode36",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtmodalTotalAmt",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtmodalTotalAmt",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtmodalTotalInputTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtmodalTotalInputTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtmodalTotalAmountSched3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtmodalTotalAmountSched3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtmodalTotalInputTaxSched3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtmodalTotalInputTaxSched3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtmodalTotalBalanceSched3A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtmodalTotalBalanceSched3A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtmodalTotalBalanceSched3B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtmodalTotalBalanceSched3B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtmodalTotalInputTax20ASched3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtmodalTotalInputTax20ASched3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtinputtaxSched4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtinputtaxSched4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtTaxableSaleSched4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTaxableSaleSched4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtInputTaxnotDirectSched4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtInputTaxnotDirectSched4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtTotalInputTaxnotDirectSched4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTotalInputTaxnotDirectSched4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtTotalSaleSched4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTotalSaleSched4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtTotalInputSaletoGovernmentSched4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTotalInputSaletoGovernmentSched4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtlessStdTaxSched4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtlessStdTaxSched4",
+          "codec": "raw"
+        }
+      ],
+      "default": "5.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtTotal20BSched4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTotal20BSched4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtinputtaxSched5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtinputtaxSched5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtTotSaleSched5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTotSaleSched5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtAmountInputnotDirectSched5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtAmountInputnotDirectSched5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtProductnotDirectSched5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtProductnotDirectSched5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtSumTotalSaleSched5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtSumTotalSaleSched5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtTotal20CSched5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtTotal20CSched5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtmodalTotal23A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtmodalTotal23A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtmodalTotalSched6AppliedCurrent",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtmodalTotalSched6AppliedCurrent",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtmodalTotal23B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtmodalTotal23B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtmodalTotalSched7AppliedCurrent",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtmodalTotalSched7AppliedCurrent",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtmodalTotal23C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtmodalTotal23C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtmodalTotalSched8AppliedCurrent",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtmodalTotalSched8AppliedCurrent",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtFinalFlag",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtFinalFlag",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEnroll",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEnroll",
+          "codec": "raw"
+        }
+      ],
+      "default": "N",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineConfirmUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineConfirmUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineSecret",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineSecret",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEmail",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEmail",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "driveSelectTPExport",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "driveSelectTPExport",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            \t\n            All Rights Reserved BIR 2012.0"
+    }
+  ]
+}

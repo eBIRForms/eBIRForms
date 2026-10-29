@@ -1,0 +1,737 @@
+{
+ "form_id": "2000-v2018",
+ "html_slug": "2000-dst-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (frozen page text layer) sits directly left of or just above it. Booleans take xbox_joins (box immediately left of the printed option; _1/_2/_3 follow the printed option order). Amount rows on Schedules 1-4 pair a peso comb with the 2-slot centavo comb directly right (money_joins). Schedule rows 2 and 3 print no row number, so they take the column header above row 1. The Schedule totals (sched1:txtTotalDue1, sched2/sched3:txtTotalPayment1, sched4:txtTotalRemittance1) print on the same cell as the Item 14/15B/15C/19 keys, so the item keys carry the join. Items 14-19 print on page 1 in 14-slot combs whose last two slots are the centavos (money_joins decimal_html_id), and items 14, 15B, 15C and 19 also in the page 2 schedule total pairs (one key, several cells). The schedule dates print through date_joins; Items 8-9 and the page 2 header print from derived: keys of Form2000Draft::to_print_field_map. Since #113 every value the print map carries has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm2000:txtMonth",
+   "html_id": "p1c4",
+   "printed": "For the month of (MM)",
+   "reason": "caption \"For the month of\" left of the 2-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtYear",
+   "html_id": "p1c5",
+   "printed": "For the month of (YYYY)",
+   "reason": "caption \"For the month of\" left of the 4-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtSheets",
+   "html_id": "p1c8",
+   "printed": "3 Number of Sheet/s Attached",
+   "reason": "caption left of the 2-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtTIN1",
+   "html_id": "p1c13",
+   "printed": "4 Taxpayer Identification Number (TIN), part 1",
+   "reason": "caption left of the 3-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtTIN2",
+   "html_id": "p1c15",
+   "printed": "4 Taxpayer Identification Number (TIN), part 2",
+   "reason": "comb after the first dash"
+  },
+  {
+   "writer_key": "frm2000:txtTIN3",
+   "html_id": "p1c17",
+   "printed": "4 Taxpayer Identification Number (TIN), part 3",
+   "reason": "comb after the second dash"
+  },
+  {
+   "writer_key": "frm2000:txtBranchCode",
+   "html_id": "p1c19",
+   "printed": "4 Taxpayer Identification Number (TIN), branch",
+   "reason": "5-slot branch comb after the third dash"
+  },
+  {
+   "writer_key": "frm2000:txtRDOCode",
+   "html_id": "p1c21",
+   "printed": "5 RDO Code",
+   "reason": "caption left of the 4-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtTaxpayerName",
+   "html_id": "p1c23",
+   "printed": "6 Taxpayer's Name",
+   "reason": "row 6 caption above the 40-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtAddress",
+   "html_id": "p1c25",
+   "printed": "7 Registered Address",
+   "reason": "row 7 caption above the 40-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtAddress2",
+   "html_id": "p1c26",
+   "printed": "7 Registered Address (second line)",
+   "reason": "second line stacked directly under the item 7 cell, beside the 7A ZIP caption"
+  },
+  {
+   "writer_key": "frm2000:txtZipCode",
+   "html_id": "p1c28",
+   "printed": "7A ZIP Code",
+   "reason": "caption left of the 4-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtOtherName",
+   "html_id": "p1c37",
+   "printed": "11 Name (Last Name, First Name, Middle Name for Individual OR Registered Name for Non-Individual)",
+   "reason": "row 11 caption above the 40-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtOtherTIN",
+   "html_id": "p1c40",
+   "printed": "12 TIN",
+   "reason": "caption left of the 14-slot comb"
+  },
+  {
+   "writer_key": "txtTaxAgentNo",
+   "html_id": "p1c78",
+   "printed": "Tax Agent Accreditation No.",
+   "reason": "caption left of the text cell"
+  },
+  {
+   "writer_key": "txtDateIssue",
+   "html_id": "p1c80",
+   "printed": "Date of Issue",
+   "reason": "caption left of the text cell"
+  },
+  {
+   "writer_key": "txtDateExpiry",
+   "html_id": "p1c82",
+   "printed": "Date of Expiry",
+   "reason": "caption left of the text cell"
+  },
+  {
+   "writer_key": "frm2000:txtAgency20",
+   "html_id": "p1c90",
+   "printed": "20 Cash/Bank Debit Memo, Drawee Bank/Agency",
+   "reason": "row 20 caption left of the 5-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtNumber20",
+   "html_id": "p1c91",
+   "printed": "20 Cash/Bank Debit Memo, Number",
+   "reason": "row 20 caption above the 6-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtAgency21",
+   "html_id": "p1c95",
+   "printed": "21 Check, Drawee Bank/Agency",
+   "reason": "row 21 caption left of the 5-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtNumber21",
+   "html_id": "p1c96",
+   "printed": "21 Check, Number",
+   "reason": "row 21 Check caption left of the 6-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtAgency22",
+   "html_id": "p1c100",
+   "printed": "22 Tax Debit Memo, Drawee Bank/Agency",
+   "reason": "row 22 caption left of the 5-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtNumber22",
+   "html_id": "p1c101",
+   "printed": "22 Tax Debit Memo, Number",
+   "reason": "row 22 caption left of the 6-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtParticular36",
+   "html_id": "p1c105",
+   "printed": "23 Others (specify)",
+   "reason": "Particulars text under the item 23 Others caption"
+  },
+  {
+   "writer_key": "frm2000:txtAgency23",
+   "html_id": "p1c106",
+   "printed": "23 Others, Drawee Bank/Agency",
+   "reason": "row 23 caption left of the 5-slot comb"
+  },
+  {
+   "writer_key": "frm2000:txtNumber23",
+   "html_id": "p1c107",
+   "printed": "23 Others, Number",
+   "reason": "row 23 caption left of the 6-slot comb"
+  },
+  {
+   "writer_key": "frm2000:sched1:txtTaxRate0",
+   "html_id": "p2c15",
+   "printed": "Tax Rate",
+   "reason": "Schedule 1 row 1 text cell under the Tax Rate header"
+  },
+  {
+   "writer_key": "frm2000:sched1:txtTaxRate1",
+   "html_id": "p2c23",
+   "printed": "Tax Rate",
+   "reason": "Schedule 1 row 2 text cell in the Tax Rate column"
+  },
+  {
+   "writer_key": "frm2000:sched1:txtTaxRate2",
+   "html_id": "p2c31",
+   "printed": "Tax Rate",
+   "reason": "Schedule 1 row 3 text cell in the Tax Rate column"
+  },
+  {
+   "writer_key": "drpATCCode0",
+   "html_id": "p2c11",
+   "printed": "ATC",
+   "reason": "Schedule 1 row 1 ATC column, 5-slot comb"
+  },
+  {
+   "writer_key": "drpATCCode1",
+   "html_id": "p2c19",
+   "printed": "ATC",
+   "reason": "Schedule 1 row 2 ATC column, 5-slot comb"
+  },
+  {
+   "writer_key": "drpATCCode2",
+   "html_id": "p2c27",
+   "printed": "ATC",
+   "reason": "Schedule 1 row 3 ATC column, 5-slot comb"
+  },
+  {
+   "writer_key": "frm2000:sched2:txtReceipt0",
+   "html_id": "p2c48",
+   "printed": "Revenue Official Receipt No. (Schedule 2 row 1)",
+   "reason": "caption above the 16-slot comb"
+  },
+  {
+   "writer_key": "frm2000:sched2:txtReceipt1",
+   "html_id": "p2c57",
+   "printed": "Revenue Official Receipt No. (Schedule 2 row 2)",
+   "reason": "Schedule 2 row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000:sched2:txtReceipt2",
+   "html_id": "p2c66",
+   "printed": "Revenue Official Receipt No. (Schedule 2 row 3)",
+   "reason": "Schedule 2 row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000:sched3:txtReceipt0",
+   "html_id": "p2c83",
+   "printed": "Official Receipt No. (Schedule 3 row 1)",
+   "reason": "caption above the 16-slot comb"
+  },
+  {
+   "writer_key": "frm2000:sched3:txtReceipt1",
+   "html_id": "p2c92",
+   "printed": "Official Receipt No. (Schedule 3 row 2)",
+   "reason": "Schedule 3 row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000:sched3:txtReceipt2",
+   "html_id": "p2c101",
+   "printed": "Official Receipt No. (Schedule 3 row 3)",
+   "reason": "Schedule 3 row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtRCOCode0",
+   "html_id": "p2c117",
+   "printed": "RCO Code (Schedule 4 row 1)",
+   "reason": "caption above the 6-slot comb"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtRCOCode1",
+   "html_id": "p2c127",
+   "printed": "RCO Code (Schedule 4 row 2)",
+   "reason": "Schedule 4 row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtRCOCode2",
+   "html_id": "p2c137",
+   "printed": "RCO Code (Schedule 4 row 3)",
+   "reason": "Schedule 4 row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtBank0",
+   "html_id": "p2c121",
+   "printed": "Agent Bank (Schedule 4 row 1)",
+   "reason": "caption above the 5-slot comb"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtBank1",
+   "html_id": "p2c131",
+   "printed": "Agent Bank (Schedule 4 row 2)",
+   "reason": "Schedule 4 row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtBank2",
+   "html_id": "p2c141",
+   "printed": "Agent Bank (Schedule 4 row 3)",
+   "reason": "Schedule 4 row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtNumberFrom0",
+   "html_id": "p2c125",
+   "printed": "From (Schedule 4 row 1)",
+   "reason": "caption above the 8-slot comb"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtNumberFrom1",
+   "html_id": "p2c135",
+   "printed": "From (Schedule 4 row 2)",
+   "reason": "Schedule 4 row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtNumberFrom2",
+   "html_id": "p2c145",
+   "printed": "From (Schedule 4 row 3)",
+   "reason": "Schedule 4 row 3, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtNumberTo0",
+   "html_id": "p2c126",
+   "printed": "To (Schedule 4 row 1)",
+   "reason": "caption above the 8-slot comb"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtNumberTo1",
+   "html_id": "p2c136",
+   "printed": "To (Schedule 4 row 2)",
+   "reason": "Schedule 4 row 2, same column as row 1"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtNumberTo2",
+   "html_id": "p2c146",
+   "printed": "To (Schedule 4 row 3)",
+   "reason": "Schedule 4 row 3, same column as row 1"
+  },
+  {
+   "writer_key": "derived:contact_email",
+   "html_id": "p1c31",
+   "printed": "8 Contact Number / 9 Email Address",
+   "reason": "one 40-slot comb under both captions: the number from slot 0, the email as typed from slot 13 (caption 9 at x=198)"
+  },
+  {
+   "writer_key": "derived:page_header",
+   "html_id": "p2c5",
+   "printed": "Page 2 header: TIN / Taxpayer's Name",
+   "reason": "one 40-slot comb under both the page 2 TIN and Taxpayer's Name captions: the 14 TIN digits, then the name from slot 14"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm2000:sched1:txtTaxBase0",
+   "peso_html_id": "p2c12",
+   "cent_html_id": "p2c14",
+   "printed": "ATC / Tax Base (Schedule 1 row 1)",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000:sched1:txtTaxBase1",
+   "peso_html_id": "p2c20",
+   "cent_html_id": "p2c22",
+   "printed": "ATC / Tax Base (Schedule 1 row 2)",
+   "reason": "Schedule 1 row 2, same column"
+  },
+  {
+   "writer_key": "frm2000:sched1:txtTaxBase2",
+   "peso_html_id": "p2c28",
+   "cent_html_id": "p2c30",
+   "printed": "ATC / Tax Base (Schedule 1 row 3)",
+   "reason": "Schedule 1 row 3, same column"
+  },
+  {
+   "writer_key": "frm2000:sched1:txtTaxDue0",
+   "peso_html_id": "p2c16",
+   "cent_html_id": "p2c18",
+   "printed": "Tax Due (Schedule 1 row 1)",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000:sched1:txtTaxDue1",
+   "peso_html_id": "p2c24",
+   "cent_html_id": "p2c26",
+   "printed": "Tax Due (Schedule 1 row 2)",
+   "reason": "Schedule 1 row 2, same column"
+  },
+  {
+   "writer_key": "frm2000:sched1:txtTaxDue2",
+   "peso_html_id": "p2c32",
+   "cent_html_id": "p2c34",
+   "printed": "Tax Due (Schedule 1 row 3)",
+   "reason": "Schedule 1 row 3, same column"
+  },
+  {
+   "writer_key": "frm2000:sched2:txtAmountPaid0",
+   "peso_html_id": "p2c49",
+   "cent_html_id": "p2c51",
+   "printed": "Amount Paid (Schedule 2 row 1)",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000:sched2:txtAmountPaid1",
+   "peso_html_id": "p2c58",
+   "cent_html_id": "p2c60",
+   "printed": "Amount Paid (Schedule 2 row 2)",
+   "reason": "Schedule 2 row 2, same column"
+  },
+  {
+   "writer_key": "frm2000:sched2:txtAmountPaid2",
+   "peso_html_id": "p2c67",
+   "cent_html_id": "p2c69",
+   "printed": "Amount Paid (Schedule 2 row 3)",
+   "reason": "Schedule 2 row 3, same column"
+  },
+  {
+   "writer_key": "frm2000:sched3:txtAmountPaid0",
+   "peso_html_id": "p2c84",
+   "cent_html_id": "p2c86",
+   "printed": "Amount Paid (Schedule 3 row 1)",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000:sched3:txtAmountPaid1",
+   "peso_html_id": "p2c93",
+   "cent_html_id": "p2c95",
+   "printed": "Amount Paid (Schedule 3 row 2)",
+   "reason": "Schedule 3 row 2, same column"
+  },
+  {
+   "writer_key": "frm2000:sched3:txtAmountPaid2",
+   "peso_html_id": "p2c102",
+   "cent_html_id": "p2c104",
+   "printed": "Amount Paid (Schedule 3 row 3)",
+   "reason": "Schedule 3 row 3, same column"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtAmountRemitted0",
+   "peso_html_id": "p2c122",
+   "cent_html_id": "p2c124",
+   "printed": "Agent Bank / Amount Remitted (Schedule 4 row 1)",
+   "reason": "peso comb with the 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtAmountRemitted1",
+   "peso_html_id": "p2c132",
+   "cent_html_id": "p2c134",
+   "printed": "Agent Bank / Amount Remitted (Schedule 4 row 2)",
+   "reason": "Schedule 4 row 2, same column"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtAmountRemitted2",
+   "peso_html_id": "p2c142",
+   "cent_html_id": "p2c144",
+   "printed": "Agent Bank / Amount Remitted (Schedule 4 row 3)",
+   "reason": "Schedule 4 row 3, same column"
+  },
+  {
+   "writer_key": "frm2000:txtTax14",
+   "peso_html_id": "p2c36",
+   "cent_html_id": "p2c38",
+   "decimal_html_id": "p1c48",
+   "printed": "14 Tax Due for the Month (From Schedule 1); TOTAL TAX DUE (To Item 14)",
+   "reason": "the 14-slot amount comb on the printed item 14 row of page 1 (12 peso slots and 2 centavo slots; the sheet prints the point on the line between them); and the page 2 schedule total pair (TOTAL TAX DUE (To Item 14)), the same amount"
+  },
+  {
+   "writer_key": "frm2000:txtTax15A",
+   "decimal_html_id": "p1c50",
+   "printed": "15A Balance Carried Over from Previous Return",
+   "reason": "the 14-slot amount comb on the printed item 15A row of page 1 (12 peso slots and 2 centavo slots; the sheet prints the point on the line between them)"
+  },
+  {
+   "writer_key": "frm2000:txtTax15B",
+   "peso_html_id": "p2c71",
+   "cent_html_id": "p2c73",
+   "decimal_html_id": "p1c52",
+   "printed": "15B Payment thru Constructive Affixture (From Schedule 2); TOTAL PAYMENT/S (To Item 15B)",
+   "reason": "the 14-slot amount comb on the printed item 15B row of page 1 (12 peso slots and 2 centavo slots; the sheet prints the point on the line between them); and the page 2 schedule total pair (TOTAL PAYMENT/S (To Item 15B)), the same amount"
+  },
+  {
+   "writer_key": "frm2000:txtTax15C",
+   "peso_html_id": "p2c106",
+   "cent_html_id": "p2c108",
+   "decimal_html_id": "p1c54",
+   "printed": "15C Advance Payment during the month (From Schedule 3); TOTAL PAYMENT/S (To Item 15C)",
+   "reason": "the 14-slot amount comb on the printed item 15C row of page 1 (12 peso slots and 2 centavo slots; the sheet prints the point on the line between them); and the page 2 schedule total pair (TOTAL PAYMENT/S (To Item 15C)), the same amount"
+  },
+  {
+   "writer_key": "frm2000:txtTax15D",
+   "decimal_html_id": "p1c56",
+   "printed": "15D Total (Sum of Items 15A to 15C)",
+   "reason": "the 14-slot amount comb on the printed item 15D row of page 1 (12 peso slots and 2 centavo slots; the sheet prints the point on the line between them)"
+  },
+  {
+   "writer_key": "frm2000:txtTax16",
+   "decimal_html_id": "p1c58",
+   "printed": "16 Net Tax Payable/(Overpayment)",
+   "reason": "the 14-slot amount comb on the printed item 16 row of page 1 (12 peso slots and 2 centavo slots; the sheet prints the point on the line between them)"
+  },
+  {
+   "writer_key": "frm2000:txtTax17A",
+   "decimal_html_id": "p1c60",
+   "printed": "17A Surcharge",
+   "reason": "the 14-slot amount comb on the printed item 17A row of page 1 (12 peso slots and 2 centavo slots; the sheet prints the point on the line between them)"
+  },
+  {
+   "writer_key": "frm2000:txtTax17B",
+   "decimal_html_id": "p1c62",
+   "printed": "17B Interest",
+   "reason": "the 14-slot amount comb on the printed item 17B row of page 1 (12 peso slots and 2 centavo slots; the sheet prints the point on the line between them)"
+  },
+  {
+   "writer_key": "frm2000:txtTax17C",
+   "decimal_html_id": "p1c64",
+   "printed": "17C Compromise",
+   "reason": "the 14-slot amount comb on the printed item 17C row of page 1 (12 peso slots and 2 centavo slots; the sheet prints the point on the line between them)"
+  },
+  {
+   "writer_key": "frm2000:txtTax17D",
+   "decimal_html_id": "p1c66",
+   "printed": "17D Total Penalties",
+   "reason": "the 14-slot amount comb on the printed item 17D row of page 1 (12 peso slots and 2 centavo slots; the sheet prints the point on the line between them)"
+  },
+  {
+   "writer_key": "frm2000:txtTax18",
+   "decimal_html_id": "p1c68",
+   "printed": "18 Total Amount Payable/(Overpayment)",
+   "reason": "the 14-slot amount comb on the printed item 18 row of page 1 (12 peso slots and 2 centavo slots; the sheet prints the point on the line between them)"
+  },
+  {
+   "writer_key": "frm2000:txtTax19",
+   "peso_html_id": "p2c148",
+   "cent_html_id": "p2c150",
+   "decimal_html_id": "p1c71",
+   "printed": "19 Total Amount of Documentary Stamps Sold for the Month (From Schedule 4); TOTAL REMITTANCE (To Item 19)",
+   "reason": "the 14-slot amount comb on the printed item 19 row of page 1 (12 peso slots and 2 centavo slots; the sheet prints the point on the line between them); and the page 2 schedule total pair (TOTAL REMITTANCE (To Item 19)), the same amount"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm2000:AmendedRtn_1",
+   "html_id": "p1c9",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of \"Yes\""
+  },
+  {
+   "writer_key": "frm2000:AmendedRtn_2",
+   "html_id": "p1c10",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of \"No\""
+  },
+  {
+   "writer_key": "frm2000:optParty_1",
+   "html_id": "p1c35",
+   "printed": "10 Other Party to the transaction: Creditor/Mortgagor/etc.",
+   "reason": "box immediately left of the printed option"
+  },
+  {
+   "writer_key": "frm2000:optParty_2",
+   "html_id": "p1c33",
+   "printed": "10 Other Party to the transaction: Debtor/Mortgagee/etc.",
+   "reason": "box immediately left of the printed option"
+  },
+  {
+   "writer_key": "frm2000:optParty_3",
+   "html_id": "p1c34",
+   "printed": "10 Other Party to the transaction: None",
+   "reason": "box immediately left of the printed option"
+  },
+  {
+   "writer_key": "frm2000:optMode_1",
+   "html_id": "p1c42",
+   "printed": "13 Mode of Affixture: eDST System",
+   "reason": "box immediately left of the printed option"
+  },
+  {
+   "writer_key": "frm2000:optMode_2",
+   "html_id": "p1c43",
+   "printed": "13 Mode of Affixture: Constructive Affixture",
+   "reason": "box immediately left of the printed option"
+  },
+  {
+   "writer_key": "frm2000:optMode_3",
+   "html_id": "p1c44",
+   "printed": "13 Mode of Affixture: Loose Stamps",
+   "reason": "box immediately left of the printed option"
+  }
+ ],
+ "date_joins": [
+  {
+   "writer_key": "frm2000:sched2:txtPaymentDate0",
+   "mm_html_id": "p2c43",
+   "dd_html_id": "p2c45",
+   "yyyy_html_id": "p2c47",
+   "printed": "Schedule 2 row 1, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs at the start of Schedule 2 row 1 (rows 2-3 take the column header above row 1); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2000:sched2:txtPaymentDate1",
+   "mm_html_id": "p2c52",
+   "dd_html_id": "p2c54",
+   "yyyy_html_id": "p2c56",
+   "printed": "Schedule 2 row 2, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs at the start of Schedule 2 row 2 (rows 2-3 take the column header above row 1); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2000:sched2:txtPaymentDate2",
+   "mm_html_id": "p2c61",
+   "dd_html_id": "p2c63",
+   "yyyy_html_id": "p2c65",
+   "printed": "Schedule 2 row 3, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs at the start of Schedule 2 row 3 (rows 2-3 take the column header above row 1); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2000:sched3:txtPaymentDate0",
+   "mm_html_id": "p2c78",
+   "dd_html_id": "p2c80",
+   "yyyy_html_id": "p2c82",
+   "printed": "Schedule 3 row 1, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs at the start of Schedule 3 row 1 (rows 2-3 take the column header above row 1); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2000:sched3:txtPaymentDate1",
+   "mm_html_id": "p2c87",
+   "dd_html_id": "p2c89",
+   "yyyy_html_id": "p2c91",
+   "printed": "Schedule 3 row 2, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs at the start of Schedule 3 row 2 (rows 2-3 take the column header above row 1); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2000:sched3:txtPaymentDate2",
+   "mm_html_id": "p2c96",
+   "dd_html_id": "p2c98",
+   "yyyy_html_id": "p2c100",
+   "printed": "Schedule 3 row 3, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs at the start of Schedule 3 row 3 (rows 2-3 take the column header above row 1); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtRemittanceDate0",
+   "mm_html_id": "p2c118",
+   "dd_html_id": "p2c119",
+   "yyyy_html_id": "p2c120",
+   "printed": "Schedule 4 row 1, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs at the start of Schedule 4 row 1 (rows 2-3 take the column header above row 1); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtRemittanceDate1",
+   "mm_html_id": "p2c128",
+   "dd_html_id": "p2c129",
+   "yyyy_html_id": "p2c130",
+   "printed": "Schedule 4 row 2, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs at the start of Schedule 4 row 2 (rows 2-3 take the column header above row 1); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2000:sched4:txtRemittanceDate2",
+   "mm_html_id": "p2c138",
+   "dd_html_id": "p2c139",
+   "yyyy_html_id": "p2c140",
+   "printed": "Schedule 4 row 3, Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs at the start of Schedule 4 row 3 (rows 2-3 take the column header above row 1); one writer date split across the three"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm2000:sched1:txtTotalDue1",
+    "frm2000:sched2:txtTotalPayment1",
+    "frm2000:sched3:txtTotalPayment1",
+    "frm2000:sched4:txtTotalRemittance1"
+   ],
+   "reason": "schedule total control of the page: the same amount as txtTax14 / 15B / 15C / 19, which print in the schedule total cells and the page 1 items"
+  },
+  {
+   "writer_keys": [
+    "frm2000:txtTelNum",
+    "txtEmail"
+   ],
+   "reason": "prints from derived:contact_email (the print map shapes Items 8 and 9 on one shared 40-slot comb for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2000:txtPg2TIN1",
+    "frm2000:txtPg2TIN2",
+    "frm2000:txtPg2TIN3",
+    "frm2000:txtPg2BranchCode",
+    "frm2000:txtPg2TaxpayerName"
+   ],
+   "reason": "prints inside derived:page_header (TIN then name on the one page 2 header comb)"
+  },
+  {
+   "writer_key": "frm2000:numOfDays",
+   "reason": "day count the page computes for its own checks; the sheet has no box for it"
+  },
+  {
+   "writer_keys": [
+    "ds106modYes",
+    "ds106modNo"
+   ],
+   "reason": "radio of the page's DS106 popup, not on the paper form"
+  },
+  {
+   "writer_key": "frm2000:txtLineBus",
+   "reason": "not on the paper form: this sheet has no line-of-business box"
+  },
+  {
+   "writer_key": "frm2000:txtCurrentPage",
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  },
+  {
+   "writer_keys": [
+    "drpATCCode10",
+    "drpATCCode11",
+    "drpATCCode12",
+    "drpATCCode13",
+    "drpATCCode3",
+    "drpATCCode4",
+    "drpATCCode5",
+    "drpATCCode6",
+    "drpATCCode7",
+    "drpATCCode8",
+    "drpATCCode9",
+    "frm2000:sched1:txtTaxBase10",
+    "frm2000:sched1:txtTaxBase11",
+    "frm2000:sched1:txtTaxBase12",
+    "frm2000:sched1:txtTaxBase13",
+    "frm2000:sched1:txtTaxBase3",
+    "frm2000:sched1:txtTaxBase4",
+    "frm2000:sched1:txtTaxBase5",
+    "frm2000:sched1:txtTaxBase6",
+    "frm2000:sched1:txtTaxBase7",
+    "frm2000:sched1:txtTaxBase8",
+    "frm2000:sched1:txtTaxBase9",
+    "frm2000:sched1:txtTaxDue10",
+    "frm2000:sched1:txtTaxDue11",
+    "frm2000:sched1:txtTaxDue12",
+    "frm2000:sched1:txtTaxDue13",
+    "frm2000:sched1:txtTaxDue3",
+    "frm2000:sched1:txtTaxDue4",
+    "frm2000:sched1:txtTaxDue5",
+    "frm2000:sched1:txtTaxDue6",
+    "frm2000:sched1:txtTaxDue7",
+    "frm2000:sched1:txtTaxDue8",
+    "frm2000:sched1:txtTaxDue9"
+   ],
+   "reason": "Schedule 1 row past the 3 rows the sheet prints: an add-more row of the page, uploaded with the return; the sheet has no box for it"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c38",
+   "reason": "second row beside the item 12 TIN with no printed caption and a different width from the item 11 name cell; cannot confirm it is the txtOtherName2 line"
+  },
+  {
+   "html_id": "p1c92",
+   "reason": "Part III date (MM/DD/YYYY) is one 8-slot comb with no slash cells; the writer date format for this comb is not verifiable"
+  },
+  {
+   "html_id": "p1c97",
+   "reason": "Part III date (MM/DD/YYYY) is one 8-slot comb with no slash cells; the writer date format for this comb is not verifiable"
+  },
+  {
+   "html_id": "p1c102",
+   "reason": "Part III date (MM/DD/YYYY) is one 8-slot comb with no slash cells; the writer date format for this comb is not verifiable"
+  },
+  {
+   "html_id": "p1c108",
+   "reason": "Part III date (MM/DD/YYYY) is one 8-slot comb with no slash cells; the writer date format for this comb is not verifiable"
+  }
+ ]
+}

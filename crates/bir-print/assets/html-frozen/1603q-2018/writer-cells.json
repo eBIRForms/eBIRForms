@@ -1,0 +1,446 @@
+{
+ "form_id": "1603q-v2018",
+ "html_slug": "1603q-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (frozen page text layer) sits directly left of or just above it. Part II item numbers 14-23 are printed and match the keys by number and label. Part III row 24 prints only its number, so it is matched by item number; rows 25-27 match by printed label. Schedule 1 rows print only numbers 1-2 and column headers; ATC codes and percentage divisors are printed text, so they have no cell. Peso comb + 2-slot cents pairs are money_joins. Radios and boxes take xbox_joins. Since #113: the item 9 second line, Item 13A, the item 16 specify box and the page 2 TIN print too (derived: keys from Form1603QDraft::to_print_field_map); every other value has a reviewed not_joined reason. One writer key may fill several cells (html_ids).",
+ "joins": [
+  {
+   "writer_key": "frm1603Q:txtYear",
+   "html_id": "p1c9",
+   "printed": "1 For the Year",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtSheets",
+   "html_id": "p1c15",
+   "printed": "5 (number of sheets; text layer prints only '5')",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTIN1",
+   "html_id": "p1c27",
+   "printed": "6 Taxpayer Identification Number (TIN), part 1",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTIN2",
+   "html_id": "p1c29",
+   "printed": "6 Taxpayer Identification Number (TIN), part 2",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTIN3",
+   "html_id": "p1c31",
+   "printed": "6 Taxpayer Identification Number (TIN), part 3",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtBranchCode",
+   "html_id": "p1c33",
+   "printed": "6 Taxpayer Identification Number (TIN), branch after the slash",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:rdoCode",
+   "html_id": "p1c35",
+   "printed": "7 RDO Code",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTaxpayerName",
+   "html_id": "p1c37",
+   "printed": "8 Withholding Agent's Name",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtZipCode",
+   "html_id": "p1c42",
+   "printed": "9A ZIP Code",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTelNum",
+   "html_id": "p1c44",
+   "printed": "10 Contact Number",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "txtEmail",
+   "html_id": "p1c49",
+   "printed": "12 Email Address",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "txtTaxAgentNo",
+   "html_id": "p1c102",
+   "printed": "Tax Agent Accreditation No./ Attorney's Roll No.",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "txtDateIssue",
+   "html_id": "p1c104",
+   "printed": "Date of Issue",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "txtDateExpiry",
+   "html_id": "p1c106",
+   "printed": "Date of Expiry",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtAgency24",
+   "html_id": "p1c114",
+   "printed": "24 (item number only), Particulars (drawee bank/agency)",
+   "reason": "printed item number 24 matches the key number; the row has no other caption"
+  },
+  {
+   "writer_key": "frm1603Q:txtNumber24",
+   "html_id": "p1c115",
+   "printed": "24 (item number only), Number",
+   "reason": "printed item number 24 matches the key number; the row has no other caption"
+  },
+  {
+   "writer_key": "frm1603Q:txtAgency25",
+   "html_id": "p1c123",
+   "printed": "25 Check, Particulars (drawee bank/agency)",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtNumber25",
+   "html_id": "p1c124",
+   "printed": "25 Check, Number",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtNumber26",
+   "html_id": "p1c132",
+   "printed": "26 Tax Debit Memo, Number",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtParticular27",
+   "html_id": "p1c140",
+   "printed": "27 Others (specify below), Particulars",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtAgency27",
+   "html_id": "p1c141",
+   "printed": "27 Others, Particulars (drawee bank/agency)",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtNumber27",
+   "html_id": "p1c142",
+   "printed": "27 Others, Number",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtPg2TaxpayerName",
+   "html_id": "p2c6",
+   "printed": "Page 2 Withholding Agent's Name",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "derived:address_line1",
+   "html_id": "p1c39",
+   "printed": "9 Registered Address, line 1",
+   "reason": "full-width 40-slot comb under the item 9 caption; the print map breaks the address at the last space that fits"
+  },
+  {
+   "writer_key": "derived:line:address_line2",
+   "html_id": "p1c40",
+   "printed": "9 Registered Address, line 2",
+   "reason": "31-slot comb left of 9A ZIP Code on the second item 9 row: the rest of the address; a longer line prints whole in smaller type"
+  },
+  {
+   "writer_key": "derived:line:tax_relief_specify",
+   "html_id": "p1c52",
+   "printed": "13A If yes, specify",
+   "reason": "17-slot comb right of the 13A If yes, specify caption; the relief named on a Yes (the upload carries the selTreaty code)"
+  },
+  {
+   "writer_key": "frm1603Q:txt16Other",
+   "html_id": "p1c181",
+   "printed": "16 Other Remittances Made (specify)",
+   "reason": "the specify box between the item 16 caption and its amount combs"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN",
+   "reason": "the 14-slot comb under the page 2 TIN caption: TIN then branch, from the page-2 TIN keys"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm1603Q:txtTax14",
+   "peso_html_id": "p1c57",
+   "cent_html_id": "p1c59",
+   "printed": "14 (printed item 14)",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTax15",
+   "peso_html_id": "p1c61",
+   "cent_html_id": "p1c63",
+   "printed": "15 (printed item 15)",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTax16",
+   "peso_html_id": "p1c65",
+   "cent_html_id": "p1c67",
+   "printed": "16 (printed item 16)",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTax17",
+   "peso_html_id": "p1c69",
+   "cent_html_id": "p1c71",
+   "printed": "17 (printed item 17)",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTax18",
+   "peso_html_id": "p1c73",
+   "cent_html_id": "p1c75",
+   "printed": "18 (printed item 18)",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTax19",
+   "peso_html_id": "p1c77",
+   "cent_html_id": "p1c79",
+   "printed": "19 (printed item 19)",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTax20",
+   "peso_html_id": "p1c81",
+   "cent_html_id": "p1c83",
+   "printed": "20 (printed item 20)",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTax21",
+   "peso_html_id": "p1c85",
+   "cent_html_id": "p1c87",
+   "printed": "21 (printed item 21)",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTax22",
+   "peso_html_id": "p1c89",
+   "cent_html_id": "p1c91",
+   "printed": "22 (printed item 22)",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtTax23",
+   "peso_html_id": "p1c93",
+   "cent_html_id": "p1c95",
+   "printed": "23 (printed item 23)",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtAmount24",
+   "peso_html_id": "p1c119",
+   "cent_html_id": "p1c121",
+   "printed": "24 (item number only), Amount",
+   "reason": "printed item number 24 matches the key number; the row has no other caption"
+  },
+  {
+   "writer_key": "frm1603Q:txtAmount25",
+   "peso_html_id": "p1c128",
+   "cent_html_id": "p1c130",
+   "printed": "25 Check, Amount",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtAmount26",
+   "peso_html_id": "p1c136",
+   "cent_html_id": "p1c138",
+   "printed": "26 Tax Debit Memo, Amount",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:txtAmount27",
+   "peso_html_id": "p1c146",
+   "cent_html_id": "p1c148",
+   "printed": "27 Others, Amount",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  },
+  {
+   "writer_key": "frm1603Q:Sched1:txtValue1",
+   "peso_html_id": "p2c15",
+   "cent_html_id": "p2c17",
+   "printed": "Schedule 1 row 1, Monetary Value of Fringe Benefit",
+   "reason": "printed row 1 caption and column (C) header"
+  },
+  {
+   "writer_key": "frm1603Q:Sched1:txtValue2",
+   "peso_html_id": "p2c21",
+   "cent_html_id": "p2c23",
+   "printed": "Schedule 1 row 2, Monetary Value of Fringe Benefit",
+   "reason": "printed row 2 caption and column (C) header"
+  },
+  {
+   "writer_key": "frm1603Q:Sched1:txtTaxBase1",
+   "peso_html_id": "p2c31",
+   "cent_html_id": "p2c33",
+   "printed": "Schedule 1 row 1, Tax Base Grossed-up (E)",
+   "reason": "column (E) header under row 1"
+  },
+  {
+   "writer_key": "frm1603Q:Sched1:txtTaxWithheld1",
+   "peso_html_id": "p2c35",
+   "cent_html_id": "p2c37",
+   "printed": "Schedule 1 row 1, Taxes Withheld (G)",
+   "reason": "column (G) header under row 1"
+  },
+  {
+   "writer_key": "frm1603Q:Sched1:txtTaxBase2",
+   "peso_html_id": "p2c40",
+   "cent_html_id": "p2c42",
+   "printed": "Schedule 1 row 2, Tax Base Grossed-up (E)",
+   "reason": "column (E) header under row 2"
+  },
+  {
+   "writer_key": "frm1603Q:Sched1:txtTaxWithheld2",
+   "peso_html_id": "p2c44",
+   "cent_html_id": "p2c46",
+   "printed": "Schedule 1 row 2, Taxes Withheld (G)",
+   "reason": "column (G) header under row 2"
+  },
+  {
+   "writer_key": "frm1603Q:Sched1:txtTotalTax",
+   "peso_html_id": "p2c48",
+   "cent_html_id": "p2c50",
+   "printed": "Schedule 1 Total Taxes Withheld (Sum of Items 1 and 2)",
+   "reason": "geometry: the printed caption sits directly left of or just above this cell on the frozen sheet"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1603Q:optQuarter1",
+   "html_id": "p1c17",
+   "printed": "2 Quarter: 1st",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1603Q:optQuarter2",
+   "html_id": "p1c18",
+   "printed": "2 Quarter: 2nd",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1603Q:optQuarter3",
+   "html_id": "p1c24",
+   "printed": "2 Quarter: 3rd",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1603Q:optQuarter4",
+   "html_id": "p1c19",
+   "printed": "2 Quarter: 4th",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1603Q:AmendedRtn_1",
+   "html_id": "p1c20",
+   "printed": "3 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1603Q:AmendedRtn_2",
+   "html_id": "p1c21",
+   "printed": "3 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1603Q:TaxWithheld_1",
+   "html_id": "p1c22",
+   "printed": "4 Any Taxes Withheld? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1603Q:TaxWithheld_2",
+   "html_id": "p1c23",
+   "printed": "4 Any Taxes Withheld? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1603Q:CatAgent_P",
+   "html_id": "p1c46",
+   "printed": "11 Category of Withholding Agent: Private",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1603Q:CatAgent_G",
+   "html_id": "p1c47",
+   "printed": "11 Category of Withholding Agent: Government",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1603Q:SpecialTax_1",
+   "html_id": "p1c53",
+   "printed": "12 Special Law or International Tax Treaty? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1603Q:SpecialTax_2",
+   "html_id": "p1c54",
+   "printed": "12 Special Law or International Tax Treaty? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_key": "frm1603Q:txtAddress",
+   "reason": "prints from derived:address_line1 / derived:line:address_line2 (the print map shapes the address over both item 9 combs for the sheet)"
+  },
+  {
+   "writer_key": "frm1603Q:selTreaty",
+   "reason": "dropdown code (0 none, 1 special rate, 2 treaty, 3 both); item 13A prints the relief name from derived:line:tax_relief_specify"
+  },
+  {
+   "writer_keys": [
+    "frm1603Q:txtPg2TIN1",
+    "frm1603Q:txtPg2TIN2",
+    "frm1603Q:txtPg2TIN3",
+    "frm1603Q:txtPg2BranchCode"
+   ],
+   "reason": "page 2 TIN is one 14-slot comb (p2c5); it prints from derived:tin_digits, built from these four keys"
+  },
+  {
+   "writer_keys": [
+    "frm1603Q:Sched1:txtATC1",
+    "frm1603Q:Sched1:txtATC2"
+   ],
+   "reason": "Schedule 1 ATC column is preprinted (WF360, WF330); there is no box to fill"
+  },
+  {
+   "writer_keys": [
+    "frm1603Q:Sched1:txtDivisor1",
+    "frm1603Q:Sched1:txtDivisor2"
+   ],
+   "reason": "Schedule 1 (D) Percentage Divisor is preprinted (65%, 75%); there is no box to fill"
+  },
+  {
+   "writer_keys": [
+    "frm1603Q:Sched1:txtTaxRate1",
+    "frm1603Q:Sched1:txtTaxRate2"
+   ],
+   "reason": "Schedule 1 (F) Tax Rate is preprinted (35%, 25%); there is no box to fill"
+  },
+  {
+   "writer_key": "frm1603Q:txtLineBus",
+   "reason": "not on the paper form: this sheet has no line-of-business box"
+  },
+  {
+   "writer_key": "frm1603Q:txtCurrentPage",
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  }
+ ]
+}

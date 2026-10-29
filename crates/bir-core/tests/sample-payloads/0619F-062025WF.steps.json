@@ -1,0 +1,92 @@
+[
+ {
+  "set": "frm0619F:txtMonth",
+  "value": "06"
+ },
+ {
+  "set": "frm0619F:txtYear",
+  "value": "2025"
+ },
+ {
+  "set": "frm0619F:txtDueDay",
+  "value": "10"
+ },
+ {
+  "click": "frm0619F:optAmend:Y"
+ },
+ {
+  "click": "frm0619F:optWithheld:Y"
+ },
+ {
+  "set": "frm0619F:txtTaxTypeCode",
+  "value": "WF"
+ },
+ {
+  "set": "frm0619F:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm0619F:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm0619F:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm0619F:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm0619F:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "call": "document.getElementById(\"frm0619F:txtTaxpayerName\").value=\"Sample Dummy Taxpayer\""
+ },
+ {
+  "set": "frm0619F:txtLineBus",
+  "value": "Sample Consulting Services"
+ },
+ {
+  "call": "document.getElementById(\"frm0619F:txtAddress\").value=\"123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITY\""
+ },
+ {
+  "call": "document.getElementById(\"frm0619F:txtAddress2\").value=\"\""
+ },
+ {
+  "set": "frm0619F:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "frm0619F:txtTelNum",
+  "value": "09170000000"
+ },
+ {
+  "click": "frm0619F:optCategory:P"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "set": "frm0619F:txtTax14",
+  "value": "98765.435"
+ },
+ {
+  "set": "frm0619F:txtTax16",
+  "value": "500.005"
+ },
+ {
+  "set": "frm0619F:txtTax18A",
+  "value": "25.5"
+ },
+ {
+  "set": "frm0619F:txtTax18B",
+  "value": "10"
+ },
+ {
+  "set": "frm0619F:txtTax18C",
+  "value": "1000"
+ }
+]

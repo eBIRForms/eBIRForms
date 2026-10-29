@@ -1,0 +1,129 @@
+[
+ {
+  "set": "frm1600WP:DateWithholdingMonth",
+  "value": "06"
+ },
+ {
+  "set": "frm1600WP:DateWithholdingDay",
+  "value": "15"
+ },
+ {
+  "set": "frm1600WP:DateWithholdingYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1600WP:AmendedReturn_1"
+ },
+ {
+  "set": "frm1600WP:txtSheets",
+  "value": "0"
+ },
+ {
+  "click": "frm1600WP:AnyTaxHeld_1"
+ },
+ {
+  "set": "frm1600WP:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1600WP:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1600WP:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1600WP:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1600WP:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "click": "frm1600WP:CategoryAgent_G"
+ },
+ {
+  "set": "frm1600WP:txtTaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1600WP:txtAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm1600WP:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "call": "d.getElementById('AtcCd1').checked = true; d.getElementById('AtcCd2').checked = true; getATCCode();"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "set": "frm1600WP:txtTaxBase1",
+  "value": "123456.789"
+ },
+ {
+  "set": "frm1600WP:txtTaxBase2",
+  "value": "50000.015"
+ },
+ {
+  "set": "frm1600WP:txtTax13",
+  "value": "1000"
+ },
+ {
+  "set": "frm1600WP:txtTax15A",
+  "value": "125.125"
+ },
+ {
+  "set": "frm1600WP:txtTax15B",
+  "value": "10"
+ },
+ {
+  "call": "showSchedIIATC(1); d.getElementById('SchedIIAtcCde1').checked = true; getSchedIIATCCode();"
+ },
+ {
+  "set": "frm1600WP:dtSched:txtTin1",
+  "value": "987654321000"
+ },
+ {
+  "set": "frm1600WP:dtSched:txtFullname1",
+  "value": "Dela Cruz, Juan Sample"
+ },
+ {
+  "set": "frm1600WP:dtSched:amount1",
+  "value": "100000"
+ },
+ {
+  "call": "showSchedIIATC(2); d.getElementById('SchedIIAtcCde2').checked = true; getSchedIIATCCode();"
+ },
+ {
+  "set": "frm1600WP:dtSched:txtTin2",
+  "value": "111222339000"
+ },
+ {
+  "set": "frm1600WP:dtSched:txtFullname2",
+  "value": "Sample Stables Inc"
+ },
+ {
+  "set": "frm1600WP:dtSched:amount2",
+  "value": "20100.105"
+ },
+ {
+  "set": "frm1600WP:txtAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "call": "var xmlFileName = createXMLFileName('savefile/')"
+ },
+ {
+  "click": "frm1600WP:cmdValidate"
+ }
+]

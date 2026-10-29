@@ -1,0 +1,756 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "2553-v1999",
+  "generated_by": "oracle/gen_layout.js (official saveXMLsubmit loop run in jsdom)",
+  "official_hta": "BIR-Form2553.hta",
+  "official_hta_sha256": "67f3bb050668791c87060c0e7f2c20f3215434082ed443f5309bcb3f8e79c2df",
+  "header": "<?xml version='1.0'?>",
+  "lead": "\t\n            ",
+  "value_rules": [],
+  "entries": [
+    {
+      "key": "frm2553:itemFiscalStartMonth:_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:itemFiscalStartMonth:_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:itemYearEndMonth",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:itemYearEndMonth",
+          "codec": "raw"
+        }
+      ],
+      "default": "00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txtYearEnded",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txtYearEnded",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:optQtr:_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:optQtr:_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:optQtr:_3",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:optQtr:_4",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:optAmended_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:optAmended_2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txtSheets",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txtSheets",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txtTIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txtTIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txtTIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txtTIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txtTIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txtTIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txtBranchCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txtBranchCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txtRDOCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txtRDOCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txtDescription",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txtDescription",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txtTPName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txtTPName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txtTelNum",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txtTelNum",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txtAddress",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txtAddress",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txtZipCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txtZipCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:optTreaty_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:optTreaty_2",
+      "kind": "bool",
+      "default": "true",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:lstTaxTreaty",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:lstTaxTreaty",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt14A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt14A",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt14B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt14B",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt14C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt14C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt14D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt14D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt14E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt14E",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt15A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt15A",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt15B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt15B",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt15C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt15C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt15D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt15D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt15E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt15E",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt16A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt16A",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt16B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt16B",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt16C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt16C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt16D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt16D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt16E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt16E",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt17A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt17A",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt17B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt17B",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt17C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt17C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt17D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt17D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt17E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt17E",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt18A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt18A",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt18B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt18B",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt18C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt18C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt18D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt18D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt18E",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt18E",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt19",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt19",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt20A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt20A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt20B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt20B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt20C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt20C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt21",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt21",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt22A",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt22A",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt22B",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt22B",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt22C",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt22C",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt22D",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt22D",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:txt23",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm2553:txt23",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:ifoverpay_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm2553:ifoverpay_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtFinalFlag",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtFinalFlag",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEnroll",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEnroll",
+          "codec": "raw"
+        }
+      ],
+      "default": "N",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineConfirmUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineConfirmUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineSecret",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineSecret",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEmail",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEmail",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "driveSelectTPExport",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "driveSelectTPExport",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            \t\n            All Rights Reserved BIR 2012.0"
+    }
+  ]
+}

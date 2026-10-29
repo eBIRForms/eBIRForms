@@ -1,0 +1,350 @@
+[
+ {
+  "set": "frm1601c:txtMonth",
+  "value": "06"
+ },
+ {
+  "set": "frm1601c:txtYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1601c:AmendedRtn_2"
+ },
+ {
+  "click": "frm1601c:TaxWithheld_1"
+ },
+ {
+  "set": "frm1601c:txtSheets",
+  "value": "0"
+ },
+ {
+  "set": "frm1601c:txtATC",
+  "value": "WW010"
+ },
+ {
+  "set": "frm1601c:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1601c:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1601c:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1601c:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1601c:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm1601c:txtTaxpayerName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1601c:txtAddress",
+  "value": "123 SAMPLE STREET, BARANGAY EXAMPLE, QUEZON CITY"
+ },
+ {
+  "set": "frm1601c:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "frm1601c:txtTelNum",
+  "value": "09170000000"
+ },
+ {
+  "click": "frm1601c:CatAgent_P"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "click": "frm1601c:SpecialTax_2"
+ },
+ {
+  "set": "frm1601c:selTreaty",
+  "value": "0"
+ },
+ {
+  "set": "frm1601c:txtTax14",
+  "value": "250000.00"
+ },
+ {
+  "set": "frm1601c:txtTax15",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:txtTax16",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:txtTax17",
+  "value": "20000.00"
+ },
+ {
+  "set": "frm1601c:txtTax18",
+  "value": "5000.00"
+ },
+ {
+  "set": "frm1601c:txtTax19",
+  "value": "12500.00"
+ },
+ {
+  "set": "frm1601c:txt20Other",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtTax20",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:txtTax21",
+  "value": "37,500.00"
+ },
+ {
+  "set": "frm1601c:txtTax22",
+  "value": "212,500.00"
+ },
+ {
+  "set": "frm1601c:txtTax23",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:txtTax24",
+  "value": "212,500.00"
+ },
+ {
+  "set": "frm1601c:txtTax25",
+  "value": "18750.00"
+ },
+ {
+  "set": "frm1601c:txtTax26",
+  "value": "250.00"
+ },
+ {
+  "set": "frm1601c:txtTax27",
+  "value": "19,000.00"
+ },
+ {
+  "set": "frm1601c:txt29Other",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtTax29",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:txtTax30",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:txtTax31",
+  "value": "19,000.00"
+ },
+ {
+  "set": "frm1601c:txtTax32",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:txtTax33",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:txtTax34",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:txtTax35",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:txtTax36",
+  "value": "19,000.00"
+ },
+ {
+  "set": "txtTaxAgentNo",
+  "value": ""
+ },
+ {
+  "set": "txtDateIssue",
+  "value": ""
+ },
+ {
+  "set": "txtDateExpiry",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtAgency37",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtNumber37",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtDate37",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtAgency38",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtNumber38",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtDate38",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtNumber39",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtDate39",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtParticular40",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtAgency40",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtNumber40",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtDate40",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:txtPg2TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1601c:txtPg2TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1601c:txtPg2TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1601c:txtPg2BranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1601c:txtPg2TaxpayerName",
+  "value": "SAMPLE DUMMY TAXPAYER"
+ },
+ {
+  "set": "frm1601c:sched1:txtMonthYear0",
+  "value": "04/2025"
+ },
+ {
+  "set": "frm1601c:sched1:txtDatePaid0",
+  "value": "05/09/2025"
+ },
+ {
+  "set": "frm1601c:sched1:txtBankCode0",
+  "value": "SAMPLE BANK"
+ },
+ {
+  "set": "frm1601c:sched1:txtNumber0",
+  "value": "REF-0001"
+ },
+ {
+  "set": "frm1601c:sched1:txtTaxPaid0",
+  "value": "15000.00"
+ },
+ {
+  "set": "frm1601c:sched1:txtMonthYear1",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:sched1:txtDatePaid1",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:sched1:txtBankCode1",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:sched1:txtNumber1",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:sched1:txtTaxPaid1",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:sched1:txtMonthYear2",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:sched1:txtDatePaid2",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:sched1:txtBankCode2",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:sched1:txtNumber2",
+  "value": ""
+ },
+ {
+  "set": "frm1601c:sched1:txtTaxPaid2",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:sched1:txtShouldTaxDue0",
+  "value": "15250.00"
+ },
+ {
+  "set": "frm1601c:sched1:txtAdjustments0",
+  "value": "250.00"
+ },
+ {
+  "set": "frm1601c:sched1:txtShouldTaxDue1",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:sched1:txtAdjustments1",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:sched1:txtShouldTaxDue2",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:sched1:txtAdjustments2",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1601c:sched1:txtTotal1",
+  "value": "250.00"
+ },
+ {
+  "set": "frm1601c:txtCurrentPage",
+  "value": "1"
+ },
+ {
+  "set": "frm1601c:txtMaxPage",
+  "value": "2"
+ },
+ {
+  "set": "frm1601c:txtLineBus",
+  "value": "SAMPLE CONSULTING SERVICES"
+ }
+]

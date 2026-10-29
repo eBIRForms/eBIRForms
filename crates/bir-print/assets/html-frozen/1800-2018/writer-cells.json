@@ -1,0 +1,1399 @@
+{
+ "form_id": "1800-v2018",
+ "html_slug": "1800-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page text layer) sits beside or just above it. Schedule rows are matched by the printed column header and row order; layout index 0-4 is printed rows 1-5. Amounts print the writer official text: a peso comb plus a 2-slot centavo comb, or one text cell where the sheet has no comb pair. Booleans fill X in the box left of the printed option, with the Yes box before No by reading order. Left out: the TIN branch (mixed cell with preprinted zeros), the 8A ZIP cell (caption overlaps), item 13A specify (option code), item 14 cents (text box), and rows with no layout key. Since #113 the page 2 TIN prints from derived:tin_digits (Form1800Draft::to_print_field_map); date_joins split each Part III payment date (MM/DD/YYYY) across its MM, DD and YYYY combs; every value the print map carries has a box or a reviewed not_joined reason.",
+ "joins": [
+  {
+   "writer_key": "frm1800v2018:txtMonth",
+   "html_id": "p1c5",
+   "printed": "1 Date of Donation (MM)",
+   "reason": "caption \"Date of Donation (MM/DD/YY)\"; first 2-slot comb"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDate",
+   "html_id": "p1c6",
+   "printed": "1 Date of Donation (DD)",
+   "reason": "caption \"(MM/DD/YY)\"; second 2-slot comb"
+  },
+  {
+   "writer_key": "frm1800v2018:txtYear",
+   "html_id": "p1c7",
+   "printed": "1 Date of Donation (YY)",
+   "reason": "caption \"(MM/DD/YY)\"; third 2-slot comb"
+  },
+  {
+   "writer_key": "frm1800v2018:txtSheets",
+   "html_id": "p1c10",
+   "printed": "3 No. of Sheet/s Attached",
+   "reason": "caption \"No. of Sheet/s Attached\" directly above"
+  },
+  {
+   "writer_key": "frm1800v2018:txtTIN1",
+   "html_id": "p1c13",
+   "printed": "5 Donor TIN (1-3)",
+   "reason": "first TIN comb on the item 5 row, left to right"
+  },
+  {
+   "writer_key": "frm1800v2018:txtTIN2",
+   "html_id": "p1c15",
+   "printed": "5 Donor TIN (4-6)",
+   "reason": "second TIN comb on the item 5 row"
+  },
+  {
+   "writer_key": "frm1800v2018:txtTIN3",
+   "html_id": "p1c16",
+   "printed": "5 Donor TIN (7-9)",
+   "reason": "third TIN comb on the item 5 row"
+  },
+  {
+   "writer_key": "frm1800v2018:txtRDOCode",
+   "html_id": "p1c20",
+   "printed": "6 RDO Code",
+   "reason": "caption \"6 RDO Code\" immediately left of the 3-slot comb"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDonorName",
+   "html_id": "p1c22",
+   "printed": "7 Donor's Name",
+   "reason": "caption \"Donor's Name (Last Name, First Name ...)\" directly above"
+  },
+  {
+   "writer_key": "frm1800v2018:txtRegAddress",
+   "html_id": "p1c24",
+   "printed": "8 Registered Address (line 1)",
+   "reason": "caption \"8\" directly above; line 1"
+  },
+  {
+   "writer_key": "frm1800v2018:txtRegAddress2",
+   "html_id": "p1c25",
+   "printed": "8 Registered Address (line 2)",
+   "reason": "second line of item 8, directly below line 1"
+  },
+  {
+   "writer_key": "frm1800v2018:txtResAddress",
+   "html_id": "p1c28",
+   "printed": "9 Residence Address (line 1)",
+   "reason": "caption \"9 Residence Address\" directly above"
+  },
+  {
+   "writer_key": "frm1800v2018:txtResAddress2",
+   "html_id": "p1c29",
+   "printed": "9 Residence Address (line 2)",
+   "reason": "second line of item 9"
+  },
+  {
+   "writer_key": "frm1800v2018:txtZipCode2",
+   "html_id": "p1c31",
+   "printed": "9A ZIP Code",
+   "reason": "caption \"9A ZIP Code\" immediately left of this 4-slot comb"
+  },
+  {
+   "writer_key": "frm1800v2018:txtContact",
+   "html_id": "p1c36",
+   "printed": "10 Contact Number",
+   "reason": "caption \"10 Contact Number\" directly above"
+  },
+  {
+   "writer_key": "frm1800v2018:txtEmail",
+   "html_id": "p1c37",
+   "printed": "11 Email Address",
+   "reason": "caption \"11 Email Address\" directly above"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDoneeNameA",
+   "html_id": "p1c41",
+   "printed": "Donee A name",
+   "reason": "row A of the donee table; letter A printed at left"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDoneeTINA",
+   "html_id": "p1c42",
+   "printed": "Donee A TIN",
+   "reason": "row A, TIN column under \"Donee's Taxpayer Identification Number\""
+  },
+  {
+   "writer_key": "frm1800v2018:txtDoneeNameB",
+   "html_id": "p1c44",
+   "printed": "Donee B name",
+   "reason": "row B of the donee table"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDoneeTINB",
+   "html_id": "p1c45",
+   "printed": "Donee B TIN",
+   "reason": "row B, TIN column"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDoneeNameC",
+   "html_id": "p1c47",
+   "printed": "Donee C name",
+   "reason": "row C of the donee table"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDoneeTINC",
+   "html_id": "p1c48",
+   "printed": "Donee C TIN",
+   "reason": "row C, TIN column"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDoneeNameD",
+   "html_id": "p1c50",
+   "printed": "Donee D name",
+   "reason": "row D of the donee table"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDoneeTIND",
+   "html_id": "p1c51",
+   "printed": "Donee D TIN",
+   "reason": "row D, TIN column"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDoneeNameE",
+   "html_id": "p1c53",
+   "printed": "Donee E name",
+   "reason": "row E of the donee table"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDoneeTINE",
+   "html_id": "p1c54",
+   "printed": "Donee E TIN",
+   "reason": "row E, TIN column"
+  },
+  {
+   "writer_key": "txtTaxAgentNo",
+   "html_id": "p1c122",
+   "printed": "Tax Agent Accreditation No.",
+   "reason": "caption \"Tax Agent Accreditation No.\" immediately left"
+  },
+  {
+   "writer_key": "txtDateIssue",
+   "html_id": "p1c124",
+   "printed": "Date of Issue (MM/DD/YYYY)",
+   "reason": "caption \"Date of Issue\" immediately left"
+  },
+  {
+   "writer_key": "txtDateExpiry",
+   "html_id": "p1c126",
+   "printed": "Date of Expiry (MM/DD/YYYY)",
+   "reason": "caption \"Date of Expiry\" immediately left"
+  },
+  {
+   "writer_key": "frm1800v2018:txtAgency20",
+   "html_id": "p1c134",
+   "printed": "21 Cash/Bank Debit Memo: Agency",
+   "reason": "column \"Drawee Bank/ Agency\" above this 5-slot comb"
+  },
+  {
+   "writer_key": "frm1800v2018:txtNumber20",
+   "html_id": "p1c135",
+   "printed": "21 Cash/Bank Debit Memo: Number",
+   "reason": "column \"Number\" above this comb"
+  },
+  {
+   "writer_key": "frm1800v2018:txtAgency21",
+   "html_id": "p1c143",
+   "printed": "22 Check: Agency",
+   "reason": "Agency column on the item 22 row"
+  },
+  {
+   "writer_key": "frm1800v2018:txtNumber21",
+   "html_id": "p1c144",
+   "printed": "22 Check: Number",
+   "reason": "Number column on the item 22 row"
+  },
+  {
+   "writer_key": "frm1800v2018:txtNumber22",
+   "html_id": "p1c152",
+   "printed": "23 Tax Debit Memo: Number",
+   "reason": "Number column on the item 23 row (no Agency cell on this row)"
+  },
+  {
+   "writer_key": "frm1800v2018:txtAgency23",
+   "html_id": "p1c161",
+   "printed": "24 Others: Agency",
+   "reason": "Agency column on the item 24 row"
+  },
+  {
+   "writer_key": "frm1800v2018:txtNumber23",
+   "html_id": "p1c162",
+   "printed": "24 Others: Number",
+   "reason": "Number column on the item 24 row"
+  },
+  {
+   "writer_key": "frm1800v2018:txtParticular36",
+   "html_id": "p1c160",
+   "printed": "24 Others (Specify below)",
+   "reason": "specify field directly above the item 24 row label"
+  },
+  {
+   "writer_key": "frm1800v2018:txtPg2TaxpayerName",
+   "html_id": "p2c6",
+   "printed": "Donor's Name (page 2)",
+   "reason": "caption \"Donor's Name\" directly above"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDeductionTitle28",
+   "html_id": "p2c22",
+   "printed": "Less: Deduction row 1 (item 28) title",
+   "reason": "first of five deduction rows under \"Less: Deductions\" (items 28-32)"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDeductionTitle29",
+   "html_id": "p2c27",
+   "printed": "Less: Deduction row 2 (item 29) title",
+   "reason": "deduction row 2"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDeductionTitle30",
+   "html_id": "p2c32",
+   "printed": "Less: Deduction row 3 (item 30) title",
+   "reason": "deduction row 3"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDeductionTitle31",
+   "html_id": "p2c37",
+   "printed": "Less: Deduction row 4 (item 31) title",
+   "reason": "deduction row 4"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDeductionTitle32",
+   "html_id": "p2c42",
+   "printed": "Less: Deduction row 5 (item 32) title",
+   "reason": "deduction row 5"
+  },
+  {
+   "writer_key": "frm1800v2018:schedA:txtTotalPayment1",
+   "html_id": "p2c105",
+   "printed": "TOTAL (To Part IV Item 25)",
+   "reason": "TOTAL row of Schedule A, Fair Market Value column"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtTotal",
+   "html_id": "p2c228",
+   "printed": "TOTAL (To Part IV Item 26)",
+   "reason": "TOTAL row of Schedule B continuation, last column"
+  },
+  {
+   "writer_key": "frm1800v2018:schedA:txtParticulars0",
+   "html_id": "p2c75",
+   "printed": "Schedule A row 1 Particulars",
+   "reason": "Particulars column, Schedule A row 1"
+  },
+  {
+   "writer_key": "frm1800v2018:schedA:txtFairMarketValue0",
+   "html_id": "p2c76",
+   "printed": "Schedule A row 1 Fair Market Value",
+   "reason": "Fair Market Value column, Schedule A row 1"
+  },
+  {
+   "writer_key": "frm1800v2018:schedA:txtParticulars1",
+   "html_id": "p2c78",
+   "printed": "Schedule A row 2 Particulars",
+   "reason": "Particulars column, Schedule A row 2"
+  },
+  {
+   "writer_key": "frm1800v2018:schedA:txtFairMarketValue1",
+   "html_id": "p2c79",
+   "printed": "Schedule A row 2 Fair Market Value",
+   "reason": "Fair Market Value column, Schedule A row 2"
+  },
+  {
+   "writer_key": "frm1800v2018:schedA:txtParticulars2",
+   "html_id": "p2c81",
+   "printed": "Schedule A row 3 Particulars",
+   "reason": "Particulars column, Schedule A row 3"
+  },
+  {
+   "writer_key": "frm1800v2018:schedA:txtFairMarketValue2",
+   "html_id": "p2c82",
+   "printed": "Schedule A row 3 Fair Market Value",
+   "reason": "Fair Market Value column, Schedule A row 3"
+  },
+  {
+   "writer_key": "frm1800v2018:schedA:txtParticulars3",
+   "html_id": "p2c84",
+   "printed": "Schedule A row 4 Particulars",
+   "reason": "Particulars column, Schedule A row 4"
+  },
+  {
+   "writer_key": "frm1800v2018:schedA:txtFairMarketValue3",
+   "html_id": "p2c85",
+   "printed": "Schedule A row 4 Fair Market Value",
+   "reason": "Fair Market Value column, Schedule A row 4"
+  },
+  {
+   "writer_key": "frm1800v2018:schedA:txtParticulars4",
+   "html_id": "p2c87",
+   "printed": "Schedule A row 5 Particulars",
+   "reason": "Particulars column, Schedule A row 5"
+  },
+  {
+   "writer_key": "frm1800v2018:schedA:txtFairMarketValue4",
+   "html_id": "p2c88",
+   "printed": "Schedule A row 5 Fair Market Value",
+   "reason": "Fair Market Value column, Schedule A row 5"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtOCT0",
+   "html_id": "p2c113",
+   "printed": "Schedule B row 1 OCT/TCT/CCT No.",
+   "reason": "OCT column header, Schedule B row 1"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtTaxDecNo0",
+   "html_id": "p2c114",
+   "printed": "Schedule B row 1 Tax Declaration No.",
+   "reason": "Tax Declaration (TD) column, Schedule B row 1"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtLocation0",
+   "html_id": "p2c115",
+   "printed": "Schedule B row 1 Location",
+   "reason": "Location column, Schedule B row 1"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtLotImprovement0",
+   "html_id": "p2c116",
+   "printed": "Schedule B row 1 Lot/Improvement",
+   "reason": "Lot/Improvement column, Schedule B row 1"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtClassification0",
+   "html_id": "p2c117",
+   "printed": "Schedule B row 1 Classification",
+   "reason": "Classification column, Schedule B row 1"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtOCT1",
+   "html_id": "p2c119",
+   "printed": "Schedule B row 2 OCT/TCT/CCT No.",
+   "reason": "OCT column header, Schedule B row 2"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtTaxDecNo1",
+   "html_id": "p2c120",
+   "printed": "Schedule B row 2 Tax Declaration No.",
+   "reason": "Tax Declaration (TD) column, Schedule B row 2"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtLocation1",
+   "html_id": "p2c121",
+   "printed": "Schedule B row 2 Location",
+   "reason": "Location column, Schedule B row 2"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtLotImprovement1",
+   "html_id": "p2c122",
+   "printed": "Schedule B row 2 Lot/Improvement",
+   "reason": "Lot/Improvement column, Schedule B row 2"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtClassification1",
+   "html_id": "p2c123",
+   "printed": "Schedule B row 2 Classification",
+   "reason": "Classification column, Schedule B row 2"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtOCT2",
+   "html_id": "p2c125",
+   "printed": "Schedule B row 3 OCT/TCT/CCT No.",
+   "reason": "OCT column header, Schedule B row 3"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtTaxDecNo2",
+   "html_id": "p2c126",
+   "printed": "Schedule B row 3 Tax Declaration No.",
+   "reason": "Tax Declaration (TD) column, Schedule B row 3"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtLocation2",
+   "html_id": "p2c127",
+   "printed": "Schedule B row 3 Location",
+   "reason": "Location column, Schedule B row 3"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtLotImprovement2",
+   "html_id": "p2c128",
+   "printed": "Schedule B row 3 Lot/Improvement",
+   "reason": "Lot/Improvement column, Schedule B row 3"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtClassification2",
+   "html_id": "p2c129",
+   "printed": "Schedule B row 3 Classification",
+   "reason": "Classification column, Schedule B row 3"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtOCT3",
+   "html_id": "p2c131",
+   "printed": "Schedule B row 4 OCT/TCT/CCT No.",
+   "reason": "OCT column header, Schedule B row 4"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtTaxDecNo3",
+   "html_id": "p2c132",
+   "printed": "Schedule B row 4 Tax Declaration No.",
+   "reason": "Tax Declaration (TD) column, Schedule B row 4"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtLocation3",
+   "html_id": "p2c133",
+   "printed": "Schedule B row 4 Location",
+   "reason": "Location column, Schedule B row 4"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtLotImprovement3",
+   "html_id": "p2c134",
+   "printed": "Schedule B row 4 Lot/Improvement",
+   "reason": "Lot/Improvement column, Schedule B row 4"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtClassification3",
+   "html_id": "p2c135",
+   "printed": "Schedule B row 4 Classification",
+   "reason": "Classification column, Schedule B row 4"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtOCT4",
+   "html_id": "p2c137",
+   "printed": "Schedule B row 5 OCT/TCT/CCT No.",
+   "reason": "OCT column header, Schedule B row 5"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtTaxDecNo4",
+   "html_id": "p2c138",
+   "printed": "Schedule B row 5 Tax Declaration No.",
+   "reason": "Tax Declaration (TD) column, Schedule B row 5"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtLocation4",
+   "html_id": "p2c139",
+   "printed": "Schedule B row 5 Location",
+   "reason": "Location column, Schedule B row 5"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtLotImprovement4",
+   "html_id": "p2c140",
+   "printed": "Schedule B row 5 Lot/Improvement",
+   "reason": "Lot/Improvement column, Schedule B row 5"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB1:txtClassification4",
+   "html_id": "p2c141",
+   "printed": "Schedule B row 5 Classification",
+   "reason": "Classification column, Schedule B row 5"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtArea0",
+   "html_id": "p2c178",
+   "printed": "Schedule B continuation row 1 Area",
+   "reason": "AREA column, Schedule B continuation row 1"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFTD0",
+   "html_id": "p2c179",
+   "printed": "Schedule B continuation row 1 FMV per TD",
+   "reason": "FMV per TD column, Schedule B continuation row 1"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue0",
+   "html_id": "p2c180",
+   "printed": "Schedule B continuation row 1 FMV per BIR (Zonal Value)",
+   "reason": "FMV per BIR zonal column, Schedule B continuation row 1"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFairMarketValue0",
+   "html_id": "p2c181",
+   "printed": "Schedule B continuation row 1 FMV (whichever is higher)",
+   "reason": "whichever-is-higher column, Schedule B continuation row 1"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtArea1",
+   "html_id": "p2c183",
+   "printed": "Schedule B continuation row 2 Area",
+   "reason": "AREA column, Schedule B continuation row 2"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFTD1",
+   "html_id": "p2c184",
+   "printed": "Schedule B continuation row 2 FMV per TD",
+   "reason": "FMV per TD column, Schedule B continuation row 2"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue1",
+   "html_id": "p2c185",
+   "printed": "Schedule B continuation row 2 FMV per BIR (Zonal Value)",
+   "reason": "FMV per BIR zonal column, Schedule B continuation row 2"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFairMarketValue1",
+   "html_id": "p2c186",
+   "printed": "Schedule B continuation row 2 FMV (whichever is higher)",
+   "reason": "whichever-is-higher column, Schedule B continuation row 2"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtArea2",
+   "html_id": "p2c188",
+   "printed": "Schedule B continuation row 3 Area",
+   "reason": "AREA column, Schedule B continuation row 3"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFTD2",
+   "html_id": "p2c189",
+   "printed": "Schedule B continuation row 3 FMV per TD",
+   "reason": "FMV per TD column, Schedule B continuation row 3"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue2",
+   "html_id": "p2c190",
+   "printed": "Schedule B continuation row 3 FMV per BIR (Zonal Value)",
+   "reason": "FMV per BIR zonal column, Schedule B continuation row 3"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFairMarketValue2",
+   "html_id": "p2c191",
+   "printed": "Schedule B continuation row 3 FMV (whichever is higher)",
+   "reason": "whichever-is-higher column, Schedule B continuation row 3"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtArea3",
+   "html_id": "p2c193",
+   "printed": "Schedule B continuation row 4 Area",
+   "reason": "AREA column, Schedule B continuation row 4"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFTD3",
+   "html_id": "p2c194",
+   "printed": "Schedule B continuation row 4 FMV per TD",
+   "reason": "FMV per TD column, Schedule B continuation row 4"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue3",
+   "html_id": "p2c195",
+   "printed": "Schedule B continuation row 4 FMV per BIR (Zonal Value)",
+   "reason": "FMV per BIR zonal column, Schedule B continuation row 4"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFairMarketValue3",
+   "html_id": "p2c196",
+   "printed": "Schedule B continuation row 4 FMV (whichever is higher)",
+   "reason": "whichever-is-higher column, Schedule B continuation row 4"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtArea4",
+   "html_id": "p2c198",
+   "printed": "Schedule B continuation row 5 Area",
+   "reason": "AREA column, Schedule B continuation row 5"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFTD4",
+   "html_id": "p2c199",
+   "printed": "Schedule B continuation row 5 FMV per TD",
+   "reason": "FMV per TD column, Schedule B continuation row 5"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue4",
+   "html_id": "p2c200",
+   "printed": "Schedule B continuation row 5 FMV per BIR (Zonal Value)",
+   "reason": "FMV per BIR zonal column, Schedule B continuation row 5"
+  },
+  {
+   "writer_key": "frm1800v2018:schedB2:txtFairMarketValue4",
+   "html_id": "p2c201",
+   "printed": "Schedule B continuation row 5 FMV (whichever is higher)",
+   "reason": "whichever-is-higher column, Schedule B continuation row 5"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN",
+   "reason": "the mixed TIN comb under the page 2 TIN caption: its nine inputs take the TIN digits (the branch slots are preprinted)"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm1800v2018:DonorTaxDue",
+   "peso_html_id": "p1c70",
+   "cent_html_id": "p1c72",
+   "printed": "16 Total Donor's Tax Due",
+   "reason": "peso comb + 2-slot cents, item 16 row"
+  },
+  {
+   "writer_key": "frm1800v2018:TaxCredit17A",
+   "peso_html_id": "p1c75",
+   "cent_html_id": "p1c77",
+   "printed": "17A Payments for Prior Gifts",
+   "reason": "peso comb + cents, item 17A row"
+  },
+  {
+   "writer_key": "frm1800v2018:TaxCredit17B",
+   "peso_html_id": "p1c79",
+   "cent_html_id": "p1c81",
+   "printed": "17B Foreign Donor's Tax Paid",
+   "reason": "peso comb + cents, item 17B row"
+  },
+  {
+   "writer_key": "frm1800v2018:TaxCredit17C",
+   "peso_html_id": "p1c83",
+   "cent_html_id": "p1c85",
+   "printed": "17C Tax Paid in Previously Filed Return",
+   "reason": "peso comb + cents, item 17C row"
+  },
+  {
+   "writer_key": "frm1800v2018:TaxCredit17D",
+   "peso_html_id": "p1c87",
+   "cent_html_id": "p1c89",
+   "printed": "17D Total Tax Credits/Payments",
+   "reason": "peso comb + cents, item 17D row"
+  },
+  {
+   "writer_key": "frm1800v2018:txtTaxPayable",
+   "peso_html_id": "p1c91",
+   "cent_html_id": "p1c93",
+   "printed": "18 Tax Payable/(Overpayment)",
+   "reason": "peso comb + cents, item 18 row"
+  },
+  {
+   "writer_key": "frm1800v2018:Surcharge",
+   "peso_html_id": "p1c96",
+   "cent_html_id": "p1c98",
+   "printed": "19A Surcharge",
+   "reason": "peso comb + cents, item 19A row"
+  },
+  {
+   "writer_key": "frm1800v2018:Interest",
+   "peso_html_id": "p1c100",
+   "cent_html_id": "p1c102",
+   "printed": "19B Interest",
+   "reason": "peso comb + cents, item 19B row"
+  },
+  {
+   "writer_key": "frm1800v2018:Compromise",
+   "peso_html_id": "p1c104",
+   "cent_html_id": "p1c106",
+   "printed": "19C Compromise",
+   "reason": "peso comb + cents, item 19C row"
+  },
+  {
+   "writer_key": "frm1800v2018:TotalPenalties",
+   "peso_html_id": "p1c108",
+   "cent_html_id": "p1c110",
+   "printed": "19D Total Penalties",
+   "reason": "peso comb + cents, item 19D row"
+  },
+  {
+   "writer_key": "frm1800v2018:TotalAmountPayable",
+   "peso_html_id": "p1c112",
+   "cent_html_id": "p1c114",
+   "printed": "20 TOTAL AMOUNT PAYABLE/(Overpayment)",
+   "reason": "peso comb + cents, item 20 row"
+  },
+  {
+   "writer_key": "frm1800v2018:txtAmount20",
+   "peso_html_id": "p1c139",
+   "cent_html_id": "p1c141",
+   "printed": "21 Cash/Bank Debit Memo: Amount",
+   "reason": "peso comb + cents, row 21 amount"
+  },
+  {
+   "writer_key": "frm1800v2018:txtAmount21",
+   "peso_html_id": "p1c148",
+   "cent_html_id": "p1c150",
+   "printed": "22 Check: Amount",
+   "reason": "peso comb + cents, row 22 amount"
+  },
+  {
+   "writer_key": "frm1800v2018:txtAmount22",
+   "peso_html_id": "p1c156",
+   "cent_html_id": "p1c158",
+   "printed": "23 Tax Debit Memo: Amount",
+   "reason": "peso comb + cents, row 23 amount"
+  },
+  {
+   "writer_key": "frm1800v2018:txtAmount23",
+   "peso_html_id": "p1c166",
+   "cent_html_id": "p1c168",
+   "printed": "24 Others: Amount",
+   "reason": "peso comb + cents, row 24 amount"
+  },
+  {
+   "writer_key": "frm1800v2018:PersonalProperties",
+   "peso_html_id": "p2c9",
+   "cent_html_id": "p2c11",
+   "printed": "25 Personal Properties (From Part V Schedule A)",
+   "reason": "peso comb + cents, item 25 row"
+  },
+  {
+   "writer_key": "frm1800v2018:RealProperties",
+   "peso_html_id": "p2c13",
+   "cent_html_id": "p2c15",
+   "printed": "26 Real Properties (From Part V Schedule B)",
+   "reason": "peso comb + cents, item 26 row"
+  },
+  {
+   "writer_key": "frm1800v2018:TotalGifts",
+   "peso_html_id": "p2c17",
+   "cent_html_id": "p2c19",
+   "printed": "27 Total Gifts in this Return",
+   "reason": "peso comb + cents, item 27 row"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDeductionAmount28",
+   "peso_html_id": "p2c23",
+   "cent_html_id": "p2c25",
+   "printed": "Less: Deduction row 1 (item 28) amount",
+   "reason": "peso comb + cents on the item 28 row"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDeductionAmount29",
+   "peso_html_id": "p2c28",
+   "cent_html_id": "p2c30",
+   "printed": "Less: Deduction row 2 (item 29) amount",
+   "reason": "peso comb + cents on the item 29 row"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDeductionAmount30",
+   "peso_html_id": "p2c33",
+   "cent_html_id": "p2c35",
+   "printed": "Less: Deduction row 3 (item 30) amount",
+   "reason": "peso comb + cents on the item 30 row"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDeductionAmount31",
+   "peso_html_id": "p2c38",
+   "cent_html_id": "p2c40",
+   "printed": "Less: Deduction row 4 (item 31) amount",
+   "reason": "peso comb + cents on the item 31 row"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDeductionAmount32",
+   "peso_html_id": "p2c43",
+   "cent_html_id": "p2c45",
+   "printed": "Less: Deduction row 5 (item 32) amount",
+   "reason": "peso comb + cents on the item 32 row"
+  },
+  {
+   "writer_key": "frm1800v2018:TotalDeductionsAllowed",
+   "peso_html_id": "p2c47",
+   "cent_html_id": "p2c49",
+   "printed": "33 Total Deductions Allowed",
+   "reason": "peso comb + cents, item 33 row"
+  },
+  {
+   "writer_key": "frm1800v2018:TotalReturnNetGifts",
+   "peso_html_id": "p2c51",
+   "cent_html_id": "p2c53",
+   "printed": "34 Total Net Gifts in this Return",
+   "reason": "peso comb + cents, item 34 row"
+  },
+  {
+   "writer_key": "frm1800v2018:TotalPriorNetGifts",
+   "peso_html_id": "p2c55",
+   "cent_html_id": "p2c57",
+   "printed": "35 Net Gifts During the Calendar Year (prior return)",
+   "reason": "peso comb + cents, item 35 row"
+  },
+  {
+   "writer_key": "frm1800v2018:TotalNetGifts36",
+   "peso_html_id": "p2c59",
+   "cent_html_id": "p2c61",
+   "printed": "36 Total Net Gifts",
+   "reason": "peso comb + cents, item 36 row"
+  },
+  {
+   "writer_key": "frm1800v2018:TotalNetGiftsSubjectToTax",
+   "peso_html_id": "p2c67",
+   "cent_html_id": "p2c69",
+   "printed": "38 Total Net Gifts Subject to Tax",
+   "reason": "peso comb + cents, item 38 row"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1800v2018:AmendedRtn_1",
+   "html_id": "p1c8",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1800v2018:AmendedRtn_2",
+   "html_id": "p1c9",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1800v2018:TaxTreatyYN_Y",
+   "html_id": "p1c58",
+   "printed": "13 Tax relief under Special Law / Tax Treaty: Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1800v2018:TaxTreatyYN_N",
+   "html_id": "p1c59",
+   "printed": "13 Tax relief under Special Law / Tax Treaty: No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  }
+ ],
+ "date_joins": [
+  {
+   "writer_key": "frm1800v2018:txtDate20",
+   "mm_html_id": "p1c136",
+   "dd_html_id": "p1c137",
+   "yyyy_html_id": "p1c138",
+   "printed": "21 Cash/Bank Debit Memo: Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Date column on the item 21 row, left of its Amount combs; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDate21",
+   "mm_html_id": "p1c145",
+   "dd_html_id": "p1c146",
+   "yyyy_html_id": "p1c147",
+   "printed": "22 Check: Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Date column on the item 22 row, left of its Amount combs; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDate22",
+   "mm_html_id": "p1c153",
+   "dd_html_id": "p1c154",
+   "yyyy_html_id": "p1c155",
+   "printed": "23 Tax Debit Memo: Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Date column on the item 23 row, left of its Amount combs; one writer date split across the three"
+  },
+  {
+   "writer_key": "frm1800v2018:txtDate23",
+   "mm_html_id": "p1c163",
+   "dd_html_id": "p1c164",
+   "yyyy_html_id": "p1c165",
+   "printed": "24 Others: Date (MM/DD/YYYY)",
+   "reason": "MM, DD and YYYY combs under the Date column on the item 24 row, left of its Amount combs; one writer date split across the three"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_key": "frm1800v2018:txtATC",
+   "reason": "no fillable cell on the frozen sheet for this key (the DN 010 ATC is preprinted)"
+  },
+  {
+   "writer_key": "frm1800v2018:txtBranchCode",
+   "reason": "TIN branch cell p1c18 is mixed: five zeros are preprinted inside its slots, so a writer value would overprint them"
+  },
+  {
+   "writer_key": "frm1800v2018:txtZipCode",
+   "reason": "8A ZIP cell p1c26 is mixed: the printed \"8A ZIP Code\" caption overlaps its slots"
+  },
+  {
+   "writer_key": "frm1800v2018:TaxTreaty",
+   "reason": "item 13A \"If yes, specify\": the writer holds an option code, not printable text (same rule as 2553 item 13)"
+  },
+  {
+   "writer_key": "frm1800v2018:TotalNetGifts",
+   "reason": "item 14 cents cell p1c64 is a plain text box, not a 2-slot comb; no peso + cents pair"
+  },
+  {
+   "writer_key": "frm1800v2018:txtAgency22",
+   "reason": "the item 23 Tax Debit Memo row has no Agency cell on the sheet"
+  },
+  {
+   "writer_key": "frm1800v2018:txtPg2BranchCode",
+   "reason": "page 2 TIN is one 14-slot comb (p2c5) for TIN parts and branch; not split"
+  },
+  {
+   "writer_key": "chkscheduleADelete0",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkscheduleADelete1",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkscheduleADelete2",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkscheduleADelete3",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkscheduleADelete4",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkScheduleB1Delete0",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkScheduleB1Delete1",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkScheduleB1Delete2",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkScheduleB1Delete3",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkScheduleB1Delete4",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkScheduleB2Delete0",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkScheduleB2Delete1",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkScheduleB2Delete2",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkScheduleB2Delete3",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "chkScheduleB2Delete4",
+   "reason": "delete checkbox, not on the sheet"
+  },
+  {
+   "writer_key": "frm1800v2018:txtCurrentPage",
+   "reason": "page counter, not a fillable cell"
+  },
+  {
+   "writer_key": "frm1800v2018:txtMaxPage",
+   "reason": "page counter, not a fillable cell"
+  },
+  {
+   "writer_key": "frm1800v2018:modLabel",
+   "reason": "modal helper, no fillable cell on the sheet"
+  },
+  {
+   "writer_key": "ds106modYes",
+   "reason": "modal helper, no fillable cell on the sheet"
+  },
+  {
+   "writer_key": "ds106modNo",
+   "reason": "modal helper, no fillable cell on the sheet"
+  },
+  {
+   "writer_key": "frm1800v2018:numOfDays",
+   "reason": "modal helper, no fillable cell on the sheet"
+  },
+  {
+   "writer_key": "frm1800v2018:txtLineBus",
+   "reason": "no fillable cell on the frozen sheet for this key"
+  },
+  {
+   "writer_keys": [
+    "frm1800v2018:txtPg2TIN1",
+    "frm1800v2018:txtPg2TIN2",
+    "frm1800v2018:txtPg2TIN3"
+   ],
+   "reason": "prints from derived:tin_digits (the print map shapes the nine TIN digits of the page 2 header for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm1800v2018:schedA:txtFairMarketValue10",
+    "frm1800v2018:schedA:txtFairMarketValue11",
+    "frm1800v2018:schedA:txtFairMarketValue12",
+    "frm1800v2018:schedA:txtFairMarketValue13",
+    "frm1800v2018:schedA:txtFairMarketValue14",
+    "frm1800v2018:schedA:txtFairMarketValue15",
+    "frm1800v2018:schedA:txtFairMarketValue16",
+    "frm1800v2018:schedA:txtFairMarketValue17",
+    "frm1800v2018:schedA:txtFairMarketValue5",
+    "frm1800v2018:schedA:txtFairMarketValue6",
+    "frm1800v2018:schedA:txtFairMarketValue7",
+    "frm1800v2018:schedA:txtFairMarketValue8",
+    "frm1800v2018:schedA:txtFairMarketValue9",
+    "frm1800v2018:schedA:txtParticulars10",
+    "frm1800v2018:schedA:txtParticulars11",
+    "frm1800v2018:schedA:txtParticulars12",
+    "frm1800v2018:schedA:txtParticulars13",
+    "frm1800v2018:schedA:txtParticulars14",
+    "frm1800v2018:schedA:txtParticulars15",
+    "frm1800v2018:schedA:txtParticulars16",
+    "frm1800v2018:schedA:txtParticulars17",
+    "frm1800v2018:schedA:txtParticulars5",
+    "frm1800v2018:schedA:txtParticulars6",
+    "frm1800v2018:schedA:txtParticulars7",
+    "frm1800v2018:schedA:txtParticulars8",
+    "frm1800v2018:schedA:txtParticulars9"
+   ],
+   "reason": "Schedule A row past the 5 rows the sheet prints: an add-more row of the page, uploaded with the return; the sheet has no box for it"
+  },
+  {
+   "writer_keys": [
+    "frm1800v2018:schedB1:txtClassification10",
+    "frm1800v2018:schedB1:txtClassification11",
+    "frm1800v2018:schedB1:txtClassification12",
+    "frm1800v2018:schedB1:txtClassification13",
+    "frm1800v2018:schedB1:txtClassification14",
+    "frm1800v2018:schedB1:txtClassification15",
+    "frm1800v2018:schedB1:txtClassification16",
+    "frm1800v2018:schedB1:txtClassification5",
+    "frm1800v2018:schedB1:txtClassification6",
+    "frm1800v2018:schedB1:txtClassification7",
+    "frm1800v2018:schedB1:txtClassification8",
+    "frm1800v2018:schedB1:txtClassification9",
+    "frm1800v2018:schedB1:txtLocation10",
+    "frm1800v2018:schedB1:txtLocation11",
+    "frm1800v2018:schedB1:txtLocation12",
+    "frm1800v2018:schedB1:txtLocation13",
+    "frm1800v2018:schedB1:txtLocation14",
+    "frm1800v2018:schedB1:txtLocation15",
+    "frm1800v2018:schedB1:txtLocation16",
+    "frm1800v2018:schedB1:txtLocation5",
+    "frm1800v2018:schedB1:txtLocation6",
+    "frm1800v2018:schedB1:txtLocation7",
+    "frm1800v2018:schedB1:txtLocation8",
+    "frm1800v2018:schedB1:txtLocation9",
+    "frm1800v2018:schedB1:txtLotImprovement10",
+    "frm1800v2018:schedB1:txtLotImprovement11",
+    "frm1800v2018:schedB1:txtLotImprovement12",
+    "frm1800v2018:schedB1:txtLotImprovement13",
+    "frm1800v2018:schedB1:txtLotImprovement14",
+    "frm1800v2018:schedB1:txtLotImprovement15",
+    "frm1800v2018:schedB1:txtLotImprovement16",
+    "frm1800v2018:schedB1:txtLotImprovement5",
+    "frm1800v2018:schedB1:txtLotImprovement6",
+    "frm1800v2018:schedB1:txtLotImprovement7",
+    "frm1800v2018:schedB1:txtLotImprovement8",
+    "frm1800v2018:schedB1:txtLotImprovement9",
+    "frm1800v2018:schedB1:txtOCT10",
+    "frm1800v2018:schedB1:txtOCT11",
+    "frm1800v2018:schedB1:txtOCT12",
+    "frm1800v2018:schedB1:txtOCT13",
+    "frm1800v2018:schedB1:txtOCT14",
+    "frm1800v2018:schedB1:txtOCT15",
+    "frm1800v2018:schedB1:txtOCT16",
+    "frm1800v2018:schedB1:txtOCT5",
+    "frm1800v2018:schedB1:txtOCT6",
+    "frm1800v2018:schedB1:txtOCT7",
+    "frm1800v2018:schedB1:txtOCT8",
+    "frm1800v2018:schedB1:txtOCT9",
+    "frm1800v2018:schedB1:txtTaxDecNo10",
+    "frm1800v2018:schedB1:txtTaxDecNo11",
+    "frm1800v2018:schedB1:txtTaxDecNo12",
+    "frm1800v2018:schedB1:txtTaxDecNo13",
+    "frm1800v2018:schedB1:txtTaxDecNo14",
+    "frm1800v2018:schedB1:txtTaxDecNo15",
+    "frm1800v2018:schedB1:txtTaxDecNo16",
+    "frm1800v2018:schedB1:txtTaxDecNo5",
+    "frm1800v2018:schedB1:txtTaxDecNo6",
+    "frm1800v2018:schedB1:txtTaxDecNo7",
+    "frm1800v2018:schedB1:txtTaxDecNo8",
+    "frm1800v2018:schedB1:txtTaxDecNo9",
+    "frm1800v2018:schedB2:txtArea10",
+    "frm1800v2018:schedB2:txtArea11",
+    "frm1800v2018:schedB2:txtArea12",
+    "frm1800v2018:schedB2:txtArea13",
+    "frm1800v2018:schedB2:txtArea14",
+    "frm1800v2018:schedB2:txtArea15",
+    "frm1800v2018:schedB2:txtArea16",
+    "frm1800v2018:schedB2:txtArea5",
+    "frm1800v2018:schedB2:txtArea6",
+    "frm1800v2018:schedB2:txtArea7",
+    "frm1800v2018:schedB2:txtArea8",
+    "frm1800v2018:schedB2:txtArea9",
+    "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue10",
+    "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue11",
+    "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue12",
+    "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue13",
+    "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue14",
+    "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue15",
+    "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue16",
+    "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue5",
+    "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue6",
+    "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue7",
+    "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue8",
+    "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue9",
+    "frm1800v2018:schedB2:txtFTD10",
+    "frm1800v2018:schedB2:txtFTD11",
+    "frm1800v2018:schedB2:txtFTD12",
+    "frm1800v2018:schedB2:txtFTD13",
+    "frm1800v2018:schedB2:txtFTD14",
+    "frm1800v2018:schedB2:txtFTD15",
+    "frm1800v2018:schedB2:txtFTD16",
+    "frm1800v2018:schedB2:txtFTD5",
+    "frm1800v2018:schedB2:txtFTD6",
+    "frm1800v2018:schedB2:txtFTD7",
+    "frm1800v2018:schedB2:txtFTD8",
+    "frm1800v2018:schedB2:txtFTD9",
+    "frm1800v2018:schedB2:txtFairMarketValue10",
+    "frm1800v2018:schedB2:txtFairMarketValue11",
+    "frm1800v2018:schedB2:txtFairMarketValue12",
+    "frm1800v2018:schedB2:txtFairMarketValue13",
+    "frm1800v2018:schedB2:txtFairMarketValue14",
+    "frm1800v2018:schedB2:txtFairMarketValue15",
+    "frm1800v2018:schedB2:txtFairMarketValue16",
+    "frm1800v2018:schedB2:txtFairMarketValue5",
+    "frm1800v2018:schedB2:txtFairMarketValue6",
+    "frm1800v2018:schedB2:txtFairMarketValue7",
+    "frm1800v2018:schedB2:txtFairMarketValue8",
+    "frm1800v2018:schedB2:txtFairMarketValue9"
+   ],
+   "reason": "Schedule B row past the 5 rows the sheet prints: an add-more row of the page, uploaded with the return; the sheet has no box for it"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c18",
+   "reason": "branch cell (mixed; five preprinted zeros in its slots); see txtBranchCode"
+  },
+  {
+   "html_id": "p1c26",
+   "reason": "8A ZIP cell overlaps its printed caption; see txtZipCode"
+  },
+  {
+   "html_id": "p1c33",
+   "reason": "item 9B RDO Code: the layout has no residence RDO key"
+  },
+  {
+   "html_id": "p1c57",
+   "reason": "item 13A \"If yes, specify\": option code, not printable text (see TaxTreaty)"
+  },
+  {
+   "html_id": "p1c62",
+   "reason": "item 14 peso comb; no cents comb pair (see TotalNetGifts)"
+  },
+  {
+   "html_id": "p1c64",
+   "reason": "item 14 cents cell is a plain text box, not a comb (see TotalNetGifts)"
+  },
+  {
+   "html_id": "p1c68",
+   "reason": "item 15 Applicable Donor Tax Rate cell (2 slots, preprinted 6 %): no layout key"
+  },
+  {
+   "html_id": "p2c63",
+   "reason": "item 37 Less: Exempt Gift: no layout key on this form"
+  },
+  {
+   "html_id": "p2c65",
+   "reason": "item 37 Less: Exempt Gift: no layout key on this form"
+  },
+  {
+   "html_id": "p2c90",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c91",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c93",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c94",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c96",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c97",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c99",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c100",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c102",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c103",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c143",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c144",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c145",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c146",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c147",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c149",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c150",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c151",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c152",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c153",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c155",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c156",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c157",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c158",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c159",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c161",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c162",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c163",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c164",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c165",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c167",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c168",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c169",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c170",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c171",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c203",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c204",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c205",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c206",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c208",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c209",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c210",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c211",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c213",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c214",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c215",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c216",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c218",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c219",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c220",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c221",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c223",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c224",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c225",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  },
+  {
+   "html_id": "p2c226",
+   "reason": "schedule row 6-10: the layout carries only five rows per schedule"
+  }
+ ]
+}

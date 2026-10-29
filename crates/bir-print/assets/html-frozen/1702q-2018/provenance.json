@@ -1,0 +1,80 @@
+{
+  "slug": "1702q-2018",
+  "code": "1702Q",
+  "revision": "2018",
+  "variant": "",
+  "in_corpus": true,
+  "source_file": "1702Q 2018ENCS final2.pdf",
+  "sha256": "589e22190b9211571cb8a0ba14c97c17dff250f3b8ee9f9e8f6cc3b37b1b1be4",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 5,
+  "pages": 3,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Bold",
+    "Arial Narrow",
+    "Calibri",
+    "Wingdings"
+  ],
+  "rules": 1376,
+  "text_runs": 611,
+  "images": 5,
+  "cells": 364,
+  "comb_cells": 106,
+  "growables": [],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1702Q 2018ENCS final2.pdf",
+      "sha256": "589e22190b9211571cb8a0ba14c97c17dff250f3b8ee9f9e8f6cc3b37b1b1be4"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "inline-region"
+    ],
+    "moved_from_form": [
+      {
+        "page": 3,
+        "cut_y_pt": 0.0,
+        "reclaimed_pt": 936.0,
+        "reclaimed_pct": 100,
+        "marker": "BIR Form No",
+        "marker_pattern": "unfillable-page",
+        "moved": {
+          "rules": 58,
+          "cells": 76,
+          "text_runs": 304,
+          "area_fills": 36,
+          "images": 1
+        },
+        "straddlers_kept_by_form": 0,
+        "moved_to": "guide.html"
+      }
+    ],
+    "standalone_pdfs": [],
+    "reclaimed_pt_total": 936.0,
+    "reclaimed_pct_mean": 100,
+    "reclaimed_pct_min": 100,
+    "reclaimed_pct_max": 100,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [
+      3
+    ],
+    "standalone_pdfs": []
+  },
+  "html_bytes": 706131,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

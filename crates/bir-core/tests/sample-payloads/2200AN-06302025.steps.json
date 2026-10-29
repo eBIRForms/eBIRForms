@@ -1,0 +1,156 @@
+[
+ {
+  "call": "(function(){var d=document,v=function(i,x){d.getElementById(i).value=x;};v('frm2200ANv2018:txtTaxpayerName','Sample Dummy Taxpayer');v('frm2200ANv2018:txtPage2Taxpayer','Sample Dummy Taxpayer');v('frm2200ANv2018:txtTIN1','123');v('frm2200ANv2018:txtTIN2','456');v('frm2200ANv2018:txtTIN3','788');v('frm2200ANv2018:txtBranchCode','00000');v('frm2200ANv2018:txtPage2TIN','123-456-788-00000');v('frm2200ANv2018:txtRDOCode','039');v('frm2200ANv2018:txtAddress','123 Sample Street, Barangay Example, Quezon City');v('frm2200ANv2018:txtZipCode','1100');v('frm2200ANv2018:txtTelNum','09170000000');v('txtEmail','sample.taxpayer@example.com');})()"
+ },
+ {
+  "set": "frm2200ANv2018:txtMonth",
+  "value": "06"
+ },
+ {
+  "set": "frm2200ANv2018:txtDate",
+  "value": "30"
+ },
+ {
+  "set": "frm2200ANv2018:txtYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm2200ANv2018:AmendedRtn1"
+ },
+ {
+  "set": "frm2200ANv2018optRegion",
+  "value": "130000000"
+ },
+ {
+  "set": "frm2200ANv2018optProvince",
+  "value": "137400000"
+ },
+ {
+  "set": "frm2200ANv2018optCity",
+  "value": "137404000"
+ },
+ {
+  "set": "frm2200ANv2018optRegion1",
+  "value": "040000000"
+ },
+ {
+  "set": "frm2200ANv2018optProvince1",
+  "value": "043400000"
+ },
+ {
+  "set": "frm2200ANv2018optCity1",
+  "value": "043402000"
+ },
+ {
+  "click": "frm2200ANv2018:OptSpecialTax1"
+ },
+ {
+  "set": "frm2200ANv2018:lstSpecialTax",
+  "value": "Sample Relief"
+ },
+ {
+  "click": "frm2200ANv2018:MannerOfPayment3"
+ },
+ {
+  "set": "frm2200ANv2018:MannerOfPaymentOthers",
+  "value": "Sample scheme"
+ },
+ {
+  "set": "frm2200ANv2018:txtXG021Taxable1",
+  "value": "2"
+ },
+ {
+  "set": "frm2200ANv2018:txtXG021Taxable2",
+  "value": "1,000,000.00"
+ },
+ {
+  "set": "frm2200ANv2018:txtXG021TaxDue",
+  "value": "40000"
+ },
+ {
+  "set": "frm2200ANv2018:txtXG033Exempt1",
+  "value": "1"
+ },
+ {
+  "set": "frm2200ANv2018:txtXG033Taxable1",
+  "value": "3"
+ },
+ {
+  "set": "frm2200ANv2018:txtXG033Exempt2",
+  "value": "2,500,000.00"
+ },
+ {
+  "set": "frm2200ANv2018:txtXG033Taxable2",
+  "value": "7,500,000.00"
+ },
+ {
+  "set": "frm2200ANv2018:txtXG033TaxDue",
+  "value": "1500000.005"
+ },
+ {
+  "set": "frm2200ANv2018:txtXG110Taxable1",
+  "value": "10"
+ },
+ {
+  "set": "frm2200ANv2018:txtXG110Taxable2",
+  "value": "250,000.50"
+ },
+ {
+  "set": "frm2200ANv2018:txtXG110TaxDue",
+  "value": "50000.1"
+ },
+ {
+  "set": "frm2200ANv2018:txtXGOthers1",
+  "value": "XG130"
+ },
+ {
+  "set": "frm2200ANv2018:txtXGOthers1Name",
+  "value": "Sample luxury item"
+ },
+ {
+  "set": "frm2200ANv2018:txtXGOthers1Tax",
+  "value": "20%"
+ },
+ {
+  "set": "frm2200ANv2018:txtXGOthers1Taxable1",
+  "value": "1"
+ },
+ {
+  "set": "frm2200ANv2018:txtXGOthers1Taxable2",
+  "value": "10,000.00"
+ },
+ {
+  "set": "frm2200ANv2018:txtXGOthers1TaxDue",
+  "value": "2000"
+ },
+ {
+  "set": "frm2200ANv2018:txt17A",
+  "value": "500"
+ },
+ {
+  "set": "frm2200ANv2018:txt17B",
+  "value": "250.25"
+ },
+ {
+  "set": "frm2200ANv2018:txt19",
+  "value": "1000"
+ },
+ {
+  "set": "frm2200ANv2018:txt21A",
+  "value": "100"
+ },
+ {
+  "set": "frm2200ANv2018:txt21B",
+  "value": "12.345"
+ },
+ {
+  "set": "frm2200ANv2018:txt23A",
+  "value": "1500000"
+ },
+ {
+  "click": "frm2200ANv2018:cmdValidate"
+ },
+ {
+  "call": "var xmlFileName = createXMLFileName('savefile/')"
+ }
+]

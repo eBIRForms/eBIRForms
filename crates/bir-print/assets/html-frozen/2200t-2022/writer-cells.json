@@ -1,0 +1,1555 @@
+{
+ "form_id": "2200t-v2020",
+ "html_slug": "2200t-2022",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (frozen page text layer) names the item. Booleans take xbox_joins (box immediately left of the printed option; _1/_2/_3 follow printed order). Schedule 1 rows map by the block letter, the printed effective-year caption and the Export/Taxable/Due column headers. Part III and Part IV amounts pair the 11-slot peso comb with the 2-slot centavo comb directly right (money_joins). Part III date combs (tax agent issue/expiry) stay blank. Rows printed for 2024 onwards and the novel tobacco rows have no layout key and stay blank. Since #113: the 2022 sheet's item 6 vapor rows (XT170/XT180, 2022-2023) take the model's 7A/7B keys by ATC, date and rate; the Others rows map by the page 3 column headers; Items 7, 10, 11 and the page 2/3 TIN print from derived: keys of Form2200TDraft::to_print_field_map (place names, not PSGC codes). The 2020-2021 and XT165 keys have no printed row and are listed in not_joined. date_joins split each payment-row date (MM/DD/YYYY) across the MM, DD and YYYY combs of the row whose Agency/Number/Amount joins share its suffix.",
+ "joins": [
+  {
+   "writer_key": "frm2200Tv2020:txtDateMonth",
+   "html_id": "p1c4",
+   "printed": "1 Date (MM/DD/YYYY), month",
+   "reason": "first of three combs under item 1 caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtDateDay",
+   "html_id": "p1c6",
+   "printed": "1 Date (MM/DD/YYYY), day",
+   "reason": "middle comb under item 1 caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtDateYear",
+   "html_id": "p1c8",
+   "printed": "1 Date (MM/DD/YYYY), year",
+   "reason": "last comb under item 1 caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSheets",
+   "html_id": "p1c11",
+   "printed": "3 Number of Sheet/s Attached",
+   "reason": "caption left of the 2-slot comb"
+  },
+  {
+   "writer_key": "frm2200Tv2020:tinA",
+   "html_id": "p1c16",
+   "printed": "4 TIN part 1",
+   "reason": "first 3-slot TIN comb under item 4 caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:tinB",
+   "html_id": "p1c18",
+   "printed": "4 TIN part 2",
+   "reason": "3-slot comb after the first dash"
+  },
+  {
+   "writer_key": "frm2200Tv2020:tinC",
+   "html_id": "p1c20",
+   "printed": "4 TIN part 3",
+   "reason": "3-slot comb after the second dash"
+  },
+  {
+   "writer_key": "frm2200Tv2020:branchCode",
+   "html_id": "p1c22",
+   "printed": "4 TIN branch",
+   "reason": "5-slot branch comb after the third dash"
+  },
+  {
+   "writer_key": "frm2200Tv2020:rdoCode",
+   "html_id": "p1c24",
+   "printed": "5 RDO Code",
+   "reason": "caption left of the 3-slot comb"
+  },
+  {
+   "writer_key": "frm2200Tv2020:registeredName",
+   "html_id": "p1c26",
+   "printed": "6 Taxpayer Name",
+   "reason": "full-width comb under item 6 caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:zipCode",
+   "html_id": "p1c31",
+   "printed": "7A ZIP Code",
+   "reason": "caption left of the 4-slot comb"
+  },
+  {
+   "writer_key": "frm2200Tv2020:phoneNumber",
+   "html_id": "p1c34",
+   "printed": "8 Contact Number (Landline/Cellphone No.)",
+   "reason": "12-slot comb under item 8 caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtEmail",
+   "html_id": "p1c35",
+   "printed": "9 Email Address",
+   "reason": "28-slot comb right of item 8 and under item 9 caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:treatyY",
+   "html_id": "p1c52",
+   "printed": "12A If yes, specify",
+   "reason": "comb under the 12A \"If yes, specify\" caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:paymentOther",
+   "html_id": "p1c61",
+   "printed": "15 Other Similar Schemes (specify)",
+   "reason": "comb right of the \"(specify)\" caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:cashBank",
+   "html_id": "p1c146",
+   "printed": "25 Cash/Bank Debit Memo: Drawee Bank/Agency",
+   "reason": "column header Drawee Bank/Agency, row 25"
+  },
+  {
+   "writer_key": "frm2200Tv2020:cashNum",
+   "html_id": "p1c147",
+   "printed": "25 Cash/Bank Debit Memo: Number",
+   "reason": "column header Number, row 25"
+  },
+  {
+   "writer_key": "frm2200Tv2020:checkBank",
+   "html_id": "p1c155",
+   "printed": "26 Check: Drawee Bank/Agency",
+   "reason": "column header Drawee Bank/Agency, row 26"
+  },
+  {
+   "writer_key": "frm2200Tv2020:checkNum",
+   "html_id": "p1c156",
+   "printed": "26 Check: Number",
+   "reason": "column header Number, row 26"
+  },
+  {
+   "writer_key": "frm2200Tv2020:taxNum",
+   "html_id": "p1c165",
+   "printed": "27 Tax Debit Memo: Number",
+   "reason": "6-slot comb at the Number column x-position, row 27"
+  },
+  {
+   "writer_key": "frm2200Tv2020:othersDetails",
+   "html_id": "p1c173",
+   "printed": "28 Others (specify)",
+   "reason": "comb directly under the 28 Others (specify) caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:othersBank",
+   "html_id": "p1c174",
+   "printed": "28 Others: Drawee Bank/Agency",
+   "reason": "column header Drawee Bank/Agency, row 28"
+  },
+  {
+   "writer_key": "frm2200Tv2020:othersNum",
+   "html_id": "p1c175",
+   "printed": "28 Others: Number",
+   "reason": "column header Number, row 28"
+  },
+  {
+   "writer_key": "frm2200Tv2020:registeredName_2",
+   "html_id": "p2c5",
+   "printed": "Page 2 Taxpayer Name",
+   "reason": "page 2 name comb under the Taxpayer's Name caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1A_2022_Export",
+   "html_id": "p2c25",
+   "printed": "Effective January 1, 2022, P2.50 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1A_2022_Taxable",
+   "html_id": "p2c26",
+   "printed": "Effective January 1, 2022, P2.50 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1A_2022_Due",
+   "html_id": "p2c27",
+   "printed": "Effective January 1, 2022, P2.50 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1A_2023_Export",
+   "html_id": "p2c30",
+   "printed": "Effective January 1, 2023, P2.60 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1A_2023_Taxable",
+   "html_id": "p2c31",
+   "printed": "Effective January 1, 2023, P2.60 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1A_2023_Due",
+   "html_id": "p2c32",
+   "printed": "Effective January 1, 2023, P2.60 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1B_2022_Export",
+   "html_id": "p2c46",
+   "printed": "Effective January 1, 2022, P2.50 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1B_2022_Taxable",
+   "html_id": "p2c47",
+   "printed": "Effective January 1, 2022, P2.50 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1B_2022_Due",
+   "html_id": "p2c48",
+   "printed": "Effective January 1, 2022, P2.50 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1B_2023_Export",
+   "html_id": "p2c51",
+   "printed": "Effective January 1, 2023, P2.60 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1B_2023_Taxable",
+   "html_id": "p2c52",
+   "printed": "Effective January 1, 2023, P2.60 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1B_2023_Due",
+   "html_id": "p2c53",
+   "printed": "Effective January 1, 2023, P2.60 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1C_2022_Export",
+   "html_id": "p2c67",
+   "printed": "Effective January 1, 2022, P2.50 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1C_2022_Taxable",
+   "html_id": "p2c68",
+   "printed": "Effective January 1, 2022, P2.50 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1C_2022_Due",
+   "html_id": "p2c69",
+   "printed": "Effective January 1, 2022, P2.50 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1C_2023_Export",
+   "html_id": "p2c72",
+   "printed": "Effective January 1, 2023, P2.60 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1C_2023_Taxable",
+   "html_id": "p2c73",
+   "printed": "Effective January 1, 2023, P2.60 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_1C_2023_Due",
+   "html_id": "p2c74",
+   "printed": "Effective January 1, 2023, P2.60 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_2_2022_Export",
+   "html_id": "p2c89",
+   "printed": "Effective January 1, 2022, P2.13 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_2_2022_Taxable",
+   "html_id": "p2c90",
+   "printed": "Effective January 1, 2022, P2.13 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_2_2022_Due",
+   "html_id": "p2c91",
+   "printed": "Effective January 1, 2022, P2.13 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_2_2023_Export",
+   "html_id": "p2c94",
+   "printed": "Effective January 1, 2023, P2.22 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_2_2023_Taxable",
+   "html_id": "p2c95",
+   "printed": "Effective January 1, 2023, P2.22 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_2_2023_Due",
+   "html_id": "p2c96",
+   "printed": "Effective January 1, 2023, P2.22 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_3A_2022_Export",
+   "html_id": "p2c111",
+   "printed": "Cigars ad valorem NRP, Effective January 1, 2022, 20% Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_3A_2022_Taxable",
+   "html_id": "p2c112",
+   "printed": "Cigars ad valorem NRP, Effective January 1, 2022, 20% Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_3A_2022_Due",
+   "html_id": "p2c113",
+   "printed": "Cigars ad valorem NRP, Effective January 1, 2022, 20% Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_3A_2023_Export",
+   "html_id": "p2c116",
+   "printed": "Cigars ad valorem NRP, Effective January 1, 2023, 20% Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_3A_2023_Taxable",
+   "html_id": "p2c117",
+   "printed": "Cigars ad valorem NRP, Effective January 1, 2023, 20% Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_3A_2023_Due",
+   "html_id": "p2c118",
+   "printed": "Cigars ad valorem NRP, Effective January 1, 2023, 20% Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_3B_2022_Export",
+   "html_id": "p2c133",
+   "printed": "Cigars specific tax, Effective January 1, 2022, P7.10 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_3B_2022_Taxable",
+   "html_id": "p2c134",
+   "printed": "Cigars specific tax, Effective January 1, 2022, P7.10 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_3B_2022_Due",
+   "html_id": "p2c135",
+   "printed": "Cigars specific tax, Effective January 1, 2022, P7.10 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_3B_2023_Export",
+   "html_id": "p2c138",
+   "printed": "Cigars specific tax, Effective January 1, 2023, P7.38 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_3B_2023_Taxable",
+   "html_id": "p2c139",
+   "printed": "Cigars specific tax, Effective January 1, 2023, P7.38 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_3B_2023_Due",
+   "html_id": "p2c140",
+   "printed": "Cigars specific tax, Effective January 1, 2023, P7.38 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_4A_2022_Export",
+   "html_id": "p2c155",
+   "printed": "Cigarettes packed by hand, Effective January 1, 2022, P55.00 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_4A_2022_Taxable",
+   "html_id": "p2c156",
+   "printed": "Cigarettes packed by hand, Effective January 1, 2022, P55.00 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_4A_2022_Due",
+   "html_id": "p2c157",
+   "printed": "Cigarettes packed by hand, Effective January 1, 2022, P55.00 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_4A_2023_Export",
+   "html_id": "p2c160",
+   "printed": "Cigarettes packed by hand, Effective January 1, 2023, P60.00 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_4A_2023_Taxable",
+   "html_id": "p2c161",
+   "printed": "Cigarettes packed by hand, Effective January 1, 2023, P60.00 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_4A_2023_Due",
+   "html_id": "p2c162",
+   "printed": "Cigarettes packed by hand, Effective January 1, 2023, P60.00 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_4B_2022_Export",
+   "html_id": "p2c177",
+   "printed": "Cigarettes packed by machine, Effective January 1, 2022, P55.00 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_4B_2022_Taxable",
+   "html_id": "p2c178",
+   "printed": "Cigarettes packed by machine, Effective January 1, 2022, P55.00 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_4B_2022_Due",
+   "html_id": "p2c179",
+   "printed": "Cigarettes packed by machine, Effective January 1, 2022, P55.00 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_4B_2023_Export",
+   "html_id": "p2c182",
+   "printed": "Cigarettes packed by machine, Effective January 1, 2023, P60.00 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_4B_2023_Taxable",
+   "html_id": "p2c183",
+   "printed": "Cigarettes packed by machine, Effective January 1, 2023, P60.00 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_4B_2023_Due",
+   "html_id": "p2c184",
+   "printed": "Cigarettes packed by machine, Effective January 1, 2023, P60.00 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_5_2022_Export",
+   "html_id": "p2c199",
+   "printed": "Heated tobacco products, Effective January 1, 2022, P30.00 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_5_2022_Taxable",
+   "html_id": "p2c200",
+   "printed": "Heated tobacco products, Effective January 1, 2022, P30.00 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_5_2022_Due",
+   "html_id": "p2c201",
+   "printed": "Heated tobacco products, Effective January 1, 2022, P30.00 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_5_2023_Export",
+   "html_id": "p2c204",
+   "printed": "Heated tobacco products, Effective January 1, 2023, P32.50 Export",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_5_2023_Taxable",
+   "html_id": "p2c205",
+   "printed": "Heated tobacco products, Effective January 1, 2023, P32.50 Taxable",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_5_2023_Due",
+   "html_id": "p2c206",
+   "printed": "Heated tobacco products, Effective January 1, 2023, P32.50 Due",
+   "reason": "Schedule 1 row: block letter, effective-year caption and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:registeredName_3",
+   "html_id": "p3c5",
+   "printed": "Page 3 Taxpayer Name",
+   "reason": "page 3 name comb under the Taxpayer's Name caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt080_Export",
+   "html_id": "p3c42",
+   "printed": "1.) For Cigars, Per 1,000 cigars, P0.50 Export",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt080_Taxable",
+   "html_id": "p3c43",
+   "printed": "1.) For Cigars, Per 1,000 cigars, P0.50 Taxable",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt080_Due",
+   "html_id": "p3c44",
+   "printed": "1.) For Cigars, Per 1,000 cigars, P0.50 Due",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt090_Export",
+   "html_id": "p3c49",
+   "printed": "2.) For Cigarettes, Per 1,000 sticks, P0.10 Export",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt090_Taxable",
+   "html_id": "p3c50",
+   "printed": "2.) For Cigarettes, Per 1,000 sticks, P0.10 Taxable",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt090_Due",
+   "html_id": "p3c51",
+   "printed": "2.) For Cigarettes, Per 1,000 sticks, P0.10 Due",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt100_Export",
+   "html_id": "p3c56",
+   "printed": "3.) For Leaf Tobacco, Per Kilogram, P0.02 Export",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt100_Taxable",
+   "html_id": "p3c57",
+   "printed": "3.) For Leaf Tobacco, Per Kilogram, P0.02 Taxable",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt100_Due",
+   "html_id": "p3c58",
+   "printed": "3.) For Leaf Tobacco, Per Kilogram, P0.02 Due",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt110_Export",
+   "html_id": "p3c63",
+   "printed": "4.) For scraps and other manufactured tobacco products, Per Kilogram, P0.03 Export",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt110_Taxable",
+   "html_id": "p3c64",
+   "printed": "4.) For scraps and other manufactured tobacco products, Per Kilogram, P0.03 Taxable",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt110_Due",
+   "html_id": "p3c65",
+   "printed": "4.) For scraps and other manufactured tobacco products, Per Kilogram, P0.03 Due",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt120_leaf_Export",
+   "html_id": "p3c77",
+   "printed": "5.) Additional imported blending tobacco, Leaf, Per Kilogram, P0.02 Export",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt120_leaf_Taxable",
+   "html_id": "p3c78",
+   "printed": "5.) Additional imported blending tobacco, Leaf, Per Kilogram, P0.02 Taxable",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt120_leaf_Due",
+   "html_id": "p3c79",
+   "printed": "5.) Additional imported blending tobacco, Leaf, Per Kilogram, P0.02 Due",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt120_scraps_Export",
+   "html_id": "p3c84",
+   "printed": "5.) Additional imported blending tobacco, partially manufactured (scraps), Per 1,000 cigars, P0.50 Export",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt120_scraps_Taxable",
+   "html_id": "p3c85",
+   "printed": "5.) Additional imported blending tobacco, partially manufactured (scraps), Per 1,000 cigars, P0.50 Taxable",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt120_scraps_Due",
+   "html_id": "p3c86",
+   "printed": "5.) Additional imported blending tobacco, partially manufactured (scraps), Per 1,000 cigars, P0.50 Due",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt190_Export",
+   "html_id": "p3c91",
+   "printed": "6.) Heated Tobacco Products, Per 1,000 units, P0.10 Export",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt190_Taxable",
+   "html_id": "p3c92",
+   "printed": "6.) Heated Tobacco Products, Per 1,000 units, P0.10 Taxable",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt190_Due",
+   "html_id": "p3c93",
+   "printed": "6.) Heated Tobacco Products, Per 1,000 units, P0.10 Due",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt200_Export",
+   "html_id": "p3c98",
+   "printed": "7.) Vapor Products, Per Milliliter, P0.01 Export",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt200_Taxable",
+   "html_id": "p3c99",
+   "printed": "7.) Vapor Products, Per Milliliter, P0.01 Taxable",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt200_Due",
+   "html_id": "p3c100",
+   "printed": "7.) Vapor Products, Per Milliliter, P0.01 Due",
+   "reason": "Tobacco inspection fee row: block label and column header agree"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others1_Export",
+   "html_id": "p3c113",
+   "printed": "Others (specify), row 1 Export",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others1_Taxable",
+   "html_id": "p3c114",
+   "printed": "Others (specify), row 1 Taxable",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others1_Due",
+   "html_id": "p3c115",
+   "printed": "Others (specify), row 1 Due",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others2_Export",
+   "html_id": "p3c120",
+   "printed": "Others (specify), row 2 Export",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others2_Taxable",
+   "html_id": "p3c121",
+   "printed": "Others (specify), row 2 Taxable",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others2_Due",
+   "html_id": "p3c122",
+   "printed": "Others (specify), row 2 Due",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others3_Export",
+   "html_id": "p3c127",
+   "printed": "Others (specify), row 3 Export",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others3_Taxable",
+   "html_id": "p3c128",
+   "printed": "Others (specify), row 3 Taxable",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others3_Due",
+   "html_id": "p3c129",
+   "printed": "Others (specify), row 3 Due",
+   "reason": "Others row column header agrees"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_TotalDue",
+   "html_id": "p3c131",
+   "printed": "TOTAL TAX DUE (To Part III, Item 16)",
+   "reason": "caption left of the Tax Due column cell"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c4",
+   "html_ids": [
+    "p3c4"
+   ],
+   "printed": "Page 2 and page 3 TIN",
+   "reason": "the 14-slot comb under each later page's TIN caption: TIN then branch, from the page-2 TIN keys"
+  },
+  {
+   "writer_key": "derived:address_line1",
+   "html_id": "p1c28",
+   "printed": "7 Registered Address, line 1",
+   "reason": "full-width 40-slot comb under the item 7 caption; the print map breaks the address at the last space that fits"
+  },
+  {
+   "writer_key": "derived:line:address_line2",
+   "html_id": "p1c29",
+   "printed": "7 Registered Address, line 2",
+   "reason": "31-slot comb left of 7A ZIP Code: the rest of the address; a longer line prints whole in smaller type"
+  },
+  {
+   "writer_key": "derived:line:item10_region",
+   "html_id": "p1c40",
+   "printed": "10 Place of Production - Region",
+   "reason": "the 6-slot comb under the Region caption of item 10; the name of the PSGC code (a longer name prints whole in smaller type)"
+  },
+  {
+   "writer_key": "derived:line:item10_province",
+   "html_id": "p1c41",
+   "printed": "10 Place of Production - Province",
+   "reason": "the 19-slot comb under the Province caption of item 10; the name of the PSGC code (a longer name prints whole in smaller type)"
+  },
+  {
+   "writer_key": "derived:line:item10_city",
+   "html_id": "p1c42",
+   "printed": "10 Place of Production - City",
+   "reason": "the 15-slot comb under the City caption of item 10; the name of the PSGC code (a longer name prints whole in smaller type)"
+  },
+  {
+   "writer_key": "derived:line:item11_region",
+   "html_id": "p1c47",
+   "printed": "11 Place of Removal - Region",
+   "reason": "the 6-slot comb under the Region caption of item 11; the name of the PSGC code (a longer name prints whole in smaller type)"
+  },
+  {
+   "writer_key": "derived:line:item11_province",
+   "html_id": "p1c48",
+   "printed": "11 Place of Removal - Province",
+   "reason": "the 19-slot comb under the Province caption of item 11; the name of the PSGC code (a longer name prints whole in smaller type)"
+  },
+  {
+   "writer_key": "derived:line:item11_city",
+   "html_id": "p1c49",
+   "printed": "11 Place of Removal - City",
+   "reason": "the 15-slot comb under the City caption of item 11; the name of the PSGC code (a longer name prints whole in smaller type)"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_7A_2022_Export",
+   "html_id": "p2c221",
+   "printed": "Item 6 Vapor Products XT170, Effective January 1, 2022, P47.00 Export",
+   "reason": "the 2022 sheet prints the RA 11467 vapor rows as item 6 (XT170); the model gives 7A_2022 that ATC, effective date and rate; Export column by x order"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_7A_2022_Taxable",
+   "html_id": "p2c222",
+   "printed": "Item 6 Vapor Products XT170, Effective January 1, 2022, P47.00 Taxable",
+   "reason": "the 2022 sheet prints the RA 11467 vapor rows as item 6 (XT170); the model gives 7A_2022 that ATC, effective date and rate; Taxable column by x order"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_7A_2022_Due",
+   "html_id": "p2c223",
+   "printed": "Item 6 Vapor Products XT170, Effective January 1, 2022, P47.00 Due",
+   "reason": "the 2022 sheet prints the RA 11467 vapor rows as item 6 (XT170); the model gives 7A_2022 that ATC, effective date and rate; Due column by x order"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_7A_2023_Export",
+   "html_id": "p2c226",
+   "printed": "Item 6 Vapor Products XT170, Effective January 1, 2023, P52.00 Export",
+   "reason": "the 2022 sheet prints the RA 11467 vapor rows as item 6 (XT170); the model gives 7A_2023 that ATC, effective date and rate; Export column by x order"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_7A_2023_Taxable",
+   "html_id": "p2c227",
+   "printed": "Item 6 Vapor Products XT170, Effective January 1, 2023, P52.00 Taxable",
+   "reason": "the 2022 sheet prints the RA 11467 vapor rows as item 6 (XT170); the model gives 7A_2023 that ATC, effective date and rate; Taxable column by x order"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_7A_2023_Due",
+   "html_id": "p2c228",
+   "printed": "Item 6 Vapor Products XT170, Effective January 1, 2023, P52.00 Due",
+   "reason": "the 2022 sheet prints the RA 11467 vapor rows as item 6 (XT170); the model gives 7A_2023 that ATC, effective date and rate; Due column by x order"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_7B_2022_Export",
+   "html_id": "p2c243",
+   "printed": "Item 6 Vapor Products XT180, Effective January 1, 2022, P55.00 Export",
+   "reason": "the 2022 sheet prints the RA 11467 vapor rows as item 6 (XT180); the model gives 7B_2022 that ATC, effective date and rate; Export column by x order"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_7B_2022_Taxable",
+   "html_id": "p2c244",
+   "printed": "Item 6 Vapor Products XT180, Effective January 1, 2022, P55.00 Taxable",
+   "reason": "the 2022 sheet prints the RA 11467 vapor rows as item 6 (XT180); the model gives 7B_2022 that ATC, effective date and rate; Taxable column by x order"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_7B_2022_Due",
+   "html_id": "p2c245",
+   "printed": "Item 6 Vapor Products XT180, Effective January 1, 2022, P55.00 Due",
+   "reason": "the 2022 sheet prints the RA 11467 vapor rows as item 6 (XT180); the model gives 7B_2022 that ATC, effective date and rate; Due column by x order"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_7B_2023_Export",
+   "html_id": "p2c248",
+   "printed": "Item 6 Vapor Products XT180, Effective January 1, 2023, P60.00 Export",
+   "reason": "the 2022 sheet prints the RA 11467 vapor rows as item 6 (XT180); the model gives 7B_2023 that ATC, effective date and rate; Export column by x order"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_7B_2023_Taxable",
+   "html_id": "p2c249",
+   "printed": "Item 6 Vapor Products XT180, Effective January 1, 2023, P60.00 Taxable",
+   "reason": "the 2022 sheet prints the RA 11467 vapor rows as item 6 (XT180); the model gives 7B_2023 that ATC, effective date and rate; Taxable column by x order"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_7B_2023_Due",
+   "html_id": "p2c250",
+   "printed": "Item 6 Vapor Products XT180, Effective January 1, 2023, P60.00 Due",
+   "reason": "the 2022 sheet prints the RA 11467 vapor rows as item 6 (XT180); the model gives 7B_2023 that ATC, effective date and rate; Due column by x order"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others1_Atc",
+   "html_id": "p3c109",
+   "printed": "Schedule 1 Others (specify) row 1, ATC (XT printed inside the box)",
+   "reason": "the cell under the page 3 Schedule 1 column header ATC (header x order ATC, Description, Tax Bracket, Applicable Tax Rate) on Others row 1"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others1_Desc",
+   "html_id": "p3c110",
+   "printed": "Schedule 1 Others (specify) row 1, Description",
+   "reason": "the cell under the page 3 Schedule 1 column header Description (header x order ATC, Description, Tax Bracket, Applicable Tax Rate) on Others row 1"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others1_Bracket",
+   "html_id": "p3c111",
+   "printed": "Schedule 1 Others (specify) row 1, Tax Bracket/Unit of Measure",
+   "reason": "the cell under the page 3 Schedule 1 column header Tax Bracket/Unit of Measure (header x order ATC, Description, Tax Bracket, Applicable Tax Rate) on Others row 1"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others1_Rate",
+   "html_id": "p3c112",
+   "printed": "Schedule 1 Others (specify) row 1, Applicable Tax Rate",
+   "reason": "the cell under the page 3 Schedule 1 column header Applicable Tax Rate (header x order ATC, Description, Tax Bracket, Applicable Tax Rate) on Others row 1"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others2_Atc",
+   "html_id": "p3c116",
+   "printed": "Schedule 1 Others (specify) row 2, ATC (XT printed inside the box)",
+   "reason": "the cell under the page 3 Schedule 1 column header ATC (header x order ATC, Description, Tax Bracket, Applicable Tax Rate) on Others row 2"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others2_Desc",
+   "html_id": "p3c117",
+   "printed": "Schedule 1 Others (specify) row 2, Description",
+   "reason": "the cell under the page 3 Schedule 1 column header Description (header x order ATC, Description, Tax Bracket, Applicable Tax Rate) on Others row 2"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others2_Bracket",
+   "html_id": "p3c118",
+   "printed": "Schedule 1 Others (specify) row 2, Tax Bracket/Unit of Measure",
+   "reason": "the cell under the page 3 Schedule 1 column header Tax Bracket/Unit of Measure (header x order ATC, Description, Tax Bracket, Applicable Tax Rate) on Others row 2"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others2_Rate",
+   "html_id": "p3c119",
+   "printed": "Schedule 1 Others (specify) row 2, Applicable Tax Rate",
+   "reason": "the cell under the page 3 Schedule 1 column header Applicable Tax Rate (header x order ATC, Description, Tax Bracket, Applicable Tax Rate) on Others row 2"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others3_Atc",
+   "html_id": "p3c123",
+   "printed": "Schedule 1 Others (specify) row 3, ATC (XT printed inside the box)",
+   "reason": "the cell under the page 3 Schedule 1 column header ATC (header x order ATC, Description, Tax Bracket, Applicable Tax Rate) on Others row 3"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others3_Desc",
+   "html_id": "p3c124",
+   "printed": "Schedule 1 Others (specify) row 3, Description",
+   "reason": "the cell under the page 3 Schedule 1 column header Description (header x order ATC, Description, Tax Bracket, Applicable Tax Rate) on Others row 3"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others3_Bracket",
+   "html_id": "p3c125",
+   "printed": "Schedule 1 Others (specify) row 3, Tax Bracket/Unit of Measure",
+   "reason": "the cell under the page 3 Schedule 1 column header Tax Bracket/Unit of Measure (header x order ATC, Description, Tax Bracket, Applicable Tax Rate) on Others row 3"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtSched1_xt_others3_Rate",
+   "html_id": "p3c126",
+   "printed": "Schedule 1 Others (specify) row 3, Applicable Tax Rate",
+   "reason": "the cell under the page 3 Schedule 1 column header Applicable Tax Rate (header x order ATC, Description, Tax Bracket, Applicable Tax Rate) on Others row 3"
+  }
+ ],
+ "money_joins": [
+  {
+   "writer_key": "frm2200Tv2020:txtExciseDue",
+   "peso_html_id": "p1c65",
+   "cent_html_id": "p1c67",
+   "printed": "16 Excise Tax Due (from Part V - Schedule 1)",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtLess_Balance",
+   "peso_html_id": "p1c69",
+   "cent_html_id": "p1c71",
+   "printed": "17A Balance Carried Over from Previous Return",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtLess_Excise",
+   "peso_html_id": "p1c73",
+   "cent_html_id": "p1c75",
+   "printed": "17B Creditable Excise Tax",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtLess_Tot",
+   "peso_html_id": "p1c77",
+   "cent_html_id": "p1c79",
+   "printed": "17C Total (Sum of Items 17A and 17B)",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtNetTaxDue",
+   "peso_html_id": "p1c81",
+   "cent_html_id": "p1c83",
+   "printed": "18 Net Tax Due (Item 16 less Item 17C)",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtPrevReturn",
+   "peso_html_id": "p1c85",
+   "cent_html_id": "p1c87",
+   "printed": "19 Less: Payment on Returns Previously Filed",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtStillDue",
+   "peso_html_id": "p1c89",
+   "cent_html_id": "p1c91",
+   "printed": "20 Tax Still Due/(Overpayment)",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtPen_Surcharge",
+   "peso_html_id": "p1c93",
+   "cent_html_id": "p1c95",
+   "printed": "21A Surcharge",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtPen_Interest",
+   "peso_html_id": "p1c97",
+   "cent_html_id": "p1c99",
+   "printed": "21B Interest",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtPen_Compromise",
+   "peso_html_id": "p1c101",
+   "cent_html_id": "p1c103",
+   "printed": "21C Compromise",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtPen_Tot",
+   "peso_html_id": "p1c105",
+   "cent_html_id": "p1c107",
+   "printed": "21D Total Penalties",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtAmtPayable",
+   "peso_html_id": "p1c109",
+   "cent_html_id": "p1c111",
+   "printed": "22 Amount Payable/(Overpayment)",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtPay_TaxPayment",
+   "peso_html_id": "p1c113",
+   "cent_html_id": "p1c115",
+   "printed": "23A Tax Payment/Deposit",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtPay_Penalties",
+   "peso_html_id": "p1c117",
+   "cent_html_id": "p1c119",
+   "printed": "23B Penalties",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtPay_Tot",
+   "peso_html_id": "p1c121",
+   "cent_html_id": "p1c123",
+   "printed": "23C Total Payment Made Today",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtBalance",
+   "peso_html_id": "p1c125",
+   "cent_html_id": "p1c127",
+   "printed": "24 Balance to be Carried Over to Next Return",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:cashAmt",
+   "peso_html_id": "p1c151",
+   "cent_html_id": "p1c153",
+   "printed": "25 Cash/Bank Debit Memo: Amount",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:checkAmt",
+   "peso_html_id": "p1c160",
+   "cent_html_id": "p1c162",
+   "printed": "26 Check: Amount",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:taxAmt",
+   "peso_html_id": "p1c169",
+   "cent_html_id": "p1c171",
+   "printed": "27 Tax Debit Memo: Amount",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  },
+  {
+   "writer_key": "frm2200Tv2020:othersAmt",
+   "peso_html_id": "p1c179",
+   "cent_html_id": "p1c181",
+   "printed": "28 Others: Amount",
+   "reason": "11-slot peso comb with 2-slot centavo comb directly right"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm2200Tv2020:amendedRtn_1",
+   "html_id": "p1c12",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of printed \"Yes\""
+  },
+  {
+   "writer_key": "frm2200Tv2020:amendedRtn_2",
+   "html_id": "p1c13",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of printed \"No\""
+  },
+  {
+   "writer_key": "frm2200Tv2020:optTreaty_1",
+   "html_id": "p1c53",
+   "printed": "12 International Tax Treaty? Yes",
+   "reason": "box immediately left of printed \"Yes\""
+  },
+  {
+   "writer_key": "frm2200Tv2020:optTreaty_2",
+   "html_id": "p1c54",
+   "printed": "12 International Tax Treaty? No",
+   "reason": "box immediately left of printed \"No\""
+  },
+  {
+   "writer_key": "frm2200Tv2020:optPayment_1",
+   "html_id": "p1c58",
+   "printed": "13 Payment on Actual Removal",
+   "reason": "box immediately left of item 13 caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:optPayment_2",
+   "html_id": "p1c59",
+   "printed": "14 Prepayment/Advance Deposit",
+   "reason": "box immediately left of item 14 caption"
+  },
+  {
+   "writer_key": "frm2200Tv2020:optPayment_3",
+   "html_id": "p1c62",
+   "printed": "15 Other Similar Schemes",
+   "reason": "box immediately left of item 15 caption"
+  }
+ ],
+ "date_joins": [
+  {
+   "writer_key": "frm2200Tv2020:cashDate",
+   "mm_html_id": "p1c148",
+   "dd_html_id": "p1c149",
+   "yyyy_html_id": "p1c150",
+   "printed": "25 Cash/Bank Debit Memo: Date (MM/DD/YYYY)",
+   "reason": "the MM, DD and YYYY combs under the Date column on the item 25 row, between its Number and Amount cells (the row cashAmt fills); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2200Tv2020:checkDate",
+   "mm_html_id": "p1c157",
+   "dd_html_id": "p1c158",
+   "yyyy_html_id": "p1c159",
+   "printed": "26 Check: Date (MM/DD/YYYY)",
+   "reason": "the MM, DD and YYYY combs under the Date column on the item 26 row, between its Number and Amount cells (the row checkAmt fills); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2200Tv2020:taxDate",
+   "mm_html_id": "p1c166",
+   "dd_html_id": "p1c167",
+   "yyyy_html_id": "p1c168",
+   "printed": "27 Tax Debit Memo: Date (MM/DD/YYYY)",
+   "reason": "the MM, DD and YYYY combs under the Date column on the item 27 row, between its Number and Amount cells (the row taxAmt fills); one writer date split across the three"
+  },
+  {
+   "writer_key": "frm2200Tv2020:othersDate",
+   "mm_html_id": "p1c176",
+   "dd_html_id": "p1c177",
+   "yyyy_html_id": "p1c178",
+   "printed": "28 Others: Date (MM/DD/YYYY)",
+   "reason": "the MM, DD and YYYY combs under the Date column on the item 28 row, between its Number and Amount cells (the row othersAmt fills); one writer date split across the three"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_keys": [
+    "frm2200Tv2020:tinA_2",
+    "frm2200Tv2020:tinB_2",
+    "frm2200Tv2020:tinC_2",
+    "frm2200Tv2020:branchCode_2"
+   ],
+   "reason": "page 2/3 TIN is one 14-slot comb each (p2c4, p3c4); they print from derived:tin_digits, built from these four keys"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:tinA_3",
+    "frm2200Tv2020:tinB_3",
+    "frm2200Tv2020:tinC_3",
+    "frm2200Tv2020:branchCode_3"
+   ],
+   "reason": "the page 3 copy of the same TIN; p3c4 prints derived:tin_digits (built from the page 2 keys, the same value)"
+  },
+  {
+   "writer_key": "frm2200Tv2020:registeredAddress",
+   "reason": "prints from derived:address_line1 / derived:line:address_line2 (the print map shapes the address over both item 7 combs for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:prodRegion",
+    "frm2200Tv2020:prodProvince",
+    "frm2200Tv2020:prodCity"
+   ],
+   "reason": "prints from derived:line:item10_region / _province / _city (the print map shapes Item 10 as place names instead of PSGC codes for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:remRegion",
+    "frm2200Tv2020:remProvince",
+    "frm2200Tv2020:remCity"
+   ],
+   "reason": "prints from derived:line:item11_region / _province / _city (the print map shapes Item 11 as place names instead of PSGC codes for the sheet)"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_1A_2020_Export",
+    "frm2200Tv2020:txtSched1_1A_2020_Taxable",
+    "frm2200Tv2020:txtSched1_1A_2020_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 1A, effective 2020) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_1A_2021_Export",
+    "frm2200Tv2020:txtSched1_1A_2021_Taxable",
+    "frm2200Tv2020:txtSched1_1A_2021_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 1A, effective 2021) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_1B_2020_Export",
+    "frm2200Tv2020:txtSched1_1B_2020_Taxable",
+    "frm2200Tv2020:txtSched1_1B_2020_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 1B, effective 2020) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_1B_2021_Export",
+    "frm2200Tv2020:txtSched1_1B_2021_Taxable",
+    "frm2200Tv2020:txtSched1_1B_2021_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 1B, effective 2021) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_1C_2020_Export",
+    "frm2200Tv2020:txtSched1_1C_2020_Taxable",
+    "frm2200Tv2020:txtSched1_1C_2020_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 1C, effective 2020) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_1C_2021_Export",
+    "frm2200Tv2020:txtSched1_1C_2021_Taxable",
+    "frm2200Tv2020:txtSched1_1C_2021_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 1C, effective 2021) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_2_2020_Export",
+    "frm2200Tv2020:txtSched1_2_2020_Taxable",
+    "frm2200Tv2020:txtSched1_2_2020_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 2, effective 2020) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_2_2021_Export",
+    "frm2200Tv2020:txtSched1_2_2021_Taxable",
+    "frm2200Tv2020:txtSched1_2_2021_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 2, effective 2021) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_3A_2020_Export",
+    "frm2200Tv2020:txtSched1_3A_2020_Taxable",
+    "frm2200Tv2020:txtSched1_3A_2020_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 3A, effective 2020) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_3A_2021_Export",
+    "frm2200Tv2020:txtSched1_3A_2021_Taxable",
+    "frm2200Tv2020:txtSched1_3A_2021_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 3A, effective 2021) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_3B_2020_Export",
+    "frm2200Tv2020:txtSched1_3B_2020_Taxable",
+    "frm2200Tv2020:txtSched1_3B_2020_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 3B, effective 2020) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_3B_2021_Export",
+    "frm2200Tv2020:txtSched1_3B_2021_Taxable",
+    "frm2200Tv2020:txtSched1_3B_2021_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 3B, effective 2021) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_4A_2020_Export",
+    "frm2200Tv2020:txtSched1_4A_2020_Taxable",
+    "frm2200Tv2020:txtSched1_4A_2020_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 4A, effective 2020) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_4A_2021_Export",
+    "frm2200Tv2020:txtSched1_4A_2021_Taxable",
+    "frm2200Tv2020:txtSched1_4A_2021_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 4A, effective 2021) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_4B_2020_Export",
+    "frm2200Tv2020:txtSched1_4B_2020_Taxable",
+    "frm2200Tv2020:txtSched1_4B_2020_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 4B, effective 2020) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_4B_2021_Export",
+    "frm2200Tv2020:txtSched1_4B_2021_Taxable",
+    "frm2200Tv2020:txtSched1_4B_2021_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 4B, effective 2021) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_5_2020_Export",
+    "frm2200Tv2020:txtSched1_5_2020_Taxable",
+    "frm2200Tv2020:txtSched1_5_2020_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 5, effective 2020) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_5_1.23.2020_Export",
+    "frm2200Tv2020:txtSched1_5_1.23.2020_Taxable",
+    "frm2200Tv2020:txtSched1_5_1.23.2020_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 5, effective 1.23.2020) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_5_2021_Export",
+    "frm2200Tv2020:txtSched1_5_2021_Taxable",
+    "frm2200Tv2020:txtSched1_5_2021_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 5, effective 2021) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_7A_2020_Export",
+    "frm2200Tv2020:txtSched1_7A_2020_Taxable",
+    "frm2200Tv2020:txtSched1_7A_2020_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 7A, effective 2020) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_7A_2021_Export",
+    "frm2200Tv2020:txtSched1_7A_2021_Taxable",
+    "frm2200Tv2020:txtSched1_7A_2021_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 7A, effective 2021) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_7B_2020_Export",
+    "frm2200Tv2020:txtSched1_7B_2020_Taxable",
+    "frm2200Tv2020:txtSched1_7B_2020_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 7B, effective 2020) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_7B_2021_Export",
+    "frm2200Tv2020:txtSched1_7B_2021_Taxable",
+    "frm2200Tv2020:txtSched1_7B_2021_Due"
+   ],
+   "reason": "the August 2022 sheet prints Schedule 1 rows from January 1, 2022 only; this row (item 7B, effective 2021) has no printed row"
+  },
+  {
+   "writer_keys": [
+    "frm2200Tv2020:txtSched1_6_10ml_Export",
+    "frm2200Tv2020:txtSched1_6_10ml_Taxable",
+    "frm2200Tv2020:txtSched1_6_10ml_Due",
+    "frm2200Tv2020:txtSched1_6_20ml_Export",
+    "frm2200Tv2020:txtSched1_6_20ml_Taxable",
+    "frm2200Tv2020:txtSched1_6_20ml_Due",
+    "frm2200Tv2020:txtSched1_6_30ml_Export",
+    "frm2200Tv2020:txtSched1_6_30ml_Taxable",
+    "frm2200Tv2020:txtSched1_6_30ml_Due",
+    "frm2200Tv2020:txtSched1_6_40ml_Export",
+    "frm2200Tv2020:txtSched1_6_40ml_Taxable",
+    "frm2200Tv2020:txtSched1_6_40ml_Due",
+    "frm2200Tv2020:txtSched1_6_50ml_Export",
+    "frm2200Tv2020:txtSched1_6_50ml_Taxable",
+    "frm2200Tv2020:txtSched1_6_50ml_Due",
+    "frm2200Tv2020:txtSched1_6_above_50ml_Export",
+    "frm2200Tv2020:txtSched1_6_above_50ml_Taxable",
+    "frm2200Tv2020:txtSched1_6_above_50ml_Due"
+   ],
+   "reason": "XT165 vapor brackets (January 1-22, 2020, RA 11346) of the 2020 layout; the August 2022 sheet prints no such rows"
+  },
+  {
+   "writer_key": "frm2200Tv2020:txtCurrentPage",
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  }
+ ],
+ "not_joined_cells": [
+  {
+   "html_id": "p1c164",
+   "reason": "Tax Debit Memo Drawee Bank/Agency cell: the layout has no taxBank key"
+  },
+  {
+   "html_id": "p1c134",
+   "reason": "Tax Agent Accreditation No.: no layout key"
+  },
+  {
+   "html_id": "p1c136",
+   "reason": "Tax agent Date of Issue: no layout key"
+  },
+  {
+   "html_id": "p1c138",
+   "reason": "Tax agent Date of Expiry: no layout key"
+  },
+  {
+   "html_id": "p2c35",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c36",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c37",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c56",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c57",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c58",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c77",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c78",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c79",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c99",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c100",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c101",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c121",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c122",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c123",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c143",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c144",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c145",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c165",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c166",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c167",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c187",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c188",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c189",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c209",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c210",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c211",
+   "reason": "Schedule 1 row effective 2024 onwards (rate increases by a percentage each year): no 2024 layout key"
+  },
+  {
+   "html_id": "p2c231",
+   "reason": "Schedule 1 item 6 (vapor products) row: printed a.) and b.) blocks do not match the 6 volume-bracket keys (10ml-above_50ml); 2022-2023 rows and the 2024 rows are left out"
+  },
+  {
+   "html_id": "p2c232",
+   "reason": "Schedule 1 item 6 (vapor products) row: printed a.) and b.) blocks do not match the 6 volume-bracket keys (10ml-above_50ml); 2022-2023 rows and the 2024 rows are left out"
+  },
+  {
+   "html_id": "p2c233",
+   "reason": "Schedule 1 item 6 (vapor products) row: printed a.) and b.) blocks do not match the 6 volume-bracket keys (10ml-above_50ml); 2022-2023 rows and the 2024 rows are left out"
+  },
+  {
+   "html_id": "p2c253",
+   "reason": "Schedule 1 item 6 (vapor products) row: printed a.) and b.) blocks do not match the 6 volume-bracket keys (10ml-above_50ml); 2022-2023 rows and the 2024 rows are left out"
+  },
+  {
+   "html_id": "p2c254",
+   "reason": "Schedule 1 item 6 (vapor products) row: printed a.) and b.) blocks do not match the 6 volume-bracket keys (10ml-above_50ml); 2022-2023 rows and the 2024 rows are left out"
+  },
+  {
+   "html_id": "p2c255",
+   "reason": "Schedule 1 item 6 (vapor products) row: printed a.) and b.) blocks do not match the 6 volume-bracket keys (10ml-above_50ml); 2022-2023 rows and the 2024 rows are left out"
+  },
+  {
+   "html_id": "p3c24",
+   "reason": "Schedule 1 item 7 (novel tobacco) rows: one printed block but the layout has 7A and 7B; the 7A/7B assignment is not verifiable"
+  },
+  {
+   "html_id": "p3c25",
+   "reason": "Schedule 1 item 7 (novel tobacco) rows: one printed block but the layout has 7A and 7B; the 7A/7B assignment is not verifiable"
+  },
+  {
+   "html_id": "p3c26",
+   "reason": "Schedule 1 item 7 (novel tobacco) rows: one printed block but the layout has 7A and 7B; the 7A/7B assignment is not verifiable"
+  },
+  {
+   "html_id": "p3c29",
+   "reason": "Schedule 1 item 7 (novel tobacco) rows: one printed block but the layout has 7A and 7B; the 7A/7B assignment is not verifiable"
+  },
+  {
+   "html_id": "p3c30",
+   "reason": "Schedule 1 item 7 (novel tobacco) rows: one printed block but the layout has 7A and 7B; the 7A/7B assignment is not verifiable"
+  },
+  {
+   "html_id": "p3c31",
+   "reason": "Schedule 1 item 7 (novel tobacco) rows: one printed block but the layout has 7A and 7B; the 7A/7B assignment is not verifiable"
+  },
+  {
+   "html_id": "p3c34",
+   "reason": "Schedule 1 item 7 (novel tobacco) rows: one printed block but the layout has 7A and 7B; the 7A/7B assignment is not verifiable"
+  },
+  {
+   "html_id": "p3c35",
+   "reason": "Schedule 1 item 7 (novel tobacco) rows: one printed block but the layout has 7A and 7B; the 7A/7B assignment is not verifiable"
+  },
+  {
+   "html_id": "p3c36",
+   "reason": "Schedule 1 item 7 (novel tobacco) rows: one printed block but the layout has 7A and 7B; the 7A/7B assignment is not verifiable"
+  },
+  {
+   "html_id": "p3c105",
+   "reason": "Schedule 1 item 8 (novel tobacco, XT220): no layout key"
+  },
+  {
+   "html_id": "p3c106",
+   "reason": "Schedule 1 item 8 (novel tobacco, XT220): no layout key"
+  },
+  {
+   "html_id": "p3c107",
+   "reason": "Schedule 1 item 8 (novel tobacco, XT220): no layout key"
+  }
+ ]
+}

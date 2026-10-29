@@ -1,0 +1,250 @@
+[
+ {
+  "call": "(function(){var d=document,v=function(i,x){d.getElementById(i).value=x;};v('frm2000OT:txtTaxpayerName','Sample Dummy Taxpayer');v('frm2000OT:txtPg2TaxpayerName','Sample Dummy Taxpayer');v('frm2000OT:txtTIN1','123');v('frm2000OT:txtPg2TIN1','123');v('frm2000OT:txtTIN2','456');v('frm2000OT:txtPg2TIN2','456');v('frm2000OT:txtTIN3','788');v('frm2000OT:txtPg2TIN3','788');v('frm2000OT:txtBranchCode','00000');v('frm2000OT:txtPg2BranchCode','00000');v('frm2000OT:txtRDOCode','039');v('frm2000OT:txtLineBus','Sample Consulting Services');v('frm2000OT:txtAddress','123 Sample Street, Barangay Example, Quezon City');v('frm2000OT:txtAddress2','');v('frm2000OT:txtZipCode','1100');v('frm2000OT:txtTelNum','09170000000');v('txtEmail','sample.taxpayer@example.com');})()"
+ },
+ {
+  "set": "frm2000OT:txtTransactionDate",
+  "value": "06/15/2025"
+ },
+ {
+  "click": "frm2000OT:AmendedRtn_1"
+ },
+ {
+  "click": "frm2000OT:ATC_2"
+ },
+ {
+  "set": "frm2000OT:txtSheets",
+  "value": "0"
+ },
+ {
+  "click": "frm2000OT:optParty_1"
+ },
+ {
+  "set": "frm2000OT:txtOtherName",
+  "value": "Sample Buyer Corp"
+ },
+ {
+  "set": "frm2000OT:txtOtherTIN",
+  "value": "987654321000"
+ },
+ {
+  "click": "frm2000OT:rbTransNature_2"
+ },
+ {
+  "set": "frm2000OT:txtRealLocation",
+  "value": "Lot 1 Block 2, Sample Subdivision, Quezon City"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtOCTNo0",
+  "value": "Tct-12345"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtTaxDecNo0",
+  "value": "Td-0001"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtLoc0",
+  "value": "Barangay Example"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtOCTNo1",
+  "value": "Tct-12346"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtTaxDecNo1",
+  "value": "Td-0002"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtLoc1",
+  "value": "Barangay Example"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtLot0",
+  "value": "Lot 1"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtClassification0",
+  "value": "Residential"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtArea0",
+  "value": "250"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtFMVCol10",
+  "value": "1250000.005"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtFMVCol20",
+  "value": "1300000"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtLot1",
+  "value": "Improvement"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtClassification1",
+  "value": "Residential"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtArea1",
+  "value": "120"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtFMVCol11",
+  "value": "800000"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtFMVCol21",
+  "value": "750000.5"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtOCTNo2",
+  "value": "Tct-20002"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtTaxDecNo2",
+  "value": "Td-0002"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtLoc2",
+  "value": "Barangay Example"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtLot2",
+  "value": "Lot 2"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtClassification2",
+  "value": "Residential"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtArea2",
+  "value": "100"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtFMVCol12",
+  "value": "200000"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtFMVCol22",
+  "value": "90000"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtOCTNo3",
+  "value": "Tct-20003"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtTaxDecNo3",
+  "value": "Td-0003"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtLoc3",
+  "value": "Barangay Example"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtLot3",
+  "value": "Lot 3"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtClassification3",
+  "value": "Residential"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtArea3",
+  "value": "100"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtFMVCol13",
+  "value": "300000"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtFMVCol23",
+  "value": "90000"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtOCTNo4",
+  "value": "Tct-20004"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtTaxDecNo4",
+  "value": "Td-0004"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtLoc4",
+  "value": "Barangay Example"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtLot4",
+  "value": "Lot 4"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtClassification4",
+  "value": "Residential"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtArea4",
+  "value": "100"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtFMVCol14",
+  "value": "400000"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtFMVCol24",
+  "value": "90000"
+ },
+ {
+  "call": "addSchedule1A()"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtOCTNo5",
+  "value": "Tct-20005"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtTaxDecNo5",
+  "value": "Td-0005"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtLoc5",
+  "value": "Barangay Example"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtLot5",
+  "value": "Lot 5"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtClassification5",
+  "value": "Residential"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtArea5",
+  "value": "100"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtFMVCol15",
+  "value": "500000"
+ },
+ {
+  "set": "frm2000OT:sched1A:txtFMVCol25",
+  "value": "90000"
+ },
+ {
+  "set": "frm2000OT:Sched2:txtGrossSellingPrice",
+  "value": "2750000.005"
+ },
+ {
+  "set": "frm2000OT:txtTax18",
+  "value": "1000"
+ },
+ {
+  "set": "frm2000OT:txtTax20A",
+  "value": "25.5"
+ },
+ {
+  "click": "frm2000OT:cmdValidate"
+ },
+ {
+  "call": "var xmlFileName = createXMLFileName('savefile/')"
+ }
+]

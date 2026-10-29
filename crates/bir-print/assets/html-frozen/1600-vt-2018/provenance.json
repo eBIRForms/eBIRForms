@@ -1,0 +1,90 @@
+{
+  "slug": "1600-vt-2018",
+  "code": "1600-VT",
+  "revision": "2018",
+  "variant": "",
+  "in_corpus": true,
+  "source_file": "1600-VT January 2018 ENCS final.pdf",
+  "sha256": "6314f5797fd3663bdfd2eac6d7923f18a1c48efcea9af83ab0464b11cc58128a",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 3,
+  "pages": 2,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Times New Roman"
+  ],
+  "rules": 889,
+  "text_runs": 264,
+  "images": 3,
+  "cells": 303,
+  "comb_cells": 95,
+  "growables": [
+    {
+      "page": 1,
+      "rows": 5,
+      "capacity": 5,
+      "pitch_pt": 18.0
+    },
+    {
+      "page": 2,
+      "rows": 4,
+      "capacity": 4,
+      "pitch_pt": 14.88
+    }
+  ],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1600-VT January 2018 ENCS final.pdf",
+      "sha256": "6314f5797fd3663bdfd2eac6d7923f18a1c48efcea9af83ab0464b11cc58128a"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "inline-region"
+    ],
+    "moved_from_form": [
+      {
+        "page": 2,
+        "cut_y_pt": 275.81,
+        "reclaimed_pt": 660.19,
+        "reclaimed_pct": 71,
+        "marker": "Table 1 \u2013 Alphanumeric Tax Code (ATC)",
+        "marker_pattern": "reference-band",
+        "moved": {
+          "rules": 44,
+          "cells": 36,
+          "text_runs": 61,
+          "area_fills": 16,
+          "images": 0
+        },
+        "straddlers_kept_by_form": 0,
+        "moved_to": "guide.html"
+      }
+    ],
+    "standalone_pdfs": [],
+    "reclaimed_pt_total": 660.19,
+    "reclaimed_pct_mean": 71,
+    "reclaimed_pct_min": 71,
+    "reclaimed_pct_max": 71,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [
+      2
+    ],
+    "standalone_pdfs": []
+  },
+  "html_bytes": 542804,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

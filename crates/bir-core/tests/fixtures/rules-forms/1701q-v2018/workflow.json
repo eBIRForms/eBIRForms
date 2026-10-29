@@ -1,0 +1,204 @@
+{
+    "$schema":  "../../schema/workflow.schema.json",
+    "schema_version":  "1.0.0",
+    "form_id":  "1701q-v2018",
+    "revision":  "2018-01-01",
+    "phases":  [
+                   {
+                       "phase":  "edit",
+                       "official_behavior":  "Controls are editable according to spouse, ATC, tax-rate, and schedule enablement functions. Blur/change handlers normalize and recompute values.",
+                       "source_refs":  [
+                                           "official-hta-runtime#L3707-L4586"
+                                       ],
+                       "confidence":  "high"
+                   },
+                   {
+                       "phase":  "save",
+                       "official_behavior":  "initialValidateBeforeSave checks only quarter, taxpayer TIN/branch non-emptiness, non-placeholder RDO, and taxpayer-name non-emptiness. saveXML(false) serializes 172 fields and forces txtCurrentPage to 1.",
+                       "source_refs":  [
+                                           "official-hta-runtime#L2605-L2922",
+                                           "official-hta-runtime#L4637-L4654"
+                                       ],
+                       "confidence":  "high"
+                   },
+                   {
+                       "phase":  "validate",
+                       "official_behavior":  "validate() runs the ordered first-error sequence in validations.json. Success calls disableAllControl() and enters a read-only UI state.",
+                       "source_refs":  [
+                                           "official-hta-runtime#L3327-L3447"
+                                       ],
+                       "confidence":  "high"
+                   },
+                   {
+                       "phase":  "final-copy",
+                       "official_behavior":  "The final-copy path calls saveXML(true), writes a final-marked save and IAF_RDO_Copy staging file, invokes EncryptFile, then disables editing.",
+                       "source_refs":  [
+                                           "official-hta-runtime#L2432-L2522",
+                                           "official-hta-runtime#L5278-L5339",
+                                           "fixtures/live-ui-observations-v1.json#live-ui-2026-07-23-final-copy-boundary"
+                                       ],
+                       "confidence":  "high"
+                   },
+                   {
+                       "phase":  "submit",
+                       "official_behavior":  "sendEmail creates the encrypted copy, derives transport metadata, invokes RenameAndSendFile, and updates txtFinalFlag to 1 on success or 2 on failure.",
+                       "source_refs":  [
+                                           "official-hta-runtime#L5348-L5439"
+                                       ],
+                       "confidence":  "high"
+                   }
+               ],
+    "transitions":  [
+                        {
+                            "from":  "edit",
+                            "action":  "Save",
+                            "to":  "edit",
+                            "guard":  "Save preflight rules pass.",
+                            "side_effects":  [
+                                                 "Write/overwrite editable save XML.",
+                                                 "Show saved-successfully message.",
+                                                 "Save background profile."
+                                             ],
+                            "source_refs":  [
+                                                "official-hta-runtime#L2605-L2922"
+                                            ]
+                        },
+                        {
+                            "from":  "edit",
+                            "action":  "Validate",
+                            "to":  "validated-read-only",
+                            "guard":  "All Validate rules pass.",
+                            "side_effects":  [
+                                                 "Disable controls.",
+                                                 "Show validation-success message."
+                                             ],
+                            "source_refs":  [
+                                                "official-hta-runtime#L3327-L3447"
+                                            ]
+                        },
+                        {
+                            "from":  "validated-read-only",
+                            "action":  "Edit",
+                            "to":  "edit",
+                            "guard":  null,
+                            "side_effects":  [
+                                                 "Re-enable controls according to UI state logic."
+                                             ],
+                            "source_refs":  [
+                                                "official-hta-runtime#function:enableAllControl"
+                                            ]
+                        },
+                        {
+                            "from":  "edit",
+                            "action":  "Submit / Final Copy",
+                            "to":  "final-copy-or-submit-dialog",
+                            "guard":  "Existing-file/amended-return checks pass and user confirms.",
+                            "side_effects":  [
+                                                 "Check network.",
+                                                 "Open enrollment flow or create offline encrypted copy."
+                                             ],
+                            "source_refs":  [
+                                                "official-hta-runtime#L5278-L5339",
+                                                "fixtures/live-ui-observations-v1.json#live-ui-2026-07-23-final-copy-boundary"
+                                            ]
+                        },
+                        {
+                            "from":  "final-copy-or-submit-dialog",
+                            "action":  "Send",
+                            "to":  "submitted-or-failed",
+                            "guard":  "Credential/enrollment branch completes.",
+                            "side_effects":  [
+                                                 "Create final save and encrypted copy.",
+                                                 "Attempt transport.",
+                                                 "Set txtFinalFlag to 1 or 2."
+                                             ],
+                            "source_refs":  [
+                                                "official-hta-runtime#L5348-L5439"
+                                            ]
+                        }
+                    ],
+    "prerequisites":  [
+                          "Final copy reuses narrow Save preflight; inspected source does not show a mandatory full validate() call.",
+                          "Online submission requires external encryption and transport helpers plus network/configuration.",
+                          "The live 7.9.6 UI first showed the existing-file/amended-return warning and, after an amended dummy return validated, reached the exact online-submission confirmation recorded in fixtures/live-ui-observations-v1.json.",
+                          "The online confirmation was canceled. No submission was invoked, no 1701Q savefile or IAF_RDO_Copy timestamp changed, and post-submission txtFinalFlag/reopen behavior remains deliberately unobserved."
+                      ],
+    "required_attachments":  [
+                                 {
+                                     "attachment_id":  "bir-form-2307",
+                                     "label":  "Certificate of Creditable Tax Withheld at Source (BIR Form 2307)",
+                                     "required_when":  "Applicable creditable tax was withheld at source.",
+                                     "official_ui_enforcement":  "No attachment-presence validation was found in the inspected HTA.",
+                                     "source_refs":  [
+                                                         "official-guide#p1:Required Attachments item 1"
+                                                     ],
+                                     "confidence":  "high"
+                                 },
+                                 {
+                                     "attachment_id":  "tax-debit-memo",
+                                     "label":  "Duly Approved Tax Debit Memo",
+                                     "required_when":  "A tax debit memo is applicable.",
+                                     "official_ui_enforcement":  "No attachment-presence validation was found in the inspected HTA.",
+                                     "source_refs":  [
+                                                         "official-guide#p1:Required Attachments item 2"
+                                                     ],
+                                     "confidence":  "high"
+                                 },
+                                 {
+                                     "attachment_id":  "authorization-letter",
+                                     "label":  "Authorization letter",
+                                     "required_when":  "The return is filed by an authorized representative.",
+                                     "official_ui_enforcement":  "No attachment-presence validation was found in the inspected HTA.",
+                                     "source_refs":  [
+                                                         "official-guide#p1:Required Attachments item 3"
+                                                     ],
+                                     "confidence":  "high"
+                                 },
+                                 {
+                                     "attachment_id":  "proof-other-payments",
+                                     "label":  "Proof of other payment/s made",
+                                     "required_when":  "Other payments are claimed.",
+                                     "official_ui_enforcement":  "No attachment-presence validation was found in the inspected HTA.",
+                                     "source_refs":  [
+                                                         "official-guide#p1:Required Attachments item 4"
+                                                     ],
+                                     "confidence":  "high"
+                                 },
+                                 {
+                                     "attachment_id":  "sawt",
+                                     "label":  "Summary Alphalist of Withholding Agents of Income Payments Subjected to Withholding Tax at Source (SAWT)",
+                                     "required_when":  "Applicable withholding-at-source entries require SAWT.",
+                                     "official_ui_enforcement":  "No attachment-presence validation was found in the inspected HTA.",
+                                     "source_refs":  [
+                                                         "official-guide#p1:Required Attachments item 5"
+                                                     ],
+                                     "confidence":  "high"
+                                 }
+                             ],
+    "filing_deadlines":  [
+                             {
+                                 "quarter":  "Q1",
+                                 "due_date_rule":  "On or before May 15 of the current taxable year.",
+                                 "source_refs":  [
+                                                     "official-guide#p1:When and Where to File"
+                                                 ],
+                                 "confidence":  "high"
+                             },
+                             {
+                                 "quarter":  "Q2",
+                                 "due_date_rule":  "On or before August 15 of the current taxable year.",
+                                 "source_refs":  [
+                                                     "official-guide#p1:When and Where to File"
+                                                 ],
+                                 "confidence":  "high"
+                             },
+                             {
+                                 "quarter":  "Q3",
+                                 "due_date_rule":  "On or before November 15 of the current taxable year.",
+                                 "source_refs":  [
+                                                     "official-guide#p1:When and Where to File"
+                                                 ],
+                                 "confidence":  "high"
+                             }
+                         ]
+}

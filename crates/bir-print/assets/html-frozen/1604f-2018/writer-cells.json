@@ -1,0 +1,592 @@
+{
+ "form_id": "1604f-v2018",
+ "html_slug": "1604f-2018",
+ "rule": "Fill-path only, mapped by sheet geometry: each join targets the fillable cell whose printed caption (from the frozen page's own text layer) names the item. Amounts print the writer's official text (1,234.56) in single text cells. Item 7's second comb line carries the rest of the address in its 31 fillable slots before the printed 7A caption and the ZIP Code in its last 4 (right of the printed ZIP caption); with the first line, the page-2 whole TIN, they come from derived: keys of to_print_field_map, never the XML. Booleans fill X in the box left of the printed option. Part III alphalists are DAT attachments and stay blank.",
+ "joins": [
+  {
+   "writer_key": "frm1604f:txtYear",
+   "html_id": "p1c4",
+   "printed": "1 For the Year (YYYY)",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSheets",
+   "html_id": "p1c7",
+   "printed": "3 No. of Sheet/s Attached",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:tinA",
+   "html_id": "p1c12",
+   "printed": "4 TIN (1-3)",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:tinB",
+   "html_id": "p1c14",
+   "printed": "4 TIN (4-6)",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:tinC",
+   "html_id": "p1c16",
+   "printed": "4 TIN (7-9)",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:branchCode",
+   "html_id": "p1c18",
+   "printed": "4 TIN branch",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:rdoCode",
+   "html_id": "p1c20",
+   "printed": "5 RDO Code",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:registeredName",
+   "html_id": "p1c22",
+   "printed": "6 Withholding Agent’s Name",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "derived:address1",
+   "html_id": "p1c24",
+   "printed": "7 Registered Address (first line)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "derived:address2_zip",
+   "html_id": "p1c25",
+   "printed": "7 Registered Address (second line, 31 fillable slots) and 7A ZIP Code (last 4 slots)",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1604f:telephoneNumber",
+   "html_id": "p1c33",
+   "printed": "9 Contact Number",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:email",
+   "html_id": "p1c34",
+   "printed": "10 Email Address",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:availedTaxRelief",
+   "html_id": "p1c36",
+   "printed": "11A If yes, specify",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "derived:tin_digits",
+   "html_id": "p2c5",
+   "printed": "Page 2 TIN",
+   "reason": "print-only value derived by the model (to_print_field_map); not part of the submitted XML"
+  },
+  {
+   "writer_key": "frm1604f:txtPg2TaxpayerName",
+   "html_id": "p2c6",
+   "printed": "Page 2 Withholding Agent’s Name",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1Date1",
+   "html_id": "p1c48",
+   "printed": "Schedule 1 1st Quarter Date of Remittance",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1TRA1",
+   "html_id": "p1c49",
+   "printed": "Schedule 1 1st Quarter TRA/eROR/eAR Number",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1TaxWheld1",
+   "html_id": "p1c50",
+   "printed": "Schedule 1 1st Quarter Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1Pen1",
+   "html_id": "p1c51",
+   "printed": "Schedule 1 1st Quarter Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1TotalAmt1",
+   "html_id": "p1c52",
+   "printed": "Schedule 1 1st Quarter Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1Date2",
+   "html_id": "p1c54",
+   "printed": "Schedule 1 2nd Quarter Date of Remittance",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1TRA2",
+   "html_id": "p1c55",
+   "printed": "Schedule 1 2nd Quarter TRA/eROR/eAR Number",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1TaxWheld2",
+   "html_id": "p1c56",
+   "printed": "Schedule 1 2nd Quarter Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1Pen2",
+   "html_id": "p1c57",
+   "printed": "Schedule 1 2nd Quarter Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1TotalAmt2",
+   "html_id": "p1c58",
+   "printed": "Schedule 1 2nd Quarter Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1Date3",
+   "html_id": "p1c60",
+   "printed": "Schedule 1 3rd Quarter Date of Remittance",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1TRA3",
+   "html_id": "p1c61",
+   "printed": "Schedule 1 3rd Quarter TRA/eROR/eAR Number",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1TaxWheld3",
+   "html_id": "p1c62",
+   "printed": "Schedule 1 3rd Quarter Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1Pen3",
+   "html_id": "p1c63",
+   "printed": "Schedule 1 3rd Quarter Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1TotalAmt3",
+   "html_id": "p1c64",
+   "printed": "Schedule 1 3rd Quarter Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1Date4",
+   "html_id": "p1c66",
+   "printed": "Schedule 1 4th Quarter Date of Remittance",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1TRA4",
+   "html_id": "p1c67",
+   "printed": "Schedule 1 4th Quarter TRA/eROR/eAR Number",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1TaxWheld4",
+   "html_id": "p1c68",
+   "printed": "Schedule 1 4th Quarter Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1Pen4",
+   "html_id": "p1c69",
+   "printed": "Schedule 1 4th Quarter Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1TotalAmt4",
+   "html_id": "p1c70",
+   "printed": "Schedule 1 4th Quarter Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1TaxWheldTotal",
+   "html_id": "p1c72",
+   "printed": "Schedule 1 TOTAL Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1PenTotal",
+   "html_id": "p1c73",
+   "printed": "Schedule 1 TOTAL Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched1Total",
+   "html_id": "p1c74",
+   "printed": "Schedule 1 TOTAL Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2Date1",
+   "html_id": "p1c83",
+   "printed": "Schedule 2 1st Quarter Date of Remittance",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2TRA1",
+   "html_id": "p1c84",
+   "printed": "Schedule 2 1st Quarter TRA/eROR/eAR Number",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2TaxWheld1",
+   "html_id": "p1c85",
+   "printed": "Schedule 2 1st Quarter Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2Pen1",
+   "html_id": "p1c86",
+   "printed": "Schedule 2 1st Quarter Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2TotalAmt1",
+   "html_id": "p1c87",
+   "printed": "Schedule 2 1st Quarter Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2Date2",
+   "html_id": "p1c89",
+   "printed": "Schedule 2 2nd Quarter Date of Remittance",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2TRA2",
+   "html_id": "p1c90",
+   "printed": "Schedule 2 2nd Quarter TRA/eROR/eAR Number",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2TaxWheld2",
+   "html_id": "p1c91",
+   "printed": "Schedule 2 2nd Quarter Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2Pen2",
+   "html_id": "p1c92",
+   "printed": "Schedule 2 2nd Quarter Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2TotalAmt2",
+   "html_id": "p1c93",
+   "printed": "Schedule 2 2nd Quarter Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2Date3",
+   "html_id": "p1c95",
+   "printed": "Schedule 2 3rd Quarter Date of Remittance",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2TRA3",
+   "html_id": "p1c96",
+   "printed": "Schedule 2 3rd Quarter TRA/eROR/eAR Number",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2TaxWheld3",
+   "html_id": "p1c97",
+   "printed": "Schedule 2 3rd Quarter Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2Pen3",
+   "html_id": "p1c98",
+   "printed": "Schedule 2 3rd Quarter Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2TotalAmt3",
+   "html_id": "p1c99",
+   "printed": "Schedule 2 3rd Quarter Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2Date4",
+   "html_id": "p1c101",
+   "printed": "Schedule 2 4th Quarter Date of Remittance",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2TRA4",
+   "html_id": "p1c102",
+   "printed": "Schedule 2 4th Quarter TRA/eROR/eAR Number",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2TaxWheld4",
+   "html_id": "p1c103",
+   "printed": "Schedule 2 4th Quarter Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2Pen4",
+   "html_id": "p1c104",
+   "printed": "Schedule 2 4th Quarter Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2TotalAmt4",
+   "html_id": "p1c105",
+   "printed": "Schedule 2 4th Quarter Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2TaxWheldTotal",
+   "html_id": "p1c107",
+   "printed": "Schedule 2 TOTAL Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2PenTotal",
+   "html_id": "p1c108",
+   "printed": "Schedule 2 TOTAL Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched2Total",
+   "html_id": "p1c109",
+   "printed": "Schedule 2 TOTAL Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3Date1",
+   "html_id": "p1c118",
+   "printed": "Schedule 3 1st Quarter Date of Remittance",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3TRA1",
+   "html_id": "p1c119",
+   "printed": "Schedule 3 1st Quarter TRA/eROR/eAR Number",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3TaxWheld1",
+   "html_id": "p1c120",
+   "printed": "Schedule 3 1st Quarter Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3Pen1",
+   "html_id": "p1c121",
+   "printed": "Schedule 3 1st Quarter Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3TotalAmt1",
+   "html_id": "p1c122",
+   "printed": "Schedule 3 1st Quarter Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3Date2",
+   "html_id": "p1c124",
+   "printed": "Schedule 3 2nd Quarter Date of Remittance",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3TRA2",
+   "html_id": "p1c125",
+   "printed": "Schedule 3 2nd Quarter TRA/eROR/eAR Number",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3TaxWheld2",
+   "html_id": "p1c126",
+   "printed": "Schedule 3 2nd Quarter Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3Pen2",
+   "html_id": "p1c127",
+   "printed": "Schedule 3 2nd Quarter Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3TotalAmt2",
+   "html_id": "p1c128",
+   "printed": "Schedule 3 2nd Quarter Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3Date3",
+   "html_id": "p1c130",
+   "printed": "Schedule 3 3rd Quarter Date of Remittance",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3TRA3",
+   "html_id": "p1c131",
+   "printed": "Schedule 3 3rd Quarter TRA/eROR/eAR Number",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3TaxWheld3",
+   "html_id": "p1c132",
+   "printed": "Schedule 3 3rd Quarter Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3Pen3",
+   "html_id": "p1c133",
+   "printed": "Schedule 3 3rd Quarter Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3TotalAmt3",
+   "html_id": "p1c134",
+   "printed": "Schedule 3 3rd Quarter Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3Date4",
+   "html_id": "p1c136",
+   "printed": "Schedule 3 4th Quarter Date of Remittance",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3TRA4",
+   "html_id": "p1c137",
+   "printed": "Schedule 3 4th Quarter TRA/eROR/eAR Number",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3TaxWheld4",
+   "html_id": "p1c138",
+   "printed": "Schedule 3 4th Quarter Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3Pen4",
+   "html_id": "p1c139",
+   "printed": "Schedule 3 4th Quarter Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3TotalAmt4",
+   "html_id": "p1c140",
+   "printed": "Schedule 3 4th Quarter Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3TaxWheldTotal",
+   "html_id": "p1c142",
+   "printed": "Schedule 3 TOTAL Taxes Withheld",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3PenTotal",
+   "html_id": "p1c143",
+   "printed": "Schedule 3 TOTAL Penalties",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  },
+  {
+   "writer_key": "frm1604f:txtSched3Total",
+   "html_id": "p1c144",
+   "printed": "Schedule 3 TOTAL Total Amount Remitted",
+   "reason": "geometry: the fillable cell under/next to this printed caption on the frozen sheet's text layer"
+  }
+ ],
+ "xbox_joins": [
+  {
+   "writer_key": "frm1604f:amendedRtn_1",
+   "html_id": "p1c8",
+   "printed": "2 Amended Return? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1604f:amendedRtn_2",
+   "html_id": "p1c9",
+   "printed": "2 Amended Return? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1604f:categoryAgent_1",
+   "html_id": "p1c27",
+   "printed": "8 Category: Private",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1604f:categoryAgent_2",
+   "html_id": "p1c28",
+   "printed": "8 Category: Government",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1604f:privateAgent_1",
+   "html_id": "p1c29",
+   "printed": "8A Top withholding agent? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1604f:privateAgent_2",
+   "html_id": "p1c30",
+   "printed": "8A Top withholding agent? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1604f:taxRelief_1",
+   "html_id": "p1c37",
+   "printed": "11 Tax relief? Yes",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  },
+  {
+   "writer_key": "frm1604f:taxRelief_2",
+   "html_id": "p1c38",
+   "printed": "11 Tax relief? No",
+   "reason": "box immediately left of the printed option; X when the writer value is true"
+  }
+ ],
+ "not_joined": [
+  {
+   "writer_key": "frm1604f:RegisteredAddress",
+   "reason": "prints from derived:address1 / derived:address2_zip (the print map shapes the address over both item 7 lines for the sheet)"
+  },
+  {
+   "writer_key": "frm1604f:zipCode",
+   "reason": "prints from derived:address2_zip (the print map shapes the second address line and 7A ZIP Code, one comb on this sheet for the sheet)"
+  },
+  {
+   "writer_key": "frm1604f:txtLineBus",
+   "reason": "not on the paper form: this sheet has no line-of-business box"
+  },
+  {
+   "writer_keys": [
+    "frm1604f:txtPg2TIN1",
+    "frm1604f:txtPg2TIN2",
+    "frm1604f:txtPg2TIN3",
+    "frm1604f:txtPg2BranchCode"
+   ],
+   "reason": "page 2 TIN is one 14-slot comb (p2c5); it prints from derived:tin_digits"
+  },
+  {
+   "writer_key": "frm1604f:txtCurrentPage",
+   "reason": "page counter of the eBIRForms page, not a box on the paper form"
+  },
+  {
+   "writer_key": "txtEmail",
+   "reason": "duplicate of frm1604f:email (same value), which prints in item 10"
+  }
+ ]
+}

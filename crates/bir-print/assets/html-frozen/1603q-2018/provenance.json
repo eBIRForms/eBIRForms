@@ -1,0 +1,79 @@
+{
+  "slug": "1603q-2018",
+  "code": "1603Q",
+  "revision": "2018",
+  "variant": "",
+  "in_corpus": true,
+  "source_file": "1603Q Jan 2018 final.pdf",
+  "sha256": "e18b6bfd755bc02c8be1d2413cbad30a355b652e871f6dee720e5f76975abbae",
+  "stage_failed": null,
+  "error": null,
+  "images_extracted": 3,
+  "pages": 2,
+  "paper": "612.0x936.0",
+  "uniform_paper": true,
+  "page_papers": [
+    "612.0x936.0",
+    "612.0x936.0"
+  ],
+  "fonts": [
+    "Arial",
+    "Arial Narrow",
+    "Calibri",
+    "Times New Roman",
+    "Wingdings"
+  ],
+  "rules": 707,
+  "text_runs": 374,
+  "images": 3,
+  "cells": 228,
+  "comb_cells": 78,
+  "growables": [],
+  "sources": [
+    {
+      "role": "form",
+      "file": "1603Q Jan 2018 final.pdf",
+      "sha256": "e18b6bfd755bc02c8be1d2413cbad30a355b652e871f6dee720e5f76975abbae"
+    }
+  ],
+  "guide": {
+    "document": "guide.html",
+    "origins": [
+      "inline-region"
+    ],
+    "moved_from_form": [
+      {
+        "page": 2,
+        "cut_y_pt": 284.54,
+        "reclaimed_pt": 651.46,
+        "reclaimed_pct": 70,
+        "marker": "Guidelines and Instructions for BIR Form No. 1603Q",
+        "marker_pattern": "guidelines-and-instructions",
+        "moved": {
+          "rules": 0,
+          "cells": 0,
+          "text_runs": 171,
+          "area_fills": 0,
+          "images": 0
+        },
+        "straddlers_kept_by_form": 0,
+        "moved_to": "guide.html"
+      }
+    ],
+    "standalone_pdfs": [],
+    "reclaimed_pt_total": 651.46,
+    "reclaimed_pct_mean": 70,
+    "reclaimed_pct_min": 70,
+    "reclaimed_pct_max": 70,
+    "note": "Reference material printed on the source sheet, or shipped as a separate guide PDF. It is not part of the filed form: index.html no longer carries the regions listed under moved_from_form. Each PDF under standalone_pdfs was re-extracted and reflowed into guide.html so that it prints with the document; the pinned PDF is kept beside it and linked, and remains the exact artefact."
+  },
+  "guide_detected": {
+    "inline_pages": [
+      2
+    ],
+    "standalone_pdfs": []
+  },
+  "html_bytes": 439501,
+  "generator": "tools/formgen batch.py (rule-backend=svg)",
+  "note": "Generated once from the pinned source PDF, then maintained by hand. Re-running the generator over this directory would discard manual edits."
+}

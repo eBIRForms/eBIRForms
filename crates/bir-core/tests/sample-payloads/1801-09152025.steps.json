@@ -1,0 +1,331 @@
+[
+ {
+  "call": "document.getElementById('responseBG').innerHTML = '<div>fn=Sample%20Dummy%20Taxpayerfn=</div><div>tin1=123tin1=</div><div>tin2=456tin2=</div><div>tin3=788tin3=</div><div>tin4=00000tin4=</div><div>rdo=039rdo=</div><div>lob=Sample%20Consulting%20Serviceslob=</div><div>regAddr=123%20Sample%20Street%2C%20Barangay%20Example%2C%20Quezon%20CityregAddr=</div><div>zip=1100zip=</div><div>telNo=09170000000telNo=</div><div>email=sample.taxpayer@example.comemail=</div><div>formType=1801v2018formType=</div>'; loadBGData(); var g=function(i){return document.getElementById(i)}; g('frm1801v2018:registeredName_1').value=g('frm1801v2018:registeredName').value;g('frm1801v2018:registeredName_2').value=g('frm1801v2018:registeredName').value;g('frm1801v2018:tinA_1').value=g('frm1801v2018:tinA').value;g('frm1801v2018:tinA_2').value=g('frm1801v2018:tinA').value;g('frm1801v2018:tinB_1').value=g('frm1801v2018:tinB').value;g('frm1801v2018:tinB_2').value=g('frm1801v2018:tinB').value;g('frm1801v2018:tinC_1').value=g('frm1801v2018:tinC').value;g('frm1801v2018:tinC_2').value=g('frm1801v2018:tinC').value;g('frm1801v2018:branchCode_1').value=g('frm1801v2018:branchCode').value;g('frm1801v2018:branchCode_2').value=g('frm1801v2018:branchCode').value;g('frm1801v2018:txtRDOCode_1').value=g('frm1801v2018:txtRDOCode').value;g('frm1801v2018:registeredAddress_1').value=g('frm1801v2018:registeredAddress').value;"
+ },
+ {
+  "set": "frm1801v2018:txtDateMonth",
+  "value": "09"
+ },
+ {
+  "set": "frm1801v2018:txtDateDay",
+  "value": "15"
+ },
+ {
+  "set": "frm1801v2018:txtDateYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1801v2018:amendedRtn_2"
+ },
+ {
+  "set": "frm1801v2018:txtSheets",
+  "value": "1"
+ },
+ {
+  "click": "frm1801v2018:categoryNonResident_2"
+ },
+ {
+  "set": "frm1801v2018:txtTINE1",
+  "value": "111"
+ },
+ {
+  "set": "frm1801v2018:txtTINE2",
+  "value": "222"
+ },
+ {
+  "set": "frm1801v2018:txtTINE3",
+  "value": "333"
+ },
+ {
+  "set": "frm1801v2018:txtBranchCodeE",
+  "value": "00000"
+ },
+ {
+  "click": "frm1801v2018:optTreaty_2"
+ },
+ {
+  "click": "frm1801v2018:fileGranted_1"
+ },
+ {
+  "click": "frm1801v2018:instGranted_1"
+ },
+ {
+  "click": "frm1801v2018:settled_2"
+ },
+ {
+  "click": "frm1801v2018:extGranted_2"
+ },
+ {
+  "click": "frm1801v2018:freq_Qtr"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_1",
+  "value": "T-12345"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_1",
+  "value": "TD-001"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_1",
+  "value": "Quezon City"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_1",
+  "value": "Lot"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_1",
+  "value": "200"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_1'",
+  "value": "RR"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_1",
+  "value": "1000000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_1",
+  "value": "1200000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_1",
+  "value": "1200000.005"
+ },
+ {
+  "set": "frm1801v2018:sched1AOct_1",
+  "value": "T-67890"
+ },
+ {
+  "set": "frm1801v2018:sched1ATd_1",
+  "value": "TD-002"
+ },
+ {
+  "set": "frm1801v2018:sched1ALoc_1",
+  "value": "Pasig City"
+ },
+ {
+  "set": "frm1801v2018:sched1AArea_1",
+  "value": "150"
+ },
+ {
+  "set": "frm1801v2018:sched1AClass_1'",
+  "value": "RC"
+ },
+ {
+  "set": "frm1801v2018:sched1AFmv_1",
+  "value": "1800000"
+ },
+ {
+  "set": "frm1801v2018:sched1AZonal_1",
+  "value": "2000000"
+ },
+ {
+  "set": "frm1801v2018:sched1AConj_1",
+  "value": "2000000"
+ },
+ {
+  "set": "frm1801v2018:sched2Corp_1",
+  "value": "Sample Corp"
+ },
+ {
+  "set": "frm1801v2018:sched2Class_1",
+  "value": "Not Listed"
+ },
+ {
+  "set": "frm1801v2018:sched2Stock_1",
+  "value": "C-100"
+ },
+ {
+  "set": "frm1801v2018:sched2Shares_1",
+  "value": "1000"
+ },
+ {
+  "set": "frm1801v2018:sched2FmvPerShare_1",
+  "value": "300.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Exc_1",
+  "value": "300000.55"
+ },
+ {
+  "set": "frm1801v2018:sched2AParticulars_1",
+  "value": "Car"
+ },
+ {
+  "set": "frm1801v2018:sched2AExc_1",
+  "value": "50000"
+ },
+ {
+  "set": "frm1801v2018:sched2AParticulars_2",
+  "value": "Jewelry"
+ },
+ {
+  "set": "frm1801v2018:sched2AConj_2",
+  "value": "25000.125"
+ },
+ {
+  "set": "frm1801v2018:sched3Particulars_1",
+  "value": "Cash in bank, Sample Bank 0001"
+ },
+ {
+  "set": "frm1801v2018:sched3Exc_1",
+  "value": "10000"
+ },
+ {
+  "set": "frm1801v2018:sched4Name_1",
+  "value": "Sample Store"
+ },
+ {
+  "set": "frm1801v2018:sched4Address_1",
+  "value": "Makati City"
+ },
+ {
+  "set": "frm1801v2018:sched4Rdo_1",
+  "value": "040"
+ },
+ {
+  "set": "frm1801v2018:sched4Exc_1",
+  "value": "40000"
+ },
+ {
+  "set": "frm1801v2018:sched5EstateExc",
+  "value": "100000"
+ },
+ {
+  "set": "frm1801v2018:sched5LossesConj",
+  "value": "5000"
+ },
+ {
+  "set": "frm1801v2018:txtStandardDed_C",
+  "value": "5000000"
+ },
+ {
+  "set": "frm1801v2018:txtFamDed_C",
+  "value": "1000000"
+ },
+ {
+  "set": "frm1801v2018:txtInstallmentYear",
+  "value": "2026"
+ },
+ {
+  "set": "frm1801v2018:txtPen_Surcharge",
+  "value": "25.5"
+ },
+ {
+  "call": "addRow_RealProp(); addRow_Other();"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_2",
+  "value": "T-22222"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_2",
+  "value": "TD-003"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_2",
+  "value": "Cebu City"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_2",
+  "value": "Improvement"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_2",
+  "value": "80"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_2'",
+  "value": "CR"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_2",
+  "value": "2500000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_2",
+  "value": "3000000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_2",
+  "value": "3000000"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_3",
+  "value": "T-33333"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_3",
+  "value": "TD-004"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_3",
+  "value": "Davao City"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_3",
+  "value": "Lot"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_3",
+  "value": "500"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_3'",
+  "value": "A"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_3",
+  "value": "1500000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_3",
+  "value": "1750000.50"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_3",
+  "value": "1750000.505"
+ },
+ {
+  "set": "frm1801v2018:sched2AParticulars_3",
+  "value": "Paintings"
+ },
+ {
+  "set": "frm1801v2018:sched2AExc_3",
+  "value": "120000"
+ },
+ {
+  "set": "frm1801v2018:sched4Name_2",
+  "value": "Second Sample Shop"
+ },
+ {
+  "set": "frm1801v2018:sched4Address_2",
+  "value": "Taguig City"
+ },
+ {
+  "set": "frm1801v2018:sched4Rdo_2",
+  "value": "044"
+ },
+ {
+  "set": "frm1801v2018:sched4Conj_2",
+  "value": "60000"
+ },
+ {
+  "set": "frm1801v2018:txtPen_Surcharge",
+  "value": "1000"
+ },
+ {
+  "set": "frm1801v2018:txtPen_Interest",
+  "value": "250.25"
+ },
+ {
+  "set": "frm1801v2018:adminName",
+  "value": "Maria Sample-Executor"
+ },
+ {
+  "call": "validateForm()"
+ }
+]

@@ -1,0 +1,1242 @@
+{
+  "schema_version": "1.0.0",
+  "form_id": "1602q-v2018",
+  "generated_by": "oracle/gen_layout.js (official saveXMLsubmit loop run in jsdom)",
+  "official_hta": "BIR-Form1602Qv2018.hta",
+  "official_hta_sha256": "898f83932a3e85f39b9efc6ac0c148c3a1a05d00e5feab843e15360d6465cd2e",
+  "header": "<?xml version='1.0'?>",
+  "lead": "\t\n            ",
+  "value_rules": [],
+  "entries": [
+    {
+      "key": "frm1602Q:txtYear",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtYear",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:qtr_1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:qtr_2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:qtr_3",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:qtr_4",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:AmendedRtn1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:AmendedRtn2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:OptTaxWithheld1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:OptTaxWithheld2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSheets",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSheets",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtTIN1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtTIN1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtTIN2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtTIN2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtTIN3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtTIN3",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtBranchCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtBranchCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtRDOCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtRDOCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "000",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtTaxpayerName",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtTaxpayerName",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtAddress",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtAddress",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtZipCode",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtZipCode",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtTelNum",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtTelNum",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:OptCategoryAgent1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:OptCategoryAgent2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEmail",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEmail",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:OptSpecialTax1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:OptSpecialTax2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:lstSpecialTax",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:lstSpecialTax",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt14",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt14",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt15",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt15",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt16",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt16",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt17",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt17",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt18",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt18",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt19",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt19",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt20",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt20",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt21",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt21",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt22",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt22",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt23",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt23",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt24",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt24",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt25",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt25",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt26",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt26",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt27",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt27",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txt28",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txt28",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:OverRemittance1",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:OverRemittance2",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:OverRemittance3",
+      "kind": "bool",
+      "default": "false",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtPage2TIN",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtPage2TIN",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtPage2Agent",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtPage2Agent",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax3",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax3",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax4",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax4",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax5",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax5",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount6",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax6",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax6",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount7",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount7",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax7",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax7",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount8",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount8",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax8",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax8",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount9",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount9",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax9",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax9",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount10",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount10",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax10",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax10",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount11",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount11",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax11",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax11",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount12",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount12",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax12",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax12",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount13",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount13",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1TaxRate13",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1TaxRate13",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Rate13",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Rate13",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax13",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax13",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount14",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount14",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1TaxRate14",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1TaxRate14",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Rate14",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Rate14",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax14",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax14",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Amount15",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Amount15",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Tax15",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Tax15",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched1Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched1Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched2TreatyCode1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched2TreatyCode1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched2ATC1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched2ATC1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched2Interest1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched2Interest1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched2TaxRate1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched2TaxRate1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched2TaxesWithheld1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched2TaxesWithheld1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched2TreatyCode2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched2TreatyCode2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched2ATC2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched2ATC2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched2Interest2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched2Interest2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched2TaxRate2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched2TaxRate2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched2TaxesWithheld2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched2TaxesWithheld2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched2Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched2Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched3IPA1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched3IPA1",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched3TotInterest1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched3TotInterest1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched3TaxRate1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched3TaxRate1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched3TaxWithheld1",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched3TaxWithheld1",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched3IPA2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched3IPA2",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched3TotInterest2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched3TotInterest2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched3TaxRate2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched3TaxRate2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched3TaxWithheld2",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched3TaxWithheld2",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtSched3Total",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtSched3Total",
+          "codec": "raw"
+        }
+      ],
+      "default": "0.00",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtPage3TIN",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtPage3TIN",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtPage3Agent",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtPage3Agent",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtCurrentPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtCurrentPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "1",
+      "after": "\t\n            "
+    },
+    {
+      "key": "frm1602Q:txtMaxPage",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "frm1602Q:txtMaxPage",
+          "codec": "raw"
+        }
+      ],
+      "default": "3",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtFinalFlag",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtFinalFlag",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            "
+    },
+    {
+      "key": "txtEnroll",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "txtEnroll",
+          "codec": "raw"
+        }
+      ],
+      "default": "N",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineConfirmUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineConfirmUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineUsername",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineUsername",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "ebirOnlineSecret",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "ebirOnlineSecret",
+          "codec": "raw"
+        }
+      ],
+      "default": "",
+      "after": "\t\n            "
+    },
+    {
+      "key": "driveSelectTPExport",
+      "kind": "value",
+      "parts": [
+        {
+          "source": "driveSelectTPExport",
+          "codec": "raw"
+        }
+      ],
+      "default": "0",
+      "after": "\t\n            \t\n            All Rights Reserved BIR 2012.0"
+    }
+  ]
+}

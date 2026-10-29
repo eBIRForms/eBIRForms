@@ -1,0 +1,88 @@
+[
+ {
+  "set": "frm0619E:txtMonth",
+  "value": "06"
+ },
+ {
+  "set": "frm0619E:txtYear",
+  "value": "2025"
+ },
+ {
+  "set": "frm0619E:txtDueDay",
+  "value": "10"
+ },
+ {
+  "click": "frm0619E:optAmend:Y"
+ },
+ {
+  "click": "frm0619E:optWithheld:Y"
+ },
+ {
+  "set": "frm0619E:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm0619E:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm0619E:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm0619E:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm0619E:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "call": "document.getElementById(\"frm0619E:txtTaxpayerName\").value=\"Sample Dummy Taxpayer\""
+ },
+ {
+  "set": "frm0619E:txtLineBus",
+  "value": "Sample Consulting Services"
+ },
+ {
+  "call": "document.getElementById(\"frm0619E:txtAddress\").value=\"UNIT 1203 SAMPLE TOWER, 456 EXAMPLE AVENUE CORNER PLACEHOLDER STREET, BARANGAY SAMPLE, QUEZON C\""
+ },
+ {
+  "call": "document.getElementById(\"frm0619E:txtAddress2\").value=\"ITY\""
+ },
+ {
+  "set": "frm0619E:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "frm0619E:txtTelNum",
+  "value": "09170000000"
+ },
+ {
+  "click": "frm0619E:optCategory:P"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "set": "frm0619E:txtTax14",
+  "value": "123456.785"
+ },
+ {
+  "set": "frm0619E:txtTax15",
+  "value": "1000.005"
+ },
+ {
+  "set": "frm0619E:txtTax17A",
+  "value": "25.5"
+ },
+ {
+  "set": "frm0619E:txtTax17B",
+  "value": "10"
+ },
+ {
+  "set": "frm0619E:txtTax17C",
+  "value": "1000"
+ }
+]

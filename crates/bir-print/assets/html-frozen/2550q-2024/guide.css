@@ -1,0 +1,34 @@
+/* 2550Q rev 2024 -- guide-specific rules.
+ * Shared scaffolding is in ../base.css; the form's own rules
+ * are in form.css and are not loaded by the guide. */
+@page { size:612pt 1008pt;margin:36pt }
+.doc-link { position:absolute;left:0;top:0;z-index:9;font:12px/1.5 system-ui,-apple-system,sans-serif;padding:2px 8px;background:#fff;color:#0645ad;text-decoration:underline }
+@media print { .doc-link{display:none} }
+body { background:#fff;color:#111 }
+.gl { max-width:46em;margin:0 auto;padding:3em 1.5em 4em;
+font:16px/1.6 Georgia,"Times New Roman",serif }
+.gl h1 { font-size:1.6em;margin:0 0 .2em }
+.gl .gl-sub { color:#555;font-size:.9em;margin:0 0 2em }
+.gl h2 { font-size:1.25em;margin:2em 0 .5em;line-height:1.3 }
+.gl h3 { font-size:1.05em;margin:1.5em 0 .4em }
+.gl p { margin:0 0 .8em;text-align:justify;hyphens:auto }
+.gl .gl-page { margin:0 0 2.5em }
+.gl .gl-table { border-collapse:collapse;width:100%;font-size:.85em;margin:1em 0 }
+.gl .gl-table td,.gl .gl-table th { border:1px solid #bbb;padding:.25em .5em;
+text-align:left;vertical-align:top }
+.gl .gl-table th { background:#f0f0f0 }
+@media print { .gl{max-width:none;padding:0;font-size:11pt}
+.gl h1,.gl h2,.gl h3{break-after:avoid;page-break-after:avoid;
+break-inside:avoid;page-break-inside:avoid}
+.gl p{orphans:2;widows:2}
+.gl li,.gl .gl-sub,.gl .gl-download,.gl .gl-table tr{
+break-inside:avoid;page-break-inside:avoid}
+.gl .gl-table thead{display:table-header-group}
+.gl .gl-page{margin:0 0 1.5em} }
+.gl-pdf { margin:2.5em auto;max-width:46em;
+font:16px/1.6 Georgia,"Times New Roman",serif }
+.gl-pdf object { display:block;width:100%;height:90vh;border:1px solid #bbb }
+.gl .gl-download { color:#555;font-size:.9em;margin:0 0 1.5em }
+@media print { .gl-pdf{margin:0;max-width:none}
+.gl-page+.gl-pdf,.gl-pdf+.gl-pdf{break-before:page;page-break-before:always}
+.gl-pdf object{display:none} }

@@ -1,0 +1,232 @@
+[
+ {
+  "call": "(function(){var d=document,v=function(i,x){d.getElementById(i).value=x;};v('frm2200S:taxpayerName','Sample Dummy Taxpayer'.toUpperCase());v('frm2200S:txtTIN1','123');v('frm2200S:txtTIN2','456');v('frm2200S:txtTIN3','788');v('frm2200S:txtBranchCode','00000');v('frm2200S:txtRDOCode','039');v('frm2200S:txtLineBus','Sample Consulting Services'.toUpperCase());v('frm2200S:txtAddress','123 Sample Street, Barangay Example, Quezon City'.toUpperCase());v('frm2200S:txtZipCode','1100');v('frm2200S:txtTelNum','09170000000');v('txtEmail','sample.taxpayer@example.com');})()"
+ },
+ {
+  "set": "frm2200S:txtMonth1",
+  "value": "06"
+ },
+ {
+  "set": "frm2200S:txtDate",
+  "value": "29"
+ },
+ {
+  "set": "frm2200S:txtForYr",
+  "value": "2025"
+ },
+ {
+  "set": "frm2200S:txtPSIC",
+  "value": "1104"
+ },
+ {
+  "set": "frm2200SoptRegion",
+  "value": "130000000"
+ },
+ {
+  "set": "frm2200SoptProvince",
+  "value": "137400000"
+ },
+ {
+  "set": "frm2200SoptCity",
+  "value": "137404000"
+ },
+ {
+  "set": "frm2200SoptRegion1",
+  "value": "040000000"
+ },
+ {
+  "set": "frm2200SoptProvince1",
+  "value": "043400000"
+ },
+ {
+  "set": "frm2200SoptCity1",
+  "value": "043402000"
+ },
+ {
+  "click": "frm2200S:chkPymntManner_1"
+ },
+ {
+  "call": "showSched1()"
+ },
+ {
+  "set": "frm2200S:txtSalesValue0",
+  "value": "98765.43"
+ },
+ {
+  "set": "frm2200S:txtVolumeRemovals0",
+  "value": "12345.678"
+ },
+ {
+  "set": "frm2200S:txtVolumeRemovals2",
+  "value": "10000.509"
+ },
+ {
+  "set": "frm2200S:txtVolumeRemovals8",
+  "value": "100"
+ },
+ {
+  "set": "frm2200S:txtsched1Atc0",
+  "value": "xb200"
+ },
+ {
+  "set": "frm2200S:txtsched1Desc0",
+  "value": "Other sweetened drink"
+ },
+ {
+  "set": "frm2200S:txtsched1TaxBracket0",
+  "value": "Per Liter"
+ },
+ {
+  "set": "frm2200S:txtsched1AppTaxRate0",
+  "value": "3.5"
+ },
+ {
+  "set": "frm2200S:txtsched1SalesValue0",
+  "value": "1000"
+ },
+ {
+  "set": "frm2200S:txtsched1VolumeRemovals0",
+  "value": "200.25"
+ },
+ {
+  "call": "addFieldsForSched1()"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "set": "frm2200S:txtsched1Atc1",
+  "value": "XB210"
+ },
+ {
+  "set": "frm2200S:txtsched1Desc1",
+  "value": "Added drink 1"
+ },
+ {
+  "set": "frm2200S:txtsched1TaxBracket1",
+  "value": "Per Liter"
+ },
+ {
+  "set": "frm2200S:txtsched1AppTaxRate1",
+  "value": "1.25"
+ },
+ {
+  "set": "frm2200S:txtsched1SalesValue1",
+  "value": "1000.5"
+ },
+ {
+  "set": "frm2200S:txtsched1VolumeRemovals1",
+  "value": "10.125"
+ },
+ {
+  "call": "addFieldsForSched1()"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "set": "frm2200S:txtsched1Atc2",
+  "value": "XB220"
+ },
+ {
+  "set": "frm2200S:txtsched1Desc2",
+  "value": "Added drink 2"
+ },
+ {
+  "set": "frm2200S:txtsched1TaxBracket2",
+  "value": "Per Liter"
+ },
+ {
+  "set": "frm2200S:txtsched1AppTaxRate2",
+  "value": "2.25"
+ },
+ {
+  "set": "frm2200S:txtsched1SalesValue2",
+  "value": "2001.0"
+ },
+ {
+  "set": "frm2200S:txtsched1VolumeRemovals2",
+  "value": "20.25"
+ },
+ {
+  "call": "addFieldsForSched1()"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "set": "frm2200S:txtsched1Atc3",
+  "value": "XB230"
+ },
+ {
+  "set": "frm2200S:txtsched1Desc3",
+  "value": "Added drink 3"
+ },
+ {
+  "set": "frm2200S:txtsched1TaxBracket3",
+  "value": "Per Liter"
+ },
+ {
+  "set": "frm2200S:txtsched1AppTaxRate3",
+  "value": "3.25"
+ },
+ {
+  "set": "frm2200S:txtsched1SalesValue3",
+  "value": "3001.5"
+ },
+ {
+  "set": "frm2200S:txtsched1VolumeRemovals3",
+  "value": "30.375"
+ },
+ {
+  "call": "addFieldsForSched1()"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "set": "frm2200S:txtsched1Atc4",
+  "value": "XB240"
+ },
+ {
+  "set": "frm2200S:txtsched1Desc4",
+  "value": "Added drink 4"
+ },
+ {
+  "set": "frm2200S:txtsched1TaxBracket4",
+  "value": "Per Liter"
+ },
+ {
+  "set": "frm2200S:txtsched1AppTaxRate4",
+  "value": "4.25"
+ },
+ {
+  "set": "frm2200S:txtsched1SalesValue4",
+  "value": "4002.0"
+ },
+ {
+  "set": "frm2200S:txtsched1VolumeRemovals4",
+  "value": "40.5"
+ },
+ {
+  "call": "sched1OK()"
+ },
+ {
+  "set": "frm2200S:txtTax17B",
+  "value": "50.00"
+ },
+ {
+  "set": "frm2200S:txtTax17A",
+  "value": "100.5"
+ },
+ {
+  "set": "frm2200S:txtTax23A",
+  "value": "136156.42"
+ },
+ {
+  "click": "frm2200S:cmdValidate"
+ },
+ {
+  "call": "var xmlFileName = createXMLFileName('savefile/')"
+ }
+]

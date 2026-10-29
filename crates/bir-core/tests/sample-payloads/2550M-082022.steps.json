@@ -1,0 +1,177 @@
+[
+ {
+  "set": "frm2550m:RtnYear",
+  "value": "08"
+ },
+ {
+  "set": "frm2550m:txtYear",
+  "value": "2022"
+ },
+ {
+  "set": "frm2550m:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm2550m:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm2550m:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm2550m:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm2550m:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "set": "frm2550m:txtLineBus",
+  "value": "Sample Consulting Services"
+ },
+ {
+  "set": "frm2550m:txtTaxPayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm2550m:txtTelephoneNum",
+  "value": "09170000000"
+ },
+ {
+  "set": "frm2550m:txtAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm2550m:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "call": "d.getElementById('AtcCode34').checked = true; showModalAtc(); getATCCode();"
+ },
+ {
+  "set": "frm2550m:txtAmountSales1",
+  "value": "3000000"
+ },
+ {
+  "call": "getSched1Modal()"
+ },
+ {
+  "call": "addlistSched2()"
+ },
+ {
+  "set": "txtDatePurchased0",
+  "value": "08/05/2022"
+ },
+ {
+  "set": "txtDescription0",
+  "value": "Office laptop"
+ },
+ {
+  "set": "txtAmt0",
+  "value": "85000.55"
+ },
+ {
+  "call": "addlistSched2()"
+ },
+ {
+  "set": "txtDatePurchased1",
+  "value": "08/20/2022"
+ },
+ {
+  "set": "txtDescription1",
+  "value": "Delivery motorbike"
+ },
+ {
+  "set": "txtAmt1",
+  "value": "120000"
+ },
+ {
+  "set": "txtInputTax1",
+  "value": "14000"
+ },
+ {
+  "call": "getSched2Modal()"
+ },
+ {
+  "call": "addlistSched3A()"
+ },
+ {
+  "set": "txtDatePurchased3A0",
+  "value": "08/10/2022"
+ },
+ {
+  "set": "txtDescription3A0",
+  "value": "Factory machine"
+ },
+ {
+  "set": "txtAmt3A0",
+  "value": "1500000.25"
+ },
+ {
+  "set": "txtEstLife3A0",
+  "value": "120"
+ },
+ {
+  "set": "txtRecogLife3A0",
+  "value": "60"
+ },
+ {
+  "call": "addlistSched3A()"
+ },
+ {
+  "set": "txtDatePurchased3A1",
+  "value": "08/15/2022"
+ },
+ {
+  "set": "txtDescription3A1",
+  "value": "Warehouse racks"
+ },
+ {
+  "set": "txtAmt3A1",
+  "value": "250000"
+ },
+ {
+  "set": "txtEstLife3A1",
+  "value": "60"
+ },
+ {
+  "set": "txtRecogLife3A1",
+  "value": "60"
+ },
+ {
+  "call": "addlistSched3B()"
+ },
+ {
+  "set": "txtDatePurchased3B0",
+  "value": "03/01/2022"
+ },
+ {
+  "set": "txtDescription3B0",
+  "value": "Generator set"
+ },
+ {
+  "set": "txtAmt3B0",
+  "value": "2000000"
+ },
+ {
+  "set": "txtBalInputTaxPrevious3B0",
+  "value": "200000.5"
+ },
+ {
+  "set": "txtEstLife3B0",
+  "value": "120"
+ },
+ {
+  "set": "txtRecogLife3B0",
+  "value": "55"
+ },
+ {
+  "call": "getSched3Modal()"
+ }
+]

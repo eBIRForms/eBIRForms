@@ -1,0 +1,1895 @@
+[
+ {
+  "call": "document.getElementById('responseBG').innerHTML = '<div>fn=Sample%20Dummy%20Taxpayerfn=</div><div>tin1=123tin1=</div><div>tin2=456tin2=</div><div>tin3=788tin3=</div><div>tin4=00000tin4=</div><div>rdo=039rdo=</div><div>lob=Sample%20Consulting%20Serviceslob=</div><div>regAddr=123%20Sample%20Street%2C%20Barangay%20Example%2C%20Quezon%20CityregAddr=</div><div>zip=1100zip=</div><div>telNo=09170000000telNo=</div><div>email=sample.taxpayer@example.comemail=</div><div>formType=1801v2018formType=</div>'; loadBGData(); var g=function(i){return document.getElementById(i)}; g('frm1801v2018:registeredName_1').value=g('frm1801v2018:registeredName').value;g('frm1801v2018:registeredName_2').value=g('frm1801v2018:registeredName').value;g('frm1801v2018:tinA_1').value=g('frm1801v2018:tinA').value;g('frm1801v2018:tinA_2').value=g('frm1801v2018:tinA').value;g('frm1801v2018:tinB_1').value=g('frm1801v2018:tinB').value;g('frm1801v2018:tinB_2').value=g('frm1801v2018:tinB').value;g('frm1801v2018:tinC_1').value=g('frm1801v2018:tinC').value;g('frm1801v2018:tinC_2').value=g('frm1801v2018:tinC').value;g('frm1801v2018:branchCode_1').value=g('frm1801v2018:branchCode').value;g('frm1801v2018:branchCode_2').value=g('frm1801v2018:branchCode').value;g('frm1801v2018:txtRDOCode_1').value=g('frm1801v2018:txtRDOCode').value;g('frm1801v2018:registeredAddress_1').value=g('frm1801v2018:registeredAddress').value;"
+ },
+ {
+  "call": "addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_RealProp(); addRow_Fam(); addRow_Fam(); addRow_Fam(); addRow_Fam(); addRow_Fam(); addRow_Stock(); addRow_Stock(); addRow_Stock(); addRow_Stock(); addRow_Stock(); addRow_Other(); addRow_Other(); addRow_Other(); addRow_Other(); addRow_Other(); addRow_Transfer(); addRow_Transfer(); addRow_Transfer(); addRow_Transfer(); addRow_Transfer(); addRow_Business(); addRow_Business(); addRow_Business(); addRow_Business(); addRow_Business(); "
+ },
+ {
+  "set": "frm1801v2018:txtDateMonth",
+  "value": "06"
+ },
+ {
+  "set": "frm1801v2018:txtDateDay",
+  "value": "05"
+ },
+ {
+  "set": "frm1801v2018:txtDateYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1801v2018:amendedRtn_2"
+ },
+ {
+  "set": "frm1801v2018:txtSheets",
+  "value": "1"
+ },
+ {
+  "click": "frm1801v2018:categoryNonResident_2"
+ },
+ {
+  "set": "frm1801v2018:txtTINE1",
+  "value": "111"
+ },
+ {
+  "set": "frm1801v2018:txtTINE2",
+  "value": "222"
+ },
+ {
+  "set": "frm1801v2018:txtTINE3",
+  "value": "333"
+ },
+ {
+  "set": "frm1801v2018:txtBranchCodeE",
+  "value": "00000"
+ },
+ {
+  "click": "frm1801v2018:optTreaty_2"
+ },
+ {
+  "click": "frm1801v2018:fileGranted_1"
+ },
+ {
+  "click": "frm1801v2018:instGranted_1"
+ },
+ {
+  "click": "frm1801v2018:settled_2"
+ },
+ {
+  "click": "frm1801v2018:extGranted_2"
+ },
+ {
+  "click": "frm1801v2018:freq_Qtr"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_1",
+  "value": "T-12345"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_1",
+  "value": "TD-001"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_1",
+  "value": "Quezon City"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_1",
+  "value": "Lot"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_1",
+  "value": "200"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_1'",
+  "value": "RR"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_1",
+  "value": "1000000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_1",
+  "value": "1200000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_1",
+  "value": "1200000.005"
+ },
+ {
+  "set": "frm1801v2018:sched1AOct_1",
+  "value": "T-67890"
+ },
+ {
+  "set": "frm1801v2018:sched1ATd_1",
+  "value": "TD-002"
+ },
+ {
+  "set": "frm1801v2018:sched1ALoc_1",
+  "value": "Pasig City"
+ },
+ {
+  "set": "frm1801v2018:sched1AArea_1",
+  "value": "150"
+ },
+ {
+  "set": "frm1801v2018:sched1AClass_1'",
+  "value": "RC"
+ },
+ {
+  "set": "frm1801v2018:sched1AFmv_1",
+  "value": "1800000"
+ },
+ {
+  "set": "frm1801v2018:sched1AZonal_1",
+  "value": "2000000"
+ },
+ {
+  "set": "frm1801v2018:sched1AConj_1",
+  "value": "2000000"
+ },
+ {
+  "set": "frm1801v2018:sched2Corp_1",
+  "value": "Sample Corp"
+ },
+ {
+  "set": "frm1801v2018:sched2Class_1",
+  "value": "Not Listed"
+ },
+ {
+  "set": "frm1801v2018:sched2Stock_1",
+  "value": "C-100"
+ },
+ {
+  "set": "frm1801v2018:sched2Shares_1",
+  "value": "1000"
+ },
+ {
+  "set": "frm1801v2018:sched2FmvPerShare_1",
+  "value": "300.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Exc_1",
+  "value": "300000.55"
+ },
+ {
+  "set": "frm1801v2018:sched2AParticulars_1",
+  "value": "Car"
+ },
+ {
+  "set": "frm1801v2018:sched2AExc_1",
+  "value": "50000"
+ },
+ {
+  "set": "frm1801v2018:sched2AParticulars_2",
+  "value": "Jewelry"
+ },
+ {
+  "set": "frm1801v2018:sched2AConj_2",
+  "value": "25000.125"
+ },
+ {
+  "set": "frm1801v2018:sched3Particulars_1",
+  "value": "Cash in bank, Sample Bank 0001"
+ },
+ {
+  "set": "frm1801v2018:sched3Exc_1",
+  "value": "10000"
+ },
+ {
+  "set": "frm1801v2018:sched4Name_1",
+  "value": "Sample Store"
+ },
+ {
+  "set": "frm1801v2018:sched4Address_1",
+  "value": "Makati City"
+ },
+ {
+  "set": "frm1801v2018:sched4Rdo_1",
+  "value": "040"
+ },
+ {
+  "set": "frm1801v2018:sched4Exc_1",
+  "value": "40000"
+ },
+ {
+  "set": "frm1801v2018:sched5EstateExc",
+  "value": "100000"
+ },
+ {
+  "set": "frm1801v2018:sched5LossesConj",
+  "value": "5000"
+ },
+ {
+  "set": "frm1801v2018:txtStandardDed_C",
+  "value": "5000000"
+ },
+ {
+  "set": "frm1801v2018:txtFamDed_C",
+  "value": "1000000"
+ },
+ {
+  "set": "frm1801v2018:txtInstallmentYear",
+  "value": "2026"
+ },
+ {
+  "set": "frm1801v2018:txtPen_Surcharge",
+  "value": "25.5"
+ },
+ {
+  "set": "frm1801v2018:adminName",
+  "value": "Maria Sample-Executor"
+ },
+ {
+  "set": "frm1801v2018:txtDateMonth",
+  "value": "09"
+ },
+ {
+  "set": "frm1801v2018:txtDateDay",
+  "value": "16"
+ },
+ {
+  "set": "frm1801v2018:adminName",
+  "value": "MARIA SAMPLE-EXECUTOR"
+ },
+ {
+  "set": "frm1801v2018:txtPen_Surcharge",
+  "value": "25.50"
+ },
+ {
+  "set": "frm1801v2018:txtStandardDed_C",
+  "value": "5000000.00"
+ },
+ {
+  "set": "frm1801v2018:txtFamDed_C",
+  "value": "1000000.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_1",
+  "value": "QUEZON CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_1",
+  "value": "LOT"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_2",
+  "value": "T-00002"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_2",
+  "value": "TD-102"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_2",
+  "value": "LOT 2, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_2",
+  "value": "LOT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_2",
+  "value": "52"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_2'",
+  "value": "A"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_3",
+  "value": "T-00003"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_3",
+  "value": "TD-103"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_3",
+  "value": "LOT 3, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_3",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_3",
+  "value": "53"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_3'",
+  "value": "RC"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_4",
+  "value": "T-00004"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_4",
+  "value": "TD-104"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_4",
+  "value": "LOT 4, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_4",
+  "value": "LOT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_4",
+  "value": "54"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_4'",
+  "value": "CC"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_5",
+  "value": "T-00005"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_5",
+  "value": "TD-105"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_5",
+  "value": "LOT 5, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_5",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_5",
+  "value": "55"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_5'",
+  "value": "I"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_6",
+  "value": "T-00006"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_6",
+  "value": "TD-106"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_6",
+  "value": "LOT 6, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_6",
+  "value": "LOT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_6",
+  "value": "56"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_6'",
+  "value": "APD"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_7",
+  "value": "T-00007"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_7",
+  "value": "TD-107"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_7",
+  "value": "LOT 7, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_7",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_7",
+  "value": "57"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_7'",
+  "value": "RR"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_8",
+  "value": "T-00008"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_8",
+  "value": "TD-108"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_8",
+  "value": "LOT 8, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_8",
+  "value": "LOT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_8",
+  "value": "58"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_8'",
+  "value": "CR"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_9",
+  "value": "T-00009"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_9",
+  "value": "TD-109"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_9",
+  "value": "LOT 9, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_9",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_9",
+  "value": "59"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_9'",
+  "value": "A"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_10",
+  "value": "T-00010"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_10",
+  "value": "TD-110"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_10",
+  "value": "LOT 10, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_10",
+  "value": "LOT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_10",
+  "value": "60"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_10'",
+  "value": "RC"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_11",
+  "value": "T-00011"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_11",
+  "value": "TD-111"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_11",
+  "value": "LOT 11, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_11",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_11",
+  "value": "61"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_11'",
+  "value": "CC"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_12",
+  "value": "T-00012"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_12",
+  "value": "TD-112"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_12",
+  "value": "LOT 12, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_12",
+  "value": "LOT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_12",
+  "value": "62"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_12'",
+  "value": "I"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_13",
+  "value": "T-00013"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_13",
+  "value": "TD-113"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_13",
+  "value": "LOT 13, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_13",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_13",
+  "value": "63"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_13'",
+  "value": "APD"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_14",
+  "value": "T-00014"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_14",
+  "value": "TD-114"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_14",
+  "value": "LOT 14, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_14",
+  "value": "LOT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_14",
+  "value": "64"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_14'",
+  "value": "RR"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_15",
+  "value": "T-00015"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_15",
+  "value": "TD-115"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_15",
+  "value": "LOT 15, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_15",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_15",
+  "value": "65"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_15'",
+  "value": "CR"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_16",
+  "value": "T-00016"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_16",
+  "value": "TD-116"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_16",
+  "value": "LOT 16, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_16",
+  "value": "LOT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_16",
+  "value": "66"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_16'",
+  "value": "A"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_17",
+  "value": "T-00017"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_17",
+  "value": "TD-117"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_17",
+  "value": "LOT 17, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_17",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_17",
+  "value": "67"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_17'",
+  "value": "RC"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_18",
+  "value": "T-00018"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_18",
+  "value": "TD-118"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_18",
+  "value": "LOT 18, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_18",
+  "value": "LOT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_18",
+  "value": "68"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_18'",
+  "value": "CC"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_19",
+  "value": "T-00019"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_19",
+  "value": "TD-119"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_19",
+  "value": "LOT 19, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_19",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_19",
+  "value": "69"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_19'",
+  "value": "I"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_20",
+  "value": "T-00020"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_20",
+  "value": "TD-120"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_20",
+  "value": "LOT 20, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_20",
+  "value": "LOT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_20",
+  "value": "70"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_20'",
+  "value": "APD"
+ },
+ {
+  "set": "frm1801v2018:sched1Oct_21",
+  "value": "T-00021"
+ },
+ {
+  "set": "frm1801v2018:sched1Td_21",
+  "value": "TD-121"
+ },
+ {
+  "set": "frm1801v2018:sched1Loc_21",
+  "value": "LOT 21, CEBU CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1Lot_21",
+  "value": "IMPROVEMENT"
+ },
+ {
+  "set": "frm1801v2018:sched1Area_21",
+  "value": "71"
+ },
+ {
+  "set": "frm1801v2018:sched1Class_21'",
+  "value": "RR"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_1",
+  "value": "1,200,000.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_1",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_2",
+  "value": "180000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_2",
+  "value": "200000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_2",
+  "value": "200,000.25"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_2",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_3",
+  "value": "270000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_3",
+  "value": "300000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_3",
+  "value": "300,000.38"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_3",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_4",
+  "value": "360000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_4",
+  "value": "400000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_4",
+  "value": "400,000.50"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_4",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_5",
+  "value": "450000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_5",
+  "value": "500000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_5",
+  "value": "500,000.63"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_5",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_6",
+  "value": "540000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_6",
+  "value": "600000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_6",
+  "value": "600,000.75"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_6",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_7",
+  "value": "630000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_7",
+  "value": "700000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_7",
+  "value": "700,000.88"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_7",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_8",
+  "value": "720000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_8",
+  "value": "800000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_8",
+  "value": "800,001.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_8",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_9",
+  "value": "810000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_9",
+  "value": "900000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_9",
+  "value": "900,001.13"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_9",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_10",
+  "value": "900000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_10",
+  "value": "1000000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_10",
+  "value": "1,000,001.25"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_10",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_11",
+  "value": "990000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_11",
+  "value": "1100000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_11",
+  "value": "1,100,001.38"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_11",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_12",
+  "value": "1080000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_12",
+  "value": "1200000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_12",
+  "value": "1,200,001.50"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_12",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_13",
+  "value": "1170000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_13",
+  "value": "1300000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_13",
+  "value": "1,300,001.63"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_13",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_14",
+  "value": "1260000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_14",
+  "value": "1400000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_14",
+  "value": "1,400,001.75"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_14",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_15",
+  "value": "1350000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_15",
+  "value": "1500000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_15",
+  "value": "1,500,001.88"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_15",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_16",
+  "value": "1440000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_16",
+  "value": "1600000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_16",
+  "value": "1,600,002.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_16",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_17",
+  "value": "1530000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_17",
+  "value": "1700000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_17",
+  "value": "1,700,002.13"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_17",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_18",
+  "value": "1620000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_18",
+  "value": "1800000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_18",
+  "value": "1,800,002.25"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_18",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_19",
+  "value": "1710000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_19",
+  "value": "1900000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_19",
+  "value": "1,900,002.38"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_19",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_20",
+  "value": "1800000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_20",
+  "value": "2000000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_20",
+  "value": "2,000,002.50"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_20",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Fmv_21",
+  "value": "1890000"
+ },
+ {
+  "set": "frm1801v2018:sched1Zonal_21",
+  "value": "2100000"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_21",
+  "value": "2,100,002.63"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_21",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1Exc_Total",
+  "value": "24,200,028.80"
+ },
+ {
+  "set": "frm1801v2018:sched1Conj_Total",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1ALoc_1",
+  "value": "PASIG CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1AExc_1",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1AConj_1",
+  "value": "2,000,000.00"
+ },
+ {
+  "set": "frm1801v2018:sched1AOct_2",
+  "value": "F-002"
+ },
+ {
+  "set": "frm1801v2018:sched1ATd_2",
+  "value": "FD-002"
+ },
+ {
+  "set": "frm1801v2018:sched1ALoc_2",
+  "value": "HOME 2, PASIG CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1AArea_2",
+  "value": "102"
+ },
+ {
+  "set": "frm1801v2018:sched1AClass_2'",
+  "value": "RC"
+ },
+ {
+  "set": "frm1801v2018:sched1AFmv_2",
+  "value": "100000"
+ },
+ {
+  "set": "frm1801v2018:sched1AZonal_2",
+  "value": "120000"
+ },
+ {
+  "set": "frm1801v2018:sched1AExc_2",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1AConj_2",
+  "value": "2,001.00"
+ },
+ {
+  "set": "frm1801v2018:sched1AOct_3",
+  "value": "F-003"
+ },
+ {
+  "set": "frm1801v2018:sched1ATd_3",
+  "value": "FD-003"
+ },
+ {
+  "set": "frm1801v2018:sched1ALoc_3",
+  "value": "HOME 3, PASIG CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1AArea_3",
+  "value": "103"
+ },
+ {
+  "set": "frm1801v2018:sched1AClass_3'",
+  "value": "CC"
+ },
+ {
+  "set": "frm1801v2018:sched1AFmv_3",
+  "value": "150000"
+ },
+ {
+  "set": "frm1801v2018:sched1AZonal_3",
+  "value": "180000"
+ },
+ {
+  "set": "frm1801v2018:sched1AExc_3",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1AConj_3",
+  "value": "3,001.50"
+ },
+ {
+  "set": "frm1801v2018:sched1AOct_4",
+  "value": "F-004"
+ },
+ {
+  "set": "frm1801v2018:sched1ATd_4",
+  "value": "FD-004"
+ },
+ {
+  "set": "frm1801v2018:sched1ALoc_4",
+  "value": "HOME 4, PASIG CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1AArea_4",
+  "value": "104"
+ },
+ {
+  "set": "frm1801v2018:sched1AClass_4'",
+  "value": "I"
+ },
+ {
+  "set": "frm1801v2018:sched1AFmv_4",
+  "value": "200000"
+ },
+ {
+  "set": "frm1801v2018:sched1AZonal_4",
+  "value": "240000"
+ },
+ {
+  "set": "frm1801v2018:sched1AExc_4",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1AConj_4",
+  "value": "4,002.00"
+ },
+ {
+  "set": "frm1801v2018:sched1AOct_5",
+  "value": "F-005"
+ },
+ {
+  "set": "frm1801v2018:sched1ATd_5",
+  "value": "FD-005"
+ },
+ {
+  "set": "frm1801v2018:sched1ALoc_5",
+  "value": "HOME 5, PASIG CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1AArea_5",
+  "value": "105"
+ },
+ {
+  "set": "frm1801v2018:sched1AClass_5'",
+  "value": "APD"
+ },
+ {
+  "set": "frm1801v2018:sched1AFmv_5",
+  "value": "250000"
+ },
+ {
+  "set": "frm1801v2018:sched1AZonal_5",
+  "value": "300000"
+ },
+ {
+  "set": "frm1801v2018:sched1AExc_5",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1AConj_5",
+  "value": "5,002.50"
+ },
+ {
+  "set": "frm1801v2018:sched1AOct_6",
+  "value": "F-006"
+ },
+ {
+  "set": "frm1801v2018:sched1ATd_6",
+  "value": "FD-006"
+ },
+ {
+  "set": "frm1801v2018:sched1ALoc_6",
+  "value": "HOME 6, PASIG CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1AArea_6",
+  "value": "106"
+ },
+ {
+  "set": "frm1801v2018:sched1AClass_6'",
+  "value": "RR"
+ },
+ {
+  "set": "frm1801v2018:sched1AFmv_6",
+  "value": "300000"
+ },
+ {
+  "set": "frm1801v2018:sched1AZonal_6",
+  "value": "360000"
+ },
+ {
+  "set": "frm1801v2018:sched1AExc_6",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1AConj_6",
+  "value": "6,003.00"
+ },
+ {
+  "set": "frm1801v2018:sched1AOct_7",
+  "value": "F-007"
+ },
+ {
+  "set": "frm1801v2018:sched1ATd_7",
+  "value": "FD-007"
+ },
+ {
+  "set": "frm1801v2018:sched1ALoc_7",
+  "value": "HOME 7, PASIG CITY"
+ },
+ {
+  "set": "frm1801v2018:sched1AArea_7",
+  "value": "107"
+ },
+ {
+  "set": "frm1801v2018:sched1AClass_7'",
+  "value": "CR"
+ },
+ {
+  "set": "frm1801v2018:sched1AFmv_7",
+  "value": "350000"
+ },
+ {
+  "set": "frm1801v2018:sched1AZonal_7",
+  "value": "420000"
+ },
+ {
+  "set": "frm1801v2018:sched1AExc_7",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1AConj_7",
+  "value": "7,003.50"
+ },
+ {
+  "set": "frm1801v2018:sched1AExc_Total",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched1AConj_Total",
+  "value": "2,027,013.50"
+ },
+ {
+  "set": "frm1801v2018:sched2Corp_1",
+  "value": "SAMPLE CORP"
+ },
+ {
+  "set": "frm1801v2018:sched2Exc_1",
+  "value": "300,000.55"
+ },
+ {
+  "set": "frm1801v2018:sched2Conj_1",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Corp_2",
+  "value": "CORP 2"
+ },
+ {
+  "set": "frm1801v2018:sched2Class_2",
+  "value": "Listed"
+ },
+ {
+  "set": "frm1801v2018:sched2Stock_2",
+  "value": "C-200"
+ },
+ {
+  "set": "frm1801v2018:sched2Shares_2",
+  "value": "20"
+ },
+ {
+  "set": "frm1801v2018:sched2FmvPerShare_2",
+  "value": "10.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Exc_2",
+  "value": "200.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Conj_2",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Corp_3",
+  "value": "CORP 3"
+ },
+ {
+  "set": "frm1801v2018:sched2Class_3",
+  "value": "Not Listed"
+ },
+ {
+  "set": "frm1801v2018:sched2Stock_3",
+  "value": "C-300"
+ },
+ {
+  "set": "frm1801v2018:sched2Shares_3",
+  "value": "30"
+ },
+ {
+  "set": "frm1801v2018:sched2FmvPerShare_3",
+  "value": "10.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Exc_3",
+  "value": "300.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Conj_3",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Corp_4",
+  "value": "CORP 4"
+ },
+ {
+  "set": "frm1801v2018:sched2Class_4",
+  "value": "Listed"
+ },
+ {
+  "set": "frm1801v2018:sched2Stock_4",
+  "value": "C-400"
+ },
+ {
+  "set": "frm1801v2018:sched2Shares_4",
+  "value": "40"
+ },
+ {
+  "set": "frm1801v2018:sched2FmvPerShare_4",
+  "value": "10.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Exc_4",
+  "value": "400.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Conj_4",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Corp_5",
+  "value": "CORP 5"
+ },
+ {
+  "set": "frm1801v2018:sched2Class_5",
+  "value": "Not Listed"
+ },
+ {
+  "set": "frm1801v2018:sched2Stock_5",
+  "value": "C-500"
+ },
+ {
+  "set": "frm1801v2018:sched2Shares_5",
+  "value": "50"
+ },
+ {
+  "set": "frm1801v2018:sched2FmvPerShare_5",
+  "value": "10.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Exc_5",
+  "value": "500.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Conj_5",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Corp_6",
+  "value": "CORP 6"
+ },
+ {
+  "set": "frm1801v2018:sched2Class_6",
+  "value": "Listed"
+ },
+ {
+  "set": "frm1801v2018:sched2Stock_6",
+  "value": "C-600"
+ },
+ {
+  "set": "frm1801v2018:sched2Shares_6",
+  "value": "60"
+ },
+ {
+  "set": "frm1801v2018:sched2FmvPerShare_6",
+  "value": "10.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Exc_6",
+  "value": "600.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Conj_6",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Corp_7",
+  "value": "CORP 7"
+ },
+ {
+  "set": "frm1801v2018:sched2Class_7",
+  "value": "Not Listed"
+ },
+ {
+  "set": "frm1801v2018:sched2Stock_7",
+  "value": "C-700"
+ },
+ {
+  "set": "frm1801v2018:sched2Shares_7",
+  "value": "70"
+ },
+ {
+  "set": "frm1801v2018:sched2FmvPerShare_7",
+  "value": "10.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Exc_7",
+  "value": "700.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Conj_7",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2Exc_Total",
+  "value": "302,700.55"
+ },
+ {
+  "set": "frm1801v2018:sched2Conj_Total",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2AParticulars_1",
+  "value": "CAR"
+ },
+ {
+  "set": "frm1801v2018:sched2AExc_1",
+  "value": "50,000.00"
+ },
+ {
+  "set": "frm1801v2018:sched2AConj_1",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2AParticulars_2",
+  "value": "JEWELRY"
+ },
+ {
+  "set": "frm1801v2018:sched2AExc_2",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2AConj_2",
+  "value": "25,000.13"
+ },
+ {
+  "set": "frm1801v2018:sched2AParticulars_3",
+  "value": "ITEM 3"
+ },
+ {
+  "set": "frm1801v2018:sched2AExc_3",
+  "value": "225.75"
+ },
+ {
+  "set": "frm1801v2018:sched2AConj_3",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2AParticulars_4",
+  "value": "ITEM 4"
+ },
+ {
+  "set": "frm1801v2018:sched2AExc_4",
+  "value": "301.00"
+ },
+ {
+  "set": "frm1801v2018:sched2AConj_4",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2AParticulars_5",
+  "value": "ITEM 5"
+ },
+ {
+  "set": "frm1801v2018:sched2AExc_5",
+  "value": "376.25"
+ },
+ {
+  "set": "frm1801v2018:sched2AConj_5",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2AParticulars_6",
+  "value": "ITEM 6"
+ },
+ {
+  "set": "frm1801v2018:sched2AExc_6",
+  "value": "451.50"
+ },
+ {
+  "set": "frm1801v2018:sched2AConj_6",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2AParticulars_7",
+  "value": "ITEM 7"
+ },
+ {
+  "set": "frm1801v2018:sched2AExc_7",
+  "value": "526.75"
+ },
+ {
+  "set": "frm1801v2018:sched2AConj_7",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched2AExc_Total",
+  "value": "51,881.25"
+ },
+ {
+  "set": "frm1801v2018:sched2AConj_Total",
+  "value": "25,000.13"
+ },
+ {
+  "set": "frm1801v2018:sched3Particulars_1",
+  "value": "CASH IN BANK, SAMPLE BANK 0001"
+ },
+ {
+  "set": "frm1801v2018:sched3Exc_1",
+  "value": "10,000.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Conj_1",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Particulars_2",
+  "value": "TRANSFER 2"
+ },
+ {
+  "set": "frm1801v2018:sched3Exc_2",
+  "value": "500.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Conj_2",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Particulars_3",
+  "value": "TRANSFER 3"
+ },
+ {
+  "set": "frm1801v2018:sched3Exc_3",
+  "value": "750.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Conj_3",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Particulars_4",
+  "value": "TRANSFER 4"
+ },
+ {
+  "set": "frm1801v2018:sched3Exc_4",
+  "value": "1,000.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Conj_4",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Particulars_5",
+  "value": "TRANSFER 5"
+ },
+ {
+  "set": "frm1801v2018:sched3Exc_5",
+  "value": "1,250.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Conj_5",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Particulars_6",
+  "value": "TRANSFER 6"
+ },
+ {
+  "set": "frm1801v2018:sched3Exc_6",
+  "value": "1,500.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Conj_6",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Particulars_7",
+  "value": "TRANSFER 7"
+ },
+ {
+  "set": "frm1801v2018:sched3Exc_7",
+  "value": "1,750.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Conj_7",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Exc_Total",
+  "value": "16,750.00"
+ },
+ {
+  "set": "frm1801v2018:sched3Conj_Total",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Name_1",
+  "value": "SAMPLE STORE"
+ },
+ {
+  "set": "frm1801v2018:sched4Address_1",
+  "value": "MAKATI CITY"
+ },
+ {
+  "set": "frm1801v2018:sched4Exc_1",
+  "value": "40,000.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Conj_1",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Name_2",
+  "value": "SHOP 2"
+ },
+ {
+  "set": "frm1801v2018:sched4Address_2",
+  "value": "STREET 2, TAGUIG CITY"
+ },
+ {
+  "set": "frm1801v2018:sched4Rdo_2",
+  "value": "044"
+ },
+ {
+  "set": "frm1801v2018:sched4Exc_2",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Conj_2",
+  "value": "1,000.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Name_3",
+  "value": "SHOP 3"
+ },
+ {
+  "set": "frm1801v2018:sched4Address_3",
+  "value": "STREET 3, TAGUIG CITY"
+ },
+ {
+  "set": "frm1801v2018:sched4Rdo_3",
+  "value": "044"
+ },
+ {
+  "set": "frm1801v2018:sched4Exc_3",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Conj_3",
+  "value": "1,500.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Name_4",
+  "value": "SHOP 4"
+ },
+ {
+  "set": "frm1801v2018:sched4Address_4",
+  "value": "STREET 4, TAGUIG CITY"
+ },
+ {
+  "set": "frm1801v2018:sched4Rdo_4",
+  "value": "044"
+ },
+ {
+  "set": "frm1801v2018:sched4Exc_4",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Conj_4",
+  "value": "2,000.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Name_5",
+  "value": "SHOP 5"
+ },
+ {
+  "set": "frm1801v2018:sched4Address_5",
+  "value": "STREET 5, TAGUIG CITY"
+ },
+ {
+  "set": "frm1801v2018:sched4Rdo_5",
+  "value": "044"
+ },
+ {
+  "set": "frm1801v2018:sched4Exc_5",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Conj_5",
+  "value": "2,500.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Name_6",
+  "value": "SHOP 6"
+ },
+ {
+  "set": "frm1801v2018:sched4Address_6",
+  "value": "STREET 6, TAGUIG CITY"
+ },
+ {
+  "set": "frm1801v2018:sched4Rdo_6",
+  "value": "044"
+ },
+ {
+  "set": "frm1801v2018:sched4Exc_6",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Conj_6",
+  "value": "3,000.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Name_7",
+  "value": "SHOP 7"
+ },
+ {
+  "set": "frm1801v2018:sched4Address_7",
+  "value": "STREET 7, TAGUIG CITY"
+ },
+ {
+  "set": "frm1801v2018:sched4Rdo_7",
+  "value": "044"
+ },
+ {
+  "set": "frm1801v2018:sched4Exc_7",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Conj_7",
+  "value": "3,500.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Exc_Total",
+  "value": "40,000.00"
+ },
+ {
+  "set": "frm1801v2018:sched4Conj_Total",
+  "value": "13,500.00"
+ },
+ {
+  "set": "frm1801v2018:sched5EstateExc",
+  "value": "100000.00"
+ },
+ {
+  "set": "frm1801v2018:sched5EstateConj",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched5InsolventExc",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched5InsolventConj",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched5UnpaidExc",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched5UnpaidConj",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched5LossesExc",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched5LossesConj",
+  "value": "5000.00"
+ },
+ {
+  "set": "frm1801v2018:sched5VanishingExc",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched5VanishingConj",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched5TransferExc",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched5TransferConj",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched5Others_Specify",
+  "value": ""
+ },
+ {
+  "set": "frm1801v2018:sched5OthersExc",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched5OthersConj",
+  "value": "0.00"
+ },
+ {
+  "set": "frm1801v2018:sched5Exc_Total",
+  "value": "100,000.00"
+ },
+ {
+  "set": "frm1801v2018:sched5Conj_Total",
+  "value": "5,000.00"
+ },
+ {
+  "call": "validateForm()"
+ }
+]

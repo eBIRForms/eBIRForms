@@ -1,0 +1,2748 @@
+{
+    "$schema":  "../../schema/fields.schema.json",
+    "schema_version":  "1.0.0",
+    "form_id":  "1603q-v2018",
+    "revision":  "2018-01-01",
+    "field_count":  76,
+    "runtime_serializable_element_count":  76,
+    "inventory_sha256":  "6a2659a7294da950807df4c8a6a91eedf296ef30915a0942dd35f29eea4c6e78",
+    "fields":  [
+                   {
+                       "field_key":  "frm1603Q:txtYear",
+                       "serialized_key":  "frm1603Q:txtYear",
+                       "serialized_occurrence":  1,
+                       "label":  "Filing year",
+                       "page":  1,
+                       "item_number":  "1",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "2025",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:optQuarter1",
+                       "serialized_key":  "frm1603Q:optQuarter1",
+                       "serialized_occurrence":  1,
+                       "label":  "Quarter 1 selection",
+                       "page":  1,
+                       "item_number":  "2",
+                       "control_kind":  "checkbox/radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "true",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:optQuarter2",
+                       "serialized_key":  "frm1603Q:optQuarter2",
+                       "serialized_occurrence":  1,
+                       "label":  "Quarter 2 selection",
+                       "page":  1,
+                       "item_number":  "2",
+                       "control_kind":  "checkbox/radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:optQuarter3",
+                       "serialized_key":  "frm1603Q:optQuarter3",
+                       "serialized_occurrence":  1,
+                       "label":  "Quarter 3 selection",
+                       "page":  1,
+                       "item_number":  "2",
+                       "control_kind":  "checkbox/radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:optQuarter4",
+                       "serialized_key":  "frm1603Q:optQuarter4",
+                       "serialized_occurrence":  1,
+                       "label":  "Quarter 4 selection",
+                       "page":  1,
+                       "item_number":  "2",
+                       "control_kind":  "checkbox/radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:AmendedRtn_1",
+                       "serialized_key":  "frm1603Q:AmendedRtn_1",
+                       "serialized_occurrence":  1,
+                       "label":  "AmendedRtn_1",
+                       "page":  1,
+                       "item_number":  "3",
+                       "control_kind":  "checkbox/radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:AmendedRtn_2",
+                       "serialized_key":  "frm1603Q:AmendedRtn_2",
+                       "serialized_occurrence":  1,
+                       "label":  "AmendedRtn_2",
+                       "page":  1,
+                       "item_number":  "3",
+                       "control_kind":  "checkbox/radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "true",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:TaxWithheld_1",
+                       "serialized_key":  "frm1603Q:TaxWithheld_1",
+                       "serialized_occurrence":  1,
+                       "label":  "TaxWithheld_1",
+                       "page":  1,
+                       "item_number":  "4",
+                       "control_kind":  "checkbox/radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:TaxWithheld_2",
+                       "serialized_key":  "frm1603Q:TaxWithheld_2",
+                       "serialized_occurrence":  1,
+                       "label":  "TaxWithheld_2",
+                       "page":  1,
+                       "item_number":  "4",
+                       "control_kind":  "checkbox/radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "true",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtSheets",
+                       "serialized_key":  "frm1603Q:txtSheets",
+                       "serialized_occurrence":  1,
+                       "label":  "txtSheets",
+                       "page":  1,
+                       "item_number":  "5",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTIN1",
+                       "serialized_key":  "frm1603Q:txtTIN1",
+                       "serialized_occurrence":  1,
+                       "label":  "TIN segment 1",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "000",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "exact_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTIN2",
+                       "serialized_key":  "frm1603Q:txtTIN2",
+                       "serialized_occurrence":  1,
+                       "label":  "TIN segment 2",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "000",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "exact_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTIN3",
+                       "serialized_key":  "frm1603Q:txtTIN3",
+                       "serialized_occurrence":  1,
+                       "label":  "TIN segment 3",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "000",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "exact_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtBranchCode",
+                       "serialized_key":  "frm1603Q:txtBranchCode",
+                       "serialized_occurrence":  1,
+                       "label":  "txtBranchCode",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "00000",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "min_length":  1,
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:rdoCode",
+                       "serialized_key":  "frm1603Q:rdoCode",
+                       "serialized_occurrence":  1,
+                       "label":  "RDO code",
+                       "page":  1,
+                       "item_number":  "7",
+                       "control_kind":  "select",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "018",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTaxpayerName",
+                       "serialized_key":  "frm1603Q:txtTaxpayerName",
+                       "serialized_occurrence":  1,
+                       "label":  "Withholding agent name",
+                       "page":  1,
+                       "item_number":  "8",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "JUAN%20DELA%20CRUZ",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtAddress",
+                       "serialized_key":  "frm1603Q:txtAddress",
+                       "serialized_occurrence":  1,
+                       "label":  "Registered address",
+                       "page":  1,
+                       "item_number":  "9",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "OLONGAPO",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtZipCode",
+                       "serialized_key":  "frm1603Q:txtZipCode",
+                       "serialized_occurrence":  1,
+                       "label":  "ZIP code",
+                       "page":  1,
+                       "item_number":  "9",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "2200",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTelNum",
+                       "serialized_key":  "frm1603Q:txtTelNum",
+                       "serialized_occurrence":  1,
+                       "label":  "Telephone number",
+                       "page":  1,
+                       "item_number":  "10",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "09123456789",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:CatAgent_P",
+                       "serialized_key":  "frm1603Q:CatAgent_P",
+                       "serialized_occurrence":  1,
+                       "label":  "CatAgent_P",
+                       "page":  1,
+                       "item_number":  "11",
+                       "control_kind":  "checkbox/radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "true",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:CatAgent_G",
+                       "serialized_key":  "frm1603Q:CatAgent_G",
+                       "serialized_occurrence":  1,
+                       "label":  "CatAgent_G",
+                       "page":  1,
+                       "item_number":  "11",
+                       "control_kind":  "checkbox/radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtEmail",
+                       "serialized_key":  "txtEmail",
+                       "serialized_occurrence":  1,
+                       "label":  "Email address",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "taxpayer@example.com",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:SpecialTax_1",
+                       "serialized_key":  "frm1603Q:SpecialTax_1",
+                       "serialized_occurrence":  1,
+                       "label":  "SpecialTax_1",
+                       "page":  1,
+                       "item_number":  "12",
+                       "control_kind":  "checkbox/radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "conditional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:SpecialTax_2",
+                       "serialized_key":  "frm1603Q:SpecialTax_2",
+                       "serialized_occurrence":  1,
+                       "label":  "SpecialTax_2",
+                       "page":  1,
+                       "item_number":  "12",
+                       "control_kind":  "checkbox/radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "conditional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "true",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:selTreaty",
+                       "serialized_key":  "frm1603Q:selTreaty",
+                       "serialized_occurrence":  1,
+                       "label":  "Treaty selection",
+                       "page":  1,
+                       "item_number":  "12",
+                       "control_kind":  "select",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "conditional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTax14",
+                       "serialized_key":  "frm1603Q:txtTax14",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTax14",
+                       "page":  1,
+                       "item_number":  "14",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTax15",
+                       "serialized_key":  "frm1603Q:txtTax15",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTax15",
+                       "page":  1,
+                       "item_number":  "15",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txt16Other",
+                       "serialized_key":  "frm1603Q:txt16Other",
+                       "serialized_occurrence":  1,
+                       "label":  "txt16Other",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTax16",
+                       "serialized_key":  "frm1603Q:txtTax16",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTax16",
+                       "page":  1,
+                       "item_number":  "16",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTax17",
+                       "serialized_key":  "frm1603Q:txtTax17",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTax17",
+                       "page":  1,
+                       "item_number":  "17",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTax18",
+                       "serialized_key":  "frm1603Q:txtTax18",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTax18",
+                       "page":  1,
+                       "item_number":  "18",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTax19",
+                       "serialized_key":  "frm1603Q:txtTax19",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTax19",
+                       "page":  1,
+                       "item_number":  "19",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTax20",
+                       "serialized_key":  "frm1603Q:txtTax20",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTax20",
+                       "page":  1,
+                       "item_number":  "20",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTax21",
+                       "serialized_key":  "frm1603Q:txtTax21",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTax21",
+                       "page":  1,
+                       "item_number":  "21",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTax22",
+                       "serialized_key":  "frm1603Q:txtTax22",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTax22",
+                       "page":  1,
+                       "item_number":  "22",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtTax23",
+                       "serialized_key":  "frm1603Q:txtTax23",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTax23",
+                       "page":  1,
+                       "item_number":  "23",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtTaxAgentNo",
+                       "serialized_key":  "txtTaxAgentNo",
+                       "serialized_occurrence":  1,
+                       "label":  "txtTaxAgentNo",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtDateIssue",
+                       "serialized_key":  "txtDateIssue",
+                       "serialized_occurrence":  1,
+                       "label":  "txtDateIssue",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtDateExpiry",
+                       "serialized_key":  "txtDateExpiry",
+                       "serialized_occurrence":  1,
+                       "label":  "txtDateExpiry",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtAgency24",
+                       "serialized_key":  "frm1603Q:txtAgency24",
+                       "serialized_occurrence":  1,
+                       "label":  "txtAgency24",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtNumber24",
+                       "serialized_key":  "frm1603Q:txtNumber24",
+                       "serialized_occurrence":  1,
+                       "label":  "txtNumber24",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtDate24",
+                       "serialized_key":  "frm1603Q:txtDate24",
+                       "serialized_occurrence":  1,
+                       "label":  "txtDate24",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtAmount24",
+                       "serialized_key":  "frm1603Q:txtAmount24",
+                       "serialized_occurrence":  1,
+                       "label":  "txtAmount24",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtAgency25",
+                       "serialized_key":  "frm1603Q:txtAgency25",
+                       "serialized_occurrence":  1,
+                       "label":  "txtAgency25",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtNumber25",
+                       "serialized_key":  "frm1603Q:txtNumber25",
+                       "serialized_occurrence":  1,
+                       "label":  "txtNumber25",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtDate25",
+                       "serialized_key":  "frm1603Q:txtDate25",
+                       "serialized_occurrence":  1,
+                       "label":  "txtDate25",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtAmount25",
+                       "serialized_key":  "frm1603Q:txtAmount25",
+                       "serialized_occurrence":  1,
+                       "label":  "txtAmount25",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtNumber26",
+                       "serialized_key":  "frm1603Q:txtNumber26",
+                       "serialized_occurrence":  1,
+                       "label":  "txtNumber26",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtDate26",
+                       "serialized_key":  "frm1603Q:txtDate26",
+                       "serialized_occurrence":  1,
+                       "label":  "txtDate26",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtAmount26",
+                       "serialized_key":  "frm1603Q:txtAmount26",
+                       "serialized_occurrence":  1,
+                       "label":  "txtAmount26",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtParticular27",
+                       "serialized_key":  "frm1603Q:txtParticular27",
+                       "serialized_occurrence":  1,
+                       "label":  "txtParticular27",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtAgency27",
+                       "serialized_key":  "frm1603Q:txtAgency27",
+                       "serialized_occurrence":  1,
+                       "label":  "txtAgency27",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtNumber27",
+                       "serialized_key":  "frm1603Q:txtNumber27",
+                       "serialized_occurrence":  1,
+                       "label":  "txtNumber27",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtDate27",
+                       "serialized_key":  "frm1603Q:txtDate27",
+                       "serialized_occurrence":  1,
+                       "label":  "txtDate27",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtAmount27",
+                       "serialized_key":  "frm1603Q:txtAmount27",
+                       "serialized_occurrence":  1,
+                       "label":  "txtAmount27",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtPg2TIN1",
+                       "serialized_key":  "frm1603Q:txtPg2TIN1",
+                       "serialized_occurrence":  1,
+                       "label":  "txtPg2TIN1",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "000",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtPg2TIN2",
+                       "serialized_key":  "frm1603Q:txtPg2TIN2",
+                       "serialized_occurrence":  1,
+                       "label":  "txtPg2TIN2",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "000",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtPg2TIN3",
+                       "serialized_key":  "frm1603Q:txtPg2TIN3",
+                       "serialized_occurrence":  1,
+                       "label":  "txtPg2TIN3",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "000",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtPg2BranchCode",
+                       "serialized_key":  "frm1603Q:txtPg2BranchCode",
+                       "serialized_occurrence":  1,
+                       "label":  "txtPg2BranchCode",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "00000",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtPg2TaxpayerName",
+                       "serialized_key":  "frm1603Q:txtPg2TaxpayerName",
+                       "serialized_occurrence":  1,
+                       "label":  "txtPg2TaxpayerName",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "JUAN DELA CRUZ",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:Sched1:txtATC1",
+                       "serialized_key":  "frm1603Q:Sched1:txtATC1",
+                       "serialized_occurrence":  1,
+                       "label":  "Schedule 1 txtATC1",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "conditional",
+                       "required_when":  "Item 4 Any Taxes Withheld is Yes.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "WF360",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:Sched1:txtValue1",
+                       "serialized_key":  "frm1603Q:Sched1:txtValue1",
+                       "serialized_occurrence":  1,
+                       "label":  "Schedule 1 txtValue1",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "conditional",
+                       "required_when":  "Item 4 Any Taxes Withheld is Yes.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:Sched1:txtATC2",
+                       "serialized_key":  "frm1603Q:Sched1:txtATC2",
+                       "serialized_occurrence":  1,
+                       "label":  "Schedule 1 txtATC2",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "conditional",
+                       "required_when":  "Item 4 Any Taxes Withheld is Yes.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "WF330",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:Sched1:txtValue2",
+                       "serialized_key":  "frm1603Q:Sched1:txtValue2",
+                       "serialized_occurrence":  1,
+                       "label":  "Schedule 1 txtValue2",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "conditional",
+                       "required_when":  "Item 4 Any Taxes Withheld is Yes.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:Sched1:txtDivisor1",
+                       "serialized_key":  "frm1603Q:Sched1:txtDivisor1",
+                       "serialized_occurrence":  1,
+                       "label":  "Schedule 1 txtDivisor1",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "conditional",
+                       "required_when":  "Item 4 Any Taxes Withheld is Yes.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:Sched1:txtTaxBase1",
+                       "serialized_key":  "frm1603Q:Sched1:txtTaxBase1",
+                       "serialized_occurrence":  1,
+                       "label":  "Schedule 1 txtTaxBase1",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "computed",
+                       "required_when":  "Item 4 Any Taxes Withheld is Yes.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:Sched1:txtTaxRate1",
+                       "serialized_key":  "frm1603Q:Sched1:txtTaxRate1",
+                       "serialized_occurrence":  1,
+                       "label":  "Schedule 1 txtTaxRate1",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "conditional",
+                       "required_when":  "Item 4 Any Taxes Withheld is Yes.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:Sched1:txtTaxWithheld1",
+                       "serialized_key":  "frm1603Q:Sched1:txtTaxWithheld1",
+                       "serialized_occurrence":  1,
+                       "label":  "Schedule 1 txtTaxWithheld1",
+                       "page":  2,
+                       "item_number":  "4",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "computed",
+                       "required_when":  "Item 4 Any Taxes Withheld is Yes.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:Sched1:txtDivisor2",
+                       "serialized_key":  "frm1603Q:Sched1:txtDivisor2",
+                       "serialized_occurrence":  1,
+                       "label":  "Schedule 1 txtDivisor2",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "conditional",
+                       "required_when":  "Item 4 Any Taxes Withheld is Yes.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:Sched1:txtTaxBase2",
+                       "serialized_key":  "frm1603Q:Sched1:txtTaxBase2",
+                       "serialized_occurrence":  1,
+                       "label":  "Schedule 1 txtTaxBase2",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "computed",
+                       "required_when":  "Item 4 Any Taxes Withheld is Yes.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:Sched1:txtTaxRate2",
+                       "serialized_key":  "frm1603Q:Sched1:txtTaxRate2",
+                       "serialized_occurrence":  1,
+                       "label":  "Schedule 1 txtTaxRate2",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "conditional",
+                       "required_when":  "Item 4 Any Taxes Withheld is Yes.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:Sched1:txtTaxWithheld2",
+                       "serialized_key":  "frm1603Q:Sched1:txtTaxWithheld2",
+                       "serialized_occurrence":  1,
+                       "label":  "Schedule 1 txtTaxWithheld2",
+                       "page":  2,
+                       "item_number":  "4",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "computed",
+                       "required_when":  "Item 4 Any Taxes Withheld is Yes.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:Sched1:txtTotalTax",
+                       "serialized_key":  "frm1603Q:Sched1:txtTotalTax",
+                       "serialized_occurrence":  1,
+                       "label":  "Schedule 1 txtTotalTax",
+                       "page":  2,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal",
+                       "required":  "computed",
+                       "required_when":  "Item 4 Any Taxes Withheld is Yes.",
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "legacy currency formatting"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtCurrentPage",
+                       "serialized_key":  "frm1603Q:txtCurrentPage",
+                       "serialized_occurrence":  1,
+                       "label":  "txtCurrentPage",
+                       "page":  null,
+                       "item_number":  null,
+                       "control_kind":  "hidden",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "hidden",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "1",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtMaxPage",
+                       "serialized_key":  "frm1603Q:txtMaxPage",
+                       "serialized_occurrence":  1,
+                       "label":  "txtMaxPage",
+                       "page":  null,
+                       "item_number":  null,
+                       "control_kind":  "hidden",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "hidden",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "2",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm1603Q:txtLineBus",
+                       "serialized_key":  "frm1603Q:txtLineBus",
+                       "serialized_occurrence":  1,
+                       "label":  "txtLineBus",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "SOFTWARE%20DEVELOPMENT",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-editable-v1",
+                                           "official-hta-runtime#frmMain"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+
+                                 ]
+                   }
+               ]
+}

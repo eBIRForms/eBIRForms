@@ -1,0 +1,2303 @@
+{
+    "$schema":  "../../schema/fields.schema.json",
+    "schema_version":  "1.0.0",
+    "form_id":  "0619f-v2018",
+    "revision":  "2018-01-01",
+    "field_count":  60,
+    "runtime_serializable_element_count":  60,
+    "inventory_sha256":  "2be0270c8b3c61e8d09c8875294885cf52e7ce924a95e85230cd7f91ea978cc2",
+    "fields":  [
+                   {
+                       "field_key":  "frm0619F:txtMonth",
+                       "serialized_key":  "frm0619F:txtMonth",
+                       "serialized_occurrence":  1,
+                       "label":  "Month",
+                       "page":  1,
+                       "item_number":  "1",
+                       "control_kind":  "select",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           {
+                                               "value":  "01",
+                                               "label":  "01 - January"
+                                           },
+                                           {
+                                               "value":  "02",
+                                               "label":  "02 - February"
+                                           },
+                                           {
+                                               "value":  "03",
+                                               "label":  "03 - March"
+                                           },
+                                           {
+                                               "value":  "04",
+                                               "label":  "04 - April"
+                                           },
+                                           {
+                                               "value":  "05",
+                                               "label":  "05 - May"
+                                           },
+                                           {
+                                               "value":  "06",
+                                               "label":  "06 - June"
+                                           },
+                                           {
+                                               "value":  "07",
+                                               "label":  "07 - July"
+                                           },
+                                           {
+                                               "value":  "08",
+                                               "label":  "08 - August"
+                                           },
+                                           {
+                                               "value":  "09",
+                                               "label":  "09 - September"
+                                           },
+                                           {
+                                               "value":  "10",
+                                               "label":  "10 - October"
+                                           },
+                                           {
+                                               "value":  "11",
+                                               "label":  "11 - November"
+                                           },
+                                           {
+                                               "value":  "12",
+                                               "label":  "12 - December"
+                                           }
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtMonth",
+                                           "official-hta-runtime#control:L278"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtYear",
+                       "serialized_key":  "frm0619F:txtYear",
+                       "serialized_occurrence":  1,
+                       "label":  "Year",
+                       "page":  1,
+                       "item_number":  "1",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  4
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtYear",
+                                           "official-hta-runtime#control:L292"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtDueMonth",
+                       "serialized_key":  "frm0619F:txtDueMonth",
+                       "serialized_occurrence":  1,
+                       "label":  "Due date month",
+                       "page":  1,
+                       "item_number":  "2",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  2
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtDueMonth",
+                                           "official-hta-runtime#control:L307"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded.",
+                                     "Declared disabled in the static runtime DOM."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtDueDay",
+                       "serialized_key":  "frm0619F:txtDueDay",
+                       "serialized_occurrence":  1,
+                       "label":  "Due date day",
+                       "page":  1,
+                       "item_number":  "2",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "10",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  2
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtDueDay",
+                                           "official-hta-runtime#control:L308"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtDueYear",
+                       "serialized_key":  "frm0619F:txtDueYear",
+                       "serialized_occurrence":  1,
+                       "label":  "Due date year",
+                       "page":  1,
+                       "item_number":  "2",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  4
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtDueYear",
+                                           "official-hta-runtime#control:L309"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded.",
+                                     "Declared disabled in the static runtime DOM."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:optAmend:Y",
+                       "serialized_key":  "frm0619F:optAmend:Y",
+                       "serialized_occurrence":  1,
+                       "label":  "Amended return: Yes",
+                       "page":  1,
+                       "item_number":  "3",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:optAmend:Y",
+                                           "official-hta-runtime#control:L329"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded.",
+                                     "Declared disabled in the static runtime DOM."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:optAmend:N",
+                       "serialized_key":  "frm0619F:optAmend:N",
+                       "serialized_occurrence":  1,
+                       "label":  "Amended return: No",
+                       "page":  1,
+                       "item_number":  "3",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "true",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:optAmend:N",
+                                           "official-hta-runtime#control:L330"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded.",
+                                     "Declared disabled in the static runtime DOM."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:optWithheld:Y",
+                       "serialized_key":  "frm0619F:optWithheld:Y",
+                       "serialized_occurrence":  1,
+                       "label":  "Taxes withheld/remitted: Yes",
+                       "page":  1,
+                       "item_number":  "4",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:optWithheld:Y",
+                                           "official-hta-runtime#control:L355"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded.",
+                                     "Declared disabled in the static runtime DOM."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:optWithheld:N",
+                       "serialized_key":  "frm0619F:optWithheld:N",
+                       "serialized_occurrence":  1,
+                       "label":  "Taxes withheld/remitted: No",
+                       "page":  1,
+                       "item_number":  "4",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:optWithheld:N",
+                                           "official-hta-runtime#control:L356"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded.",
+                                     "Declared disabled in the static runtime DOM."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTaxTypeCode",
+                       "serialized_key":  "frm0619F:txtTaxTypeCode",
+                       "serialized_occurrence":  1,
+                       "label":  "Tax type code",
+                       "page":  1,
+                       "item_number":  "5",
+                       "control_kind":  "select",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           {
+                                               "value":  "WB",
+                                               "label":  "WB"
+                                           },
+                                           {
+                                               "value":  "WF",
+                                               "label":  "WF"
+                                           }
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTaxTypeCode",
+                                           "official-hta-runtime#control:L376"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTIN1",
+                       "serialized_key":  "frm0619F:txtTIN1",
+                       "serialized_occurrence":  1,
+                       "label":  "TIN segment 1",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTIN1",
+                                           "official-hta-runtime#control:L416"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTIN2",
+                       "serialized_key":  "frm0619F:txtTIN2",
+                       "serialized_occurrence":  1,
+                       "label":  "TIN segment 2",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTIN2",
+                                           "official-hta-runtime#control:L417"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTIN3",
+                       "serialized_key":  "frm0619F:txtTIN3",
+                       "serialized_occurrence":  1,
+                       "label":  "TIN segment 3",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  3
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTIN3",
+                                           "official-hta-runtime#control:L418"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtBranchCode",
+                       "serialized_key":  "frm0619F:txtBranchCode",
+                       "serialized_occurrence":  1,
+                       "label":  "TIN branch code",
+                       "page":  1,
+                       "item_number":  "6",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  5
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtBranchCode",
+                                           "official-hta-runtime#control:L419"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtRDOCode",
+                       "serialized_key":  "frm0619F:txtRDOCode",
+                       "serialized_occurrence":  1,
+                       "label":  "RDO code",
+                       "page":  1,
+                       "item_number":  "7",
+                       "control_kind":  "runtime-generated-select",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "000",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtRDOCode",
+                                           "official-hta-runtime#control:L2447"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTaxpayerName",
+                       "serialized_key":  "frm0619F:txtTaxpayerName",
+                       "serialized_occurrence":  1,
+                       "label":  "Withholding agent name",
+                       "page":  1,
+                       "item_number":  "8",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTaxpayerName",
+                                           "official-hta-runtime#control:L459"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtLineBus",
+                       "serialized_key":  "frm0619F:txtLineBus",
+                       "serialized_occurrence":  1,
+                       "label":  "Registered name / line of business",
+                       "page":  1,
+                       "item_number":  "8",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  150
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtLineBus",
+                                           "official-hta-runtime#control:L472"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtAddress",
+                       "serialized_key":  "frm0619F:txtAddress",
+                       "serialized_occurrence":  1,
+                       "label":  "Registered address line 1",
+                       "page":  1,
+                       "item_number":  "9",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  150
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "Profile loading uppercases and splits at 127 characters."
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtAddress",
+                                           "official-hta-runtime#control:L496"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtAddress2",
+                       "serialized_key":  "frm0619F:txtAddress2",
+                       "serialized_occurrence":  1,
+                       "label":  "Registered address line 2",
+                       "page":  1,
+                       "item_number":  "9",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  150
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "Profile loading uppercases and splits at 127 characters."
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtAddress2",
+                                           "official-hta-runtime#control:L512"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded.",
+                                     "Present in encrypted final copy but omitted from the paired plaintext save."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtZipCode",
+                       "serialized_key":  "frm0619F:txtZipCode",
+                       "serialized_occurrence":  1,
+                       "label":  "ZIP code",
+                       "page":  1,
+                       "item_number":  "9A",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  12
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtZipCode",
+                                           "official-hta-runtime#control:L520"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTelNum",
+                       "serialized_key":  "frm0619F:txtTelNum",
+                       "serialized_occurrence":  1,
+                       "label":  "Contact number",
+                       "page":  1,
+                       "item_number":  "10",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  20
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTelNum",
+                                           "official-hta-runtime#control:L540"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:optCategory:P",
+                       "serialized_key":  "frm0619F:optCategory:P",
+                       "serialized_occurrence":  1,
+                       "label":  "Category: Private",
+                       "page":  1,
+                       "item_number":  "11",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:optCategory:P",
+                                           "official-hta-runtime#control:L548"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:optCategory:G",
+                       "serialized_key":  "frm0619F:optCategory:G",
+                       "serialized_occurrence":  1,
+                       "label":  "Category: Government",
+                       "page":  1,
+                       "item_number":  "11",
+                       "control_kind":  "radio",
+                       "storage_type":  "string",
+                       "logical_type":  "boolean",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "false",
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+                                           "true",
+                                           "false"
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:optCategory:G",
+                                           "official-hta-runtime#control:L549"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtEmail",
+                       "serialized_key":  "txtEmail",
+                       "serialized_occurrence":  1,
+                       "label":  "Email address",
+                       "page":  1,
+                       "item_number":  "12",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "required",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  20
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtEmail",
+                                           "official-hta-runtime#control:L566"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTax13",
+                       "serialized_key":  "frm0619F:txtTax13",
+                       "serialized_occurrence":  1,
+                       "label":  "WMF10 remittance",
+                       "page":  1,
+                       "item_number":  "13",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "conditional",
+                       "required_when":  "Item 4 is Yes and tax type code is WB.",
+                       "enabled_when":  "Tax type code is WB.",
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTax13",
+                                           "official-hta-runtime#control:L619"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTax14",
+                       "serialized_key":  "frm0619F:txtTax14",
+                       "serialized_occurrence":  1,
+                       "label":  "WMF20 remittance",
+                       "page":  1,
+                       "item_number":  "14",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "conditional",
+                       "required_when":  "Item 4 is Yes and tax type code is WF.",
+                       "enabled_when":  "Tax type code is WF.",
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTax14",
+                                           "official-hta-runtime#control:L636"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTax15",
+                       "serialized_key":  "frm0619F:txtTax15",
+                       "serialized_occurrence":  1,
+                       "label":  "Total of items 13 and 14",
+                       "page":  1,
+                       "item_number":  "15",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTax15",
+                                           "official-hta-runtime#control:L661"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded.",
+                                     "Declared disabled in the static runtime DOM."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTax16",
+                       "serialized_key":  "frm0619F:txtTax16",
+                       "serialized_occurrence":  1,
+                       "label":  "Previously remitted amount",
+                       "page":  1,
+                       "item_number":  "16",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTax16",
+                                           "official-hta-runtime#control:L679"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTax17",
+                       "serialized_key":  "frm0619F:txtTax17",
+                       "serialized_occurrence":  1,
+                       "label":  "Net amount of remittance",
+                       "page":  1,
+                       "item_number":  "17",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTax17",
+                                           "official-hta-runtime#control:L697"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTax18A",
+                       "serialized_key":  "frm0619F:txtTax18A",
+                       "serialized_occurrence":  1,
+                       "label":  "Surcharge",
+                       "page":  1,
+                       "item_number":  "18A",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTax18A",
+                                           "official-hta-runtime#control:L721"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTax18B",
+                       "serialized_key":  "frm0619F:txtTax18B",
+                       "serialized_occurrence":  1,
+                       "label":  "Interest",
+                       "page":  1,
+                       "item_number":  "18B",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTax18B",
+                                           "official-hta-runtime#control:L739"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTax18C",
+                       "serialized_key":  "frm0619F:txtTax18C",
+                       "serialized_occurrence":  1,
+                       "label":  "Compromise",
+                       "page":  1,
+                       "item_number":  "18C",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTax18C",
+                                           "official-hta-runtime#control:L756"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTax18D",
+                       "serialized_key":  "frm0619F:txtTax18D",
+                       "serialized_occurrence":  1,
+                       "label":  "Total penalties",
+                       "page":  1,
+                       "item_number":  "18D",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTax18D",
+                                           "official-hta-runtime#control:L773"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded.",
+                                     "Declared disabled in the static runtime DOM."
+                                 ]
+                   },
+                   {
+                       "field_key":  "frm0619F:txtTax19",
+                       "serialized_key":  "frm0619F:txtTax19",
+                       "serialized_occurrence":  1,
+                       "label":  "Total amount of remittance",
+                       "page":  1,
+                       "item_number":  "19",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "computed",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0.00",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  25,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  true,
+                       "calculation_id":  "See calculations.json",
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:frm0619F:txtTax19",
+                                           "official-hta-runtime#control:L791"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded.",
+                                     "Declared disabled in the static runtime DOM."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtTaxAgentNo",
+                       "serialized_key":  "txtTaxAgentNo",
+                       "serialized_occurrence":  1,
+                       "label":  "Tax agent accreditation or attorney roll number",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  20
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtTaxAgentNo",
+                                           "official-hta-runtime#control:L835"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtDateIssue",
+                       "serialized_key":  "txtDateIssue",
+                       "serialized_occurrence":  1,
+                       "label":  "Tax agent accreditation date of issue",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10,
+                                           "format":  "MM/DD/YYYY"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtDateIssue",
+                                           "official-hta-runtime#control:L848"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtDateExpiry",
+                       "serialized_key":  "txtDateExpiry",
+                       "serialized_occurrence":  1,
+                       "label":  "Tax agent accreditation date of expiry",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10,
+                                           "format":  "MM/DD/YYYY"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtDateExpiry",
+                                           "official-hta-runtime#control:L861"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtAgency20",
+                       "serialized_key":  "txtAgency20",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 20 drawee bank or agency",
+                       "page":  1,
+                       "item_number":  "20",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtAgency20",
+                                           "official-hta-runtime#control:L902"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtNumber20",
+                       "serialized_key":  "txtNumber20",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 20 payment number",
+                       "page":  1,
+                       "item_number":  "20",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtNumber20",
+                                           "official-hta-runtime#control:L903"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtDate20",
+                       "serialized_key":  "txtDate20",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 20 payment date",
+                       "page":  1,
+                       "item_number":  "20",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10,
+                                           "format":  "MM/DD/YYYY"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtDate20",
+                                           "official-hta-runtime#control:L904"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtAmount20",
+                       "serialized_key":  "txtAmount20",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 20 payment amount",
+                       "page":  1,
+                       "item_number":  "20",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtAmount20",
+                                           "official-hta-runtime#control:L905"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtAgency21",
+                       "serialized_key":  "txtAgency21",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 21 drawee bank or agency",
+                       "page":  1,
+                       "item_number":  "21",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtAgency21",
+                                           "official-hta-runtime#control:L909"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtNumber21",
+                       "serialized_key":  "txtNumber21",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 21 payment number",
+                       "page":  1,
+                       "item_number":  "21",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtNumber21",
+                                           "official-hta-runtime#control:L910"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtDate21",
+                       "serialized_key":  "txtDate21",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 21 payment date",
+                       "page":  1,
+                       "item_number":  "21",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10,
+                                           "format":  "MM/DD/YYYY"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtDate21",
+                                           "official-hta-runtime#control:L911"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtAmount21",
+                       "serialized_key":  "txtAmount21",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 21 payment amount",
+                       "page":  1,
+                       "item_number":  "21",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtAmount21",
+                                           "official-hta-runtime#control:L912"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtAgency22",
+                       "serialized_key":  "txtAgency22",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 22 drawee bank or agency",
+                       "page":  1,
+                       "item_number":  "22",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtAgency22",
+                                           "official-hta-runtime#control:L916"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtNumber22",
+                       "serialized_key":  "txtNumber22",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 22 payment number",
+                       "page":  1,
+                       "item_number":  "22",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtNumber22",
+                                           "official-hta-runtime#control:L917"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtDate22",
+                       "serialized_key":  "txtDate22",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 22 payment date",
+                       "page":  1,
+                       "item_number":  "22",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10,
+                                           "format":  "MM/DD/YYYY"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtDate22",
+                                           "official-hta-runtime#control:L918"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtAmount22",
+                       "serialized_key":  "txtAmount22",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 22 payment amount",
+                       "page":  1,
+                       "item_number":  "22",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtAmount22",
+                                           "official-hta-runtime#control:L919"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtParticular23",
+                       "serialized_key":  "txtParticular23",
+                       "serialized_occurrence":  1,
+                       "label":  "Other payment particulars",
+                       "page":  1,
+                       "item_number":  "23",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtParticular23",
+                                           "official-hta-runtime#control:L925"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtAgency23",
+                       "serialized_key":  "txtAgency23",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 23 drawee bank or agency",
+                       "page":  1,
+                       "item_number":  "23",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtAgency23",
+                                           "official-hta-runtime#control:L926"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtNumber23",
+                       "serialized_key":  "txtNumber23",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 23 payment number",
+                       "page":  1,
+                       "item_number":  "23",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtNumber23",
+                                           "official-hta-runtime#control:L927"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtDate23",
+                       "serialized_key":  "txtDate23",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 23 payment date",
+                       "page":  1,
+                       "item_number":  "23",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "date",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  10,
+                                           "format":  "MM/DD/YYYY"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtDate23",
+                                           "official-hta-runtime#control:L928"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtAmount23",
+                       "serialized_key":  "txtAmount23",
+                       "serialized_occurrence":  1,
+                       "label":  "Item 23 payment amount",
+                       "page":  1,
+                       "item_number":  "23",
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "decimal-amount",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  "Official runtime leaves this field disabled in the observed form workflow.",
+                       "visible_when":  null,
+                       "default_value":  "",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50,
+                                           "precision":  2,
+                                           "sign":  "source-dependent"
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+                                             "NumWithComma",
+                                             "round(...,2)",
+                                             "formatCurrency"
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtAmount23",
+                                           "official-hta-runtime#control:L929"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtFinalFlag",
+                       "serialized_key":  "txtFinalFlag",
+                       "serialized_occurrence":  1,
+                       "label":  "Final-copy workflow flag",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "0",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  60
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtFinalFlag",
+                                           "official-hta-runtime#control:L1079"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "txtEnroll",
+                       "serialized_key":  "txtEnroll",
+                       "serialized_occurrence":  1,
+                       "label":  "Online enrollment flag",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "code",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  "N",
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  60
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:txtEnroll",
+                                           "official-hta-runtime#control:L1080"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "ebirOnlineConfirmUsername",
+                       "serialized_key":  "ebirOnlineConfirmUsername",
+                       "serialized_occurrence":  1,
+                       "label":  "Online confirmation username",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  "The online-submission dialog is active.",
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:ebirOnlineConfirmUsername",
+                                           "official-hta-runtime#control:L1098"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "ebirOnlineUsername",
+                       "serialized_key":  "ebirOnlineUsername",
+                       "serialized_occurrence":  1,
+                       "label":  "Online username",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  "The online-submission dialog is active.",
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:ebirOnlineUsername",
+                                           "official-hta-runtime#control:L1186"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "ebirOnlineSecret",
+                       "serialized_key":  "ebirOnlineSecret",
+                       "serialized_occurrence":  1,
+                       "label":  "Online secret",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "text",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  "The online-submission dialog is active.",
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+                                           "max_length":  50
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:ebirOnlineSecret",
+                                           "official-hta-runtime#control:L1195"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   },
+                   {
+                       "field_key":  "driveSelectTPExport",
+                       "serialized_key":  "driveSelectTPExport",
+                       "serialized_occurrence":  1,
+                       "label":  "Export drive selection",
+                       "page":  1,
+                       "item_number":  null,
+                       "control_kind":  "select",
+                       "storage_type":  "string",
+                       "logical_type":  "string",
+                       "required":  "optional",
+                       "required_when":  null,
+                       "enabled_when":  null,
+                       "visible_when":  null,
+                       "default_value":  null,
+                       "empty_representation":  "",
+                       "constraints":  {
+
+                                       },
+                       "enum_values":  [
+
+                                       ],
+                       "normalization":  [
+
+                                         ],
+                       "computed":  false,
+                       "calculation_id":  null,
+                       "source_refs":  [
+                                           "xml-encrypted#decrypted-field:driveSelectTPExport",
+                                           "official-hta-runtime#control:L1230"
+                                       ],
+                       "confidence":  "high",
+                       "notes":  [
+                                     "Present in the revision-matched encrypted final-copy inventory; values excluded."
+                                 ]
+                   }
+               ]
+}

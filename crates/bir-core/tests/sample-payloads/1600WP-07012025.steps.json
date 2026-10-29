@@ -1,0 +1,80 @@
+[
+ {
+  "set": "frm1600WP:DateWithholdingMonth",
+  "value": "07"
+ },
+ {
+  "set": "frm1600WP:DateWithholdingDay",
+  "value": "01"
+ },
+ {
+  "set": "frm1600WP:DateWithholdingYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1600WP:AnyTaxHeld_1"
+ },
+ {
+  "set": "frm1600WP:txtTIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm1600WP:txtTIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm1600WP:txtTIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm1600WP:txtBranchCode",
+  "value": "00000"
+ },
+ {
+  "set": "frm1600WP:txtRDOCode",
+  "value": "039"
+ },
+ {
+  "click": "frm1600WP:CategoryAgent_P"
+ },
+ {
+  "set": "frm1600WP:txtTaxpayerName",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm1600WP:txtAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm1600WP:txtZipCode",
+  "value": "1100"
+ },
+ {
+  "call": "d.getElementById('AtcCd2').checked = true; getATCCode();"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "set": "frm1600WP:txtTaxBase1",
+  "value": "7777.775"
+ },
+ {
+  "set": "frm1600WP:txtTax15C",
+  "value": "1000"
+ },
+ {
+  "set": "frm1600WP:txtAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "txtEmail",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "call": "var xmlFileName = createXMLFileName('savefile/')"
+ },
+ {
+  "click": "frm1600WP:cmdValidate"
+ }
+]

@@ -1,0 +1,114 @@
+[
+ {
+  "call": "document.getElementById('responseBG').innerHTML = '<div>fn=Sample%20Dummy%20Taxpayerfn=</div><div>tin1=123tin1=</div><div>tin2=456tin2=</div><div>tin3=788tin3=</div><div>tin4=00000tin4=</div><div>rdo=039rdo=</div><div>lob=Sample%20Consulting%20Serviceslob=</div><div>regAddr=123%20Sample%20Street%2C%20Barangay%20Example%2C%20Quezon%20CityregAddr=</div><div>zip=1100zip=</div><div>telNo=09170000000telNo=</div><div>email=sample.taxpayer@example.comemail=</div><div>formType=1800v2018formType=</div>'; loadBGData(); xmlFileName = 'savefile/12345678800000-1800v2018-03102025.xml';"
+ },
+ {
+  "set": "frm1800v2018:txtMonth",
+  "value": "03"
+ },
+ {
+  "set": "frm1800v2018:txtDate",
+  "value": "10"
+ },
+ {
+  "set": "frm1800v2018:txtYear",
+  "value": "2025"
+ },
+ {
+  "click": "frm1800v2018:AmendedRtn_2"
+ },
+ {
+  "set": "frm1800v2018:txtSheets",
+  "value": "01"
+ },
+ {
+  "click": "frm1800v2018:TaxTreatyYN_Y"
+ },
+ {
+  "set": "frm1800v2018:TaxTreaty",
+  "value": "Special law relief"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtParticulars0",
+  "value": "Sedan, 2020 model"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtFairMarketValue0",
+  "value": "750000.005"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtParticulars1",
+  "value": "Shares of Sample Corp"
+ },
+ {
+  "set": "frm1800v2018:schedA:txtFairMarketValue1",
+  "value": "1234567.894"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtOCT0",
+  "value": "T-98765"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtTaxDecNo0",
+  "value": "TD-0001"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLocation0",
+  "value": "Lot 1, Sample Subd., Quezon City"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtLotImprovement0",
+  "value": "Lot"
+ },
+ {
+  "set": "frm1800v2018:schedB1:txtClassification0",
+  "value": "RR"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtArea0",
+  "value": "150"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFTD0",
+  "value": "900000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFMVperTDperBIRZonalValue0",
+  "value": "1200000"
+ },
+ {
+  "set": "frm1800v2018:schedB2:txtFairMarketValue0",
+  "value": "1200000"
+ },
+ {
+  "set": "frm1800v2018:TaxCredit17A",
+  "value": "1000"
+ },
+ {
+  "set": "frm1800v2018:Surcharge",
+  "value": "25.5"
+ },
+ {
+  "set": "frm1800v2018:Interest",
+  "value": "10.005"
+ },
+ {
+  "set": "frm1800v2018:txtDoneeNameA",
+  "value": "Maria Sample-Donee"
+ },
+ {
+  "set": "frm1800v2018:txtDoneeTINA",
+  "value": "111222333000"
+ },
+ {
+  "set": "frm1800v2018:txtDoneeNameB",
+  "value": "Pedro Example"
+ },
+ {
+  "set": "frm1800v2018:txtDoneeTINB",
+  "value": "444555666"
+ },
+ {
+  "call": "validate()"
+ }
+]

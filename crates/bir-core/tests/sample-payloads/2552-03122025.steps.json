@@ -1,0 +1,281 @@
+[
+ {
+  "set": "frm2552:txtPg1I1Month",
+  "value": "03"
+ },
+ {
+  "set": "frm2552:txtPg1I1Year",
+  "value": "2025"
+ },
+ {
+  "set": "frm2552:txtPg1TIN1",
+  "value": "123"
+ },
+ {
+  "set": "frm2552:txtPg1TIN2",
+  "value": "456"
+ },
+ {
+  "set": "frm2552:txtPg1TIN3",
+  "value": "788"
+ },
+ {
+  "set": "frm2552:txtPg1TIN4",
+  "value": "00000"
+ },
+ {
+  "set": "frm2552:txtPg1I5RDO",
+  "value": "039"
+ },
+ {
+  "set": "frm2552:rdoPg1Pt1I5RDO",
+  "value": "039"
+ },
+ {
+  "set": "frm2552:txtPg1Pt1I6Name",
+  "value": "Sample Dummy Taxpayer"
+ },
+ {
+  "set": "frm2552:txtPg1Pt1I7RegisteredAddress",
+  "value": "123 Sample Street, Barangay Example, Quezon City"
+ },
+ {
+  "set": "frm2552:txPg1I7ZipCode",
+  "value": "1100"
+ },
+ {
+  "set": "frm2552:txtPg1Pt1I8ContactNumber",
+  "value": "09170000000"
+ },
+ {
+  "set": "frm2552:txtPg1Pt1I9Email",
+  "value": "sample.taxpayer@example.com"
+ },
+ {
+  "call": "document.getElementById('frm2552:txtLOB').value = 'Sample Consulting Services'"
+ },
+ {
+  "set": "frm2552:txtPg1I1Day",
+  "value": "12"
+ },
+ {
+  "click": "frm2552:rdoPg1I10TaxReliefNo"
+ },
+ {
+  "click": "frm2552:rdoPg1I11TransactionPrimary"
+ },
+ {
+  "set": "frm2552:txtPg1Pt1I12NumOfShare",
+  "value": "1000000"
+ },
+ {
+  "set": "frm2552:txtPg1Pt1I12TotShare",
+  "value": "5000000"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Date1",
+  "value": "03/10/2025"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Seller1",
+  "value": "Issuer One"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Buyer1",
+  "value": "Sample Public Buyer"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Corp1",
+  "value": "Sample Listed Corp"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2NumShares1",
+  "value": "1000"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2TaxBase1",
+  "value": "250000.75"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2TaxRate1",
+  "value": "4"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Date2",
+  "value": "03/10/2025"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Seller2",
+  "value": "Issuer Two"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Buyer2",
+  "value": "Sample Public Buyer"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Corp2",
+  "value": "Sample Listed Corp"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2NumShares2",
+  "value": "2000"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2TaxBase2",
+  "value": "500000"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2TaxRate2",
+  "value": "2"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Date3",
+  "value": "03/11/2025"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Seller3",
+  "value": "Issuer Three"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Buyer3",
+  "value": "Sample Public Buyer"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Corp3",
+  "value": "Sample Listed Corp"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2NumShares3",
+  "value": "300.5"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2TaxBase3",
+  "value": "75000.25"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2TaxRate3",
+  "value": "1"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Date4",
+  "value": "03/11/2025"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Seller4",
+  "value": "Issuer Four"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Buyer4",
+  "value": "Sample Public Buyer"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Corp4",
+  "value": "Sample Listed Corp"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2NumShares4",
+  "value": "400"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2TaxBase4",
+  "value": "999.99"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2TaxRate4",
+  "value": "4"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Date5",
+  "value": "03/12/2025"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Seller5",
+  "value": "Issuer Five"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Buyer5",
+  "value": "Sample Public Buyer"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2Corp5",
+  "value": "Sample Listed Corp"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2NumShares5",
+  "value": "50"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2TaxBase5",
+  "value": "12345.67"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2TaxRate5",
+  "value": "2.5"
+ },
+ {
+  "call": "Set_Pg2Pt5AddMore('Sch2'); Load_Pg2Pt5AddMorePopTable('Sch2'); AddRow_Pg2Pt5AddMorePopTable('Sch2'); AddRow_Pg2Pt5AddMorePopTable('Sch2');"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_2Col1",
+  "value": "03/12/2025"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_2Col2",
+  "value": "Issuer Six"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_2Col3",
+  "value": "Sample Public Buyer"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_2Col4",
+  "value": "Sample Listed Corp"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_2Col5",
+  "value": "60.9"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_2Col6",
+  "value": "23456.78"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_2Col7",
+  "value": "4.5"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_3Col1",
+  "value": "03/12/2025"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_3Col2",
+  "value": "Issuer Seven"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_3Col3",
+  "value": "Sample Public Buyer"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_3Col4",
+  "value": "Sample Listed Corp"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_3Col5",
+  "value": "70"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_3Col6",
+  "value": "888.88"
+ },
+ {
+  "set": "frm2552:txtPg2Pt5Sch2_3Col7",
+  "value": "1"
+ },
+ {
+  "call": "Save_Pg2Pt5AddMorePopTable('Sch2')"
+ },
+ {
+  "set": "frm2552:txtPg1P2I18CredTaxWthhld",
+  "value": "500"
+ }
+]

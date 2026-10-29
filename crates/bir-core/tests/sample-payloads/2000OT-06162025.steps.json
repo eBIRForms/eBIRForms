@@ -1,0 +1,103 @@
+[
+ {
+  "call": "(function(){var d=document,v=function(i,x){d.getElementById(i).value=x;};v('frm2000OT:txtTaxpayerName','Sample Dummy Taxpayer');v('frm2000OT:txtPg2TaxpayerName','Sample Dummy Taxpayer');v('frm2000OT:txtTIN1','123');v('frm2000OT:txtPg2TIN1','123');v('frm2000OT:txtTIN2','456');v('frm2000OT:txtPg2TIN2','456');v('frm2000OT:txtTIN3','788');v('frm2000OT:txtPg2TIN3','788');v('frm2000OT:txtBranchCode','00000');v('frm2000OT:txtPg2BranchCode','00000');v('frm2000OT:txtRDOCode','039');v('frm2000OT:txtLineBus','Sample Consulting Services');v('frm2000OT:txtAddress','123 Sample Street, Barangay Example, Quezon City');v('frm2000OT:txtAddress2','');v('frm2000OT:txtZipCode','1100');v('frm2000OT:txtTelNum','09170000000');v('txtEmail','sample.taxpayer@example.com');})()"
+ },
+ {
+  "set": "frm2000OT:txtTransactionDate",
+  "value": "06/16/2025"
+ },
+ {
+  "click": "frm2000OT:ATC_1"
+ },
+ {
+  "set": "frm2000OT:txtSheets",
+  "value": "0"
+ },
+ {
+  "click": "frm2000OT:optParty_2"
+ },
+ {
+  "set": "frm2000OT:txtOtherName",
+  "value": "Sample Buyer Corp"
+ },
+ {
+  "set": "frm2000OT:txtOtherTIN",
+  "value": "987654321000"
+ },
+ {
+  "click": "frm2000OT:rbTransNature_1"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtNameOfCorpStock0",
+  "value": "Sample Corp 0"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtNoOfSharesSold0",
+  "value": "100"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtStockCertNo0",
+  "value": "Cert-0"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtParValOfShares0",
+  "value": "25000.005"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtNameOfCorpStock1",
+  "value": "Sample Corp 1"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtNoOfSharesSold1",
+  "value": "200"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtStockCertNo1",
+  "value": "Cert-1"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtParValOfShares1",
+  "value": "50000.01"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtNameOfCorpStock2",
+  "value": "Sample Corp 2"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtNoOfSharesSold2",
+  "value": "300"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtStockCertNo2",
+  "value": "Cert-2"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtParValOfShares2",
+  "value": "75000.015"
+ },
+ {
+  "call": "addSchedule1B()"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtNameOfCorpStock3",
+  "value": "Sample Corp 3"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtNoOfSharesSold3",
+  "value": "400"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtStockCertNo3",
+  "value": "Cert-3"
+ },
+ {
+  "set": "frm2000OT:sched1B:txtParValOfShares3",
+  "value": "100000.02"
+ },
+ {
+  "click": "frm2000OT:cmdValidate"
+ },
+ {
+  "call": "var xmlFileName = createXMLFileName('savefile/')"
+ }
+]
