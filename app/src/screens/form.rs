@@ -869,7 +869,12 @@ fn item_row(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement {
                 .child(each(needs, |n| n.clone(), |n, _| text(n.get_untracked()).text_size(px(11.0)).text_color(theme::FG2)))
                 .child(if item.is_schedule() { schedule_table(form.clone(), id).into_element() } else { controls(&item) })
                 .child(each(notes, |n| n.clone(), |n, _| text(n.get_untracked()).text_size(px(11.0)).text_color(theme::FG3)))
-                .child(text(message).h(px(18.0)).text_size(px(12.0)).text_color(theme::DANGER).truncate()),
+                // The reserved 18 px message line: a text only while there
+                // is a message (an empty one still costs a drawn layer).
+                .child({
+                    let shown = message.clone();
+                    when(move || !shown().is_empty(), move || text(message.clone()).h(px(18.0)).text_size(px(12.0)).text_color(theme::DANGER).truncate()).otherwise(|| view().h(px(18.0)))
+                }),
         )
 }
 

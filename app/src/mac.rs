@@ -319,3 +319,31 @@ pub(crate) fn hold_off_app_nap(reason: &str) {
         std::mem::forget(token);
     }
 }
+
+/// `BUWIZ_OFFSCREEN=1` (screenshot scripts): keep the app's windows off
+/// every screen, at their size, so a run never shows on the screen someone
+/// is using even when the window manager has not picked the window up yet.
+/// `screencapture -l` still captures them. Repeats for a few seconds, as
+/// the window may come after the root mounts.
+pub(crate) fn park_offscreen_for_a_while() {
+    std::thread::spawn(|| {
+        for _ in 0..40 {
+            DispatchQueue::main().exec_async(|| {
+                // SAFETY: AppKit's documented NSApplication / NSWindow API,
+                // on the main thread.
+                unsafe {
+                    let Some(class) = AnyClass::get(c"NSApplication") else { return };
+                    let app: Retained<AnyObject> = msg_send![class, sharedApplication];
+                    let windows: Retained<NSArray<AnyObject>> = msg_send![&app, windows];
+                    for w in windows.iter() {
+                        let frame: NSRect = msg_send![&*w, frame];
+                        if frame.origin.x > -10000.0 {
+                            let _: () = msg_send![&*w, setFrameOrigin: NSPoint::new(-20000.0, frame.origin.y)];
+                        }
+                    }
+                }
+            });
+            std::thread::sleep(Duration::from_millis(100));
+        }
+    });
+}

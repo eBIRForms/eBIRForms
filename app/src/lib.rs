@@ -46,6 +46,10 @@ pub fn App() -> impl IntoElement {
     let note = signal(String::new());
     live::install(remount, note);
     live::init();
+    #[cfg(target_os = "macos")]
+    if std::env::var("BUWIZ_OFFSCREEN").is_ok_and(|v| v == "1") {
+        mac::park_offscreen_for_a_while();
+    }
 
     // A hidden title bar (full-size content, traffic lights kept): the
     // shell draws its own 40 px bar, as rox and bir-shell do.
