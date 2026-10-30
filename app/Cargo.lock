@@ -337,6 +337,7 @@ dependencies = [
  "bir-rules",
  "chrono",
  "dotenvy",
+ "flate2",
  "hex",
  "keyring",
  "libc",

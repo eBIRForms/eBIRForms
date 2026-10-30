@@ -34,6 +34,8 @@ rand = "0.10.1"
 hex = "0.4.3"
 zip = { version = "2", default-features = false, features = ["deflate", "time"] }
 uuid = { version = "1.23.1", features = ["v4"] }
+# Inflates the packed data (src/packed.rs); already in through zip.
+flate2 = "1"
 
 # SQLCipher, bundled with the platform's crypto (CommonCrypto on macOS and
 # iOS, OpenSSL on Windows and Linux) everywhere but Android.
@@ -83,6 +85,9 @@ keyring = { workspace = true, features = ["apple-native"] }
 keyring = { workspace = true }
 rusqlite = { workspace = true, features = ["sqlcipher", "modern_sqlite"] }
 sqlcipher-tomcrypt = { path = "../sqlcipher-tomcrypt" }
+
+[build-dependencies]
+flate2 = "1"
 
 [dev-dependencies]
 insta = "1"

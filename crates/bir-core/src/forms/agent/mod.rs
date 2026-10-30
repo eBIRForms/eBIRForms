@@ -99,9 +99,10 @@ impl AgentFormKind {
             PACKAGES
                 .iter()
                 .map(|(package, raw)| {
-                    let def: AgentFormDef = serde_json::from_str(raw).unwrap_or_else(|error| {
-                        panic!("invalid data/agent-forms/{package}.json: {error}")
-                    });
+                    let def: AgentFormDef = serde_json::from_str(&crate::packed::inflate(raw))
+                        .unwrap_or_else(|error| {
+                            panic!("invalid data/agent-forms/{package}.json: {error}")
+                        });
                     (*package, def)
                 })
                 .collect()
@@ -120,12 +121,12 @@ fn normalize_code(code: &str) -> String {
 
 macro_rules! packages {
     ($($id:literal),* $(,)?) => {
-        &[$(($id, include_str!(concat!("../../../data/agent-forms/", $id, ".json")))),*]
+        &[$(($id, crate::packed_bytes!(concat!("data/agent-forms/", $id, ".json")))),*]
     };
 }
 
 /// Every rule package with its pinned agent data.
-pub const PACKAGES: &[(&str, &str)] = packages![
+pub const PACKAGES: &[(&str, &[u8])] = packages![
     "0605-v2003",
     "0619e-v2018",
     "0619f-v2018",
@@ -960,7 +961,9 @@ fn agent_locks(package: &str) -> &'static AgentLocks {
     };
     PARSED
         .get_or_init(|| {
-            serde_json::from_str(include_str!("../../../data/agent-locks.json"))
+            serde_json::from_str(&crate::packed::inflate(crate::packed_bytes!(
+                "data/agent-locks.json"
+            )))
                 .expect("data/agent-locks.json parses")
         })
         .get(package)

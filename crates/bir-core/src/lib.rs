@@ -50,6 +50,7 @@ pub mod naming;
 pub mod official_holidays;
 pub mod official_import;
 pub mod official_xml;
+pub mod packed;
 pub mod penalties;
 pub mod platform;
 pub mod profile;

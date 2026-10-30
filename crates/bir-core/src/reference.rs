@@ -47,14 +47,14 @@ pub struct TaxTypeCode {
     pub form: String,
 }
 
-/// Static embedded JSON data
-const RDO_JSON: &str = include_str!("../data/rdo.json");
-const ATC_JSON: &str = include_str!("../data/atcCodes.json");
-const REGION_JSON: &str = include_str!("../data/geo/regions.json");
-const PROVINCE_JSON: &str = include_str!("../data/geo/provinces.json");
-const CITY_JSON: &str = include_str!("../data/geo/cities.json");
-const TAX_TYPE_JSON: &str = include_str!("../data/tax_type_codes.json");
-const ZIPCODES_JSON: &str = include_str!("../data/geo/zipcodes.json");
+/// Static embedded JSON data, packed (crate::packed)
+const RDO_JSON: &[u8] = crate::packed_bytes!("data/rdo.json");
+const ATC_JSON: &[u8] = crate::packed_bytes!("data/atcCodes.json");
+const REGION_JSON: &[u8] = crate::packed_bytes!("data/geo/regions.json");
+const PROVINCE_JSON: &[u8] = crate::packed_bytes!("data/geo/provinces.json");
+const CITY_JSON: &[u8] = crate::packed_bytes!("data/geo/cities.json");
+const TAX_TYPE_JSON: &[u8] = crate::packed_bytes!("data/tax_type_codes.json");
+const ZIPCODES_JSON: &[u8] = crate::packed_bytes!("data/geo/zipcodes.json");
 
 static RDOS_BY_CODE: OnceLock<HashMap<String, Rdo>> = OnceLock::new();
 static ATCS_BY_CODE: OnceLock<HashMap<String, Atc>> = OnceLock::new();
@@ -66,38 +66,43 @@ static ZIPCODES: OnceLock<Vec<String>> = OnceLock::new();
 
 /// Initialize and parse the JSON lists
 fn init_rdos() -> HashMap<String, Rdo> {
-    let list: Vec<Rdo> = serde_json::from_str(RDO_JSON).expect("Invalid rdo.json");
+    let list: Vec<Rdo> =
+        serde_json::from_str(&crate::packed::inflate(RDO_JSON)).expect("Invalid rdo.json");
     list.into_iter().map(|r| (r.code.clone(), r)).collect()
 }
 
 fn init_atcs() -> HashMap<String, Atc> {
-    let list: Vec<Atc> = serde_json::from_str(ATC_JSON).expect("Invalid atcCodes.json");
+    let list: Vec<Atc> =
+        serde_json::from_str(&crate::packed::inflate(ATC_JSON)).expect("Invalid atcCodes.json");
     list.into_iter().map(|a| (a.code.clone(), a)).collect()
 }
 
 fn init_regions() -> HashMap<String, Region> {
-    let list: Vec<Region> = serde_json::from_str(REGION_JSON).expect("Invalid regions.json");
+    let list: Vec<Region> =
+        serde_json::from_str(&crate::packed::inflate(REGION_JSON)).expect("Invalid regions.json");
     list.into_iter().map(|r| (r.code.clone(), r)).collect()
 }
 
 fn init_provinces() -> HashMap<String, Province> {
-    let list: Vec<Province> = serde_json::from_str(PROVINCE_JSON).expect("Invalid provinces.json");
+    let list: Vec<Province> = serde_json::from_str(&crate::packed::inflate(PROVINCE_JSON))
+        .expect("Invalid provinces.json");
     list.into_iter().map(|p| (p.code.clone(), p)).collect()
 }
 
 fn init_cities() -> HashMap<String, City> {
-    let list: Vec<City> = serde_json::from_str(CITY_JSON).expect("Invalid cities.json");
+    let list: Vec<City> =
+        serde_json::from_str(&crate::packed::inflate(CITY_JSON)).expect("Invalid cities.json");
     list.into_iter().map(|c| (c.code.clone(), c)).collect()
 }
 
 fn init_tax_types() -> HashMap<String, TaxTypeCode> {
-    let list: Vec<TaxTypeCode> =
-        serde_json::from_str(TAX_TYPE_JSON).expect("Invalid tax_type_codes.json");
+    let list: Vec<TaxTypeCode> = serde_json::from_str(&crate::packed::inflate(TAX_TYPE_JSON))
+        .expect("Invalid tax_type_codes.json");
     list.into_iter().map(|t| (t.code.clone(), t)).collect()
 }
 
 fn init_zipcodes() -> Vec<String> {
-    serde_json::from_str(ZIPCODES_JSON).expect("Invalid zipcodes.json")
+    serde_json::from_str(&crate::packed::inflate(ZIPCODES_JSON)).expect("Invalid zipcodes.json")
 }
 
 /// Get an RDO by its code
