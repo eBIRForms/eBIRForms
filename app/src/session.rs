@@ -211,6 +211,9 @@ pub(crate) struct FormSession {
     pub list: Cell<Option<(ElementRef, ElementRef)>>,
     /// An item to draw attention to for a moment (a jump from the bar).
     pub flash: Signal<Option<ItemId>>,
+    /// Growth steps schedule tables have taken: the scroll bench starts
+    /// only once this stops moving, so every table is full.
+    pub table_steps: Signal<u64>,
     /// The return's due date (`YYYY-MM-DD`), once read.
     pub due: Signal<Option<String>>,
     /// The outline sheet (≡ on the bar).
@@ -277,6 +280,7 @@ impl FormSession {
             rows: RefCell::new(HashMap::new()),
             list: Cell::new(None),
             flash: signal(None),
+            table_steps: signal(0),
             due: signal(None),
             outline_open: signal(false),
             picker: signal(None),
