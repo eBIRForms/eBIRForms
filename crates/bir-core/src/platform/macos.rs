@@ -6,11 +6,12 @@ use std::path::PathBuf;
 // ── Data Directory ───────────────────────────────────────────────────────────
 
 /// Returns the macOS application data directory:
-/// `~/Library/Application Support/Buwiz`, the same folder the iOS app uses.
-/// Buwiz's own, so it never opens another app's database.
+/// `~/Library/Application Support/com.buwiz.oss`, named for the bundle id so
+/// no other app shares it (other tools already use `buwiz`, and the file
+/// system ignores case).
 pub fn data_dir() -> PathBuf {
     if let Some(home) = std::env::var_os("HOME") {
-        let dir = PathBuf::from(home).join("Library/Application Support/Buwiz");
+        let dir = PathBuf::from(home).join("Library/Application Support/com.buwiz.oss");
         let _ = std::fs::create_dir_all(&dir);
         return dir;
     }
@@ -48,7 +49,7 @@ mod tests {
         // Use temp_env to safely set HOME without unsafe — also auto-restores on panic.
         temp_env::with_var("HOME", Some("/Users/testuser"), || {
             let path = data_dir();
-            assert_eq!(path, PathBuf::from("/Users/testuser/Library/Application Support/Buwiz"));
+            assert_eq!(path, PathBuf::from("/Users/testuser/Library/Application Support/com.buwiz.oss"));
         });
     }
 }
