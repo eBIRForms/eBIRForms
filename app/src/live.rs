@@ -17,14 +17,14 @@
 //! values, the selected taxpayer stays selected). This file is the
 //! dependency the anchor lives in: it is never re-emitted by a patch, so
 //! its map is only ever the executable's one, on every platform.
+//!
+//! ra-jit-live is in only with the `live` feature (dev.sh, ios-dev.sh).
+//! Without it `install` reports `off`, as a plain `cargo run` does without
+//! the daemon, and the anchors are kept by `anchor` here.
 
-use std::{
-    any::Any,
-    cell::RefCell,
-    collections::HashMap,
-    rc::Rc,
-    time::Duration,
-};
+use std::{any::Any, cell::RefCell, collections::HashMap, rc::Rc};
+#[cfg(feature = "live")]
+use std::time::Duration;
 
 use nsh_core::prelude::*;
 
@@ -32,6 +32,7 @@ use crate::store::Store;
 
 /// How often the engine polls for a patch: the apply itself is under a
 /// millisecond, so this sets save-to-screen latency more than cost.
+#[cfg(feature = "live")]
 const POLL: Duration = Duration::from_millis(25);
 
 // ---------------------------------------------------------------------------
@@ -45,6 +46,24 @@ const POLL: Duration = Duration::from_millis(25);
 // non-generic function in a dependency — code a patch never re-emits — so
 // its map is only ever the executable's one, on every platform.
 // ---------------------------------------------------------------------------
+
+#[cfg(feature = "live")]
+use ra_jit_live::anchor;
+
+/// `ra_jit_live::anchor` without ra-jit: nothing patches the program, so a
+/// plain list keeps each name's value, made by `init` on first use.
+#[cfg(not(feature = "live"))]
+fn anchor(name: &'static str, init: fn() -> usize) -> usize {
+    static ANCHORS: std::sync::Mutex<Vec<(&str, usize)>> = std::sync::Mutex::new(Vec::new());
+    let mut anchors = ANCHORS.lock().unwrap();
+    if let Some(&(_, at)) = anchors.iter().find(|&&(n, _)| n == name) {
+        at
+    } else {
+        let at = init();
+        anchors.push((name, at));
+        at
+    }
+}
 
 /// Called once from `App`'s body — under the root owner, which never
 /// remounts. `store()` anchors the model while that owner is current, so
@@ -63,7 +82,7 @@ pub(crate) fn init() {
 /// Where the current store's address is kept: anchored, so every patch
 /// generation reads the same slot.
 fn store_slot() -> &'static std::cell::Cell<usize> {
-    let at = ra_jit_live::anchor("buwiz.store.slot", || {
+    let at = anchor("buwiz.store.slot", || {
         Box::leak(Box::new(std::cell::Cell::new(0usize))) as *const std::cell::Cell<usize> as usize
     });
     // SAFETY: the anchor holds the address of a leaked `Cell<usize>`, made
@@ -85,7 +104,7 @@ pub(crate) fn store() -> &'static Store {
 /// store) takes it over instead of opening the file again, which the
 /// owner lock of the first opening would refuse.
 pub(crate) fn database() -> &'static std::sync::Mutex<Option<std::sync::Arc<bir_app_core::BirApp>>> {
-    let at = ra_jit_live::anchor("buwiz.database", || {
+    let at = anchor("buwiz.database", || {
         Box::leak(Box::new(std::sync::Mutex::new(None::<std::sync::Arc<bir_app_core::BirApp>>))) as *const _ as usize
     });
     // SAFETY: the anchor holds the address of a leaked mutex, made once.
@@ -95,6 +114,7 @@ pub(crate) fn database() -> &'static std::sync::Mutex<Option<std::sync::Arc<bir_
 thread_local! {
     /// The live session (patch room behind the image, the watcher's patch
     /// file). Started once, with the app.
+    #[cfg(feature = "live")]
     static LIVE: RefCell<Option<ra_jit_live::Live>> = const { RefCell::new(None) };
     /// What reads each `keep` signal now: refreshed as components mount.
     static READERS: RefCell<HashMap<&'static str, Rc<dyn Fn() -> Box<dyn Any>>>> =
@@ -141,6 +161,7 @@ pub fn keep<T: PartialEq + Clone + 'static>(name: &'static str, init: impl FnOnc
 ///
 /// Call it once, under the root, which is never remounted itself: the
 /// `Live` it holds and the interval it spawns belong to that owner.
+#[cfg(feature = "live")]
 pub fn install(remount: Signal<u64>, note: Signal<String>) {
     // `note` is `<state>:<message>` — `live`, `applied`, `restart`,
     // `declined` or `off` (no ra-jit daemon: a plain `cargo run`) — the
@@ -174,7 +195,15 @@ pub fn install(remount: Signal<u64>, note: Signal<String>) {
     });
 }
 
+/// Without the `live` feature there is no daemon to reach: `note` reads
+/// `off`, as when a live build finds none, and nothing is polled.
+#[cfg(not(feature = "live"))]
+pub fn install(_remount: Signal<u64>, note: Signal<String>) {
+    note.set("off:ra-jit is not connected (plain cargo run)".to_owned());
+}
+
 /// Reads every `keep` signal into the table its replacement will read.
+#[cfg(feature = "live")]
 fn snapshot() {
     READERS.with(|readers| {
         let readers = readers.borrow();

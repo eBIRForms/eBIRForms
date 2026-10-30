@@ -18,7 +18,8 @@ nsh-core = { path = "../nsh/crates/nsh-core" }
 nsh-base = { path = "../nsh/crates/nsh-base" }
 # No default features: the UI is native nsh, so no QuickJS VM (AGENTS.md).
 nsh-engine = { path = "../nsh/crates/nsh-engine", default-features = false }
-ra-jit-live = { path = "../blaze/crates/ra-jit-live" }
+# Live patching, for `just dev` and `just ios-dev` only (feature `live`).
+ra-jit-live = { path = "../blaze/crates/ra-jit-live", optional = true }
 env_logger = "0.11"
 # Today and yesterday for the date chips (already in the lock through bir-core).
 chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
@@ -71,6 +72,9 @@ webkit6 = "0.6"
 # Scripted UI checks: nsh's gpui-agent control plane (local, token-guarded,
 # and only when `GPUI_AGENT=1` is set at launch). Off in normal builds.
 agent = ["nsh-platform-macos/gpui-agent"]
+# ra-jit's live patching (dev.sh, ios-dev.sh). Off in `just run` and every
+# release build: without it no patch is applied and the pill reads `off`.
+live = ["dep:ra-jit-live"]
 
 [lib]
 name = "buwiz"
