@@ -229,6 +229,7 @@ dependencies = [
  "bir-print",
  "bir-submit",
  "chrono",
+ "flate2",
  "serde",
  "serde_json",
  "tempfile",

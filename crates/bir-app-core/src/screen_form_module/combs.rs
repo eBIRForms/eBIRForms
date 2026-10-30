@@ -49,8 +49,10 @@ use serde_json::{Map, Value, json};
 fn file_cells() -> &'static Value {
     static CELLS: OnceLock<Value> = OnceLock::new();
     CELLS.get_or_init(|| {
-        serde_json::from_str(include_str!("../../assets/forms/print-cells.json"))
-            .expect("app/forms/print-cells.json is a JSON object")
+        serde_json::from_str(&bir_core::packed::inflate(bir_core::packed_bytes!(
+            "assets/forms/print-cells.json"
+        )))
+        .expect("app/forms/print-cells.json is a JSON object")
     })
 }
 
