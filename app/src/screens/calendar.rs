@@ -61,7 +61,7 @@ pub(crate) fn screen() -> impl IntoElement {
         view()
             .gap(px(4.0))
             .child(page_title("Calendar"))
-            .child(text(format!("Every deadline for the forms your taxpayers file, from the {year} BIR tax calendar. Late returns show the penalty so far.")).text_size(px(13.0)).text_color(theme::FG2))
+            .child(text(format!("Every deadline for the forms your taxpayers file, from the {year} BIR tax calendar. Late returns show the penalty so far. Change a due date when BIR moves one; it changes for every taxpayer.")).text_size(px(13.0)).text_color(theme::FG2))
             .child(view().pt(px(20.0)).pb(px(8.0)).child(each(
                 move || vec![st.selected.get().map(|s| s.name)],
                 |n| n.clone(),
@@ -76,7 +76,7 @@ pub(crate) fn screen() -> impl IntoElement {
                 let late = label == "Late";
                 view()
                     .child(section_title(label, index.get_untracked() == 0).text_color(if late { theme::DANGER } else { theme::FG3 }))
-                    .child(list_group().child(each(move || g.get().1, |d| format!("{}{}{}{}{:?}", d.tin, d.form_code, d.taxable_year, d.period, d.return_key), |d, i| due_row(d.get_untracked(), i))))
+                    .child(list_group().child(each(move || g.get().1, |d| format!("{}{}{}{}{:?}{}", d.tin, d.form_code, d.taxable_year, d.period, d.return_key, d.due_date), |d, i| due_row(d.get_untracked(), i, true))))
                     .into_element()
             })),
     )

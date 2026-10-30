@@ -122,8 +122,8 @@ if selected V3; then
 fi
 
 # ---- V4 ---------------------------------------------------------------------
-DESKTOP_SCREENS="home library form form-schedule profile-panel new-taxpayer filings queue calendar taxpayers settings palette print-preview delete-confirm"
-PHONE_SCREENS="home forms filings calendar form outline choice-sheet long-list-search schedule row-page new-taxpayer taxpayer-sheet start-return sent failed print-preview search settings queue queued sending attention how-sheet payee-picker delete-confirm"
+DESKTOP_SCREENS="home library form form-schedule profile-panel new-taxpayer filings queue calendar taxpayers settings palette print-preview delete-confirm override-sheet calendar-override amend edit-penalties edit-on-return toast"
+PHONE_SCREENS="home forms filings calendar form outline choice-sheet long-list-search schedule row-page new-taxpayer taxpayer-sheet start-return sent failed print-preview search settings queue queued sending attention how-sheet payee-picker delete-confirm override-sheet calendar-override amend edit-penalties edit-on-return toast"
 if selected V4; then
     src=$(newest_src); cur=$(src_hash); missing=""; stale=""; unchecked=""; n=0
     for kind in desktop phone; do

@@ -2,6 +2,8 @@
 //! Filings and Send queue; `Form` is reached from the library or Recent.
 
 mod calendar;
+pub(crate) use calendar::calendar_rows;
+pub(crate) mod deadline_sheet;
 mod filings;
 pub(crate) use filings::delete_dialog as filings_delete_dialog;
 mod form;
@@ -151,6 +153,29 @@ pub(crate) fn welcome() -> impl IntoElement {
                         .child(button("Add your first taxpayer", Variant::Primary, || false, move || st.new_taxpayer_open.set(true))),
                 ),
         )
+}
+
+/// `BUWIZ_UNLOCK` (a launch hook): press Edit penalties (`penalties`) or
+/// Edit on this return (`profile`), then bring the first opened box into
+/// view (the desktop's penalties panel is at the top already).
+pub(crate) fn unlock_on_launch(which: &str) {
+    let st = &store().form;
+    let Some(form) = st.form() else { return };
+    let keys: Vec<String> = if which == "penalties" {
+        form::unlock_penalties();
+        untracked(|| st.penalties.get().into_iter().filter(|p| p.applies).flat_map(|p| p.keys).collect())
+    } else {
+        form::unlock_profile();
+        untracked(|| st.profile.get().into_iter().collect())
+    };
+    if which == "penalties" && !crate::mobile::phone() {
+        return;
+    }
+    let ids = untracked(|| steps::shown_items(st, &form));
+    match ids.into_iter().find(|id| form.item(*id).is_some_and(|item| item.box_keys().iter().any(|k| keys.contains(k)))) {
+        Some(id) => form::jump_to(id, false),
+        None => log::warn!("BUWIZ_UNLOCK={which}: nothing opened on {}", form.layout.code),
+    }
 }
 
 /// `BUWIZ_PICK` (a launch hook): open the open form's first short-choice

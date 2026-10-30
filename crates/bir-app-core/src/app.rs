@@ -289,8 +289,97 @@ pub struct DeadlineRow {
     pub status: String,
     pub draft_id: Option<i64>,
     pub return_key: Option<i64>,
+    /// The rule's own date (`YYYY-MM-DD`), before weekends, holidays and
+    /// deadline overrides moved it.
+    #[serde(default)]
+    pub original_due_date: Option<String>,
+    /// Why `due_date` differs from `original_due_date`: `normal`, `weekend`,
+    /// `holiday`, `non_working`, or `moved` (a deadline override).
+    #[serde(default)]
+    pub deadline_status: String,
+    /// The note a moved deadline cites, else `None`.
+    #[serde(default)]
+    pub moved_reason: Option<String>,
+    /// The period as a deadline override names it (`2026-Q3`, `2026-09`,
+    /// `2025`); `None` for an as-needed row.
+    #[serde(default)]
+    pub period_key: Option<String>,
     #[serde(flatten)]
     pub extra: Map<String, Value>,
+}
+
+impl DeadlineRow {
+    /// Whether a deadline override moved this deadline.
+    pub fn is_moved(&self) -> bool {
+        self.deadline_status == "moved"
+    }
+}
+
+/// A deadline a stored override moves.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct OverridePeriod {
+    pub form: String,
+    /// `2026-Q3`, `2026-09` or `2025`.
+    pub period: String,
+    pub label: String,
+}
+
+/// One stored deadline override; it applies to every taxpayer.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct DeadlineOverride {
+    pub id: String,
+    /// `moved` (a person or BIR moved it) or `holiday` (an official holiday
+    /// the app ships).
+    pub kind: String,
+    pub title: String,
+    /// The note given when it was set (a default when none was).
+    pub reason: String,
+    pub forms: Vec<String>,
+    /// `YYYY-MM-DD`.
+    pub original_deadline: String,
+    pub new_deadline: String,
+    /// The deadlines it moves (none listed for a holiday).
+    pub periods: Vec<OverridePeriod>,
+}
+
+/// Every stored deadline override, the moved ones first.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct DeadlineOverrideList {
+    pub year: Option<i64>,
+    pub overrides: Vec<DeadlineOverride>,
+    /// Stored entries that cannot be read (kept, never listed).
+    pub damaged: usize,
+    /// The stored list cannot be read: none can be changed.
+    pub unreadable: bool,
+}
+
+/// A deadline moved by [`BirApp::move_deadline`].
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct MovedDeadline {
+    pub form: String,
+    pub period: String,
+    pub label: String,
+    /// The rule's own date.
+    pub rule_deadline: String,
+    /// The due date before this change.
+    pub was: Option<String>,
+    /// The due date now (a weekend date still moves to the next working day).
+    pub due: Option<String>,
+    /// The deadline had already been moved by the filer: that entry changed.
+    pub replaced: bool,
+    #[serde(rename = "override")]
+    pub entry: DeadlineOverride,
+}
+
+/// A deadline put back by [`BirApp::restore_deadline`].
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct RestoredDeadline {
+    pub form: String,
+    pub period: String,
+    pub label: String,
+    /// BIR's due date again.
+    pub due: Option<String>,
+    pub removed: Vec<DeadlineOverride>,
 }
 
 /// A saved or filed return.
@@ -630,6 +719,32 @@ impl BirApp {
     /// inclusive).
     pub fn deadlines_between(&self, from: &str, to: &str) -> AppResult<Vec<DeadlineRow>> {
         self.call_as("deadlines_between", vec![from.into(), to.into()])
+    }
+
+    /// Every stored deadline override (`year`: those whose original or new
+    /// date falls in it). They apply to every taxpayer.
+    pub fn deadline_overrides(&self, year: Option<i64>) -> AppResult<DeadlineOverrideList> {
+        let args = match year {
+            Some(year) => serde_json::json!({ "year": year }),
+            None => serde_json::json!({}),
+        };
+        self.call_as("deadline_overrides", vec![args])
+    }
+
+    /// Move `form`'s deadline for `period` (`2026-Q3`, `2026-09`, `2025`)
+    /// to `new_deadline` (`YYYY-MM-DD`), for every taxpayer; `note` is
+    /// kept as its reason. A deadline already moved is moved again.
+    pub fn move_deadline(&self, form: &str, period: &str, new_deadline: &str, note: Option<&str>) -> AppResult<MovedDeadline> {
+        let mut args = serde_json::json!({ "form": form, "period": period, "new_deadline": new_deadline });
+        if let Some(note) = note.map(str::trim).filter(|n| !n.is_empty()) {
+            args["reason"] = note.into();
+        }
+        self.call_as("deadline_override_set", vec![args])
+    }
+
+    /// Put `form`'s deadline for `period` back to BIR's date.
+    pub fn restore_deadline(&self, form: &str, period: &str) -> AppResult<RestoredDeadline> {
+        self.call_as("deadline_override_remove", vec![serde_json::json!({ "form": form, "period": period })])
     }
 
     /// Saved and/or filed returns across every branch, newest first.

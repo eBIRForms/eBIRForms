@@ -84,6 +84,8 @@ pub fn App() -> impl IntoElement {
         let st = live::store();
         if st.confirm_delete.get_untracked().is_some() {
             st.confirm_delete.set(None);
+        } else if st.override_sheet.get_untracked().is_some() {
+            st.override_sheet.set(None);
         } else if st.start_sheet.get_untracked().is_some() {
             st.start_sheet.set(None);
         } else if st.search_open.get_untracked() {

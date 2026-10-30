@@ -20,6 +20,9 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 export RUSTC_WRAPPER=
 ROOT=$(pwd)
+# GNU `timeout` (Homebrew coreutils) bounds each simulator command; stock
+# macOS has none, so fall back to perl's alarm.
+command -v timeout >/dev/null || timeout() { local s=$1; shift; perl -e 'alarm shift; exec @ARGV' "$s" "$@"; }
 # The AeroSpace workspace the app's windows run on while they are shot.
 WORKSPACE="${BUWIZ_WORKSPACE:-2}"
 OUT=$ROOT/internal/evidence
@@ -37,7 +40,7 @@ APP_PID=""
 cleanup() {
     [ -n "$APP_PID" ] && kill "$APP_PID" 2>/dev/null || true
     if [ -n "$UDID" ]; then
-        xcrun simctl shutdown "$UDID" 2>/dev/null || true
+        timeout 60 xcrun simctl shutdown "$UDID" 2>/dev/null || true
         osascript -e 'tell application "Simulator" to quit' >/dev/null 2>&1 || true
     fi
     rm -rf "$TMP"
@@ -103,6 +106,12 @@ DESKTOP=(
     "palette|BUWIZ_SHEET=palette|Go to"
     "print-preview|BUWIZ_PRINT=1701Q|Quarterly Income Tax|22"
     "delete-confirm|BUWIZ_ROUTE=filings BUWIZ_SHEET=delete|Delete"
+    "override-sheet|BUWIZ_SHEET=override|Applies to every taxpayer"
+    "calendar-override|BUWIZ_ROUTE=calendar|Moved from"
+    "amend|BUWIZ_AMEND=1601C|Amending a sent return|14"
+    "edit-penalties|BUWIZ_OPEN=1701Q:2026:2 BUWIZ_UNLOCK=penalties|entering the penalties yourself|14"
+    "edit-on-return|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_UNLOCK=profile|On this return only|14"
+    "toast|BUWIZ_ROUTE=home BUWIZ_TOAST=Taken_off_the_queue:_an_editable_draft_again.|editable draft again"
 )
 
 # Whether screen $1 is in this run (ONLY lists screens; empty: all).
@@ -186,6 +195,12 @@ PHONE=(
     "payee-picker|BUWIZ_OPEN=1606:2026:3 BUWIZ_PICK=payee|payee|20"
     "delete-confirm|BUWIZ_ROUTE=filings BUWIZ_SHEET=delete|Delete"
     "settings|BUWIZ_ROUTE=settings|Sign in to send"
+    "override-sheet|BUWIZ_SHEET=override|Applies to every taxpayer"
+    "calendar-override|BUWIZ_ROUTE=calendar|moved from"
+    "amend|BUWIZ_AMEND=1601C|Amending a sent return|20"
+    "edit-penalties|BUWIZ_OPEN=1701Q:2026:2 BUWIZ_UNLOCK=penalties|entering this penalty yourself|20"
+    "edit-on-return|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_UNLOCK=profile|On this return only|20"
+    "toast|BUWIZ_ROUTE=home BUWIZ_TOAST=Taken_off_the_queue:_an_editable_draft_again.|editable draft again"
 )
 
 phone_shot() {
@@ -195,8 +210,8 @@ phone_shot() {
     fresh_db "$dir"
     mv "$dir/bir_data.db" "$dir/bir_data.db.tmp" && mv "$dir/bir_data.db.tmp" "$dir/bir_data.db"
     { echo "BIR_DB_KEY=$KEY"; echo "BUWIZ_THEME=$theme"; for kv in $hooks; do echo "$kv"; done; } >"$dir/launch.env"
-    xcrun simctl ui "$UDID" appearance "$theme" 2>/dev/null || true
-    xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
+    timeout 60 xcrun simctl ui "$UDID" appearance "$theme" 2>/dev/null || true
+    timeout 60 xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
     # A wedged simulator never answers a launch: fail the shot, don't hang.
     if ! timeout 180 xcrun simctl launch "$UDID" com.buwiz.oss >/dev/null; then
         FAILED+=" phone-$name-$theme.png:launch"
@@ -208,7 +223,7 @@ phone_shot() {
     # to an external volume: shoot into $TMP, then move it. A just-booted
     # simulator may not have its display yet: try again, for up to a minute.
     for _ in 1 2 3 4 5 6 7 8 9 10 11 12; do
-        if xcrun simctl io "$UDID" screenshot "$TMP/shot.png" >/dev/null 2>"$TMP/shot.err"; then
+        if timeout 60 xcrun simctl io "$UDID" screenshot "$TMP/shot.png" >/dev/null 2>"$TMP/shot.err"; then
             mv "$TMP/shot.png" "$png"
             break
         fi
@@ -227,7 +242,7 @@ if [ "$WHICH" = all ] || [ "$WHICH" = phone ]; then
         UDID=$(xcrun simctl create "$DEVICE_NAME" "iPhone 17 Pro" "$runtime")
     fi
     xcrun simctl boot "$UDID" 2>/dev/null || true
-    xcrun simctl bootstatus "$UDID" -b >/dev/null
+    timeout 300 xcrun simctl bootstatus "$UDID" -b >/dev/null
     # The app bundle, as app/ios.sh packs it.
     BUNDLE="$TMP/Buwiz.app"
     mkdir -p "$BUNDLE"
@@ -235,19 +250,19 @@ if [ "$WHICH" = all ] || [ "$WHICH" = phone ]; then
     sed -n '/^cat > "$BUNDLE\/Info.plist" <<PLIST/,/^PLIST/p' app/ios.sh | sed '1d;$d' |
         sed 's/\$APP/Buwiz/g; s/\$ID/com.buwiz.oss/g' >"$BUNDLE/Info.plist"
     codesign --force --sign - "$BUNDLE/Buwiz" 2>/dev/null || true
-    xcrun simctl install "$UDID" "$BUNDLE"
+    timeout 600 xcrun simctl install "$UDID" "$BUNDLE"
     # The first launch after an install is the slow one (the system prepares
     # the app): launch it once and let it settle before the first shot.
     timeout 180 xcrun simctl launch "$UDID" com.buwiz.oss >/dev/null 2>&1 || true
     sleep 20
-    xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
+    timeout 60 xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
     for theme in light dark; do
         for spec in "${PHONE[@]}"; do
             IFS='|' read -r name hooks want wait <<<"$spec"
             wanted "$name" && phone_shot "$name" "$theme" "$hooks" "$want" "$wait"
         done
     done
-    xcrun simctl ui "$UDID" appearance light 2>/dev/null || true
+    timeout 60 xcrun simctl ui "$UDID" appearance light 2>/dev/null || true
 fi
 
 # Merge this run's results into checks.txt: a retaken shot replaces its line.

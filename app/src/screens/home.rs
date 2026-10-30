@@ -56,9 +56,23 @@ fn who(name: &str, branch: &str) -> String {
     if branch.is_empty() || branch == "Head office" { name.to_owned() } else { format!("{name} · {branch}") }
 }
 
-/// A deadline: date box, code, `<code> · <period>` over whose it is, when
-/// (late with the penalty so far, due soon), status.
-pub(crate) fn due_row(d: DeadlineRow, index: ReadSignal<usize>) -> impl IntoElement {
+/// A moved deadline's marker line: `Moved from Nov 16 · <note>`.
+pub(crate) fn moved_line(d: &DeadlineRow) -> Option<String> {
+    if !d.is_moved() {
+        return None;
+    }
+    let from = d.original_due_date.as_deref().map(crate::screens::steps::short_date).unwrap_or_default();
+    let note = d.moved_reason.as_deref().filter(|r| *r != bir_app_core::bir_core::deadline_overrides::DEFAULT_REASON);
+    Some(match note {
+        Some(note) => format!("Moved from {from} · {note}"),
+        None => format!("Moved from {from}"),
+    })
+}
+
+/// A deadline: date box, code, `<code> · <period>` over whose it is (or,
+/// when moved, from which date), when (late with the penalty so far, due
+/// soon), status; `change`: a Change due date button (the Calendar's).
+pub(crate) fn due_row(d: DeadlineRow, index: ReadSignal<usize>, change: bool) -> impl IntoElement {
     let n = days_until(&d.due_date);
     let month = d.due_date.get(5..7).and_then(|m| m.parse::<usize>().ok()).filter(|m| (1..=12).contains(m)).unwrap_or(1);
     let day = d.due_date.get(8..10).and_then(|x| x.parse::<u32>().ok()).unwrap_or(1);
@@ -74,6 +88,9 @@ pub(crate) fn due_row(d: DeadlineRow, index: ReadSignal<usize>) -> impl IntoElem
     };
     let compact = move || window().width.0 < 760.0;
     let row = d.clone();
+    let sheet_row = d.clone();
+    let moved = moved_line(&d);
+    let line = moved.clone().unwrap_or_else(|| who(&d.taxpayer_name, &d.branch_name));
     list_row(index)
         .cursor_pointer()
         .label(format!("{} · {}", d.form_code, d.period_label))
@@ -88,8 +105,19 @@ pub(crate) fn due_row(d: DeadlineRow, index: ReadSignal<usize>) -> impl IntoElem
                 .child(text(day.to_string()).text_size(px(16.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::FG)),
         )
         .child(code_text(d.form_code.clone()))
-        .child(name_cell(format!("{} · {}", d.form_code, d.period_label), who(&d.taxpayer_name, &d.branch_name)))
+        .child(
+            view()
+                .flex_1()
+                .min_w(px(0.0))
+                .child(text(format!("{} · {}", d.form_code, d.period_label)).text_size(px(13.0)).font_weight(FontWeight::MEDIUM).text_color(theme::FG).truncate())
+                .child(text(line).text_size(px(12.0)).text_color(if moved.is_some() { theme::ACCENT } else { theme::FG2 }).truncate()),
+        )
+        .child(when(moved.is_some(), || chip("Moved", Tone::Accent)))
         .child(when(move || !compact(), move || view().flex_row().child(when_el())))
+        .child(when(change && d.period_key.is_some(), move || {
+            let row = sheet_row.clone();
+            button_sm("Change due date", Variant::Ghost, Some(Icon::Calendar), || false, move || store().override_sheet.set(Some(row.clone()))).label("Change due date")
+        }))
         .child(view().w(px(88.0)).flex_row().justify_end().child(chip(d.status.clone(), status_tone(&d.status))))
 }
 
@@ -174,8 +202,8 @@ fn dashboard() -> impl IntoElement {
         .child(section_title("Due in the next 30 days", true))
         .child(list_group().child(when(move || soon2().is_empty(), || empty_row("Deadlines show here once a taxpayer has forms for a tax year."))).child(each(
             soon,
-            |d| format!("{}{}{}{}{:?}", d.tin, d.form_code, d.taxable_year, d.period, d.return_key),
-            |d, index| due_row(d.get_untracked(), index),
+            |d| format!("{}{}{}{}{:?}{}", d.tin, d.form_code, d.taxable_year, d.period, d.return_key, d.due_date),
+            |d, index| due_row(d.get_untracked(), index, false),
         )))
         .child(when(move || !needed2().is_empty(), move || {
             let needed = needed.clone();

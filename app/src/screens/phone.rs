@@ -416,6 +416,15 @@ pub(crate) fn delete_alert() -> impl IntoElement {
 
 // ---------------------------------------------------------------- calendar
 
+/// A deadline row's place in [`crate::store::Store::swiped`]: below zero,
+/// so it never matches a return's id.
+fn deadline_id(d: &DeadlineRow) -> i64 {
+    use std::hash::{Hash, Hasher};
+    let mut h = std::collections::hash_map::DefaultHasher::new();
+    (&d.tin, &d.form_code, d.taxable_year, d.period).hash(&mut h);
+    -((h.finish() >> 2) as i64) - 1
+}
+
 pub(crate) fn calendar() -> impl IntoElement {
     let rows = move || crate::screens::calendar::calendar_rows(false);
     let rows2 = rows.clone();
@@ -431,6 +440,7 @@ pub(crate) fn calendar() -> impl IntoElement {
         out
     };
     let groups2 = groups.clone();
+    let groups3 = groups.clone();
     tab_content(
         view()
             .gap(px(14.0))
@@ -444,23 +454,46 @@ pub(crate) fn calendar() -> impl IntoElement {
                     .child(text("They show once your tax profile lists the forms you file.").text_center().text_size(px(13.0)).text_color(theme::FG2))
                     .child(primary_button("Start a return", || store().go(Route::Library)))
             }))
-            .child(each(groups, |g| g.0.clone(), |g, _| {
+            .child(each(groups, |g| format!("{:?}", g), |g, _| {
                 let (label, list) = g.get_untracked();
                 let late = label == "Late";
+                let st = store();
                 let mut group = card();
                 for (i, d) in list.into_iter().enumerate() {
                     let n = days_until(&d.due_date);
                     let pen = late_penalty(&d);
-                    let line = format!("{} · {}", crate::screens::steps::short_date(&d.due_date), when_words(n));
+                    let date = crate::screens::steps::short_date(&d.due_date);
+                    let line = match &d.original_due_date {
+                        Some(from) if d.is_moved() => format!("{date} · moved from {}", crate::screens::steps::short_date(from)),
+                        _ => format!("{date} · {}", when_words(n)),
+                    };
                     let trailing: AnyElement = match pen {
                         Some(p) => chip(peso(p), Tone::Danger).into_element(),
+                        None if d.is_moved() => chip("Moved", Tone::Accent).into_element(),
                         None if open_status(&d.status) => view().into_element(),
                         None => chip(d.status.clone(), status_tone(&d.status)).into_element(),
                     };
                     let row = d.clone();
-                    group = group.child(row_view(&d.form_code, format!("{} · {}", d.form_code, d.period_label), line, trailing, i > 0).cursor_pointer().active(|s| s.bg(theme::HOVER)).on_press(move || open_deadline(&row)));
+                    let content = row_view(&d.form_code, format!("{} · {}", d.form_code, d.period_label), line, trailing, false).cursor_pointer().active(|s| s.bg(theme::HOVER)).on_press(move || {
+                        if st.swiped.get_untracked().is_some() {
+                            st.swiped.set(None);
+                        } else {
+                            open_deadline(&row);
+                        }
+                    });
+                    let cell = view().border_t(px(if i > 0 { 1.0 } else { 0.0 })).border_color(theme::BORDER);
+                    group = group.child(if d.period_key.is_some() {
+                        let sheet_row = d.clone();
+                        let action: (&'static str, AdaptiveColor, std::rc::Rc<dyn Fn()>) = ("Due date", theme::ACCENT, std::rc::Rc::new(move || st.override_sheet.set(Some(sheet_row.clone()))));
+                        cell.child(swipe_row(deadline_id(&d), content, vec![action])).into_element()
+                    } else {
+                        cell.child(content).into_element()
+                    });
                 }
                 view().gap(px(6.0)).child(heading(label).text_color(if late { theme::DANGER } else { theme::FG2 })).child(group).into_element()
+            }))
+            .child(when(move || !groups3().is_empty(), || {
+                text("Swipe a deadline left to change its due date.").self_center().text_size(px(12.0)).text_color(theme::FG3)
             })),
     )
 }
@@ -625,6 +658,8 @@ fn timeline_page(r: ReturnRow, stage: Option<SendStage>) -> impl IntoElement {
     let open = r.clone();
     let print = r.clone();
     let cancel = r.clone();
+    let amend = r.clone();
+    let filed = matches!(r.status.as_str(), "Sent" | "Submitted" | "Confirmed" | "Paid");
     view()
         .flex_1()
         .child(
@@ -648,6 +683,7 @@ fn timeline_page(r: ReturnRow, stage: Option<SendStage>) -> impl IntoElement {
                             .flex_row()
                             .gap(px(10.0))
                             .child(secondary("Open the return", move || st.open_row(&open)))
+                            .child(when(filed, move || secondary("Amend", { let amend = amend.clone(); move || st.amend_row(&amend) })))
                             .child(secondary("Print", move || preview::print_row(print.clone()))),
                     ),
             ),

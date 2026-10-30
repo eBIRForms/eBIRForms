@@ -210,6 +210,8 @@ pub(crate) struct Store {
     pub preview: Signal<Option<Preview>>,
     /// The swiped-open row of a list (one at a time).
     pub swiped: Signal<Option<i64>>,
+    /// The deadline whose due date the Change due date sheet edits.
+    pub override_sheet: Signal<Option<DeadlineRow>>,
 }
 
 impl Store {
@@ -250,6 +252,7 @@ impl Store {
             status_of: signal(None),
             preview: signal(None),
             swiped: signal(None),
+            override_sheet: signal(None),
         }
     }
 
@@ -375,7 +378,8 @@ impl Store {
     /// `BUWIZ_OPEN=<form>:<year>:<period>` at launch (`ios.sh` passes it
     /// through): open that return of the selected taxpayer once the
     /// taxpayers are read; `BUWIZ_FOCUS=1` then focuses its first box (the
-    /// keyboard and its row) — `BUWIZ_FOCUS=<n>` the n-th — `BUWIZ_OUTLINE=1` opens the outline. For
+    /// keyboard and its row) — `BUWIZ_FOCUS=<n>` the n-th — `BUWIZ_OUTLINE=1` opens the outline,
+    /// `BUWIZ_UNLOCK=penalties|profile` presses Edit penalties or Edit on this return. For
     /// screenshots and a scripted check of the simulator, where nothing
     /// else can tap.
     fn open_from_launch(&'static self) {
@@ -393,7 +397,8 @@ impl Store {
             let flag = |name: &str| std::env::var(name).is_ok_and(|v| v == "1");
             let focus: Option<usize> = std::env::var("BUWIZ_FOCUS").ok().and_then(|v| v.parse().ok());
             let pick = std::env::var("BUWIZ_PICK").ok().filter(|v| !v.is_empty());
-            if focus.is_some() || flag("BUWIZ_OUTLINE") || pick.is_some() {
+            let unlock = std::env::var("BUWIZ_UNLOCK").ok().filter(|v| !v.is_empty());
+            if focus.is_some() || flag("BUWIZ_OUTLINE") || pick.is_some() || unlock.is_some() {
                 self.owner.run(|| {
                     // A loaded machine can take seconds to load the form:
                     // wait for it, then let its rows mount.
@@ -412,6 +417,8 @@ impl Store {
                             crate::screens::focus_nth(n);
                         } else if let Some(pick) = pick.as_deref() {
                             crate::screens::pick_on_launch(pick);
+                        } else if let Some(unlock) = unlock.as_deref() {
+                            crate::screens::unlock_on_launch(unlock);
                         }
                     })
                 });
@@ -707,6 +714,38 @@ impl Store {
         }
     }
 
+    /// Start an amended return of a filed one.
+    pub(crate) fn amend_row(&'static self, row: &ReturnRow) {
+        self.form.open_as(open_of(row), format!("{} · amended", row.form_code), crate::session::How::Amend);
+    }
+
+    /// Move `row`'s deadline to `date` (`YYYY-MM-DD`) for every taxpayer,
+    /// `note` kept as its reason; the deadlines are read again. The new due
+    /// date (a weekend moves to the next working day), or why not.
+    pub(crate) async fn move_deadline(&'static self, row: DeadlineRow, date: String, note: String) -> Result<String, String> {
+        let period = row.period_key.clone().ok_or("This return is filed as needed: it has no calendar deadline to move.")?;
+        let form = row.form_code.clone();
+        let moved = call(move |app| app.move_deadline(&form, &period, &date, Some(&note))).await?;
+        self.reload_deadlines();
+        Ok(moved.due.unwrap_or_default())
+    }
+
+    /// Put `row`'s deadline back to BIR's date.
+    pub(crate) fn restore_deadline(&'static self, row: DeadlineRow) {
+        task(async move {
+            let Some(period) = row.period_key.clone() else { return };
+            let form = row.form_code.clone();
+            match call(move |app| app.restore_deadline(&form, &period)).await {
+                Ok(back) => {
+                    let due = back.due.as_deref().map(crate::screens::steps::short_date).unwrap_or_default();
+                    self.notify(NoticeTone::Info, format!("{} · {} is due {due} again, BIR's date, for every taxpayer.", row.form_code, row.period_label));
+                    self.reload_deadlines();
+                }
+                Err(why) => self.notify(NoticeTone::Danger, why),
+            }
+        });
+    }
+
     pub(crate) fn select(&self, tin: &str) {
         if let Loaded::Ready(list) = self.taxpayers.get_untracked() {
             self.selected.set(select_branch(&list, tin));
@@ -725,9 +764,13 @@ impl Store {
 
     /// Show `text` for a few seconds.
     pub(crate) fn notify(&'static self, tone: NoticeTone, text: impl Into<String>) {
+        self.notify_for(tone, text, if tone == NoticeTone::Danger { 8000 } else { 2600 });
+    }
+
+    /// Show `text` for `hold` milliseconds.
+    fn notify_for(&'static self, tone: NoticeTone, text: impl Into<String>, hold: u64) {
         let id = self.notice.get_untracked().map_or(1, |n| n.id + 1);
         self.notice.set(Some(Notice { id, tone, text: text.into() }));
-        let hold = if tone == NoticeTone::Danger { 8000 } else { 2600 };
         self.owner.run(|| {
             set_timeout(Duration::from_millis(hold), move || {
                 if self.notice.get_untracked().is_some_and(|n| n.id == id) {
@@ -772,6 +815,11 @@ pub(crate) fn open_of(row: &ReturnRow) -> bir_app_core::OpenReturn {
 /// - `BUWIZ_SWIPE=1`: the first Filings row swiped open
 /// - `BUWIZ_PRINT=<form>`: print preview of that form's first return;
 ///   `BUWIZ_PRINT_DIALOG=1|share` then opens the print dialog or share sheet
+/// - `BUWIZ_SHEET=override`: the Calendar with the Change due date sheet of
+///   its first moved deadline (else its first deadline)
+/// - debug builds: `BUWIZ_AMEND=<form>`: an amended return of that form's
+///   first sent return; `BUWIZ_TOAST=<text>`: a notice held 30 seconds
+///   (`_` reads as a space: the evidence script splits hooks on spaces)
 fn launch_hooks(st: &'static Store) {
     static DONE: std::sync::Once = std::sync::Once::new();
     let var = |name: &str| std::env::var(name).ok().filter(|v| !v.is_empty());
@@ -785,7 +833,9 @@ fn launch_hooks(st: &'static Store) {
         let swipe = var("BUWIZ_SWIPE").is_some();
         let print = var("BUWIZ_PRINT");
         let dialog = var("BUWIZ_PRINT_DIALOG");
-        if route.is_none() && sheet.is_none() && status.is_none() && print.is_none() && !swipe {
+        // Debug only: an amendment writes a draft, a toast shows any text.
+        let (amend, toast) = if cfg!(debug_assertions) { (var("BUWIZ_AMEND"), var("BUWIZ_TOAST")) } else { (None, None) };
+        if route.is_none() && sheet.is_none() && status.is_none() && print.is_none() && !swipe && amend.is_none() && toast.is_none() {
             return;
         }
         task(async move {
@@ -843,7 +893,22 @@ fn launch_hooks(st: &'static Store) {
                 Some("palette") => st.palette_open.set(true),
                 Some("delete") => st.confirm_delete.set(rows.iter().find(|r| r.status == "Draft").cloned()),
                 Some(s) if s.starts_with("start:") => st.start_sheet.set(Some(s[6..].to_owned())),
+                Some("override") => {
+                    st.go(Route::Calendar);
+                    let due = crate::screens::calendar_rows(false);
+                    let pick = due.iter().find(|d| d.is_moved()).or_else(|| due.iter().find(|d| d.period_key.is_some())).cloned();
+                    timer(Duration::from_millis(400)).await;
+                    st.override_sheet.set(pick);
+                }
                 _ => {}
+            }
+            if let Some(code) = amend
+                && let Some(r) = rows.iter().find(|r| r.form_code == code && matches!(r.status.as_str(), "Sent" | "Submitted" | "Confirmed" | "Paid"))
+            {
+                st.amend_row(r);
+            }
+            if let Some(text) = toast {
+                st.notify_for(NoticeTone::Success, text.replace('_', " "), 30_000);
             }
             if let Some(code) = print
                 && let Some(r) = rows.iter().find(|r| r.form_code == code)
