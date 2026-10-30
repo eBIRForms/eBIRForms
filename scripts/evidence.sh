@@ -236,6 +236,11 @@ if [ "$WHICH" = all ] || [ "$WHICH" = phone ]; then
         sed 's/\$APP/Buwiz/g; s/\$ID/com.buwiz.oss/g' >"$BUNDLE/Info.plist"
     codesign --force --sign - "$BUNDLE/Buwiz" 2>/dev/null || true
     xcrun simctl install "$UDID" "$BUNDLE"
+    # The first launch after an install is the slow one (the system prepares
+    # the app): launch it once and let it settle before the first shot.
+    timeout 180 xcrun simctl launch "$UDID" com.buwiz.oss >/dev/null 2>&1 || true
+    sleep 20
+    xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
     for theme in light dark; do
         for spec in "${PHONE[@]}"; do
             IFS='|' read -r name hooks want wait <<<"$spec"
