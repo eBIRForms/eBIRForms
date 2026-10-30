@@ -9,7 +9,9 @@
 #   APPLE_ID, APPLE_TEAM_ID, APP_PASSWORD   notarytool's Apple ID login
 #   RELEASE_SIGNING_IDENTITY                Developer ID Application identity,
 #   or SIGNING_IDENTITY                     preferred in that order
-# The identity must be in the login keychain. Writes
+# BUWIZ_SIGNING_IDENTITY in the environment overrides both, for an env file
+# whose identities are for the App Store. The identity must be a Developer
+# ID Application one, in the login keychain. Writes
 # app/target/release-artifacts/Buwiz-$VERSION-macos-universal.dmg.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -35,12 +37,18 @@ read_key() {
 apple_id=$(read_key APPLE_ID)
 apple_team_id=$(read_key APPLE_TEAM_ID)
 app_password=$(read_key APP_PASSWORD)
-identity=$(read_key RELEASE_SIGNING_IDENTITY)
+identity=${BUWIZ_SIGNING_IDENTITY:-}
+[ -n "$identity" ] || identity=$(read_key RELEASE_SIGNING_IDENTITY)
 [ -n "$identity" ] || identity=$(read_key SIGNING_IDENTITY)
 for pair in "APPLE_ID:$apple_id" "APPLE_TEAM_ID:$apple_team_id" "APP_PASSWORD:$app_password"; do
   [ -n "${pair#*:}" ] || fail "$env_file has no ${pair%%:*}= line"
 done
 [ -n "$identity" ] && [ "$identity" != "-" ] || fail "$env_file has no RELEASE_SIGNING_IDENTITY= or SIGNING_IDENTITY= line"
+# Notarization rejects anything else, but only after the whole build.
+case $identity in
+  "Developer ID Application:"*) ;;
+  *) fail "a DMG needs a Developer ID Application identity, not '$identity'; set BUWIZ_SIGNING_IDENTITY to one from: security find-identity -v -p codesigning" ;;
+esac
 
 version="$(awk -F '"' '
   /^\[package\]$/ { in_package = 1; next }
