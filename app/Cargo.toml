@@ -83,3 +83,16 @@ path = "src/lib.rs"
 [profile.dev.package."*"]
 opt-level = 3
 debug-assertions = false
+
+# The Linux .rpm (packaging/linux/build-rpm.sh). Requires come from the
+# libraries the binary links (packaging/linux/rpm-requires.sh).
+[package.metadata.generate-rpm]
+name = "buwiz"
+summary = "Offline filer for Philippine BIR tax returns"
+description = "Fill a form, check it, see deadlines and penalties, print it and queue it for sending. Every step works offline except sending."
+assets = [
+  { source = "target/release/buwiz", dest = "/usr/bin/buwiz", mode = "755" },
+  { source = "packaging/linux/com.buwiz.oss.desktop", dest = "/usr/share/applications/com.buwiz.oss.desktop", mode = "644" },
+  { source = "packaging/icon.svg", dest = "/usr/share/icons/hicolor/scalable/apps/com.buwiz.oss.svg", mode = "644" },
+  { source = "target/linux-icons/com.buwiz.oss.png", dest = "/usr/share/icons/hicolor/256x256/apps/com.buwiz.oss.png", mode = "644" },
+]
