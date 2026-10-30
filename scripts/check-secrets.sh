@@ -34,7 +34,20 @@ if [ -n "$code" ]; then
   if [ -n "$found" ]; then echo "$found"; hit 'a passphrase or SFTP code is in the tree'; fi
 fi
 search 'codeitlikemiley@' 'the maintainer email is in the tree (use fixtures)'
-search '\b261708015' 'a real-looking TIN from the source repo is in the tree'
+# A real TIN root from the source repo, kept here only as a SHA-256 so this
+# script doesn't publish it: every 9-digit run (or NNN-NNN-NNN) in the tree
+# is hashed and compared.
+tin_hash=54769564c3351819e39114a34d0f1b52f5ddc479a736e24df3ffcae2e2c38e2b
+if [ -n "$files" ]; then
+  tins=$(echo "$files" | grep -v -E '^LICENSE$' | xargs grep -ohI -E '(^|[^0-9])[0-9]{3}-?[0-9]{3}-?[0-9]{3}' -- 2>/dev/null \
+    | sed -E 's/^[^0-9]//; s/-//g' | sort -u || true)
+  for t in $(echo "$tins" | perl -MDigest::SHA=sha256_hex -ne 'chomp; print "$_\n" if sha256_hex($_) eq "'"$tin_hash"'"'); do
+    if [ -n "$t" ]; then
+      echo "$files" | grep -v -E '^LICENSE$' | xargs grep -lI -E "${t:0:3}-?${t:3:3}-?${t:6:3}" -- 2>/dev/null | sed 's/^/  in /' || true
+      hit 'a real-looking TIN from the source repo is in the tree'
+    fi
+  done
+fi
 
 if echo "$files" | grep -E '(^|/)\.env(\.|$)|(^|/)\.keys/|\.(pem|p8|p12|key)$' | grep -v '\.env\.example$'; then
   hit 'a local secret file is tracked'
