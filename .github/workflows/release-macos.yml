@@ -1,7 +1,7 @@
 name: release (macos)
 
 # Called by release.yml: a universal (arm64 + x86_64) Buwiz.app in a DMG,
-# signed with the Developer ID, notarized and stapled, uploaded to R2 as
+# signed with the Developer ID, notarized and stapled, for publish to upload to R2 as
 # releases/v{VERSION}/Buwiz-{VERSION}-macos-universal.dmg.
 
 on:
@@ -18,12 +18,6 @@ env:
   RUSTC_WRAPPER: ""
   CARGO_TERM_COLOR: always
   MACOSX_DEPLOYMENT_TARGET: "11.0"
-  R2_BUCKET: buwiz-releases
-  R2_ENDPOINT: https://f1d5007ee46f17d2bd7a1d6cb4402906.r2.cloudflarestorage.com
-  AWS_DEFAULT_REGION: auto
-  AWS_REGION: auto
-  AWS_REQUEST_CHECKSUM_CALCULATION: when_required
-  AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
 
 jobs:
   dmg:
@@ -119,21 +113,14 @@ jobs:
           REQUIRE_NOTARIZATION: "1"
         run: ./packaging/macos/build-dmg.sh
 
-      - name: Upload to R2
-        shell: bash
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-        run: >
-          ./scripts/release/r2-upload.sh
-          "app/target/release-artifacts/Buwiz-$VERSION-macos-universal.dmg"
-          macos universal dmg release-meta
-
+      # release.yml's publish job uploads it to R2 once every platform
+      # has built, so a failed build leaves the version empty.
       - uses: actions/upload-artifact@v4
         with:
-          name: release-meta-macos-universal-dmg
-          path: release-meta/*.json
+          name: release-file-macos-universal-dmg
+          path: app/target/release-artifacts/Buwiz-${{ inputs.version }}-macos-universal.dmg
           if-no-files-found: error
+          retention-days: 7
 
       - name: Clean up signing material
         if: always()

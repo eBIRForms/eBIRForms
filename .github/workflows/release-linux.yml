@@ -1,7 +1,7 @@
 name: release (linux)
 
 # Called by release.yml: the .deb from app/packaging/linux/build-deb.sh,
-# uploaded to R2 as releases/v{VERSION}/buwiz_{VERSION}_amd64.deb.
+# for publish to upload to R2 as releases/v{VERSION}/buwiz_{VERSION}_amd64.deb.
 # Built on Ubuntu 24.04: the package depends on GTK >= 4.14 and
 # WebKitGTK 6.0.
 
@@ -19,12 +19,6 @@ env:
   RUSTC_WRAPPER: ""
   CARGO_TERM_COLOR: always
   CARGO_INCREMENTAL: "0"
-  R2_BUCKET: buwiz-releases
-  R2_ENDPOINT: https://f1d5007ee46f17d2bd7a1d6cb4402906.r2.cloudflarestorage.com
-  AWS_DEFAULT_REGION: auto
-  AWS_REGION: auto
-  AWS_REQUEST_CHECKSUM_CALCULATION: when_required
-  AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
 
 jobs:
   deb:
@@ -54,17 +48,11 @@ jobs:
         run: |
           ./packaging/linux/build-deb.sh
           test -f "target/deb/buwiz_${VERSION}_amd64.deb"
-      - name: Upload to R2
-        shell: bash
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-        run: >
-          ./scripts/release/r2-upload.sh
-          "app/target/deb/buwiz_${VERSION}_amd64.deb"
-          linux x64 deb release-meta
+      # release.yml's publish job uploads it to R2 once every platform
+      # has built, so a failed build leaves the version empty.
       - uses: actions/upload-artifact@v4
         with:
-          name: release-meta-linux-x64-deb
-          path: release-meta/*.json
+          name: release-file-linux-x64-deb
+          path: app/target/deb/buwiz_${{ inputs.version }}_amd64.deb
           if-no-files-found: error
+          retention-days: 7

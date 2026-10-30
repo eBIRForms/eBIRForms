@@ -155,8 +155,9 @@ jobs:
       version: ${{ needs.preflight.outputs.version }}
     secrets: inherit
 
-  # The manifest and checksums, after every file is up. manifest.json first,
-  # then SHA256SUMS.
+  # The only job that writes to R2, and only once every platform has built:
+  # a failed build leaves releases/v{VERSION}/ empty, so the same version
+  # can run again. The files, then manifest.json, then SHA256SUMS.
   publish:
     needs: [preflight, macos, windows, linux, android]
     runs-on: ubuntu-24.04
@@ -166,9 +167,26 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
-          pattern: release-meta-*
-          path: meta
-          merge-multiple: true
+          pattern: release-file-*
+          path: files
+      - name: Upload the files to R2
+        shell: bash
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: |
+          set -euo pipefail
+          # Each artifact is release-file-{platform}-{arch}-{kind}, one file.
+          for dir in files/release-file-*; do
+            IFS=- read -r platform arch kind <<<"${dir#files/release-file-}"
+            shopt -s nullglob
+            found=("$dir"/*)
+            if [ "${#found[@]}" -ne 1 ]; then
+              echo "$dir holds ${#found[@]} files, expected one" >&2
+              exit 1
+            fi
+            ./scripts/release/r2-upload.sh "${found[0]}" "$platform" "$arch" "$kind" meta
+          done
       - name: Build manifest.json and SHA256SUMS
         run: python3 scripts/release/manifest.py meta "$VERSION" out
       - name: Upload manifest.json and SHA256SUMS to R2
