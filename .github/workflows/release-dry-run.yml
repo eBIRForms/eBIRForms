@@ -1,0 +1,120 @@
+name: release dry run
+
+# On a pull request that touches the release pipeline: builds, signs and
+# smoke-tests every installer through the same workflows release.yml
+# calls, at app/Cargo.toml's version, then checks the files and builds
+# manifest.json and SHA256SUMS from them. Nothing is published: no R2
+# credentials, no R2 access, no latest.json. The files stay artifacts of
+# the run.
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/release*.yml
+      - .github/workflows/release-dry-run.yml
+      - app/packaging/**
+      - scripts/release/**
+
+permissions:
+  contents: read
+
+# A newer push to the same pull request cancels the older dry run.
+concurrency:
+  group: release-dry-run-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  version:
+    runs-on: ubuntu-24.04
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read app/Cargo.toml's version
+        id: version
+        run: |
+          set -euo pipefail
+          VERSION="$(awk -F '"' '
+            /^\[package\]$/ { in_package = 1; next }
+            in_package && /^\[/ { exit }
+            in_package && /^version[[:space:]]*=/ { print $2; exit }
+          ' app/Cargo.toml)"
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "app/Cargo.toml's version must be MAJOR.MINOR.PATCH: ${VERSION:-<none>}" >&2
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+      - run: ./scripts/check-secrets.sh
+
+  macos:
+    needs: version
+    uses: ./.github/workflows/release-macos.yml
+    with:
+      version: ${{ needs.version.outputs.version }}
+    secrets: inherit
+
+  windows:
+    needs: version
+    uses: ./.github/workflows/release-windows.yml
+    with:
+      version: ${{ needs.version.outputs.version }}
+    secrets: inherit
+
+  linux:
+    needs: version
+    uses: ./.github/workflows/release-linux.yml
+    with:
+      version: ${{ needs.version.outputs.version }}
+    secrets: inherit
+
+  # What publish does before its first upload, without the upload: every
+  # artifact holds one file carrying the version, its metadata is computed
+  # locally, and manifest.py accepts the set.
+  manifest:
+    needs: [version, macos, windows, linux]
+    runs-on: ubuntu-24.04
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: release-file-*
+          path: files
+      - name: Check the files and compute their metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Android is left out: it needs the release keystore.
+          expected="macos-universal-dmg windows-x64-exe windows-x64-msi
+            linux-x64-deb linux-x64-rpm linux-x64-targz
+            linux-arm64-deb linux-arm64-rpm linux-arm64-targz linux-universal-sh"
+          for name in $expected; do
+            [ -d "files/release-file-$name" ] || { echo "missing artifact release-file-$name" >&2; exit 1; }
+          done
+          # Each artifact is release-file-{platform}-{arch}-{kind}, one file.
+          for dir in files/release-file-*; do
+            IFS=- read -r platform arch kind <<<"${dir#files/release-file-}"
+            shopt -s nullglob
+            found=("$dir"/*)
+            if [ "${#found[@]}" -ne 1 ]; then
+              echo "$dir holds ${#found[@]} files, expected one" >&2
+              exit 1
+            fi
+            ./scripts/release/file-meta.sh "${found[0]}" "$platform" "$arch" "$kind" meta
+          done
+      - name: Build manifest.json and SHA256SUMS
+        run: python3 scripts/release/manifest.py meta "$VERSION" out
+      - name: Summary
+        run: |
+          {
+            echo "### Release dry run: Buwiz $VERSION built, nothing published"
+            echo
+            echo '```'
+            cat out/SHA256SUMS
+            echo '```'
+            echo
+            echo '```json'
+            cat out/manifest.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
