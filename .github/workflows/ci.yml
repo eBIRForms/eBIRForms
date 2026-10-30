@@ -1,9 +1,19 @@
 name: ci
 
+# Pull requests check a change before it merges; pushes to main check the
+# merged result. Text-only changes (Markdown, the license) run nothing.
 on:
   push:
-    branches: [main, "goal/**"]
+    branches: [main]
+    paths-ignore: ["**/*.md", "LICENSE"]
   pull_request:
+    paths-ignore: ["**/*.md", "LICENSE"]
+
+# A newer push to the same pull request cancels its older run; runs on main
+# always finish.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   secrets:
@@ -30,8 +40,8 @@ jobs:
       - run: cargo clippy --locked --all-targets
       - run: cargo test --locked --workspace
 
-  # The app on each desktop OS: debug build and its tests, then a release
-  # build packed as an installer (an artifact of the run).
+  # The app on each desktop OS: debug build and its tests. On main, also a
+  # release build packed as an installer (an artifact of the run).
   app-macos:
     name: app (macos)
     runs-on: macos-latest
@@ -53,7 +63,7 @@ jobs:
     env:
       CARGO_PROFILE_DEV_DEBUG: "0"
       CARGO_INCREMENTAL: "0"
-      # QuickJS (nsh-js) is C: bindgen needs libclang, which the image's LLVM has.
+      # bindgen needs libclang, which the image's LLVM has.
       LIBCLANG_PATH: C:\Program Files\LLVM\bin
     steps:
       - uses: actions/checkout@v4
@@ -67,12 +77,15 @@ jobs:
       - run: cargo test --locked
         working-directory: app
       - run: cargo build --locked --release
+        if: github.event_name == 'push'
         working-directory: app
       # Setup runs it when the WebView2 Runtime (Evergreen) is missing.
       - name: Fetch the WebView2 bootstrapper
+        if: github.event_name == 'push'
         shell: pwsh
         run: Invoke-WebRequest -Uri "https://go.microsoft.com/fwlink/p/?LinkId=2124703" -OutFile app/target/MicrosoftEdgeWebview2Setup.exe
       - name: Build the installer (Inno Setup)
+        if: github.event_name == 'push'
         shell: pwsh
         run: |
           $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
@@ -80,6 +93,7 @@ jobs:
           & $iscc /DAppVersion=0.1.0 app/packaging/windows/buwiz.iss
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - uses: actions/upload-artifact@v4
+        if: github.event_name == 'push'
         with:
           name: buwiz-windows-installer
           path: app/target/installer/*.exe
@@ -114,10 +128,13 @@ jobs:
       - run: cargo test --locked
         working-directory: app
       - run: cargo build --locked --release
+        if: github.event_name == 'push'
         working-directory: app
       - run: ./packaging/linux/build-deb.sh
+        if: github.event_name == 'push'
         working-directory: app
       - uses: actions/upload-artifact@v4
+        if: github.event_name == 'push'
         with:
           name: buwiz-linux-deb
           path: app/target/deb/*.deb
