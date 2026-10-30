@@ -20,6 +20,9 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 export RUSTC_WRAPPER=
 ROOT=$(pwd)
+# GNU `timeout` (Homebrew coreutils) bounds each simulator command; stock
+# macOS has none, so fall back to perl's alarm.
+command -v timeout >/dev/null || timeout() { local s=$1; shift; perl -e 'alarm shift; exec @ARGV' "$s" "$@"; }
 # The AeroSpace workspace the app's windows run on while they are shot.
 WORKSPACE="${BUWIZ_WORKSPACE:-2}"
 OUT=$ROOT/internal/evidence
