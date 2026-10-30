@@ -323,13 +323,30 @@ const ROWS_PER_FRAME: usize = 3;
 /// Once newly opened rows have all mounted, nudge the list one point and
 /// back: AppKit lays out a long document it has just been given on its
 /// next scroll, and doing that now, while nobody scrolls, keeps the
-/// person's first scroll after "Expand all" from stalling a frame.
+/// person's first scroll after "Expand all" from stalling a frame. It waits
+/// until the list is at rest (no jump animating, the offset still for a few
+/// frames), and goes back only if nothing else scrolled in between.
 fn warm_up(list: ElementRef, at: Signal<f32>) {
-    request_animation_frame(move |_| {
-        let y = at.get_untracked();
-        list.scroll_to_offset(px(y + 1.0), false);
-        request_animation_frame(move |_| list.scroll_to_offset(px(y), false));
-    });
+    fn when_still(list: ElementRef, at: Signal<f32>, last: f32, still: u32, tries: u32) {
+        request_animation_frame(move |_| {
+            let y = at.get_untracked();
+            let jumping = session().flash.get_untracked().is_some();
+            let still = if !jumping && (y - last).abs() < 0.5 { still + 1 } else { 0 };
+            if still >= 3 {
+                list.scroll_to_offset(px(y + 1.0), false);
+                request_animation_frame(move |_| {
+                    request_animation_frame(move |_| {
+                        if (at.get_untracked() - (y + 1.0)).abs() < 0.5 {
+                            list.scroll_to_offset(px(y), false);
+                        }
+                    });
+                });
+            } else if tries < 240 {
+                when_still(list, at, y, still, tries + 1);
+            }
+        });
+    }
+    when_still(list, at, at.get_untracked(), 0, 0);
 }
 
 /// The form as one scroll view of rows. Every row of an open part stays
@@ -463,8 +480,10 @@ fn scroll_bench(form: Arc<OpenForm>, list: ElementRef, settled: impl Fn() -> boo
         // add their rows a few per frame after their item mounts) are full:
         // the list must stay settled for a while before scrolling starts.
         fn when_settled(list: ElementRef, reading: BenchReading, speed: f32, settled: std::rc::Rc<dyn Fn() -> bool>, calm: u32) {
+            let steps = table_steps().get_untracked();
             set_timeout(std::time::Duration::from_millis(200), move || {
-                let calm = if settled() { calm + 1 } else { 0 };
+                let full = table_steps().get_untracked() == steps;
+                let calm = if settled() && full { calm + 1 } else { 0 };
                 if calm >= 4 {
                     reading.set((0.0, 0.0, 0));
                     log::warn!(target: "nsh::jank", "---- mounted; scrolling ----");
@@ -1836,6 +1855,12 @@ fn col_width(kind: &str, label: &str) -> f32 {
 
 /// Rows a schedule table adds per display frame while it mounts.
 const TABLE_ROWS_PER_FRAME: usize = 4;
+
+/// How many growth steps schedule tables have taken: the scroll bench
+/// starts only once this stops moving, so every table is full.
+fn table_steps() -> Signal<u64> {
+    crate::live::keep("table_steps", || 0)
+}
 const TABLE_ROW_H: f32 = 40.0;
 const TABLE_HEAD_H: f32 = 34.0;
 
@@ -1855,6 +1880,7 @@ fn schedule_table(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement {
         }
         request_animation_frame(move |_| {
             mounted.update(|m| *m = (*m + TABLE_ROWS_PER_FRAME).min(n));
+            table_steps().update(|s| *s += 1);
             grow(mounted, n);
         });
     }
