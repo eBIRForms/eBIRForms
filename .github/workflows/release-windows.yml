@@ -1,0 +1,148 @@
+name: release (windows)
+
+# Called by release.yml: the Inno Setup installer (app/packaging/windows/
+# buwiz.iss), Authenticode-signed with buwiz.exe inside it, uploaded to R2
+# as releases/v{VERSION}/Buwiz-{VERSION}-windows-x64-setup.exe.
+#
+# Signing, as in the source repo: with neither WINDOWS_CERTIFICATE_PFX nor
+# WINDOWS_CERTIFICATE_PASSWORD set the installer ships unsigned, with a
+# warning on the run; exactly one of the two set fails.
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  RUSTC_WRAPPER: ""
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: "0"
+  # QuickJS (nsh-js) is C: bindgen needs libclang, which the image's LLVM has.
+  LIBCLANG_PATH: C:\Program Files\LLVM\bin
+  R2_BUCKET: buwiz-releases
+  R2_ENDPOINT: https://f1d5007ee46f17d2bd7a1d6cb4402906.r2.cloudflarestorage.com
+  AWS_DEFAULT_REGION: auto
+  AWS_REGION: auto
+  AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+  AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+
+jobs:
+  installer:
+    runs-on: windows-latest
+    timeout-minutes: 120
+    env:
+      VERSION: ${{ inputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Resolve Windows signing mode
+        shell: pwsh
+        env:
+          WINDOWS_CERTIFICATE_PFX: ${{ secrets.WINDOWS_CERTIFICATE_PFX }}
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+        run: |
+          $hasPfx = -not [string]::IsNullOrWhiteSpace($env:WINDOWS_CERTIFICATE_PFX)
+          $hasPassword = -not [string]::IsNullOrWhiteSpace($env:WINDOWS_CERTIFICATE_PASSWORD)
+          if ($hasPfx -and -not $hasPassword) {
+            throw "Missing required Windows release secret: WINDOWS_CERTIFICATE_PASSWORD"
+          }
+          if ($hasPassword -and -not $hasPfx) {
+            throw "Missing required Windows release secret: WINDOWS_CERTIFICATE_PFX"
+          }
+          if (-not ($hasPfx -and $hasPassword)) {
+            "WINDOWS_SIGNING=0" >> $env:GITHUB_ENV
+            Write-Output "::warning title=Unsigned Windows release::WINDOWS_CERTIFICATE_PFX and WINDOWS_CERTIFICATE_PASSWORD are not set; the installer in this release is NOT Authenticode-signed and SmartScreen will warn on install."
+          } else {
+            "WINDOWS_SIGNING=1" >> $env:GITHUB_ENV
+            $certificate = Join-Path $env:RUNNER_TEMP "windows-release-signing.pfx"
+            try {
+              [IO.File]::WriteAllBytes($certificate, [Convert]::FromBase64String($env:WINDOWS_CERTIFICATE_PFX))
+            } catch {
+              throw "WINDOWS_CERTIFICATE_PFX is not valid base64: $($_.Exception.Message)"
+            }
+            $sdk = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\10.*" |
+              Sort-Object Name -Descending |
+              Select-Object -First 1
+            if (-not $sdk) { throw "Windows SDK signing tools were not found" }
+            $signtool = Join-Path $sdk.FullName "x64\signtool.exe"
+            if (-not (Test-Path $signtool)) { throw "signtool.exe was not found" }
+            "WINDOWS_CERTIFICATE_PATH=$certificate" >> $env:GITHUB_ENV
+            "WINDOWS_SIGNTOOL=$signtool" >> $env:GITHUB_ENV
+          }
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: app
+
+      - name: Build
+        working-directory: app
+        run: cargo build --locked --release
+
+      - name: Sign and verify buwiz.exe
+        if: env.WINDOWS_SIGNING == '1'
+        shell: pwsh
+        env:
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+        run: |
+          $exe = "app/target/release/buwiz.exe"
+          & $env:WINDOWS_SIGNTOOL sign /fd SHA256 /td SHA256 /tr http://timestamp.digicert.com `
+            /f $env:WINDOWS_CERTIFICATE_PATH /p $env:WINDOWS_CERTIFICATE_PASSWORD $exe
+          if ($LASTEXITCODE -ne 0) { throw "Signing failed: $exe" }
+          & $env:WINDOWS_SIGNTOOL verify /pa /all /v $exe
+          if ($LASTEXITCODE -ne 0) { throw "Signature verification failed: $exe" }
+
+      # Setup runs it when the WebView2 Runtime (Evergreen) is missing.
+      - name: Fetch the WebView2 bootstrapper
+        shell: pwsh
+        run: Invoke-WebRequest -Uri "https://go.microsoft.com/fwlink/p/?LinkId=2124703" -OutFile app/target/MicrosoftEdgeWebview2Setup.exe
+
+      - name: Build the installer (Inno Setup)
+        shell: pwsh
+        run: |
+          $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $iscc)) { choco install innosetup -y --no-progress }
+          & $iscc "/DAppVersion=$env:VERSION" "/FBuwiz-$env:VERSION-windows-x64-setup" app/packaging/windows/buwiz.iss
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $setup = "app/target/installer/Buwiz-$env:VERSION-windows-x64-setup.exe"
+          if (-not (Test-Path $setup)) { throw "Inno Setup did not write $setup" }
+
+      - name: Sign and verify the installer
+        if: env.WINDOWS_SIGNING == '1'
+        shell: pwsh
+        env:
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+        run: |
+          $setup = "app/target/installer/Buwiz-$env:VERSION-windows-x64-setup.exe"
+          & $env:WINDOWS_SIGNTOOL sign /fd SHA256 /td SHA256 /tr http://timestamp.digicert.com `
+            /f $env:WINDOWS_CERTIFICATE_PATH /p $env:WINDOWS_CERTIFICATE_PASSWORD $setup
+          if ($LASTEXITCODE -ne 0) { throw "Signing failed: $setup" }
+          & $env:WINDOWS_SIGNTOOL verify /pa /all /v $setup
+          if ($LASTEXITCODE -ne 0) { throw "Signature verification failed: $setup" }
+
+      - name: Upload to R2
+        shell: bash
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: >
+          ./scripts/release/r2-upload.sh
+          "app/target/installer/Buwiz-$VERSION-windows-x64-setup.exe"
+          windows x64 exe release-meta
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-meta-windows-x64-exe
+          path: release-meta/*.json
+          if-no-files-found: error
+
+      - name: Clean up signing material
+        if: always()
+        shell: pwsh
+        run: Remove-Item -Force -ErrorAction SilentlyContinue (Join-Path $env:RUNNER_TEMP "windows-release-signing.pfx")
