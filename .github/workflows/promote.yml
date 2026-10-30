@@ -1,0 +1,93 @@
+name: promote
+
+# Points the bucket's latest.json at a published version: copies
+# releases/v{VERSION}/manifest.json to latest.json with a short cache
+# (public, max-age=60). Manual only (or release.yml's manual run with
+# `promote` checked); a tag push never runs it. Run it again with an older
+# version to roll back.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Published version to promote (MAJOR.MINOR.PATCH)
+        required: true
+        type: string
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  R2_BUCKET: buwiz-releases
+  R2_ENDPOINT: https://f1d5007ee46f17d2bd7a1d6cb4402906.r2.cloudflarestorage.com
+  AWS_DEFAULT_REGION: auto
+  AWS_REGION: auto
+  AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+  AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+
+jobs:
+  latest:
+    runs-on: ubuntu-24.04
+    # One promotion at a time.
+    concurrency:
+      group: promote-latest
+      cancel-in-progress: false
+    env:
+      VERSION: ${{ inputs.version }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+    steps:
+      - name: Check the version's manifest and files
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "version must be exactly MAJOR.MINOR.PATCH: $VERSION" >&2
+            exit 1
+          fi
+          prefix="releases/v$VERSION"
+          if ! aws s3api head-object --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
+              --key "$prefix/manifest.json" >/dev/null; then
+            echo "s3://$R2_BUCKET/$prefix/manifest.json does not exist; publish $VERSION first" >&2
+            exit 1
+          fi
+          aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress \
+            "s3://$R2_BUCKET/$prefix/manifest.json" manifest.json
+          python3 - "$VERSION" <<'PY'
+          import json, sys
+          manifest = json.load(open("manifest.json", encoding="utf-8"))
+          version = sys.argv[1]
+          if manifest.get("version") != version:
+              sys.exit(f"manifest.json says version {manifest.get('version')!r}, not {version!r}")
+          if not manifest.get("files"):
+              sys.exit("manifest.json lists no files")
+          with open("files.txt", "w") as out:
+              for f in manifest["files"]:
+                  out.write(f"{f['file']} {f['size']}\n")
+          PY
+          while read -r file size; do
+            remote="$(aws s3api head-object --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
+              --key "$prefix/$file" --query ContentLength --output text)"
+            if [ "$remote" != "$size" ]; then
+              echo "$prefix/$file is ${remote:-missing} in R2, the manifest says $size bytes" >&2
+              exit 1
+            fi
+          done < files.txt
+          current="$(aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress "s3://$R2_BUCKET/latest.json" - 2>/dev/null \
+            | python3 -c 'import json,sys; print(json.load(sys.stdin).get("version"))' 2>/dev/null || echo none)"
+          echo "latest.json now: $current; promoting $VERSION"
+
+      - name: Write latest.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress \
+            --cache-control "public, max-age=60" \
+            --content-type "application/json" \
+            manifest.json "s3://$R2_BUCKET/latest.json"
+          echo "### latest.json -> $VERSION" >> "$GITHUB_STEP_SUMMARY"
