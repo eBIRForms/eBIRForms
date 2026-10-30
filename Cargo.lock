@@ -276,6 +276,7 @@ name = "bir-print"
 version = "0.1.0"
 dependencies = [
  "bir-core",
+ "flate2",
  "lopdf",
  "schemars",
  "serde",
