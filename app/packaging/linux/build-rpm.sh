@@ -5,9 +5,10 @@
 # after `cargo build --release`, with cargo-generate-rpm 0.21.0 and
 # rsvg-convert installed.
 #
-# Requires come from the binary's shared libraries (libgtk-4.so.1,
-# libwebkitgtk-6.0.so.4, libdbus-1.so.3, ...), so one package installs on
-# Fedora and openSUSE alike, whatever each names its GTK packages.
+# Requires are the libraries the binary links directly, by soname
+# (libgtk-4.so.1, libwebkitgtk-6.0.so.4, libdbus-1.so.3, ..., through
+# rpm-requires.sh), so one package installs on Fedora and openSUSE alike,
+# whatever each names its GTK packages.
 set -euo pipefail
 
 fail() { echo "build-rpm: $*" >&2; exit 1; }
@@ -30,5 +31,5 @@ rsvg-convert -w 256 -h 256 packaging/icon.svg -o target/linux-icons/com.buwiz.os
 out=target/rpm/Buwiz-${version}-linux-${arch}.rpm
 mkdir -p target/rpm
 rm -f "$out"
-cargo generate-rpm --auto-req builtin -o "$out"
+cargo generate-rpm --auto-req "$PWD/packaging/linux/rpm-requires.sh" -o "$out"
 echo "$out"

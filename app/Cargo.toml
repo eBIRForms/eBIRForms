@@ -85,7 +85,7 @@ opt-level = 3
 debug-assertions = false
 
 # The Linux .rpm (packaging/linux/build-rpm.sh). Requires come from the
-# binary's shared libraries (`--auto-req builtin`).
+# libraries the binary links (packaging/linux/rpm-requires.sh).
 [package.metadata.generate-rpm]
 name = "buwiz"
 summary = "Offline filer for Philippine BIR tax returns"
