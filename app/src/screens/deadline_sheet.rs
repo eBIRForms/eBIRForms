@@ -5,7 +5,6 @@
 //! real one, like the rest of the app; Save saves now and closes.
 
 use std::rc::Rc;
-use std::time::Duration;
 
 use bir_app_core::DeadlineRow;
 use bir_app_core::display::{format_form_date, parse_typed_date};
@@ -73,22 +72,14 @@ impl Editor {
         }
     }
 
-    /// Save after typing pauses.
+    /// A change waits for Save: a moved due date changes every taxpayer's
+    /// calendar and penalties, so nothing applies by itself.
     fn schedule(&self) {
-        let seq = self.seq.get_untracked() + 1;
-        self.seq.set(seq);
-        let ed = self.clone();
-        store().owner.run(|| {
-            set_timeout(Duration::from_millis(700), move || {
-                if ed.seq.get_untracked() == seq && store().override_sheet.get_untracked().is_some() {
-                    ed.save(false);
-                }
-            })
-        });
+        self.line.set(("Not saved yet. Save applies it to every taxpayer.".to_owned(), false));
     }
 
-    /// Save what is pending; `close`: then close the sheet (Save, a tap
-    /// outside). A date that is not a real one stays unsaved.
+    /// Save what is pending (the Save button); `close`: then close the
+    /// sheet. A date that is not a real one stays unsaved.
     fn save(&self, close: bool) {
         let st = store();
         self.seq.set(self.seq.get_untracked() + 1);
@@ -158,10 +149,8 @@ fn dialog(ed: Editor) -> impl IntoElement {
     let typed = signal(ed.date.get_untracked().map(format_form_date).unwrap_or_default());
     let (rule, reach) = ed.lines();
     let title = format!("{} · {}", ed.row.form_code, ed.row.period_label);
-    let close = {
-        let ed = ed.clone();
-        move || ed.save(true)
-    };
+    // Closing discards what isn't saved; only Save applies a change.
+    let close = move || store().override_sheet.set(None);
     let (e1, e2, e3, e4, e5, e6) = (ed.clone(), ed.clone(), ed.clone(), ed.clone(), ed.clone(), ed.clone());
     let date_box = field_box("MM/DD/YYYY")
         .value(typed)
@@ -241,13 +230,8 @@ fn phone_sheet(ed: Editor) -> impl IntoElement {
     let (rule, reach) = ed.lines();
     let title = format!("{} · {}", ed.row.form_code, ed.row.period_label);
     let wheels = signal(false);
-    let close = {
-        let ed = ed.clone();
-        move || crate::screens::taxpayer::close_after_blur({
-            let ed = ed.clone();
-            move || ed.save(true)
-        })
-    };
+    // Closing discards what isn't saved; only Save applies a change.
+    let close = move || crate::screens::taxpayer::close_after_blur(move || store().override_sheet.set(None));
     let (e1, e2, e3, e4, e5, e6) = (ed.clone(), ed.clone(), ed.clone(), ed.clone(), ed.clone(), ed.clone());
     let shown = move || e1.date.get().map(long);
     let shown2 = shown.clone();
