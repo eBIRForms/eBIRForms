@@ -6,15 +6,18 @@ use std::path::PathBuf;
 
 /// Returns the Linux application data directory.
 ///
-/// Uses `$HOME/.taxman-ebir` following XDG-compatible conventions.
+/// Uses `$XDG_DATA_HOME/buwiz`, else `$HOME/.local/share/buwiz`.
 pub fn data_dir() -> PathBuf {
-    if let Some(home) = std::env::var_os("HOME") {
-        let dir = PathBuf::from(home).join(".taxman-ebir");
+    let set = |name: &str| std::env::var_os(name).filter(|v| !v.is_empty()).map(PathBuf::from);
+    if let Some(dir) = set("XDG_DATA_HOME")
+        .or_else(|| set("HOME").map(|home| home.join(".local/share")))
+        .map(|base| base.join("buwiz"))
+    {
         let _ = std::fs::create_dir_all(&dir);
         return dir;
     }
 
-    PathBuf::from(".taxman-ebir")
+    PathBuf::from(".buwiz")
 }
 
 /// Returns the temporary directory.

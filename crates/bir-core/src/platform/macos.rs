@@ -5,23 +5,18 @@ use std::path::PathBuf;
 
 // ── Data Directory ───────────────────────────────────────────────────────────
 
-/// Returns the macOS application data directory.
-///
-/// Uses the App Group container so the database can be shared between the main
-/// app and background tasks, even under App Sandbox.
+/// Returns the macOS application data directory:
+/// `~/Library/Application Support/Buwiz`, the same folder the iOS app uses.
+/// Buwiz's own, so it never opens another app's database.
 pub fn data_dir() -> PathBuf {
     if let Some(home) = std::env::var_os("HOME") {
-        let group_container = PathBuf::from(home)
-            .join("Library")
-            .join("Group Containers")
-            .join("group.dev.goldcoders.bir");
-
-        let _ = std::fs::create_dir_all(&group_container);
-        return group_container;
+        let dir = PathBuf::from(home).join("Library/Application Support/Buwiz");
+        let _ = std::fs::create_dir_all(&dir);
+        return dir;
     }
 
     // Fallback (should never happen on macOS)
-    PathBuf::from(".taxman-ebir")
+    PathBuf::from(".buwiz")
 }
 
 /// Returns the temporary directory.
@@ -53,11 +48,7 @@ mod tests {
         // Use temp_env to safely set HOME without unsafe — also auto-restores on panic.
         temp_env::with_var("HOME", Some("/Users/testuser"), || {
             let path = data_dir();
-            assert!(path.to_string_lossy().contains("group.dev.goldcoders.bir"));
-            assert!(
-                path.to_string_lossy()
-                    .contains("/Users/testuser/Library/Group Containers")
-            );
+            assert_eq!(path, PathBuf::from("/Users/testuser/Library/Application Support/Buwiz"));
         });
     }
 }

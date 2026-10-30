@@ -9,24 +9,22 @@ const CREATE_NO_WINDOW: u32 = 0x08000000;
 
 /// Returns the Windows application data directory.
 ///
-/// Uses `%LOCALAPPDATA%\Taxman\eBIRForms` following Windows conventions.
+/// Uses `%LOCALAPPDATA%\Buwiz` following Windows conventions.
 pub fn data_dir() -> PathBuf {
     if let Some(local_app_data) = std::env::var_os("LOCALAPPDATA") {
-        let dir = PathBuf::from(local_app_data)
-            .join("Taxman")
-            .join("eBIRForms");
+        let dir = PathBuf::from(local_app_data).join("Buwiz");
         let _ = std::fs::create_dir_all(&dir);
         return dir;
     }
 
     // Fallback
     if let Some(home) = std::env::var_os("USERPROFILE") {
-        let dir = PathBuf::from(home).join(".taxman-ebir");
+        let dir = PathBuf::from(home).join(".buwiz");
         let _ = std::fs::create_dir_all(&dir);
         return dir;
     }
 
-    PathBuf::from(".taxman-ebir")
+    PathBuf::from(".buwiz")
 }
 
 /// Returns the temporary directory.

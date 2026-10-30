@@ -27,9 +27,8 @@ pub const RETENTION_CHOICES: [u32; 5] = [3, 7, 14, 30, 90];
 
 /// `<data_dir>/logs`, the directory both binaries write under.
 ///
-/// On macOS `data_dir` is the App Group container
-/// (`~/Library/Group Containers/group.dev.goldcoders.bir`), so the files land
-/// in that container's `logs` folder. `BIR_LOG_DIR`, when set and non-empty,
+/// On macOS `data_dir` is `~/Library/Application Support/Buwiz`, so the files
+/// land in its `logs` folder. `BIR_LOG_DIR`, when set and non-empty,
 /// replaces the directory — tests point it at a scratch folder.
 pub fn log_dir() -> PathBuf {
     if let Some(dir) = std::env::var_os("BIR_LOG_DIR")
