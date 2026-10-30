@@ -229,11 +229,11 @@ pub struct PenaltyCache {
 #[cfg(target_os = "macos")]
 const SECURITY_ERR_ITEM_NOT_FOUND: i32 = 44;
 
-/// Keychain service and account of the SQLCipher master key. Unchanged since
-/// the first release: existing installs find their key under these names.
-#[cfg(all(target_os = "macos", not(test)))]
-const MASTER_KEY_SERVICE: &str = "com.ebir.rust";
-#[cfg(all(target_os = "macos", not(test)))]
+/// Keychain service and account of the SQLCipher master key. Buwiz's own
+/// service, so it never reads another app's key.
+#[cfg(all(not(target_os = "android"), not(test)))]
+const MASTER_KEY_SERVICE: &str = "com.buwiz.oss";
+#[cfg(all(not(target_os = "android"), not(test)))]
 const MASTER_KEY_ACCOUNT: &str = "sqlcipher_master_key";
 
 /// The master key from the environment, for installs that keep it out of
@@ -735,7 +735,7 @@ impl Database {
 
     #[cfg(all(not(any(target_os = "macos", target_os = "android")), not(test)))]
     fn get_existing_master_key_keyring() -> Result<String, DbError> {
-        let keyring_error = match keyring::Entry::new("com.ebir.rust", "sqlcipher_master_key") {
+        let keyring_error = match keyring::Entry::new(MASTER_KEY_SERVICE, MASTER_KEY_ACCOUNT) {
             Ok(entry) => match entry.get_password() {
                 Ok(hex_key) if hex_key.len() == 64 => return Ok(hex_key),
                 Ok(_) => "stored key has an invalid length".to_string(),
@@ -805,7 +805,7 @@ impl Database {
             return Ok(hex_key);
         }
 
-        let entry = match Entry::new("com.ebir.rust", "sqlcipher_master_key") {
+        let entry = match Entry::new(MASTER_KEY_SERVICE, MASTER_KEY_ACCOUNT) {
             Ok(e) => e,
             Err(e) => {
                 tracing::warn!("Failed to access OS keyring: {e}. Falling back to file-based key.");
