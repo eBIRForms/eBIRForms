@@ -1530,134 +1530,134 @@ fn apply_replacements(html: &str, mut replacements: Vec<(usize, usize, String)>)
 
 fn writer_cells_json(slug: &str) -> Option<&'static str> {
     match slug {
-        "0605-1999" => Some(include_str!(
-            "../assets/html-frozen/0605-1999/writer-cells.json"
+        "0605-1999" => Some(bir_core::packed_str!(
+            "assets/html-frozen/0605-1999/writer-cells.json"
         )),
-        "0619e-2018" => Some(include_str!(
-            "../assets/html-frozen/0619e-2018/writer-cells.json"
+        "0619e-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/0619e-2018/writer-cells.json"
         )),
-        "0619f-2018" => Some(include_str!(
-            "../assets/html-frozen/0619f-2018/writer-cells.json"
+        "0619f-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/0619f-2018/writer-cells.json"
         )),
-        "1600-pt-2018" => Some(include_str!(
-            "../assets/html-frozen/1600-pt-2018/writer-cells.json"
+        "1600-pt-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1600-pt-2018/writer-cells.json"
         )),
-        "1600-vt-2018" => Some(include_str!(
-            "../assets/html-frozen/1600-vt-2018/writer-cells.json"
+        "1600-vt-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1600-vt-2018/writer-cells.json"
         )),
-        "1600wp-2010" => Some(include_str!(
-            "../assets/html-frozen/1600wp-2010/writer-cells.json"
+        "1600wp-2010" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1600wp-2010/writer-cells.json"
         )),
-        "1601-fq-2020" => Some(include_str!(
-            "../assets/html-frozen/1601-fq-2020/writer-cells.json"
+        "1601-fq-2020" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1601-fq-2020/writer-cells.json"
         )),
-        "1601c-2018" => Some(include_str!(
-            "../assets/html-frozen/1601c-2018/writer-cells.json"
+        "1601c-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1601c-2018/writer-cells.json"
         )),
-        "1601eq-2019" => Some(include_str!(
-            "../assets/html-frozen/1601eq-2019/writer-cells.json"
+        "1601eq-2019" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1601eq-2019/writer-cells.json"
         )),
-        "1602q-2019" => Some(include_str!(
-            "../assets/html-frozen/1602q-2019/writer-cells.json"
+        "1602q-2019" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1602q-2019/writer-cells.json"
         )),
-        "1603q-2018" => Some(include_str!(
-            "../assets/html-frozen/1603q-2018/writer-cells.json"
+        "1603q-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1603q-2018/writer-cells.json"
         )),
-        "1604c-2018" => Some(include_str!(
-            "../assets/html-frozen/1604c-2018/writer-cells.json"
+        "1604c-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1604c-2018/writer-cells.json"
         )),
-        "1604e-2018" => Some(include_str!(
-            "../assets/html-frozen/1604e-2018/writer-cells.json"
+        "1604e-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1604e-2018/writer-cells.json"
         )),
-        "1604f-2018" => Some(include_str!(
-            "../assets/html-frozen/1604f-2018/writer-cells.json"
+        "1604f-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1604f-2018/writer-cells.json"
         )),
-        "1606-2018" => Some(include_str!(
-            "../assets/html-frozen/1606-2018/writer-cells.json"
+        "1606-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1606-2018/writer-cells.json"
         )),
-        "1700-2018" => Some(include_str!(
-            "../assets/html-frozen/1700-2018/writer-cells.json"
+        "1700-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1700-2018/writer-cells.json"
         )),
-        "1701-2018" => Some(include_str!(
-            "../assets/html-frozen/1701-2018/writer-cells.json"
+        "1701-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1701-2018/writer-cells.json"
         )),
-        "1701a-2018" => Some(include_str!(
-            "../assets/html-frozen/1701a-2018/writer-cells.json"
+        "1701a-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1701a-2018/writer-cells.json"
         )),
-        "1701ms-2024" => Some(include_str!(
-            "../assets/html-frozen/1701ms-2024/writer-cells.json"
+        "1701ms-2024" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1701ms-2024/writer-cells.json"
         )),
-        "1701q-2018" => Some(include_str!(
-            "../assets/html-frozen/1701q-2018/writer-cells.json"
+        "1701q-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1701q-2018/writer-cells.json"
         )),
-        "1702ex-2018" => Some(include_str!(
-            "../assets/html-frozen/1702ex-2018/writer-cells.json"
+        "1702ex-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1702ex-2018/writer-cells.json"
         )),
-        "1702mx-2018c" => Some(include_str!(
-            "../assets/html-frozen/1702mx-2018c/writer-cells.json"
+        "1702mx-2018c" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1702mx-2018c/writer-cells.json"
         )),
-        "1702q-2018" => Some(include_str!(
-            "../assets/html-frozen/1702q-2018/writer-cells.json"
+        "1702q-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1702q-2018/writer-cells.json"
         )),
-        "1702rt-2018c" => Some(include_str!(
-            "../assets/html-frozen/1702rt-2018c/writer-cells.json"
+        "1702rt-2018c" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1702rt-2018c/writer-cells.json"
         )),
-        "1706-2018" => Some(include_str!(
-            "../assets/html-frozen/1706-2018/writer-cells.json"
+        "1706-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1706-2018/writer-cells.json"
         )),
-        "1707-2021" => Some(include_str!(
-            "../assets/html-frozen/1707-2021/writer-cells.json"
+        "1707-2021" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1707-2021/writer-cells.json"
         )),
-        "1707a-2021" => Some(include_str!(
-            "../assets/html-frozen/1707a-2021/writer-cells.json"
+        "1707a-2021" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1707a-2021/writer-cells.json"
         )),
-        "1800-2018" => Some(include_str!(
-            "../assets/html-frozen/1800-2018/writer-cells.json"
+        "1800-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1800-2018/writer-cells.json"
         )),
-        "1801-2018" => Some(include_str!(
-            "../assets/html-frozen/1801-2018/writer-cells.json"
+        "1801-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/1801-2018/writer-cells.json"
         )),
-        "2000-dst-2018" => Some(include_str!(
-            "../assets/html-frozen/2000-dst-2018/writer-cells.json"
+        "2000-dst-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2000-dst-2018/writer-cells.json"
         )),
-        "2000-ot-2018" => Some(include_str!(
-            "../assets/html-frozen/2000-ot-2018/writer-cells.json"
+        "2000-ot-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2000-ot-2018/writer-cells.json"
         )),
-        "2200a-2020" => Some(include_str!(
-            "../assets/html-frozen/2200a-2020/writer-cells.json"
+        "2200a-2020" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2200a-2020/writer-cells.json"
         )),
-        "2200an-2018" => Some(include_str!(
-            "../assets/html-frozen/2200an-2018/writer-cells.json"
+        "2200an-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2200an-2018/writer-cells.json"
         )),
-        "2200c-2018" => Some(include_str!(
-            "../assets/html-frozen/2200c-2018/writer-cells.json"
+        "2200c-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2200c-2018/writer-cells.json"
         )),
-        "2200m-2018" => Some(include_str!(
-            "../assets/html-frozen/2200m-2018/writer-cells.json"
+        "2200m-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2200m-2018/writer-cells.json"
         )),
-        "2200p-2020" => Some(include_str!(
-            "../assets/html-frozen/2200p-2020/writer-cells.json"
+        "2200p-2020" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2200p-2020/writer-cells.json"
         )),
-        "2200s-2018" => Some(include_str!(
-            "../assets/html-frozen/2200s-2018/writer-cells.json"
+        "2200s-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2200s-2018/writer-cells.json"
         )),
-        "2200t-2022" => Some(include_str!(
-            "../assets/html-frozen/2200t-2022/writer-cells.json"
+        "2200t-2022" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2200t-2022/writer-cells.json"
         )),
-        "2550m-2007" => Some(include_str!(
-            "../assets/html-frozen/2550m-2007/writer-cells.json"
+        "2550m-2007" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2550m-2007/writer-cells.json"
         )),
-        "2550q-2024" => Some(include_str!(
-            "../assets/html-frozen/2550q-2024/writer-cells.json"
+        "2550q-2024" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2550q-2024/writer-cells.json"
         )),
-        "2551q-2018" => Some(include_str!(
-            "../assets/html-frozen/2551q-2018/writer-cells.json"
+        "2551q-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2551q-2018/writer-cells.json"
         )),
-        "2552-2018" => Some(include_str!(
-            "../assets/html-frozen/2552-2018/writer-cells.json"
+        "2552-2018" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2552-2018/writer-cells.json"
         )),
-        "2553-1999" => Some(include_str!(
-            "../assets/html-frozen/2553-1999/writer-cells.json"
+        "2553-1999" => Some(bir_core::packed_str!(
+            "assets/html-frozen/2553-1999/writer-cells.json"
         )),
         _ => None,
     }

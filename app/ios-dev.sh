@@ -11,7 +11,8 @@ set -e
 cd "$(dirname "$0")"
 export RUSTC_WRAPPER=
 
-cargo watch -w src -x 'ra-jit build --target aarch64-apple-ios-sim' &
+# `--features live` as ios.sh's BUWIZ_LIVE build: ra-jit-live is in only then.
+cargo watch -w src -x 'ra-jit build --target aarch64-apple-ios-sim --features live' &
 WATCH=$!
 trap 'kill $WATCH 2>/dev/null' EXIT
 

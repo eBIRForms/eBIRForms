@@ -95,7 +95,10 @@ mkdir -p "$OUT/stage/lib/$ABI"
   --min-sdk-version "$MIN_SDK" --target-sdk-version 35 \
   --version-code "$VERSION_CODE" --version-name "$VERSION"
 cp "$OUT/classes.dex" "$OUT/stage/classes.dex"
-"$TC/llvm-strip" --strip-debug -o "$OUT/stage/lib/$ABI/libnsh.so" "$SO"
+# --strip-all: the symbol table goes too (`strip = true` in the release
+# profile drops most of it already). JNI finds its entry points in .dynsym,
+# which stays.
+"$TC/llvm-strip" --strip-all -o "$OUT/stage/lib/$ABI/libnsh.so" "$SO"
 (cd "$OUT/stage" && zip -q -X ../unaligned.apk classes.dex && zip -q -X -0 ../unaligned.apk "lib/$ABI/libnsh.so")
 "$BUILD_TOOLS/zipalign" -P 16 -f 4 "$OUT/unaligned.apk" "$OUT/aligned.apk"
 # Passwords through the environment, not the command line.

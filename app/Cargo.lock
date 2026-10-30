@@ -321,6 +321,7 @@ dependencies = [
  "bir-print",
  "bir-submit",
  "chrono",
+ "flate2",
  "serde",
  "serde_json",
  "thiserror 2.0.21",
@@ -337,6 +338,7 @@ dependencies = [
  "bir-rules",
  "chrono",
  "dotenvy",
+ "flate2",
  "hex",
  "keyring",
  "libc",
@@ -363,6 +365,7 @@ name = "bir-print"
 version = "0.1.0"
 dependencies = [
  "bir-core",
+ "flate2",
  "lopdf",
  "schemars",
  "serde",

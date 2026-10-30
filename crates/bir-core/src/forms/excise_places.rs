@@ -20,8 +20,10 @@ struct Places {
 fn places() -> &'static Places {
     static PLACES: OnceLock<Places> = OnceLock::new();
     PLACES.get_or_init(|| {
-        serde_json::from_str(include_str!("../../data/excise-places.json"))
-            .expect("excise-places.json is valid")
+        serde_json::from_str(&crate::packed::inflate(crate::packed_bytes!(
+            "data/excise-places.json"
+        )))
+        .expect("excise-places.json is valid")
     })
 }
 
