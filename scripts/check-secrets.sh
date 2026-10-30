@@ -26,9 +26,10 @@ search 'birgovph\.com|ebf2\.bir\.gov\.ph|tinDispatcher' 'a BIR submission endpoi
 search '^\s*(russh|russh-sftp)\s*=' 'an SFTP client dependency is in the tree'
 search 'ftpTargetFolder|getFtpFolder' "eBIRForms' upload-folder table is named in the tree"
 # Case-insensitive, outside comments: any passphrase identifier or string,
-# and any SFTP identifier or string, in code, manifests and the HTML the
-# crates embed (packed deflated, so a scan of the binary can't read it).
-code=$(echo "$files" | grep -E '\.(rs|toml|swift|java|kt|sh|json|html)$' | grep -v -E '^scripts/verify\.sh$' || true)
+# and any SFTP identifier or string, in code, manifests, build and packaging
+# files, and the HTML the crates embed (packed deflated, so a scan of the
+# binary can't read it). Only prose (Markdown) may name SFTP.
+code=$(echo "$files" | grep -E '\.(rs|toml|swift|java|kt|kts|gradle|sh|ps1|json|html|css|xml|plist|ya?ml|txt|iss|desktop|spec)$' | grep -v -E '^scripts/verify\.sh$' || true)
 if [ -n "$code" ]; then
   found=$(echo "$code" | xargs grep -n -I -i -E 'passphrase|sftp' -- 2>/dev/null \
     | grep -v -E '^[^:]+:[0-9]+:[[:space:]]*(//|#|\*)' || true)

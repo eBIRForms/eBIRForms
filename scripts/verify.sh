@@ -58,6 +58,8 @@ V2_OK=1
 if selected V2 || selected V1; then
     run v2-root cargo build --locked --all-targets || { V2_OK=0; V2_WHY="root build (see $LOGS/v2-root.log)"; }
     [ $V2_OK = 1 ] && { run v2-app sh -c 'cd app && cargo build --locked' || { V2_OK=0; V2_WHY="app build ($LOGS/v2-app.log)"; }; }
+    # The dev loop's build (ra-jit-live behind the `live` feature).
+    [ $V2_OK = 1 ] && { run v2-live sh -c 'cd app && cargo check --locked --features live' || { V2_OK=0; V2_WHY="app --features live ($LOGS/v2-live.log)"; }; }
     [ $V2_OK = 1 ] && { run v2-ios sh -c 'cd app && cargo build --locked --target aarch64-apple-ios-sim' || { V2_OK=0; V2_WHY="iOS build ($LOGS/v2-ios.log)"; }; }
     [ $V2_OK = 1 ] && { run v2-android android_build || { V2_OK=0; V2_WHY="Android build ($LOGS/v2-android.log)"; }; }
 fi
@@ -81,13 +83,13 @@ if selected V1; then
             # run-on strings in third-party rodata, neutralised by name: nsh's
             # link-protocol list ("...https"+"ftpcid...") and Vulkan's
             # "_MSFT"+"PHYSICAL...". In the release binary the same nsh list
-            # lies "...https"+"ftp"+"//...", so that layout is neutralised
-            # there only. (The printed forms' footer names BIR's public
+            # lies "...https"+"ftp"+"//" before core's "assertion failed",
+            # so that exact run is neutralised there only. (The printed forms' footer names BIR's public
             # website, so the bare domain is not on the list.)
             text="$LOGS/strings-$(basename "$(dirname "$(dirname "$b")")")-$(basename "$(dirname "$b")")-$(basename "$b").txt"
             strings -a "$b" >"$text"
             release_mask='s/^$//'
-            [ "$b" = app/target/release/buwiz ] && release_mask='s|httpsftp//|http-s-ftp-//|g'
+            [ "$b" = app/target/release/buwiz ] && release_mask='s|httpsftp//assertion failed|http-s-ftp-//assertion failed|g'
             found=$(sed -e 's/httpsftpcid/http-s-ftp-cid/g' -e 's/_MSFTPHYSICAL/_MSFT_PHYSICAL/g' -e "$release_mask" "$text" \
                 | grep -i -E 'passphrase|(tin|bir)[_-]?dispatch|dispatcher[_-]?(url|host)|dispatcher\.php|birgovph|ebf2\.bir|ws2\.bir|sftp' | head -3)
             [ -n "$found" ] && hits+="$b: $(echo "$found" | tr '\n' '|'); "
@@ -100,12 +102,12 @@ if selected V1; then
         found=$(echo "$packed" | xargs grep -l -i -E 'passphrase|(tin|bir)[_-]?dispatch|dispatcher[_-]?(url|host)|dispatcher\.php|birgovph|ebf2\.bir|ws2\.bir|sftp' -- 2>/dev/null | head -3)
         [ -n "$found" ] && hits+="packed assets: $(echo "$found" | tr '\n' '|'); "
         [ -z "$packed" ] && hits+="no packed asset sources found; "
-        [ -z "$hits" ] && pass V1 "tree clean; ${#bins[@]} binaries (release included) and $(echo "$packed" | wc -l | tr -d ' ') packed assets carry no BIR secret strings" || fail V1 "$hits"
+        [ -z "$hits" ] && pass V1 "tree clean; ${#bins[@]} binaries (release included) and $(echo "$packed" | wc -l | tr -d ' ') embedded-asset sources carry no BIR secret strings" || fail V1 "$hits"
     fi
 fi
 
 if selected V2; then
-    [ $V2_OK = 1 ] && pass V2 "locked builds: root all-targets, app, iOS sim, Android" || fail V2 "$V2_WHY"
+    [ $V2_OK = 1 ] && pass V2 "locked builds: root all-targets, app (and --features live), iOS sim, Android" || fail V2 "$V2_WHY"
 fi
 
 # ---- V3 ---------------------------------------------------------------------
