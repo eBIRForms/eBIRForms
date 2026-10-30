@@ -1,18 +1,20 @@
 use bir_app_core::BirApp;
 
-fn rdo_of(zip: &str) -> Vec<String> {
-    BirApp::places().into_iter().filter(|p| p.zip == zip).map(|p| p.rdo_code).collect()
+#[test]
+fn a_zip_code_never_guesses_an_rdo() {
+    // Names mislead: Urdaneta Village is in Makati, not Urdaneta City;
+    // San Juan, Batangas is not San Juan City; Santa Cruz is in five
+    // provinces besides Manila's Sta. Cruz.
+    let places = BirApp::places();
+    let zips: Vec<_> = places.iter().filter(|p| !p.zip.is_empty()).collect();
+    assert!(zips.len() > 1900, "every ZIP code is listed");
+    assert!(zips.iter().all(|p| p.rdo_code.is_empty()));
 }
 
 #[test]
-fn a_zip_area_named_like_one_rdo_gets_that_rdo() {
-    assert_eq!(rdo_of("2900"), ["001"], "Laoag City is RDO 001's only match");
-}
-
-#[test]
-fn a_zip_area_named_like_several_rdos_gets_none() {
-    // San Jose del Monte (Bulacan) shares "jose" with San Jose, Antique and
-    // San Jose, Occidental Mindoro; Makati CPO with Makati's four RDOs.
-    assert_eq!(rdo_of("3023"), [""]);
-    assert!(rdo_of("1200").iter().all(String::is_empty));
+fn every_rdo_is_listed_on_its_own() {
+    let places = BirApp::places();
+    let rdos: Vec<_> = places.iter().filter(|p| p.zip.is_empty()).collect();
+    assert_eq!(rdos.len(), bir_core::reference::get_all_rdos().len());
+    assert!(rdos.iter().any(|p| p.rdo_code == "001" && p.rdo_name == "Laoag City"));
 }
