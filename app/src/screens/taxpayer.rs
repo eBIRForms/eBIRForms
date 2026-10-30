@@ -139,9 +139,8 @@ fn desktop_new_taxpayer() -> impl IntoElement {
     let tin = signal(String::new());
     let name = signal(String::new());
     let kind = signal("Individual".to_owned());
-    let rdo = signal(String::new());
-    let address = signal(String::new());
-    let zip = signal(String::new());
+    let place = signal(None::<bir_app_core::Place>);
+    let street = signal(String::new());
     let email = signal(String::new());
     let birth = signal(String::new());
     let error = signal(String::new());
@@ -151,27 +150,46 @@ fn desktop_new_taxpayer() -> impl IntoElement {
         if busy.get_untracked() {
             return;
         }
+        let tin_root: String = tin.get_untracked().chars().filter(char::is_ascii_digit).collect();
+        if tin_root.len() != 9 {
+            error.set("Enter the 9-digit TIN.".to_owned());
+            return;
+        }
+        let Some(place_v) = place.get_untracked() else {
+            error.set("Search the city or ZIP code and pick it from the list.".to_owned());
+            return;
+        };
+        if place_v.rdo_code.is_empty() {
+            error.set("Pick the RDO too: search its name or number.".to_owned());
+            return;
+        }
         let birth_text = birth.get_untracked();
         let birth_date = if birth_text.trim().is_empty() {
             None
         } else {
             match bir_app_core::display::parse_typed_date(&birth_text) {
+                Some(date) if date > crate::store::today() => {
+                    error.set("The birth date is in the future.".to_owned());
+                    return;
+                }
                 Some(date) => Some(date.to_string()),
                 None => {
-                    error.set("Enter the birth date as MM/DD/YYYY.".to_owned());
+                    error.set("Enter a real birth date as MM/DD/YYYY.".to_owned());
                     return;
                 }
             }
         };
+        let street_v = street.get_untracked().trim().to_owned();
+        let address = if street_v.is_empty() { place_v.city.clone() } else { format!("{street_v}, {}", place_v.city) };
         let new = NewTaxpayer {
-            tin_root: tin.get_untracked().chars().filter(char::is_ascii_digit).collect(),
+            tin_root,
             name: name.get_untracked().trim().to_owned(),
             taxpayer_type: kind.get_untracked(),
             birth_date,
             head_office: BranchFacts {
-                rdo_code: rdo.get_untracked().trim().to_owned(),
-                registered_address: address.get_untracked().trim().to_owned(),
-                zip_code: zip.get_untracked().trim().to_owned(),
+                rdo_code: place_v.rdo_code.clone(),
+                registered_address: address,
+                zip_code: place_v.zip.clone(),
                 phone: String::new(),
                 email: email.get_untracked().trim().to_owned(),
             },
@@ -228,18 +246,12 @@ fn desktop_new_taxpayer() -> impl IntoElement {
                 .flex_row()
                 .gap(px(12.0))
                 .child(labelled("TIN (9 digits)", tin_input_desktop(tin)))
-                .child(labelled("RDO code", field_input(rdo, "043"))),
+                .child(labelled("Birth date (individuals)", date_input(birth))),
         )
         .child(labelled("Registered name", field_input(name, "As on the Certificate of Registration")))
         .child(view().gap(px(4.0)).child(caption("Taxpayer type")).child(types))
-        .child(labelled("Registered address", field_input(address, "")))
-        .child(
-            view()
-                .flex_row()
-                .gap(px(10.0))
-                .child(labelled("ZIP code", field_input(zip, "1600")))
-                .child(labelled("Birth date (individuals)", date_input(birth))),
-        )
+        .child(view().gap(px(3.0)).child(caption("City, ZIP and RDO")).child(place_combo(place)))
+        .child(labelled("Street address", field_input(street, "House, street, barangay")))
         .child(labelled("Email", field_input(email, "name@example.com")))
         .child(when(move || !error.get().is_empty(), move || text(move || error.get()).text_size(px(12.0)).text_color(theme::DANGER)))
         .child(
@@ -406,7 +418,7 @@ fn phone_new_taxpayer() -> impl IntoElement {
         .on_change(move |v: &str| {
             let prev = tin.get_untracked();
             let out = crate::typing::dash_tin(v, 12);
-            tin.set(out.clone());
+            crate::typing::show_formatted(tin, v, &out);
             if out != v {
                 // The caret stays after the digit just typed.
                 let caret = crate::typing::caret_after(&prev, v, &out, crate::typing::digit);
@@ -605,7 +617,7 @@ fn slashed(value: Signal<String>, at: ElementRef) -> Input {
     nsh_base::input().value(value).on_change(move |v: &str| {
         let prev = value.get_untracked();
         let shown = crate::typing::slash_date(v);
-        value.set(shown.clone());
+        crate::typing::show_formatted(value, v, &shown);
         if shown != v {
             let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
             at.set_selection(caret, caret);
@@ -619,7 +631,7 @@ fn date_input(value: Signal<String>) -> Input {
     crate::widgets::field_box("MM/DD/YYYY").value(value).element_ref(&at).on_change(move |v: &str| {
         let prev = value.get_untracked();
         let shown = crate::typing::slash_date(v);
-        value.set(shown.clone());
+        crate::typing::show_formatted(value, v, &shown);
         if shown != v {
             let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
             at.set_selection(caret, caret);
@@ -633,7 +645,7 @@ fn tin_input_desktop(value: Signal<String>) -> Input {
     crate::widgets::field_box("000-123-453").value(value).element_ref(&at).on_change(move |v: &str| {
         let prev = value.get_untracked();
         let shown = crate::typing::dash_tin(v, 9);
-        value.set(shown.clone());
+        crate::typing::show_formatted(value, v, &shown);
         if shown != v {
             let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
             at.set_selection(caret, caret);
@@ -641,17 +653,81 @@ fn tin_input_desktop(value: Signal<String>) -> Input {
     })
 }
 
+/// The place picked after `next` was chosen from the list: an RDO picked
+/// after a ZIP keeps the ZIP.
+fn merge_place(had: Option<bir_app_core::Place>, next: bir_app_core::Place) -> bir_app_core::Place {
+    match had {
+        Some(mut had) if next.zip.is_empty() && !had.zip.is_empty() => {
+            had.rdo_code = next.rdo_code;
+            had.rdo_name = next.rdo_name;
+            had
+        }
+        _ => next,
+    }
+}
+
+/// The places whose name, ZIP or RDO contains `query` (two letters or
+/// more), at most `limit`.
+fn matching_places(all: &[bir_app_core::Place], query: &str, limit: usize) -> Vec<bir_app_core::Place> {
+    let q = query.trim().to_lowercase();
+    if q.len() < 2 {
+        return Vec::new();
+    }
+    all.iter().filter(|p| p.label.to_lowercase().contains(&q) || p.rdo_name.to_lowercase().contains(&q)).take(limit).cloned().collect()
+}
+
+/// The desktop's place box: type a city, province, ZIP or RDO and pick from
+/// the list under it, which fills the city, the ZIP and the RDO.
+fn place_combo(place: Signal<Option<bir_app_core::Place>>) -> impl IntoElement {
+    let query = signal(String::new());
+    let all = std::rc::Rc::new(bir_app_core::BirApp::places());
+    let filtered = move || matching_places(&all, &query.get(), 8);
+    let shown = filtered.clone();
+    view()
+        .gap(px(4.0))
+        .child(crate::widgets::field_box("Search a city, province, ZIP or RDO").value(query).on_change(move |v: &str| query.set(v.to_owned())))
+        .child(when(
+            move || !shown().is_empty(),
+            move || {
+                view().rounded(px(8.0)).border_1().border_color(theme::BORDER).bg(theme::SURFACE).child(each(
+                    filtered.clone(),
+                    |p| p.label.clone(),
+                    move |p, _| {
+                        let p = p.get_untracked();
+                        let pick = p.clone();
+                        let line = if p.zip.is_empty() { "RDO only".to_owned() } else if p.rdo_code.is_empty() { "No RDO matched: pick the RDO too".to_owned() } else { format!("RDO {} · {}", p.rdo_code, p.rdo_name) };
+                        view()
+                            .px(px(10.0))
+                            .py(px(6.0))
+                            .cursor_pointer()
+                            .hover(|s| s.bg(theme::HOVER))
+                            .on_press(move || {
+                                place.set(Some(merge_place(place.get_untracked(), pick.clone())));
+                                query.set(String::new());
+                            })
+                            .child(text(p.label.clone()).text_size(px(13.0)).text_color(theme::FG))
+                            .child(text(line).text_size(px(11.0)).text_color(theme::FG2))
+                    },
+                ))
+            },
+        ))
+        .child(
+            text(move || match place.get() {
+                Some(p) if p.zip.is_empty() => format!("{} · RDO {} · search the ZIP code too", p.city, p.rdo_code),
+                Some(p) if p.rdo_code.is_empty() => format!("{} {} · search the RDO too", p.city, p.zip),
+                Some(p) => format!("{} {} · RDO {} {}", p.city, p.zip, p.rdo_code, p.rdo_name),
+                None => "Nothing picked yet".to_owned(),
+            })
+            .text_size(px(12.0))
+            .text_color(move || if place.get().is_some() { theme::FG2 } else { theme::FG3 }),
+        )
+}
+
 /// One search over every place: a ZIP area with its RDO, or an RDO alone.
 fn place_search(place: Signal<Option<bir_app_core::Place>>, open: Signal<bool>) -> impl IntoElement {
     let query = signal(String::new());
     let all = std::rc::Rc::new(bir_app_core::BirApp::places());
-    let filtered = move || {
-        let q = query.get().trim().to_lowercase();
-        if q.len() < 2 {
-            return Vec::new();
-        }
-        all.iter().filter(|p| p.label.to_lowercase().contains(&q) || p.rdo_name.to_lowercase().contains(&q)).take(60).cloned().collect::<Vec<_>>()
-    };
+    let filtered = move || matching_places(&all, &query.get(), 60);
     let search = nsh_base::input()
         .value(query)
         .on_change(move |v: &str| query.set(v.to_owned()))
@@ -687,16 +763,7 @@ fn place_search(place: Signal<Option<bir_app_core::Place>>, open: Signal<bool>) 
                         .cursor_pointer()
                         .active(|s| s.bg(theme::HOVER))
                         .on_press(move || {
-                            // An RDO picked after a ZIP keeps the ZIP.
-                            let next = match place.get_untracked() {
-                                Some(mut had) if pick.zip.is_empty() && !had.zip.is_empty() => {
-                                    had.rdo_code = pick.rdo_code.clone();
-                                    had.rdo_name = pick.rdo_name.clone();
-                                    had
-                                }
-                                _ => pick.clone(),
-                            };
-                            place.set(Some(next));
+                            place.set(Some(merge_place(place.get_untracked(), pick.clone())));
                             close_after_blur(move || open.set(false));
                         })
                         .child(text(p.label.clone()).text_size(px(15.0)).text_color(theme::FG))
@@ -712,4 +779,31 @@ fn place_search(place: Signal<Option<bir_app_core::Place>>, open: Signal<bool>) 
 pub(crate) fn close_after_blur(close: impl FnOnce() + 'static) {
     dismiss_keyboard();
     store().owner.run(|| set_timeout(std::time::Duration::from_millis(120), close));
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn place(label: &str, zip: &str, rdo: &str) -> bir_app_core::Place {
+        bir_app_core::Place { label: label.to_owned(), city: label.to_owned(), zip: zip.to_owned(), rdo_code: rdo.to_owned(), rdo_name: format!("RDO {rdo}") }
+    }
+
+    #[test]
+    fn an_rdo_picked_after_a_zip_keeps_the_zip() {
+        let merged = merge_place(Some(place("Pasig", "1600", "")), place("RDO 043", "", "043"));
+        assert_eq!((merged.city.as_str(), merged.zip.as_str(), merged.rdo_code.as_str()), ("Pasig", "1600", "043"));
+        let replaced = merge_place(Some(place("Pasig", "1600", "043")), place("Makati", "1200", "050"));
+        assert_eq!(replaced.zip, "1200");
+    }
+
+    #[test]
+    fn the_place_list_comes_from_the_zip_and_rdo_tables() {
+        let all = bir_app_core::BirApp::places();
+        assert!(matching_places(&all, "1", 8).is_empty(), "one letter lists nothing");
+        let by_zip = matching_places(&all, "1600", 8);
+        assert!(by_zip.iter().any(|p| p.zip == "1600"), "a ZIP finds its area");
+        let rdos = matching_places(&all, "RDO 043", 8);
+        assert!(rdos.iter().any(|p| p.rdo_code == "043" && p.zip.is_empty()), "an RDO number finds the RDO");
+    }
 }
