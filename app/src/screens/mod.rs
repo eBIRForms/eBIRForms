@@ -183,6 +183,10 @@ pub(crate) fn unlock_on_launch(which: &str) {
 /// first schedule row (`row`).
 pub(crate) fn pick_on_launch(pick: &str) {
     use phone_fields::{Kind, kind_of};
+    // The more menu opens with the form (phone_form), no item to pick.
+    if pick == "menu" {
+        return;
+    }
     let st = &store().form;
     let Some(form) = st.form() else { return };
     let ids = untracked(|| steps::shown_items(st, &form));

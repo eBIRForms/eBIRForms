@@ -91,6 +91,7 @@ check() {
 
 # ---- desktop -----------------------------------------------------------------
 # name | hooks | text the screen shows | seconds to wait (default 9 / 12)
+# EMPTY_DB=1 among the hooks starts from no database instead of the seeded one.
 DESKTOP=(
     "home|BUWIZ_ROUTE=home|Due in the next 30 days"
     "library|BUWIZ_ROUTE=forms|Form library"
@@ -103,11 +104,15 @@ DESKTOP=(
     "calendar|BUWIZ_ROUTE=calendar|Every deadline"
     "taxpayers|BUWIZ_ROUTE=taxpayers|Address and contact"
     "settings|BUWIZ_ROUTE=settings|Sign in to send"
-    "palette|BUWIZ_SHEET=palette|Go to"
+    "palette|BUWIZ_SHEET=palette|Search taxpayers, forms"
     "print-preview|BUWIZ_PRINT=1701Q|Quarterly Income Tax|22"
-    "delete-confirm|BUWIZ_ROUTE=filings BUWIZ_SHEET=delete|Delete"
+    "delete-confirm|BUWIZ_ROUTE=filings BUWIZ_SHEET=delete|Delete this draft?"
     "override-sheet|BUWIZ_SHEET=override|Applies to every taxpayer"
     "calendar-override|BUWIZ_ROUTE=calendar|Moved from"
+    "home-empty|EMPTY_DB=1 BUWIZ_ROUTE=home|Add your first taxpayer"
+    "filings-empty|EMPTY_DB=1 BUWIZ_ROUTE=filings|No returns yet"
+    "add-branch|BUWIZ_ROUTE=taxpayers BUWIZ_SHEET=add-branch|Branch code"
+    "signin-code|BUWIZ_SHEET=signin-code|Approve this code"
     "amend|BUWIZ_AMEND=1601C|Amending a sent return|14"
     "edit-penalties|BUWIZ_OPEN=1701Q:2026:2 BUWIZ_UNLOCK=penalties|entering the penalties yourself|14"
     "edit-on-return|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_UNLOCK=profile|On this return only|14"
@@ -120,7 +125,7 @@ wanted() { [ -z "${ONLY:-}" ] || [[ " $ONLY " == *" $1 "* ]]; }
 desktop_shot() {
     local name=$1 theme=$2 hooks=$3 want=$4 wait=${5:-${DESK_WAIT:-9}} png wid=""
     png="$OUT/desktop-$name-$theme.png"
-    fresh_db "$TMP/desk"
+    if [[ " $hooks " == *" EMPTY_DB=1 "* ]]; then rm -rf "$TMP/desk"; mkdir -p "$TMP/desk"; else fresh_db "$TMP/desk"; fi
     # shellcheck disable=SC2086
     # BUWIZ_OFFSCREEN: the window stays off every screen even before the
     # window manager has moved it.
@@ -193,8 +198,12 @@ PHONE=(
     "attention|BUWIZ_STATUS=attention|confirmation"
     "how-sheet|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_PICK=how|worked out|20"
     "payee-picker|BUWIZ_OPEN=1606:2026:3 BUWIZ_PICK=payee|payee|20"
-    "delete-confirm|BUWIZ_ROUTE=filings BUWIZ_SHEET=delete|Delete"
+    "delete-confirm|BUWIZ_ROUTE=filings BUWIZ_SHEET=delete|Delete this draft?"
     "settings|BUWIZ_ROUTE=settings|Sign in to send"
+    "filings-empty|EMPTY_DB=1 BUWIZ_ROUTE=filings|No returns yet"
+    "filings-swipe|BUWIZ_SWIPE=1|Print"
+    "form-menu|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_PICK=menu|Check the return|20"
+    "signin-code|BUWIZ_SHEET=signin-code|Approve this code"
     "override-sheet|BUWIZ_SHEET=override|Applies to every taxpayer"
     "calendar-override|BUWIZ_ROUTE=calendar|moved from"
     "amend|BUWIZ_AMEND=1601C|Amending a sent return|20"
@@ -207,8 +216,12 @@ phone_shot() {
     local name=$1 theme=$2 hooks=$3 want=$4 wait=${5:-${PHONE_WAIT:-12}} png dir
     png="$OUT/phone-$name-$theme.png"
     dir="$(xcrun simctl get_app_container "$UDID" com.buwiz.oss data)/Library/Application Support/Buwiz"
-    fresh_db "$dir"
-    mv "$dir/bir_data.db" "$dir/bir_data.db.tmp" && mv "$dir/bir_data.db.tmp" "$dir/bir_data.db"
+    if [[ " $hooks " == *" EMPTY_DB=1 "* ]]; then
+        rm -rf "$dir"; mkdir -p "$dir"
+    else
+        fresh_db "$dir"
+        mv "$dir/bir_data.db" "$dir/bir_data.db.tmp" && mv "$dir/bir_data.db.tmp" "$dir/bir_data.db"
+    fi
     { echo "BIR_DB_KEY=$KEY"; echo "BUWIZ_THEME=$theme"; for kv in $hooks; do echo "$kv"; done; } >"$dir/launch.env"
     timeout 60 xcrun simctl ui "$UDID" appearance "$theme" 2>/dev/null || true
     timeout 60 xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
