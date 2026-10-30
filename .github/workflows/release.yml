@@ -1,0 +1,229 @@
+name: release
+
+# Builds, signs and uploads a version to Cloudflare R2:
+#   s3://buwiz-releases/releases/v{VERSION}/{file}         the signed files
+#   s3://buwiz-releases/releases/v{VERSION}/manifest.json  what buwiz.com reads
+#   s3://buwiz-releases/releases/v{VERSION}/SHA256SUMS
+# Nothing goes to a GitHub Release. A version is never overwritten. A tag
+# push never touches latest.json: promotion is promote.yml, or a manual run
+# of this workflow with `promote` checked.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to release (MAJOR.MINOR.PATCH, must equal app/Cargo.toml)
+        required: true
+        type: string
+      promote:
+        description: Afterwards, point latest.json at this version
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# One run per version, never cancelled: a job that is signing, notarizing
+# or uploading must be allowed to finish.
+concurrency:
+  group: release-${{ inputs.version && format('v{0}', inputs.version) || github.ref_name }}
+  cancel-in-progress: false
+
+env:
+  R2_BUCKET: buwiz-releases
+  R2_ENDPOINT: https://f1d5007ee46f17d2bd7a1d6cb4402906.r2.cloudflarestorage.com
+  AWS_DEFAULT_REGION: auto
+  AWS_REGION: auto
+  # Cloudflare's advice for recent aws CLI versions against R2.
+  AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+  AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+
+jobs:
+  # The release jobs consume only this exact commit, at a version that
+  # equals the app's.
+  preflight:
+    runs-on: ubuntu-24.04
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Resolve and verify the version
+        id: version
+        shell: bash
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          git ls-files --error-unmatch Cargo.lock app/Cargo.lock >/dev/null
+
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then
+            # The tag gate: a tag push, of exactly vMAJOR.MINOR.PATCH, that
+            # points at this commit.
+            test "$GITHUB_REF_TYPE" = "tag"
+            if [[ ! "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo "Release tag must be exactly vMAJOR.MINOR.PATCH: $GITHUB_REF_NAME" >&2
+              exit 1
+            fi
+            test "$(git rev-parse "refs/tags/$GITHUB_REF_NAME^{commit}")" = "$GITHUB_SHA"
+            VERSION="${GITHUB_REF_NAME#v}"
+          else
+            VERSION="$INPUT_VERSION"
+            if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo "version must be exactly MAJOR.MINOR.PATCH: $VERSION" >&2
+              exit 1
+            fi
+            # A manual release runs from main or from the version's own tag.
+            if [ "$GITHUB_REF" != "refs/heads/main" ] && [ "$GITHUB_REF" != "refs/tags/v$VERSION" ]; then
+              echo "Run a manual release from main or from tag v$VERSION, not $GITHUB_REF" >&2
+              exit 1
+            fi
+          fi
+
+          CARGO_VERSION="$(awk -F '"' '
+            /^\[package\]$/ { in_package = 1; next }
+            in_package && /^\[/ { exit }
+            in_package && /^version[[:space:]]*=/ { print $2; exit }
+          ' app/Cargo.toml)"
+          if [ -z "$CARGO_VERSION" ] || [ "$VERSION" != "$CARGO_VERSION" ]; then
+            echo "Release version $VERSION does not match app/Cargo.toml version ${CARGO_VERSION:-<none>}" >&2
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Releasing $VERSION from $GITHUB_SHA"
+      - run: ./scripts/check-secrets.sh
+
+  # A version is never overwritten: fail if releases/v{VERSION}/ holds
+  # anything at all.
+  guard:
+    needs: preflight
+    runs-on: ubuntu-24.04
+    steps:
+      - name: releases/v${{ needs.preflight.outputs.version }}/ must be empty
+        shell: bash
+        env:
+          VERSION: ${{ needs.preflight.outputs.version }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: |
+          set -euo pipefail
+          for name in AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY; do
+            if [ -z "${!name}" ]; then
+              echo "Missing R2 credentials (secrets R2_ACCESS_KEY_ID and R2_SECRET_ACCESS_KEY)" >&2
+              exit 1
+            fi
+          done
+          keys="$(aws s3api list-objects-v2 --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
+            --prefix "releases/v$VERSION/" --max-items 5 --query 'Contents[].Key' --output text)"
+          if [ -n "$keys" ] && [ "$keys" != "None" ]; then
+            echo "s3://$R2_BUCKET/releases/v$VERSION/ already holds objects; a version is never overwritten:" >&2
+            echo "$keys" | tr '\t' '\n' >&2
+            exit 1
+          fi
+          echo "s3://$R2_BUCKET/releases/v$VERSION/ is empty"
+
+  macos:
+    needs: [preflight, guard]
+    uses: ./.github/workflows/release-macos.yml
+    with:
+      version: ${{ needs.preflight.outputs.version }}
+    secrets: inherit
+
+  windows:
+    needs: [preflight, guard]
+    uses: ./.github/workflows/release-windows.yml
+    with:
+      version: ${{ needs.preflight.outputs.version }}
+    secrets: inherit
+
+  linux:
+    needs: [preflight, guard]
+    uses: ./.github/workflows/release-linux.yml
+    with:
+      version: ${{ needs.preflight.outputs.version }}
+    secrets: inherit
+
+  android:
+    needs: [preflight, guard]
+    uses: ./.github/workflows/release-android.yml
+    with:
+      version: ${{ needs.preflight.outputs.version }}
+    secrets: inherit
+
+  # The manifest and checksums, after every file is up. manifest.json first,
+  # then SHA256SUMS.
+  publish:
+    needs: [preflight, macos, windows, linux, android]
+    runs-on: ubuntu-24.04
+    env:
+      VERSION: ${{ needs.preflight.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: release-meta-*
+          path: meta
+          merge-multiple: true
+      - name: Build manifest.json and SHA256SUMS
+        run: python3 scripts/release/manifest.py meta "$VERSION" out
+      - name: Upload manifest.json and SHA256SUMS to R2
+        shell: bash
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: |
+          set -euo pipefail
+          prefix="releases/v$VERSION"
+          # Every listed file is in the bucket at its recorded size.
+          python3 -c 'import json,sys; [print(f["file"], f["size"]) for f in json.load(open(sys.argv[1]))["files"]]' out/manifest.json |
+          while read -r file size; do
+            remote="$(aws s3api head-object --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
+              --key "$prefix/$file" --query ContentLength --output text)"
+            if [ "$remote" != "$size" ]; then
+              echo "$prefix/$file is $remote bytes in R2, the manifest says $size" >&2
+              exit 1
+            fi
+          done
+          existing="$(aws s3api list-objects-v2 --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
+            --prefix "$prefix/" --query 'Contents[].Key' --output text | tr '\t' '\n')"
+          for name in manifest.json SHA256SUMS; do
+            if printf '%s\n' "$existing" | grep -Fxq "$prefix/$name"; then
+              echo "$prefix/$name already exists; a version is never overwritten" >&2
+              exit 1
+            fi
+          done
+          aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress \
+            --cache-control "public, max-age=31536000, immutable" \
+            --content-type "application/json" \
+            out/manifest.json "s3://$R2_BUCKET/$prefix/manifest.json"
+          aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress \
+            --cache-control "public, max-age=31536000, immutable" \
+            --content-type "text/plain; charset=utf-8" \
+            out/SHA256SUMS "s3://$R2_BUCKET/$prefix/SHA256SUMS"
+      - name: Summary
+        run: |
+          {
+            echo "### Buwiz $VERSION uploaded to R2"
+            echo
+            echo "s3://$R2_BUCKET/releases/v$VERSION/"
+            echo
+            echo '```'
+            cat out/SHA256SUMS
+            echo '```'
+            echo
+            echo "latest.json is unchanged. Promote with the promote workflow (version $VERSION)."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  # Only a manual run with `promote` checked; a tag push never gets here.
+  promote:
+    needs: [preflight, publish]
+    if: github.event_name == 'workflow_dispatch' && inputs.promote
+    uses: ./.github/workflows/promote.yml
+    with:
+      version: ${{ needs.preflight.outputs.version }}
+    secrets: inherit

@@ -1,0 +1,70 @@
+name: release (linux)
+
+# Called by release.yml: the .deb from app/packaging/linux/build-deb.sh,
+# uploaded to R2 as releases/v{VERSION}/buwiz_{VERSION}_amd64.deb.
+# Built on Ubuntu 24.04: the package depends on GTK >= 4.14 and
+# WebKitGTK 6.0.
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  RUSTC_WRAPPER: ""
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: "0"
+  R2_BUCKET: buwiz-releases
+  R2_ENDPOINT: https://f1d5007ee46f17d2bd7a1d6cb4402906.r2.cloudflarestorage.com
+  AWS_DEFAULT_REGION: auto
+  AWS_REGION: auto
+  AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+  AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+
+jobs:
+  deb:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      VERSION: ${{ inputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      # clang for QuickJS's bindgen; GTK 4 and WebKitGTK 6.0 for nsh's
+      # Linux backend and the print preview; libdbus for keyring;
+      # rsvg-convert for the package's PNG icon.
+      - run: >
+          sudo apt-get update && sudo apt-get install -y
+          clang libclang-dev pkg-config libgtk-4-dev libwebkitgtk-6.0-dev
+          libdbus-1-dev librsvg2-bin
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: app
+      - name: Build
+        working-directory: app
+        run: cargo build --locked --release
+      - name: Pack the .deb
+        working-directory: app
+        run: |
+          ./packaging/linux/build-deb.sh
+          test -f "target/deb/buwiz_${VERSION}_amd64.deb"
+      - name: Upload to R2
+        shell: bash
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: >
+          ./scripts/release/r2-upload.sh
+          "app/target/deb/buwiz_${VERSION}_amd64.deb"
+          linux x64 deb release-meta
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-meta-linux-x64-deb
+          path: release-meta/*.json
+          if-no-files-found: error

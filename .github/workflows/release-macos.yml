@@ -1,0 +1,143 @@
+name: release (macos)
+
+# Called by release.yml: a universal (arm64 + x86_64) Buwiz.app in a DMG,
+# signed with the Developer ID, notarized and stapled, uploaded to R2 as
+# releases/v{VERSION}/Buwiz-{VERSION}-macos-universal.dmg.
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  RUSTC_WRAPPER: ""
+  CARGO_TERM_COLOR: always
+  MACOSX_DEPLOYMENT_TARGET: "11.0"
+  R2_BUCKET: buwiz-releases
+  R2_ENDPOINT: https://f1d5007ee46f17d2bd7a1d6cb4402906.r2.cloudflarestorage.com
+  AWS_DEFAULT_REGION: auto
+  AWS_REGION: auto
+  AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+  AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+
+jobs:
+  dmg:
+    runs-on: macos-15
+    timeout-minutes: 180
+    env:
+      VERSION: ${{ inputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Require macOS signing and notarization secrets
+        shell: bash
+        env:
+          APPLE_CERTIFICATE_P12: ${{ secrets.APPLE_CERTIFICATE_P12 }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_API_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
+        run: |
+          for name in APPLE_CERTIFICATE_P12 APPLE_CERTIFICATE_PASSWORD APPLE_API_KEY_P8 APPLE_API_KEY_ID APPLE_API_ISSUER_ID; do
+            if [ -z "${!name}" ]; then
+              echo "Missing required macOS release secret: $name" >&2
+              exit 1
+            fi
+          done
+
+      - name: Rust targets
+        working-directory: app
+        run: rustup target add aarch64-apple-darwin x86_64-apple-darwin
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: app
+
+      - name: Build arm64
+        working-directory: app
+        run: cargo build --locked --release --target aarch64-apple-darwin
+
+      - name: Build x86_64
+        working-directory: app
+        run: cargo build --locked --release --target x86_64-apple-darwin
+
+      # rsvg-convert renders app/packaging/icon.svg into the app's icon.
+      - name: Install rsvg-convert
+        run: brew install librsvg
+
+      - name: Import the signing certificate into a temporary keychain
+        shell: bash
+        env:
+          APPLE_CERTIFICATE_P12: ${{ secrets.APPLE_CERTIFICATE_P12 }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+        run: |
+          set -euo pipefail
+          KEYCHAIN_PATH="$RUNNER_TEMP/signing.keychain-db"
+          KEYCHAIN_PASSWORD="$(openssl rand -base64 32)"
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          printf '%s' "$APPLE_CERTIFICATE_P12" | base64 --decode > "$RUNNER_TEMP/certificate.p12"
+          security import "$RUNNER_TEMP/certificate.p12" -P "$APPLE_CERTIFICATE_PASSWORD" \
+            -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+          security list-keychain -d user -s "$KEYCHAIN_PATH"
+          security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+
+          IDENTITIES="$(security find-identity -v -p codesigning "$KEYCHAIN_PATH")"
+          COUNT="$(printf '%s\n' "$IDENTITIES" | awk '/"Developer ID Application:/ { n++ } END { print n + 0 }')"
+          if [ "$COUNT" -ne 1 ]; then
+            echo "Expected exactly one Developer ID Application identity in APPLE_CERTIFICATE_P12" >&2
+            printf '%s\n' "$IDENTITIES" >&2
+            exit 1
+          fi
+          LINE="$(printf '%s\n' "$IDENTITIES" | awk '/"Developer ID Application:/ { print; exit }')"
+          echo "Signing as: $LINE"
+          echo "SIGNING_IDENTITY=$(printf '%s\n' "$LINE" | awk '{ print $2 }')" >> "$GITHUB_ENV"
+          echo "KEYCHAIN_PATH=$KEYCHAIN_PATH" >> "$GITHUB_ENV"
+
+      - name: Write the App Store Connect API key
+        shell: bash
+        env:
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+        run: |
+          printf '%s' "$APPLE_API_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
+          chmod 600 "$RUNNER_TEMP/AuthKey.p8"
+          echo "NOTARY_KEY_PATH=$RUNNER_TEMP/AuthKey.p8" >> "$GITHUB_ENV"
+
+      - name: Package the signed and notarized DMG
+        working-directory: app
+        env:
+          NOTARY_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          NOTARY_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
+          REQUIRE_NOTARIZATION: "1"
+        run: ./packaging/macos/build-dmg.sh
+
+      - name: Upload to R2
+        shell: bash
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: >
+          ./scripts/release/r2-upload.sh
+          "app/target/release-artifacts/Buwiz-$VERSION-macos-universal.dmg"
+          macos universal dmg release-meta
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-meta-macos-universal-dmg
+          path: release-meta/*.json
+          if-no-files-found: error
+
+      - name: Clean up signing material
+        if: always()
+        shell: bash
+        run: |
+          security delete-keychain "$RUNNER_TEMP/signing.keychain-db" 2>/dev/null || true
+          rm -f "$RUNNER_TEMP/certificate.p12" "$RUNNER_TEMP/AuthKey.p8"

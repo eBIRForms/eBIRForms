@@ -1,0 +1,129 @@
+name: release (android)
+
+# Called by release.yml: the arm64 APK from app/packaging/android/
+# build-apk.sh (app/android.sh's build, release mode, not debuggable),
+# signed with the release keystore and uploaded to R2 as
+# releases/v{VERSION}/Buwiz-{VERSION}-android-arm64.apk.
+#
+# Without the keystore secrets the job uploads nothing and warns: the
+# release then has no APK. A throwaway key would lock users out of updates
+# once the real key is in use.
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  RUSTC_WRAPPER: ""
+  CARGO_TERM_COLOR: always
+  R2_BUCKET: buwiz-releases
+  R2_ENDPOINT: https://f1d5007ee46f17d2bd7a1d6cb4402906.r2.cloudflarestorage.com
+  AWS_DEFAULT_REGION: auto
+  AWS_REGION: auto
+  AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+  AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+
+jobs:
+  apk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      VERSION: ${{ inputs.version }}
+    steps:
+      - name: Resolve Android signing
+        id: signing
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+        run: |
+          set=0
+          for name in ANDROID_KEYSTORE_BASE64 ANDROID_KEYSTORE_PASSWORD ANDROID_KEY_ALIAS; do
+            if [ -n "${!name}" ]; then set=$((set + 1)); fi
+          done
+          if [ "$set" -eq 0 ]; then
+            echo "::warning title=No Android APK::ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD and ANDROID_KEY_ALIAS are not set; this release has no APK."
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          elif [ "$set" -ne 3 ]; then
+            echo "Set all of ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD and ANDROID_KEY_ALIAS, or none" >&2
+            exit 1
+          else
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.signing.outputs.enabled == 'true'
+        with:
+          submodules: recursive
+
+      - name: Android SDK pieces, NDK and Rust target
+        if: steps.signing.outputs.enabled == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          # The image's SDK has the latest NDK; android.sh needs platform 35
+          # and build-tools 35 or later (zipalign -P 16).
+          sdkmanager="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          { yes || true; } | "$sdkmanager" --install "platforms;android-35" "build-tools;35.0.0" >/dev/null
+          echo "ANDROID_NDK_HOME=$ANDROID_NDK_LATEST_HOME" >> "$GITHUB_ENV"
+          cd app && rustup target add aarch64-linux-android
+
+      - uses: actions/setup-java@v4
+        if: steps.signing.outputs.enabled == 'true'
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: Swatinem/rust-cache@v2
+        if: steps.signing.outputs.enabled == 'true'
+        with:
+          workspaces: app
+
+      - name: Write the keystore
+        if: steps.signing.outputs.enabled == 'true'
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/release.keystore"
+          chmod 600 "$RUNNER_TEMP/release.keystore"
+
+      - name: Build and sign the APK
+        if: steps.signing.outputs.enabled == 'true'
+        working-directory: app
+        env:
+          ANDROID_KEYSTORE_PATH: ${{ runner.temp }}/release.keystore
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: ./packaging/android/build-apk.sh
+
+      - name: Upload to R2
+        if: steps.signing.outputs.enabled == 'true'
+        shell: bash
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: >
+          ./scripts/release/r2-upload.sh
+          "app/target/android-release/Buwiz-$VERSION-android-arm64.apk"
+          android arm64 apk release-meta
+
+      - uses: actions/upload-artifact@v4
+        if: steps.signing.outputs.enabled == 'true'
+        with:
+          name: release-meta-android-arm64-apk
+          path: release-meta/*.json
+          if-no-files-found: error
+
+      - name: Clean up the keystore
+        if: always()
+        shell: bash
+        run: rm -f "$RUNNER_TEMP/release.keystore"
