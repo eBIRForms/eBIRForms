@@ -6,7 +6,8 @@
 //! `-- --full` adds what screenshots need: the forms Juana files (so the
 //! calendar has deadlines), drafts, a saved payee, and five queued 1601C
 //! returns left Queued, Sending, Failed (the relay's `tin_not_active`) and
-//! Sent (with a demo receipt).
+//! Sent (with a demo receipt), and one moved deadline (1701Q Q3 2026, due
+//! Nov 23 instead of BIR's Nov 16) so the Calendar shows an overridden row.
 
 use std::collections::BTreeMap;
 
@@ -45,6 +46,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
     if full {
         seed_returns(&app, &taxpayer.branches[0].tin)?;
+        let moved = app.move_deadline("1701Q", "2026-Q3", "2026-11-23", Some("Demo extension"))?;
+        println!("moved 1701Q Q3 2026 to {}", moved.due.unwrap_or_default());
     }
     Ok(())
 }
