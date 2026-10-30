@@ -1,9 +1,17 @@
 name: release (linux)
 
-# Called by release.yml: the .deb from app/packaging/linux/build-deb.sh,
-# for publish to upload to R2 as releases/v{VERSION}/buwiz_{VERSION}_amd64.deb.
-# Built on Ubuntu 24.04: the package depends on GTK >= 4.14 and
-# WebKitGTK 6.0.
+# Called by release.yml (and release-dry-run.yml): per architecture, x64
+# on ubuntu-24.04 and arm64 on ubuntu-24.04-arm, for publish to upload to
+# R2 under releases/v{VERSION}/:
+#   buwiz_{VERSION}_amd64.deb, buwiz_{VERSION}_arm64.deb   (build-deb.sh)
+#   Buwiz-{VERSION}-linux-{x64,arm64}.rpm                  (build-rpm.sh)
+#   Buwiz-{VERSION}-linux-{x64,arm64}.tar.gz               (build-tarball.sh)
+# and once, Buwiz-{VERSION}-linux-install.sh (install-linux.sh), which
+# installs the right one of those from latest.json:
+#   curl -fsSL https://downloads.buwiz.com/releases/v{VERSION}/Buwiz-{VERSION}-linux-install.sh | sh
+# Built on Ubuntu 24.04: the packages depend on GTK >= 4.14 and
+# WebKitGTK 6.0. smoke-test.sh installs each in clean Ubuntu and Fedora
+# containers before anything is handed over.
 
 on:
   workflow_call:
@@ -21,22 +29,44 @@ env:
   CARGO_INCREMENTAL: "0"
 
 jobs:
-  deb:
-    runs-on: ubuntu-24.04
+  packages:
+    name: packages (${{ matrix.arch }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x64
+            deb_arch: amd64
+            runner: ubuntu-24.04
+          - arch: arm64
+            deb_arch: arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 120
     env:
       VERSION: ${{ inputs.version }}
+      DEB: app/target/deb/buwiz_${{ inputs.version }}_${{ matrix.deb_arch }}.deb
+      RPM: app/target/rpm/Buwiz-${{ inputs.version }}-linux-${{ matrix.arch }}.rpm
+      TARBALL: app/target/tarball/Buwiz-${{ inputs.version }}-linux-${{ matrix.arch }}.tar.gz
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
       # clang for QuickJS's bindgen; GTK 4 and WebKitGTK 6.0 for nsh's
       # Linux backend and the print preview; libdbus for keyring;
-      # rsvg-convert for the package's PNG icon.
+      # rsvg-convert for the packages' PNG icon.
       - run: >
           sudo apt-get update && sudo apt-get install -y
           clang libclang-dev pkg-config libgtk-4-dev libwebkitgtk-6.0-dev
           libdbus-1-dev librsvg2-bin
+      # The arm64 image may come without rustup; rust-toolchain.toml then
+      # picks the pinned toolchain either way.
+      - name: Rustup
+        run: |
+          if ! command -v rustup >/dev/null; then
+            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none
+            echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+          fi
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: app
@@ -47,12 +77,56 @@ jobs:
         working-directory: app
         run: |
           ./packaging/linux/build-deb.sh
-          test -f "target/deb/buwiz_${VERSION}_amd64.deb"
-      # release.yml's publish job uploads it to R2 once every platform
+          test -f "../$DEB"
+      - name: Pack the .rpm
+        working-directory: app
+        run: |
+          cargo install --locked cargo-generate-rpm --version 0.21.0
+          ./packaging/linux/build-rpm.sh
+          test -f "../$RPM"
+      - name: Pack the .tar.gz
+        working-directory: app
+        run: |
+          ./packaging/linux/build-tarball.sh
+          test -f "../$TARBALL"
+      - name: Smoke test
+        timeout-minutes: 30
+        run: ./app/packaging/linux/smoke-test.sh "$DEB" "$RPM" "$TARBALL"
+      # release.yml's publish job uploads them to R2 once every platform
       # has built, so a failed build leaves the version empty.
       - uses: actions/upload-artifact@v4
         with:
-          name: release-file-linux-x64-deb
-          path: app/target/deb/buwiz_${{ inputs.version }}_amd64.deb
+          name: release-file-linux-${{ matrix.arch }}-deb
+          path: ${{ env.DEB }}
+          if-no-files-found: error
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-file-linux-${{ matrix.arch }}-rpm
+          path: ${{ env.RPM }}
+          if-no-files-found: error
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-file-linux-${{ matrix.arch }}-targz
+          path: ${{ env.TARBALL }}
+          if-no-files-found: error
+          retention-days: 7
+
+  installer:
+    runs-on: ubuntu-24.04
+    env:
+      VERSION: ${{ inputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Name the installer for the version
+        run: |
+          sh -n app/packaging/linux/install-linux.sh
+          mkdir -p target/installer
+          install -m755 app/packaging/linux/install-linux.sh "target/installer/Buwiz-$VERSION-linux-install.sh"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-file-linux-universal-sh
+          path: target/installer/Buwiz-${{ inputs.version }}-linux-install.sh
           if-no-files-found: error
           retention-days: 7

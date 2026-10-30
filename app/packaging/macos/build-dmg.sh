@@ -11,10 +11,13 @@
 #                         (ad-hoc, local smoke tests only)
 #   KEYCHAIN_PATH         optional keychain for codesign
 #   NOTARY_KEY_PATH       App Store Connect API .p8 key file; all three
-#   NOTARY_KEY_ID         NOTARY_* turn notarization on
+#   NOTARY_KEY_ID         NOTARY_* turn notarization on (CI)
 #   NOTARY_ISSUER_ID
-#   REQUIRE_NOTARIZATION  "1": fail unless a real identity and all NOTARY_*
-#                         are set
+#   APPLE_ID              without the NOTARY_* key: an Apple ID, its team
+#   APPLE_TEAM_ID         and an app-specific password; all three turn
+#   APP_PASSWORD          notarization on (local, `just dmg`)
+#   REQUIRE_NOTARIZATION  "1": fail unless a real identity and one of the
+#                         two notarization inputs are set
 #
 # Prints the DMG's path: target/release-artifacts/Buwiz-$VERSION-macos-universal.dmg
 set -euo pipefail
@@ -34,11 +37,30 @@ for v in NOTARY_KEY_PATH NOTARY_KEY_ID NOTARY_ISSUER_ID; do
   if [ -n "${!v}" ]; then notary_set=$((notary_set + 1)); fi
 done
 [ "$notary_set" -eq 0 ] || [ "$notary_set" -eq 3 ] || fail "set all of NOTARY_KEY_PATH, NOTARY_KEY_ID, NOTARY_ISSUER_ID or none"
-NOTARIZE=0; [ "$notary_set" -eq 3 ] && NOTARIZE=1
+NOTARIZE=0
+notary_auth=()
+if [ "$notary_set" -eq 3 ]; then
+  NOTARIZE=1
+  notary_auth=(--key "$NOTARY_KEY_PATH" --key-id "$NOTARY_KEY_ID" --issuer "$NOTARY_ISSUER_ID")
+else
+  # The Apple ID alternative, only when the API key is absent.
+  APPLE_ID="${APPLE_ID:-}"
+  APPLE_TEAM_ID="${APPLE_TEAM_ID:-}"
+  APP_PASSWORD="${APP_PASSWORD:-}"
+  apple_set=0
+  for v in APPLE_ID APPLE_TEAM_ID APP_PASSWORD; do
+    if [ -n "${!v}" ]; then apple_set=$((apple_set + 1)); fi
+  done
+  [ "$apple_set" -eq 0 ] || [ "$apple_set" -eq 3 ] || fail "set all of APPLE_ID, APPLE_TEAM_ID, APP_PASSWORD or none"
+  if [ "$apple_set" -eq 3 ]; then
+    NOTARIZE=1
+    notary_auth=(--apple-id "$APPLE_ID" --team-id "$APPLE_TEAM_ID" --password "$APP_PASSWORD")
+  fi
+fi
 AD_HOC=0; [ "$SIGNING_IDENTITY" = "-" ] && AD_HOC=1
 if [ "${REQUIRE_NOTARIZATION:-0}" = "1" ]; then
   [ "$AD_HOC" -eq 0 ] || fail "REQUIRE_NOTARIZATION=1 needs a Developer ID SIGNING_IDENTITY"
-  [ "$NOTARIZE" -eq 1 ] || fail "REQUIRE_NOTARIZATION=1 needs NOTARY_KEY_PATH, NOTARY_KEY_ID and NOTARY_ISSUER_ID"
+  [ "$NOTARIZE" -eq 1 ] || fail "REQUIRE_NOTARIZATION=1 needs NOTARY_KEY_PATH, NOTARY_KEY_ID and NOTARY_ISSUER_ID, or APPLE_ID, APPLE_TEAM_ID and APP_PASSWORD"
 fi
 
 APP_NAME=Buwiz
@@ -57,15 +79,14 @@ done
 
 notarize() { # file
   local result
-  result=$(xcrun notarytool submit "$1" --key "$NOTARY_KEY_PATH" --key-id "$NOTARY_KEY_ID" \
-    --issuer "$NOTARY_ISSUER_ID" --wait --timeout 1h --output-format json) || true
+  result=$(xcrun notarytool submit "$1" "${notary_auth[@]}" \
+    --wait --timeout 1h --output-format json) || true
   echo "$result"
   local id status
   id=$(printf '%s' "$result" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("id",""))' 2>/dev/null || true)
   status=$(printf '%s' "$result" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("status",""))' 2>/dev/null || true)
   if [ "$status" != "Accepted" ]; then
-    [ -n "$id" ] && xcrun notarytool log "$id" --key "$NOTARY_KEY_PATH" --key-id "$NOTARY_KEY_ID" \
-      --issuer "$NOTARY_ISSUER_ID" >&2 || true
+    [ -n "$id" ] && xcrun notarytool log "$id" "${notary_auth[@]}" >&2 || true
     fail "notarization of $1 was not accepted (status: ${status:-none})"
   fi
 }

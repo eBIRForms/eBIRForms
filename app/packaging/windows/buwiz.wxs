@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  WiX (v5) source for the Buwiz .msi, beside the Inno Setup installer
+  (buwiz.iss), for managed and per-machine deployment:
+    wix build -arch x64 -d Version=0.1.0 -d ExePath=..\..\target\release\buwiz.exe
+      -d WebView2Setup=..\..\target\MicrosoftEdgeWebview2Setup.exe -o Buwiz.msi buwiz.wxs
+  Installs buwiz.exe in Program Files\Buwiz for every user, with a Start
+  menu shortcut and an entry in Apps / Programs and Features. A newer
+  version replaces an older one (the UpgradeCode never changes).
+
+  The print preview needs the WebView2 Runtime (Evergreen). As in
+  buwiz.iss, when no runtime is registered (per machine or per user)
+  setup runs Microsoft's Evergreen bootstrapper, which downloads and
+  installs it; offline, the install still succeeds without it.
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="Buwiz" Manufacturer="Buwiz" Version="$(var.Version)"
+           UpgradeCode="7CD6C5E3-560E-4F83-9968-FE03B556B8B3"
+           Scope="perMachine" Compressed="yes">
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Buwiz is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="Buwiz">
+        <Component Id="BuwizExe" Guid="CE08FF5D-B357-44B8-96EF-2A78C5801B48">
+          <File Id="BuwizExe" Source="$(var.ExePath)" Name="buwiz.exe" KeyPath="yes" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Component Id="StartMenuShortcut" Guid="F2D5C8B4-6DA1-449C-8878-B4B5914B464E">
+        <Shortcut Id="StartMenuShortcut" Name="Buwiz" Target="[#BuwizExe]" WorkingDirectory="INSTALLFOLDER" />
+        <RegistryValue Root="HKLM" Key="Software\Buwiz\Buwiz" Name="StartMenuShortcut" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </StandardDirectory>
+
+    <Feature Id="Main">
+      <ComponentRef Id="BuwizExe" />
+      <ComponentRef Id="StartMenuShortcut" />
+    </Feature>
+
+    <!-- The WebView2 Runtime's version, where the Evergreen runtime registers it. -->
+    <Property Id="WEBVIEW2_MACHINE32">
+      <RegistrySearch Root="HKLM" Key="SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}" Name="pv" Type="raw" Bitness="always32" />
+    </Property>
+    <Property Id="WEBVIEW2_MACHINE64">
+      <RegistrySearch Root="HKLM" Key="SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}" Name="pv" Type="raw" Bitness="always64" />
+    </Property>
+    <Property Id="WEBVIEW2_USER">
+      <RegistrySearch Root="HKCU" Key="SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}" Name="pv" Type="raw" />
+    </Property>
+
+    <Binary Id="WebView2Setup" SourceFile="$(var.WebView2Setup)" />
+    <CustomAction Id="InstallWebView2" BinaryRef="WebView2Setup" ExeCommand="/silent /install"
+                  Execute="deferred" Impersonate="no" Return="ignore" />
+    <InstallExecuteSequence>
+      <Custom Action="InstallWebView2" Before="InstallFinalize"
+              Condition="NOT Installed AND (NOT WEBVIEW2_MACHINE32 OR WEBVIEW2_MACHINE32 = &quot;0.0.0.0&quot;) AND (NOT WEBVIEW2_MACHINE64 OR WEBVIEW2_MACHINE64 = &quot;0.0.0.0&quot;) AND (NOT WEBVIEW2_USER OR WEBVIEW2_USER = &quot;0.0.0.0&quot;)" />
+    </InstallExecuteSequence>
+  </Package>
+</Wix>
