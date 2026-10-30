@@ -42,7 +42,8 @@ pub(super) fn page(form: Arc<OpenForm>) -> impl IntoElement {
     let content = element_ref();
     st.list.set(Some((list, content)));
     let typing = move || st.focused.get().is_some();
-    let menu = signal(false);
+    // Debug builds: `BUWIZ_PICK=menu` opens the more menu (evidence.sh).
+    let menu = signal(cfg!(debug_assertions) && std::env::var("BUWIZ_PICK").as_deref() == Ok("menu"));
     let parts_form = form.clone();
     let parts = move || {
         (0..parts_form.layout.parts.len())
