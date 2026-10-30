@@ -186,9 +186,13 @@ if selected V5; then
         # Each run must really have scrolled: the list's own scroll events
         # reached (within 5%) the bottom of a long form, many times over.
         short=$(awk '/bench end/{ if (match($0,/reached [0-9]+pt of [0-9]+pt, [0-9]+ scroll events/)) { split(substr($0,RSTART,RLENGTH),a,/[^0-9]+/); far=a[2]; max=a[3]; ev=a[4]; if (max < 5000 || far < 0.95*max || ev < 200) n++ } else n++ } END{print n+0}' "$log")
+        # Shown, not judged: the frames the scroll skipped (a step more than
+        # 1.5 periods after the one before), which the jank log can't see
+        # when the time went outside nsh's own frame work.
+        gaps=$(grep -o -E 'frame gaps: [0-9]+ steps, [0-9]+ over 12.5 ms, longest [0-9.]+ ms' "$log" | sed 's/frame gaps: //' | paste -sd ';' - | sed 's/;/; /g')
         if [ "$ended" -lt 2 ]; then fail V5 "bench finished $ended of 2 runs (40 and 160 pt/frame)"
         elif [ "$short" -gt 0 ]; then fail V5 "$short run(s) did not scroll the whole form (see 'reached' in $log)"
-        elif [ "$over" -eq 0 ]; then pass V5 "1702RT expand-all scroll: 0 frames over 8.3 ms at 120 Hz, both runs scrolled the whole form"
+        elif [ "$over" -eq 0 ]; then pass V5 "1702RT expand-all scroll: 0 frames over 8.3 ms at 120 Hz, both runs scrolled the whole form (skipped-frame gaps: ${gaps:-not logged})"
         else fail V5 "$over scroll frames over 8.3 ms"; fi
     fi
 fi
