@@ -36,6 +36,10 @@ check:
     RUSTC_WRAPPER= cargo clippy --all-targets -- -D warnings
     cd app && RUSTC_WRAPPER= cargo clippy -- -D warnings
 
+# A signed, notarized DMG on this Mac; reads only the Apple ID and signing keys from the env file (`BUWIZ_SIGNING_ENV=../buwiz-forms/.env just dmg`)
+dmg:
+    ./scripts/dmg.sh
+
 # Fail if BIR secrets, personal data or local secret files are in the tree
 secrets:
     ./scripts/check-secrets.sh
