@@ -159,12 +159,16 @@ fn desktop_new_taxpayer() -> impl IntoElement {
             error.set("Search the city or ZIP code and pick it from the list.".to_owned());
             return;
         };
-        if place_v.rdo_code.is_empty() {
-            error.set("Pick the RDO too: search its name or number.".to_owned());
+        if let Some(gap) = place_gap(&place_v) {
+            error.set(gap.to_owned());
             return;
         }
         let birth_text = birth.get_untracked();
         let birth_date = if birth_text.trim().is_empty() {
+            if kind.get_untracked() == "Individual" {
+                error.set("Enter the birth date as MM/DD/YYYY.".to_owned());
+                return;
+            }
             None
         } else {
             match bir_app_core::display::parse_typed_date(&birth_text) {
@@ -318,13 +322,13 @@ fn phone_new_taxpayer() -> impl IntoElement {
         if digits().len() < 9 {
             return Some(("TIN", 1));
         }
-        if place.get().is_none() {
-            return Some(("City and RDO", 99));
+        if place.get().as_ref().is_none_or(|p| place_gap(p).is_some()) {
+            return Some(("City, ZIP and RDO", 99));
         }
         if street.get().trim().is_empty() {
             return Some(("Street address", 2));
         }
-        if individual() && bir_app_core::display::parse_typed_date(&birth.get()).is_none() {
+        if individual() && bir_app_core::display::parse_typed_date(&birth.get()).is_none_or(|d| d > crate::store::today()) {
             return Some(("Birth date", 3));
         }
         if !email_ok() {
@@ -341,7 +345,7 @@ fn phone_new_taxpayer() -> impl IntoElement {
         let birth_date = if kind.get_untracked() == "Individual" { bir_app_core::display::parse_typed_date(&birth.get_untracked()).map(|d| d.to_string()) } else { None };
         let address = format!("{}, {}", street.get_untracked().trim(), place_v.city);
         let new = NewTaxpayer {
-            tin_root: tin.get_untracked().chars().filter(char::is_ascii_digit).take(9).collect(),
+            tin_root: tin.get_untracked().chars().filter(char::is_ascii_digit).collect(),
             name: name.get_untracked().trim().to_owned(),
             taxpayer_type: kind.get_untracked(),
             birth_date,
@@ -417,7 +421,7 @@ fn phone_new_taxpayer() -> impl IntoElement {
         .placeholder("000-000-000")
         .on_change(move |v: &str| {
             let prev = tin.get_untracked();
-            let out = crate::typing::dash_tin(v, 12);
+            let out = crate::typing::dash_tin(v, 9);
             crate::typing::show_formatted(tin, v, &out);
             if out != v {
                 // The caret stays after the digit just typed.
@@ -479,7 +483,7 @@ fn phone_new_taxpayer() -> impl IntoElement {
     let r = refs.clone();
     let body = view()
         .child(field("Registered name", "As on the Certificate of Registration", text_input(name, "Juana Santos"), r[0], 0))
-        .child(field("TIN", "9 or 12 digits", tin_input, r[1], 1))
+        .child(field("TIN", "9 digits", tin_input, r[1], 1))
         .child(types)
         .child(place_row)
         .child(field("Street address", "House, street, barangay", text_input(street, "1 Sample Street"), r[2], 2))
@@ -654,7 +658,8 @@ fn tin_input_desktop(value: Signal<String>) -> Input {
 }
 
 /// The place picked after `next` was chosen from the list: an RDO picked
-/// after a ZIP keeps the ZIP.
+/// after a ZIP keeps the ZIP, and a ZIP with no RDO of its own picked after
+/// an RDO keeps the RDO.
 fn merge_place(had: Option<bir_app_core::Place>, next: bir_app_core::Place) -> bir_app_core::Place {
     match had {
         Some(mut had) if next.zip.is_empty() && !had.zip.is_empty() => {
@@ -662,7 +667,22 @@ fn merge_place(had: Option<bir_app_core::Place>, next: bir_app_core::Place) -> b
             had.rdo_name = next.rdo_name;
             had
         }
+        Some(had) if had.zip.is_empty() && !next.zip.is_empty() && next.rdo_code.is_empty() => {
+            bir_app_core::Place { rdo_code: had.rdo_code, rdo_name: had.rdo_name, ..next }
+        }
         _ => next,
+    }
+}
+
+/// What a picked place still lacks before a taxpayer can be added: the
+/// ZIP code or the RDO.
+fn place_gap(place: &bir_app_core::Place) -> Option<&'static str> {
+    if place.zip.is_empty() {
+        Some("Search the city or ZIP code too and pick it from the list.")
+    } else if place.rdo_code.is_empty() {
+        Some("Pick the RDO too: search its name or number.")
+    } else {
+        None
     }
 }
 
@@ -795,6 +815,21 @@ mod tests {
         assert_eq!((merged.city.as_str(), merged.zip.as_str(), merged.rdo_code.as_str()), ("Pasig", "1600", "043"));
         let replaced = merge_place(Some(place("Pasig", "1600", "043")), place("Makati", "1200", "050"));
         assert_eq!(replaced.zip, "1200");
+    }
+
+    #[test]
+    fn a_zip_without_an_rdo_picked_after_an_rdo_keeps_the_rdo() {
+        let merged = merge_place(Some(place("RDO 043", "", "043")), place("Pasig", "1600", ""));
+        assert_eq!((merged.city.as_str(), merged.zip.as_str(), merged.rdo_code.as_str()), ("Pasig", "1600", "043"));
+        let own = merge_place(Some(place("RDO 043", "", "043")), place("Laoag", "2900", "001"));
+        assert_eq!(own.rdo_code, "001", "a ZIP with its own RDO replaces the earlier one");
+    }
+
+    #[test]
+    fn a_taxpayer_needs_the_zip_and_the_rdo() {
+        assert!(place_gap(&place("RDO 043", "", "043")).is_some());
+        assert!(place_gap(&place("Pasig", "1600", "")).is_some());
+        assert_eq!(place_gap(&place("Pasig", "1600", "043")), None);
     }
 
     #[test]
