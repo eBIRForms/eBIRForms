@@ -231,9 +231,9 @@ const SECURITY_ERR_ITEM_NOT_FOUND: i32 = 44;
 
 /// Keychain service and account of the SQLCipher master key. Buwiz's own
 /// service, so it never reads another app's key.
-#[cfg(all(not(target_os = "android"), not(test)))]
+#[cfg(not(any(target_os = "android", all(target_os = "macos", test))))]
 const MASTER_KEY_SERVICE: &str = "com.buwiz.oss";
-#[cfg(all(not(target_os = "android"), not(test)))]
+#[cfg(not(any(target_os = "android", all(target_os = "macos", test))))]
 const MASTER_KEY_ACCOUNT: &str = "sqlcipher_master_key";
 
 /// The master key from the environment, for installs that keep it out of
