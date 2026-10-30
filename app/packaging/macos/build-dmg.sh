@@ -117,6 +117,21 @@ PLIST
 plutil -lint "$APP/Contents/Info.plist"
 xattr -cr "$APP"
 
+# Staple and validate. Apple's ticket service can lag the notary's
+# "Accepted" and drops connections now and then (error 68), so a failure
+# gets four more tries before the build fails.
+staple() {
+  for attempt in 1 2 3 4 5; do
+    if xcrun stapler staple "$1" && xcrun stapler validate "$1"; then
+      return 0
+    fi
+    [ "$attempt" -lt 5 ] || break
+    echo "stapling $1 failed (attempt $attempt); retrying in $((attempt * 20))s" >&2
+    sleep $((attempt * 20))
+  done
+  fail "stapling $1 failed five times"
+}
+
 # 3. Sign (hardened runtime), notarize and staple the app.
 if [ "$AD_HOC" -eq 1 ]; then
   codesign --force --options runtime --timestamp=none --sign - "$APP"
@@ -130,8 +145,7 @@ if [ "$NOTARIZE" -eq 1 ]; then
   ditto -c -k --keepParent "$APP" "$zip_dir/$APP_NAME.zip"
   notarize "$zip_dir/$APP_NAME.zip"
   rm -rf "$zip_dir"
-  xcrun stapler staple "$APP"
-  xcrun stapler validate "$APP"
+  staple "$APP"
   spctl --assess --type execute --verbose=2 "$APP"
 fi
 
@@ -154,8 +168,7 @@ if [ "$AD_HOC" -eq 0 ]; then
 fi
 if [ "$NOTARIZE" -eq 1 ]; then
   notarize "$DMG"
-  xcrun stapler staple "$DMG"
-  xcrun stapler validate "$DMG"
+  staple "$DMG"
   spctl --assess --type open --context context:primary-signature --verbose=2 "$DMG"
 fi
 

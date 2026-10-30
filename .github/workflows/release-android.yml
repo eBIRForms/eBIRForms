@@ -2,10 +2,10 @@ name: release (android)
 
 # Called by release.yml: the arm64 APK from app/packaging/android/
 # build-apk.sh (app/android.sh's build, release mode, not debuggable),
-# signed with the release keystore and uploaded to R2 as
+# signed with the release keystore, for publish to upload to R2 as
 # releases/v{VERSION}/Buwiz-{VERSION}-android-arm64.apk.
 #
-# Without the keystore secrets the job uploads nothing and warns: the
+# Without the keystore secrets the job hands over nothing and warns: the
 # release then has no APK. A throwaway key would lock users out of updates
 # once the real key is in use.
 
@@ -22,12 +22,6 @@ permissions:
 env:
   RUSTC_WRAPPER: ""
   CARGO_TERM_COLOR: always
-  R2_BUCKET: buwiz-releases
-  R2_ENDPOINT: https://f1d5007ee46f17d2bd7a1d6cb4402906.r2.cloudflarestorage.com
-  AWS_DEFAULT_REGION: auto
-  AWS_REGION: auto
-  AWS_REQUEST_CHECKSUM_CALCULATION: when_required
-  AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
 
 jobs:
   apk:
@@ -105,23 +99,15 @@ jobs:
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: ./packaging/android/build-apk.sh
 
-      - name: Upload to R2
-        if: steps.signing.outputs.enabled == 'true'
-        shell: bash
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-        run: >
-          ./scripts/release/r2-upload.sh
-          "app/target/android-release/Buwiz-$VERSION-android-arm64.apk"
-          android arm64 apk release-meta
-
+      # release.yml's publish job uploads it to R2 once every platform
+      # has built, so a failed build leaves the version empty.
       - uses: actions/upload-artifact@v4
         if: steps.signing.outputs.enabled == 'true'
         with:
-          name: release-meta-android-arm64-apk
-          path: release-meta/*.json
+          name: release-file-android-arm64-apk
+          path: app/target/android-release/Buwiz-${{ inputs.version }}-android-arm64.apk
           if-no-files-found: error
+          retention-days: 7
 
       - name: Clean up the keystore
         if: always()

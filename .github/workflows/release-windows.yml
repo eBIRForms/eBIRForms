@@ -1,8 +1,8 @@
 name: release (windows)
 
 # Called by release.yml: the Inno Setup installer (app/packaging/windows/
-# buwiz.iss), Authenticode-signed with buwiz.exe inside it, uploaded to R2
-# as releases/v{VERSION}/Buwiz-{VERSION}-windows-x64-setup.exe.
+# buwiz.iss), Authenticode-signed with buwiz.exe inside it, for publish
+# to upload to R2 as releases/v{VERSION}/Buwiz-{VERSION}-windows-x64-setup.exe.
 #
 # Signing, as in the source repo: with neither WINDOWS_CERTIFICATE_PFX nor
 # WINDOWS_CERTIFICATE_PASSWORD set the installer ships unsigned, with a
@@ -24,12 +24,6 @@ env:
   CARGO_INCREMENTAL: "0"
   # QuickJS (nsh-js) is C: bindgen needs libclang, which the image's LLVM has.
   LIBCLANG_PATH: C:\Program Files\LLVM\bin
-  R2_BUCKET: buwiz-releases
-  R2_ENDPOINT: https://f1d5007ee46f17d2bd7a1d6cb4402906.r2.cloudflarestorage.com
-  AWS_DEFAULT_REGION: auto
-  AWS_REGION: auto
-  AWS_REQUEST_CHECKSUM_CALCULATION: when_required
-  AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
 
 jobs:
   installer:
@@ -126,21 +120,14 @@ jobs:
           & $env:WINDOWS_SIGNTOOL verify /pa /all /v $setup
           if ($LASTEXITCODE -ne 0) { throw "Signature verification failed: $setup" }
 
-      - name: Upload to R2
-        shell: bash
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-        run: >
-          ./scripts/release/r2-upload.sh
-          "app/target/installer/Buwiz-$VERSION-windows-x64-setup.exe"
-          windows x64 exe release-meta
-
+      # release.yml's publish job uploads it to R2 once every platform
+      # has built, so a failed build leaves the version empty.
       - uses: actions/upload-artifact@v4
         with:
-          name: release-meta-windows-x64-exe
-          path: release-meta/*.json
+          name: release-file-windows-x64-exe
+          path: app/target/installer/Buwiz-${{ inputs.version }}-windows-x64-setup.exe
           if-no-files-found: error
+          retention-days: 7
 
       - name: Clean up signing material
         if: always()
