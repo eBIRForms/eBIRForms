@@ -794,37 +794,20 @@ impl BirApp {
     }
 
     /// Every place a taxpayer registers in, for one search: each ZIP code
-    /// with its area and the RDO whose name matches it (when exactly one
-    /// does), then each RDO on its own.
+    /// with its area, then each RDO on its own. A ZIP code names no RDO:
+    /// the tables share no key, and names mislead (San Juan, Batangas is
+    /// not San Juan City's RDO), so the filer picks both.
     pub fn places() -> Vec<Place> {
         let rdos = bir_core::reference::get_all_rdos();
         let mut out: Vec<Place> = Vec::new();
         for entry in bir_core::reference::get_all_zipcodes() {
             let Some((zip, area)) = entry.split_once(" - ") else { continue };
-            // The RDO whose name shares a place word with the ZIP area
-            // (`Marikina` and `Marikina City`): a word of four letters or
-            // more that is not "city" or a direction. When several RDOs
-            // share one (`San Jose del Monte` and both `San Jose` RDOs, or
-            // Makati's four), none is guessed: the filer picks the RDO.
-            let words = |text: &str| -> Vec<String> {
-                text.to_lowercase()
-                    .split(|c: char| !c.is_alphanumeric())
-                    .filter(|w| w.len() >= 4 && !["city", "town", "south", "north", "east", "west", "proper"].contains(w))
-                    .map(str::to_owned)
-                    .collect()
-            };
-            let area_words = words(area);
-            let mut matched = rdos.iter().filter(|r| words(&r.description).iter().any(|w| area_words.contains(w)));
-            let rdo = match (matched.next(), matched.next()) {
-                (Some(only), None) => Some(only),
-                _ => None,
-            };
             out.push(Place {
                 label: format!("{area} · {zip}"),
                 city: area.trim().to_owned(),
                 zip: zip.trim().to_owned(),
-                rdo_code: rdo.map(|r| r.code.clone()).unwrap_or_default(),
-                rdo_name: rdo.map(|r| r.description.clone()).unwrap_or_default(),
+                rdo_code: String::new(),
+                rdo_name: String::new(),
             });
         }
         for r in rdos {
