@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Builds a release's manifest.json and SHA256SUMS from the per-file
-metadata the platform jobs write (scripts/release/r2-upload.sh).
+metadata scripts/release/file-meta.sh writes (r2-upload.sh runs it).
 
     manifest.py <meta-dir> <version> <out-dir>
 
@@ -24,7 +24,7 @@ from datetime import datetime, timezone
 
 PLATFORMS = {"macos", "windows", "linux", "android"}
 ARCHES = {"arm64", "x64", "universal"}
-KINDS = {"dmg", "msi", "exe", "appimage", "deb", "rpm", "apk"}
+KINDS = {"dmg", "msi", "exe", "appimage", "deb", "rpm", "targz", "sh", "apk"}
 KEYS = {"file", "size", "sha256", "platform", "arch", "kind"}
 
 
