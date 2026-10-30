@@ -1,11 +1,14 @@
 name: release (windows)
 
-# Called by release.yml: the Inno Setup installer (app/packaging/windows/
-# buwiz.iss), Authenticode-signed with buwiz.exe inside it, for publish
-# to upload to R2 as releases/v{VERSION}/Buwiz-{VERSION}-windows-x64-setup.exe.
+# Called by release.yml (and release-dry-run.yml): the Inno Setup installer
+# (app/packaging/windows/buwiz.iss) and an .msi (app/packaging/windows/
+# buwiz.wxs, WiX v5) for per-machine and managed deployment, both
+# Authenticode-signed with buwiz.exe inside them, for publish to upload to
+# R2 as releases/v{VERSION}/Buwiz-{VERSION}-windows-x64-setup.exe and
+# releases/v{VERSION}/Buwiz-{VERSION}-windows-x64.msi.
 #
 # Signing, as in the source repo: with neither WINDOWS_CERTIFICATE_PFX nor
-# WINDOWS_CERTIFICATE_PASSWORD set the installer ships unsigned, with a
+# WINDOWS_CERTIFICATE_PASSWORD set both installers ship unsigned, with a
 # warning on the run; exactly one of the two set fails.
 
 on:
@@ -52,7 +55,7 @@ jobs:
           }
           if (-not ($hasPfx -and $hasPassword)) {
             "WINDOWS_SIGNING=0" >> $env:GITHUB_ENV
-            Write-Output "::warning title=Unsigned Windows release::WINDOWS_CERTIFICATE_PFX and WINDOWS_CERTIFICATE_PASSWORD are not set; the installer in this release is NOT Authenticode-signed and SmartScreen will warn on install."
+            Write-Output "::warning title=Unsigned Windows release::WINDOWS_CERTIFICATE_PFX and WINDOWS_CERTIFICATE_PASSWORD are not set; the installer and MSI in this release are NOT Authenticode-signed and SmartScreen will warn on install."
           } else {
             "WINDOWS_SIGNING=1" >> $env:GITHUB_ENV
             $certificate = Join-Path $env:RUNNER_TEMP "windows-release-signing.pfx"
@@ -120,12 +123,68 @@ jobs:
           & $env:WINDOWS_SIGNTOOL verify /pa /all /v $setup
           if ($LASTEXITCODE -ne 0) { throw "Signature verification failed: $setup" }
 
-      # release.yml's publish job uploads it to R2 once every platform
+      - name: Build the MSI (WiX)
+        shell: pwsh
+        run: |
+          dotnet tool install --global wix --version 5.0.2
+          if ($LASTEXITCODE -ne 0) { throw "Installing WiX failed" }
+          $wix = Join-Path $env:USERPROFILE ".dotnet\tools\wix.exe"
+          $msi = "app/target/installer/Buwiz-$env:VERSION-windows-x64.msi"
+          & $wix build -arch x64 -d "Version=$env:VERSION" `
+            -d "ExePath=app/target/release/buwiz.exe" `
+            -d "WebView2Setup=app/target/MicrosoftEdgeWebview2Setup.exe" `
+            -o $msi app/packaging/windows/buwiz.wxs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          if (-not (Test-Path $msi)) { throw "WiX did not write $msi" }
+
+      - name: Sign and verify the MSI
+        if: env.WINDOWS_SIGNING == '1'
+        shell: pwsh
+        env:
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+        run: |
+          $msi = "app/target/installer/Buwiz-$env:VERSION-windows-x64.msi"
+          & $env:WINDOWS_SIGNTOOL sign /fd SHA256 /td SHA256 /tr http://timestamp.digicert.com `
+            /f $env:WINDOWS_CERTIFICATE_PATH /p $env:WINDOWS_CERTIFICATE_PASSWORD $msi
+          if ($LASTEXITCODE -ne 0) { throw "Signing failed: $msi" }
+          & $env:WINDOWS_SIGNTOOL verify /pa /all /v $msi
+          if ($LASTEXITCODE -ne 0) { throw "Signature verification failed: $msi" }
+
+      # The runner is thrown away afterwards: install the MSI for real,
+      # check the files, shortcut and uninstall entry, then uninstall.
+      - name: Install and uninstall the MSI
+        shell: pwsh
+        run: |
+          $msi = (Resolve-Path "app/target/installer/Buwiz-$env:VERSION-windows-x64.msi").Path
+          $log = Join-Path $env:RUNNER_TEMP "msi-install.log"
+          $p = Start-Process msiexec.exe -ArgumentList "/i", "`"$msi`"", "/qn", "/norestart", "/l*v", "`"$log`"" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { Get-Content $log -Tail 80; throw "msiexec /i exited $($p.ExitCode)" }
+          $exe = Join-Path $env:ProgramFiles "Buwiz\buwiz.exe"
+          $lnk = Join-Path $env:ProgramData "Microsoft\Windows\Start Menu\Programs\Buwiz.lnk"
+          if (-not (Test-Path $exe)) { throw "The MSI did not install $exe" }
+          if (-not (Test-Path $lnk)) { throw "The MSI did not create $lnk" }
+          $entry = Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" -ErrorAction SilentlyContinue |
+            Where-Object { $_.DisplayName -eq "Buwiz" -and $_.DisplayVersion -eq $env:VERSION }
+          if (-not $entry) { throw "The MSI registered no Buwiz $env:VERSION uninstall entry" }
+          $p = Start-Process msiexec.exe -ArgumentList "/x", "`"$msi`"", "/qn", "/norestart" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { throw "msiexec /x exited $($p.ExitCode)" }
+          if (Test-Path $exe) { throw "Uninstalling left $exe" }
+          if (Test-Path $lnk) { throw "Uninstalling left $lnk" }
+          Write-Output "PASS: the MSI installs buwiz.exe, its Start menu shortcut and uninstall entry, and uninstalls"
+
+      # release.yml's publish job uploads them to R2 once every platform
       # has built, so a failed build leaves the version empty.
       - uses: actions/upload-artifact@v4
         with:
           name: release-file-windows-x64-exe
           path: app/target/installer/Buwiz-${{ inputs.version }}-windows-x64-setup.exe
+          if-no-files-found: error
+          retention-days: 7
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-file-windows-x64-msi
+          path: app/target/installer/Buwiz-${{ inputs.version }}-windows-x64.msi
           if-no-files-found: error
           retention-days: 7
 
