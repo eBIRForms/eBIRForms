@@ -320,6 +320,18 @@ fn form_rows(form: &OpenForm, open: &std::collections::BTreeSet<usize>) -> Vec<F
 /// spreads over frames instead of stalling one.
 const ROWS_PER_FRAME: usize = 3;
 
+/// Once newly opened rows have all mounted, nudge the list one point and
+/// back: AppKit lays out a long document it has just been given on its
+/// next scroll, and doing that now, while nobody scrolls, keeps the
+/// person's first scroll after "Expand all" from stalling a frame.
+fn warm_up(list: ElementRef, at: Signal<f32>) {
+    request_animation_frame(move |_| {
+        let y = at.get_untracked();
+        list.scroll_to_offset(px(y + 1.0), false);
+        request_animation_frame(move |_| list.scroll_to_offset(px(y), false));
+    });
+}
+
 /// The form as one scroll view of rows. Every row of an open part stays
 /// mounted, so scrolling only moves native views (nothing is built while
 /// scrolling); rows that a part opens mount a few per frame.
@@ -333,6 +345,8 @@ fn form_list(form: Arc<OpenForm>, list: ElementRef, content: ElementRef, heads: 
     // The rows mounted so far; rows of a collapsed part go at once.
     let mounted = signal(std::collections::HashSet::<FormRow>::new());
     let pumping = std::rc::Rc::new(std::cell::Cell::new(false));
+    // Where the list is scrolled to, for the warm-up below.
+    let at = signal(0.0f32);
     effect({
         let pumping = pumping.clone();
         move || {
@@ -342,19 +356,22 @@ fn form_list(form: Arc<OpenForm>, list: ElementRef, content: ElementRef, heads: 
                 return;
             }
             pumping.set(true);
-            fn pump(rows: Memo<Vec<FormRow>>, mounted: Signal<std::collections::HashSet<FormRow>>, pumping: std::rc::Rc<std::cell::Cell<bool>>) {
+            fn pump(rows: Memo<Vec<FormRow>>, mounted: Signal<std::collections::HashSet<FormRow>>, pumping: std::rc::Rc<std::cell::Cell<bool>>, list: ElementRef, at: Signal<f32>, grew: bool) {
                 let next: Vec<FormRow> = untracked(|| {
                     let have = mounted.get_untracked();
                     rows.get_untracked().into_iter().filter(|r| !have.contains(r)).take(ROWS_PER_FRAME).collect()
                 });
                 if next.is_empty() {
                     pumping.set(false);
+                    if grew {
+                        warm_up(list, at);
+                    }
                     return;
                 }
                 mounted.update(|m| m.extend(next));
-                request_animation_frame(move |_| pump(rows, mounted, pumping));
+                request_animation_frame(move |_| pump(rows, mounted, pumping, list, at, true));
             }
-            pump(rows, mounted, pumping.clone());
+            pump(rows, mounted, pumping.clone(), list, at, false);
         }
     });
     let shown = move || {
@@ -376,13 +393,14 @@ fn form_list(form: Arc<OpenForm>, list: ElementRef, content: ElementRef, heads: 
     let row_form = form.clone();
     let scroller = scroll().element_ref(&list).flex_1();
     // The bench reads back where the list really got to.
-    let scroller = match bench {
-        Some(reading) => scroller.on_scroll(move |e: &ScrollEvent| {
+    let scroller = scroller.on_scroll(move |e: &ScrollEvent| {
+        at.set(e.offset.y.0);
+        // The bench reads back where the list really got to.
+        if let Some(reading) = bench {
             let (far, _, events) = reading.get_untracked();
             reading.set((far.max(e.offset.y.0), e.content_size.height.0 - e.size.height.0, events + 1));
-        }),
-        None => scroller,
-    };
+        }
+    });
     scroller.child(
         view()
             .element_ref(&content)
