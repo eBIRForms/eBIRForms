@@ -25,7 +25,7 @@ use crate::official_xml::{official_amount, parse_official_amount};
 
 /// Rule-package id of the official layout.
 pub const FORM_1701Q_LAYOUT_ID: &str = "1701q-v2018";
-/// Official `formType` and PROD SFTP folder (`ftpTargetFolder.PROD['1701Qv2018']`).
+/// Official `formType` (`1701Qv2018`).
 pub const FORM_1701Q_FORM_TYPE: &str = "1701Qv2018";
 
 const P: &str = "frm1701q:";

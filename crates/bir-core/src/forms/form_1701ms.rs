@@ -2060,7 +2060,7 @@ impl QueueableForm for Form1701MsDraft {
         Self::penalty_declarations()
     }
     const FORM_CODE: &'static str = "1701MS";
-    /// Official `formType` and SFTP folder (`ftpTargetFolder.PROD['1701MS']`).
+    /// Official `formType` (`1701MS`).
     const FORM_TYPE: &'static str = "1701MS";
     const LAYOUT_ID: &'static str = FORM_1701MS_FORM_ID;
 

@@ -16,7 +16,8 @@ default-members = ["."]
 bir-app-core = { path = "../crates/bir-app-core" }
 nsh-core = { path = "../nsh/crates/nsh-core" }
 nsh-base = { path = "../nsh/crates/nsh-base" }
-nsh-engine = { path = "../nsh/crates/nsh-engine" }
+# No default features: the UI is native nsh, so no QuickJS VM (AGENTS.md).
+nsh-engine = { path = "../nsh/crates/nsh-engine", default-features = false }
 ra-jit-live = { path = "../blaze/crates/ra-jit-live" }
 env_logger = "0.11"
 # Today and yesterday for the date chips (already in the lock through bir-core).
@@ -25,6 +26,13 @@ log = "0.4"
 
 [target.'cfg(target_os = "macos")'.dependencies]
 nsh-platform-macos = { path = "../nsh/crates/nsh-platform-macos", default-features = false }
+# The print preview's PDF (WKWebView createPDF) and the save / open / print
+# panels: AppKit, WebKit and PDFKit through objc2, as nsh reaches them.
+objc2 = "0.6.5"
+objc2-foundation = { version = "0.3.2", default-features = false, features = ["std", "NSString", "NSURL", "NSData", "NSArray", "NSGeometry"] }
+block2 = "0.6.2"
+dispatch2 = "0.3.1"
+thiserror = "2"
 
 # iOS (the simulator): nsh's UIKit backend and its release runner, with no
 # JS runtime. `ios.sh` builds the `buwiz` binary for
@@ -32,6 +40,32 @@ nsh-platform-macos = { path = "../nsh/crates/nsh-platform-macos", default-featur
 [target.'cfg(target_os = "ios")'.dependencies]
 nsh-platform-ios = { path = "../nsh/crates/nsh-platform-ios", default-features = false }
 nsh-ios-app = { path = "../nsh/crates/nsh-ios-app", default-features = false }
+# Printing: UIKit's print dialog, PDF context and share sheet, WebKit's
+# print formatter, through objc2.
+objc2 = "0.6.5"
+objc2-foundation = { version = "0.3.2", default-features = false, features = ["std", "NSString", "NSURL", "NSData", "NSArray", "NSGeometry"] }
+dispatch2 = "0.3.1"
+thiserror = "2"
+
+# Windows: nsh's Win32 / Direct2D backend (web views on WebView2), and
+# WebView2's PrintToPdf plus the shell's file dialogs and print verb for
+# the print preview and Settings (`src/windows.rs`).
+[target.'cfg(windows)'.dependencies]
+nsh-platform-windows = { path = "../nsh/crates/nsh-platform-windows", default-features = false }
+webview2-com = "0.39"
+windows = { version = "0.62", features = [
+  "Win32_Foundation",
+  "Win32_System_Com",
+  "Win32_UI_Shell",
+  "Win32_UI_Shell_Common",
+  "Win32_UI_WindowsAndMessaging",
+] }
+
+# Linux: nsh's GTK 4 backend with WebKitGTK 6.0 web views, and WebKitGTK's
+# print operation plus GTK's file dialogs (`src/linux.rs`).
+[target.'cfg(target_os = "linux")'.dependencies]
+nsh-platform-linux = { path = "../nsh/crates/nsh-platform-linux", default-features = false, features = ["webview"] }
+webkit6 = "0.6"
 
 [features]
 # Scripted UI checks: nsh's gpui-agent control plane (local, token-guarded,

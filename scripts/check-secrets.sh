@@ -24,8 +24,30 @@ search() { # pattern, message
 search 'PASSPHRASE' 'a passphrase constant is in the tree (BIR secrets live on the server only)'
 search 'birgovph\.com|ebf2\.bir\.gov\.ph|tinDispatcher' 'a BIR submission endpoint is in the tree'
 search '^\s*(russh|russh-sftp)\s*=' 'an SFTP client dependency is in the tree'
+search 'ftpTargetFolder|getFtpFolder' "eBIRForms' upload-folder table is named in the tree"
+# Case-insensitive, outside comments: any passphrase identifier or string,
+# and any SFTP identifier or string, in code or manifests.
+code=$(echo "$files" | grep -E '\.(rs|toml|swift|java|kt|sh|json)$' | grep -v -E '^scripts/verify\.sh$' || true)
+if [ -n "$code" ]; then
+  found=$(echo "$code" | xargs grep -n -I -i -E 'passphrase|sftp' -- 2>/dev/null \
+    | grep -v -E '^[^:]+:[0-9]+:[[:space:]]*(//|#|\*)' || true)
+  if [ -n "$found" ]; then echo "$found"; hit 'a passphrase or SFTP code is in the tree'; fi
+fi
 search 'codeitlikemiley@' 'the maintainer email is in the tree (use fixtures)'
-search '\b261708015' 'a real-looking TIN from the source repo is in the tree'
+# A real TIN root from the source repo, kept here only as a SHA-256 so this
+# script doesn't publish it: every 9-digit run (or NNN-NNN-NNN) in the tree
+# is hashed and compared.
+tin_hash=54769564c3351819e39114a34d0f1b52f5ddc479a736e24df3ffcae2e2c38e2b
+if [ -n "$files" ]; then
+  tins=$(echo "$files" | grep -v -E '^LICENSE$' | xargs grep -ohI -E '(^|[^0-9])[0-9]{3}-?[0-9]{3}-?[0-9]{3}' -- 2>/dev/null \
+    | sed -E 's/^[^0-9]//; s/-//g' | sort -u || true)
+  for t in $(echo "$tins" | perl -MDigest::SHA=sha256_hex -ne 'chomp; print "$_\n" if sha256_hex($_) eq "'"$tin_hash"'"'); do
+    if [ -n "$t" ]; then
+      echo "$files" | grep -v -E '^LICENSE$' | xargs grep -lI -E "${t:0:3}-?${t:3:3}-?${t:6:3}" -- 2>/dev/null | sed 's/^/  in /' || true
+      hit 'a real-looking TIN from the source repo is in the tree'
+    fi
+  done
+fi
 
 if echo "$files" | grep -E '(^|/)\.env(\.|$)|(^|/)\.keys/|\.(pem|p8|p12|key)$' | grep -v '\.env\.example$'; then
   hit 'a local secret file is tracked'

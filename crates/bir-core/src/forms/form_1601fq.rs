@@ -1545,7 +1545,7 @@ impl QueueableForm for Form1601FqDraft {
         vec![Self::penalty_declaration()]
     }
     const FORM_CODE: &'static str = "1601FQ";
-    /// Official `formType` and SFTP folder (`ftpTargetFolder.PROD['1601FQ']`).
+    /// Official `formType` (`1601FQ`).
     const FORM_TYPE: &'static str = "1601FQ";
     const LAYOUT_ID: &'static str = FORM_1601FQ_FORM_ID;
 

@@ -36,6 +36,7 @@ pub(crate) enum Icon {
     ChevronUp,
     More,
     User,
+    Share,
 }
 
 impl Icon {
@@ -51,6 +52,7 @@ impl Icon {
             Icon::More => &["M5 12h.01", "M12 12h.01", "M19 12h.01"],
             Icon::User => &["M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2", "M8 7a4 4 0 1 0 8 0a4 4 0 1 0-8 0"],
             Icon::ArrowRight => &["M5 12h14", "m12 5 7 7-7 7"],
+            Icon::Share => &["M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8", "m16 6-4-4-4 4", "M12 2v13"],
             Icon::Search => &["M3 11a8 8 0 1 0 16 0a8 8 0 1 0-16 0", "m21 21-4.3-4.3"],
             Icon::Plus => &["M5 12h14", "M12 5v14"],
             Icon::Sun => &[

@@ -26,9 +26,12 @@ ABI=arm64-v8a
 PACKAGE=com.buwiz.oss
 OUT=target/android-apk
 NSH_JAVA=../nsh/crates/nsh-platform-android/java
+# Buwiz's own Java (the activity, printing and its PDF provider).
+APP_JAVA=android/java
 
-# 1. The library. OpenSSL (for SQLCipher) is built from source with the
-#    NDK's clang, so it has to be on PATH as well as named for cargo.
+# 1. The library. SQLCipher and its crypto, LibTomCrypt (no OpenSSL:
+#    crates/sqlcipher-tomcrypt), are compiled with the NDK's clang, named
+#    for cargo's `cc` here.
 export ANDROID_NDK_HOME="$NDK" ANDROID_NDK_ROOT="$NDK" PATH="$TC:$PATH"
 export CC_aarch64_linux_android="$TC/${TRIPLE}${MIN_SDK}-clang"
 export AR_aarch64_linux_android="$TC/llvm-ar"
@@ -36,19 +39,21 @@ export CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER="$TC/${TRIPLE}${MIN_SDK}-clang"
 cargo build -p buwiz-android --target "$TRIPLE"
 SO="target/$TRIPLE/debug/libbuwiz_android.so"
 
-# 2. nsh's Java runtime, rebuilt when a source changes.
+# 2. nsh's Java runtime and Buwiz's own classes, rebuilt when a source
+#    changes.
 mkdir -p "$OUT"
-if [ ! -f "$OUT/classes.dex" ] || [ -n "$(find "$NSH_JAVA" -newer "$OUT/classes.dex" -name '*.java' | head -1)" ]; then
+if [ ! -f "$OUT/classes.dex" ] || [ -n "$(find "$NSH_JAVA" "$APP_JAVA" -newer "$OUT/classes.dex" -name '*.java' | head -1)" ]; then
     rm -rf "$OUT/classes" && mkdir -p "$OUT/classes"
     javac --release 17 -Xlint:-options -encoding UTF-8 -classpath "$PLATFORM" \
-        -d "$OUT/classes" $(find "$NSH_JAVA" -name '*.java')
+        -d "$OUT/classes" $(find "$NSH_JAVA" "$APP_JAVA" -name '*.java')
     rm -f "$OUT/classes.jar"
     jar cf "$OUT/classes.jar" -C "$OUT/classes" .
     "$BUILD_TOOLS/d8" --min-api "$MIN_SDK" --lib "$PLATFORM" --output "$OUT" "$OUT/classes.jar"
 fi
 
-# 3. The APK. AppActivity runs the library's Rust root (meta-data
-#    com.longbridge.nsh.RUST); edge to edge, the IME resizes the window.
+# 3. The APK. MainActivity (nsh's AppActivity plus printing) runs the
+#    library's Rust root; edge to edge, the IME resizes the window. PdfFiles
+#    shares PDFs from the cache.
 cat > "$OUT/AndroidManifest.xml" <<XML
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="$PACKAGE">
@@ -59,7 +64,9 @@ cat > "$OUT/AndroidManifest.xml" <<XML
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
         <meta-data android:name="com.longbridge.nsh.RUST" android:value="true" />
-        <activity android:name="com.longbridge.nsh.AppActivity" android:exported="true"
+        <provider android:name="com.buwiz.oss.PdfFiles" android:authorities="com.buwiz.oss.pdf"
+            android:exported="false" android:grantUriPermissions="true" />
+        <activity android:name="com.buwiz.oss.MainActivity" android:exported="true"
             android:windowSoftInputMode="adjustResize"
             android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboard|keyboardHidden|navigation|uiMode|density|fontScale|locale|layoutDirection">
             <intent-filter>
@@ -96,5 +103,5 @@ until [ "$("$ADB" shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = 
 if [ -n "$BUWIZ_FRESH" ]; then
     "$ADB" shell pm clear "$PACKAGE" >/dev/null
 fi
-"$ADB" shell am start -S -n "$PACKAGE/com.longbridge.nsh.AppActivity" >/dev/null
+"$ADB" shell am start -S -n "$PACKAGE/com.buwiz.oss.MainActivity" >/dev/null
 echo "launched $PACKAGE (logs: adb logcat -s nsh RustStdoutStderr)"

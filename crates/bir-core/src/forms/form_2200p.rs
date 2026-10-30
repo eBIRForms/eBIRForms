@@ -1145,9 +1145,9 @@ impl QueueableForm for Form2200PDraft {
         vec![Self::penalty_declaration()]
     }
     const FORM_CODE: &'static str = "2200P";
-    /// Official `formType` and filename segment. `ftpTargetFolder.PROD` has
-    /// no `2200Pv2020` key (only `2200P`); the official page passes
-    /// `undefined` as the SFTP folder in PROD, so queueing stays off in
+    /// Official `formType` and filename segment. eBIRForms has
+    /// no upload folder for `2200Pv2020` (only `2200P`); the official page passes
+    /// `undefined` as the upload folder in PROD, so queueing stays off in
     /// support_level until the real folder is confirmed.
     const FORM_TYPE: &'static str = "2200Pv2020";
     const LAYOUT_ID: &'static str = FORM_2200P_FORM_ID;

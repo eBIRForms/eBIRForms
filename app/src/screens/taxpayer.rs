@@ -227,7 +227,7 @@ fn desktop_new_taxpayer() -> impl IntoElement {
             view()
                 .flex_row()
                 .gap(px(12.0))
-                .child(labelled("TIN (9 digits)", field_input(tin, "000-123-453")))
+                .child(labelled("TIN (9 digits)", tin_input_desktop(tin)))
                 .child(labelled("RDO code", field_input(rdo, "043"))),
         )
         .child(labelled("Registered name", field_input(name, "As on the Certificate of Registration")))
@@ -238,7 +238,7 @@ fn desktop_new_taxpayer() -> impl IntoElement {
                 .flex_row()
                 .gap(px(10.0))
                 .child(labelled("ZIP code", field_input(zip, "1600")))
-                .child(labelled("Birth date (individuals)", field_input(birth, "MM/DD/YYYY"))),
+                .child(labelled("Birth date (individuals)", date_input(birth))),
         )
         .child(labelled("Email", field_input(email, "name@example.com")))
         .child(when(move || !error.get().is_empty(), move || text(move || error.get()).text_size(px(12.0)).text_color(theme::DANGER)))
@@ -404,18 +404,14 @@ fn phone_new_taxpayer() -> impl IntoElement {
         .keyboard_type(KeyboardType::Number)
         .placeholder("000-000-000")
         .on_change(move |v: &str| {
-            let d: String = v.chars().filter(char::is_ascii_digit).take(12).collect();
-            let mut out = String::new();
-            for (i, c) in d.chars().enumerate() {
-                if i > 0 && i % 3 == 0 && i <= 9 {
-                    out.push('-');
-                }
-                out.push(c);
+            let prev = tin.get_untracked();
+            let out = crate::typing::dash_tin(v, 12);
+            tin.set(out.clone());
+            if out != v {
+                // The caret stays after the digit just typed.
+                let caret = crate::typing::caret_after(&prev, v, &out, crate::typing::digit);
+                tin_at.set_selection(caret, caret);
             }
-            let end = out.len() as u32;
-            tin.set(out);
-            // The caret stays at the end as dashes are added.
-            tin_at.set_selection(end, end);
         });
 
     let mut types = view().px(px(18.0)).py(px(10.0)).gap(px(8.0)).border_b(px(1.0)).border_color(theme::BORDER).child(text("Taxpayer type").text_size(px(13.0)).text_color(theme::FG2));
@@ -477,7 +473,7 @@ fn phone_new_taxpayer() -> impl IntoElement {
         .child(field("Street address", "House, street, barangay", text_input(street, "1 Sample Street"), r[2], 2))
         .child(when(individual, {
             let r = r.clone();
-            move || field("Birth date", "MM/DD/YYYY", text_input(birth, "01/15/1990").keyboard_type(KeyboardType::Number), r[3], 3)
+            move || field("Birth date", "MM/DD/YYYY", slashed(birth, r[3]).placeholder("01/15/1990").keyboard_type(KeyboardType::Number), r[3], 3)
         }))
         .child(field("Email", "BIR sends the filing confirmation here", text_input(email, "name@example.com").keyboard_type(KeyboardType::Email), r[4], 4))
         .child(when(move || !email.get().trim().is_empty() && !email_ok() && typing.get() != Some(4), || {
@@ -601,6 +597,48 @@ fn phone_new_taxpayer() -> impl IntoElement {
         .child(when(move || typing.get().is_none(), bar))
         .child(when(move || typing.get().is_some(), accessory))
         .child(when(move || searching.get(), move || place_search(place, searching)))
+}
+
+/// A date box that shows MM/DD/YYYY slashes as the digits come, the caret
+/// kept after the digit typed.
+fn slashed(value: Signal<String>, at: ElementRef) -> Input {
+    nsh_base::input().value(value).on_change(move |v: &str| {
+        let prev = value.get_untracked();
+        let shown = crate::typing::slash_date(v);
+        value.set(shown.clone());
+        if shown != v {
+            let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
+            at.set_selection(caret, caret);
+        }
+    })
+}
+
+/// The desktop's birth date box: [`slashed`] in the field style.
+fn date_input(value: Signal<String>) -> Input {
+    let at = element_ref();
+    crate::widgets::field_box("MM/DD/YYYY").value(value).element_ref(&at).on_change(move |v: &str| {
+        let prev = value.get_untracked();
+        let shown = crate::typing::slash_date(v);
+        value.set(shown.clone());
+        if shown != v {
+            let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
+            at.set_selection(caret, caret);
+        }
+    })
+}
+
+/// The desktop's TIN box: dashes as the digits come (9 digits).
+fn tin_input_desktop(value: Signal<String>) -> Input {
+    let at = element_ref();
+    crate::widgets::field_box("000-123-453").value(value).element_ref(&at).on_change(move |v: &str| {
+        let prev = value.get_untracked();
+        let shown = crate::typing::dash_tin(v, 9);
+        value.set(shown.clone());
+        if shown != v {
+            let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
+            at.set_selection(caret, caret);
+        }
+    })
 }
 
 /// One search over every place: a ZIP area with its RDO, or an RDO alone.

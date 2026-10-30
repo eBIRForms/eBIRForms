@@ -471,7 +471,7 @@ mod tests {
                         "IMAP login failed for inbox@example.com password=s3cret-token"
                     );
                     tracing::error!(
-                        target: "bir_shell::script",
+                        target: "buwiz::screens",
                         "screen: render failed token=ya29.SUPERSECRET"
                     );
                     tracing::info!(

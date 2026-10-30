@@ -1,0 +1,3 @@
+# Goldens, fixtures and embedded data compare byte for byte: LF on every
+# OS, including Windows checkouts.
+* text=auto eol=lf

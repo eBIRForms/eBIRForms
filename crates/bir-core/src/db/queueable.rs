@@ -753,7 +753,7 @@ impl Database {
     }
 
     /// Atomically revalidate and claim the exact queued generation right
-    /// before PUT. The worker opens the SFTP session first, so a connect or
+    /// before PUT. The worker opens the upload session first, so a connect or
     /// login failure stays unclaimed.
     pub fn claim_queued_queueable<F: QueueableForm>(
         &self,
@@ -892,6 +892,77 @@ impl Database {
             return Ok(false);
         }
         tx.commit()?;
+        Ok(true)
+    }
+
+    /// The far side said nothing reached BIR: release this worker's claim
+    /// and schedule a retry with backoff (five failures go back to Draft).
+    pub(crate) fn fail_claimed_queueable_not_sent<F: QueueableForm>(
+        &self,
+        tin: &str,
+        taxable_year: u16,
+        period: i64,
+        claim_token: &str,
+        error: String,
+    ) -> Result<bool, DbError> {
+        self.update_claimed_queueable::<F>(tin, taxable_year, period, claim_token, |lifecycle| {
+            lifecycle.record_submission_failure(error)
+        })
+    }
+
+    /// BIR may have the return: keep the claim (so it is never sent again
+    /// automatically) and record why, for the person to check.
+    pub(crate) fn note_claimed_queueable_outcome_unknown<F: QueueableForm>(
+        &self,
+        tin: &str,
+        taxable_year: u16,
+        period: i64,
+        claim_token: &str,
+        error: String,
+    ) -> Result<bool, DbError> {
+        self.update_claimed_queueable::<F>(tin, taxable_year, period, claim_token, |lifecycle| {
+            lifecycle.submission_error = Some(error)
+        })
+    }
+
+    fn update_claimed_queueable<F: QueueableForm>(
+        &self,
+        tin: &str,
+        taxable_year: u16,
+        period: i64,
+        claim_token: &str,
+        change: impl FnOnce(&mut crate::forms::queueable::SubmissionLifecycle),
+    ) -> Result<bool, DbError> {
+        let tx = Transaction::new_unchecked(&self.conn, TransactionBehavior::Immediate)?;
+        let Some((id, raw_json, db_status)) =
+            select_row(&tx, F::FORM_CODE, tin, taxable_year, period)?
+        else {
+            return Ok(false);
+        };
+        let mut draft: F = serde_json::from_str(&raw_json)?;
+        if db_status != "Queued"
+            || !matches!(draft.lifecycle().status, FilingStatus::Queued)
+            || draft.lifecycle().submission_claim_token.as_deref() != Some(claim_token)
+        {
+            return Ok(false);
+        }
+        change(draft.lifecycle_mut());
+        let json = serde_json::to_string(&draft)?;
+        let updated = tx.execute(
+            "UPDATE form_drafts SET status = ?1, data_json = ?2, updated_at = datetime('now')
+             WHERE id = ?3 AND status = 'Queued' AND data_json = ?4",
+            params![
+                filing_status_to_db(&draft.lifecycle().status),
+                json,
+                id,
+                raw_json
+            ],
+        )?;
+        if updated != 1 {
+            return Ok(false);
+        }
+        tx.commit()?;
+        let _ = self.request_post_commit_refresh();
         Ok(true)
     }
 

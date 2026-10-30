@@ -213,7 +213,7 @@ pub fn mandatory_lab_1601c_october_2026_draft() -> Form1601CDraft {
 /// Whether a BIR confirmation belongs to this queued generation.
 ///
 /// Floor is `queue_authorization.authorized_at` when present, not
-/// `submitted_at`. BIR stamps the file when SFTP PUT lands; the app writes
+/// `submitted_at`. BIR stamps the file when upload lands; the app writes
 /// Submitted after PUT returns. Live 102026 (11 September 2026): queued
 /// ~3:09:54 PM, BIR `Time received` 3:13 PM, Submitted ~3:17:25 PM. Comparing
 /// the receipt to `submitted_at` would ignore a valid confirmation.

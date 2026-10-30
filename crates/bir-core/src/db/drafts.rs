@@ -1210,7 +1210,7 @@ impl Database {
     /// UI cancel/requeue) are rejected until the worker finishes the claim.
     ///
     /// After PUT is marked started, the claim is fail-closed (no lease retry).
-    /// The worker claims after the SFTP session is open and immediately
+    /// The worker claims after the upload session is open and immediately
     /// before PUT. A process crash after PUT start (or a PUT error) leaves an
     /// unknown network outcome: BIR may or may not have received the return.
     /// Automatically clearing or retrying that claim could file a duplicate
@@ -2341,7 +2341,7 @@ impl Database {
     }
 
     /// Atomically revalidate and claim the exact queued 1601C generation
-    /// immediately before PUT. The worker opens the SFTP session first so a
+    /// immediately before PUT. The worker opens the upload session first so a
     /// connect/login failure stays unclaimed.
     #[allow(clippy::too_many_arguments)]
     pub fn claim_queued_1601c_submission(
@@ -3113,6 +3113,15 @@ impl Database {
             .flatten())
     }
 
+    /// Delete the saved return `draft_id` while it is still a Draft; a
+    /// queued or filed return is kept. Whether a row was deleted.
+    pub fn delete_draft(&self, draft_id: i64) -> Result<bool, DbError> {
+        Ok(self.conn.execute(
+            "DELETE FROM form_drafts WHERE id = ?1 AND status = 'Draft'",
+            params![draft_id],
+        )? > 0)
+    }
+
     /// The stored JSON of the saved return `draft_id`, whatever its form:
     /// what reads a return's filing marks (`submitted_at`, `confirmed_at`,
     /// `submission_filename`) without its type. `None` when the row is gone
@@ -3127,6 +3136,35 @@ impl Database {
             )
             .optional()?
             .and_then(|json| serde_json::from_str(&json).ok()))
+    }
+
+    /// The status column and the stored JSON of the saved return `draft_id`.
+    pub fn draft_status_and_json(&self, draft_id: i64) -> Result<Option<(String, String)>, DbError> {
+        Ok(self
+            .conn
+            .query_row(
+                "SELECT status, data_json FROM form_drafts WHERE id = ?1",
+                params![draft_id],
+                |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)),
+            )
+            .optional()?)
+    }
+
+    /// Replace the stored JSON (and status column) of `draft_id`, but only
+    /// while the row still holds `expected_json`: a write that raced the
+    /// queue worker changes nothing. Whether the row was written.
+    pub fn replace_draft_json_if_unchanged(
+        &self,
+        draft_id: i64,
+        expected_json: &str,
+        status: &str,
+        json: &str,
+    ) -> Result<bool, DbError> {
+        Ok(self.conn.execute(
+            "UPDATE form_drafts SET status = ?1, data_json = ?2, updated_at = datetime('now')
+             WHERE id = ?3 AND data_json = ?4",
+            params![status, json, draft_id, expected_json],
+        )? == 1)
     }
 
     /// The trigger date the saved as-needed return `draft_id` holds and its
@@ -5626,7 +5664,7 @@ mod tests {
 
     #[test]
     fn email_poll_confirms_a_2551q_whose_bir_stamp_precedes_the_local_submitted_time() {
-        // Live 22 October 2026: BIR stamps the file when the SFTP PUT lands
+        // Live 22 October 2026: BIR stamps the file when the upload lands
         // and prints only the minute ("11:58 AM"), while the row turns
         // Submitted after PUT returns (11:58:xx). Comparing the receipt to
         // `submitted_at` ignored both confirmations on every poll, so the

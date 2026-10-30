@@ -24,6 +24,23 @@ pub fn prepare() {
     let Some(dir) = data_dir() else { return };
     let _ = std::fs::create_dir_all(&dir);
     let unset = |name: &str| std::env::var_os(name).is_none_or(|v| v.is_empty());
+    // `launch.env` beside the database: `BUWIZ_*` launch hooks (and a
+    // scratch `BIR_DATABASE_PATH` / `BIR_DB_KEY` for a test run), one
+    // `NAME=value` a line, for a launcher that cannot pass the environment
+    // (Android's `am start`; `adb shell run-as` writes it). Read once, and
+    // in debug builds only: a release build takes nothing from the file.
+    #[cfg(debug_assertions)]
+    if let Ok(text) = std::fs::read_to_string(dir.join("launch.env")) {
+        for line in text.lines() {
+            if let Some((name, value)) = line.trim().split_once('=')
+                && (name.starts_with("BUWIZ_") || name == "BIR_DATABASE_PATH" || name == "BIR_DB_KEY")
+                && unset(name)
+            {
+                // SAFETY: as below, before anything else reads the environment.
+                unsafe { std::env::set_var(name, value) };
+            }
+        }
+    }
     // SAFETY: runs before the engine starts, from the thread that starts
     // it; nothing else in the process reads the environment yet.
     unsafe {
@@ -66,4 +83,31 @@ fn data_dir() -> Option<PathBuf> {
 #[cfg(not(any(target_os = "ios", target_os = "android")))]
 fn data_dir() -> Option<PathBuf> {
     None
+}
+
+/// A phone's printing, given by the platform runner (the Android library
+/// registers its JNI side here; iOS's lives in [`crate::ios_print`]). Every
+/// call runs on a worker thread.
+pub trait PhonePrint: Send + Sync {
+    /// The system print dialog for the sheet `html` (it offers saving a
+    /// PDF too).
+    fn print(&self, html: &str, title: &str) -> Result<(), String>;
+    /// The sheet as PDF bytes (bir-print's `PdfSink`).
+    fn html_to_pdf(&self, html: &str) -> Result<Vec<u8>, String>;
+    /// The share sheet for `pdf`, named after `title`.
+    fn share_pdf(&self, pdf: &[u8], title: &str) -> Result<(), String>;
+}
+
+static PRINTER: std::sync::OnceLock<Box<dyn PhonePrint>> = std::sync::OnceLock::new();
+
+/// Register the phone's printing (once, before the root mounts).
+pub fn set_printer(printer: Box<dyn PhonePrint>) {
+    let _ = PRINTER.set(printer);
+}
+
+/// The phone's printing, when the platform gave one.
+pub(crate) fn printer() -> Option<&'static dyn PhonePrint> {
+    #[cfg(target_os = "ios")]
+    let _ = PRINTER.set(Box::new(crate::ios_print::IosPrint));
+    PRINTER.get().map(|p| p.as_ref())
 }

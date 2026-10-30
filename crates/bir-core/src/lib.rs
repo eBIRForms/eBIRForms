@@ -13,6 +13,11 @@
 //! This crate is UI-agnostic and opens no network connection. IAF
 //! encryption and the BIR upload live server-side, never here.
 
+// Links SQLCipher's LibTomCrypt build, which rusqlite's `sqlcipher` feature
+// uses on Android.
+#[cfg(target_os = "android")]
+use sqlcipher_tomcrypt as _;
+
 pub mod background_cron;
 pub mod bir_xml;
 pub mod calendar_events;

@@ -842,7 +842,7 @@ impl QueueableForm for Form1600WpDraft {
         vec![Self::penalty_declaration()]
     }
     const FORM_CODE: &'static str = "1600WP";
-    /// Official `formType` and SFTP folder (`ftpTargetFolder.PROD['1600WP']`).
+    /// Official `formType` (`1600WP`).
     const FORM_TYPE: &'static str = "1600WP";
     /// The two-ATC layout; [`Self::official_payload`] picks the one for the
     /// number of Part II rows.

@@ -178,7 +178,8 @@ pub(crate) fn chip(label: impl IntoReactive<SharedString>, tone: Tone) -> View {
 pub(crate) fn status_tone(status: &str) -> Tone {
     match status {
         "Draft" => Tone::Accent,
-        "Queued" => Tone::Warning,
+        "Queued" | "Sending" => Tone::Warning,
+        "Failed" | "Needs attention" => Tone::Danger,
         "Not started" => Tone::Neutral,
         _ => Tone::Success,
     }
@@ -209,9 +210,12 @@ pub(crate) fn avatar(name: &str, id: &str, size: f32) -> View {
 /// A bordered 32 px input over `value` (`TextField`): padding 0 10,
 /// radius 8.
 pub(crate) fn field_input(value: Signal<String>, placeholder: &str) -> Input {
+    field_box(placeholder).value(value).on_change(move |v: &str| value.set(v.to_owned()))
+}
+
+/// [`field_input`]'s look with no value bound: the caller binds it.
+pub(crate) fn field_box(placeholder: &str) -> Input {
     input()
-        .value(value)
-        .on_change(move |v: &str| value.set(v.to_owned()))
         .placeholder(placeholder.to_owned())
         .placeholder_color(|| color(theme::FG3))
         .auto_correct(false)
@@ -242,3 +246,86 @@ pub(crate) fn panel_header(title: impl IntoReactive<SharedString>) -> View {
 
 /// The transparent color, for fills that come and go.
 pub(crate) const CLEAR: AdaptiveColor = theme::tone(theme::hsla(0.0, 0.0, 0.0, 0.0), theme::hsla(0.0, 0.0, 0.0, 0.0));
+
+/// `ListGroup`: rows in one bordered group, radius 12, hairlines between.
+pub(crate) fn list_group() -> View {
+    view().rounded(px(theme::R_CARD)).border_1().border_color(theme::BORDER).bg(theme::SURFACE).overflow_hidden()
+}
+
+/// `ListRow`: at least 52 tall, padding 8 × 16, a hairline above all but
+/// the first (`index`).
+pub(crate) fn list_row(index: ReadSignal<usize>) -> View {
+    view()
+        .flex_row()
+        .items_center()
+        .gap(px(12.0))
+        .min_h(px(52.0))
+        .px(px(16.0))
+        .py(px(8.0))
+        .border_t(move || px(if index.get() == 0 { 0.0 } else { 1.0_f32 }))
+        .border_color(theme::BORDER)
+}
+
+/// `SectionTitle`: 12/500 fg-3 over a group (28 above unless `first`).
+pub(crate) fn section_title(label: impl IntoReactive<SharedString>, first: bool) -> Text {
+    text(label).pt(px(if first { 0.0 } else { 20.0 })).pb(px(6.0)).text_size(px(12.0)).font_weight(FontWeight::MEDIUM).text_color(theme::FG3)
+}
+
+/// One row saying a group is empty, and why.
+pub(crate) fn empty_row(line: impl IntoReactive<SharedString>) -> View {
+    view().min_h(px(52.0)).px(px(16.0)).justify_center().child(text(line).text_size(px(13.0)).text_color(theme::FG3))
+}
+
+/// A form code as the design writes it: 12/600 with tabular figures, the UI
+/// face (never monospace).
+pub(crate) fn code_text(code: impl IntoReactive<SharedString>) -> Text {
+    text(code).w(px(68.0)).flex_shrink(0.0).text_size(px(12.0)).font_weight(FontWeight::SEMIBOLD).tabular_nums().text_color(theme::FG)
+}
+
+/// `NameCell`: a 13/500 line over a 12 fg-2 line, both truncating.
+pub(crate) fn name_cell(title: impl IntoReactive<SharedString>, line: impl IntoReactive<SharedString>) -> View {
+    view()
+        .flex_1()
+        .min_w(px(0.0))
+        .child(text(title).text_size(px(13.0)).font_weight(FontWeight::MEDIUM).text_color(theme::FG).truncate())
+        .child(text(line).text_size(px(12.0)).text_color(theme::FG2).truncate())
+}
+
+/// `Segmented`: a 2 px track of 24 px segments, 12/500; `on` is the
+/// current value's index.
+pub(crate) fn segmented(labels: Vec<String>, on: impl Fn() -> usize + Clone + 'static, pick: impl Fn(usize) + Clone + 'static) -> View {
+    let mut track = view().flex_row().p(px(2.0)).gap(px(2.0)).rounded(px(theme::R_ROW)).bg(theme::HOVER).self_start();
+    for (i, label) in labels.into_iter().enumerate() {
+        let (on1, pick) = (on.clone(), pick.clone());
+        track = track.child(
+            view()
+                .h(px(24.0))
+                .px(px(10.0))
+                .justify_center()
+                .rounded(px(theme::R_CTL))
+                .cursor_pointer()
+                .label(label.clone())
+                .bg(move || if on1() == i { theme::RAISED } else { CLEAR })
+                .on_press(move || pick(i))
+                .child(text(label).text_size(px(12.0)).font_weight(FontWeight::MEDIUM).text_color(theme::FG)),
+        );
+    }
+    track
+}
+
+/// `StatusChip` for a deadline: overdue (red), due within 14 days (amber),
+/// else nothing.
+pub(crate) fn due_chip(days: i64) -> Option<View> {
+    if days < 0 {
+        Some(chip(format!("{} day{} late", -days, if days == -1 { "" } else { "s" }), Tone::Danger))
+    } else if days <= 14 {
+        Some(chip(if days == 0 { "Due today".to_owned() } else { format!("Due in {days} day{}", if days == 1 { "" } else { "s" }) }, Tone::Warning))
+    } else {
+        None
+    }
+}
+
+/// `₱ 1,234.50`.
+pub(crate) fn peso(n: f64) -> String {
+    format!("₱{}", bir_app_core::display::format_amount(&format!("{:.2}", n.abs()), false))
+}

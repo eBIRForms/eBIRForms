@@ -2,18 +2,19 @@ name: ci
 
 on:
   push:
-    branches: [main]
+    branches: [main, "goal/**"]
   pull_request:
 
 jobs:
   secrets:
+    name: secrets (ubuntu)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: ./scripts/check-secrets.sh
 
-  # The domain crates have no UI and must build on every desktop OS. Ship
-  # fast (D19): build and lint, no `cargo test`, until tests are turned back on.
+  # The domain crates have no UI and must build and pass their tests on
+  # every desktop OS.
   crates:
     strategy:
       fail-fast: false
@@ -27,12 +28,97 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libdbus-1-dev pkg-config
       - run: cargo build --locked --all-targets
       - run: cargo clippy --locked --all-targets
+      - run: cargo test --locked --workspace
 
-  app:
+  # The app on each desktop OS: debug build and its tests, then a release
+  # build packed as an installer (an artifact of the run).
+  app-macos:
+    name: app (macos)
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: app
       - run: cargo build --locked
         working-directory: app
+      - run: cargo test --locked
+        working-directory: app
+
+  app-windows:
+    name: app (windows)
+    runs-on: windows-latest
+    env:
+      CARGO_PROFILE_DEV_DEBUG: "0"
+      CARGO_INCREMENTAL: "0"
+      # QuickJS (nsh-js) is C: bindgen needs libclang, which the image's LLVM has.
+      LIBCLANG_PATH: C:\Program Files\LLVM\bin
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: app
+      - run: cargo build --locked
+        working-directory: app
+      - run: cargo test --locked
+        working-directory: app
+      - run: cargo build --locked --release
+        working-directory: app
+      # Setup runs it when the WebView2 Runtime (Evergreen) is missing.
+      - name: Fetch the WebView2 bootstrapper
+        shell: pwsh
+        run: Invoke-WebRequest -Uri "https://go.microsoft.com/fwlink/p/?LinkId=2124703" -OutFile app/target/MicrosoftEdgeWebview2Setup.exe
+      - name: Build the installer (Inno Setup)
+        shell: pwsh
+        run: |
+          $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $iscc)) { choco install innosetup -y --no-progress }
+          & $iscc /DAppVersion=0.1.0 app/packaging/windows/buwiz.iss
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: buwiz-windows-installer
+          path: app/target/installer/*.exe
+          if-no-files-found: error
+
+  app-ubuntu:
+    name: app (ubuntu)
+    runs-on: ubuntu-latest
+    env:
+      # No debug info and no incremental state: the debug and release
+      # targets together otherwise fill the runner's disk (ld bus error).
+      CARGO_PROFILE_DEV_DEBUG: "0"
+      CARGO_INCREMENTAL: "0"
+    steps:
+      # Room for two targets: drop the image's unused SDKs.
+      - run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL && df -h /
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      # clang for QuickJS's bindgen; GTK 4 and WebKitGTK 6.0 for nsh's
+      # Linux backend and the print preview; libdbus for keyring;
+      # rsvg-convert for the package's PNG icon.
+      - run: >
+          sudo apt-get update && sudo apt-get install -y
+          clang libclang-dev pkg-config libgtk-4-dev libwebkitgtk-6.0-dev
+          libdbus-1-dev librsvg2-bin
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: app
+      - run: cargo build --locked
+        working-directory: app
+      - run: cargo test --locked
+        working-directory: app
+      - run: cargo build --locked --release
+        working-directory: app
+      - run: ./packaging/linux/build-deb.sh
+        working-directory: app
+      - uses: actions/upload-artifact@v4
+        with:
+          name: buwiz-linux-deb
+          path: app/target/deb/*.deb
+          if-no-files-found: error

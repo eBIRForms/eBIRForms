@@ -14,8 +14,8 @@
 //! entered by the filer; this port submits values in the official amount
 //! format.
 //!
-//! `ftpTargetFolder.PROD` (js/environment.js) has no `2200ANv2018` entry, so
-//! the official submit passes an undefined SFTP folder; queueing stays off in
+//! eBIRForms has no upload folder for `2200ANv2018`, so
+//! the official submit passes an undefined upload folder; queueing stays off in
 //! the registry until the folder is confirmed.
 
 use super::penalty_items::PenaltyItems;
@@ -855,7 +855,7 @@ impl QueueableForm for Form2200ANDraft {
     }
     const FORM_CODE: &'static str = "2200AN";
     /// Official `formType` (`saveXMLsubmit`, `createXMLFileName`). PROD has no
-    /// SFTP folder for it; see the module docs.
+    /// upload folder for it; see the module docs.
     const FORM_TYPE: &'static str = "2200ANv2018";
     const LAYOUT_ID: &'static str = FORM_2200AN_FORM_ID;
 

@@ -733,7 +733,7 @@ impl QueueableForm for Form2553Draft {
         vec![Self::penalty_declaration()]
     }
     const FORM_CODE: &'static str = "2553";
-    /// Official `formType` and SFTP folder (`ftpTargetFolder.PROD['2553']`).
+    /// Official `formType` (`2553`).
     const FORM_TYPE: &'static str = "2553";
     const LAYOUT_ID: &'static str = FORM_2553_FORM_ID;
 

@@ -1354,7 +1354,7 @@ impl QueueableForm for Form1606Draft {
         vec![Self::penalty_declaration()]
     }
     const FORM_CODE: &'static str = "1606";
-    /// Official `formType` and SFTP folder (`ftpTargetFolder.PROD['1606']`).
+    /// Official `formType` (`1606`).
     const FORM_TYPE: &'static str = "1606";
     const LAYOUT_ID: &'static str = FORM_1606_FORM_ID;
 

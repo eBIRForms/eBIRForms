@@ -1159,7 +1159,7 @@ impl QueueableForm for Form1600PtDraft {
         vec![Self::penalty_declaration()]
     }
     const FORM_CODE: &'static str = "1600PT";
-    /// Official `formType` and SFTP folder (`ftpTargetFolder.PROD['1600PTv2018']`).
+    /// Official `formType` (`1600PTv2018`).
     const FORM_TYPE: &'static str = "1600PTv2018";
     /// The government layout; [`Self::official_payload`] picks the one for
     /// the Item 10 category.

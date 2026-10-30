@@ -25,7 +25,7 @@ use bir_app_core::{FieldOption, FieldValue, LayoutField, LayoutItem};
 use nsh_base::input;
 use nsh_core::prelude::*;
 
-use super::form::{choice_label, date_parts, enter_box, leave_box, mono, one_date, select_box, session, text_box};
+use super::form::{choice_label, date_parts, enter_box, leave_box, mono, one_date, session, text_box};
 use super::steps;
 use crate::icons::{Icon, icon};
 use crate::session::{ItemId, OpenForm};
@@ -111,7 +111,22 @@ pub(crate) fn control(form: &Arc<OpenForm>, id: ItemId, item: &LayoutItem, shown
             let f = &shown[0];
             text_box(f.key.clone(), f.kind.clone(), f.whole, f.computed, 0.0, f.max_len, f.pool.is_some()).into_element()
         }
-        Kind::Tin => tin_box(shown).into_element(),
+        Kind::Tin => view()
+            .child(tin_box(shown))
+            .child(
+                view()
+                    .h(px(40.0))
+                    .justify_center()
+                    .self_start()
+                    .cursor_pointer()
+                    .label("Pick a saved payee")
+                    .on_press(move || {
+                        dismiss_keyboard();
+                        session().payee.set(Some((id, None)));
+                    })
+                    .child(text("Pick a saved payee").text_size(px(14.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::ACCENT)),
+            )
+            .into_element(),
         Kind::Date => date_row(id, item, shown).into_element(),
         Kind::Checkbox => checkboxes(shown).into_element(),
         Kind::Schedule => schedule_row(id, item).into_element(),
@@ -486,9 +501,48 @@ pub(crate) fn picker_sheet(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement 
     }
     let query = signal(String::new());
     let all = untracked(|| item_choices(&shown));
-    let filtered = move || {
+    let item_label = item.label.clone();
+    // Searching: matches by code or any word. Not searching: what is picked
+    // ("Used before") first, then the codes in their groups.
+    let filtered = move || -> Vec<(Option<String>, Option<Choice>)> {
         let q = query.get().trim().to_lowercase();
-        all.iter().filter(|c| q.is_empty() || c.label.to_lowercase().contains(&q)).cloned().collect::<Vec<_>>()
+        if !q.is_empty() {
+            let words: Vec<&str> = q.split_whitespace().collect();
+            return all
+                .iter()
+                .filter(|c| {
+                    let l = c.label.to_lowercase();
+                    words.iter().all(|w| l.contains(w))
+                })
+                .map(|c| (None, Some(c.clone())))
+                .collect();
+        }
+        let mut out: Vec<(Option<String>, Option<Choice>)> = Vec::new();
+        let used: Vec<Choice> = all.iter().filter(|c| picked(c)).cloned().collect();
+        if !used.is_empty() {
+            out.push((Some("Used before".to_owned()), None));
+            out.extend(used.into_iter().map(|c| (None, Some(c))));
+        }
+        let mut last = String::new();
+        for c in &all {
+            let group = code_group(&c.label);
+            if let Some(g) = &group
+                && *g != last
+            {
+                out.push((Some(g.clone()), None));
+                last = g.clone();
+            }
+            out.push((None, Some(c.clone())));
+        }
+        out
+    };
+    let filtered_none = filtered.clone();
+    let no_match = move || !query.get().trim().is_empty() && filtered_none().is_empty();
+    let hint_label = item_label.to_lowercase();
+    let where_to_find = if hint_label.contains("atc") || hint_label.contains("tax code") {
+        "No code matches. The ATC is printed on the BIR 2307 you received."
+    } else {
+        "Nothing matches. Try fewer letters."
     };
     let close = move || crate::screens::taxpayer::close_after_blur(move || st.picker.set(None));
     let place = item.label.contains("RDO");
@@ -515,8 +569,13 @@ pub(crate) fn picker_sheet(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement 
                 scroll().flex_1().keyboard_dismiss_mode(KeyboardDismissMode::OnDrag).keyboard_taps(KeyboardTaps::Handled).child(
                     view()
                         .pb(move || px(keyboard_height().0.max(safe_area().bottom.0) + 16.0))
-                        .child(each(filtered, |c| c.label.clone(), move |c, _| {
-                            let c = c.get_untracked();
+                        .child(when(no_match, move || text(where_to_find).mx(px(18.0)).mt(px(12.0)).text_size(px(13.0)).text_color(theme::FG3)))
+                        .child(each(filtered, |(h, c)| format!("{h:?}{:?}", c.as_ref().map(|c| c.label.clone())), move |row, _| {
+                            let (head, c) = row.get_untracked();
+                            if let Some(head) = head {
+                                return text(head.to_uppercase()).px(px(18.0)).pt(px(14.0)).pb(px(4.0)).text_size(px(11.0)).font_family(mono()).font_weight(FontWeight::MEDIUM).text_color(theme::FG3).into_element();
+                            }
+                            let Some(c) = c else { return view().into_element() };
                             let c2 = c.clone();
                             let c3 = c.clone();
                             view()
@@ -536,6 +595,7 @@ pub(crate) fn picker_sheet(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement 
                                 })
                                 .child(text(c.label.clone()).flex_1().min_w(px(0.0)).text_size(px(15.0)).text_color(theme::FG))
                                 .child(when(move || picked(&c3), || icon(Icon::Check, 18.0, || theme::ACCENT)))
+                                .into_element()
                         })),
                 ),
             ),
@@ -543,11 +603,39 @@ pub(crate) fn picker_sheet(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement 
     .into_element()
 }
 
+/// The group of a coded answer (`WI010 …`, `WC160 …`): its family by the
+/// code's two letters; `None` for an answer with no code.
+fn code_group(label: &str) -> Option<String> {
+    let code: String = label.chars().take_while(|c| c.is_ascii_alphanumeric()).collect();
+    let letters: String = code.chars().take_while(char::is_ascii_alphabetic).collect();
+    if code.len() < 4 || letters.len() != 2 || !code[2..].chars().all(|c| c.is_ascii_digit()) {
+        return None;
+    }
+    Some(
+        match letters.as_str() {
+            "WI" => "Paid to individuals",
+            "WC" => "Paid to corporations",
+            "WB" => "Business tax withheld",
+            "WV" => "VAT withheld",
+            "WG" => "Government money payments",
+            "WF" => "Final tax, foreign payees",
+            "WE" => "Expanded withholding",
+            "II" => "Individual income tax",
+            "IC" => "Corporate income tax",
+            "PT" => "Percentage tax",
+            "VT" | "VB" | "VS" => "Value-added tax",
+            "MC" => "Miscellaneous",
+            other => return Some(format!("Codes {other}")),
+        }
+        .to_owned(),
+    )
+}
+
 // ---------------------------------------------------------------- TIN
 
 /// A TIN as one box: digits only, dashes added as typed (3-3-3-5); each
 /// part goes to its own box of the form.
-fn tin_box(shown: Vec<LayoutField>) -> impl IntoElement {
+pub(crate) fn tin_box(shown: Vec<LayoutField>) -> impl IntoElement {
     let st = session();
     let keys: Vec<String> = shown.iter().map(|f| f.key.clone()).collect();
     let computed = shown.iter().any(|f| f.computed);
@@ -567,8 +655,9 @@ fn tin_box(shown: Vec<LayoutField>) -> impl IntoElement {
         st.inputs.borrow_mut().insert(keys[0].clone(), at);
         let first = keys[0].clone();
         let blur_key = first.clone();
-        input()
+        let field = input()
             .element_ref(&at)
+            .label("Taxpayer Identification Number")
             .value(typed)
             .keyboard_type(KeyboardType::Number)
             .placeholder("000-000-000-00000")
@@ -585,9 +674,13 @@ fn tin_box(shown: Vec<LayoutField>) -> impl IntoElement {
                     rest = tail;
                 }
                 let shown = parts.iter().filter(|p| !p.is_empty()).cloned().collect::<Vec<_>>().join("-");
-                let end = shown.len() as u32;
-                typed.set(shown);
-                at.set_selection(end, end);
+                let prev = typed.get_untracked();
+                typed.set(shown.clone());
+                if shown != v {
+                    // The caret stays after the digit just typed.
+                    let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
+                    at.set_selection(caret, caret);
+                }
                 for (key, part) in keys.iter().zip(parts) {
                     st.edit(key.clone(), FieldValue::Text(part), false);
                 }
@@ -597,14 +690,21 @@ fn tin_box(shown: Vec<LayoutField>) -> impl IntoElement {
                 st.touch_key(&blur_key);
                 leave_box(blur_key.clone());
                 crate::store::task(async move { st.flush().await });
-            })
-            .h(px(44.0))
-            .text_size(px(17.0))
-            .font_family(mono())
-            .text_color(theme::FG)
-            .bg(CLEAR)
+            });
+        if crate::mobile::phone() {
+            field.h(px(44.0)).text_size(px(17.0)).font_family(mono()).text_color(theme::FG).bg(CLEAR)
+        } else {
+            // The desktop's field style; TINs use the UI face's tabular figures.
+            field.w(px(200.0)).h(px(theme::CONTROL)).px(px(10.0)).text_size(px(13.0)).tabular_nums().text_color(theme::FG).bg(theme::SURFACE).border_1().border_color(theme::BORDER_STRONG).rounded(px(theme::R_ROW))
+        }
     })
-    .otherwise(move || text(joined.clone()).h(px(44.0)).text_size(px(17.0)).font_family(mono()).text_color(theme::FG))
+    .otherwise(move || {
+        if crate::mobile::phone() {
+            text(joined.clone()).h(px(44.0)).text_size(px(17.0)).font_family(mono()).text_color(theme::FG).into_element()
+        } else {
+            view().w(px(200.0)).min_h(px(theme::CONTROL)).px(px(10.0)).justify_center().rounded(px(theme::R_ROW)).bg(theme::BG).child(text(joined.clone()).text_size(px(13.0)).tabular_nums().text_color(theme::FG)).into_element()
+        }
+    })
 }
 
 // ---------------------------------------------------------------- dates
@@ -1006,6 +1106,7 @@ pub(crate) fn schedule_page(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement
     let it = item.clone();
     let rows = move || listed_rows(id, &it);
     let rows2 = rows.clone();
+    let rows_hint = rows.clone();
     let rows3 = rows.clone();
     let rows4 = rows.clone();
     let rows5 = rows.clone();
@@ -1043,9 +1144,12 @@ pub(crate) fn schedule_page(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement
                     .map(|k| format!("₱{}", format_amount(&non_blank(&st.value(&k)), false)))
                     .unwrap_or_default()
             };
+            let clear_item = it2.clone();
+            let delete: std::rc::Rc<dyn Fn()> = std::rc::Rc::new(move || delete_row(id, &clear_item, r));
             view()
                 .child(when(move || index.get() > 0, || view().h(px(1.0)).ml(px(16.0)).bg(theme::BORDER)))
-                .child(
+                .child(crate::screens::phone::swipe_row(
+                    -1000 - r as i64,
                     view()
                         .min_h(px(64.0))
                         .px(px(16.0))
@@ -1055,7 +1159,14 @@ pub(crate) fn schedule_page(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement
                         .gap(px(10.0))
                         .cursor_pointer()
                         .active(|s| s.bg(theme::HOVER))
-                        .on_press(move || st.row_edit.set(Some((id, r))))
+                        .bg(theme::SURFACE)
+                        .on_press(move || {
+                            if crate::live::store().swiped.get_untracked().is_some() {
+                                crate::live::store().swiped.set(None);
+                            } else {
+                                st.row_edit.set(Some((id, r)));
+                            }
+                        })
                         .child(
                             view()
                                 .flex_1()
@@ -1065,7 +1176,8 @@ pub(crate) fn schedule_page(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement
                         )
                         .child(text(amount).flex_shrink(0.0).text_size(px(15.0)).font_weight(FontWeight::SEMIBOLD).font_family(mono()).tabular_nums().text_color(theme::FG))
                         .child(icon(Icon::ChevronRight, 16.0, || theme::FG3)),
-                )
+                    vec![("Delete", theme::DANGER, delete)],
+                ))
         }));
     let it_total = item.clone();
     let total = move || {
@@ -1093,6 +1205,10 @@ pub(crate) fn schedule_page(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement
                         }
                     }))
                     .child(group)
+                    .child(when({
+                        let rows = rows_hint.clone();
+                        move || !rows().is_empty()
+                    }, || text("Swipe a row left to delete it.").mx(px(32.0)).mt(px(8.0)).text_size(px(12.0)).text_color(theme::FG3)))
                     .child(when(move || rows5().is_empty(), move || {
                         let add = add2.clone();
                         view()
@@ -1189,14 +1305,72 @@ fn non_blank(text: &str) -> String {
     if text.trim().is_empty() { "0".to_owned() } else { text.to_owned() }
 }
 
-/// One schedule row as a page: Cancel / Row N / Done, each column stacked
-/// (worked-out columns as `=` rows), Delete row at the bottom.
+/// Clear row `r` of the schedule `id` (its boxes the filer fills).
+fn delete_row(id: ItemId, item: &LayoutItem, r: usize) {
+    let st = session();
+    let edits: Vec<(String, String)> = item
+        .keys
+        .get(r)
+        .map(|keys| keys.iter().zip(item.cols.iter()).filter(|(_, c)| !c.computed && c.kind != "hidden").map(|(k, _)| (k.clone(), String::new())).collect())
+        .unwrap_or_default();
+    st.choose(edits);
+    st.added_rows.update(|a| {
+        if let Some(n) = a.get_mut(&id) {
+            *n = n.saturating_sub(1);
+        }
+    });
+    crate::live::store().notify(crate::store::NoticeTone::Info, "Row deleted.");
+}
+
+/// A schedule column that holds someone's TIN (a payee, a seller).
+fn tin_col(label: &str) -> bool {
+    let l = label.to_uppercase();
+    l.contains("TIN") || l.contains("TAXPAYER IDENTIFICATION")
+}
+
+/// Whether row `r` is complete enough to keep (tracked): every choice
+/// picked, the amount above zero, the TIN and name of a payee typed.
+fn row_valid(item: &LayoutItem, r: usize) -> bool {
+    let st = session();
+    let Some(keys) = item.keys.get(r) else { return false };
+    if !row_filled(item, r) {
+        return false;
+    }
+    let amount = amount_col(item);
+    for (ci, (k, c)) in keys.iter().zip(item.cols.iter()).enumerate() {
+        if c.computed || c.kind == "hidden" {
+            continue;
+        }
+        let v = st.value(k);
+        let blank = v.trim().is_empty() || (c.kind == "sel" && v.chars().all(|ch| ch == '0' || ch == '-'));
+        if c.kind == "sel" && blank {
+            return false;
+        }
+        if Some(ci) == amount && !steps::amount(&v).is_some_and(|n| n > 0.0) {
+            return false;
+        }
+        if (tin_col(&c.label) || c.label.to_lowercase().contains("name")) && c.kind == "text" && blank {
+            return false;
+        }
+    }
+    true
+}
+
+/// One schedule row as a page: Cancel (puts back what the row held) /
+/// Row N / Done (FG3 until the row is complete), each column stacked
+/// (worked-out columns as `=` rows, a payee's TIN as the saved-payee row),
+/// Delete row at the bottom.
 pub(crate) fn row_editor(form: Arc<OpenForm>, id: ItemId, r: usize) -> impl IntoElement {
     let st = session();
     let Some(item) = form.item(id).cloned() else { return view().into_element() };
     let keys = item.keys.get(r).cloned().unwrap_or_default();
     let label = format!("Row {}", item.start.unwrap_or(1) as usize + r);
+    // What the row held when it opened, for Cancel.
+    let before: Vec<(String, String)> = untracked(|| {
+        keys.iter().zip(item.cols.iter()).filter(|(_, c)| !c.computed && c.kind != "hidden").map(|(k, _)| (k.clone(), st.value(k))).collect()
+    });
     let mut body = view().pt(px(8.0));
+    let mut payee_done = false;
     for (ci, c) in item.cols.iter().enumerate() {
         if c.kind == "hidden" {
             continue;
@@ -1217,23 +1391,26 @@ pub(crate) fn row_editor(form: Arc<OpenForm>, id: ItemId, r: usize) -> impl Into
             );
             continue;
         }
+        if tin_col(&c.label) && c.kind != "sel" {
+            if !payee_done {
+                payee_done = true;
+                body = body.child(
+                    view()
+                        .min_h(px(64.0))
+                        .px(px(16.0))
+                        .py(px(12.0))
+                        .gap(px(2.0))
+                        .border_b(px(1.0))
+                        .border_color(theme::BORDER)
+                        .child(text("Payee").text_size(px(13.0)).text_color(theme::FG2))
+                        .child(payee_row(&item, id, Some(r))),
+                );
+            }
+            continue;
+        }
         let control: AnyElement = match c.kind.as_str() {
-            "sel" => select_box(key, c.options.clone(), c.computed, 0.0).into_element(),
-            "radio" | "chk" => checkboxes(vec![LayoutField {
-                key,
-                label: c.label.clone(),
-                kind: "chk".to_owned(),
-                computed: c.computed,
-                max_len: None,
-                required: false,
-                whole: false,
-                options: Vec::new(),
-                group: None,
-                group_size: None,
-                pool: None,
-                why: None,
-            }])
-            .into_element(),
+            "sel" => choice_row(id, vec![col_field(c, key.clone())], true).into_element(),
+            "radio" | "chk" => checkboxes(vec![LayoutField { kind: "chk".to_owned(), ..col_field(c, key) }]).into_element(),
             kind => text_box(key, kind.to_owned(), c.whole, c.computed, 0.0, None, false).into_element(),
         };
         body = body.child(
@@ -1248,7 +1425,7 @@ pub(crate) fn row_editor(form: Arc<OpenForm>, id: ItemId, r: usize) -> impl Into
                 .child(control),
         );
     }
-    let clear_keys: Vec<(String, bool)> = keys.iter().cloned().zip(item.cols.iter().map(|c| c.computed || c.kind == "hidden")).collect();
+    let it_delete = item.clone();
     body = body.child(
         view()
             .mx(px(16.0))
@@ -1261,18 +1438,29 @@ pub(crate) fn row_editor(form: Arc<OpenForm>, id: ItemId, r: usize) -> impl Into
             .cursor_pointer()
             .label("Delete row")
             .on_press(move || {
-                let edits: Vec<(String, String)> = clear_keys.iter().filter(|(_, skip)| !skip).map(|(k, _)| (k.clone(), String::new())).collect();
-                st.choose(edits);
-                st.added_rows.update(|a| {
-                    if let Some(n) = a.get_mut(&id) {
-                        *n = n.saturating_sub(1);
-                    }
-                });
+                delete_row(id, &it_delete, r);
                 crate::screens::taxpayer::close_after_blur(move || st.row_edit.set(None));
             })
             .child(text("Delete row").text_size(px(15.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::DANGER)),
     );
-    let done = move || crate::screens::taxpayer::close_after_blur(move || st.row_edit.set(None));
+    let it_valid = item.clone();
+    let valid = move || row_valid(&it_valid, r);
+    let valid2 = valid.clone();
+    let done = move || {
+        if valid() {
+            crate::screens::taxpayer::close_after_blur(move || st.row_edit.set(None));
+        }
+    };
+    let cancel = move || {
+        let before = before.clone();
+        crate::screens::taxpayer::close_after_blur(move || {
+            let now: Vec<(String, String)> = before.iter().filter(|(k, v)| st.value(k) != *v).cloned().collect();
+            if !now.is_empty() {
+                st.choose(now);
+            }
+            st.row_edit.set(None);
+        });
+    };
     view()
         .absolute()
         .inset(px(0.0))
@@ -1291,9 +1479,18 @@ pub(crate) fn row_editor(form: Arc<OpenForm>, id: ItemId, r: usize) -> impl Into
                         .px(px(6.0))
                         .flex_row()
                         .items_center()
-                        .child(view().h(px(44.0)).px(px(10.0)).justify_center().cursor_pointer().label("Cancel").on_press(done).child(text("Cancel").text_size(px(16.0)).text_color(theme::ACCENT)))
+                        .child(view().h(px(44.0)).px(px(10.0)).justify_center().cursor_pointer().label("Cancel").on_press(cancel).child(text("Cancel").text_size(px(16.0)).text_color(theme::ACCENT)))
                         .child(text(label).flex_1().text_center().text_size(px(16.0)).font_weight(FontWeight::BOLD).text_color(theme::FG))
-                        .child(view().h(px(44.0)).px(px(10.0)).justify_center().cursor_pointer().label("Done").on_press(done).child(text("Done").text_size(px(16.0)).font_weight(FontWeight::BOLD).text_color(theme::ACCENT))),
+                        .child(
+                            view()
+                                .h(px(44.0))
+                                .px(px(10.0))
+                                .justify_center()
+                                .cursor_pointer()
+                                .label("Done")
+                                .on_press(done)
+                                .child(text("Done").text_size(px(16.0)).font_weight(FontWeight::BOLD).text_color(move || if valid2() { theme::ACCENT } else { theme::FG3 })),
+                        ),
                 ),
         )
         .child(
@@ -1304,6 +1501,293 @@ pub(crate) fn row_editor(form: Arc<OpenForm>, id: ItemId, r: usize) -> impl Into
                 .child(view().pl(move || px(safe_area().left.0)).pr(move || px(safe_area().right.0)).pb(move || px(keyboard_height().0.max(safe_area().bottom.0) + 24.0)).child(body)),
         )
         .into_element()
+}
+
+/// A schedule column as a field, for the controls that take fields.
+fn col_field(c: &bir_app_core::LayoutColumn, key: String) -> LayoutField {
+    LayoutField {
+        key,
+        label: c.label.clone(),
+        kind: c.kind.clone(),
+        computed: c.computed,
+        max_len: None,
+        required: false,
+        whole: c.whole,
+        options: c.options.clone(),
+        group: None,
+        group_size: None,
+        pool: None,
+        why: None,
+    }
+}
+
+// ---------------------------------------------------------------- payees
+
+/// The TIN boxes and the name box a picked payee fills: a schedule row's
+/// TIN and name columns, else an item's TIN fields.
+fn payee_keys(item: &LayoutItem, row: Option<usize>) -> (Vec<String>, Option<String>) {
+    match row {
+        Some(r) => {
+            let keys = item.keys.get(r).cloned().unwrap_or_default();
+            let mut tins = Vec::new();
+            let mut name = None;
+            for (k, c) in keys.iter().zip(item.cols.iter()) {
+                if c.computed || c.kind == "hidden" {
+                    continue;
+                }
+                if tin_col(&c.label) {
+                    tins.push(k.clone());
+                } else if name.is_none() && c.kind == "text" && c.label.to_lowercase().contains("name") {
+                    name = Some(k.clone());
+                }
+            }
+            (tins, name)
+        }
+        None => (item.fields.iter().filter(|f| f.kind == "text" || f.kind == "int").map(|f| f.key.clone()).collect(), None),
+    }
+}
+
+/// Write `payee` into `tins` (3-3-3-5 when split, else whole) and `name`.
+fn apply_payee(payee: &bir_app_core::Payee, tins: &[String], name: &Option<String>) {
+    let st = session();
+    let digits = payee.tin.as_str();
+    let mut edits: Vec<(String, String)> = Vec::new();
+    if tins.len() == 1 {
+        edits.push((tins[0].clone(), crate::typing::dash_tin(digits, 14)));
+    } else {
+        let mut rest = digits;
+        for (i, key) in tins.iter().enumerate() {
+            let n = if i + 1 == tins.len() { rest.len() } else { 3.min(rest.len()) };
+            let (head, tail) = rest.split_at(n);
+            edits.push((key.clone(), head.to_owned()));
+            rest = tail;
+        }
+    }
+    if let Some(name) = name {
+        edits.push((name.clone(), payee.name.clone()));
+    }
+    st.choose(edits);
+}
+
+/// The payee of a row (initials, name, TIN), or "Choose a payee"; a tap
+/// opens the saved payees.
+fn payee_row(item: &LayoutItem, id: ItemId, row: Option<usize>) -> impl IntoElement {
+    let st = session();
+    let (tins, name) = payee_keys(item, row);
+    let shown = move || {
+        let tin: String = tins.iter().map(|k| st.value(k)).collect::<String>().chars().filter(char::is_ascii_digit).collect();
+        let who = name.as_ref().map(|k| st.value(k)).unwrap_or_default();
+        (who, tin)
+    };
+    let shown2 = shown.clone();
+    let shown3 = shown.clone();
+    view()
+        .flex_row()
+        .items_center()
+        .gap(px(12.0))
+        .min_h(px(TAP))
+        .cursor_pointer()
+        .label("Choose a payee")
+        .active(|s| s.opacity(0.6))
+        .on_press(move || {
+            dismiss_keyboard();
+            st.payee.set(Some((id, row)));
+        })
+        .child(each(move || vec![shown3().0], |n| n.clone(), |n, _| {
+            let n = n.get_untracked();
+            let initials: String = n.split_whitespace().filter_map(|w| w.chars().next()).take(2).collect::<String>().to_uppercase();
+            view()
+                .size(px(36.0))
+                .rounded(px(theme::R_FULL))
+                .items_center()
+                .justify_center()
+                .bg(theme::ACCENT_SOFT)
+                .child(if initials.is_empty() { icon(Icon::User, 16.0, || theme::ACCENT) } else { text(initials).text_size(px(13.0)).font_weight(FontWeight::BOLD).text_color(theme::ACCENT).into_element() })
+        }))
+        .child(
+            view()
+                .flex_1()
+                .min_w(px(0.0))
+                .child(text(move || {
+                    let (who, tin) = shown();
+                    if !who.is_empty() { who } else if tin.is_empty() { "Choose a payee".to_owned() } else { "Payee".to_owned() }
+                }).text_size(px(15.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::FG).truncate())
+                .child(text(move || crate::typing::dash_tin(&shown2().1, 14)).text_size(px(12.5)).font_family(mono()).text_color(theme::FG3)),
+        )
+        .child(icon(Icon::ChevronRight, 14.0, || theme::FG3))
+}
+
+/// Saved payees: a search, "+ Add a new payee" first (name and TIN, saved
+/// for the next schedule), then the payees saved under this taxpayer.
+pub(crate) fn payee_sheet(form: Arc<OpenForm>, id: ItemId, row: Option<usize>) -> impl IntoElement {
+    let st = session();
+    let Some(item) = form.item(id).cloned() else { return view().into_element() };
+    let root = form.params.tin.get(..9).unwrap_or(&form.params.tin).to_owned();
+    let (tins, name_key) = payee_keys(&item, row);
+    let saved = signal(Vec::<bir_app_core::Payee>::new());
+    let query = signal(String::new());
+    let adding = signal(false);
+    let new_name = signal(String::new());
+    let new_tin = signal(String::new());
+    let error = signal(String::new());
+    {
+        let root = root.clone();
+        crate::store::task(async move {
+            if let Ok(list) = crate::store::call(move |app| app.saved_payees(&root)).await {
+                saved.set(list);
+            }
+        });
+    }
+    let close = move || crate::screens::taxpayer::close_after_blur(move || st.payee.set(None));
+    let filtered = move || {
+        let q = query.get().trim().to_lowercase();
+        let qd: String = q.chars().filter(char::is_ascii_digit).collect();
+        saved.get().into_iter().filter(|p| q.is_empty() || p.name.to_lowercase().contains(&q) || (!qd.is_empty() && p.tin.contains(&qd))).collect::<Vec<_>>()
+    };
+    let (tins2, name2) = (tins.clone(), name_key.clone());
+    let pick = move |p: bir_app_core::Payee| {
+        apply_payee(&p, &tins2, &name2);
+        crate::screens::taxpayer::close_after_blur(move || st.payee.set(None));
+    };
+    let pick2 = pick.clone();
+    let save_new = move || {
+        let p = bir_app_core::Payee { name: new_name.get_untracked(), tin: new_tin.get_untracked() };
+        let root = root.clone();
+        let pick = pick2.clone();
+        crate::store::task(async move {
+            match crate::store::call(move |app| app.save_payee(&root, &p)).await {
+                Ok(saved_one) => pick(saved_one),
+                Err(why) => error.set(why),
+            }
+        });
+    };
+    let tin_at = element_ref();
+    let search = move || input()
+        .value(query)
+        .on_change(move |v: &str| query.set(v.to_owned()))
+        .placeholder("Search name or TIN")
+        .placeholder_color(|| color(theme::FG3))
+        .auto_correct(false)
+        .h(px(40.0))
+        .px(px(14.0))
+        .text_size(px(16.0))
+        .text_color(theme::FG)
+        .bg(theme::HOVER)
+        .rounded(px(10.0));
+    let add_form = move || {
+        let save_new = save_new.clone();
+        view()
+            .px(px(18.0))
+            .py(px(12.0))
+            .gap(px(10.0))
+            .child(text("New payee").text_size(px(17.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::FG))
+            .child(text("Registered name").text_size(px(13.0)).text_color(theme::FG2))
+            .child(input().value(new_name).on_change(move |v: &str| new_name.set(v.to_owned())).placeholder("Reyes Law Office").placeholder_color(|| color(theme::FG3)).auto_focus(true).h(px(44.0)).text_size(px(17.0)).text_color(theme::FG).bg(CLEAR).border_b(px(1.0)).border_color(theme::BORDER))
+            .child(text("TIN").text_size(px(13.0)).text_color(theme::FG2))
+            .child(
+                input()
+                    .element_ref(&tin_at)
+                    .value(new_tin)
+                    .keyboard_type(KeyboardType::Number)
+                    .on_change(move |v: &str| {
+                        let prev = new_tin.get_untracked();
+                        let shown = crate::typing::dash_tin(v, 14);
+                        new_tin.set(shown.clone());
+                        if shown != v {
+                            let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
+                            tin_at.set_selection(caret, caret);
+                        }
+                    })
+                    .placeholder("000-000-000-00000")
+                    .placeholder_color(|| color(theme::FG3))
+                    .h(px(44.0))
+                    .text_size(px(18.0))
+                    .font_family(mono())
+                    .text_color(theme::FG)
+                    .bg(CLEAR)
+                    .border_b(px(1.0))
+                    .border_color(theme::BORDER),
+            )
+            .child(text(move || {
+                let d = new_tin.get().chars().filter(char::is_ascii_digit).count();
+                match d {
+                    9 => "✓ Looks right · branch 00000 added".to_owned(),
+                    14 => "✓ Looks right".to_owned(),
+                    0 => "9 digits, or 14 with the branch code".to_owned(),
+                    n => format!("{n} of 9 or 14 digits"),
+                }
+            }).text_size(px(12.5)).text_color(move || if matches!(new_tin.get().chars().filter(char::is_ascii_digit).count(), 9 | 14) { theme::SUCCESS } else { theme::FG3 }))
+            .child(when(move || !error.get().is_empty(), move || text(move || error.get()).text_size(px(12.5)).text_color(theme::DANGER)))
+            .child(
+                view()
+                    .h(px(48.0))
+                    .rounded(px(12.0))
+                    .items_center()
+                    .justify_center()
+                    .bg(theme::PRIMARY)
+                    .cursor_pointer()
+                    .label("Save payee")
+                    .on_press(move || save_new())
+                    .child(text("Save payee").text_size(px(15.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::PRIMARY_FG)),
+            )
+    };
+    full_sheet(
+        "Payee".to_owned(),
+        close,
+        view()
+            .flex_1()
+            .child(when(move || !adding.get(), move || view().px(px(16.0)).py(px(10.0)).child(search())))
+            .child(when(move || adding.get(), add_form))
+            .child(when(move || !adding.get(), move || {
+                let pick = pick.clone();
+                let filtered = filtered.clone();
+                scroll().flex_1().keyboard_dismiss_mode(KeyboardDismissMode::OnDrag).keyboard_taps(KeyboardTaps::Handled).child(
+                    view()
+                        .pb(move || px(keyboard_height().0.max(safe_area().bottom.0) + 16.0))
+                        .child(
+                            view()
+                                .min_h(px(60.0))
+                                .px(px(18.0))
+                                .flex_row()
+                                .items_center()
+                                .gap(px(12.0))
+                                .border_b(px(1.0))
+                                .border_color(theme::BORDER)
+                                .cursor_pointer()
+                                .label("Add a new payee")
+                                .active(|s| s.bg(theme::HOVER))
+                                .on_press(move || adding.set(true))
+                                .child(view().size(px(36.0)).rounded(px(theme::R_FULL)).items_center().justify_center().bg(theme::ACCENT_SOFT).child(icon(Icon::Plus, 16.0, || theme::ACCENT)))
+                                .child(view().flex_1().child(text("Add a new payee").text_size(px(15.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::ACCENT)).child(text("Name and TIN").text_size(px(12.5)).text_color(theme::FG3))),
+                        )
+                        .child(text("SAVED PAYEES").px(px(18.0)).pt(px(14.0)).pb(px(4.0)).text_size(px(11.0)).font_family(mono()).text_color(theme::FG3))
+                        .child(when({
+                            let filtered = filtered.clone();
+                            move || filtered().is_empty()
+                        }, || text("None yet. A payee you add is kept for the next schedule.").px(px(18.0)).py(px(8.0)).text_size(px(13.0)).text_color(theme::FG3)))
+                        .child(each(filtered, |p| p.tin.clone(), move |p, _| {
+                            let p = p.get_untracked();
+                            let initials: String = p.name.split_whitespace().filter_map(|w| w.chars().next()).take(2).collect::<String>().to_uppercase();
+                            let pick = pick.clone();
+                            let chosen = p.clone();
+                            view()
+                                .min_h(px(60.0))
+                                .px(px(18.0))
+                                .flex_row()
+                                .items_center()
+                                .gap(px(12.0))
+                                .border_b(px(1.0))
+                                .border_color(theme::BORDER)
+                                .cursor_pointer()
+                                .active(|s| s.bg(theme::HOVER))
+                                .on_press(move || pick(chosen.clone()))
+                                .child(view().size(px(36.0)).rounded(px(theme::R_FULL)).items_center().justify_center().bg(theme::ACCENT_SOFT).child(text(initials).text_size(px(13.0)).font_weight(FontWeight::BOLD).text_color(theme::ACCENT)))
+                                .child(view().flex_1().min_w(px(0.0)).child(text(p.name.clone()).text_size(px(15.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::FG).truncate()).child(text(crate::typing::dash_tin(&p.tin, 14)).text_size(px(12.5)).font_family(mono()).text_color(theme::FG3)))
+                        })),
+                )
+            })),
+    )
+    .into_element()
 }
 
 // ---------------------------------------------------------------- computed
