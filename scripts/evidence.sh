@@ -37,7 +37,7 @@ APP_PID=""
 cleanup() {
     [ -n "$APP_PID" ] && kill "$APP_PID" 2>/dev/null || true
     if [ -n "$UDID" ]; then
-        xcrun simctl shutdown "$UDID" 2>/dev/null || true
+        timeout 60 xcrun simctl shutdown "$UDID" 2>/dev/null || true
         osascript -e 'tell application "Simulator" to quit' >/dev/null 2>&1 || true
     fi
     rm -rf "$TMP"
@@ -207,8 +207,8 @@ phone_shot() {
     fresh_db "$dir"
     mv "$dir/bir_data.db" "$dir/bir_data.db.tmp" && mv "$dir/bir_data.db.tmp" "$dir/bir_data.db"
     { echo "BIR_DB_KEY=$KEY"; echo "BUWIZ_THEME=$theme"; for kv in $hooks; do echo "$kv"; done; } >"$dir/launch.env"
-    xcrun simctl ui "$UDID" appearance "$theme" 2>/dev/null || true
-    xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
+    timeout 60 xcrun simctl ui "$UDID" appearance "$theme" 2>/dev/null || true
+    timeout 60 xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
     # A wedged simulator never answers a launch: fail the shot, don't hang.
     if ! timeout 180 xcrun simctl launch "$UDID" com.buwiz.oss >/dev/null; then
         FAILED+=" phone-$name-$theme.png:launch"
@@ -220,7 +220,7 @@ phone_shot() {
     # to an external volume: shoot into $TMP, then move it. A just-booted
     # simulator may not have its display yet: try again, for up to a minute.
     for _ in 1 2 3 4 5 6 7 8 9 10 11 12; do
-        if xcrun simctl io "$UDID" screenshot "$TMP/shot.png" >/dev/null 2>"$TMP/shot.err"; then
+        if timeout 60 xcrun simctl io "$UDID" screenshot "$TMP/shot.png" >/dev/null 2>"$TMP/shot.err"; then
             mv "$TMP/shot.png" "$png"
             break
         fi
@@ -239,7 +239,7 @@ if [ "$WHICH" = all ] || [ "$WHICH" = phone ]; then
         UDID=$(xcrun simctl create "$DEVICE_NAME" "iPhone 17 Pro" "$runtime")
     fi
     xcrun simctl boot "$UDID" 2>/dev/null || true
-    xcrun simctl bootstatus "$UDID" -b >/dev/null
+    timeout 300 xcrun simctl bootstatus "$UDID" -b >/dev/null
     # The app bundle, as app/ios.sh packs it.
     BUNDLE="$TMP/Buwiz.app"
     mkdir -p "$BUNDLE"
@@ -247,19 +247,19 @@ if [ "$WHICH" = all ] || [ "$WHICH" = phone ]; then
     sed -n '/^cat > "$BUNDLE\/Info.plist" <<PLIST/,/^PLIST/p' app/ios.sh | sed '1d;$d' |
         sed 's/\$APP/Buwiz/g; s/\$ID/com.buwiz.oss/g' >"$BUNDLE/Info.plist"
     codesign --force --sign - "$BUNDLE/Buwiz" 2>/dev/null || true
-    xcrun simctl install "$UDID" "$BUNDLE"
+    timeout 600 xcrun simctl install "$UDID" "$BUNDLE"
     # The first launch after an install is the slow one (the system prepares
     # the app): launch it once and let it settle before the first shot.
     timeout 180 xcrun simctl launch "$UDID" com.buwiz.oss >/dev/null 2>&1 || true
     sleep 20
-    xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
+    timeout 60 xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
     for theme in light dark; do
         for spec in "${PHONE[@]}"; do
             IFS='|' read -r name hooks want wait <<<"$spec"
             wanted "$name" && phone_shot "$name" "$theme" "$hooks" "$want" "$wait"
         done
     done
-    xcrun simctl ui "$UDID" appearance light 2>/dev/null || true
+    timeout 60 xcrun simctl ui "$UDID" appearance light 2>/dev/null || true
 fi
 
 # Merge this run's results into checks.txt: a retaken shot replaces its line.
