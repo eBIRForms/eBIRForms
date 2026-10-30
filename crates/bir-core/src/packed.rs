@@ -47,17 +47,6 @@ macro_rules! packed_bytes {
     };
 }
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn every_packed_file_inflates_to_its_source() {
-        crate::packed::check_round_trip(
-            env!("CARGO_MANIFEST_DIR"),
-            include!(concat!(env!("OUT_DIR"), "/packed_files.rs")),
-        );
-    }
-}
-
 /// For each crate's round-trip test: every file its build script packed
 /// (`OUT_DIR/packed_files.rs`) inflates to the bytes of its source.
 #[doc(hidden)]
@@ -69,6 +58,17 @@ pub fn check_round_trip(manifest: &str, files: &[(&str, &[u8])]) {
         assert!(
             inflate(packed).as_bytes() == source,
             "{path} does not round-trip"
+        );
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn every_packed_file_inflates_to_its_source() {
+        crate::packed::check_round_trip(
+            env!("CARGO_MANIFEST_DIR"),
+            include!(concat!(env!("OUT_DIR"), "/packed_files.rs")),
         );
     }
 }
