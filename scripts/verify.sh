@@ -24,7 +24,8 @@ export RUSTC_WRAPPER=
 ROOT=$(pwd)
 EVIDENCE="$ROOT/internal/evidence"
 SERVER_DIR="${BUWIZ_SERVER_DIR:-$ROOT/../buwiz-server-goal}"
-BASE="${VERIFY_BASE:-origin/main}"
+# V3 compares tests with the main this work started from.
+BASE="${VERIFY_BASE:-66f5b79}"
 LOGS=$(mktemp -d)
 FAILED=0
 
@@ -96,7 +97,7 @@ fi
 if selected V3; then
     why=""
     run v3-test cargo test --locked --workspace || why+="cargo test --workspace failed ($LOGS/v3-test.log); "
-    grep -q 'cargo test' .github/workflows/ci.yml || why+="CI does not run cargo test; "
+    grep -v -E '^[[:space:]]*#' .github/workflows/ci.yml | grep -q -E 'run: cargo test --locked --workspace' || why+="CI does not run cargo test; "
     if git rev-parse -q --verify "$BASE" >/dev/null; then
         # Attribute lines that are code, not comments ("// #[test]" counts for nothing).
         count() { git grep -h -E "$1" "$2" -- '*.rs' ':!nsh' ':!blaze' 2>/dev/null | grep -v -E '^[[:space:]]*//' | wc -l | tr -d ' '; }
@@ -176,7 +177,7 @@ if selected V6; then
         # Each required case must have run and passed, not been filtered out.
         missing=""
         for t in a_queued_1701q_is_sent_through_the_gatekeeper_and_sender \
-                 tin_not_active ticket_works_once replay expired tamper revoked; do
+                 tin_not_active an_xml_tin_other_than_the_tickets_is_refused ticket_works_once replay expired tamper revoked; do
             grep -E "test [a-z0-9_]*$t[a-z0-9_]* \.\.\. ok" "$LOGS/v6-e2e.log" >/dev/null || missing="$missing $t"
         done
         if [ -n "$missing" ]; then fail V6 "cases did not run and pass:$missing ($LOGS/v6-e2e.log)"
@@ -212,5 +213,5 @@ if selected V8; then
     [ -z "$why" ] && pass V8 "docs present; README is run-only" || fail V8 "$why"
 fi
 
-[ $FAILED = 0 ] && echo "ALL PASS" || echo "logs: $LOGS"
+[ $FAILED = 0 ] && echo "ALL PASS (logs: $LOGS)" || echo "logs: $LOGS"
 exit $FAILED

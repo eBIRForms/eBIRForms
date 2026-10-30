@@ -34,18 +34,36 @@ pub struct SubmitConfig {
     pub trust_keys: Vec<String>,
 }
 
+/// An https URL, or an http one whose host is this machine.
+fn is_private_url(url: &str) -> bool {
+    if url.starts_with("https://") {
+        return true;
+    }
+    let Some(rest) = url.strip_prefix("http://") else {
+        return false;
+    };
+    let authority = rest.split('/').next().unwrap_or_default();
+    let host = match authority.strip_prefix('[') {
+        Some(v6) => v6.split(']').next().unwrap_or_default(),
+        None => authority.split(':').next().unwrap_or_default(),
+    };
+    matches!(host, "localhost" | "127.0.0.1" | "::1")
+}
+
 impl SubmitConfig {
     /// `BUWIZ_SERVER_URL` when set, else the app's setting, else
-    /// [`DEFAULT_SERVER_URL`].
+    /// [`DEFAULT_SERVER_URL`]. Only https, or http to this machine: sign-in
+    /// codes and tokens never cross a network in plain text.
     pub fn new(setting: Option<&str>) -> Self {
         let from_env = std::env::var("BUWIZ_SERVER_URL")
             .ok()
-            .filter(|url| !url.trim().is_empty());
+            .map(|url| url.trim().to_owned())
+            .filter(|url| is_private_url(url));
         let url = from_env
             .or_else(|| {
                 setting
                     .map(str::trim)
-                    .filter(|url| !url.is_empty())
+                    .filter(|url| is_private_url(url))
                     .map(str::to_owned)
             })
             .unwrap_or_else(|| DEFAULT_SERVER_URL.to_owned());
@@ -763,7 +781,21 @@ mod tests {
             SubmitConfig::new(Some("http://localhost:3008")).server_url,
             "http://127.0.0.1:9"
         );
+        unsafe { std::env::set_var("BUWIZ_SERVER_URL", "http://buwiz.example") };
+        assert_eq!(SubmitConfig::new(None).server_url, DEFAULT_SERVER_URL);
         unsafe { std::env::remove_var("BUWIZ_SERVER_URL") };
+        assert_eq!(
+            SubmitConfig::new(Some("http://localhost.example:3008")).server_url,
+            DEFAULT_SERVER_URL
+        );
+        assert_eq!(
+            SubmitConfig::new(Some("http://[::1]:3008")).server_url,
+            "http://[::1]:3008"
+        );
+        assert_eq!(
+            SubmitConfig::new(Some("https://lab.example/")).server_url,
+            "https://lab.example"
+        );
     }
 
     /// A server without device keys (no `/api/devices`, as before v2) still
