@@ -155,6 +155,10 @@ fn desktop_new_taxpayer() -> impl IntoElement {
             error.set("Enter the 9-digit TIN.".to_owned());
             return;
         }
+        if name.get_untracked().trim().is_empty() {
+            error.set("Enter the registered name.".to_owned());
+            return;
+        }
         let Some(place_v) = place.get_untracked() else {
             error.set("Search the city or ZIP code and pick it from the list.".to_owned());
             return;
@@ -184,7 +188,15 @@ fn desktop_new_taxpayer() -> impl IntoElement {
             }
         };
         let street_v = street.get_untracked().trim().to_owned();
-        let address = if street_v.is_empty() { place_v.city.clone() } else { format!("{street_v}, {}", place_v.city) };
+        if street_v.is_empty() {
+            error.set("Enter the street address.".to_owned());
+            return;
+        }
+        if !email_ok(&email.get_untracked()) {
+            error.set("Enter the email BIR sends the confirmation to.".to_owned());
+            return;
+        }
+        let address = format!("{street_v}, {}", place_v.city);
         let new = NewTaxpayer {
             tin_root,
             name: name.get_untracked().trim().to_owned(),
@@ -308,11 +320,7 @@ fn phone_new_taxpayer() -> impl IntoElement {
     let refs: Vec<ElementRef> = (0..5).map(|_| element_ref()).collect();
 
     let digits = move || tin.get().chars().filter(char::is_ascii_digit).collect::<String>();
-    let email_ok = move || {
-        let e = email.get();
-        let e = e.trim();
-        e.contains('@') && e.rsplit('@').next().is_some_and(|d| d.contains('.')) && !e.contains(' ')
-    };
+    let email_valid = move || email_ok(&email.get());
     let individual = move || kind.get() == "Individual";
     // The first thing still missing, as the bar's next step.
     let missing = move || -> Option<(&'static str, usize)> {
@@ -331,7 +339,7 @@ fn phone_new_taxpayer() -> impl IntoElement {
         if individual() && bir_app_core::display::parse_typed_date(&birth.get()).is_none_or(|d| d > crate::store::today()) {
             return Some(("Birth date", 3));
         }
-        if !email_ok() {
+        if !email_valid() {
             return Some(("Email", 4));
         }
         None
@@ -492,7 +500,7 @@ fn phone_new_taxpayer() -> impl IntoElement {
             move || field("Birth date", "MM/DD/YYYY", slashed(birth, r[3]).placeholder("01/15/1990").keyboard_type(KeyboardType::Number), r[3], 3)
         }))
         .child(field("Email", "BIR sends the filing confirmation here", text_input(email, "name@example.com").keyboard_type(KeyboardType::Email), r[4], 4))
-        .child(when(move || !email.get().trim().is_empty() && !email_ok() && typing.get() != Some(4), || {
+        .child(when(move || !email.get().trim().is_empty() && !email_valid() && typing.get() != Some(4), || {
             text("Enter an email like name@example.com: BIR sends the filing confirmation there.").mx(px(18.0)).mt(px(6.0)).text_size(px(12.0)).text_color(theme::DANGER)
         }))
         .child(when(move || !error.get().is_empty(), move || text(move || error.get()).mx(px(18.0)).mt(px(8.0)).text_size(px(12.0)).text_color(theme::DANGER)))
@@ -674,6 +682,12 @@ fn merge_place(had: Option<bir_app_core::Place>, next: bir_app_core::Place) -> b
     }
 }
 
+/// Whether `email` looks like an address: something@domain.tld, no spaces.
+fn email_ok(email: &str) -> bool {
+    let e = email.trim();
+    e.contains('@') && e.rsplit('@').next().is_some_and(|d| d.contains('.')) && !e.contains(' ')
+}
+
 /// What a picked place still lacks before a taxpayer can be added: the
 /// ZIP code or the RDO.
 fn place_gap(place: &bir_app_core::Place) -> Option<&'static str> {
@@ -715,7 +729,7 @@ fn place_combo(place: Signal<Option<bir_app_core::Place>>) -> impl IntoElement {
                     move |p, _| {
                         let p = p.get_untracked();
                         let pick = p.clone();
-                        let line = if p.zip.is_empty() { "RDO only".to_owned() } else if p.rdo_code.is_empty() { "No RDO matched: pick the RDO too".to_owned() } else { format!("RDO {} · {}", p.rdo_code, p.rdo_name) };
+                        let line = if p.zip.is_empty() { "RDO only".to_owned() } else if p.rdo_code.is_empty() { "ZIP code: pick the RDO too".to_owned() } else { format!("RDO {} · {}", p.rdo_code, p.rdo_name) };
                         view()
                             .px(px(10.0))
                             .py(px(6.0))
@@ -773,7 +787,7 @@ fn place_search(place: Signal<Option<bir_app_core::Place>>, open: Signal<bool>) 
                 move |p, _| {
                     let p = p.get_untracked();
                     let pick = p.clone();
-                    let line = if p.zip.is_empty() { "RDO only".to_owned() } else if p.rdo_code.is_empty() { "No RDO matched: pick the RDO too".to_owned() } else { format!("RDO {} · {}", p.rdo_code, p.rdo_name) };
+                    let line = if p.zip.is_empty() { "RDO only".to_owned() } else if p.rdo_code.is_empty() { "ZIP code: pick the RDO too".to_owned() } else { format!("RDO {} · {}", p.rdo_code, p.rdo_name) };
                     view()
                         .min_h(px(56.0))
                         .px(px(18.0))
@@ -823,6 +837,14 @@ mod tests {
         assert_eq!((merged.city.as_str(), merged.zip.as_str(), merged.rdo_code.as_str()), ("Pasig", "1600", "043"));
         let own = merge_place(Some(place("RDO 043", "", "043")), place("Laoag", "2900", "001"));
         assert_eq!(own.rdo_code, "001", "a ZIP with its own RDO replaces the earlier one");
+    }
+
+    #[test]
+    fn an_email_needs_a_domain_and_no_spaces() {
+        assert!(email_ok(" juana@example.com "));
+        assert!(!email_ok("juana@"));
+        assert!(!email_ok("juana@example"));
+        assert!(!email_ok("juana santos@example.com"));
     }
 
     #[test]
