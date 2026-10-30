@@ -68,7 +68,16 @@ pub(super) fn page(form: Arc<OpenForm>) -> impl IntoElement {
                         .element_ref(&content)
                         .pl(move || px(safe_area().left.0))
                         .pr(move || px(safe_area().right.0))
-                        .child(view().px(px(14.0)).pt(px(14.0)).pb(px(6.0)).child(filer_card(form.clone())))
+                        .child(view().px(px(14.0)).pt(px(14.0)).pb(px(6.0)).gap(px(10.0)).child(when(move || st.amending.get(), super::form::amend_band)).child(filer_card(form.clone())).child(when(super::form::can_unlock_profile, || {
+                            text("Edit on this return")
+                                .self_end()
+                                .py(px(6.0))
+                                .text_size(px(14.0))
+                                .font_weight(FontWeight::SEMIBOLD)
+                                .text_color(theme::ACCENT)
+                                .label("Edit on this return")
+                                .on_press(super::form::unlock_profile)
+                        })))
                         .child(each(parts, |pi| *pi, move |pi, _| section(section_form.clone(), pi.get_untracked()).into_element()))
                         .child(summary(form.clone()))
                         // Room to scroll the last field above the bar.
@@ -220,7 +229,8 @@ fn more_menu(menu: Signal<bool>) -> impl IntoElement {
                 .child(row("Check the return", Icon::CircleCheck, || session().validate()))
                 .child(row("Print", Icon::Printer, || session().print()))
                 .child(row("Outline", Icon::List, || session().outline_open.set(true)))
-                .child(when(move || st.status.get() == "Queued", move || row("Take off the queue", Icon::ArrowLeft, || session().cancel_queue()))),
+                .child(when(move || st.status.get() == "Queued", move || row("Take off the queue", Icon::ArrowLeft, || session().cancel_queue())))
+                .child(when(move || !st.editable.get() && !st.sample.get() && matches!(st.status.get().as_str(), "Sent" | "Submitted" | "Confirmed" | "Paid"), move || row("Amend", Icon::FileText, || session().amend()))),
         )
 }
 
@@ -278,7 +288,11 @@ fn item(form: Arc<OpenForm>, id: ItemId, index: ReadSignal<usize>) -> AnyElement
     // A long list says where its answer came from itself (variant D).
     let long_list = matches!(super::phone_fields::kind_of(&item, &item.fields), super::phone_fields::Kind::LongList | super::phone_fields::Kind::Place);
     let profile_keys = item.box_keys();
-    let from_profile = move || !long_list && st.profile.with(|p| profile_keys.iter().any(|k| p.contains(k)));
+    let opened_keys = profile_keys.clone();
+    let opened = move || super::form::profile_opened(&opened_keys);
+    let opened2 = opened.clone();
+    let penalty_keys = profile_keys.clone();
+    let from_profile = move || !long_list && !opened() && st.profile.with(|p| profile_keys.iter().any(|k| p.contains(k)));
     view()
         .element_ref(&at)
         .px(px(16.0))
@@ -312,6 +326,8 @@ fn item(form: Arc<OpenForm>, id: ItemId, index: ReadSignal<usize>) -> AnyElement
         )
         .child(value_of(form.clone(), id, &item))
         .child(when(from_profile, || text("From your tax profile").text_size(px(12.0)).text_color(theme::FG3)))
+        .child(when(opened2, || text("On this return only. Your profile is unchanged.").text_size(px(12.0)).text_color(theme::ACCENT)))
+        .child(when(move || super::form::penalty_opened(&penalty_keys), || text("You're entering this penalty yourself.").text_size(px(12.0)).text_color(theme::ACCENT)))
         .child(when(move || !message().is_empty(), move || {
             text(message2.clone()).text_size(px(12.5)).font_weight(FontWeight::MEDIUM).text_color(theme::DANGER)
         }))
@@ -430,6 +446,9 @@ fn summary(form: Arc<OpenForm>) -> impl IntoElement {
         out
     };
     let note = move || {
+        if super::form::penalties_open() {
+            return "You're entering the penalties yourself (an amount the RDO approved, say), in their items above.".to_owned();
+        }
         let penalties: f64 = st.penalties.get().into_iter().filter(|p| p.applies).flat_map(|p| p.keys).filter_map(|k| steps::amount(&st.value(&k))).sum();
         match st.due.get() {
             Some(date) if penalties == 0.0 => format!("Due {}. No penalties if it's sent by then.", long_date(&date)),
@@ -462,6 +481,18 @@ fn summary(form: Arc<OpenForm>) -> impl IntoElement {
                 .child(text(move || line.get().1).text_size(px(13.5)).font_family(mono()).tabular_nums().text_color(theme::FG))
         }))
         .child(text(note).mx(px(18.0)).mt(px(10.0)).text_size(px(12.5)).text_color(theme::FG2))
+        .child(when(move || st.editable.get() && st.penalties.with(|p| p.iter().any(|p| p.applies)) && !super::form::penalties_open(), || {
+            text("Edit penalties")
+                .mx(px(18.0))
+                .mt(px(6.0))
+                .py(px(8.0))
+                .self_start()
+                .text_size(px(14.0))
+                .font_weight(FontWeight::SEMIBOLD)
+                .text_color(theme::ACCENT)
+                .label("Edit penalties")
+                .on_press(super::form::unlock_penalties)
+        }))
 }
 
 /// `2026-11-15` as `Nov 15, 2026`.

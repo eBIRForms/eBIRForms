@@ -229,6 +229,8 @@ pub(crate) struct FormSession {
     pub unlocked: Signal<BTreeSet<String>>,
     /// A Form library sample is open (nothing saves).
     pub sample: Signal<bool>,
+    /// The open return is a new amendment of a filed one.
+    pub amending: Signal<bool>,
     /// The saved-payee picker: for an item's TIN, or a schedule row's.
     pub payee: Signal<Option<(ItemId, Option<usize>)>>,
     /// Boxes whose last edit the form refused, with a count that changes
@@ -285,6 +287,7 @@ impl FormSession {
             payee: signal(None),
             unlocked: signal(BTreeSet::new()),
             sample: signal(false),
+            amending: signal(false),
             reverted: signal((0, Vec::new())),
             inner: RefCell::new(Inner::default()),
             token: Cell::new(0),
@@ -447,6 +450,7 @@ impl FormSession {
                     }
                     self.take_opened(&form, opened);
                     self.sample.set(how == How::Sample);
+                    self.amending.set(how == How::Amend);
                     if how == How::Amend {
                         // An amendment is new: it saves at once as a draft.
                         self.unsaved.set(true);

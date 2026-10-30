@@ -577,7 +577,58 @@ fn header(form: Arc<OpenForm>) -> impl IntoElement {
                 ))
                 .child(when(move || st.busy.get() == Some("Checking…") || st.checking.get(), || chip("Checking…", Tone::Accent))),
         )
+        .child(when(move || st.amending.get(), || view().mt(px(8.0)).max_w(px(520.0)).child(amend_band())))
         .child(view().mt(px(12.0)).max_w(px(520.0)).child(filer_card(form.clone())))
+}
+
+/// What an amendment is, over its form (desktop and phone).
+pub(super) fn amend_band() -> impl IntoElement {
+    view()
+        .p(px(12.0))
+        .gap(px(2.0))
+        .rounded(px(theme::R_ROW))
+        .bg(theme::ACCENT_SOFT)
+        .child(text("Amending a sent return").text_size(px(13.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::ACCENT))
+        .child(text(AMEND_LINE).text_size(px(12.0)).text_color(theme::FG2))
+}
+
+pub(super) const AMEND_LINE: &str = "A new draft that amends the return you sent. Fix what was wrong, then check it and queue it.";
+
+/// Open the penalties that apply for typing on this return (Edit
+/// penalties).
+pub(crate) fn unlock_penalties() {
+    let st = session();
+    let keys: Vec<String> = st.penalties.get_untracked().into_iter().filter(|p| p.applies).flat_map(|p| p.keys).collect();
+    st.unlock(keys);
+}
+
+/// Open the profile's boxes for typing on this return (Edit on this
+/// return); the profile itself is unchanged.
+pub(crate) fn unlock_profile() {
+    let st = session();
+    st.unlock(st.profile.get_untracked());
+    store().notify(crate::store::NoticeTone::Info, "The profile's boxes are open on this return. What you type stays here; the profile is unchanged.");
+}
+
+/// Whether "Edit on this return" applies (tracked): an editable return
+/// with profile boxes not all opened yet.
+pub(super) fn can_unlock_profile() -> bool {
+    let st = session();
+    st.editable.get() && !st.profile.with(|p| p.is_empty()) && !st.profile.with(|p| st.unlocked.with(|u| p.iter().all(|k| u.contains(k))))
+}
+
+/// Whether one of `keys` is a profile box opened on this return (tracked).
+pub(super) fn profile_opened(keys: &[String]) -> bool {
+    let st = session();
+    st.unlocked.with(|u| st.profile.with(|p| keys.iter().any(|k| u.contains(k) && p.contains(k))))
+}
+
+/// Whether one of `keys` is a penalty the filer enters (tracked).
+pub(super) fn penalty_opened(keys: &[String]) -> bool {
+    let st = session();
+    st.penalties.with(|parties| {
+        parties.iter().filter(|p| p.applies).any(|p| (p.edited || st.unlocked.with(|u| p.keys.iter().any(|k| u.contains(k)))) && keys.iter().any(|k| p.keys.contains(k)))
+    })
 }
 
 /// The filer, from the tax profile, as one read-only card: name, TIN and
@@ -643,17 +694,14 @@ pub(super) fn filer_card(form: Arc<OpenForm>) -> impl IntoElement {
                 .items_end()
                 .gap(px(6.0))
                 .child(text("Change in profile").text_size(px(12.0)).text_color(theme::ACCENT))
-                .child(when(move || st.editable.get() && !st.profile.with(|p| p.is_empty()) && !st.profile.with(|p| st.unlocked.with(|u| p.iter().all(|k| u.contains(k)))), move || {
+                .child(when(can_unlock_profile, move || {
                     text("Edit on this return")
                         .text_size(px(12.0))
                         .font_weight(FontWeight::SEMIBOLD)
                         .text_color(theme::ACCENT)
                         .cursor_pointer()
                         .label("Edit on this return")
-                        .on_press(move || {
-                            st.unlock(st.profile.get_untracked());
-                            store().notify(crate::store::NoticeTone::Info, "The profile's boxes are open on this return. What you type stays here; the profile is unchanged.");
-                        })
+                        .on_press(unlock_profile)
                 })),
         )
 }
@@ -678,7 +726,7 @@ fn form_errors() -> impl IntoElement {
 }
 
 /// Whether the filer opened the penalties with Edit (tracked).
-fn penalties_open() -> bool {
+pub(super) fn penalties_open() -> bool {
     let st = session();
     st.penalties.with(|p| p.iter().filter(|p| p.applies).any(|p| p.edited || st.unlocked.with(|u| p.keys.iter().any(|k| u.contains(k)))))
 }
@@ -704,10 +752,7 @@ fn penalties_panel() -> impl IntoElement {
                     .gap(px(8.0))
                     .child(text("Penalties").flex_1().text_size(px(13.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::FG))
                     .child(when(move || st.editable.get() && !penalties_open(), move || {
-                        button_sm("Edit penalties", Variant::Ghost, None, || false, move || {
-                            let keys: Vec<String> = st.penalties.get_untracked().into_iter().filter(|p| p.applies).flat_map(|p| p.keys).collect();
-                            st.unlock(keys);
-                        })
+                        button_sm("Edit penalties", Variant::Ghost, None, || false, unlock_penalties)
                     })),
             )
             .child(text(move || if penalties_open() { "You're entering the penalties yourself (an amount the RDO approved, say). Type them in their items below." } else { "Computed from the due date and the amount payable; they change as you fill the return." }).text_size(px(11.0)).text_color(theme::FG2))
@@ -885,7 +930,16 @@ fn item_row(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement {
                         .gap(px(6.0))
                         .child(text(label).flex_shrink(1.0).text_size(px(13.0)).font_weight(FontWeight::MEDIUM).text_color(theme::FG))
                         .child(when(optional, || text("Optional").text_size(px(11.0)).text_color(theme::FG3)))
-                        .child(when(from_profile, || chip("From tax profile", Tone::Neutral)))
+                        .child({
+                            let keys = keys.clone();
+                            let opened = move || profile_opened(&keys);
+                            let opened2 = opened.clone();
+                            when(move || from_profile() && !opened(), || chip("From tax profile", Tone::Neutral)).otherwise(move || when(opened2.clone(), || chip("On this return only", Tone::Accent)))
+                        })
+                        .child({
+                            let keys = keys.clone();
+                            when(move || penalty_opened(&keys), || chip("You enter this penalty", Tone::Accent))
+                        })
                         .child(when(all_computed, || chip("Computed", Tone::Neutral))),
                 )
                 .child(each(needs, |n| n.clone(), |n, _| text(n.get_untracked()).text_size(px(11.0)).text_color(theme::FG2)))

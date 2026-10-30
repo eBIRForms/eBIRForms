@@ -67,6 +67,7 @@ pub(crate) fn hot_area(note: Signal<String>) -> AnyElement {
         .child(when(move || st.new_taxpayer_open.get(), taxpayer::new_taxpayer_dialog))
         .child(when(move || st.confirm_delete.get().is_some(), screens::filings_delete_dialog))
         .child(when(move || st.palette_open.get(), screens::palette::palette))
+        .child(screens::deadline_sheet::sheet())
         .into_element()
 }
 
@@ -85,6 +86,7 @@ fn phone_shell() -> impl IntoElement {
         .child(when(move || st.profile_open.get(), profile_sheet))
         .child(when(move || st.new_taxpayer_open.get(), taxpayer::new_taxpayer_dialog))
         .child(when(move || st.confirm_delete.get().is_some(), screens::phone::delete_alert))
+        .child(screens::deadline_sheet::sheet())
         .child(toast())
 }
 

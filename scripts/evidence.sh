@@ -103,6 +103,12 @@ DESKTOP=(
     "palette|BUWIZ_SHEET=palette|Go to"
     "print-preview|BUWIZ_PRINT=1701Q|Quarterly Income Tax|22"
     "delete-confirm|BUWIZ_ROUTE=filings BUWIZ_SHEET=delete|Delete"
+    "override-sheet|BUWIZ_SHEET=override|Applies to every taxpayer"
+    "calendar-override|BUWIZ_ROUTE=calendar|Moved from"
+    "amend|BUWIZ_AMEND=1601C|amends the return you sent|14"
+    "edit-penalties|BUWIZ_OPEN=1701Q:2026:2 BUWIZ_UNLOCK=penalties|entering the penalties yourself|14"
+    "edit-on-return|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_UNLOCK=profile|On this return only|14"
+    "toast|BUWIZ_ROUTE=home BUWIZ_TOAST=Taken_off_the_queue:_an_editable_draft_again.|editable draft again"
 )
 
 # Whether screen $1 is in this run (ONLY lists screens; empty: all).
@@ -186,6 +192,12 @@ PHONE=(
     "payee-picker|BUWIZ_OPEN=1606:2026:3 BUWIZ_PICK=payee|payee|20"
     "delete-confirm|BUWIZ_ROUTE=filings BUWIZ_SHEET=delete|Delete"
     "settings|BUWIZ_ROUTE=settings|Sign in to send"
+    "override-sheet|BUWIZ_SHEET=override|Applies to every taxpayer"
+    "calendar-override|BUWIZ_ROUTE=calendar|moved from"
+    "amend|BUWIZ_AMEND=1601C|amends the return you sent|20"
+    "edit-penalties|BUWIZ_OPEN=1701Q:2026:2 BUWIZ_UNLOCK=penalties|entering this penalty yourself|20"
+    "edit-on-return|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_UNLOCK=profile|On this return only|20"
+    "toast|BUWIZ_ROUTE=home BUWIZ_TOAST=Taken_off_the_queue:_an_editable_draft_again.|editable draft again"
 )
 
 phone_shot() {
