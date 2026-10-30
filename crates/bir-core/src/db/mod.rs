@@ -650,7 +650,9 @@ impl Database {
 
         #[cfg(not(test))]
         {
-            if std::env::var("EBIR_TEST_ENV").is_ok() {
+            // Integration tests build bir-core without cfg(test); a release
+            // build never takes the all-zero key.
+            if cfg!(debug_assertions) && std::env::var("EBIR_TEST_ENV").is_ok() {
                 return Ok(
                     "0000000000000000000000000000000000000000000000000000000000000000".to_string(),
                 );
@@ -688,7 +690,9 @@ impl Database {
 
         #[cfg(not(test))]
         {
-            if std::env::var("EBIR_TEST_ENV").is_ok() {
+            // Integration tests build bir-core without cfg(test); a release
+            // build never takes the all-zero key.
+            if cfg!(debug_assertions) && std::env::var("EBIR_TEST_ENV").is_ok() {
                 return Ok(
                     "0000000000000000000000000000000000000000000000000000000000000000".to_string(),
                 );
