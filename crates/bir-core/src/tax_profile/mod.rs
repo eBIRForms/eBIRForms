@@ -184,6 +184,42 @@ pub struct TaxpayerUpdate {
     pub birth_date: Option<Option<NaiveDate>>,
 }
 
+/// The taxpayer's business and filing facts the forms read from the stored
+/// profile (`profiles.data_json`, keys of [`crate::profile::TaxpayerProfile`]).
+/// Shared by every branch: [`crate::db::Database::update_profile_details`]
+/// writes them to each branch's profile, and
+/// [`crate::db::Database::profile_details`] reads the head office's.
+#[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub struct ProfileDetails {
+    /// What the forms print as the line of business (a PSIC code and its
+    /// description, as the filer writes them).
+    #[serde(default)]
+    pub line_of_business: String,
+    /// When the business started (or the corporation was incorporated).
+    #[serde(default)]
+    pub business_start_date: Option<NaiveDate>,
+    #[serde(default)]
+    pub eopt_tier: Option<crate::profile::EoptTier>,
+    #[serde(default)]
+    pub is_government_withholding_entity: bool,
+    #[serde(default)]
+    pub tax_classification: Option<crate::profile::TaxClassification>,
+    #[serde(default)]
+    pub has_employees: bool,
+    #[serde(default)]
+    pub withholds_compensation: bool,
+    #[serde(default)]
+    pub withholds_expanded: bool,
+    #[serde(default)]
+    pub withholds_final: bool,
+    #[serde(default)]
+    pub is_vat_registered: bool,
+    #[serde(default)]
+    pub is_dormant: bool,
+    #[serde(default)]
+    pub has_single_employer: bool,
+}
+
 /// Facts a branch may inherit from the head office (D2).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
