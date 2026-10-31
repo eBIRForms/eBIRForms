@@ -44,6 +44,17 @@ impl BirApp {
     }
 }
 
+impl BirApp {
+    /// Run the sending queue once, now, on the calling thread, through
+    /// `submission`'s relay (the same transport as the queue worker): for a
+    /// process that sends what it just queued without running the worker,
+    /// such as `buwiz-mcp`. Returns when every due return was tried.
+    pub fn send_queue_once(&self, submission: &Submission) {
+        let transport = submission.transport();
+        block_on(bir_core::background_cron::run_queue_tick(self.db.clone(), &transport));
+    }
+}
+
 /// Run one of the client's async calls to the end on the calling (worker)
 /// thread.
 pub fn block_on<F: std::future::Future>(future: F) -> F::Output {

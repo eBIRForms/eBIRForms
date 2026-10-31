@@ -102,6 +102,12 @@ export function list_form_templates(tin: string): FormTemplateSummary[];
 export function create_template_from_latest(tin: string, form_code: string): FormTemplateSummary;
 export function create_template_from_return(draft_id: number): FormTemplateSummary;
 export function delete_form_template(tin: string, form_code: string): boolean;
+export interface SendGrant { tin: string; form: string; granted_at: string; }
+/** The assistant's standing OKs to send for this branch (14-digit TIN). */
+export function list_send_grants(tin: string): SendGrant[];
+/** Let the assistant send `form` for this branch without asking again. */
+export function grant_send(tin: string, form: string): SendGrant;
+export function revoke_send(tin: string, form: string): null;
 export interface RdoOption { code: string; description: string; }
 export function list_rdos(): RdoOption[];
 export function list_zip_codes(): string[];
@@ -129,6 +135,9 @@ pub fn register(module: HostModule) -> HostModule {
         .function("create_template_from_latest", create_template_from_latest)
         .function("create_template_from_return", create_template_from_return)
         .function("delete_form_template", delete_form_template)
+        .function("list_send_grants", list_send_grants)
+        .function("grant_send", grant_send)
+        .function("revoke_send", revoke_send)
         .function("list_rdos", |_| list_rdos())
         .function("list_zip_codes", |_| list_zip_codes())
 }
@@ -605,5 +614,45 @@ fn delete_form_template(arguments: &HostArguments) -> HostResult {
         db.delete_form_template(tin, form_code)
             .map(HostValue::Bool)
             .map_err(host_error)
+    })
+}
+
+// ---------- send grants (the assistant's standing OK to send) ----------
+
+fn grant_record(grant: &bir_core::db::SendGrant) -> HostValue {
+    HostObject::new()
+        .field("tin", grant.tin.as_str())
+        .field("form", grant.form.as_str())
+        .field("granted_at", grant.granted_at.as_str())
+        .into()
+}
+
+fn list_send_grants(arguments: &HostArguments) -> HostResult {
+    let digits: String = arguments.string(0)?.chars().filter(char::is_ascii_digit).collect();
+    with_database(|db| {
+        let grants = db.list_send_grants().map_err(|error| HostError::new(error.to_string()))?;
+        Ok(HostValue::Array(
+            grants.iter().filter(|grant| grant.tin == digits).map(grant_record).collect(),
+        ))
+    })
+}
+
+fn grant_send(arguments: &HostArguments) -> HostResult {
+    let tin = arguments.string(0)?;
+    let form = arguments.string(1)?;
+    with_database(|db| {
+        db.grant_send(tin, form)
+            .map(|grant| grant_record(&grant))
+            .map_err(|error| HostError::new(error.to_string()))
+    })
+}
+
+fn revoke_send(arguments: &HostArguments) -> HostResult {
+    let tin = arguments.string(0)?;
+    let form = arguments.string(1)?;
+    with_database(|db| {
+        db.revoke_send(tin, form)
+            .map(|()| HostValue::Null)
+            .map_err(|error| HostError::new(error.to_string()))
     })
 }

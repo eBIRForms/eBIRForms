@@ -67,6 +67,11 @@ impl BirApp {
 
     // ---------------------------------------------------------- drafts
 
+    /// A stored return's draft JSON by its id, `None` when no return has it.
+    pub fn draft_data(&self, draft_id: i64) -> AppResult<Option<serde_json::Value>> {
+        self.with_db(|db| db.draft_data_json(draft_id))
+    }
+
     /// Delete a saved return that is still a Draft (a queued or filed one
     /// stays). Refused with a sentence when there is nothing to delete.
     pub fn delete_draft(&self, draft_id: i64) -> AppResult<()> {
