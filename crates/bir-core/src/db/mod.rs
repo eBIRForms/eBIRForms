@@ -229,12 +229,12 @@ pub struct PenaltyCache {
 #[cfg(target_os = "macos")]
 const SECURITY_ERR_ITEM_NOT_FOUND: i32 = 44;
 
-/// Keychain service and account of the SQLCipher master key. Buwiz's own
-/// service, so it never reads another app's key.
+/// Keychain service and account of the SQLCipher master key. The app's own
+/// service, so it never reads another app's key (see [`crate::app_id`]).
 #[cfg(not(any(target_os = "android", all(target_os = "macos", test))))]
-const MASTER_KEY_SERVICE: &str = "com.buwiz.oss";
+const MASTER_KEY_SERVICE: &str = crate::app_id::MASTER_KEY_SERVICE;
 #[cfg(not(any(target_os = "android", all(target_os = "macos", test))))]
-const MASTER_KEY_ACCOUNT: &str = "sqlcipher_master_key";
+const MASTER_KEY_ACCOUNT: &str = crate::app_id::MASTER_KEY_ACCOUNT;
 
 /// The master key from the environment, for installs that keep it out of
 /// the keychain: `BUWIZ_DB_KEY` (64 hex digits) or `BUWIZ_DB_KEY_FILE` (a file
@@ -444,10 +444,35 @@ fn acquire_exclusive_owner_lock(file: &File, db_path: &Path) -> Result<(), DbErr
     }
 }
 
+/// macOS: v0.1.0's data (`com.buwiz.oss`) is brought over before the live
+/// database at the default path opens ([`crate::id_migration`]). A failure
+/// stops the open, so no empty database is made in the new folder while the
+/// old one is still to be moved; the next launch tries again.
+fn bring_over_old_app_data(path: &Path) -> Result<(), DbError> {
+    #[cfg(all(target_os = "macos", not(test)))]
+    {
+        if cfg!(debug_assertions) && std::env::var_os("BUWIZ_TEST_ENV").is_some() {
+            return Ok(());
+        }
+        if path != default_database_path() {
+            return Ok(());
+        }
+        crate::id_migration::migrate_from_old_app_id()
+            .map(drop)
+            .map_err(|error| DbError::Other(error.to_string()))
+    }
+    #[cfg(not(all(target_os = "macos", not(test))))]
+    {
+        let _ = path;
+        Ok(())
+    }
+}
+
 /// Open the live SQLCipher database (keychain / file-fallback key), not an
 /// ephemeral in-memory fixture. Painted `bir` uses [`Database::open_or_recreate`].
 pub fn open_live_database() -> Result<(Database, PathBuf, Option<PathBuf>), DbError> {
     let path = app_database_path();
+    bring_over_old_app_data(&path)?;
     prepare_app_database_file(&path);
     let lock = try_acquire_live_owner_lock(&path)?;
     let (db, recovered) = Database::open_or_recreate(&path)?;
@@ -463,6 +488,7 @@ pub fn open_live_database() -> Result<(Database, PathBuf, Option<PathBuf>), DbEr
 /// must not recreate a taxpayer DB on a transient key/WAL error.
 pub fn open_serve_database() -> Result<(Database, PathBuf), DbError> {
     let path = app_database_path();
+    bring_over_old_app_data(&path)?;
     prepare_app_database_file(&path);
     let lock = try_acquire_live_owner_lock(&path)?;
     let db = Database::open(&path)?;

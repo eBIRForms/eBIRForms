@@ -7,8 +7,10 @@ use std::collections::HashMap;
 use std::path::PathBuf;
 use std::sync::Mutex;
 
-/// Service name of the credential-store entries.
-pub const SERVICE: &str = "com.buwiz.oss.submit";
+/// Service name of the credential-store entries: `com.buwiz.ebirforms.submit`
+/// on macOS and iOS, `com.buwiz.oss.submit` on Windows and Linux (see
+/// `bir_core::app_id`).
+pub const SERVICE: &str = bir_core::app_id::SUBMIT_SERVICE;
 
 #[derive(Debug, thiserror::Error)]
 #[error("secret store: {0}")]

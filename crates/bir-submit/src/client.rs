@@ -750,6 +750,13 @@ async fn ok_json<T: serde::de::DeserializeOwned>(
 mod tests {
     use super::*;
 
+    /// macOS copies v0.1.0's secrets to the new keychain service by these
+    /// names (bir_core::id_migration): every secret stored here is listed.
+    #[test]
+    fn the_migration_knows_every_secret_name() {
+        assert_eq!(bir_core::app_id::SUBMIT_SECRET_NAMES, [SESSION, DEVICE_KEY]);
+    }
+
     #[test]
     fn file_names_split_into_ticket_fields() {
         let name =
