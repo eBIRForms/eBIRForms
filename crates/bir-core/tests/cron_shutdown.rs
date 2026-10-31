@@ -1,5 +1,5 @@
 //! The background cron must return when quit asks it to, so the submission
-//! worker can drop the database and the process can release the owner lock.
+//! worker can drop the database and the process can release its worker lease.
 //! This is its own process: `start_cron_jobs` installs a process-global wake
 //! channel that other tests in the library still expect to be unset.
 
