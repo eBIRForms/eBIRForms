@@ -7,7 +7,7 @@ use bir_submit::Submission;
 
 use crate::{AppResult, BirApp};
 
-/// The setting that holds the server URL. `BUWIZ_SERVER_URL` overrides it.
+/// The setting that holds the server URL. `BUWIZ_API_URL` overrides it.
 pub const SERVER_URL_SETTING: &str = "submission_server_url";
 
 impl BirApp {

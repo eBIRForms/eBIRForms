@@ -26,7 +26,7 @@ fn main() {
 
 /// bir-core's `Database::open`, minus migrations.
 fn open(path: &str) -> rusqlite::Result<Connection> {
-    let key_hex = std::env::var("BIR_DB_KEY").expect("BIR_DB_KEY");
+    let key_hex = std::env::var("BUWIZ_DB_KEY").expect("BUWIZ_DB_KEY");
     let conn = Connection::open(path)?;
     conn.execute_batch(&format!("PRAGMA key = \"x'{}'\";", key_hex))?;
     conn.busy_timeout(std::time::Duration::from_secs(5))?;

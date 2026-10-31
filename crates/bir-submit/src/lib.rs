@@ -40,7 +40,7 @@ pub struct Submission {
 }
 
 impl Submission {
-    /// `server_url_setting` is the app's setting; `BUWIZ_SERVER_URL`
+    /// `server_url_setting` is the app's setting; `BUWIZ_API_URL`
     /// overrides it. Secrets go to the platform's credential store.
     pub fn new(server_url_setting: Option<&str>) -> Self {
         Self::with(

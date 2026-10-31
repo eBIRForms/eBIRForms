@@ -548,9 +548,9 @@ pub struct BirApp {
 }
 
 impl BirApp {
-    /// Open the app's live database (`BIR_DATABASE_PATH`, else the platform
-    /// data dir), holding its owner lock. The key comes from `BIR_DB_KEY` /
-    /// `BIR_DB_KEY_FILE`, else the OS keychain.
+    /// Open the app's live database (`BUWIZ_DATABASE_PATH`, else the platform
+    /// data dir), holding its owner lock. The key comes from `BUWIZ_DB_KEY` /
+    /// `BUWIZ_DB_KEY_FILE`, else the OS keychain.
     pub fn open_live() -> AppResult<Self> {
         let (database, path, _recovered) = bir_core::db::open_live_database()?;
         Ok(Self::with_database(database, path))

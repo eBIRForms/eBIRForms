@@ -14,8 +14,8 @@ OUT=internal/evidence/bench-1702rt.log
 WORKSPACE="${BUWIZ_WORKSPACE:-2}"
 TMP=$(mktemp -d)
 mkdir -p internal/evidence
-export BIR_DATABASE_PATH="$TMP/bir_data.db"
-export BIR_DB_KEY=0000000000000000000000000000000000000000000000000000000000000000
+export BUWIZ_DATABASE_PATH="$TMP/bir_data.db"
+export BUWIZ_DB_KEY=0000000000000000000000000000000000000000000000000000000000000000
 
 # Every display must run at 120 Hz: at 60 Hz the budget is 16.7 ms and the
 # frames between 8.3 and 16.7 ms would never be logged.

@@ -46,11 +46,10 @@ pub fn log_line_level(line: &str) -> LogLineLevel {
     }
 }
 
-/// `DEVELOPER_MODE=true` (read before the database is open, so it takes
+/// `BUWIZ_DEVELOPER_MODE=true` (read before the database is open, so it takes
 /// effect at startup).
 pub fn developer_mode_enabled() -> bool {
-    let _ = dotenvy::dotenv();
-    std::env::var("DEVELOPER_MODE")
+    std::env::var("BUWIZ_DEVELOPER_MODE")
         .map(|value| value.eq_ignore_ascii_case("true"))
         .unwrap_or(false)
 }
@@ -128,7 +127,6 @@ pub fn with_thread_subscriber<T>(options: InstallOptions, body: impl FnOnce() ->
 }
 
 fn subscriber(options: InstallOptions, console: Console) -> impl tracing::Subscriber + Send + Sync {
-    let _ = dotenvy::dotenv();
     let env_filter = EnvFilter::try_from_default_env()
         .or_else(|_| EnvFilter::try_new(options.default_filter))
         .unwrap_or_else(|_| EnvFilter::new("error"));
@@ -258,7 +256,7 @@ pub fn redact_secrets(input: &str) -> String {
     text
 }
 
-/// The `EBIR_TEST_ENV` SQLCipher key. It is not a taxpayer secret, but it is
+/// The `BUWIZ_TEST_ENV` SQLCipher key. It is not a taxpayer secret, but it is
 /// the database key and must not land in a log a person might attach to a report.
 const TEST_MASTER_KEY: &str = "0000000000000000000000000000000000000000000000000000000000000000";
 

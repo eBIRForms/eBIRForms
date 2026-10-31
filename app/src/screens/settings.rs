@@ -25,7 +25,7 @@ fn backup_target() -> Option<PathBuf> {
     }
     #[cfg(not(any(target_os = "macos", windows, target_os = "linux")))]
     {
-        let db = std::env::var_os("BIR_DATABASE_PATH").map(PathBuf::from)?;
+        let db = std::env::var_os("BUWIZ_DATABASE_PATH").map(PathBuf::from)?;
         Some(db.parent()?.join(name))
     }
 }
@@ -39,7 +39,7 @@ fn restore_source() -> Option<PathBuf> {
     }
     #[cfg(not(any(target_os = "macos", windows, target_os = "linux")))]
     {
-        let db = std::env::var_os("BIR_DATABASE_PATH").map(PathBuf::from)?;
+        let db = std::env::var_os("BUWIZ_DATABASE_PATH").map(PathBuf::from)?;
         let dir = db.parent()?.to_path_buf();
         std::fs::read_dir(dir)
             .ok()?

@@ -72,7 +72,7 @@ pub(crate) fn db_error() -> impl IntoElement {
             .text_size(px(12.0))
             .text_color(theme::FG),
         )
-        .child(text("Check BIR_DATABASE_PATH and the database key (BIR_DB_KEY or the keychain), then restart Buwiz. Another running copy also holds the database.").text_size(px(12.0)).text_color(theme::FG2))
+        .child(text("Check BUWIZ_DATABASE_PATH and the database key (BUWIZ_DB_KEY or the keychain), then restart Buwiz. Another running copy also holds the database.").text_size(px(12.0)).text_color(theme::FG2))
 }
 
 fn no_taxpayer() -> impl IntoElement {

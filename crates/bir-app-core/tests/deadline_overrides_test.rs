@@ -8,7 +8,7 @@ const TEST_KEY: &str = "00000000000000000000000000000000000000000000000000000000
 #[test]
 fn a_moved_deadline_shows_in_the_calendar_and_goes_back() {
     // SAFETY: set before any thread of this test reads it (one test per process).
-    unsafe { std::env::set_var("BIR_DB_KEY", TEST_KEY) };
+    unsafe { std::env::set_var("BUWIZ_DB_KEY", TEST_KEY) };
     let dir = tempfile::tempdir().unwrap();
     let app = BirApp::open_at(dir.path().join("bir_data.db")).unwrap();
     let taxpayer = app
