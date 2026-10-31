@@ -1,11 +1,12 @@
 #!/bin/sh
-# Installs Buwiz on Linux from downloads.buwiz.com:
+# Installs eBIRForms on Linux from downloads.buwiz.com:
 #
-#   curl -fsSL https://downloads.buwiz.com/releases/v<VERSION>/Buwiz-<VERSION>-linux-install.sh | sh
+#   curl -fsSL https://downloads.buwiz.com/ebirforms/releases/v<VERSION>/eBIRForms-<VERSION>-linux-install.sh | sh
 #   sh install-linux.sh [--version X.Y.Z] [--tarball] [--uninstall]
 #   sh install-linux.sh --from-dir <dir>    (tests: <dir>/manifest.json and the files)
 #
-# Reads latest.json (or releases/vX.Y.Z/manifest.json with --version),
+# Reads ebirforms/latest.json (or ebirforms/releases/vX.Y.Z/manifest.json
+# with --version; the app's folder on the download site),
 # picks the file for this machine and package manager (apt: .deb;
 # dnf, zypper or rpm: .rpm; otherwise the .tar.gz), checks its sha256
 # against the manifest, then installs it. The .tar.gz installs for this
@@ -79,14 +80,14 @@ if [ "$UNINSTALL" -eq 1 ]; then
     fi
     if [ -L "$USER_BIN/buwiz" ]; then rm -f "$USER_BIN/buwiz"; fi
     rm -rf "$USER_ROOT"
-    echo "Removed Buwiz."
+    echo "Removed eBIRForms."
     exit 0
 fi
 
 case "$(uname -m)" in
     x86_64|amd64) ARCH=x64 ;;
     aarch64|arm64) ARCH=arm64 ;;
-    *) fail "no Buwiz build for $(uname -m); there are x86_64 and aarch64 builds" ;;
+    *) fail "no eBIRForms build for $(uname -m); there are x86_64 and aarch64 builds" ;;
 esac
 
 if [ "$USE_TARBALL" -eq 1 ]; then
@@ -113,7 +114,7 @@ fetch() { # url, output
     elif command -v wget >/dev/null 2>&1; then
         wget -q -O "$2" "$1"
     else
-        fail "needs curl or wget to download Buwiz"
+        fail "needs curl or wget to download eBIRForms"
     fi
 }
 
@@ -131,9 +132,9 @@ if [ -n "$FROM_DIR" ]; then
     [ -f "$FROM_DIR/manifest.json" ] || fail "no manifest.json in $FROM_DIR"
     cp "$FROM_DIR/manifest.json" "$manifest"
 elif [ -n "$APP_VERSION" ]; then
-    fetch "$BASE/releases/v$APP_VERSION/manifest.json" "$manifest" || fail "no release v$APP_VERSION on $BASE"
+    fetch "$BASE/ebirforms/releases/v$APP_VERSION/manifest.json" "$manifest" || fail "no release v$APP_VERSION on $BASE/ebirforms"
 else
-    fetch "$BASE/latest.json" "$manifest" || fail "could not read $BASE/latest.json"
+    fetch "$BASE/ebirforms/latest.json" "$manifest" || fail "could not read $BASE/ebirforms/latest.json"
 fi
 
 # One JSON object per line, then a field's string value from it.
@@ -160,7 +161,7 @@ entry=$(objects | awk -v arch="$ARCH" -v kind="$KIND" "$field_awk"'
     field("platform") == "linux" && field("arch") == arch && field("kind") == kind {
         print field("file"), field("sha256"); exit
     }')
-[ -n "$entry" ] || fail "Buwiz $VERSION has no linux $ARCH $KIND file"
+[ -n "$entry" ] || fail "eBIRForms $VERSION has no linux $ARCH $KIND file"
 FILE=${entry% *}
 SHA256=${entry#* }
 case "$FILE" in
@@ -178,8 +179,8 @@ if [ -n "$FROM_DIR" ]; then
     [ -f "$FROM_DIR/$FILE" ] || fail "no $FILE in $FROM_DIR"
     cp "$FROM_DIR/$FILE" "$package"
 else
-    echo "Downloading Buwiz $VERSION ($FILE)"
-    fetch "$BASE/releases/v$VERSION/$FILE" "$package" || fail "could not download $FILE"
+    echo "Downloading eBIRForms $VERSION ($FILE)"
+    fetch "$BASE/ebirforms/releases/v$VERSION/$FILE" "$package" || fail "could not download $FILE"
 fi
 actual=$(hash_file "$package")
 [ "$actual" = "$SHA256" ] || fail "$FILE has sha256 $actual, the manifest says $SHA256"
@@ -205,7 +206,7 @@ case "$KIND" in
         tar -xzf "$package" -C "$USER_ROOT" --strip-components=1
         ln -sf "$USER_ROOT/buwiz" "$USER_BIN/buwiz"
         "$USER_ROOT/install-desktop-entry.sh"
-        echo "Installed Buwiz $VERSION in $USER_ROOT"
+        echo "Installed eBIRForms $VERSION in $USER_ROOT"
         case ":$PATH:" in
             *":$USER_BIN:"*) ;;
             *) echo "Add $USER_BIN to PATH to run buwiz from a terminal." ;;
@@ -214,4 +215,4 @@ case "$KIND" in
         exit 0
         ;;
 esac
-echo "Installed Buwiz $VERSION ($FILE)"
+echo "Installed eBIRForms $VERSION ($FILE)"

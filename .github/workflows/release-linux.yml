@@ -4,11 +4,11 @@ name: release (linux)
 # on ubuntu-24.04 and arm64 on ubuntu-24.04-arm, for publish to upload to
 # R2 under releases/v{VERSION}/:
 #   buwiz_{VERSION}_amd64.deb, buwiz_{VERSION}_arm64.deb   (build-deb.sh)
-#   Buwiz-{VERSION}-linux-{x64,arm64}.rpm                  (build-rpm.sh)
-#   Buwiz-{VERSION}-linux-{x64,arm64}.tar.gz               (build-tarball.sh)
-# and once, Buwiz-{VERSION}-linux-install.sh (install-linux.sh), which
+#   eBIRForms-{VERSION}-linux-{x64,arm64}.rpm                  (build-rpm.sh)
+#   eBIRForms-{VERSION}-linux-{x64,arm64}.tar.gz               (build-tarball.sh)
+# and once, eBIRForms-{VERSION}-linux-install.sh (install-linux.sh), which
 # installs the right one of those from latest.json:
-#   curl -fsSL https://downloads.buwiz.com/releases/v{VERSION}/Buwiz-{VERSION}-linux-install.sh | sh
+#   curl -fsSL https://downloads.buwiz.com/ebirforms/releases/v{VERSION}/eBIRForms-{VERSION}-linux-install.sh | sh
 # Built on Ubuntu 24.04: the packages depend on GTK >= 4.14 and
 # WebKitGTK 6.0. smoke-test.sh installs each in clean Ubuntu and Fedora
 # containers before anything is handed over.
@@ -46,8 +46,8 @@ jobs:
     env:
       VERSION: ${{ inputs.version }}
       DEB: app/target/deb/buwiz_${{ inputs.version }}_${{ matrix.deb_arch }}.deb
-      RPM: app/target/rpm/Buwiz-${{ inputs.version }}-linux-${{ matrix.arch }}.rpm
-      TARBALL: app/target/tarball/Buwiz-${{ inputs.version }}-linux-${{ matrix.arch }}.tar.gz
+      RPM: app/target/rpm/eBIRForms-${{ inputs.version }}-linux-${{ matrix.arch }}.rpm
+      TARBALL: app/target/tarball/eBIRForms-${{ inputs.version }}-linux-${{ matrix.arch }}.tar.gz
     steps:
       - uses: actions/checkout@v4
         with:
@@ -123,10 +123,10 @@ jobs:
         run: |
           sh -n app/packaging/linux/install-linux.sh
           mkdir -p target/installer
-          install -m755 app/packaging/linux/install-linux.sh "target/installer/Buwiz-$VERSION-linux-install.sh"
+          install -m755 app/packaging/linux/install-linux.sh "target/installer/eBIRForms-$VERSION-linux-install.sh"
       - uses: actions/upload-artifact@v4
         with:
           name: release-file-linux-universal-sh
-          path: target/installer/Buwiz-${{ inputs.version }}-linux-install.sh
+          path: target/installer/eBIRForms-${{ inputs.version }}-linux-install.sh
           if-no-files-found: error
           retention-days: 7

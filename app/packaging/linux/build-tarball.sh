@@ -14,14 +14,14 @@ case "$(uname -m)" in
 esac
 [ -x target/release/buwiz ] || fail "missing target/release/buwiz; build it first"
 
-name=Buwiz-${version}-linux-${arch}
+name=eBIRForms-${version}-linux-${arch}
 root=target/tarball/$name
 rm -rf "$root" "$root.tar.gz"
 install -Dm755 target/release/buwiz "$root/buwiz"
 install -Dm755 packaging/linux/install-desktop-entry.sh "$root/install-desktop-entry.sh"
-install -Dm644 packaging/linux/com.buwiz.oss.desktop "$root/com.buwiz.oss.desktop"
-install -Dm644 packaging/icon.svg "$root/icons/hicolor/scalable/apps/com.buwiz.oss.svg"
+install -Dm644 packaging/linux/com.buwiz.ebirforms.desktop "$root/com.buwiz.ebirforms.desktop"
+install -Dm644 packaging/icon.svg "$root/icons/hicolor/scalable/apps/com.buwiz.ebirforms.svg"
 mkdir -p "$root/icons/hicolor/256x256/apps"
-rsvg-convert -w 256 -h 256 packaging/icon.svg -o "$root/icons/hicolor/256x256/apps/com.buwiz.oss.png"
+rsvg-convert -w 256 -h 256 packaging/icon.svg -o "$root/icons/hicolor/256x256/apps/com.buwiz.ebirforms.png"
 tar -czf "$root.tar.gz" --owner=0 --group=0 -C target/tarball "$name"
 echo "$root.tar.gz"

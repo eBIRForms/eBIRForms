@@ -11,7 +11,7 @@
 # from the login keychain, the identity buwiz-forms' release expects. The env
 # file's SIGNING_IDENTITY and RELEASE_SIGNING_IDENTITY are its development and
 # App Store identities, which notarization refuses for a DMG. Writes
-# app/target/release-artifacts/Buwiz-$VERSION-macos-universal.dmg.
+# app/target/release-artifacts/eBIRForms-$VERSION-macos-universal.dmg.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -48,7 +48,7 @@ version="$(awk -F '"' '
   in_package && /^\[/ { exit }
   in_package && /^version[[:space:]]*=/ { print $2; exit }
 ' app/Cargo.toml)"
-echo "Buwiz $version, signing as $identity, notarizing as $apple_id (team $apple_team_id)"
+echo "eBIRForms $version, signing as $identity, notarizing as $apple_id (team $apple_team_id)"
 
 cd app
 export MACOSX_DEPLOYMENT_TARGET=11.0 RUSTC_WRAPPER=''
