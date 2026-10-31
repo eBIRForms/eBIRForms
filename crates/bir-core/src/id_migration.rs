@@ -578,9 +578,12 @@ mod tests {
         let support = tempfile::tempdir().unwrap();
         let old = v01_folder(support.path());
         let new = support.path().join(app_id::APP_ID);
+        // Both stores refuse the write: the native one falls back to the
+        // `security` CLI, so a refusal by the native store alone is not one.
         let mut keychain = v01_keychain();
         keychain.add_fails = true;
-        assert!(run(&old, &new, &keychain).is_err());
+        let fallback = Store { add_fails: true, ..Store::default() };
+        assert!(migrate(&old, &new, pair(&keychain, &fallback), &opens).is_err());
         assert!(!new.join(DB_FILE).exists());
     }
 
