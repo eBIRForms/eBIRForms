@@ -62,6 +62,8 @@ export interface NewTaxpayerInput {
 export interface TaxpayerUpdateInput {
     name?: string;
     taxpayer_type?: Taxpayer["taxpayer_type"];
+    /** YYYY-MM-DD; null or "" clears it; absent keeps it. */
+    birth_date?: string | null;
 }
 export interface NewBranchInput {
     branch_code: string;
@@ -391,10 +393,24 @@ fn create_taxpayer(arguments: &HostArguments) -> HostResult {
 fn update_taxpayer(arguments: &HostArguments) -> HostResult {
     let tin_root = arguments.string(0)?;
     let input = object_argument(arguments, 1)?;
+    // `birth_date`: absent keeps it, null or "" clears it, a date sets it.
+    let birth_date = match input.get("birth_date") {
+        None => None,
+        Some(_) => Some(
+            optional_string(&input, "birth_date")?
+                .filter(|raw| !raw.trim().is_empty())
+                .map(|raw| {
+                    raw.trim()
+                        .parse()
+                        .map_err(|_| HostError::new(format!("`{raw}` is not a date (YYYY-MM-DD)")))
+                })
+                .transpose()?,
+        ),
+    };
     let update = TaxpayerUpdate {
         name: optional_string(&input, "name")?,
         taxpayer_type: taxpayer_type(&input, "taxpayer_type")?,
-        birth_date: None,
+        birth_date,
     };
     with_database(|db| {
         let updated = db.update_taxpayer(tin_root, update).map_err(host_error)?;

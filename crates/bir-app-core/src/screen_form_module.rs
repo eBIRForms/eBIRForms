@@ -96,6 +96,14 @@ export interface ScreenFormOpened {
     profile: string[];
     /** Filled profile boxes the filer may open with Edit; pass the opened ones to `screen_form_fill` as `unlocked`. */
     profile_edit: string[];
+    /** Every profile box, filled by the profile or left blank: an edit to one stays on this return once it is passed as `unlocked`. */
+    profile_boxes: string[];
+    /** What the profile alone shows in each profile box ("" where it is blank). */
+    profile_values: Record<string, string>;
+    /** The profile fact a profile box shows (`rdo_code`, `registered_address`, `zip_code`, `phone`, `email`, `line_of_business`), for "Save to profile too". */
+    profile_facts: Record<string, string>;
+    /** Profile boxes the filer changed on this return: they keep their value when the profile changes. */
+    profile_edited: string[];
     /** Opened from the Form library: a blank sample; saved once its period is set, it becomes that period's return. */
     sample: boolean;
     /** A sample's boxes shown blank while its period is not set: its period parts and everything that follows the period. */
@@ -234,8 +242,8 @@ export function screen_form_filed_original(form_code: string, snapshot_id: numbe
 export function screen_form_sample_period(tin: string, form_code: string, parts: Record<string, string>): Promise<ScreenFormSamplePeriod>;
 /** `unlocked`: profile boxes the page has open (opened with Edit, or left blank by the profile); their edits stay on this return and never reach the profile. */
 export function screen_form_fill(form_code: string, draft: object, edits: Record<string, string | number | boolean | null>, unlocked?: string[]): ScreenFormFilled;
-/** "Use profile values" on a draft that differs from the tax profile (`profile_differs`): every profile box the filer did not edit takes the profile's value, and they follow later profile changes. Nothing is saved; save the draft. */
-export function screen_form_use_profile(form_code: string, year: number, period: number, draft: object): ScreenFormFilled;
+/** "Use profile values" on a draft that differs from the tax profile (`profile_differs`): every profile box the filer did not edit takes the profile's value, and they follow later profile changes. With `keys`, only those boxes (edited on this return or not) take the profile's value and stop being the filer's edits. Nothing is saved; save the draft. */
+export function screen_form_use_profile(form_code: string, year: number, period: number, draft: object, keys?: string[]): ScreenFormFilled;
 export function screen_form_validate(form_code: string, draft: object): Promise<ScreenFormValidated>;
 /** Save a draft. A Form library sample saves only once its period is set, never over a stored return of that period (answering the offer instead); an entry-numbered form takes its next free entry. */
 export function screen_form_save(form_code: string, draft: object): ScreenFormSaved;
@@ -2545,6 +2553,26 @@ fn profile_box_keys(kind: AgentFormKind) -> Vec<&'static String> {
         .collect()
 }
 
+/// The stored profile fact profile box `key` shows, by the draft field it
+/// writes: a branch fact (`rdo_code`, `registered_address`, `zip_code`,
+/// `phone`, `email`) or the taxpayer's `line_of_business`. `None` for the
+/// rest (names, a line of a split address): those change in the profile.
+fn profile_fact(kind: AgentFormKind, key: &str) -> Option<&'static str> {
+    let def = kind.definition();
+    match def.bindings.get(key).map(|bound| &bound.binding)? {
+        Binding::Text { path, .. } => match path.as_str() {
+            "/rdo_code" => Some("rdo_code"),
+            "/registered_address" => Some("registered_address"),
+            "/zip_code" => Some("zip_code"),
+            "/contact_number" => Some("phone"),
+            "/email" | "/email_address" => Some("email"),
+            "/line_of_business" => Some("line_of_business"),
+            _ => None,
+        },
+        _ => None,
+    }
+}
+
 /// The draft fields of the profile boxes the filer edited on this return
 /// (`profile_edits`; a pooled address and a radio group count as one box).
 fn edited_profile_paths(kind: AgentFormKind, draft: &Value) -> BTreeSet<&'static str> {
@@ -2654,6 +2682,60 @@ fn use_profile_values(
     *draft = applied;
     set_profile_baseline(kind, draft, from_profile);
     Ok(())
+}
+
+/// "Use profile value" on profile boxes the filer changed on this return
+/// (`keys`, with the pooled address lines and radios that go with them):
+/// they are no longer the filer's edits, so they take what the profile
+/// makes now and follow later profile changes again. Other boxes are left
+/// as they are.
+fn use_profile_values_for(
+    kind: AgentFormKind,
+    draft: &mut Value,
+    from_profile: &Value,
+    keys: &BTreeSet<String>,
+) {
+    let def = kind.definition();
+    let pools = combs::pools(kind.form_code());
+    let related = |key: &str| {
+        keys.contains(key)
+            || pools.values().any(|pool| {
+                pool.keys.iter().any(|k| k == key) && pool.keys.iter().any(|k| keys.contains(k))
+            })
+            || def.box_def(key).is_some_and(|entry| {
+                entry.group.as_deref().is_some_and(|group| {
+                    keys.contains(group)
+                        || def
+                            .box_def(group)
+                            .is_some_and(|group| group.members.iter().any(|m| keys.contains(m)))
+                })
+            })
+    };
+    let kept: BTreeSet<String> = profile_edits(draft).into_iter().filter(|key| !related(key)).collect();
+    let pointer = profile_edits_pointer(draft);
+    set_draft_path(draft, &pointer, json!(kept));
+    let now = profile_values(kind, from_profile);
+    let paths: BTreeSet<&str> = profile_box_keys(kind)
+        .into_iter()
+        .filter(|key| related(key))
+        .flat_map(|key| bound_paths(def, key))
+        .filter(|path| !is_period_path(path))
+        .collect();
+    let baseline_pointer = lifecycle_pointer(draft, "profile_baseline");
+    let mut baseline = draft
+        .pointer(&baseline_pointer)
+        .and_then(Value::as_object)
+        .cloned()
+        .unwrap_or_default();
+    for path in paths {
+        if let Some(want) = now.get(path) {
+            set_draft_path(draft, path, want.clone());
+            baseline.insert(path.to_string(), want.clone());
+        }
+    }
+    if !baseline.is_empty() {
+        set_draft_path(draft, &baseline_pointer, Value::Object(baseline));
+    }
 }
 
 /// A Draft follows a later change of the tax profile in every profile box
@@ -3499,6 +3581,25 @@ fn opened_json(
     agent::draft_locks(kind, &draft, &mut locks);
     let profile = agent::profile_keys(kind, &from_profile);
     let profile_edit = agent::profile_edit_keys(kind, &from_profile);
+    // Every profile box (filled by the profile or left blank), what the
+    // profile alone shows in it, the profile fact it shows (for "Save to
+    // profile too"), and the ones the filer changed on this return.
+    let profile_boxes: Vec<&String> = profile_box_keys(kind);
+    let profile_values: Map<String, Value> = profile_boxes
+        .iter()
+        .map(|key| {
+            let shown = from_profile.values[key.as_str()].as_str().unwrap_or("").to_string();
+            ((*key).clone(), Value::String(shown))
+        })
+        .collect();
+    let profile_facts: Map<String, Value> = profile_boxes
+        .iter()
+        .filter_map(|key| Some(((*key).clone(), json!(profile_fact(kind, key)?))))
+        .collect();
+    let profile_edited: Vec<String> = profile_edits(&draft)
+        .into_iter()
+        .filter(|key| profile_boxes.contains(&key))
+        .collect();
     let parts = if sample.is_some() {
         sample_period_parts(kind)
     } else {
@@ -3627,6 +3728,10 @@ fn opened_json(
         "notes_always": noted,
         "profile": profile,
         "profile_edit": profile_edit,
+        "profile_boxes": profile_boxes,
+        "profile_values": profile_values,
+        "profile_facts": profile_facts,
+        "profile_edited": profile_edited,
         "sample": sample.is_some(),
         "blank": blank,
         "needs": needs,
@@ -4458,7 +4563,15 @@ fn screen_form_use_profile(arguments: &HostArguments) -> HostResult {
             .ok_or_else(|| host_error(format!("no taxpayer profile with TIN {tin}")))?;
         load_draft(db, kind, &profile, year, period, true, None).map_err(host_error)
     })?;
-    use_profile_values(kind, &mut draft, &from_profile).map_err(host_error)?;
+    // `keys`: only those boxes (each one's "Use profile value"); without
+    // them, every box the filer did not edit (the page's "Use profile
+    // values").
+    let keys = unlocked_argument(arguments, 4);
+    if keys.is_empty() {
+        use_profile_values(kind, &mut draft, &from_profile).map_err(host_error)?;
+    } else {
+        use_profile_values_for(kind, &mut draft, &from_profile, &keys);
+    }
     agent::compute(kind, &mut draft).map_err(host_error)?;
     let values = values_json(kind, &draft).map_err(host_error)?;
     let options = catalogs::options(kind, &draft);
