@@ -1759,7 +1759,7 @@ pub(super) fn one_date(parts: DateParts) -> impl IntoElement {
                     .on_change(move |v: &str| {
                         let prev = text_sig.get_untracked();
                         let shown = crate::typing::slash_date(v);
-                        text_sig.set(shown.clone());
+                        crate::typing::show_formatted(text_sig, v, &shown);
                         if shown != v {
                             let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
                             date_at.set_selection(caret, caret);

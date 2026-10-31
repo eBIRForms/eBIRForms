@@ -820,6 +820,10 @@ pub(crate) fn open_of(row: &ReturnRow) -> bir_app_core::OpenReturn {
 /// - debug builds: `BUWIZ_AMEND=<form>`: an amended return of that form's
 ///   first sent return; `BUWIZ_TOAST=<text>`: a notice held 30 seconds
 ///   (`_` reads as a space: the evidence script splits hooks on spaces)
+/// - debug builds, with `BUWIZ_SHEET=new-taxpayer`:
+///   `BUWIZ_TAXPAYER=errors|filled|city:<query>|zip:<query>|rdo:<query>`
+///   (taxpayer.rs `debug_hook`): the empty form's errors, every field
+///   filled, or that list open on the query
 fn launch_hooks(st: &'static Store) {
     static DONE: std::sync::Once = std::sync::Once::new();
     let var = |name: &str| std::env::var(name).ok().filter(|v| !v.is_empty());
