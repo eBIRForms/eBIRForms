@@ -804,7 +804,7 @@ impl BirApp {
             let Some((zip, area)) = entry.split_once(" - ") else { continue };
             out.push(Place {
                 label: format!("{area} · {zip}"),
-                city: area.trim().to_owned(),
+                city: address_area(area),
                 zip: zip.trim().to_owned(),
                 rdo_code: String::new(),
                 rdo_name: String::new(),
@@ -889,4 +889,15 @@ fn monthly_or_quarterly_slot(form_code: &str, draft: &Draft) -> Option<(String, 
     let year = draft.0.get("taxable_year").and_then(Value::as_i64)?;
     let slot = draft.0.get(slot_key).and_then(Value::as_i64)?;
     Some((tin, year, slot))
+}
+
+/// A ZIP table area as an address names it: the post office's "CPO" goes,
+/// and a district comes before its city ("Manila CPO - Ermita" is
+/// "Ermita, Manila").
+fn address_area(area: &str) -> String {
+    let area = area.trim();
+    match area.split_once(" - ") {
+        Some((city, district)) => format!("{}, {}", district.trim(), city.trim().trim_end_matches(" CPO")),
+        None => area.trim_end_matches(" CPO").to_owned(),
+    }
 }
