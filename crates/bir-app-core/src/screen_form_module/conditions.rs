@@ -28,8 +28,10 @@ use serde_json::{Map, Value, json};
 fn conditions() -> &'static Value {
     static CONDITIONS: OnceLock<Value> = OnceLock::new();
     CONDITIONS.get_or_init(|| {
-        serde_json::from_str(include_str!("../../assets/forms/conditions.json"))
-            .expect("app/forms/conditions.json is a JSON object")
+        serde_json::from_str(&bir_core::packed::inflate(bir_core::packed_bytes!(
+            "assets/forms/conditions.json"
+        )))
+        .expect("app/forms/conditions.json is a JSON object")
     })
 }
 
@@ -38,8 +40,10 @@ fn conditions() -> &'static Value {
 fn labels() -> &'static Value {
     static LABELS: OnceLock<Value> = OnceLock::new();
     LABELS.get_or_init(|| {
-        serde_json::from_str(include_str!("../../assets/forms/condition-labels.json"))
-            .expect("app/forms/condition-labels.json is a JSON object")
+        serde_json::from_str(&bir_core::packed::inflate(bir_core::packed_bytes!(
+            "assets/forms/condition-labels.json"
+        )))
+        .expect("app/forms/condition-labels.json is a JSON object")
     })
 }
 

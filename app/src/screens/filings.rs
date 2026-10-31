@@ -121,8 +121,7 @@ fn filings_page() -> impl IntoElement {
                     FilingsFilter::Sent => "Sent returns show here.",
                     FilingsFilter::All => "No returns yet. Open a form under Form library; it saves itself here.",
                 })
-            })).child(each(rows, |r| (r.id, r.status.clone()), |r, index| filing_row(r.get_untracked(), index))))
-            .child(when(move || st.confirm_delete.get().is_some(), delete_dialog)),
+            })).child(each(rows, |r| (r.id, r.status.clone()), |r, index| filing_row(r.get_untracked(), index)))),
     )
 }
 

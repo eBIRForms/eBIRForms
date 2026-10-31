@@ -28,8 +28,8 @@ pub fn official_atc_option(code: &str, rate: f64) -> Option<&'static OfficialAtc
     static OPTIONS: OnceLock<Vec<OfficialAtcOption>> = OnceLock::new();
     OPTIONS
         .get_or_init(|| {
-            serde_json::from_str::<OfficialAtcOptions>(include_str!(
-                "../../data/official-xml/2551q-v2018-atc-options.json"
+            serde_json::from_str::<OfficialAtcOptions>(&crate::packed::inflate(
+                crate::packed_bytes!("data/official-xml/2551q-v2018-atc-options.json"),
             ))
             .expect("valid 2551Q ATC options")
             .options

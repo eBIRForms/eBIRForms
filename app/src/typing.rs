@@ -2,6 +2,19 @@
 //! slashes, TINs dashes) keep the caret where the filer was typing: after
 //! the same digits, not at the end.
 
+use nsh_core::prelude::Signal;
+
+/// Puts `shown`, the text formatted from `raw` (what the box reported),
+/// in `value`. A signal skips a write equal to what it holds, so a
+/// keystroke the format refuses (a tenth TIN digit, a ninth date digit)
+/// would stay on screen: `raw` goes in first, so the box takes `shown` back.
+pub(crate) fn show_formatted(value: Signal<String>, raw: &str, shown: &str) {
+    if shown != raw && value.get_untracked() == shown {
+        value.set(raw.to_owned());
+    }
+    value.set(shown.to_owned());
+}
+
 /// The caret after `raw` (the box's text after a keystroke; it read `prev`
 /// before) is shown as `formatted`: after as many characters that `keep`
 /// counts as stood before the caret in `raw`. In UTF-16 units, as inputs

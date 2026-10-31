@@ -5,7 +5,7 @@
 #
 #   ./ios.sh [device name]     default: iPhone 17 Pro
 #   BUWIZ_FRESH=1 ./ios.sh     uninstall first: an empty database
-#   BUWIZ_LIVE=1 ./ios.sh      build through `cargo ra-jit` (ios-dev.sh sets it)
+#   BUWIZ_LIVE=1 ./ios.sh      build through `cargo ra-jit`, feature `live` (ios-dev.sh sets it)
 #   BUWIZ_DETACH=1 ./ios.sh    launch and return instead of following the log
 #   BUWIZ_OPEN=1701Q:2026:3    open that return once the app is up
 #                              (BUWIZ_FOCUS=<n> then focuses the n-th box, BUWIZ_OUTLINE=1
@@ -26,7 +26,8 @@ BUNDLE="target/ios-sim/$APP.app"
 if [ -n "$BUWIZ_LIVE" ]; then
     # The daemon must know the binary it patches; ra-jit-live's macOS path
     # covers the simulator (a sim process is a macOS arm64 process).
-    cargo ra-jit build --target "$TARGET"
+    # `live` links ra-jit-live (the feature ios-dev.sh's watcher builds too).
+    cargo ra-jit build --target "$TARGET" --features live
 else
     cargo build --target "$TARGET"
 fi

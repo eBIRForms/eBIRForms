@@ -675,7 +675,7 @@ pub(crate) fn tin_box(shown: Vec<LayoutField>) -> impl IntoElement {
                 }
                 let shown = parts.iter().filter(|p| !p.is_empty()).cloned().collect::<Vec<_>>().join("-");
                 let prev = typed.get_untracked();
-                typed.set(shown.clone());
+                crate::typing::show_formatted(typed, v, &shown);
                 if shown != v {
                     // The caret stays after the digit just typed.
                     let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
@@ -1692,7 +1692,7 @@ pub(crate) fn payee_sheet(form: Arc<OpenForm>, id: ItemId, row: Option<usize>) -
                     .on_change(move |v: &str| {
                         let prev = new_tin.get_untracked();
                         let shown = crate::typing::dash_tin(v, 14);
-                        new_tin.set(shown.clone());
+                        crate::typing::show_formatted(new_tin, v, &shown);
                         if shown != v {
                             let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
                             tin_at.set_selection(caret, caret);

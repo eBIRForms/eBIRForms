@@ -465,8 +465,15 @@ fn scroll_bench(form: Arc<OpenForm>, list: ElementRef, settled: impl Fn() -> boo
     set_timeout(std::time::Duration::from_millis(800), move || {
         st.open_parts.set(all);
         log::warn!(target: "nsh::jank", "---- scroll bench {code} {speed}pt/frame ----");
-        fn step(list: ElementRef, reading: BenchReading, y: f32, dir: f32, legs: u32, speed: f32) {
-            request_animation_frame(move |_| {
+        // The frame times the steps ran at: the last one, how many steps,
+        // how many came more than one and a half 120 Hz periods after the
+        // one before (a frame the scroll skipped), and the longest gap.
+        type Gaps = (Option<std::time::Instant>, u32, u32, f32);
+        fn step(list: ElementRef, reading: BenchReading, y: f32, dir: f32, legs: u32, speed: f32, gaps: Gaps) {
+            request_animation_frame(move |at| {
+                let (last, steps, skipped, longest) = gaps;
+                let gap = last.map_or(0.0, |last| at.saturating_duration_since(last).as_secs_f32() * 1000.0);
+                let gaps = (Some(at), steps + 1, skipped + u32::from(gap > 12.5), longest.max(gap));
                 list.scroll_to_offset(px(y.max(0.0)), false);
                 // Turn at the bottom the list reports (until it has, a
                 // bound past any form's length).
@@ -474,10 +481,12 @@ fn scroll_bench(form: Arc<OpenForm>, list: ElementRef, settled: impl Fn() -> boo
                 let bottom = if bottom > 0.0 { bottom } else { 60000.0 };
                 let (y, dir, legs) = if y >= bottom { (bottom, -1.0, legs + 1) } else if y <= 0.0 && dir < 0.0 { (0.0, 1.0, legs + 1) } else { (y, dir, legs) };
                 if legs < 6 {
-                    step(list, reading, y + dir * speed, dir, legs, speed);
+                    step(list, reading, y + dir * speed, dir, legs, speed, gaps);
                 } else {
                     let (far, max, events) = reading.get_untracked();
+                    let (_, steps, skipped, longest) = gaps;
                     log::warn!(target: "nsh::jank", "==== bench end ==== reached {far:.0}pt of {max:.0}pt, {events} scroll events");
+                    log::warn!(target: "nsh::jank", "frame gaps: {steps} steps, {skipped} over 12.5 ms, longest {longest:.1} ms");
                 }
             });
         }
@@ -492,7 +501,7 @@ fn scroll_bench(form: Arc<OpenForm>, list: ElementRef, settled: impl Fn() -> boo
                 if calm >= 4 {
                     reading.set((0.0, 0.0, 0));
                     log::warn!(target: "nsh::jank", "---- mounted; scrolling ----");
-                    step(list, reading, 0.0, 1.0, 0, speed);
+                    step(list, reading, 0.0, 1.0, 0, speed, (None, 0, 0, 0.0));
                 } else {
                     when_settled(list, reading, speed, settled, calm);
                 }
@@ -1759,7 +1768,7 @@ pub(super) fn one_date(parts: DateParts) -> impl IntoElement {
                     .on_change(move |v: &str| {
                         let prev = text_sig.get_untracked();
                         let shown = crate::typing::slash_date(v);
-                        text_sig.set(shown.clone());
+                        crate::typing::show_formatted(text_sig, v, &shown);
                         if shown != v {
                             let caret = crate::typing::caret_after(&prev, v, &shown, crate::typing::digit);
                             date_at.set_selection(caret, caret);
