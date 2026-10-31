@@ -97,6 +97,7 @@ that gets patched:
 | `crates/bir-submit` | Submission queue client |
 | `crates/sqlcipher-tomcrypt` | SQLCipher for Android, without OpenSSL |
 | `crates/bir-app-core` | The typed API the app calls |
+| `crates/ebirdesk-mcp` | The app without a window: the eBIRForms Desktop mini app the Buwiz Bot spawns ([README](crates/ebirdesk-mcp/README.md)) |
 | `nsh/`, `blaze/` | Submodules: UI engine and live patching |
 
 ## License
