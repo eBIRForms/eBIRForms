@@ -7,9 +7,10 @@
 # The env file is never sourced: only these exact KEY=value lines are read
 # from it, and nothing else in it enters this process.
 #   APPLE_ID, APPLE_TEAM_ID, APP_PASSWORD   notarytool's Apple ID login
-#   RELEASE_SIGNING_IDENTITY                Developer ID Application identity,
-#   or SIGNING_IDENTITY                     preferred in that order
-# The identity must be in the login keychain. Writes
+# It signs with "Developer ID Application: Goldcoders Corp (<APPLE_TEAM_ID>)"
+# from the login keychain, the identity buwiz-forms' release expects. The env
+# file's SIGNING_IDENTITY and RELEASE_SIGNING_IDENTITY are its development and
+# App Store identities, which notarization refuses for a DMG. Writes
 # app/target/release-artifacts/Buwiz-$VERSION-macos-universal.dmg.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -35,12 +36,12 @@ read_key() {
 apple_id=$(read_key APPLE_ID)
 apple_team_id=$(read_key APPLE_TEAM_ID)
 app_password=$(read_key APP_PASSWORD)
-identity=$(read_key RELEASE_SIGNING_IDENTITY)
-[ -n "$identity" ] || identity=$(read_key SIGNING_IDENTITY)
 for pair in "APPLE_ID:$apple_id" "APPLE_TEAM_ID:$apple_team_id" "APP_PASSWORD:$app_password"; do
   [ -n "${pair#*:}" ] || fail "$env_file has no ${pair%%:*}= line"
 done
-[ -n "$identity" ] && [ "$identity" != "-" ] || fail "$env_file has no RELEASE_SIGNING_IDENTITY= or SIGNING_IDENTITY= line"
+identity="Developer ID Application: Goldcoders Corp ($apple_team_id)"
+security find-identity -v -p codesigning | grep -qF "\"$identity\"" ||
+  fail "no \"$identity\" in the login keychain"
 
 version="$(awk -F '"' '
   /^\[package\]$/ { in_package = 1; next }
