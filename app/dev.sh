@@ -5,14 +5,17 @@
 #   ./dev.sh        first build, then the window opens and stays patched
 #   save src/*.rs   cargo watch runs `cargo ra-jit build`, then patch, remount
 #   Ctrl-C          everything stops
+#
+# `--features live` links ra-jit-live, which plain and release builds leave
+# out. Every build here passes it, so the daemon patches one build.
 set -e
 cd "$(dirname "$0")"
 
-cargo ra-jit build &          # warm the daemon while the watcher comes up
+cargo ra-jit build --features live &  # warm the daemon while the watcher comes up
 BUILD=$!
-cargo watch -w src -x 'ra-jit build' &
+cargo watch -w src -x 'ra-jit build --features live' &
 WATCH=$!
 trap 'kill $WATCH 2>/dev/null' EXIT
 wait $BUILD
 
-cargo ra-jit run
+cargo ra-jit run --features live
