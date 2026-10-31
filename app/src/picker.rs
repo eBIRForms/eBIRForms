@@ -68,14 +68,18 @@ impl List {
 }
 
 /// The entries of `choices` the list shows for `query`: those whose title
-/// holds it (ignoring case; all for none), in the table's order but, with
-/// `code_first`, the ones whose title starts with it first ("43" puts 43A
-/// before 043).
+/// holds it (ignoring case; all for none), in the table's order but with
+/// a title that is exactly the query first, so Return picks it ("Quirino"
+/// before "Quirino (Angkaki)"), and, with `code_first`, the ones whose
+/// title starts with it next ("43" puts 43A before 043).
 pub(crate) fn matches(choices: &[Choice], query: &str, code_first: bool) -> Vec<usize> {
     let q = query.trim().to_lowercase();
     let mut out: Vec<usize> = (0..choices.len()).filter(|&i| q.is_empty() || choices[i].title.to_lowercase().contains(&q)).collect();
-    if code_first && !q.is_empty() {
-        out.sort_by_key(|&i| !choices[i].title.to_lowercase().starts_with(&q));
+    if !q.is_empty() {
+        out.sort_by_key(|&i| {
+            let title = choices[i].title.to_lowercase();
+            (title != q, code_first && !title.starts_with(&q))
+        });
     }
     out
 }
@@ -409,6 +413,15 @@ mod tests {
         assert_eq!(matches(&list, "43", false), [0, 1], "cities keep their order");
         assert_eq!(matches(&list, "PASIG", true), [1], "case is ignored");
         assert!(matches(&list, "zzz", true).is_empty());
+    }
+
+    #[test]
+    fn a_title_typed_exactly_comes_first() {
+        let cities = List::City.choices();
+        let first = |q: &str| cities[matches(&cities, q, false)[0]].value.clone();
+        assert_eq!(first("Quirino"), "Quirino, Isabela", "not Quirino (Angkaki), which comes first in the table");
+        assert_eq!(first("bauan"), "Bauan, Batangas", "not Bauang");
+        assert_eq!(first("Alaminos"), "Alaminos, Laguna", "not City of Alaminos");
     }
 
     #[test]
