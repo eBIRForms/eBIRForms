@@ -132,7 +132,7 @@ pub(crate) fn welcome() -> impl IntoElement {
     };
     view()
         .gap(px(16.0))
-        .child(page_title("Welcome to Buwiz"))
+        .child(page_title("Welcome to eBIRForms"))
         .child(text("File your BIR returns offline: fill a form, check it, see its penalties, print it and queue it for sending.").text_size(px(13.0)).text_color(theme::FG2))
         .child(
             view()

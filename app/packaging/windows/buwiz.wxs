@@ -8,16 +8,20 @@
   menu shortcut and an entry in Apps / Programs and Features. A newer
   version replaces an older one (the UpgradeCode never changes).
 
+  v0.2.0 renamed the app eBIRForms: the product and shortcut names
+  changed; the install folder (Program Files\Buwiz), the UpgradeCode, the
+  component GUIDs and the registry key stay, so 0.1.0 upgrades in place.
+
   The print preview needs the WebView2 Runtime (Evergreen). As in
   buwiz.iss, when no runtime is registered (per machine or per user)
   setup runs Microsoft's Evergreen bootstrapper, which downloads and
   installs it; offline, the install still succeeds without it.
 -->
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <Package Name="Buwiz" Manufacturer="Buwiz" Version="$(var.Version)"
+  <Package Name="eBIRForms" Manufacturer="Buwiz" Version="$(var.Version)"
            UpgradeCode="7CD6C5E3-560E-4F83-9968-FE03B556B8B3"
            Scope="perMachine" Compressed="yes">
-    <MajorUpgrade DowngradeErrorMessage="A newer version of Buwiz is already installed." />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of eBIRForms is already installed." />
     <MediaTemplate EmbedCab="yes" />
 
     <StandardDirectory Id="ProgramFiles64Folder">
@@ -30,7 +34,7 @@
 
     <StandardDirectory Id="ProgramMenuFolder">
       <Component Id="StartMenuShortcut" Guid="F2D5C8B4-6DA1-449C-8878-B4B5914B464E">
-        <Shortcut Id="StartMenuShortcut" Name="Buwiz" Target="[#BuwizExe]" WorkingDirectory="INSTALLFOLDER" />
+        <Shortcut Id="StartMenuShortcut" Name="eBIRForms" Target="[#BuwizExe]" WorkingDirectory="INSTALLFOLDER" />
         <RegistryValue Root="HKLM" Key="Software\Buwiz\Buwiz" Name="StartMenuShortcut" Type="integer" Value="1" KeyPath="yes" />
       </Component>
     </StandardDirectory>

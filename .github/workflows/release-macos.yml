@@ -1,8 +1,8 @@
 name: release (macos)
 
-# Called by release.yml: a universal (arm64 + x86_64) Buwiz.app in a DMG,
+# Called by release.yml: a universal (arm64 + x86_64) eBIRForms.app in a DMG,
 # signed with the Developer ID, notarized and stapled, for publish to upload to R2 as
-# releases/v{VERSION}/Buwiz-{VERSION}-macos-universal.dmg.
+# releases/v{VERSION}/eBIRForms-{VERSION}-macos-universal.dmg.
 
 on:
   workflow_call:
@@ -118,7 +118,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: release-file-macos-universal-dmg
-          path: app/target/release-artifacts/Buwiz-${{ inputs.version }}-macos-universal.dmg
+          path: app/target/release-artifacts/eBIRForms-${{ inputs.version }}-macos-universal.dmg
           if-no-files-found: error
           retention-days: 7
 

@@ -18,6 +18,7 @@
 #[cfg(target_os = "android")]
 use sqlcipher_tomcrypt as _;
 
+pub mod app_id;
 pub mod background_cron;
 pub mod bir_xml;
 pub mod calendar_events;
@@ -30,6 +31,8 @@ pub mod filing_queue;
 pub mod form_rules;
 pub mod foreign_env;
 pub mod forms;
+#[cfg(target_os = "macos")]
+pub mod id_migration;
 pub mod import;
 pub mod integration;
 pub mod job_display;

@@ -34,6 +34,9 @@ FAILED=""
 # A simulator of its own (an iPhone 17 Pro, made on first use), so the
 # script never boots, wipes or wedges a device someone else uses.
 DEVICE_NAME="${BUWIZ_SIM:-Buwiz Evidence}"
+# The iOS app as app/ios.sh packs it.
+IOS_APP=eBIRForms
+IOS_ID=com.buwiz.ebirforms
 UDID=""
 APP_PID=""
 
@@ -219,7 +222,7 @@ PHONE=(
 phone_shot() {
     local name=$1 theme=$2 hooks=$3 want=$4 wait=${5:-${PHONE_WAIT:-12}} png dir
     png="$OUT/phone-$name-$theme.png"
-    dir="$(xcrun simctl get_app_container "$UDID" com.buwiz.oss data)/Library/Application Support/Buwiz"
+    dir="$(xcrun simctl get_app_container "$UDID" $IOS_ID data)/Library/Application Support/Buwiz"
     if [[ " $hooks " == *" EMPTY_DB=1 "* ]]; then
         rm -rf "$dir"; mkdir -p "$dir"
     else
@@ -228,9 +231,9 @@ phone_shot() {
     fi
     { echo "BUWIZ_DB_KEY=$KEY"; echo "BUWIZ_THEME=$theme"; for kv in $hooks; do echo "$kv"; done; } >"$dir/launch.env"
     timeout 60 xcrun simctl ui "$UDID" appearance "$theme" 2>/dev/null || true
-    timeout 60 xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
+    timeout 60 xcrun simctl terminate "$UDID" $IOS_ID 2>/dev/null || true
     # A wedged simulator never answers a launch: fail the shot, don't hang.
-    if ! timeout 180 xcrun simctl launch "$UDID" com.buwiz.oss >/dev/null; then
+    if ! timeout 180 xcrun simctl launch "$UDID" $IOS_ID >/dev/null; then
         FAILED+=" phone-$name-$theme.png:launch"
         return
     fi
@@ -261,18 +264,18 @@ if [ "$WHICH" = all ] || [ "$WHICH" = phone ]; then
     xcrun simctl boot "$UDID" 2>/dev/null || true
     timeout 300 xcrun simctl bootstatus "$UDID" -b >/dev/null
     # The app bundle, as app/ios.sh packs it.
-    BUNDLE="$TMP/Buwiz.app"
+    BUNDLE="$TMP/$IOS_APP.app"
     mkdir -p "$BUNDLE"
-    cp app/target/aarch64-apple-ios-sim/debug/buwiz "$BUNDLE/Buwiz"
+    cp app/target/aarch64-apple-ios-sim/debug/buwiz "$BUNDLE/$IOS_APP"
     sed -n '/^cat > "$BUNDLE\/Info.plist" <<PLIST/,/^PLIST/p' app/ios.sh | sed '1d;$d' |
-        sed 's/\$APP/Buwiz/g; s/\$ID/com.buwiz.oss/g' >"$BUNDLE/Info.plist"
-    codesign --force --sign - "$BUNDLE/Buwiz" 2>/dev/null || true
+        sed "s/\\\$APP/$IOS_APP/g; s/\\\$ID/$IOS_ID/g" >"$BUNDLE/Info.plist"
+    codesign --force --sign - "$BUNDLE/$IOS_APP" 2>/dev/null || true
     timeout 600 xcrun simctl install "$UDID" "$BUNDLE"
     # The first launch after an install is the slow one (the system prepares
     # the app): launch it once and let it settle before the first shot.
-    timeout 180 xcrun simctl launch "$UDID" com.buwiz.oss >/dev/null 2>&1 || true
+    timeout 180 xcrun simctl launch "$UDID" $IOS_ID >/dev/null 2>&1 || true
     sleep 20
-    timeout 60 xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
+    timeout 60 xcrun simctl terminate "$UDID" $IOS_ID 2>/dev/null || true
     for theme in light dark; do
         for spec in "${PHONE[@]}"; do
             IFS='|' read -r name hooks want wait <<<"$spec"

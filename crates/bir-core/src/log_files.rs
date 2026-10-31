@@ -27,7 +27,7 @@ pub const RETENTION_CHOICES: [u32; 5] = [3, 7, 14, 30, 90];
 
 /// `<data_dir>/logs`, the directory both binaries write under.
 ///
-/// On macOS `data_dir` is `~/Library/Application Support/com.buwiz.oss`, so
+/// On macOS `data_dir` is `~/Library/Application Support/com.buwiz.ebirforms`, so
 /// the files land in its `logs` folder. `BIR_LOG_DIR`, when set and non-empty,
 /// replaces the directory — tests point it at a scratch folder.
 pub fn log_dir() -> PathBuf {

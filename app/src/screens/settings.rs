@@ -15,10 +15,22 @@ use crate::widgets::{CLEAR, Variant, button_sm, list_group, section_title, segme
 
 const THEMES: [ThemePref; 3] = [ThemePref::System, ThemePref::Light, ThemePref::Dark];
 
+/// The name a new backup starts with.
+const BACKUP_PREFIX: &str = "eBIRForms backup";
+/// What a backup may start with: before v0.2.0 the app was named Buwiz.
+const BACKUP_PREFIXES: [&str; 2] = [BACKUP_PREFIX, "Buwiz backup"];
+
+/// The date part of a backup's file name, `None` for any other file. The
+/// phones pick their newest backup by it; the desktops use a file panel.
+#[cfg_attr(any(target_os = "macos", windows, target_os = "linux"), allow(dead_code))]
+fn backup_date(name: &str) -> Option<&str> {
+    BACKUP_PREFIXES.iter().find_map(|prefix| name.strip_prefix(prefix))
+}
+
 /// Where a backup goes: the save panel on the desktops; on a phone the app's own
 /// files, dated.
 fn backup_target() -> Option<PathBuf> {
-    let name = format!("Buwiz backup {}.zip", crate::store::today());
+    let name = format!("{BACKUP_PREFIX} {}.zip", crate::store::today());
     #[cfg(any(target_os = "macos", windows, target_os = "linux"))]
     {
         crate::desktop::save_panel(&name, "zip")
@@ -41,12 +53,16 @@ fn restore_source() -> Option<PathBuf> {
     {
         let db = std::env::var_os("BUWIZ_DATABASE_PATH").map(PathBuf::from)?;
         let dir = db.parent()?.to_path_buf();
+        // The newest by the date in the name, whichever name it has.
         std::fs::read_dir(dir)
             .ok()?
             .filter_map(Result::ok)
-            .map(|e| e.path())
-            .filter(|p| p.file_name().is_some_and(|n| n.to_string_lossy().starts_with("Buwiz backup")))
+            .filter_map(|e| {
+                let name = e.file_name().to_string_lossy().into_owned();
+                backup_date(&name).map(|date| (date.to_owned(), e.path()))
+            })
             .max()
+            .map(|(_, path)| path)
     }
 }
 
@@ -210,7 +226,7 @@ pub(crate) fn screen() -> impl IntoElement {
             .child(section_title("Reminders", false))
             .child(list_group().child(row(
                 "Due-date reminders",
-                move || if reminders() { "A note when you open Buwiz: returns due within 3 days" } else { "Off" },
+                move || if reminders() { "A note when you open eBIRForms: returns due within 3 days" } else { "Off" },
                 true,
                 switch(reminders, move || st.set_reminders(!st.reminders.get_untracked()), "Due-date reminders"),
             )))
@@ -218,7 +234,7 @@ pub(crate) fn screen() -> impl IntoElement {
             .child(
                 list_group()
                     .child(row("Back up", "Every tax profile, with its branches and returns, in one file", true, pressable("Back up…", back_up)))
-                    .child(row("Restore", "From a Buwiz backup file", false, pressable("Restore…", restore))),
+                    .child(row("Restore", "From a backup file", false, pressable("Restore…", restore))),
             )
             .child(section_title("About", false))
             .child(
@@ -227,4 +243,16 @@ pub(crate) fn screen() -> impl IntoElement {
                     .child(row("Database", db_path, false, view())),
             ),
     )
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn restore_finds_backups_under_either_name() {
+        assert_eq!(backup_date("eBIRForms backup 2026-10-31.zip"), Some(" 2026-10-31.zip"));
+        assert_eq!(backup_date("Buwiz backup 2026-04-01.zip"), Some(" 2026-04-01.zip"));
+        assert_eq!(backup_date("bir_data.db"), None);
+    }
 }

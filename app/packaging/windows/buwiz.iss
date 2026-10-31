@@ -1,4 +1,4 @@
-; Inno Setup script for Buwiz on Windows.
+; Inno Setup script for eBIRForms (formerly Buwiz) on Windows.
 ;   iscc /DAppVersion=0.1.0 /DExePath=..\..\target\release\buwiz.exe
 ;        /DWebView2Setup=..\..\target\MicrosoftEdgeWebview2Setup.exe buwiz.iss
 ; The print preview needs the WebView2 Runtime (Evergreen). Windows 11 and
@@ -15,20 +15,22 @@
   #define WebView2Setup "..\..\target\MicrosoftEdgeWebview2Setup.exe"
 #endif
 
+; v0.2.0 renamed the app eBIRForms. AppId and the install folder
+; ({autopf}\Buwiz) stay, so 0.1.0 upgrades in place.
 [Setup]
 AppId={{5B0E7C1A-3D59-4F0B-9C8E-B0F1A2C3D4E5}
-AppName=Buwiz
+AppName=eBIRForms
 AppVersion={#AppVersion}
 AppPublisher=Buwiz
 DefaultDirName={autopf}\Buwiz
-DefaultGroupName=Buwiz
+DefaultGroupName=eBIRForms
 DisableProgramGroupPage=yes
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 OutputDir=..\..\target\installer
-OutputBaseFilename=Buwiz-{#AppVersion}-setup-x64
+OutputBaseFilename=eBIRForms-{#AppVersion}-setup-x64
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
@@ -39,15 +41,20 @@ Source: "{#ExePath}"; DestDir: "{app}"; DestName: "buwiz.exe"; Flags: ignorevers
 Source: "{#WebView2Setup}"; DestDir: "{tmp}"; Flags: deleteafterinstall; Check: NeedsWebView2
 
 [Icons]
-Name: "{autoprograms}\Buwiz"; Filename: "{app}\buwiz.exe"
-Name: "{autodesktop}\Buwiz"; Filename: "{app}\buwiz.exe"; Tasks: desktopicon
+Name: "{autoprograms}\eBIRForms"; Filename: "{app}\buwiz.exe"
+Name: "{autodesktop}\eBIRForms"; Filename: "{app}\buwiz.exe"; Tasks: desktopicon
+
+; 0.1.0's shortcuts, named Buwiz: the renamed ones replace them.
+[InstallDelete]
+Type: files; Name: "{autoprograms}\Buwiz.lnk"
+Type: files; Name: "{autodesktop}\Buwiz.lnk"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Run]
 Filename: "{tmp}\MicrosoftEdgeWebview2Setup.exe"; Parameters: "/silent /install"; StatusMsg: "Installing the Microsoft Edge WebView2 Runtime..."; Check: NeedsWebView2; Flags: waituntilterminated
-Filename: "{app}\buwiz.exe"; Description: "{cm:LaunchProgram,Buwiz}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\buwiz.exe"; Description: "{cm:LaunchProgram,eBIRForms}"; Flags: nowait postinstall skipifsilent
 
 [Code]
 const

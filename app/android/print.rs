@@ -1,4 +1,4 @@
-//! Printing on Android, through JNI into Buwiz's `com.buwiz.oss.Printing`:
+//! Printing on Android, through JNI into the app's `com.buwiz.ebirforms.Printing`:
 //! the system print dialog (PrintManager over a WebView's print adapter,
 //! with Save as PDF), a PDF written by the same adapter (bir-print's
 //! `PdfSink`), and the share sheet (ACTION_SEND through the app's
