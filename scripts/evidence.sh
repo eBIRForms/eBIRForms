@@ -64,7 +64,7 @@ swiftc -O scripts/winid.swift -o "$TMP/winid" 2>/dev/null
 fresh_db() {
     rm -rf "$1"; mkdir -p "$1"
     for f in "$TMP"/seed/bir_data.db*; do
-        case "$f" in *.owner.lock) ;; *) cp "$f" "$1/" ;; esac
+        case "$f" in *.lock) ;; *) cp "$f" "$1/" ;; esac
     done
 }
 

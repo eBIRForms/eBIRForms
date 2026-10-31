@@ -101,8 +101,9 @@ pub(crate) fn store() -> &'static Store {
 }
 
 /// The opened database, kept for the whole process: a new engine (and
-/// store) takes it over instead of opening the file again, which the
-/// owner lock of the first opening would refuse.
+/// store) takes it over instead of opening the file again (a second
+/// connection would see this process's own writes as another app's, and
+/// would start a second queue worker).
 pub(crate) fn database() -> &'static std::sync::Mutex<Option<std::sync::Arc<bir_app_core::BirApp>>> {
     let at = anchor("buwiz.database", || {
         Box::leak(Box::new(std::sync::Mutex::new(None::<std::sync::Arc<bir_app_core::BirApp>>))) as *const _ as usize

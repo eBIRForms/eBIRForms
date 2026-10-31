@@ -342,10 +342,38 @@ impl Store {
                     self.reload_returns();
                     self.reload_deadlines();
                     self.start_sending();
+                    self.watch_other_apps();
                 }
                 Ok(Err(error)) => self.db.set(Db::Failed(error)),
                 Err(error) => self.db.set(Db::Failed(error.to_string())),
             }
+        });
+    }
+
+    /// Several apps may share the database (another window's process, the
+    /// mini app, a headless run). Every second, ask whether another one
+    /// committed (`BirApp::changed_elsewhere`, `PRAGMA data_version`: this
+    /// app's own saves do not count) and, when one did, read the taxpayers,
+    /// returns, send stages and deadlines again. Nothing else is cached:
+    /// every screen reads these signals. Call once, under the root.
+    fn watch_other_apps(&'static self) {
+        static POLLING: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+        self.owner.run(|| {
+            set_interval(Duration::from_secs(1), move || {
+                use std::sync::atomic::Ordering;
+                if POLLING.swap(true, Ordering::AcqRel) {
+                    return;
+                }
+                task(async move {
+                    let changed = call(|app| Ok(app.changed_elsewhere())).await.unwrap_or(false);
+                    POLLING.store(false, Ordering::Release);
+                    if changed {
+                        log::info!("another app changed the database; reloading the lists");
+                        self.reload_taxpayers(None);
+                        self.reload_lists();
+                    }
+                });
+            });
         });
     }
 
