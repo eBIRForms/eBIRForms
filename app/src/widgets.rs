@@ -46,6 +46,7 @@ fn app_button(
         .border_1()
         .border_color(border)
         .opacity(move || if off() { 0.45 } else { 1.0_f32 })
+        .focus(focus_ring)
         .hover(move |s| if variant == Variant::Ghost || variant == Variant::Secondary { s.bg(theme::HOVER) } else { s.opacity(0.88) })
         .active(|s| s.opacity(0.7))
         .on_press(move || {
@@ -227,6 +228,44 @@ pub(crate) fn field_box(placeholder: &str) -> Input {
         .border_1()
         .border_color(theme::BORDER_STRONG)
         .rounded(px(theme::R_ROW))
+        .focus(focus_ring)
+}
+
+/// The one focus ring (DESIGN_SYSTEM.md "Focus"): an accent border and a
+/// 3 px soft ring outside it, which takes no room, so nothing moves.
+pub(crate) fn focus_ring(s: nsh_core::element::StyleRefinement) -> nsh_core::element::StyleRefinement {
+    s.border_color(theme::ACCENT).ring(px(3.0)).ring_color(theme::ACCENT_SOFT)
+}
+
+/// What a field's message line says.
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub(crate) enum Note {
+    None,
+    Hint(&'static str),
+    Error(&'static str),
+}
+
+/// `FieldBlock`: a 16 px label, the 32 px control and a 16 px message line
+/// (a hint, an error or nothing), 3 apart. The line is always there, so a
+/// message coming or going moves nothing: 70 px whatever it says.
+pub(crate) fn field_block(label: &'static str, control: impl IntoElement, note: impl Fn() -> Note + 'static) -> View {
+    let note = std::rc::Rc::new(note);
+    let tone = note.clone();
+    view()
+        .gap(px(3.0))
+        .min_w(px(0.0))
+        .child(caption(label).h(px(16.0)))
+        .child(control)
+        .child(
+            text(move || match note() {
+                Note::None => "",
+                Note::Hint(line) | Note::Error(line) => line,
+            })
+            .h(px(16.0))
+            .text_size(px(12.0))
+            .text_color(move || if matches!(tone(), Note::Error(_)) { theme::DANGER } else { theme::FG3 })
+            .truncate(),
+        )
 }
 
 /// A 12 px fg-2 field label.

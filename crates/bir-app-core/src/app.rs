@@ -507,14 +507,16 @@ pub struct TaxpayerUpdate {
     pub taxpayer_type: Option<String>,
 }
 
-/// A place in [`BirApp::places`]: a ZIP area and its RDO, or an RDO alone.
+/// One entry of the New taxpayer lists ([`BirApp::cities`],
+/// [`BirApp::zip_codes`], [`BirApp::rdos`]): what is stored, the line a
+/// filer reads and searches, and a quieter line that tells repeated titles
+/// apart.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct Place {
-    pub label: String,
-    pub city: String,
-    pub zip: String,
-    pub rdo_code: String,
-    pub rdo_name: String,
+pub struct Choice {
+    /// Unique in its list.
+    pub value: String,
+    pub title: String,
+    pub detail: String,
 }
 
 /// One return in the submission queue.
@@ -793,33 +795,51 @@ impl BirApp {
         self.call_as("update_taxpayer", vec![tin_root.into(), input])
     }
 
-    /// Every place a taxpayer registers in, for one search: each ZIP code
-    /// with its area, then each RDO on its own. A ZIP code names no RDO:
-    /// the tables share no key, and names mislead (San Juan, Batangas is
-    /// not San Juan City's RDO), so the filer picks both.
-    pub fn places() -> Vec<Place> {
-        let rdos = bir_core::reference::get_all_rdos();
-        let mut out: Vec<Place> = Vec::new();
-        for entry in bir_core::reference::get_all_zipcodes() {
-            let Some((zip, area)) = entry.split_once(" - ") else { continue };
-            out.push(Place {
-                label: format!("{area} · {zip}"),
-                city: address_area(area),
-                zip: zip.trim().to_owned(),
-                rdo_code: String::new(),
-                rdo_name: String::new(),
-            });
-        }
-        for r in rdos {
-            out.push(Place {
-                label: format!("RDO {} · {}", r.code, r.description),
-                city: r.description.split(',').next().unwrap_or("").trim().to_owned(),
-                zip: String::new(),
-                rdo_code: r.code,
-                rdo_name: r.description,
-            });
+    /// Every city and municipality, titled as an address writes it
+    /// ("City of Pasig"), its province the detail (Metro Manila for NCR's
+    /// districts): 107 names repeat across provinces, so the value is
+    /// both ("City of Pasig, Metro Manila").
+    pub fn cities() -> Vec<Choice> {
+        use bir_core::reference::{get_all_regions, get_cities_for_province, get_provinces_for_region};
+        let mut out = Vec::new();
+        for region in get_all_regions() {
+            let ncr = region.code == NCR_REGION;
+            for province in get_provinces_for_region(&region.code) {
+                let detail = if ncr { "Metro Manila".to_owned() } else { place_title(&province.name) };
+                for city in get_cities_for_province(&province.code) {
+                    let title = place_title(&city.name);
+                    out.push(Choice { value: format!("{title}, {detail}"), title, detail: detail.clone() });
+                }
+            }
         }
         out
+    }
+
+    /// Every ZIP code with its area ("1101 Diliman"). 49 codes serve
+    /// several areas, so the value is the whole table entry; [`zip_code`]
+    /// takes the code back out of it.
+    pub fn zip_codes() -> Vec<Choice> {
+        bir_core::reference::get_all_zipcodes()
+            .into_iter()
+            .filter_map(|entry| {
+                let (zip, area) = entry.split_once(" - ")?;
+                let title = format!("{} {}", zip.trim(), address_area(area));
+                Some(Choice { value: entry, title, detail: String::new() })
+            })
+            .collect()
+    }
+
+    /// Every RDO, code first ("43A · East Pasig"); one whose name the table
+    /// does not have reads as its code alone.
+    pub fn rdos() -> Vec<Choice> {
+        bir_core::reference::get_all_rdos()
+            .into_iter()
+            .map(|r| {
+                let placeholder = r.description == format!("RDO {}", r.code);
+                let title = if placeholder { r.code.clone() } else { format!("{} · {}", r.code, r.description) };
+                Choice { value: r.code, title, detail: String::new() }
+            })
+            .collect()
     }
 
     /// Write `value` into one fact of a branch (`email`, `rdo_code`,
@@ -900,4 +920,80 @@ fn address_area(area: &str) -> String {
         Some((city, district)) => format!("{}, {}", district.trim(), city.trim().trim_end_matches(" CPO")),
         None => area.trim_end_matches(" CPO").to_owned(),
     }
+}
+
+/// NCR's region code: its "provinces" are districts, which an address
+/// writes as Metro Manila.
+const NCR_REGION: &str = "130000000";
+
+/// The 4-digit code of a [`BirApp::zip_codes`] value ("1101 - Diliman").
+pub fn zip_code(value: &str) -> &str {
+    value.split(" - ").next().unwrap_or("").trim()
+}
+
+/// The registered address of a street and a [`BirApp::cities`] entry:
+/// "1 Sample Street, City of Pasig, Metro Manila".
+pub fn registered_address(street: &str, city: &Choice) -> String {
+    format!("{}, {}, {}", street.trim(), city.title, city.detail)
+}
+
+/// An upper-case place name from the geo tables as an address writes it:
+/// "CITY OF PASIG" is "City of Pasig", "LAPU-LAPU" "Lapu-Lapu" but
+/// "HINOBA-AN" "Hinoba-an", "TONDO I / II" keeps its numerals. The tables
+/// lost the Ñ to "?" ("DASMARI?AS"), and a capital's "(Capital)" is no
+/// part of its name.
+fn place_title(upper: &str) -> String {
+    let fixed: String = upper.chars().map(|c| match c {
+        '?' | '\u{fffd}' => 'Ñ',
+        '`' => '\'',
+        c => c,
+    }).collect();
+    let mut name = fixed.trim().to_owned();
+    for tail in [" (CAPITAL)", " (NOT A PROVINCE)"] {
+        if name.to_uppercase().ends_with(tail) {
+            name.truncate(name.len() - tail.len());
+        }
+    }
+    name.split_whitespace()
+        .enumerate()
+        .map(|(i, word)| {
+            let lower = word.to_lowercase();
+            if i > 0 && ["of", "and", "de", "del"].contains(&lower.as_str()) {
+                lower
+            } else if ["I", "II", "III", "IV"].contains(&word) {
+                word.to_owned()
+            } else {
+                hyphenated_title(word)
+            }
+        })
+        .collect::<Vec<_>>()
+        .join(" ")
+}
+
+/// One word of [`place_title`]: each hyphen part capitalised when it is a
+/// name of its own ("Sanchez-Mira", "Tawi-Tawi"), lower case when it is a
+/// syllable ("Hinoba-an", "Can-avid", "Lal-lo").
+fn hyphenated_title(word: &str) -> String {
+    let parts: Vec<&str> = word.split('-').collect();
+    let bare = |p: &str| p.trim_matches(|c: char| !c.is_alphanumeric()).to_lowercase();
+    let mut out = capitalised(parts[0]);
+    for pair in parts.windows(2) {
+        let (before, part) = (bare(pair[0]), bare(pair[1]));
+        let own_name = (before.chars().count() >= 4 && part.chars().count() >= 4) || before == part || before == "al";
+        out.push('-');
+        out.push_str(&if own_name { capitalised(pair[1]) } else { pair[1].to_lowercase() });
+    }
+    out
+}
+
+/// `word` lower case but its first letter ("(MAGSAYSAY)" is "(Magsaysay)").
+fn capitalised(word: &str) -> String {
+    let mut done = false;
+    word.chars()
+        .flat_map(|c| {
+            let up = !done && c.is_alphabetic();
+            done |= up;
+            if up { c.to_uppercase().collect::<Vec<_>>() } else { c.to_lowercase().collect() }
+        })
+        .collect()
 }
