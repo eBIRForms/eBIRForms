@@ -26,9 +26,9 @@ have=$(cargo generate-rpm --version 2>/dev/null | awk '{print $NF}' || true)
 
 # The 256 px icon Cargo.toml's assets list.
 mkdir -p target/linux-icons
-rsvg-convert -w 256 -h 256 packaging/icon.svg -o target/linux-icons/com.buwiz.oss.png
+rsvg-convert -w 256 -h 256 packaging/icon.svg -o target/linux-icons/com.buwiz.ebirforms.png
 
-out=target/rpm/Buwiz-${version}-linux-${arch}.rpm
+out=target/rpm/eBIRForms-${version}-linux-${arch}.rpm
 mkdir -p target/rpm
 rm -f "$out"
 cargo generate-rpm --auto-req "$PWD/packaging/linux/rpm-requires.sh" -o "$out"

@@ -723,8 +723,8 @@ fn failed_page(r: ReturnRow, raw: String, attention: bool) -> impl IntoElement {
     let (title, why, next) = if attention {
         (
             "BIR may already have this return",
-            "The connection ended while it was being sent, so Buwiz can't tell whether BIR got it.".to_owned(),
-            "Check your email for BIR's confirmation before you do anything else. Buwiz won't send it again by itself.",
+            "The connection ended while it was being sent, so eBIRForms can't tell whether BIR got it.".to_owned(),
+            "Check your email for BIR's confirmation before you do anything else. eBIRForms won't send it again by itself.",
         )
     } else {
         (

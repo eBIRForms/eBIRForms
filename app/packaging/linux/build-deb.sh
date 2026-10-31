@@ -8,11 +8,11 @@ arch=$(dpkg --print-architecture)
 root=target/deb/buwiz_${version}_${arch}
 rm -rf "$root"
 install -Dm755 target/release/buwiz "$root/usr/bin/buwiz"
-install -Dm644 packaging/linux/com.buwiz.oss.desktop "$root/usr/share/applications/com.buwiz.oss.desktop"
-install -Dm644 packaging/icon.svg "$root/usr/share/icons/hicolor/scalable/apps/com.buwiz.oss.svg"
+install -Dm644 packaging/linux/com.buwiz.ebirforms.desktop "$root/usr/share/applications/com.buwiz.ebirforms.desktop"
+install -Dm644 packaging/icon.svg "$root/usr/share/icons/hicolor/scalable/apps/com.buwiz.ebirforms.svg"
 if command -v rsvg-convert >/dev/null; then
   mkdir -p "$root/usr/share/icons/hicolor/256x256/apps"
-  rsvg-convert -w 256 -h 256 packaging/icon.svg -o "$root/usr/share/icons/hicolor/256x256/apps/com.buwiz.oss.png"
+  rsvg-convert -w 256 -h 256 packaging/icon.svg -o "$root/usr/share/icons/hicolor/256x256/apps/com.buwiz.ebirforms.png"
 fi
 mkdir -p "$root/DEBIAN"
 cat > "$root/DEBIAN/control" <<CONTROL

@@ -3,7 +3,7 @@ name: release (android)
 # Called by release.yml: the arm64 APK from app/packaging/android/
 # build-apk.sh (app/android.sh's build, release mode, not debuggable),
 # signed with the release keystore, for publish to upload to R2 as
-# releases/v{VERSION}/Buwiz-{VERSION}-android-arm64.apk.
+# releases/v{VERSION}/eBIRForms-{VERSION}-android-arm64.apk.
 #
 # Without the keystore secrets the job hands over nothing and warns: the
 # release then has no APK. A throwaway key would lock users out of updates
@@ -105,7 +105,7 @@ jobs:
         if: steps.signing.outputs.enabled == 'true'
         with:
           name: release-file-android-arm64-apk
-          path: app/target/android-release/Buwiz-${{ inputs.version }}-android-arm64.apk
+          path: app/target/android-release/eBIRForms-${{ inputs.version }}-android-arm64.apk
           if-no-files-found: error
           retention-days: 7
 

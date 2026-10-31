@@ -26,7 +26,7 @@ esac
 # The files and a manifest.json for them, as downloads.buwiz.com serves them.
 packages=$(mktemp -d)
 trap 'rm -rf "$packages"' EXIT
-installer="$packages/Buwiz-$VERSION-linux-install.sh"
+installer="$packages/eBIRForms-$VERSION-linux-install.sh"
 cp "$1" "$2" "$3" "$packages/"
 cp "$root/app/packaging/linux/install-linux.sh" "$installer"
 "$root/scripts/release/file-meta.sh" "$1" linux "$arch" deb "$packages/meta"
@@ -40,9 +40,9 @@ install_sh="sh /packages/$(basename "$installer") --from-dir /packages"
 check_installed=$(cat <<'CHECK'
 check_files() { # bin, data dir
   test -x "$1"
-  test -f "$2/applications/com.buwiz.oss.desktop"
-  test -f "$2/icons/hicolor/scalable/apps/com.buwiz.oss.svg"
-  test -f "$2/icons/hicolor/256x256/apps/com.buwiz.oss.png"
+  test -f "$2/applications/com.buwiz.ebirforms.desktop"
+  test -f "$2/icons/hicolor/scalable/apps/com.buwiz.ebirforms.svg"
+  test -f "$2/icons/hicolor/256x256/apps/com.buwiz.ebirforms.png"
   ldd "$1" > /tmp/ldd.txt
   if grep -q "not found" /tmp/ldd.txt; then cat /tmp/ldd.txt >&2; exit 1; fi
   echo "PASS: $1, its .desktop entry and icons, every library resolves"
@@ -61,16 +61,19 @@ in_time=(timeout --kill-after=30 900)
   dpkg -s buwiz | grep -qx 'Version: $VERSION'
 
   useradd --create-home tester
+  # A 0.1.0 launcher (com.buwiz.oss, named Buwiz) is replaced.
+  su tester -c 'mkdir -p /home/tester/.local/share/applications && touch /home/tester/.local/share/applications/com.buwiz.oss.desktop'
   su tester -c '$install_sh --tarball'
+  test ! -e /home/tester/.local/share/applications/com.buwiz.oss.desktop
   check_files /home/tester/.local/opt/buwiz/buwiz /home/tester/.local/share
   test -L /home/tester/.local/bin/buwiz
-  grep -qx 'Exec=\"/home/tester/.local/opt/buwiz/buwiz\"' /home/tester/.local/share/applications/com.buwiz.oss.desktop
+  grep -qx 'Exec=\"/home/tester/.local/opt/buwiz/buwiz\"' /home/tester/.local/share/applications/com.buwiz.ebirforms.desktop
 
   $install_sh --uninstall
   test ! -e /usr/bin/buwiz
   su tester -c '$install_sh --uninstall'
   test ! -e /home/tester/.local/opt/buwiz
-  test ! -e /home/tester/.local/share/applications/com.buwiz.oss.desktop
+  test ! -e /home/tester/.local/share/applications/com.buwiz.ebirforms.desktop
 "
 echo "PASS: ubuntu:24.04 installed the .deb and the .tar.gz"
 

@@ -4,7 +4,7 @@ import android.app.Activity;
 
 /**
  * Buwiz's own file (not part of nsh): reaches the package-private setup
- * nsh's AppActivity does, so {@code com.buwiz.oss.MainActivity} can do the
+ * nsh's AppActivity does, so {@code com.buwiz.ebirforms.MainActivity} can do the
  * same.
  */
 public final class BuwizShim {

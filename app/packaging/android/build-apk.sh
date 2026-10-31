@@ -12,7 +12,7 @@
 #   ANDROID_KEY_PASSWORD       the key's password (default: the store's)
 #   ANDROID_HOME / ANDROID_NDK_HOME   the SDK and NDK (defaults as android.sh)
 #
-# Prints the APK's path: target/android-release/Buwiz-$VERSION-android-arm64.apk
+# Prints the APK's path: target/android-release/eBIRForms-$VERSION-android-arm64.apk
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 export RUSTC_WRAPPER=
@@ -45,9 +45,9 @@ TC="$NDK/toolchains/llvm/prebuilt/$HOST/bin"
 MIN_SDK=29
 TRIPLE=aarch64-linux-android
 ABI=arm64-v8a
-PACKAGE=com.buwiz.oss
+PACKAGE=com.buwiz.ebirforms
 OUT=target/android-release
-APK="$OUT/Buwiz-$VERSION-android-arm64.apk"
+APK="$OUT/eBIRForms-$VERSION-android-arm64.apk"
 NSH_JAVA=../nsh/crates/nsh-platform-android/java
 APP_JAVA=android/java
 
@@ -71,15 +71,15 @@ jar cf "$OUT/classes.jar" -C "$OUT/classes" .
 cat > "$OUT/AndroidManifest.xml" <<XML
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="$PACKAGE">
-    <application android:label="Buwiz"
+    <application android:label="eBIRForms"
         android:extractNativeLibs="false"
         android:enableOnBackInvokedCallback="true"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
         <meta-data android:name="com.longbridge.nsh.RUST" android:value="true" />
-        <provider android:name="com.buwiz.oss.PdfFiles" android:authorities="com.buwiz.oss.pdf"
+        <provider android:name="com.buwiz.ebirforms.PdfFiles" android:authorities="com.buwiz.ebirforms.pdf"
             android:exported="false" android:grantUriPermissions="true" />
-        <activity android:name="com.buwiz.oss.MainActivity" android:exported="true"
+        <activity android:name="com.buwiz.ebirforms.MainActivity" android:exported="true"
             android:windowSoftInputMode="adjustResize"
             android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboard|keyboardHidden|navigation|uiMode|density|fontScale|locale|layoutDirection">
             <intent-filter>

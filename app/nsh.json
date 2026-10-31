@@ -1,6 +1,6 @@
 {
-  "name": "Buwiz",
-  "id": "com.buwiz.oss",
+  "name": "eBIRForms",
+  "id": "com.buwiz.ebirforms",
   "appearance": "system",
   "rust": ".",
   "root": "App"

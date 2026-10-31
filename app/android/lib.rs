@@ -22,7 +22,7 @@ nsh::main!({
 /// dialogs from.
 #[cfg(target_os = "android")]
 #[unsafe(no_mangle)]
-pub extern "system" fn Java_com_buwiz_oss_Printing_nativeAttach<'local>(
+pub extern "system" fn Java_com_buwiz_ebirforms_Printing_nativeAttach<'local>(
     mut env: jni::JNIEnv<'local>,
     class: jni::objects::JClass<'local>,
     activity: jni::objects::JObject<'local>,

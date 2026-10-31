@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Packs and launches Buwiz in the iOS simulator: a debug
+# Packs and launches eBIRForms in the iOS simulator: a debug
 # aarch64-apple-ios-sim build of `buwiz`, a minimal .app around it,
 # install + launch (rox's app/ios.sh).
 #
@@ -12,15 +12,15 @@
 #                              opens the outline: screenshots without taps)
 #
 # The database lives in the app's sandbox (Library/Application Support/
-# Buwiz, set by `buwiz::mobile::prepare`); its key in the simulator's
-# keychain.
+# Buwiz, set by `buwiz::mobile::prepare`; the folder kept its name when the
+# app became eBIRForms); its key in the simulator's keychain.
 set -e
 cd "$(dirname "$0")"
 export RUSTC_WRAPPER=
 
 TARGET=aarch64-apple-ios-sim
-APP="Buwiz"
-ID=com.buwiz.oss
+APP="eBIRForms"
+ID=com.buwiz.ebirforms
 BUNDLE="target/ios-sim/$APP.app"
 
 if [ -n "$BUWIZ_LIVE" ]; then

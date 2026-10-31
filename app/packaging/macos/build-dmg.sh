@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Packs the two macOS release builds as a universal Buwiz.app inside a DMG,
+# Packs the two macOS release builds as a universal eBIRForms.app inside a DMG,
 # signed with a Developer ID and notarized when the inputs are set.
 # Run from app/ after:
 #   cargo build --locked --release --target aarch64-apple-darwin
@@ -19,7 +19,7 @@
 #   REQUIRE_NOTARIZATION  "1": fail unless a real identity and one of the
 #                         two notarization inputs are set
 #
-# Prints the DMG's path: target/release-artifacts/Buwiz-$VERSION-macos-universal.dmg
+# Prints the DMG's path: target/release-artifacts/eBIRForms-$VERSION-macos-universal.dmg
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 
@@ -63,8 +63,8 @@ if [ "${REQUIRE_NOTARIZATION:-0}" = "1" ]; then
   [ "$NOTARIZE" -eq 1 ] || fail "REQUIRE_NOTARIZATION=1 needs NOTARY_KEY_PATH, NOTARY_KEY_ID and NOTARY_ISSUER_ID, or APPLE_ID, APPLE_TEAM_ID and APP_PASSWORD"
 fi
 
-APP_NAME=Buwiz
-BUNDLE_ID=com.buwiz.oss
+APP_NAME=eBIRForms
+BUNDLE_ID=com.buwiz.ebirforms
 BIN=buwiz
 OUT=target/release-artifacts
 APP="$OUT/$APP_NAME.app"

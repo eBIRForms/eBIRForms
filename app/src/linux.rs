@@ -114,7 +114,7 @@ fn paper(page: &Page) -> gtk::PaperSize {
     if *page == A4 {
         gtk::PaperSize::new(Some(gtk::PAPER_NAME_A4.as_str()))
     } else {
-        gtk::PaperSize::new_custom("buwiz", "Buwiz", page.width_mm(), page.height_mm(), gtk::Unit::Mm)
+        gtk::PaperSize::new_custom("buwiz", "eBIRForms", page.width_mm(), page.height_mm(), gtk::Unit::Mm)
     }
 }
 

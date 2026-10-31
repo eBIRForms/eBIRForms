@@ -147,7 +147,7 @@ impl BirApp {
         match answer.get("kind").and_then(|k| k.as_str()) {
             Some("profile") => Ok(Restored::Profiles),
             Some("database") => Ok(Restored::Database),
-            _ => Err(AppError::Call("That file is not a Buwiz backup.".into())),
+            _ => Err(AppError::Call("That file is not an eBIRForms backup.".into())),
         }
     }
 

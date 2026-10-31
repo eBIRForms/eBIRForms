@@ -4,8 +4,8 @@ name: release (windows)
 # (app/packaging/windows/buwiz.iss) and an .msi (app/packaging/windows/
 # buwiz.wxs, WiX v5) for per-machine and managed deployment, both
 # Authenticode-signed with buwiz.exe inside them, for publish to upload to
-# R2 as releases/v{VERSION}/Buwiz-{VERSION}-windows-x64-setup.exe and
-# releases/v{VERSION}/Buwiz-{VERSION}-windows-x64.msi.
+# R2 as releases/v{VERSION}/eBIRForms-{VERSION}-windows-x64-setup.exe and
+# releases/v{VERSION}/eBIRForms-{VERSION}-windows-x64.msi.
 #
 # Signing, as in the source repo: with neither WINDOWS_CERTIFICATE_PFX nor
 # WINDOWS_CERTIFICATE_PASSWORD set both installers ship unsigned, with a
@@ -105,9 +105,9 @@ jobs:
         run: |
           $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
           if (-not (Test-Path $iscc)) { choco install innosetup -y --no-progress }
-          & $iscc "/DAppVersion=$env:VERSION" "/FBuwiz-$env:VERSION-windows-x64-setup" app/packaging/windows/buwiz.iss
+          & $iscc "/DAppVersion=$env:VERSION" "/FeBIRForms-$env:VERSION-windows-x64-setup" app/packaging/windows/buwiz.iss
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          $setup = "app/target/installer/Buwiz-$env:VERSION-windows-x64-setup.exe"
+          $setup = "app/target/installer/eBIRForms-$env:VERSION-windows-x64-setup.exe"
           if (-not (Test-Path $setup)) { throw "Inno Setup did not write $setup" }
 
       - name: Sign and verify the installer
@@ -116,7 +116,7 @@ jobs:
         env:
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
         run: |
-          $setup = "app/target/installer/Buwiz-$env:VERSION-windows-x64-setup.exe"
+          $setup = "app/target/installer/eBIRForms-$env:VERSION-windows-x64-setup.exe"
           & $env:WINDOWS_SIGNTOOL sign /fd SHA256 /td SHA256 /tr http://timestamp.digicert.com `
             /f $env:WINDOWS_CERTIFICATE_PATH /p $env:WINDOWS_CERTIFICATE_PASSWORD $setup
           if ($LASTEXITCODE -ne 0) { throw "Signing failed: $setup" }
@@ -129,7 +129,7 @@ jobs:
           dotnet tool install --global wix --version 5.0.2
           if ($LASTEXITCODE -ne 0) { throw "Installing WiX failed" }
           $wix = Join-Path $env:USERPROFILE ".dotnet\tools\wix.exe"
-          $msi = "app/target/installer/Buwiz-$env:VERSION-windows-x64.msi"
+          $msi = "app/target/installer/eBIRForms-$env:VERSION-windows-x64.msi"
           & $wix build -arch x64 -d "Version=$env:VERSION" `
             -d "ExePath=app/target/release/buwiz.exe" `
             -d "WebView2Setup=app/target/MicrosoftEdgeWebview2Setup.exe" `
@@ -143,7 +143,7 @@ jobs:
         env:
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
         run: |
-          $msi = "app/target/installer/Buwiz-$env:VERSION-windows-x64.msi"
+          $msi = "app/target/installer/eBIRForms-$env:VERSION-windows-x64.msi"
           & $env:WINDOWS_SIGNTOOL sign /fd SHA256 /td SHA256 /tr http://timestamp.digicert.com `
             /f $env:WINDOWS_CERTIFICATE_PATH /p $env:WINDOWS_CERTIFICATE_PASSWORD $msi
           if ($LASTEXITCODE -ne 0) { throw "Signing failed: $msi" }
@@ -155,17 +155,17 @@ jobs:
       - name: Install and uninstall the MSI
         shell: pwsh
         run: |
-          $msi = (Resolve-Path "app/target/installer/Buwiz-$env:VERSION-windows-x64.msi").Path
+          $msi = (Resolve-Path "app/target/installer/eBIRForms-$env:VERSION-windows-x64.msi").Path
           $log = Join-Path $env:RUNNER_TEMP "msi-install.log"
           $p = Start-Process msiexec.exe -ArgumentList "/i", "`"$msi`"", "/qn", "/norestart", "/l*v", "`"$log`"" -Wait -PassThru
           if ($p.ExitCode -ne 0) { Get-Content $log -Tail 80; throw "msiexec /i exited $($p.ExitCode)" }
           $exe = Join-Path $env:ProgramFiles "Buwiz\buwiz.exe"
-          $lnk = Join-Path $env:ProgramData "Microsoft\Windows\Start Menu\Programs\Buwiz.lnk"
+          $lnk = Join-Path $env:ProgramData "Microsoft\Windows\Start Menu\Programs\eBIRForms.lnk"
           if (-not (Test-Path $exe)) { throw "The MSI did not install $exe" }
           if (-not (Test-Path $lnk)) { throw "The MSI did not create $lnk" }
           $entry = Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" -ErrorAction SilentlyContinue |
-            Where-Object { $_.DisplayName -eq "Buwiz" -and $_.DisplayVersion -eq $env:VERSION }
-          if (-not $entry) { throw "The MSI registered no Buwiz $env:VERSION uninstall entry" }
+            Where-Object { $_.DisplayName -eq "eBIRForms" -and $_.DisplayVersion -eq $env:VERSION }
+          if (-not $entry) { throw "The MSI registered no eBIRForms $env:VERSION uninstall entry" }
           $p = Start-Process msiexec.exe -ArgumentList "/x", "`"$msi`"", "/qn", "/norestart" -Wait -PassThru
           if ($p.ExitCode -ne 0) { throw "msiexec /x exited $($p.ExitCode)" }
           if (Test-Path $exe) { throw "Uninstalling left $exe" }
@@ -177,14 +177,14 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: release-file-windows-x64-exe
-          path: app/target/installer/Buwiz-${{ inputs.version }}-windows-x64-setup.exe
+          path: app/target/installer/eBIRForms-${{ inputs.version }}-windows-x64-setup.exe
           if-no-files-found: error
           retention-days: 7
 
       - uses: actions/upload-artifact@v4
         with:
           name: release-file-windows-x64-msi
-          path: app/target/installer/Buwiz-${{ inputs.version }}-windows-x64.msi
+          path: app/target/installer/eBIRForms-${{ inputs.version }}-windows-x64.msi
           if-no-files-found: error
           retention-days: 7
 
