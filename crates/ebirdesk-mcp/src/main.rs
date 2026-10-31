@@ -27,7 +27,7 @@ fn main() -> ExitCode {
     match args.iter().map(String::as_str).collect::<Vec<_>>().as_slice() {
         ["mcp"] => run(),
         ["print-manifest"] => {
-            println!("{}", serde_json::to_string_pretty(&buwiz_mcp::manifest::unsigned()).expect("json value"));
+            println!("{}", serde_json::to_string_pretty(&ebirdesk_mcp::manifest::unsigned()).expect("json value"));
             ExitCode::SUCCESS
         }
         ["--version" | "-V"] => {
@@ -62,12 +62,12 @@ fn run() -> ExitCode {
             "buwiz_mcp=info,bir_app_core=info,bir_core=info,bir_submit=info,panic=error"
         },
     });
-    let manifest = buwiz_mcp::ManifestSource::from_env();
+    let manifest = ebirdesk_mcp::ManifestSource::from_env();
     if let Some(problem) = manifest.staleness() {
         tracing::warn!("{problem}");
     }
-    let mut server = buwiz_mcp::Server::open_live(manifest);
-    match buwiz_mcp::serve_stdio(&mut server) {
+    let mut server = ebirdesk_mcp::Server::open_live(manifest);
+    match ebirdesk_mcp::serve_stdio(&mut server) {
         Ok(()) => ExitCode::SUCCESS,
         Err(error) => {
             eprintln!("buwiz-mcp: {error}");

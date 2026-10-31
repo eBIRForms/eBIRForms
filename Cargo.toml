@@ -9,7 +9,7 @@ members = [
     "crates/bir-print",
     "crates/bir-app-core",
     "crates/bir-submit",
-    "crates/buwiz-mcp",
+    "crates/ebirdesk-mcp",
     "crates/sqlcipher-tomcrypt",
 ]
 exclude = ["app", "nsh", "blaze", "crates/sqlcipher-tomcrypt/compat"]

@@ -8,7 +8,7 @@ use std::sync::Arc;
 use base64::Engine as _;
 use base64::engine::general_purpose::URL_SAFE_NO_PAD;
 use bir_app_core::{BirApp, BranchFacts, NewTaxpayer};
-use buwiz_mcp::{ManifestSource, Server};
+use ebirdesk_mcp::{ManifestSource, Server};
 use ed25519_dalek::{Signature, SigningKey, Verifier as _, VerifyingKey};
 use serde_json::{Value, json};
 
@@ -184,7 +184,7 @@ fn the_bot_contract_over_a_scratch_database() {
 
     // an app open certified by the plugin key
     let perms = {
-        let digest = buwiz_mcp::manifest::unsigned()["apps"][0]["permissions"].clone();
+        let digest = ebirdesk_mcp::manifest::unsigned()["apps"][0]["permissions"].clone();
         // sha256 of the JCS bytes, as the Bot computes it
         jcs_sha256(&digest)
     };
