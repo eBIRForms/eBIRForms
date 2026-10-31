@@ -3610,7 +3610,7 @@ mod tests {
 
         let db = crate::db::Database {
             conn,
-            _owner_lock: None,
+            _open_lock: None,
         };
         let taxpayers = db.list_taxpayers().unwrap();
         let summary: Vec<_> = taxpayers

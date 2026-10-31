@@ -6,12 +6,13 @@ metadata scripts/release/file-meta.sh writes (r2-upload.sh runs it).
 
 Reads every <meta-dir>/**/*.json ({file, size, sha256, platform, arch,
 kind}) and writes <out-dir>/manifest.json and <out-dir>/SHA256SUMS. The
-manifest is the contract buwiz.com reads:
+manifest is the contract the eBIRForms website reads:
 
     {"version": "1.2.0", "published_at": "<RFC 3339 UTC>",
      "files": [{"platform", "arch", "kind", "file", "size", "sha256"}]}
 
-`file` is relative to releases/v<version>/. PUBLISHED_AT in the
+`file` is relative to the version's folder (ebirforms/releases/v<version>/,
+and the old releases/v<version>/ while both are written). PUBLISHED_AT in the
 environment overrides the timestamp (tests only).
 """
 

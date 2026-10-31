@@ -14,7 +14,7 @@ use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex};
 
 use bir_core::background_cron::SubmissionTransport;
-use bir_core::db::Database;
+use bir_core::db::{ChangeWatch, Database, WorkerLease};
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 use serde_json::{Map, Value};
@@ -545,19 +545,22 @@ pub struct BirApp {
     pub(crate) db: DatabaseHandle,
     path: PathBuf,
     module: HostModule,
+    /// Other processes' commits to the shared file ([`Self::changed_elsewhere`]).
+    watch: Mutex<ChangeWatch>,
 }
 
 impl BirApp {
     /// Open the app's live database (`BUWIZ_DATABASE_PATH`, else the platform
-    /// data dir), holding its owner lock. The key comes from `BUWIZ_DB_KEY` /
-    /// `BUWIZ_DB_KEY_FILE`, else the OS keychain.
+    /// data dir). Other processes may have it open too. The key comes from
+    /// `BUWIZ_DB_KEY` / `BUWIZ_DB_KEY_FILE`, else the OS keychain.
     pub fn open_live() -> AppResult<Self> {
         let (database, path, _recovered) = bir_core::db::open_live_database()?;
         Ok(Self::with_database(database, path))
     }
 
     /// Open (creating if missing) the database file at `path`, without the
-    /// live owner lock. Same key lookup as [`Self::open_live`].
+    /// live bootstrap (no cwd copy, no quarantine). Same key lookup as
+    /// [`Self::open_live`].
     pub fn open_at(path: impl AsRef<Path>) -> AppResult<Self> {
         let path = path.as_ref().to_path_buf();
         if let Some(parent) = path.parent() {
@@ -571,13 +574,30 @@ impl BirApp {
     }
 
     fn with_database(database: Database, path: PathBuf) -> Self {
+        let watch = Mutex::new(ChangeWatch::new(&database));
         let db = Arc::new(Mutex::new(database));
         database::install(db.clone(), path.clone());
         Self {
             db,
             path,
             module: crate::bir_module::module(),
+            watch,
         }
+    }
+
+    /// Whether another process committed to the database since the last
+    /// call: `PRAGMA data_version`, which this process's own writes (one
+    /// connection) do not move. Cheap; the UI polls it every second and
+    /// reloads its lists when it answers true. `false` while the
+    /// connection is busy with a call, so a poll never waits on one.
+    pub fn changed_elsewhere(&self) -> bool {
+        let Ok(db) = self.db.try_lock() else {
+            return false;
+        };
+        let Ok(mut watch) = self.watch.lock() else {
+            return false;
+        };
+        watch.poll(&db)
     }
 
     /// The database file this app opened.
@@ -587,18 +607,37 @@ impl BirApp {
 
     /// Start the submission worker on its own thread: queued returns go to
     /// `transport` (plaintext IAF XML), with retries, until the process ends.
+    ///
+    /// Several processes may share the database; only the one holding the
+    /// worker lease ([`WorkerLease`]) runs the queue and the cron. The first
+    /// to start takes it; the others follow, retrying every 30 s, and one
+    /// takes over when the holder quits or crashes. The holder also wakes
+    /// its queue when another process commits (a return queued there).
     pub fn start_queue_worker<T: SubmissionTransport + 'static>(
         &self,
         transport: Arc<T>,
     ) -> std::io::Result<std::thread::JoinHandle<()>> {
         let db = self.db.clone();
+        let path = self.path.clone();
         std::thread::Builder::new()
             .name("bir-submission-worker".into())
-            .spawn(move || match tokio::runtime::Runtime::new() {
-                Ok(runtime) => {
-                    runtime.block_on(bir_core::background_cron::start_cron_jobs(db, transport))
+            .spawn(move || {
+                let Some(lease) = WorkerLease::acquire_or_follow(
+                    &path,
+                    bir_core::db::WORKER_LEASE_RETRY,
+                    bir_core::background_cron::shutdown_requested,
+                ) else {
+                    return;
+                };
+                match tokio::runtime::Runtime::new() {
+                    Ok(runtime) => runtime.block_on(async {
+                        let watcher = tokio::spawn(wake_on_other_commits(db.clone()));
+                        bir_core::background_cron::start_cron_jobs(db, transport).await;
+                        watcher.abort();
+                    }),
+                    Err(error) => tracing::error!("submission worker not started: {error}"),
                 }
-                Err(error) => tracing::error!("submission worker not started: {error}"),
+                drop(lease);
             })
     }
 
@@ -996,4 +1035,23 @@ fn capitalised(word: &str) -> String {
             if up { c.to_uppercase().collect::<Vec<_>>() } else { c.to_lowercase().collect() }
         })
         .collect()
+}
+
+/// The lease holder's queue wakes when another process commits, so a return
+/// queued in a follower goes out now rather than on the next minute's tick.
+async fn wake_on_other_commits(db: DatabaseHandle) {
+    let mut watch = match db.lock() {
+        Ok(guard) => ChangeWatch::new(&guard),
+        Err(_) => return,
+    };
+    loop {
+        tokio::time::sleep(std::time::Duration::from_secs(5)).await;
+        let changed = match db.try_lock() {
+            Ok(guard) => watch.poll(&guard),
+            Err(_) => false,
+        };
+        if changed {
+            bir_core::background_cron::wake();
+        }
+    }
 }

@@ -841,7 +841,8 @@ fn import_archive(arguments: &HostArguments) -> HostResult {
 
 /// Swap the live connection for an in-memory placeholder so the file can be
 /// replaced, run `replace`, then reopen the file into the same handle (the
-/// submission worker shares it).
+/// submission worker shares it). Refused while another process has the
+/// file open: replacing it would pull the data out from under that app.
 fn replace_database_file(
     db_path: &std::path::Path,
     replace: impl FnOnce() -> Result<(), HostError>,
@@ -855,7 +856,10 @@ fn replace_database_file(
     if let Err(error) = live.close() {
         tracing::warn!("database close failed: {error}");
     }
-    let replaced = replace();
+    let replaced = match bir_core::db::with_sole_access(db_path, || Ok(replace())) {
+        Ok(replaced) => replaced,
+        Err(refused) => Err(db_error(refused)),
+    };
     *guard = Database::open(db_path).map_err(db_error)?;
     replaced
 }
@@ -886,7 +890,8 @@ fn import_archive_from(path: &std::path::Path) -> HostResult {
     if is_db {
         // Painted flow (import_export.rs): safety-backup the live file, then
         // extract the archive over it. Drop the cached connection first — it
-        // holds the owner lock and an open handle on the file being replaced.
+        // holds an open handle (and the shared open lock) on the file being
+        // replaced. Other apps sharing the file must be quit first.
         let db_path = crate::database::database_path();
         let timestamp = std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)
