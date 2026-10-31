@@ -387,7 +387,8 @@ pub fn prepare_app_database_file(path: &Path) {
 /// macOS: v0.1.0's data (`com.buwiz.oss`) is brought over before the live
 /// database at the default path opens ([`crate::id_migration`]). A failure
 /// stops the open, so no empty database is made in the new folder while the
-/// old one is still to be moved; the next launch tries again.
+/// old one is still to be moved; the next launch tries again. Runs under the
+/// maintenance lock, so two copies starting together move the data once.
 fn bring_over_old_app_data(path: &Path) -> Result<(), DbError> {
     #[cfg(all(target_os = "macos", not(test)))]
     {
@@ -397,9 +398,11 @@ fn bring_over_old_app_data(path: &Path) -> Result<(), DbError> {
         if path != default_database_path() {
             return Ok(());
         }
-        crate::id_migration::migrate_from_old_app_id()
-            .map(drop)
-            .map_err(|error| DbError::Other(error.to_string()))
+        with_maintenance_lock(path, || {
+            crate::id_migration::migrate_from_old_app_id()
+                .map(drop)
+                .map_err(|error| DbError::Other(error.to_string()))
+        })
     }
     #[cfg(not(all(target_os = "macos", not(test))))]
     {

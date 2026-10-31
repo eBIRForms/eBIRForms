@@ -544,7 +544,9 @@ mod tests {
         let old = v01_folder(support.path());
         let new = support.path().join(app_id::APP_ID);
         let keychain = v01_keychain();
-        let held = crate::db::try_acquire_live_owner_lock(&old.join(DB_FILE)).unwrap();
+        // v0.1.0 holds an exclusive flock on its owner lock while it runs.
+        let held = std::fs::File::create(old.join(LOCK_FILE)).unwrap();
+        held.try_lock().unwrap();
 
         let error = run(&old, &new, &keychain).unwrap_err();
         assert!(matches!(error, MigrationError::OldAppRunning(_)), "{error}");
