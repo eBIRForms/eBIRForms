@@ -519,16 +519,6 @@ pub struct Choice {
     pub detail: String,
 }
 
-/// A place in [`BirApp::places`]: a ZIP area and its RDO, or an RDO alone.
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct Place {
-    pub label: String,
-    pub city: String,
-    pub zip: String,
-    pub rdo_code: String,
-    pub rdo_name: String,
-}
-
 /// One return in the submission queue.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct QueuedReturn {
@@ -850,35 +840,6 @@ impl BirApp {
                 Choice { value: r.code, title, detail: String::new() }
             })
             .collect()
-    }
-
-    /// Every place a taxpayer registers in, for one search: each ZIP code
-    /// with its area, then each RDO on its own. A ZIP code names no RDO:
-    /// the tables share no key, and names mislead (San Juan, Batangas is
-    /// not San Juan City's RDO), so the filer picks both.
-    pub fn places() -> Vec<Place> {
-        let rdos = bir_core::reference::get_all_rdos();
-        let mut out: Vec<Place> = Vec::new();
-        for entry in bir_core::reference::get_all_zipcodes() {
-            let Some((zip, area)) = entry.split_once(" - ") else { continue };
-            out.push(Place {
-                label: format!("{area} · {zip}"),
-                city: address_area(area),
-                zip: zip.trim().to_owned(),
-                rdo_code: String::new(),
-                rdo_name: String::new(),
-            });
-        }
-        for r in rdos {
-            out.push(Place {
-                label: format!("RDO {} · {}", r.code, r.description),
-                city: r.description.split(',').next().unwrap_or("").trim().to_owned(),
-                zip: String::new(),
-                rdo_code: r.code,
-                rdo_name: r.description,
-            });
-        }
-        out
     }
 
     /// Write `value` into one fact of a branch (`email`, `rdo_code`,
