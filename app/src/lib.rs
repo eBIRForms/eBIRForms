@@ -35,8 +35,8 @@ pub mod bir_print_sink {
     pub use bir_app_core::bir_print::pdf_sink::PdfSink;
 }
 
-pub const APP_NAME: &str = "Buwiz";
-pub const APP_ID: &str = "com.buwiz.oss";
+pub const APP_NAME: &str = "eBIRForms";
+pub const APP_ID: &str = "com.buwiz.ebirforms";
 
 /// The app's UI set for nsh tooling (`nsh.json` `"rust"`).
 #[native_module("buwiz/native")]

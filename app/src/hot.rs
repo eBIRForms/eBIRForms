@@ -97,7 +97,7 @@ fn phone_page(route: Route) -> AnyElement {
     let st = store();
     let back = !is_tab(route);
     let title = match route {
-        Route::Home => "Buwiz",
+        Route::Home => "eBIRForms",
         Route::Library => "Forms",
         other => other.label(),
     };
@@ -487,12 +487,12 @@ fn sidebar(note: Signal<String>) -> impl IntoElement {
                 .flex_row()
                 .items_center()
                 .gap(px(10.0))
-                .child(avatar("Buwiz", "buwiz", 28.0))
+                .child(avatar("eBIRForms", "buwiz", 28.0))
                 .child(
                     view()
                         .flex_1()
                         .min_w(px(0.0))
-                        .child(text("Buwiz").text_size(px(13.0)).font_weight(FontWeight::MEDIUM).text_color(theme::FG))
+                        .child(text("eBIRForms").text_size(px(13.0)).font_weight(FontWeight::MEDIUM).text_color(theme::FG))
                         .child(text(move || live_label(&note.get())).text_size(px(12.0)).text_color(theme::FG3).truncate()),
                 ),
         )
