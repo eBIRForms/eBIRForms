@@ -26,6 +26,8 @@ bir-core = { path = "crates/bir-core" }
 bir-print = { path = "crates/bir-print" }
 bir-app-core = { path = "crates/bir-app-core" }
 bir-submit = { path = "crates/bir-submit" }
+# Mini App Protocol 2.0, the plugin half (ebirdesk-mcp), pinned by commit.
+buwiz-plugin = { git = "https://github.com/buwiz-app/buwiz-sdk", rev = "c435794d080b3b246b70d3908922b996e6e5f9aa" }
 
 # Third-party versions shared by the domain crates (carried over from the
 # source repo's workspace at `oss-cut-base`).

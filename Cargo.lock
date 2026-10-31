@@ -373,20 +373,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "72f5acc6cb2ba439de613abc23857ec3d78374d8ed5ac84e9d11336e87da8649"
 
 [[package]]
-name = "ebirdesk-mcp"
+name = "buwiz-plugin"
 version = "0.1.0"
+source = "git+https://github.com/buwiz-app/buwiz-sdk?rev=c435794d080b3b246b70d3908922b996e6e5f9aa#c435794d080b3b246b70d3908922b996e6e5f9aa"
 dependencies = [
- "base64 0.22.1",
- "bir-app-core",
- "chrono",
  "ed25519-dalek",
  "getrandom 0.3.4",
- "hex",
- "regex",
  "serde_json",
  "sha2 0.10.9",
- "tempfile",
- "tracing",
 ]
 
 [[package]]
@@ -788,6 +782,19 @@ name = "dyn-clone"
 version = "1.0.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d0881ea181b1df73ff77ffaaf9c7544ecc11e82fba9b5f27b262a3c73a332555"
+
+[[package]]
+name = "ebirdesk-mcp"
+version = "0.1.0"
+dependencies = [
+ "bir-app-core",
+ "buwiz-plugin",
+ "chrono",
+ "regex",
+ "serde_json",
+ "tempfile",
+ "tracing",
+]
 
 [[package]]
 name = "ed25519"

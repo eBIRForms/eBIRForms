@@ -1,84 +1,77 @@
-//! The v1 manifest (spec 5): identity, the `taxprofile` scope and the one
-//! app this plugin ships, Forms, with what it may reach.
+//! The manifest (Mini App Protocol 2.0): identity, the `taxprofile` scope
+//! and the one app this plugin ships, Forms, with what it may reach.
 //!
 //! [`unsigned`] builds it from this build's code and the app source it
-//! serves: the fingerprint is the SHA-256 of the exact bytes
-//! `resources/read` answers, so manifest and app cannot drift.
-//! `buwiz-mcp print-manifest` prints it for signing with the publisher key
-//! (outside this repo). The signed file is what this process serves, byte
-//! for byte, read on every request: `BUWIZ_MCP_MANIFEST`, else
-//! `dev.goldcoders.bir.manifest.json` next to the executable. Without one
+//! serves, so the fingerprint is the SHA-256 of the exact bytes
+//! `resources/read` answers and manifest and app cannot drift.
+//! `ebirdesk-mcp manifest` prints it as JCS text for the owner to sign with
+//! publisher key `gc-2026-01` (outside this repo; see the crate README).
+//! The signed file is what this process serves, byte for byte:
+//! [`MANIFEST_ENV`], else [`file_name`] next to the executable. Without one
 //! the unsigned manifest is served and the Bot refuses the plugin, which is
 //! the point: only a signed build runs in the Bot.
 //!
-//! The plugin id stays `dev.goldcoders.bir`, so a Bot install of the old
-//! `bir-mini-app` updates in place.
+//! The names are this plugin's own: `app.buwiz.ebirdesk`, short `ebirdesk`,
+//! so it clashes with neither the standalone eBIRForms mini app
+//! (`app.buwiz.ebirforms`) nor the old one (`dev.goldcoders.bir`).
 
 use std::path::PathBuf;
 
-use serde_json::{Map, Value, json};
-use sha2::{Digest, Sha256};
+use buwiz_plugin::manifest::{APP_MIME, APP_SDK, APP_URI_PREFIX, PROTOCOL, Served, fingerprint};
+use buwiz_plugin::{Tool, jcs};
+use serde_json::{Value, json};
 
-use crate::jcs;
 use crate::scope;
-use crate::server::{
-    PAYMENTS_LIST, PRINT_PREVIEW, RESOLVE, TICKET_ISSUE, TICKET_SUBJECT, app_tool_name,
-};
+use crate::tools::{PAYMENTS_LIST, PRINT_PREVIEW, RESOLVE, TICKET_ISSUE, TICKET_SUBJECT};
 
-pub(crate) const PROTOCOL: &str = "1.0.0";
-pub const PLUGIN_ID: &str = "dev.goldcoders.bir";
-pub(crate) const SHORT: &str = "bir";
-/// Past the last `bir-mini-app` manifest (2.6.3): the first one served by
-/// Buwiz.
-pub(crate) const VERSION: &str = "3.0.0";
-pub(crate) const MANIFEST_URI: &str = "rox://manifest";
-pub(crate) const MANIFEST_MIME: &str = "application/json";
-/// The signed manifest file this process serves.
-pub const MANIFEST_ENV: &str = "BUWIZ_MCP_MANIFEST";
-/// The signed manifest's file name next to the executable, when
-/// [`MANIFEST_ENV`] is not set.
-pub const MANIFEST_FILE: &str = "dev.goldcoders.bir.manifest.json";
+/// The plugin id.
+pub const ID: &str = "app.buwiz.ebirdesk";
+/// Every tool starts with `ebirdesk_`.
+pub const SHORT: &str = "ebirdesk";
+/// The manifest's version: the crate's, so a release raises one number.
+pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+/// The publisher key a release is signed with. Only the owner signs.
+pub const RELEASE_KEY_ID: &str = "gc-2026-01";
+/// The name the user sees.
+pub const TITLE: &str = "eBIRForms Desktop";
+/// The signed manifest this process serves.
+pub const MANIFEST_ENV: &str = "BUWIZ_EBIRDESK_MANIFEST";
 
-/// The Forms app: `rox-app://forms`, the TSX module the Bot renders.
-pub(crate) const FORMS_ID: &str = "forms";
+/// The Forms app: `buwiz-app://forms`, the TSX module the Bot renders.
+pub const FORMS_ID: &str = "forms";
 pub(crate) const FORMS_TITLE: &str = "BIR Forms";
 pub(crate) const FORMS_DESCRIPTION: &str = "Prepare, check and queue a taxpayer's BIR returns: pick a form and period, fill it, validate it with the official rules, save the draft, and queue it for filing.";
 pub(crate) const FORMS_SOURCE: &str = include_str!("../mini-apps/forms.tsx");
-pub(crate) const APP_URI_PREFIX: &str = "rox-app://";
-pub(crate) const APP_MIME: &str = "text/x-nsh-tsx";
 
 /// What the agent is told when a taxpayer token is in a message or attached.
-const TAXPROFILE_HINT: &str = "An `@bir:taxprofile:<ticket>` token names one taxpayer; the \
-ticket stands for its TIN, which you never see. Attached to this chat, Buwiz tools default to \
-that taxpayer: pass the ticket as `tin` to bir_drafts_list, bir_dues_list, bir_form_open and \
-bir_app_open (forms), unless the user names another taxpayer. bir_profiles_list lists the \
-taxpayers (as tickets).";
+const TAXPROFILE_HINT: &str = "An `@ebirdesk:taxprofile:<ticket>` token names one taxpayer; the \
+ticket stands for its TIN, which you never see. Attached to this chat, eBIRForms Desktop tools \
+default to that taxpayer: pass the ticket as `tin` to ebirdesk_drafts_list, ebirdesk_dues_list, \
+ebirdesk_form_open and ebirdesk_app_open (forms), unless the user names another taxpayer. \
+ebirdesk_profiles_list lists the taxpayers (as tickets).";
 
-/// `sha256:<hex>` of an app source as served.
-pub(crate) fn fingerprint(source: &str) -> String {
-    format!("sha256:{}", hex::encode(Sha256::digest(source.as_bytes())))
+/// The file name the signed manifest ships under, next to the executable.
+pub fn file_name() -> String {
+    buwiz_plugin::manifest::file_name(ID)
 }
 
 /// The tools the Forms app calls: the ticket helpers, the print preview,
-/// the (empty) payments list and one `bir_app_<function>` per function.
-pub(crate) fn forms_tools() -> Vec<String> {
-    let mut tools: Vec<String> = [TICKET_SUBJECT, TICKET_ISSUE, PRINT_PREVIEW, PAYMENTS_LIST]
-        .iter()
-        .map(|tool| tool.to_string())
-        .collect();
-    tools.extend(scope::FORMS.iter().map(|(function, ..)| app_tool_name(function)));
+/// the (empty) payments list and one `ebirdesk_app_<function>` per function.
+pub(crate) fn forms_tools() -> Vec<&'static str> {
+    let mut tools = vec![TICKET_SUBJECT, TICKET_ISSUE, PRINT_PREVIEW, PAYMENTS_LIST];
+    tools.extend(scope::FORMS.iter().map(|(name, ..)| *name));
     tools
 }
 
 /// The Forms app's manifest entry.
-pub(crate) fn forms_entry() -> Value {
+fn forms_entry() -> Value {
     json!({
         "id": FORMS_ID,
         "title": FORMS_TITLE,
         "description": FORMS_DESCRIPTION,
         "entry": format!("{APP_URI_PREFIX}{FORMS_ID}"),
         "mime": APP_MIME,
-        "sdk": "1",
+        "sdk": APP_SDK,
         "fingerprint": fingerprint(FORMS_SOURCE),
         "props": {
             "type": "object",
@@ -103,16 +96,16 @@ pub(crate) fn forms_entry() -> Value {
     })
 }
 
-/// The manifest without its signature.
-pub fn unsigned() -> Value {
+/// The manifest without its signature, under publisher key id `key_id`.
+pub fn unsigned(key_id: &str) -> Value {
     json!({
         "protocol": PROTOCOL,
-        "id": PLUGIN_ID,
+        "id": ID,
         "short": SHORT,
         "version": VERSION,
-        "title": "BIR",
-        "description": "Philippine BIR returns for the taxpayers kept in Buwiz on this computer.",
-        "publisher": { "id": "dev.goldcoders", "key_id": "gc-2026-01", "name": "Goldcoders" },
+        "title": TITLE,
+        "description": "Philippine BIR returns for the taxpayers kept in the eBIRForms desktop app on this computer.",
+        "publisher": { "id": "app.buwiz", "key_id": key_id, "name": "Buwiz" },
         "commands": [],
         "scopes": [
             { "name": "taxprofile", "description": "Taxpayer by TIN or name", "resolve": RESOLVE, "attach": true, "hint": TAXPROFILE_HINT },
@@ -122,86 +115,50 @@ pub fn unsigned() -> Value {
     })
 }
 
-/// Where the signed manifest is read from.
-#[derive(Debug, Clone)]
-pub enum ManifestSource {
-    /// A signed file (re-read on every request).
-    File(PathBuf),
-    /// No signed file: the unsigned manifest (the Bot refuses it).
-    Unsigned,
+/// A TSX app's source exactly as served.
+pub fn app_source(id: &str) -> Option<&'static str> {
+    (id == FORMS_ID).then_some(FORMS_SOURCE)
 }
 
-impl ManifestSource {
-    /// [`MANIFEST_ENV`], else [`MANIFEST_FILE`] next to the executable when
-    /// it exists, else unsigned.
-    pub fn from_env() -> Self {
-        if let Some(path) = std::env::var_os(MANIFEST_ENV).filter(|path| !path.is_empty()) {
-            return Self::File(PathBuf::from(path));
-        }
-        std::env::current_exe()
-            .ok()
-            .and_then(|exe| exe.parent().map(|dir| dir.join(MANIFEST_FILE)))
-            .filter(|path| path.is_file())
-            .map_or(Self::Unsigned, Self::File)
+/// The signed manifest to serve: [`MANIFEST_ENV`], else [`file_name`] next
+/// to the executable when it exists, else none (the unsigned one is served).
+pub fn signed_path() -> Option<PathBuf> {
+    if let Some(path) = std::env::var_os(MANIFEST_ENV).filter(|path| !path.is_empty()) {
+        return Some(PathBuf::from(path));
     }
-
-    /// The manifest text this process serves.
-    pub(crate) fn text(&self) -> Result<String, String> {
-        match self {
-            Self::File(path) => std::fs::read_to_string(path)
-                .map_err(|error| format!("the signed manifest {}: {error}", path.display())),
-            Self::Unsigned => Ok(serde_json::to_string_pretty(&unsigned()).expect("json value")),
-        }
-    }
-
-    /// The served manifest, parsed.
-    pub(crate) fn served(&self) -> Result<Value, String> {
-        let value: Value = serde_json::from_str(&self.text()?)
-            .map_err(|error| format!("the manifest is not JSON: {error}"))?;
-        if !value.is_object() {
-            return Err("the manifest is not a JSON object".into());
-        }
-        Ok(value)
-    }
-
-    /// `manifest_sha256` (5.2 step 7): SHA-256 of the served JCS bytes.
-    pub(crate) fn sha256(&self) -> Result<String, String> {
-        jcs::sha256_hex(&self.served()?)
-    }
-
-    /// One app of the served manifest.
-    pub(crate) fn app(&self, id: &str) -> Result<Option<Value>, String> {
-        Ok(self.served()?["apps"]
-            .as_array()
-            .and_then(|apps| apps.iter().find(|app| app["id"] == id))
-            .cloned())
-    }
-
-    /// Why the signed manifest is not this build's, if it is not: a changed
-    /// app, tool or text needs a new signature.
-    pub fn staleness(&self) -> Option<String> {
-        let Self::File(_) = self else { return None };
-        let served = match self.served() {
-            Ok(served) => served,
-            Err(error) => return Some(error),
-        };
-        if served.get("signature").is_none() {
-            return Some("the signed manifest has no signature".into());
-        }
-        let mut body = served;
-        if let Some(map) = body.as_object_mut() {
-            map.remove("signature");
-        }
-        (jcs::canonical(&body).ok() != jcs::canonical(&unsigned()).ok()).then(|| {
-            "the signed manifest is not this build's (its app or tools changed): print it with `buwiz-mcp print-manifest` and sign it again".to_string()
-        })
-    }
+    let exe = std::env::current_exe().ok()?;
+    let path = exe.parent()?.join(file_name());
+    path.is_file().then_some(path)
 }
 
-/// `sha256(JCS(permissions))`, an absent object being `{}` (4.4).
-pub(crate) fn permissions_digest(app: &Value) -> Result<String, String> {
-    let empty = Value::Object(Map::new());
-    jcs::sha256_hex(app.get("permissions").unwrap_or(&empty))
+/// What this process serves: the signed file, else the unsigned manifest
+/// under the release key.
+pub fn served() -> Served {
+    Served::new(signed_path(), &unsigned(RELEASE_KEY_ID))
+}
+
+/// Why the served manifest is not this build's, if it is not: a changed
+/// app, tool or text needs a new signature.
+pub fn staleness(served: &Served) -> Option<String> {
+    served.signed.as_ref()?;
+    let mut body = match served.value() {
+        Ok(value) => value,
+        Err(error) => return Some(error),
+    };
+    let Some(map) = body.as_object_mut() else {
+        return Some("the signed manifest is not a JSON object".into());
+    };
+    if map.remove("signature").is_none() {
+        return Some("the signed manifest has no signature".into());
+    }
+    (jcs::canonical(&body).ok() != Some(served.unsigned.clone())).then(|| {
+        "the signed manifest is not this build's (its app, tools or text changed): print it with `ebirdesk-mcp manifest` and have it signed again".to_string()
+    })
+}
+
+/// What the manifest gets wrong against `tools` (the SDK's quick check).
+pub fn problems(tools: &[Tool]) -> Vec<String> {
+    buwiz_plugin::manifest::problems(&unsigned(RELEASE_KEY_ID), tools)
 }
 
 #[cfg(test)]
@@ -209,35 +166,48 @@ mod tests {
     use super::*;
 
     #[test]
-    fn the_manifest_keeps_the_plugin_id_and_names_only_forms() {
-        let m = unsigned();
-        assert_eq!(m["id"], "dev.goldcoders.bir");
+    fn the_manifest_names_only_forms_and_its_own_tools() {
+        let m = unsigned(RELEASE_KEY_ID);
+        assert_eq!(m["id"], ID);
         assert_eq!(m["protocol"], PROTOCOL);
+        assert_eq!(m["publisher"]["key_id"], "gc-2026-01");
+        assert_eq!(
+            unsigned("ebirdesk-test-01")["publisher"]["key_id"],
+            "ebirdesk-test-01"
+        );
         let apps = m["apps"].as_array().unwrap();
         assert_eq!(apps.len(), 1);
         let forms = &apps[0];
-        assert_eq!(forms["entry"], "rox-app://forms");
+        assert_eq!(forms["entry"], "buwiz-app://forms");
         assert_eq!(forms["fingerprint"], fingerprint(FORMS_SOURCE));
         let tools = forms["permissions"]["tools"].as_array().unwrap();
-        assert!(!tools.is_empty() && tools.len() <= 64, "{} tools", tools.len());
-        assert!(tools.iter().all(|tool| tool.as_str().is_some_and(|t| t.starts_with("bir_"))));
+        assert!(
+            !tools.is_empty() && tools.len() <= 64,
+            "{} tools",
+            tools.len()
+        );
         // integers only, so it can be signed, and under 256 KiB
         assert!(jcs::canonical(&m).unwrap().len() < 256 * 1024);
-        assert!(ManifestSource::Unsigned.staleness().is_none());
+        assert!(m["scopes"][0]["hint"].as_str().unwrap().len() <= 1500);
+        assert!(staleness(&Served::new(None, &m)).is_none());
     }
 
     #[test]
     fn a_signed_file_that_is_not_this_build_is_stale() {
         let dir = tempfile::tempdir().unwrap();
-        let path = dir.path().join(MANIFEST_FILE);
-        let mut signed = unsigned();
-        signed["signature"] = json!({"alg": "ed25519", "sig": "x"});
+        let path = dir.path().join(file_name());
+        let mut signed = unsigned(RELEASE_KEY_ID);
+        signed["signature"] = json!({"alg": "ed25519", "key_id": RELEASE_KEY_ID, "value": "x"});
         std::fs::write(&path, signed.to_string()).unwrap();
-        let source = ManifestSource::File(path.clone());
-        assert!(source.staleness().is_none());
-        assert_eq!(source.sha256().unwrap(), jcs::sha256_hex(&signed).unwrap());
+        let served = Served::new(Some(path.clone()), &unsigned(RELEASE_KEY_ID));
+        assert!(staleness(&served).is_none());
+        assert_eq!(served.sha256().unwrap(), jcs::sha256_jcs(&signed).unwrap());
         signed["version"] = json!("0.0.1");
         std::fs::write(&path, signed.to_string()).unwrap();
-        assert!(source.staleness().is_some());
+        assert!(staleness(&served).is_some());
+        let mut unsigned_file = unsigned(RELEASE_KEY_ID);
+        unsigned_file.as_object_mut().unwrap().remove("signature");
+        std::fs::write(&path, unsigned_file.to_string()).unwrap();
+        assert!(staleness(&served).unwrap().contains("no signature"));
     }
 }

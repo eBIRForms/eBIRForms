@@ -1,29 +1,29 @@
-//! Tickets (spec 9.5, P1-P3): what the Bot stores, links and shows the
-//! model in place of a TIN.
+//! Tickets: what the Bot stores, links and shows the model in place of a
+//! TIN.
 //!
-//! A ticket is `tkt_` and 26 Crockford base32 characters, 130 random bits,
-//! with no subject data in it. The map from ticket to subject is one row of
-//! Buwiz's own (encrypted) settings, so it survives restarts and never
-//! leaves this process: the Bot learns a title only (`rox.ticket.resolve`),
-//! and an app learns the TIN of a ticket only by asking with that ticket
-//! (`bir_ticket_subject`). One subject has one ticket.
+//! A ticket is the SDK's ([`buwiz_plugin::new_ticket`]): `tkt_` and 26
+//! Crockford base32 characters, 130 random bits, with no subject data in
+//! it. The map from ticket to subject is one row of the desktop app's own
+//! (encrypted) settings, so it survives restarts and never leaves this
+//! process: the Bot learns a title only (`buwiz.ticket.resolve`), and an
+//! app learns the TIN of a ticket only by asking with that ticket
+//! (`ebirdesk_ticket_subject`). One subject has one ticket.
 //!
 //! Subjects are a taxpayer (its 9-digit root), one branch (14 digits) or
 //! one return (`<tin>/<FORM>-<period>`). Every subject's scope is its TIN
 //! root. Titles are read live, so a renamed taxpayer's chips follow and a
 //! deleted one's tickets no longer resolve.
-//!
-//! The row is bookkeeping of this protocol, not filing data, so it is
-//! written without the owner lock (see `owner.rs`).
 
 use bir_app_core::BirApp;
 use bir_app_core::bir_core::forms::taxform;
+use buwiz_plugin::new_ticket;
 use chrono::NaiveDate;
 use serde_json::{Map, Value};
 
+pub(crate) use buwiz_plugin::is_ticket;
+
 /// The settings row holding `{ticket: subject}`.
-const STORE_KEY: &str = "mcp.v1.tickets";
-const CROCKFORD: &[u8; 32] = b"0123456789ABCDEFGHJKMNPQRSTVWXYZ";
+const STORE_KEY: &str = "ebirdesk.tickets";
 /// The longest title the Bot shows for a token (9.2).
 const TITLE_MAX: usize = 60;
 
@@ -79,7 +79,11 @@ impl Subject {
     /// All 14 digits (a taxpayer is its head office, `00000`).
     pub(crate) fn full_tin(&self) -> String {
         let tin = self.tin();
-        if tin.len() == 9 { format!("{tin}00000") } else { tin }
+        if tin.len() == 9 {
+            format!("{tin}00000")
+        } else {
+            tin
+        }
     }
 
     /// The 9-digit root every call with this ticket is held to.
@@ -117,14 +121,19 @@ impl Subject {
             }
             Self::Return(value) => {
                 let named = taxform::parse(value, today);
-                format!("{} · {} · {}", named.form?, named.period?.label(), taxpayer.name)
+                format!(
+                    "{} · {} · {}",
+                    named.form?,
+                    named.period?.label(),
+                    taxpayer.name
+                )
             }
         };
         Some(clip(&title))
     }
 
     /// Kind and fields, for the app that holds the ticket
-    /// (`bir_ticket_subject`). Apps show the TIN to the user; the model
+    /// (`ebirdesk_ticket_subject`). Apps show the TIN to the user; the model
     /// never sees this.
     pub(crate) fn describe(&self, today: NaiveDate) -> Value {
         let mut out = Map::new();
@@ -163,28 +172,10 @@ fn clip(text: &str) -> String {
     format!("{}…", cut.trim_end())
 }
 
-/// Whether `text` has the ticket grammar `^tkt_[0-9A-HJKMNP-TV-Z]{26}$`.
-pub(crate) fn is_ticket(text: &str) -> bool {
-    text.strip_prefix("tkt_")
-        .is_some_and(|rest| rest.len() == 26 && rest.bytes().all(|byte| CROCKFORD.contains(&byte)))
-}
-
-/// A fresh ticket: 130 bits from the OS CSPRNG, 5 bits per character.
-fn new_ticket() -> Result<String, String> {
-    let mut bytes = [0u8; 17];
-    getrandom::fill(&mut bytes).map_err(|error| format!("no randomness for a ticket: {error}"))?;
-    let mut out = String::from("tkt_");
-    for i in 0..26 {
-        let bit = i * 5;
-        let pair = (u16::from(bytes[bit / 8]) << 8) | u16::from(bytes[bit / 8 + 1]);
-        let symbol = (pair >> (11 - bit % 8)) & 31;
-        out.push(char::from(CROCKFORD[usize::from(symbol)]));
-    }
-    Ok(out)
-}
-
 fn load(app: &BirApp) -> Result<Map<String, Value>, String> {
-    let stored = app.get_setting(STORE_KEY).map_err(|error| error.to_string())?;
+    let stored = app
+        .get_setting(STORE_KEY)
+        .map_err(|error| error.to_string())?;
     Ok(stored
         .and_then(|text| serde_json::from_str::<Value>(&text).ok())
         .and_then(|value| value.as_object().cloned())
@@ -200,10 +191,13 @@ fn save(app: &BirApp, map: &Map<String, Value>) -> Result<(), String> {
 pub(crate) fn issue(app: &BirApp, subject: &Subject) -> Result<String, String> {
     let mut map = load(app)?;
     let encoded = subject.encode();
-    if let Some((ticket, _)) = map.iter().find(|(_, stored)| stored.as_str() == Some(&encoded)) {
+    if let Some((ticket, _)) = map
+        .iter()
+        .find(|(_, stored)| stored.as_str() == Some(&encoded))
+    {
         return Ok(ticket.clone());
     }
-    let ticket = new_ticket()?;
+    let ticket = new_ticket();
     map.insert(ticket.clone(), Value::String(encoded));
     save(app, &map)?;
     Ok(ticket)
@@ -211,7 +205,10 @@ pub(crate) fn issue(app: &BirApp, subject: &Subject) -> Result<String, String> {
 
 /// The tickets of many subjects at once (one read, at most one write),
 /// `None` where there is no subject.
-pub(crate) fn issue_all(app: &BirApp, subjects: &[Option<Subject>]) -> Result<Vec<Option<String>>, String> {
+pub(crate) fn issue_all(
+    app: &BirApp,
+    subjects: &[Option<Subject>],
+) -> Result<Vec<Option<String>>, String> {
     let mut map = load(app)?;
     let mut by_subject: std::collections::HashMap<String, String> = map
         .iter()
@@ -228,7 +225,7 @@ pub(crate) fn issue_all(app: &BirApp, subjects: &[Option<Subject>]) -> Result<Ve
         let ticket = match by_subject.get(&encoded) {
             Some(ticket) => ticket.clone(),
             None => {
-                let ticket = new_ticket()?;
+                let ticket = new_ticket();
                 map.insert(ticket.clone(), Value::String(encoded.clone()));
                 by_subject.insert(encoded, ticket.clone());
                 changed = true;
@@ -256,10 +253,11 @@ pub(crate) fn subject(app: &BirApp, ticket: &str) -> Result<Option<Subject>, Str
 
 /// A ticket this plugin issued, else why not.
 pub(crate) fn subject_of(app: &BirApp, ticket: &str) -> Result<Subject, String> {
-    subject(app, ticket)?.ok_or_else(|| "the ticket is not one Buwiz issued, or it was revoked".to_string())
+    subject(app, ticket)?
+        .ok_or_else(|| "the ticket is not one Buwiz issued, or it was revoked".to_string())
 }
 
-/// `rox.uninstall`: every ticket forgotten.
+/// `buwiz.uninstall`: every ticket forgotten.
 pub(crate) fn forget_all(app: &BirApp) -> Result<(), String> {
     save(app, &Map::new())
 }
@@ -270,7 +268,7 @@ mod tests {
 
     #[test]
     fn tickets_have_the_grammar_and_subjects_round_trip() {
-        let ticket = new_ticket().unwrap();
+        let ticket = new_ticket();
         assert!(is_ticket(&ticket), "{ticket}");
         assert!(!is_ticket("tkt_short") && !is_ticket(&ticket.to_lowercase()));
         for subject in [
@@ -280,8 +278,17 @@ mod tests {
         ] {
             assert_eq!(Subject::decode(&subject.encode()), Some(subject));
         }
-        assert_eq!(Subject::of_tin("000-123-453-00000"), Some(Subject::Taxpayer("000123453".into())));
-        assert_eq!(Subject::of_tin("00012345300002"), Some(Subject::Branch("00012345300002".into())));
-        assert_eq!(Subject::Taxpayer("000123453".into()).full_tin(), "00012345300000");
+        assert_eq!(
+            Subject::of_tin("000-123-453-00000"),
+            Some(Subject::Taxpayer("000123453".into()))
+        );
+        assert_eq!(
+            Subject::of_tin("00012345300002"),
+            Some(Subject::Branch("00012345300002".into()))
+        );
+        assert_eq!(
+            Subject::Taxpayer("000123453".into()).full_tin(),
+            "00012345300000"
+        );
     }
 }

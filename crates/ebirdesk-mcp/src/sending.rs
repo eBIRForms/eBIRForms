@@ -1,75 +1,50 @@
-//! Sharing the database with the Buwiz app.
+//! Sending what this process queued, beside the desktop app.
 //!
-//! The app holds the live database's owner lock (`bir_data.db.owner.lock`)
-//! for as long as it runs, and refuses to open when another process holds
-//! it. This process therefore never keeps the lock: it opens the database
-//! without it, and reads freely. A call that changes filing data (save, the
-//! queue, a send grant) takes the lock for that call only and lets it go
-//! after, so:
+//! The database is shared (`bir_core::db::shared`): the desktop app and
+//! this process both open it, read and write at once, and see each other's
+//! commits. Only one process runs the send queue, the one holding the
+//! worker lease. This process never starts the queue worker; after it
+//! queues a return it asks for the lease once ([`BirApp::try_queue_lease`]):
 //!
-//! - Buwiz open: writes are refused with a sentence that says to make the
-//!   change in Buwiz (or quit it); reads, previews and fills that save
-//!   nothing still work.
-//! - Buwiz closed: writes go through. Buwiz opening during one waits for
-//!   nothing; it only fails if it starts in the instant the call runs.
+//! - another app holds it (the desktop app is open): that app's worker
+//!   wakes on this process's commit and sends the return;
+//! - nobody holds it: this process runs the queue once through bir-submit's
+//!   relay, the same transport the worker uses, on a thread that keeps the
+//!   lease until the run ends, then lets it go.
 //!
-//! This process's own bookkeeping (its ticket table, a one-time note marked
-//! seen) is written without the lock: the app never reads it.
-//!
-//! Sending: a return queued here goes out through bir-submit's relay, the
-//! same transport the app's queue worker uses, on a thread that keeps the
-//! lock until the queue has run once. There is no queue worker in this
-//! process, so a return that fails to go out is retried by the app's worker
-//! (or the next queue here), never by a timer here.
+//! A return that fails to go out is retried by whichever app runs the
+//! worker next, never by a timer here.
 
-use std::fs::File;
-use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use std::thread::JoinHandle;
-use std::time::Duration;
 
 use bir_app_core::BirApp;
-use bir_app_core::bir_core::db::{DbError, try_acquire_live_owner_lock};
 use bir_app_core::bir_submit::SignInStatus;
 
-/// What a refused write says while the app is open.
-pub(crate) const APP_OPEN: &str = "Buwiz is open on this computer, so it owns the taxpayer database: make this change in Buwiz, or quit Buwiz and ask again.";
+/// What happened to the queue after a return was queued.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub(crate) enum Sending {
+    /// This process is running the queue now, through the relay.
+    Now,
+    /// Another app runs the queue; its worker sends the return.
+    ByOtherApp,
+    /// This computer is not signed in: the return waits in the queue.
+    SignedOut,
+}
 
-/// How long a write waits for the lock: another `buwiz-mcp` (the Bot
-/// respawns this process back to back) or a send in progress may let go of
-/// it in a moment.
-const WAIT: Duration = Duration::from_millis(1000);
-const STEP: Duration = Duration::from_millis(100);
-
-/// The owner lock, held while this value lives.
-pub(crate) struct OwnerLock(#[allow(dead_code)] File);
-
-/// Take the owner lock of the database at `path`, waiting up to a second.
-pub(crate) fn acquire(path: &Path) -> Result<OwnerLock, String> {
-    let mut waited = Duration::ZERO;
-    loop {
-        match try_acquire_live_owner_lock(path) {
-            Ok(file) => return Ok(OwnerLock(file)),
-            Err(DbError::LiveDatabaseInUse(_)) if waited < WAIT => {
-                std::thread::sleep(STEP);
-                waited += STEP;
-            }
-            Err(DbError::LiveDatabaseInUse(_)) => return Err(APP_OPEN.to_string()),
-            Err(error) => return Err(format!("the database lock: {error}")),
+impl Sending {
+    pub(crate) fn as_str(self) -> &'static str {
+        match self {
+            Self::Now => "now",
+            Self::ByOtherApp => "by_other_app",
+            Self::SignedOut => "signed_out",
         }
     }
 }
 
-/// Whether a write would get the lock now (for `bir_status`); the lock is
-/// let go again at once.
-pub(crate) fn writable(path: &Path) -> bool {
-    try_acquire_live_owner_lock(path).is_ok()
-}
-
 /// Whether this computer is signed in to Buwiz for sending (`Some`, with
-/// the account's email when known).
-/// With `BUWIZ_NO_KEYCHAIN` set the keychain, where the sign-in lives, is
-/// not read.
+/// the account's email when known). With `BUWIZ_NO_KEYCHAIN` set the
+/// keychain, where the sign-in lives, is not read.
 pub(crate) fn sign_in(app: &BirApp) -> Result<Option<Option<String>>, String> {
     if bir_app_core::bir_core::keychain_disabled() {
         return Err("BUWIZ_NO_KEYCHAIN is set, so the sign-in in the keychain is not read".into());
@@ -89,28 +64,30 @@ pub(crate) struct Sends {
 }
 
 impl Sends {
-    /// Run the queue once through the relay on its own thread, holding
-    /// `lock` until it is done. `Ok(false)`: not signed in, nothing sent
-    /// (the return stays queued for the app's worker).
-    pub(crate) fn start(&mut self, app: &Arc<BirApp>, lock: OwnerLock) -> Result<bool, String> {
+    /// After a return was queued: run the queue once through the relay
+    /// when this computer is signed in and no other app runs it.
+    pub(crate) fn start(&mut self, app: &Arc<BirApp>) -> Result<Sending, String> {
         self.running.retain(|send| !send.is_finished());
         if bir_app_core::bir_core::keychain_disabled() {
-            return Ok(false);
+            return Ok(Sending::SignedOut);
         }
         let submission = app.submission().map_err(|error| error.to_string())?;
         if !matches!(submission.sign_in_status(), SignInStatus::SignedIn { .. }) {
-            return Ok(false);
+            return Ok(Sending::SignedOut);
         }
+        let Some(lease) = app.try_queue_lease().map_err(|error| error.to_string())? else {
+            return Ok(Sending::ByOtherApp);
+        };
         let app = app.clone();
         let send = std::thread::Builder::new()
-            .name("buwiz-mcp-send".into())
+            .name("ebirdesk-mcp-send".into())
             .spawn(move || {
-                app.send_queue_once(&submission);
-                drop(lock);
+                app.send_queue_once(&lease, &submission);
+                drop(lease);
             })
             .map_err(|error| format!("the send did not start: {error}"))?;
         self.running.push(send);
-        Ok(true)
+        Ok(Sending::Now)
     }
 
     /// Wait for every send to end.
@@ -119,10 +96,4 @@ impl Sends {
             let _ = send.join();
         }
     }
-}
-
-/// The live database's path, as the app opens it (`BUWIZ_DATABASE_PATH`,
-/// else the platform data dir `com.buwiz.oss`).
-pub(crate) fn database_path() -> PathBuf {
-    bir_app_core::bir_core::db::app_database_path()
 }

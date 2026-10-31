@@ -1,49 +1,63 @@
-//! `buwiz-mcp`: see the library docs.
+//! `ebirdesk-mcp`: see the library docs.
+//!
+//! `mcp` is served here so the signed manifest comes from this plugin's own
+//! variable (`BUWIZ_EBIRDESK_MANIFEST`); `manifest`, `app-source` and
+//! `--version` are the SDK's command line.
 
 use std::process::ExitCode;
 
-const USAGE: &str = "buwiz-mcp: Buwiz without a window, as the Forms mini app's MCP server for Buwiz Bot.
+use buwiz_plugin::{Plugin, Server, serve_stdio};
+use ebirdesk_mcp::{Ebirdesk, NAME, manifest};
 
-Usage: buwiz-mcp mcp              speak MCP (JSON-RPC 2.0, one message per line) on stdin/stdout,
-                                  as the Mini App Protocol v1 plugin dev.goldcoders.bir
-       buwiz-mcp print-manifest   print this build's unsigned v1 manifest, for signing
-       buwiz-mcp --version
-       buwiz-mcp --help
+fn usage() -> String {
+    format!(
+        "{NAME}: the desktop app without a window, as the eBIRForms Desktop mini app ({id}) for the Buwiz Bot.
 
-It works on the Buwiz app's taxpayer database. While the Buwiz app is open it
-owns that database: reading works here, saving and queueing are refused.
+Usage: {NAME} mcp                       speak MCP (JSON-RPC 2.0, one message per line) on stdin/stdout,
+                                     Mini App Protocol 2.0 (what the Bot spawns)
+       {NAME} manifest [--key-id <id>]  print the unsigned manifest as JCS text, for signing, under
+                                     publisher key id {key} unless a test id is named
+       {NAME} app-source <id>           print a TSX app's source exactly as served
+       {NAME} --version | --help
+
+It works on the eBIRForms desktop app's taxpayer database, and shares it with the
+desktop app while both run.
 
 Environment:
-  BUWIZ_MCP_MANIFEST   the signed v1 manifest to serve at rox://manifest (default:
-                       dev.goldcoders.bir.manifest.json next to this executable; without
-                       either the unsigned one is served, and the Bot refuses the plugin)
-  BUWIZ_DATABASE_PATH  the database file (default: the Buwiz app's data directory)
+  {env}  the signed manifest to serve (default: {file} next to
+                           this executable; without either the unsigned one is served, and the
+                           Bot refuses the plugin)
+  BUWIZ_DATABASE_PATH      the database file (default: the desktop app's data directory)
   BUWIZ_DB_KEY, BUWIZ_DB_KEY_FILE
-                       the database key (default: the Buwiz app's keychain entry)
-  BUWIZ_API_URL        the Buwiz server sending goes through (default: the app's setting)";
+                           the database key (default: the desktop app's keychain entry)
+  BUWIZ_API_URL            the Buwiz server sending goes through (default: the app's setting)
+",
+        id = Ebirdesk::ID,
+        key = Ebirdesk::RELEASE_KEY_ID,
+        env = manifest::MANIFEST_ENV,
+        file = manifest::file_name(),
+    )
+}
 
 fn main() -> ExitCode {
     let args: Vec<String> = std::env::args().skip(1).collect();
-    match args.iter().map(String::as_str).collect::<Vec<_>>().as_slice() {
+    match args
+        .iter()
+        .map(String::as_str)
+        .collect::<Vec<_>>()
+        .as_slice()
+    {
         ["mcp"] => run(),
-        ["print-manifest"] => {
-            println!("{}", serde_json::to_string_pretty(&ebirdesk_mcp::manifest::unsigned()).expect("json value"));
-            ExitCode::SUCCESS
-        }
-        ["--version" | "-V"] => {
-            println!("buwiz-mcp {}", env!("CARGO_PKG_VERSION"));
-            ExitCode::SUCCESS
+        ["manifest"] | ["manifest", "--key-id", _] | ["app-source", _] | ["--version" | "-V"] => {
+            // the SDK's command line; it opens nothing for these
+            buwiz_plugin::cli::main::<Ebirdesk>(|| Err("not served here".into()))
         }
         ["--help" | "-h"] => {
-            println!("{USAGE}");
+            print!("{}", usage());
             ExitCode::SUCCESS
         }
-        [] => {
-            eprintln!("{USAGE}");
-            ExitCode::from(2)
-        }
-        [other, ..] => {
-            eprintln!("unknown argument `{other}`\n\n{USAGE}");
+        _ => {
+            eprint!("{}", usage());
             ExitCode::from(2)
         }
     }
@@ -57,20 +71,22 @@ fn run() -> ExitCode {
     let _ = logging::install_stderr(logging::InstallOptions {
         developer_mode,
         default_filter: if developer_mode {
-            "buwiz_mcp=debug,bir_app_core=debug,bir_core=info,bir_submit=debug,panic=error"
+            "ebirdesk_mcp=debug,bir_app_core=debug,bir_core=info,bir_submit=debug,panic=error"
         } else {
-            "buwiz_mcp=info,bir_app_core=info,bir_core=info,bir_submit=info,panic=error"
+            "ebirdesk_mcp=info,bir_app_core=info,bir_core=info,bir_submit=info,panic=error"
         },
     });
-    let manifest = ebirdesk_mcp::ManifestSource::from_env();
-    if let Some(problem) = manifest.staleness() {
+    let served = manifest::served();
+    if let Some(problem) = manifest::staleness(&served) {
         tracing::warn!("{problem}");
     }
-    let mut server = ebirdesk_mcp::Server::open_live(manifest);
-    match ebirdesk_mcp::serve_stdio(&mut server) {
+    let mut server = Server::with_manifest(Ebirdesk::open_live(), served);
+    let outcome = serve_stdio(&mut server);
+    server.plugin_mut().finish();
+    match outcome {
         Ok(()) => ExitCode::SUCCESS,
         Err(error) => {
-            eprintln!("buwiz-mcp: {error}");
+            eprintln!("{NAME}: {error}");
             ExitCode::from(1)
         }
     }

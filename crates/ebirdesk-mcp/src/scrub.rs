@@ -12,8 +12,8 @@ use chrono::NaiveDate;
 use regex::Regex;
 use serde_json::{Map, Value};
 
-use crate::protocol::Origin;
 use crate::tickets::{self, Subject};
+use buwiz_plugin::Origin;
 
 /// The keys whose string value is a TIN in the answers.
 const TIN_KEYS: [&str; 5] = ["tin", "tin_root", "tin_display", "branch_tin", "root"];
@@ -26,7 +26,12 @@ fn dashed_tin_re() -> &'static Regex {
 }
 
 /// Turn the tickets in a tool's arguments into what the tool reads.
-pub(crate) fn expand(app: &BirApp, tool: &str, arguments: &mut Map<String, Value>, origin: Origin) -> Result<(), String> {
+pub(crate) fn expand(
+    app: &BirApp,
+    tool: &str,
+    arguments: &mut Map<String, Value>,
+    origin: Origin,
+) -> Result<(), String> {
     let lookup = |ticket: &str| -> Result<Subject, String> {
         tickets::subject(app, ticket)?
             .ok_or_else(|| format!("{tool}: the ticket is not one Buwiz issued, or it was revoked"))
@@ -40,29 +45,35 @@ pub(crate) fn expand(app: &BirApp, tool: &str, arguments: &mut Map<String, Value
                 arguments.insert("tin".into(), Value::String(subject.full_tin()));
             }
             Some(_) if origin == Origin::App => {
-                return Err(format!("{tool}: `tin` must be a ticket when an app calls (an app never names a TIN)"));
+                return Err(format!(
+                    "{tool}: `tin` must be a ticket when an app calls (an app never names a TIN)"
+                ));
             }
             _ => {}
         }
     }
     for key in RETURN_ARGS {
-        let Some(text) = arguments.get(key).and_then(Value::as_str).map(str::to_string) else {
+        let Some(text) = arguments
+            .get(key)
+            .and_then(Value::as_str)
+            .map(str::to_string)
+        else {
             continue;
         };
         if !tickets::is_ticket(&text) {
             continue;
         }
         let subject = lookup(&text)?;
-        let value = subject
-            .return_value()
-            .ok_or_else(|| format!("{tool}: `{key}` holds a taxpayer's ticket; pass it as `tin`"))?;
+        let value = subject.return_value().ok_or_else(|| {
+            format!("{tool}: `{key}` holds a taxpayer's ticket; pass it as `tin`")
+        })?;
         arguments.insert(key.into(), Value::String(value.to_string()));
     }
     // A return's ticket passed as `tin` names its form and period too.
     if let Some(value) = implied_return {
         let key = match tool {
-            crate::server::FORM_OPEN => Some("code"),
-            crate::server::APP_OPEN | crate::server::DRAFTS_LIST => Some("form"),
+            crate::tools::FORM_OPEN => Some("code"),
+            crate::tools::APP_OPEN | crate::tools::DRAFTS_LIST => Some("form"),
             _ => None,
         };
         if let Some(key) = key
@@ -83,7 +94,11 @@ pub(crate) struct Scrubber<'a> {
 
 impl<'a> Scrubber<'a> {
     pub(crate) fn new(app: &'a BirApp, today: NaiveDate) -> Self {
-        Self { app, today, issued: HashMap::new() }
+        Self {
+            app,
+            today,
+            issued: HashMap::new(),
+        }
     }
 
     /// The ticket of a saved subject.
@@ -104,7 +119,7 @@ impl<'a> Scrubber<'a> {
         if let Some(structured) = result.get_mut("structuredContent") {
             self.value(structured);
         }
-        if let Some(props) = result.pointer_mut("/_meta/rox~1open/props") {
+        if let Some(props) = result.pointer_mut("/_meta/buwiz~1open/props") {
             self.value(props);
         }
         if let Some(contents) = result.get_mut("content").and_then(Value::as_array_mut) {
@@ -135,7 +150,9 @@ impl<'a> Scrubber<'a> {
                             continue;
                         }
                         if let Some(subject) = Subject::of_tin(text) {
-                            *item = Value::String(self.ticket(&subject).unwrap_or_else(|| "[TIN]".into()));
+                            *item = Value::String(
+                                self.ticket(&subject).unwrap_or_else(|| "[TIN]".into()),
+                            );
                             continue;
                         }
                     }
