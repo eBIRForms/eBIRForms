@@ -1,8 +1,11 @@
 name: promote
 
 # Points the bucket's latest.json at a published version: copies
-# releases/v{VERSION}/manifest.json to latest.json with a short cache
-# (public, max-age=60). Manual only (or release.yml's manual run with
+# ebirforms/releases/v{VERSION}/manifest.json to ebirforms/latest.json and,
+# until v0.1.0's Linux installers have aged out, to the old root latest.json,
+# with a short cache (public, max-age=60). A version published before the
+# ebirforms/ folder existed (v0.1.0) is first copied there from the old
+# releases/v{VERSION}/. Manual only (or release.yml's manual run with
 # `promote` checked); a tag push never runs it. Run it again with an older
 # version to roll back.
 
@@ -50,11 +53,20 @@ jobs:
             echo "version must be exactly MAJOR.MINOR.PATCH: $VERSION" >&2
             exit 1
           fi
-          prefix="releases/v$VERSION"
-          if ! aws s3api head-object --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
-              --key "$prefix/manifest.json" >/dev/null; then
-            echo "s3://$R2_BUCKET/$prefix/manifest.json does not exist; publish $VERSION first" >&2
-            exit 1
+          prefix="ebirforms/releases/v$VERSION"
+          old="releases/v$VERSION"
+          has() { aws s3api head-object --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" --key "$1" >/dev/null 2>&1; }
+          if ! has "$prefix/manifest.json"; then
+            if ! has "$old/manifest.json"; then
+              echo "s3://$R2_BUCKET/$prefix/manifest.json does not exist; publish $VERSION first" >&2
+              exit 1
+            fi
+            # Published before the ebirforms/ folder: copy it there, server
+            # side, keeping each object's type and cache headers. The checks
+            # below then read the copy.
+            echo "copying s3://$R2_BUCKET/$old/ to $prefix/"
+            aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress --recursive \
+              "s3://$R2_BUCKET/$old/" "s3://$R2_BUCKET/$prefix/"
           fi
           aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress \
             "s3://$R2_BUCKET/$prefix/manifest.json" manifest.json
@@ -78,16 +90,18 @@ jobs:
               exit 1
             fi
           done < files.txt
-          current="$(aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress "s3://$R2_BUCKET/latest.json" - 2>/dev/null \
+          current="$(aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress "s3://$R2_BUCKET/ebirforms/latest.json" - 2>/dev/null \
             | python3 -c 'import json,sys; print(json.load(sys.stdin).get("version"))' 2>/dev/null || echo none)"
-          echo "latest.json now: $current; promoting $VERSION"
+          echo "ebirforms/latest.json now: $current; promoting $VERSION"
 
       - name: Write latest.json
         shell: bash
         run: |
           set -euo pipefail
-          aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress \
-            --cache-control "public, max-age=60" \
-            --content-type "application/json" \
-            manifest.json "s3://$R2_BUCKET/latest.json"
-          echo "### latest.json -> $VERSION" >> "$GITHUB_STEP_SUMMARY"
+          for key in ebirforms/latest.json latest.json; do
+            aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress \
+              --cache-control "public, max-age=60" \
+              --content-type "application/json" \
+              manifest.json "s3://$R2_BUCKET/$key"
+          done
+          echo "### ebirforms/latest.json and latest.json -> $VERSION" >> "$GITHUB_STEP_SUMMARY"
