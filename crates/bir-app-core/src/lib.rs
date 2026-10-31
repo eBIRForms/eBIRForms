@@ -22,7 +22,7 @@ pub use app::*;
 pub use filer::*;
 pub use sending::*;
 pub use schema::*;
-pub use submit::{SERVER_URL_SETTING, block_on, set_sending_paused};
+pub use submit::{QueueLease, SERVER_URL_SETTING, block_on, set_sending_paused};
 pub use {bir_core, bir_print, bir_submit};
 
 /// Every file this crate packs (build.rs) inflates to its source bytes.
