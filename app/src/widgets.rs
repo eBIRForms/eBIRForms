@@ -368,3 +368,30 @@ pub(crate) fn due_chip(days: i64) -> Option<View> {
 pub(crate) fn peso(n: f64) -> String {
     format!("₱{}", bir_app_core::display::format_amount(&format!("{:.2}", n.abs()), false))
 }
+
+/// A check box with its label, the whole row pressable: 16 px box, accent
+/// fill and a check while on. `on` is read tracked; `toggle` gets the new
+/// state.
+pub(crate) fn tick_row(label: impl IntoReactive<SharedString>, size: f32, on: impl Fn() -> bool + Clone + 'static, toggle: impl Fn(bool) + 'static) -> View {
+    let (on1, on2, on3, on4) = (on.clone(), on.clone(), on.clone(), on);
+    view()
+        .flex_row()
+        .items_center()
+        .gap(px(7.0))
+        .min_h(px(24.0))
+        .cursor_pointer()
+        .on_press(move || toggle(!on4()))
+        .child(
+            view()
+                .size(px(16.0))
+                .rounded(px(4.0))
+                .items_center()
+                .justify_center()
+                .flex_shrink(0.0)
+                .border_1()
+                .border_color(move || if on1() { theme::ACCENT } else { theme::BORDER_STRONG })
+                .bg(move || if on2() { theme::ACCENT } else { theme::SURFACE })
+                .child(text(move || if on3() { "✓" } else { "" }).text_size(px(11.0)).font_weight(FontWeight::BOLD).text_color(theme::PRIMARY_FG)),
+        )
+        .child(text(label).text_size(px(size)).text_color(theme::FG))
+}

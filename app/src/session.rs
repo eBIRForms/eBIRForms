@@ -180,6 +180,20 @@ pub(crate) struct FormSession {
     /// Why a box stays blank or what it waits for.
     pub reasons: Signal<BTreeMap<String, String>>,
     pub profile: Signal<BTreeSet<String>>,
+    /// Every profile box, filled by the profile or left blank: an edit to
+    /// one is sent `unlocked`, so it stays on this return as an override.
+    pub profile_boxes: Signal<BTreeSet<String>>,
+    /// What the profile alone shows in each profile box.
+    pub profile_values: Signal<BTreeMap<String, String>>,
+    /// The profile fact a profile box shows, for "Save to profile too".
+    pub profile_facts: Signal<BTreeMap<String, String>>,
+    /// Boxes whose "Save to profile too" is ticked: each written edit goes
+    /// to the profile as well.
+    pub save_to_profile: Signal<BTreeSet<String>>,
+    /// The open's profile notes: boxes that followed a profile change, and
+    /// (a draft with no baseline) boxes that differ from the profile now.
+    pub profile_updates: Signal<Vec<String>>,
+    pub profile_differs: Signal<Vec<String>>,
     pub pools: Signal<BTreeMap<String, String>>,
     pub penalties: Signal<Vec<PenaltyParty>>,
     /// Validation messages, in form order, each on its item.
@@ -227,8 +241,9 @@ pub(crate) struct FormSession {
     pub schedule_page: Signal<Option<ItemId>>,
     pub added_rows: Signal<BTreeMap<ItemId, usize>>,
     pub explain: Signal<Option<ItemId>>,
-    /// Boxes opened with Edit on this return (penalties, profile boxes):
-    /// sent to every fill as `unlocked`; their edits stay on this return.
+    /// Boxes opened for typing on this return (Edit penalties, Edit on this
+    /// return, a profile box typed into or changed on it before): sent to
+    /// every fill as `unlocked`; a profile box's edit stays on this return.
     pub unlocked: Signal<BTreeSet<String>>,
     /// A Form library sample is open (nothing saves).
     pub sample: Signal<bool>,
@@ -261,6 +276,12 @@ impl FormSession {
             off: signal(BTreeMap::new()),
             reasons: signal(BTreeMap::new()),
             profile: signal(BTreeSet::new()),
+            profile_boxes: signal(BTreeSet::new()),
+            profile_values: signal(BTreeMap::new()),
+            profile_facts: signal(BTreeMap::new()),
+            save_to_profile: signal(BTreeSet::new()),
+            profile_updates: signal(Vec::new()),
+            profile_differs: signal(Vec::new()),
             pools: signal(BTreeMap::new()),
             penalties: signal(Vec::new()),
             messages: signal(Vec::new()),
@@ -499,7 +520,9 @@ impl FormSession {
             self.added_rows.set(BTreeMap::new());
             self.explain.set(None);
             self.payee.set(None);
-            self.unlocked.set(BTreeSet::new());
+            // A profile box changed on this return stays open (and shown).
+            self.unlocked.set(opened.profile_edited.iter().cloned().collect());
+            self.save_to_profile.set(BTreeSet::new());
             self.inputs.borrow_mut().clear();
             self.rows.borrow_mut().clear();
             self.set_values(opened.values);
@@ -511,6 +534,11 @@ impl FormSession {
             reasons.extend(opened.whys);
             self.reasons.set(reasons);
             self.profile.set(opened.profile.into_iter().collect());
+            self.profile_boxes.set(opened.profile_boxes.into_iter().collect());
+            self.profile_values.set(opened.profile_values);
+            self.profile_facts.set(opened.profile_facts);
+            self.profile_updates.set(opened.profile_updates.unwrap_or_default());
+            self.profile_differs.set(if opened.editable { opened.profile_differs.unwrap_or_default() } else { Vec::new() });
             self.pools.set(opened.pools);
             self.penalties.set(opened.penalties);
             self.status.set(opened.status);
@@ -582,6 +610,22 @@ impl FormSession {
         let code = form.params.form_code.clone();
         let sent = edits.clone();
         let to_fill = edits.clone();
+        // A profile box typed into is an override on this return: it opens
+        // (and stays open) for this and every later fill.
+        let mut typed: Vec<String> = self.profile_boxes.with_untracked(|boxes| edits.keys().filter(|k| boxes.contains(*k)).cloned().collect());
+        // A pooled address is typed on its first line and writes them all.
+        let pooled: Vec<String> = typed
+            .iter()
+            .filter_map(|key| {
+                let item = form.boxes.get(key).and_then(|b| form.item(b.item))?;
+                item.fields.iter().find(|f| &f.key == key)?.pool.as_ref().map(|pool| pool.keys.clone())
+            })
+            .flatten()
+            .collect();
+        typed.extend(pooled);
+        if typed.iter().any(|k| !self.unlocked.with_untracked(|u| u.contains(k))) {
+            self.unlocked.update(|u| u.extend(typed.iter().cloned()));
+        }
         let unlocked: Vec<String> = self.unlocked.get_untracked().into_iter().collect();
         let answer = call(move |app| {
             let filled = app.fill(&code, &draft, &to_fill, &unlocked)?;
@@ -637,8 +681,11 @@ impl FormSession {
                         *list = keys;
                     });
                 }
-                if !filled.profile_blank.is_empty() {
-                    self.write_back_to_profile(&form, &filled.profile_blank, &sent);
+                // "Save to profile too": the boxes it is ticked on go to
+                // the profile as well, as the return now shows them.
+                let to_save: Vec<String> = self.save_to_profile.with_untracked(|on| sent.keys().filter(|k| on.contains(*k) && !filled.rejected.contains_key(*k)).cloned().collect());
+                if !to_save.is_empty() {
+                    self.save_boxes_to_profile(&form, to_save);
                 }
                 for (key, why) in filled.rejected {
                     match form.boxes.get(&key) {
@@ -718,57 +765,129 @@ impl FormSession {
         });
     }
 
-    /// A profile box the profile left blank was filled on this return: write
-    /// it back to the branch's profile so later forms prefill it.
-    fn write_back_to_profile(&'static self, form: &OpenForm, keys: &[String], sent: &BTreeMap<String, FieldValue>) {
-        let fact_of = |key: &str| -> Option<&'static str> {
-            let item = form.boxes.get(key).and_then(|b| form.item(b.item))?;
-            let field = item.fields.iter().find(|f| f.key == key)?;
-            let label = format!("{} {}", item.label, field.label).to_lowercase();
-            if field.kind == "email" || label.contains("email") {
-                Some("email")
-            } else if label.contains("rdo") {
-                Some("rdo_code")
-            } else if label.contains("zip") {
-                Some("zip_code")
-            } else if label.contains("address") {
-                Some("registered_address")
-            } else if label.contains("contact") || label.contains("telephone") {
-                Some("phone")
-            } else {
-                None
+    /// Whether profile box `key` shows something other than the profile's
+    /// value (tracked): changed on this return. Capitals and spacing do not
+    /// count (some forms print the profile in capitals).
+    pub(crate) fn profile_changed(&self, key: &str) -> bool {
+        if !self.profile_boxes.with(|b| b.contains(key)) {
+            return false;
+        }
+        let norm = |v: &str| v.split_whitespace().collect::<Vec<_>>().join(" ").to_lowercase();
+        let now = norm(&self.value(key));
+        let profile = self.profile_values.with(|p| p.get(key).map(|v| norm(v)).unwrap_or_default());
+        !now.is_empty() && now != profile && !is_blank_value(&now)
+    }
+
+    /// The profile's own value of `key` (tracked), "" where it has none.
+    pub(crate) fn profile_value(&self, key: &str) -> String {
+        self.profile_values.with(|p| p.get(key).cloned().unwrap_or_default())
+    }
+
+    /// Tick or untick "Save to profile too" on `keys` (an item's boxes that
+    /// show a profile fact). Ticking saves what they show now.
+    pub(crate) fn set_save_to_profile(&'static self, keys: Vec<String>, on: bool) {
+        self.save_to_profile.update(|set| {
+            for key in &keys {
+                if on {
+                    set.insert(key.clone());
+                } else {
+                    set.remove(key);
+                }
             }
-        };
-        let facts: Vec<(&'static str, String)> = keys
-            .iter()
-            .filter_map(|key| {
-                let fact = fact_of(key)?;
-                let value = match sent.get(key)? {
-                    FieldValue::Text(text) => text.clone(),
-                    _ => return None,
-                };
-                Some((fact, value))
-            })
-            .collect();
+        });
+        if on && let Some(form) = self.form() {
+            let changed: Vec<String> = keys.into_iter().filter(|k| untracked(|| self.profile_changed(k))).collect();
+            if !changed.is_empty() {
+                self.save_boxes_to_profile(&form, changed);
+            }
+        }
+    }
+
+    /// Write what `keys` show on this return into the profile facts they
+    /// show, so later returns prefill them; the profile values here follow.
+    fn save_boxes_to_profile(&'static self, form: &OpenForm, keys: Vec<String>) {
+        let facts: Vec<(String, String, String)> = self.profile_facts.with_untracked(|facts| {
+            keys.iter()
+                .filter_map(|key| {
+                    let fact = facts.get(key)?;
+                    let value = self.values.borrow().get(key).cloned().unwrap_or_default();
+                    Some((key.clone(), fact.clone(), value))
+                })
+                .collect()
+        });
         if facts.is_empty() {
             return;
         }
         let tin = form.params.tin.clone();
+        let token = form.token;
         task(async move {
+            let writes = facts.clone();
             let saved = call(move |app| {
-                for (fact, value) in &facts {
-                    app.set_branch_fact(&tin, fact, value)?;
+                for (_, fact, value) in &writes {
+                    app.save_box_to_profile(&tin, fact, value)?;
                 }
                 Ok(())
             })
             .await;
             match saved {
                 Ok(()) => {
+                    if self.token.get() == token {
+                        self.profile_values.update(|p| p.extend(facts.into_iter().map(|(key, _, value)| (key, value))));
+                    }
                     let name = store().selected.get_untracked().map(|s| s.name).unwrap_or_else(|| "the taxpayer".to_owned());
-                    store().notify(NoticeTone::Success, format!("Saved to {name}'s profile too."));
+                    store().notify(NoticeTone::Success, format!("Saved to {name}'s profile too. New returns prefill it."));
                     store().reload_taxpayers(None);
                 }
                 Err(error) => store().notify(NoticeTone::Danger, format!("Not saved to the profile: {error}")),
+            }
+        });
+    }
+
+    /// "Use profile value" on `keys` (or with none, "Use profile values" on
+    /// every box the filer did not change): they take the profile's value
+    /// and follow later profile changes again; the return saves.
+    pub(crate) fn use_profile_values(&'static self, keys: Vec<String>) {
+        task(async move {
+            let Some((form, draft)) = self.settled("Updating…").await else { return };
+            let p = form.params.clone();
+            let sent = keys.clone();
+            let answer = call(move |app| {
+                let filled = app.use_profile_values(&p.form_code, p.year, p.period, &draft, &sent)?;
+                let checked = app.validate(&p.form_code, &filled.draft)?;
+                Ok((filled, checked))
+            })
+            .await;
+            self.busy.set(None);
+            if self.token.get() != form.token {
+                return;
+            }
+            match answer {
+                Ok((filled, checked)) => {
+                    self.inner.borrow_mut().draft = checked.draft;
+                    batch(|| {
+                        let mut values = filled.values;
+                        values.extend(checked.values);
+                        self.set_values(values);
+                        if !filled.options.is_empty() {
+                            self.options.set(filled.options);
+                        }
+                        if !filled.pools.is_empty() {
+                            self.pools.set(filled.pools);
+                        }
+                        self.off.set(checked.off);
+                        self.penalties.set(checked.penalties);
+                        self.messages.set(place_errors(&form, &checked.errors));
+                        if keys.is_empty() {
+                            self.profile_differs.set(Vec::new());
+                        }
+                        self.save_to_profile.update(|on| on.retain(|k| !keys.contains(k)));
+                        self.dirty.set(true);
+                        self.unsaved.set(true);
+                        self.save_state.set(SaveState::Saving);
+                    });
+                    self.autosave();
+                }
+                Err(error) => store().notify(NoticeTone::Danger, format!("Could not use the profile values: {error}")),
             }
         });
     }
