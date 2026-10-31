@@ -82,18 +82,22 @@ pub(crate) fn matches(choices: &[Choice], query: &str, code_first: bool) -> Vec<
 
 /// The value a field left holding `typed` keeps, when the filer left it
 /// without picking: none for an empty field, the entry whose title (or
-/// code, for ZIP codes and RDOs, when only one has it) is exactly what
-/// was typed, else `had`.
+/// code, for ZIP codes and RDOs) is exactly what was typed when only one
+/// entry has it, else `had`.
 pub(crate) fn kept_on_leave(choices: &[Choice], typed: &str, had: Option<String>, code_first: bool) -> Option<String> {
     let t = typed.trim().to_lowercase();
     if t.is_empty() {
         return None;
     }
-    if let Some(c) = choices.iter().find(|c| c.title.to_lowercase() == t) {
-        return Some(c.value.clone());
+    // A title or a code names an entry only when one entry has it: 107
+    // city names repeat across provinces ("San Isidro" is in nine), and 49
+    // ZIP codes serve several areas.
+    let mut titled = choices.iter().filter(|c| c.title.to_lowercase() == t);
+    match (titled.next(), titled.next()) {
+        (Some(c), None) => return Some(c.value.clone()),
+        (Some(_), Some(_)) => return had,
+        _ => {}
     }
-    // A code names an entry only when one entry has it (49 ZIP codes
-    // serve several areas).
     let code = |c: &Choice| c.title.split([' ', '·']).next().unwrap_or("").to_lowercase();
     let mut coded = choices.iter().filter(|c| code_first && code(c) == t);
     match (coded.next(), coded.next()) {
@@ -427,6 +431,7 @@ mod tests {
         assert_eq!(kept_on_leave(&rdos, "43A · East Pasig", None, true).as_deref(), Some("43A"));
         let cities = List::City.choices();
         assert_eq!(kept_on_leave(&cities, "city of pasig", None, false).as_deref(), Some("City of Pasig, Metro Manila"));
+        assert_eq!(kept_on_leave(&cities, "San Isidro", had.clone(), false), had, "a name nine provinces share picks none");
         let zips = List::Zip.choices();
         assert_eq!(kept_on_leave(&zips, "1101", None, true), None, "a code several areas share picks none");
         assert_eq!(kept_on_leave(&zips, "1101 diliman", None, true).as_deref(), Some("1101 - Diliman"));
