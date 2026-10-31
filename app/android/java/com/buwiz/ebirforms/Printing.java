@@ -1,4 +1,4 @@
-package com.buwiz.oss;
+package com.buwiz.ebirforms;
 
 import android.app.Activity;
 import android.content.Context;
@@ -74,7 +74,7 @@ public final class Printing {
     public static void renderPdf(final Activity activity, final String html, final String path) {
         load(activity, html, web -> {
             final File out = new File(path);
-            BuwizPdfWriter.write(web.createPrintDocumentAdapter("Buwiz"), a4(), out,
+            BuwizPdfWriter.write(web.createPrintDocumentAdapter("eBIRForms"), a4(), out,
                     () -> mark(path + ".done", ""),
                     why -> mark(path + ".fail", why));
         });

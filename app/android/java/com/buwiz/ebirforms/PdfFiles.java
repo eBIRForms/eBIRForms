@@ -1,4 +1,4 @@
-package com.buwiz.oss;
+package com.buwiz.ebirforms;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -13,10 +13,10 @@ import java.io.FileNotFoundException;
 
 /**
  * Hands the PDFs Buwiz shares (the cache's {@code pdf} folder) to the app
- * the filer picks, read-only, by {@code content://com.buwiz.oss.pdf/<name>}.
+ * the filer picks, read-only, by {@code content://com.buwiz.ebirforms.pdf/<name>}.
  */
 public final class PdfFiles extends ContentProvider {
-    static final String AUTHORITY = "com.buwiz.oss.pdf";
+    static final String AUTHORITY = "com.buwiz.ebirforms.pdf";
 
     private File file(Uri uri) throws FileNotFoundException {
         String name = uri.getLastPathSegment();

@@ -1,4 +1,4 @@
-package com.buwiz.oss;
+package com.buwiz.ebirforms;
 
 import android.app.Activity;
 import android.os.Bundle;
