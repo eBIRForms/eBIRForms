@@ -20,3 +20,13 @@ pub mod static_html;
 pub use pdf_sink::PdfSink;
 
 pub use pdf_util::{append_text_pages_to_pdf, build_simple_confirmation_pdf, PdfUtilityError};
+
+/// Every sheet this crate packs (build.rs) inflates to its source bytes.
+#[cfg(test)]
+#[test]
+fn every_packed_file_inflates_to_its_source() {
+    bir_core::packed::check_round_trip(
+        env!("CARGO_MANIFEST_DIR"),
+        include!(concat!(env!("OUT_DIR"), "/packed_files.rs")),
+    );
+}

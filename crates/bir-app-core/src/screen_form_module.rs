@@ -340,18 +340,21 @@ fn host_error(message: impl Into<String>) -> HostError {
 fn schema() -> &'static [Value] {
     static SCHEMA: OnceLock<Vec<Value>> = OnceLock::new();
     SCHEMA.get_or_init(|| {
-        let mut forms: Vec<Value> =
-            serde_json::from_str(include_str!("../assets/forms/forms-schema.json"))
-                .expect("app/forms/forms-schema.json is a JSON array of forms");
-        let form_1700: Value =
-            serde_json::from_str(include_str!("../assets/forms/screen-1700-v2018.json"))
-                .expect("app/forms/screen-1700-v2018.json is one form");
+        let mut forms: Vec<Value> = serde_json::from_str(&bir_core::packed::inflate(
+            bir_core::packed_bytes!("assets/forms/forms-schema.json"),
+        ))
+        .expect("app/forms/forms-schema.json is a JSON array of forms");
+        let form_1700: Value = serde_json::from_str(&bir_core::packed::inflate(
+            bir_core::packed_bytes!("assets/forms/screen-1700-v2018.json"),
+        ))
+        .expect("app/forms/screen-1700-v2018.json is one form");
         for form in forms.iter_mut().filter(|form| form["c"] == "1700") {
             *form = form_1700.clone();
         }
-        let overrides: Value =
-            serde_json::from_str(include_str!("../assets/forms/schema-overrides.json"))
-                .expect("app/forms/schema-overrides.json is a JSON object");
+        let overrides: Value = serde_json::from_str(&bir_core::packed::inflate(
+            bir_core::packed_bytes!("assets/forms/schema-overrides.json"),
+        ))
+        .expect("app/forms/schema-overrides.json is a JSON object");
         for form in &mut forms {
             let code = form["c"].as_str().unwrap_or_default().to_string();
             if let Some(fixes) = overrides.get(&code).and_then(Value::as_object) {
@@ -5116,8 +5119,10 @@ fn official_radio_groups(package: &str) -> Option<&'static BTreeMap<String, Vec<
     static GROUPS: OnceLock<BTreeMap<String, BTreeMap<String, Vec<String>>>> = OnceLock::new();
     GROUPS
         .get_or_init(|| {
-            serde_json::from_str(include_str!("../assets/forms/radio-name-groups.json"))
-                .expect("app/forms/radio-name-groups.json is package -> name -> ids")
+            serde_json::from_str(&bir_core::packed::inflate(bir_core::packed_bytes!(
+                "assets/forms/radio-name-groups.json"
+            )))
+            .expect("app/forms/radio-name-groups.json is package -> name -> ids")
         })
         .get(package)
 }

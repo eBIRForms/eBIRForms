@@ -24,3 +24,13 @@ pub use sending::*;
 pub use schema::*;
 pub use submit::{SERVER_URL_SETTING, block_on, set_sending_paused};
 pub use {bir_core, bir_print, bir_submit};
+
+/// Every file this crate packs (build.rs) inflates to its source bytes.
+#[cfg(test)]
+#[test]
+fn every_packed_file_inflates_to_its_source() {
+    bir_core::packed::check_round_trip(
+        env!("CARGO_MANIFEST_DIR"),
+        include!(concat!(env!("OUT_DIR"), "/packed_files.rs")),
+    );
+}

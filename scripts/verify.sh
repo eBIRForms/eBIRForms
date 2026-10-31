@@ -16,7 +16,8 @@
 #
 # Environment: BUWIZ_SERVER_DIR (the buwiz-server worktree for V6, default
 # ../buwiz-server-goal), VERIFY_BASE (the ref V3 compares tests against,
-# default origin/main).
+# default 66f5b79, the main this work started from; V3 also compares with
+# origin/main).
 set -uo pipefail
 cd "$(dirname "$0")/.."
 export RUSTC_WRAPPER=
@@ -57,6 +58,8 @@ V2_OK=1
 if selected V2 || selected V1; then
     run v2-root cargo build --locked --all-targets || { V2_OK=0; V2_WHY="root build (see $LOGS/v2-root.log)"; }
     [ $V2_OK = 1 ] && { run v2-app sh -c 'cd app && cargo build --locked' || { V2_OK=0; V2_WHY="app build ($LOGS/v2-app.log)"; }; }
+    # The dev loop's build (ra-jit-live behind the `live` feature).
+    [ $V2_OK = 1 ] && { run v2-live sh -c 'cd app && cargo check --locked --features live' || { V2_OK=0; V2_WHY="app --features live ($LOGS/v2-live.log)"; }; }
     [ $V2_OK = 1 ] && { run v2-ios sh -c 'cd app && cargo build --locked --target aarch64-apple-ios-sim' || { V2_OK=0; V2_WHY="iOS build ($LOGS/v2-ios.log)"; }; }
     [ $V2_OK = 1 ] && { run v2-android android_build || { V2_OK=0; V2_WHY="Android build ($LOGS/v2-android.log)"; }; }
 fi
@@ -67,8 +70,10 @@ if selected V1; then
         fail V1 "check-secrets found something ($LOGS/v1-secrets.log)"
     elif [ $V2_OK = 0 ]; then
         fail V1 "binaries not built: $V2_WHY"
+    elif ! run v1-release sh -c 'cd app && cargo build --locked --release'; then
+        fail V1 "release build failed ($LOGS/v1-release.log)"
     else
-        bins=(app/target/debug/buwiz app/target/aarch64-apple-ios-sim/debug/buwiz app/target/aarch64-linux-android/debug/libbuwiz_android.so)
+        bins=(app/target/debug/buwiz app/target/aarch64-apple-ios-sim/debug/buwiz app/target/aarch64-linux-android/debug/libbuwiz_android.so app/target/release/buwiz)
         hits=""
         for b in "${bins[@]}"; do
             [ -f "$b" ] || { hits+="missing $b; "; continue; }
@@ -77,20 +82,32 @@ if selected V1; then
             # .php) and BIR's upload hosts. The only exceptions are two exact
             # run-on strings in third-party rodata, neutralised by name: nsh's
             # link-protocol list ("...https"+"ftpcid...") and Vulkan's
-            # "_MSFT"+"PHYSICAL...". (The printed forms' footer names BIR's
-            # public website, so the bare domain is not on the list.)
-            text="$LOGS/strings-$(basename "$(dirname "$(dirname "$b")")")-$(basename "$b").txt"
+            # "_MSFT"+"PHYSICAL...". In the release binary the same nsh list
+            # lies "...https"+"ftp"+"//" before core's "assertion failed",
+            # so that exact run is neutralised there only. (The printed forms' footer names BIR's public
+            # website, so the bare domain is not on the list.)
+            text="$LOGS/strings-$(basename "$(dirname "$(dirname "$b")")")-$(basename "$(dirname "$b")")-$(basename "$b").txt"
             strings -a "$b" >"$text"
-            found=$(sed -e 's/httpsftpcid/http-s-ftp-cid/g' -e 's/_MSFTPHYSICAL/_MSFT_PHYSICAL/g' "$text" \
+            release_mask='s/^$//'
+            [ "$b" = app/target/release/buwiz ] && release_mask='s|httpsftp//assertion failed|http-s-ftp-//assertion failed|g'
+            found=$(sed -e 's/httpsftpcid/http-s-ftp-cid/g' -e 's/_MSFTPHYSICAL/_MSFT_PHYSICAL/g' -e "$release_mask" "$text" \
                 | grep -i -E 'passphrase|(tin|bir)[_-]?dispatch|dispatcher[_-]?(url|host)|dispatcher\.php|birgovph|ebf2\.bir|ws2\.bir|sftp' | head -3)
             [ -n "$found" ] && hits+="$b: $(echo "$found" | tr '\n' '|'); "
         done
-        [ -z "$hits" ] && pass V1 "tree clean; ${#bins[@]} binaries carry no BIR secret strings" || fail V1 "$hits"
+        # The packed assets, inflated: every packed source the crates embed
+        # gets the binary scan's pattern too (their round-trip tests prove
+        # the packed bytes inflate to exactly these files).
+        packed=$(git ls-files crates/bir-core/data crates/bir-print/assets/html-frozen crates/bir-app-core/assets/forms \
+            | grep -E '\.json$|/index\.html$')
+        found=$(echo "$packed" | xargs grep -l -i -E 'passphrase|(tin|bir)[_-]?dispatch|dispatcher[_-]?(url|host)|dispatcher\.php|birgovph|ebf2\.bir|ws2\.bir|sftp' -- 2>/dev/null | head -3)
+        [ -n "$found" ] && hits+="packed assets: $(echo "$found" | tr '\n' '|'); "
+        [ -z "$packed" ] && hits+="no packed asset sources found; "
+        [ -z "$hits" ] && pass V1 "tree clean; ${#bins[@]} binaries (release included) and $(echo "$packed" | wc -l | tr -d ' ') embedded-asset sources carry no BIR secret strings" || fail V1 "$hits"
     fi
 fi
 
 if selected V2; then
-    [ $V2_OK = 1 ] && pass V2 "locked builds: root all-targets, app, iOS sim, Android" || fail V2 "$V2_WHY"
+    [ $V2_OK = 1 ] && pass V2 "locked builds: root all-targets, app (and --features live), iOS sim, Android" || fail V2 "$V2_WHY"
 fi
 
 # ---- V3 ---------------------------------------------------------------------
@@ -106,6 +123,18 @@ if selected V3; then
         i0=$(count '#\[ignore' "$BASE"); i1=$(count_wt '#\[ignore')
         [ "$t1" -ge "$t0" ] || why+="tests went from $t0 to $t1; "
         [ "$i1" -le "$i0" ] || why+="#[ignore] went from $i0 to $i1; "
+        # Assertions too, so a test emptied of its checks counts; and the
+        # same three counts against origin/main, so a change not yet merged
+        # can't drop what main holds.
+        asserts='(^|[^_[:alnum:]])(debug_)?assert(_eq|_ne|_matches)?!'
+        a0=$(count "$asserts" "$BASE"); a1=$(count_wt "$asserts")
+        [ "$a1" -ge "$a0" ] || why+="assertions went from $a0 to $a1; "
+        if git rev-parse -q --verify origin/main >/dev/null; then
+            m_t=$(count '#\[(tokio::)?test' origin/main); m_i=$(count '#\[ignore' origin/main); m_a=$(count "$asserts" origin/main)
+            [ "$t1" -ge "$m_t" ] || why+="tests went from $m_t on origin/main to $t1; "
+            [ "$i1" -le "$m_i" ] || why+="#[ignore] went from $m_i on origin/main to $i1; "
+            [ "$a1" -ge "$m_a" ] || why+="assertions went from $m_a on origin/main to $a1; "
+        fi
         # A file deleted since the base that held tests, anywhere; and any
         # deleted file under a tests/ directory (fixtures, goldens).
         deleted=""
@@ -119,7 +148,7 @@ if selected V3; then
     else
         why+="base $BASE not found (git fetch); "
     fi
-    [ -z "$why" ] && pass V3 "workspace tests green; CI runs them; tests $t0 -> $t1, ignored $i0 -> $i1" || fail V3 "$why"
+    [ -z "$why" ] && pass V3 "workspace tests green; CI runs them; tests $t0 -> $t1 (main $m_t), ignored $i0 -> $i1, assertions $a0 -> $a1 (main $m_a)" || fail V3 "$why"
 fi
 
 # ---- V4 ---------------------------------------------------------------------

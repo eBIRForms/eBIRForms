@@ -122,13 +122,13 @@ pub enum OfficialXmlError {
 
 macro_rules! layouts {
     ($($id:literal),* $(,)?) => {
-        &[$(($id, include_str!(concat!("../data/official-xml/", $id, ".json")))),*]
+        &[$(($id, crate::packed_bytes!(concat!("data/official-xml/", $id, ".json")))),*]
     };
 }
 
 /// Layouts of the forms the app serializes today. Add a form here when its
 /// field map moves to [`write`].
-const LAYOUTS: &[(&str, &str)] = layouts![
+const LAYOUTS: &[(&str, &[u8])] = layouts![
     "0605-v2003",
     "0619e-v2018",
     "0619f-v2018",
@@ -186,8 +186,10 @@ pub fn layout(form_id: &str) -> Result<&'static OfficialLayout, OfficialXmlError
             LAYOUTS
                 .iter()
                 .map(|(id, json)| {
-                    let layout: OfficialLayout = serde_json::from_str(json)
-                        .unwrap_or_else(|error| panic!("invalid official layout {id}: {error}"));
+                    let layout: OfficialLayout = serde_json::from_str(&crate::packed::inflate(
+                        json,
+                    ))
+                    .unwrap_or_else(|error| panic!("invalid official layout {id}: {error}"));
                     (*id, layout)
                 })
                 .collect()
