@@ -4,9 +4,11 @@
 #
 #   scripts/release/r2-upload.sh <file> <platform> <arch> <kind> <meta-dir>
 #
-# The object lands at s3://$R2_BUCKET/releases/v$VERSION/<basename of file>
-# with an immutable cache-control. The script fails, before uploading, if
-# that key already exists: a published version is never overwritten.
+# The object lands at s3://$R2_BUCKET/ebirforms/releases/v$VERSION/<basename>
+# (eBIRForms' folder on downloads.buwiz.com) and, until v0.1.0's Linux
+# installers have aged out, also at the old releases/v$VERSION/<basename>,
+# both with an immutable cache-control. The script fails, before uploading,
+# if either key already exists: a published version is never overwritten.
 # scripts/release/file-meta.sh checks the file first; its metadata,
 # {file, size, sha256, platform, arch, kind}, lands in
 # <meta-dir>/<basename>.json once the upload is verified, and
@@ -46,24 +48,27 @@ trap 'rm -rf "$checked"' EXIT
 file=$(basename "$path")
 size=$(wc -c < "$path" | tr -d '[:space:]')
 
-key="releases/v$VERSION/$file"
+keys=("ebirforms/releases/v$VERSION/$file" "releases/v$VERSION/$file")
 
-# Never overwrite: the exact key must not exist yet.
-existing=$(aws s3api list-objects-v2 --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
-  --prefix "$key" --query 'Contents[].Key' --output text)
-if printf '%s\n' "$existing" | tr '\t' '\n' | grep -Fxq -- "$key"; then
-  fail "s3://$R2_BUCKET/$key already exists; a published version is never overwritten"
-fi
+# Never overwrite: neither exact key may exist yet.
+for key in "${keys[@]}"; do
+  existing=$(aws s3api list-objects-v2 --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
+    --prefix "$key" --query 'Contents[].Key' --output text)
+  if printf '%s\n' "$existing" | tr '\t' '\n' | grep -Fxq -- "$key"; then
+    fail "s3://$R2_BUCKET/$key already exists; a published version is never overwritten"
+  fi
+done
 
-aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress \
-  --cache-control "public, max-age=31536000, immutable" \
-  --content-type "$content_type" \
-  "$path" "s3://$R2_BUCKET/$key"
-
-remote_size=$(aws s3api head-object --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
-  --key "$key" --query ContentLength --output text)
-[ "$remote_size" = "$size" ] || fail "uploaded $key is $remote_size bytes, expected $size"
+for key in "${keys[@]}"; do
+  aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress \
+    --cache-control "public, max-age=31536000, immutable" \
+    --content-type "$content_type" \
+    "$path" "s3://$R2_BUCKET/$key"
+  remote_size=$(aws s3api head-object --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
+    --key "$key" --query ContentLength --output text)
+  [ "$remote_size" = "$size" ] || fail "uploaded $key is $remote_size bytes, expected $size"
+  echo "uploaded s3://$R2_BUCKET/$key ($size bytes)"
+done
 
 mkdir -p "$meta_dir"
 mv "$checked/$file.json" "$meta_dir/$file.json"
-echo "uploaded s3://$R2_BUCKET/$key ($size bytes)"
