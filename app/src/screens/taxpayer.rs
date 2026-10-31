@@ -480,7 +480,7 @@ fn desktop_new_taxpayer() -> impl IntoElement {
             view()
                 .flex_row()
                 .gap(px(12.0))
-                .child(pick(Field::Zip, List::Zip, form.zip, 280.0).w(px(160.0)))
+                .child(pick(Field::Zip, List::Zip, form.zip, 280.0).w(px(220.0)))
                 .child(pick(Field::Rdo, List::Rdo, form.rdo, 380.0).flex_1()),
         )
         .child(field_block("Email", text_field(Field::Email, form.email, "name@example.com", email_at), note(Field::Email)));
