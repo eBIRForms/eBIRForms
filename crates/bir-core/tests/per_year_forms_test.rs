@@ -112,7 +112,7 @@ fn closest_prior_forms_year_is_hidden_when_destination_has_entries() {
 
 #[test]
 fn profile_save_preserves_existing_atc_codes_when_editor_omits_them() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let mut profile = create_test_profile("000234564000");
@@ -133,7 +133,7 @@ fn profile_save_preserves_existing_atc_codes_when_editor_omits_them() {
 
 #[test]
 fn profile_save_reconciles_generated_forms_and_preserves_manual_entry() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let mut profile = create_test_profile("000234564000");
@@ -199,7 +199,7 @@ fn profile_save_reconciles_generated_forms_and_preserves_manual_entry() {
 
 #[test]
 fn confirmed_profile_change_reconciles_current_and_stored_intersecting_years() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let current_year = current_local_reconciliation_year();
@@ -326,7 +326,7 @@ fn confirmed_profile_change_reconciles_current_and_stored_intersecting_years() {
 
 #[test]
 fn forms_set_reconcile_failure_rolls_back_profile_timeline_and_forms_sets() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let current_year = current_local_reconciliation_year();
@@ -425,7 +425,7 @@ fn forms_set_reconcile_failure_rolls_back_profile_timeline_and_forms_sets() {
 
 #[test]
 fn undated_migration_backfill_preserves_existing_forms_set() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let mut profile = create_test_profile("000234564000");
@@ -457,7 +457,7 @@ fn undated_migration_backfill_preserves_existing_forms_set() {
 
 #[test]
 fn profile_save_rejects_overlapping_confirmed_versions() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let mut profile = create_test_profile("000234564000");
@@ -494,7 +494,7 @@ fn profile_save_rejects_overlapping_confirmed_versions() {
 
 #[test]
 fn missing_per_year_forms_set_fails_closed_until_user_saves_one() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
 
@@ -548,7 +548,7 @@ fn missing_per_year_forms_set_fails_closed_until_user_saves_one() {
 
 #[test]
 fn test_custom_form_added_and_removed() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
 
@@ -602,7 +602,7 @@ fn test_custom_form_added_and_removed() {
 
 #[test]
 fn test_cor_confirmation_flow_populates_forms_set() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
 
@@ -799,7 +799,7 @@ fn protected_version_fact_mutations(
 
 #[test]
 fn initial_exact_migration_backfill_can_save_without_reviewed_plan() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let profile = create_test_profile("000234564000");
@@ -822,7 +822,7 @@ fn initial_exact_migration_backfill_can_save_without_reviewed_plan() {
 
 #[test]
 fn initial_confirmed_cor_sources_require_an_exact_reviewed_plan() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         for source in [
             TaxProfileVersionSource::ManualCor,
             TaxProfileVersionSource::OcrCor,
@@ -855,7 +855,7 @@ fn initial_confirmed_cor_sources_require_an_exact_reviewed_plan() {
 
 #[test]
 fn confirmed_profile_version_facts_are_immutable_except_label() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let saved = save_profile_with_open_prior_and_draft(&db, "000234564000");
@@ -890,7 +890,7 @@ fn confirmed_profile_version_facts_are_immutable_except_label() {
 
 #[test]
 fn archived_profile_version_facts_are_immutable_except_label() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let mut profile = create_test_profile("000234564000");
@@ -930,7 +930,7 @@ fn archived_profile_version_facts_are_immutable_except_label() {
 
 #[test]
 fn profile_save_cannot_bypass_reviewed_prior_version_closure() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let saved = save_profile_with_open_prior_and_draft(&db, "000234564000");
@@ -971,7 +971,7 @@ fn profile_save_cannot_bypass_reviewed_prior_version_closure() {
 
 #[test]
 fn profile_save_rejects_two_step_manual_close_then_planless_confirmation_bypass() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let close_temp_file = NamedTempFile::new().unwrap();
         let close_db = Database::open(close_temp_file.path()).expect("Failed to open DB");
         let saved = save_profile_with_open_prior_and_draft(&close_db, "000234564000");
@@ -1032,7 +1032,7 @@ fn profile_save_rejects_two_step_manual_close_then_planless_confirmation_bypass(
 
 #[test]
 fn ordinary_profile_save_rejects_direct_confirmed_timeline_edits() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let saved = save_profile_with_open_prior_and_draft(&db, "000234564000");
@@ -1077,7 +1077,7 @@ fn ordinary_profile_save_rejects_direct_confirmed_timeline_edits() {
 
 #[test]
 fn reviewed_confirmation_plan_cannot_authorize_extra_timeline_edits() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let saved = save_profile_with_open_prior_and_draft(&db, "000234564000");
@@ -1113,7 +1113,7 @@ fn reviewed_confirmation_plan_cannot_authorize_extra_timeline_edits() {
 
 #[test]
 fn reviewed_confirmation_plan_cannot_resurrect_an_archived_version() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let mut profile = profile_with_open_prior_and_draft("000234564000");
@@ -1152,7 +1152,7 @@ fn reviewed_confirmation_plan_cannot_resurrect_an_archived_version() {
 
 #[test]
 fn profile_save_rejects_stale_reviewed_confirmation_plan() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
         let original = save_profile_with_open_prior_and_draft(&db, "000234564000");
@@ -1192,7 +1192,7 @@ fn profile_save_rejects_stale_reviewed_confirmation_plan() {
 
 #[test]
 fn test_obligation_filtering_individual_vs_corporate_and_vat() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open DB");
 

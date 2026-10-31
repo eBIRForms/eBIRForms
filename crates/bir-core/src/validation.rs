@@ -49,14 +49,14 @@ pub fn rdo_code_is_official_option(code: &str) -> bool {
     crate::reference::get_rdo(code.trim()).is_some()
 }
 
-/// Dev-mode escape hatch: set `EBIR_RELAXED_VALIDATION=1` in a debug build to
+/// Dev-mode escape hatch: set `BUWIZ_RELAXED_VALIDATION=1` in a debug build to
 /// skip the official TIN check digit ([`official_tin_check_code`]), so test
 /// TINs like `000-000-000-00000` validate. TIN format and every other rule
 /// still apply. The flag is compiled out of release builds so a production
 /// binary can never relax a gate.
 pub fn relaxed_dev_mode() -> bool {
     cfg!(debug_assertions)
-        && relaxed_dev_mode_enabled(std::env::var("EBIR_RELAXED_VALIDATION").ok().as_deref())
+        && relaxed_dev_mode_enabled(std::env::var("BUWIZ_RELAXED_VALIDATION").ok().as_deref())
 }
 
 /// Exact alert the official app shows when the TIN check fails

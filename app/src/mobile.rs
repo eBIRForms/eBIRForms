@@ -2,7 +2,7 @@
 //! applies.
 //!
 //! [`prepare`] runs once, before the root mounts (the iOS `main`, the
-//! Android library's `runRust`), and sets `BIR_DATABASE_PATH` to the app's
+//! Android library's `runRust`), and sets `BUWIZ_DATABASE_PATH` to the app's
 //! private data directory unless the launcher already set it (a test run
 //! with a scratch database). bir-core keeps the key file fallback
 //! (`bir_key.txt`) and its logs next to the database.
@@ -18,14 +18,14 @@ pub(crate) fn phone() -> bool {
     !is_desktop() && idiom() == Idiom::Phone
 }
 
-/// Sets `BIR_DATABASE_PATH` (and on Android `HOME` and `TMPDIR`, which
+/// Sets `BUWIZ_DATABASE_PATH` (and on Android `HOME` and `TMPDIR`, which
 /// the system leaves pointing nowhere the app may write) for this process.
 pub fn prepare() {
     let Some(dir) = data_dir() else { return };
     let _ = std::fs::create_dir_all(&dir);
     let unset = |name: &str| std::env::var_os(name).is_none_or(|v| v.is_empty());
     // `launch.env` beside the database: `BUWIZ_*` launch hooks (and a
-    // scratch `BIR_DATABASE_PATH` / `BIR_DB_KEY` for a test run), one
+    // scratch `BUWIZ_DATABASE_PATH` / `BUWIZ_DB_KEY` for a test run), one
     // `NAME=value` a line, for a launcher that cannot pass the environment
     // (Android's `am start`; `adb shell run-as` writes it). Read once, and
     // in debug builds only: a release build takes nothing from the file.
@@ -33,7 +33,7 @@ pub fn prepare() {
     if let Ok(text) = std::fs::read_to_string(dir.join("launch.env")) {
         for line in text.lines() {
             if let Some((name, value)) = line.trim().split_once('=')
-                && (name.starts_with("BUWIZ_") || name == "BIR_DATABASE_PATH" || name == "BIR_DB_KEY")
+                && name.starts_with("BUWIZ_")
                 && unset(name)
             {
                 // SAFETY: as below, before anything else reads the environment.
@@ -44,8 +44,8 @@ pub fn prepare() {
     // SAFETY: runs before the engine starts, from the thread that starts
     // it; nothing else in the process reads the environment yet.
     unsafe {
-        if unset("BIR_DATABASE_PATH") {
-            std::env::set_var("BIR_DATABASE_PATH", dir.join("bir_data.db"));
+        if unset("BUWIZ_DATABASE_PATH") {
+            std::env::set_var("BUWIZ_DATABASE_PATH", dir.join("bir_data.db"));
         }
         #[cfg(target_os = "android")]
         {

@@ -10,8 +10,8 @@ set -euo pipefail
 cd "$(dirname "$0")"
 export RUSTC_WRAPPER=
 # Both sides take the database key from here, as bir-core does with
-# BIR_DB_KEY; never the keychain.
-export BIR_NO_KEYCHAIN=1 BIR_DB_KEY=5f4dcc3b5aa765d61d8327deb882cf995f4dcc3b5aa765d61d8327deb882cf99
+# BUWIZ_DB_KEY; never the keychain.
+export BUWIZ_NO_KEYCHAIN=1 BUWIZ_DB_KEY=5f4dcc3b5aa765d61d8327deb882cf995f4dcc3b5aa765d61d8327deb882cf99
 
 # Built one at a time: in one build rusqlite's features would unify.
 cargo build --locked -q -p compat-commoncrypto
@@ -22,7 +22,7 @@ LTC=target/debug/compat-libtomcrypt
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT
 # bir-core keeps its logs and data under here, not the user's.
-export HOME="$work/home" BIR_DATABASE_PATH="$work/unused.db"
+export HOME="$work/home" BUWIZ_DATABASE_PATH="$work/unused.db"
 mkdir -p "$HOME"
 step() { echo "== $*"; "$@"; }
 
@@ -44,7 +44,7 @@ grep -q '^user_version=[1-9]' <<<"$out" || { echo "FAIL: bir-core's migrations n
 for f in a b; do
     [ "$(head -c 15 "$work/$f.db")" != "SQLite format 3" ] || { echo "FAIL: $f.db is plaintext"; exit 1; }
     for side in $CC $LTC; do
-        if BIR_DB_KEY=$(printf '0%.0s' {1..63})1 $side read "$work/$f.db" 2>/dev/null >&2; then
+        if BUWIZ_DB_KEY=$(printf '0%.0s' {1..63})1 $side read "$work/$f.db" 2>/dev/null >&2; then
             echo "FAIL: $side opened $f.db with the wrong key"; exit 1
         fi
     done

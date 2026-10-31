@@ -1,5 +1,5 @@
 //! `compat-commoncrypto write|read <db> [labels..]`: bir-core's own
-//! `Database::open` (key from `BIR_DB_KEY`, its PRAGMAs, its migrations),
+//! `Database::open` (key from `BUWIZ_DB_KEY`, its PRAGMAs, its migrations),
 //! with the SQLCipher macOS ships.
 
 #[path = "../../common.rs"]

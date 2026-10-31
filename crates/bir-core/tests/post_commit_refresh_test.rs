@@ -27,7 +27,7 @@ fn test_profile() -> TaxpayerProfile {
 
 #[test]
 fn profile_save_reports_recorded_post_commit_refresh_request() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         let file = NamedTempFile::new().expect("temporary database should open");
         let db = Database::open(file.path()).expect("database should initialize");
 

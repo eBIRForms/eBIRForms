@@ -18,7 +18,7 @@ const TEST_KEY: &str = "00000000000000000000000000000000000000000000000000000000
 
 fn app_with_taxpayer(email: &str) -> (tempfile::TempDir, BirApp, String) {
     // SAFETY: set before any thread of this test reads it.
-    unsafe { std::env::set_var("BIR_DB_KEY", TEST_KEY) };
+    unsafe { std::env::set_var("BUWIZ_DB_KEY", TEST_KEY) };
     let dir = tempfile::tempdir().unwrap();
     let app = BirApp::open_at(dir.path().join("bir_data.db")).unwrap();
     let taxpayer = app

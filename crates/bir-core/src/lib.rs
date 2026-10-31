@@ -28,6 +28,7 @@ pub mod deadline_overrides;
 pub mod export;
 pub mod filing_queue;
 pub mod form_rules;
+pub mod foreign_env;
 pub mod forms;
 pub mod import;
 pub mod integration;
@@ -37,11 +38,11 @@ pub mod job_display;
 #[cfg_attr(test, allow(dead_code))]
 mod keychain;
 
-/// `BIR_NO_KEYCHAIN=1`: this process never reads or writes the OS keychain,
+/// `BUWIZ_NO_KEYCHAIN=1`: this process never reads or writes the OS keychain,
 /// for unattended runs where a keychain prompt would stall them. The
-/// database key then comes from `BIR_DB_KEY` / `BIR_DB_KEY_FILE`.
+/// database key then comes from `BUWIZ_DB_KEY` / `BUWIZ_DB_KEY_FILE`.
 pub fn keychain_disabled() -> bool {
-    std::env::var_os("BIR_NO_KEYCHAIN").is_some_and(|value| !value.is_empty() && value != "0")
+    std::env::var_os("BUWIZ_NO_KEYCHAIN").is_some_and(|value| !value.is_empty() && value != "0")
 }
 pub mod legacy_migration;
 pub mod log_files;

@@ -1,7 +1,7 @@
-//! Put the demo taxpayer in the database `BIR_DATABASE_PATH` names (key from
-//! `BIR_DB_KEY`), so tools that launch the app have a return to open.
+//! Put the demo taxpayer in the database `BUWIZ_DATABASE_PATH` names (key from
+//! `BUWIZ_DB_KEY`), so tools that launch the app have a return to open.
 //!
-//! `BIR_DATABASE_PATH=/tmp/x.db BIR_DB_KEY=<64 hex> cargo run -p bir-app-core --example seed_demo`
+//! `BUWIZ_DATABASE_PATH=/tmp/x.db BUWIZ_DB_KEY=<64 hex> cargo run -p bir-app-core --example seed_demo`
 //!
 //! `-- --full` adds what screenshots need: the forms Juana files (so the
 //! calendar has deadlines), drafts, a saved payee, and five queued 1601C

@@ -53,7 +53,7 @@ SRC=$(find app/src -type f -name '*.rs' | LC_ALL=C sort | xargs shasum -a 256 | 
 
 # ---- the seeded database ---------------------------------------------------
 cargo build -q --locked -p bir-app-core --example seed_demo
-BIR_DATABASE_PATH="$TMP/seed/bir_data.db" BIR_DB_KEY=$KEY cargo run -q --locked -p bir-app-core --example seed_demo -- --full
+BUWIZ_DATABASE_PATH="$TMP/seed/bir_data.db" BUWIZ_DB_KEY=$KEY cargo run -q --locked -p bir-app-core --example seed_demo -- --full
 swiftc -O scripts/ocr.swift -o "$TMP/ocr" 2>/dev/null
 swiftc -O scripts/winid.swift -o "$TMP/winid" 2>/dev/null
 
@@ -133,7 +133,7 @@ desktop_shot() {
     # shellcheck disable=SC2086
     # BUWIZ_OFFSCREEN: the window stays off every screen even before the
     # window manager has moved it.
-    env BIR_DATABASE_PATH="$TMP/desk/bir_data.db" BIR_DB_KEY=$KEY BUWIZ_THEME=$theme BUWIZ_OFFSCREEN=1 $hooks \
+    env BUWIZ_DATABASE_PATH="$TMP/desk/bir_data.db" BUWIZ_DB_KEY=$KEY BUWIZ_THEME=$theme BUWIZ_OFFSCREEN=1 $hooks \
         "$ROOT/app/target/debug/buwiz" >"$TMP/desk.out" 2>&1 &
     APP_PID=$!
     # Every window of the app goes to the test workspace, for as long as it runs,
@@ -226,7 +226,7 @@ phone_shot() {
         fresh_db "$dir"
         mv "$dir/bir_data.db" "$dir/bir_data.db.tmp" && mv "$dir/bir_data.db.tmp" "$dir/bir_data.db"
     fi
-    { echo "BIR_DB_KEY=$KEY"; echo "BUWIZ_THEME=$theme"; for kv in $hooks; do echo "$kv"; done; } >"$dir/launch.env"
+    { echo "BUWIZ_DB_KEY=$KEY"; echo "BUWIZ_THEME=$theme"; for kv in $hooks; do echo "$kv"; done; } >"$dir/launch.env"
     timeout 60 xcrun simctl ui "$UDID" appearance "$theme" 2>/dev/null || true
     timeout 60 xcrun simctl terminate "$UDID" com.buwiz.oss 2>/dev/null || true
     # A wedged simulator never answers a launch: fail the shot, don't hang.

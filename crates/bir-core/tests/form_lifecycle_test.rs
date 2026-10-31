@@ -7,7 +7,7 @@ use tempfile::NamedTempFile;
 
 #[test]
 fn test_full_form_lifecycle() {
-    temp_env::with_var("EBIR_TEST_ENV", Some("1"), || {
+    temp_env::with_var("BUWIZ_TEST_ENV", Some("1"), || {
         // 1. Initialize temporary encrypted database
         let temp_file = NamedTempFile::new().unwrap();
         let db = Database::open(temp_file.path()).expect("Failed to open temp DB");

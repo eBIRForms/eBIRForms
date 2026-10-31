@@ -15,7 +15,7 @@ use crate::seal::{self, SealingKey};
 use crate::secrets::SecretStore;
 use crate::trust::{self, TrustList};
 
-/// Where the server is when neither `BUWIZ_SERVER_URL` nor the setting
+/// Where the server is when neither `BUWIZ_API_URL` nor the setting
 /// says otherwise.
 pub const DEFAULT_SERVER_URL: &str = "https://api.buwiz.com";
 /// The OAuth client the desktop and phone apps sign in as.
@@ -51,11 +51,11 @@ fn is_private_url(url: &str) -> bool {
 }
 
 impl SubmitConfig {
-    /// `BUWIZ_SERVER_URL` when set, else the app's setting, else
+    /// `BUWIZ_API_URL` when set, else the app's setting, else
     /// [`DEFAULT_SERVER_URL`]. Only https, or http to this machine: sign-in
     /// codes and tokens never cross a network in plain text.
     pub fn new(setting: Option<&str>) -> Self {
-        let from_env = std::env::var("BUWIZ_SERVER_URL")
+        let from_env = std::env::var("BUWIZ_API_URL")
             .ok()
             .map(|url| url.trim().to_owned())
             .filter(|url| is_private_url(url));
@@ -770,20 +770,20 @@ mod tests {
     #[test]
     fn the_server_url_comes_from_the_environment_then_the_setting() {
         // SAFETY: this test alone touches the variable.
-        unsafe { std::env::remove_var("BUWIZ_SERVER_URL") };
+        unsafe { std::env::remove_var("BUWIZ_API_URL") };
         assert_eq!(SubmitConfig::new(None).server_url, DEFAULT_SERVER_URL);
         assert_eq!(
             SubmitConfig::new(Some("http://localhost:3008/")).server_url,
             "http://localhost:3008"
         );
-        unsafe { std::env::set_var("BUWIZ_SERVER_URL", "http://127.0.0.1:9") };
+        unsafe { std::env::set_var("BUWIZ_API_URL", "http://127.0.0.1:9") };
         assert_eq!(
             SubmitConfig::new(Some("http://localhost:3008")).server_url,
             "http://127.0.0.1:9"
         );
-        unsafe { std::env::set_var("BUWIZ_SERVER_URL", "http://buwiz.example") };
+        unsafe { std::env::set_var("BUWIZ_API_URL", "http://buwiz.example") };
         assert_eq!(SubmitConfig::new(None).server_url, DEFAULT_SERVER_URL);
-        unsafe { std::env::remove_var("BUWIZ_SERVER_URL") };
+        unsafe { std::env::remove_var("BUWIZ_API_URL") };
         assert_eq!(
             SubmitConfig::new(Some("http://localhost.example:3008")).server_url,
             DEFAULT_SERVER_URL

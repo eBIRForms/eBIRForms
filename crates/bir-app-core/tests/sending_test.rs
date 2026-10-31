@@ -10,7 +10,7 @@ const TEST_KEY: &str = "00000000000000000000000000000000000000000000000000000000
 /// A database with the demo taxpayer and one queued 1601C; its return id.
 fn queued_1601c(dir: &std::path::Path) -> (BirApp, i64) {
     // SAFETY: tests set the key before any database opens.
-    unsafe { std::env::set_var("BIR_DB_KEY", TEST_KEY) };
+    unsafe { std::env::set_var("BUWIZ_DB_KEY", TEST_KEY) };
     let app = BirApp::open_at(dir.join("bir_data.db")).expect("open");
     let tp = app
         .create_taxpayer(&NewTaxpayer {

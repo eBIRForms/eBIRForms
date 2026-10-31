@@ -1,7 +1,7 @@
 //! "It runs": open a scratch database, add a fake taxpayer, open three
 //! forms, fill, validate, save, queue one and print it.
 //!
-//! `cargo run -p bir-app-core --example smoke`. Uses `BIR_DB_KEY` when set,
+//! `cargo run -p bir-app-core --example smoke`. Uses `BUWIZ_DB_KEY` when set,
 //! else a throwaway all-zero test key; the database lives in a temp dir that
 //! is deleted at the end.
 
@@ -13,9 +13,9 @@ const TEST_KEY: &str = "00000000000000000000000000000000000000000000000000000000
 const TIN_ROOT: &str = "000123453";
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    if std::env::var_os("BIR_DB_KEY").is_none() {
+    if std::env::var_os("BUWIZ_DB_KEY").is_none() {
         // SAFETY: set before any other thread starts.
-        unsafe { std::env::set_var("BIR_DB_KEY", TEST_KEY) };
+        unsafe { std::env::set_var("BUWIZ_DB_KEY", TEST_KEY) };
     }
     let dir = tempfile::tempdir()?;
     let app = BirApp::open_at(dir.path().join("bir_data.db"))?;

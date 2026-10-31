@@ -237,19 +237,19 @@ const MASTER_KEY_SERVICE: &str = "com.buwiz.oss";
 const MASTER_KEY_ACCOUNT: &str = "sqlcipher_master_key";
 
 /// The master key from the environment, for installs that keep it out of
-/// the keychain: `BIR_DB_KEY` (64 hex digits) or `BIR_DB_KEY_FILE` (a file
+/// the keychain: `BUWIZ_DB_KEY` (64 hex digits) or `BUWIZ_DB_KEY_FILE` (a file
 /// holding them). `None` when neither is set. A set but unusable value is an
 /// error, never a fall back to the keychain: a run meant to skip the keychain
 /// must not stop on a keychain prompt.
 fn env_master_key(var: impl Fn(&str) -> Option<String>) -> Option<Result<String, DbError>> {
     let set = |name: &str| var(name).filter(|value| !value.is_empty());
-    let (text, from) = match set("BIR_DB_KEY") {
-        Some(key) => (key, "BIR_DB_KEY"),
-        None => match std::fs::read_to_string(set("BIR_DB_KEY_FILE")?) {
-            Ok(text) => (text, "BIR_DB_KEY_FILE"),
+    let (text, from) = match set("BUWIZ_DB_KEY") {
+        Some(key) => (key, "BUWIZ_DB_KEY"),
+        None => match std::fs::read_to_string(set("BUWIZ_DB_KEY_FILE")?) {
+            Ok(text) => (text, "BUWIZ_DB_KEY_FILE"),
             Err(error) => {
                 return Some(Err(DbError::Other(format!(
-                    "BIR_DB_KEY_FILE is unreadable: {error}"
+                    "BUWIZ_DB_KEY_FILE is unreadable: {error}"
                 ))));
             }
         },
@@ -345,10 +345,12 @@ pub fn default_database_path() -> std::path::PathBuf {
 
 /// Live DB file painted `bir` and `bir-headless serve` open.
 ///
-/// `BIR_DATABASE_PATH` overrides for tests / CI. Empty or unset uses
-/// [`default_database_path`] (`platform::data_dir()/bir_data.db`).
+/// `BUWIZ_DATABASE_PATH` overrides for tests / CI. Empty or unset uses
+/// [`default_database_path`] (`platform::data_dir()/bir_data.db`). Another
+/// app's database variable is ignored (and logged): [`crate::foreign_env`].
 pub fn app_database_path() -> PathBuf {
-    match std::env::var_os("BIR_DATABASE_PATH") {
+    crate::foreign_env::warn_if_set();
+    match std::env::var_os("BUWIZ_DATABASE_PATH") {
         Some(path) if !path.is_empty() => PathBuf::from(path),
         _ => default_database_path(),
     }
@@ -652,7 +654,7 @@ impl Database {
         {
             // Integration tests build bir-core without cfg(test); a release
             // build never takes the all-zero key.
-            if cfg!(debug_assertions) && std::env::var("EBIR_TEST_ENV").is_ok() {
+            if cfg!(debug_assertions) && std::env::var("BUWIZ_TEST_ENV").is_ok() {
                 return Ok(
                     "0000000000000000000000000000000000000000000000000000000000000000".to_string(),
                 );
@@ -662,7 +664,7 @@ impl Database {
             }
             if crate::keychain_disabled() {
                 return Err(DbError::Other(
-                    "BIR_NO_KEYCHAIN is set: give the database key in BIR_DB_KEY or BIR_DB_KEY_FILE"
+                    "BUWIZ_NO_KEYCHAIN is set: give the database key in BUWIZ_DB_KEY or BUWIZ_DB_KEY_FILE"
                         .into(),
                 ));
             }
@@ -692,7 +694,7 @@ impl Database {
         {
             // Integration tests build bir-core without cfg(test); a release
             // build never takes the all-zero key.
-            if cfg!(debug_assertions) && std::env::var("EBIR_TEST_ENV").is_ok() {
+            if cfg!(debug_assertions) && std::env::var("BUWIZ_TEST_ENV").is_ok() {
                 return Ok(
                     "0000000000000000000000000000000000000000000000000000000000000000".to_string(),
                 );
@@ -702,7 +704,7 @@ impl Database {
             }
             if crate::keychain_disabled() {
                 return Err(DbError::Other(
-                    "BIR_NO_KEYCHAIN is set: give the database key in BIR_DB_KEY or BIR_DB_KEY_FILE"
+                    "BUWIZ_NO_KEYCHAIN is set: give the database key in BUWIZ_DB_KEY or BUWIZ_DB_KEY_FILE"
                         .into(),
                 ));
             }
@@ -1510,27 +1512,27 @@ mod tests {
         };
 
         assert!(env_master_key(|_| None).is_none());
-        assert!(env_master_key(only("BIR_DB_KEY", String::new())).is_none());
+        assert!(env_master_key(only("BUWIZ_DB_KEY", String::new())).is_none());
         assert_eq!(
-            env_master_key(only("BIR_DB_KEY", key.clone()))
+            env_master_key(only("BUWIZ_DB_KEY", key.clone()))
                 .unwrap()
                 .unwrap(),
             key
         );
         assert_eq!(
-            env_master_key(only("BIR_DB_KEY_FILE", path))
+            env_master_key(only("BUWIZ_DB_KEY_FILE", path))
                 .unwrap()
                 .unwrap(),
             key
         );
         assert!(
-            env_master_key(only("BIR_DB_KEY", "abc".into()))
+            env_master_key(only("BUWIZ_DB_KEY", "abc".into()))
                 .unwrap()
                 .is_err()
         );
         let missing = "/nonexistent/db.key".to_string();
         assert!(
-            env_master_key(only("BIR_DB_KEY_FILE", missing))
+            env_master_key(only("BUWIZ_DB_KEY_FILE", missing))
                 .unwrap()
                 .is_err()
         );
@@ -1674,14 +1676,14 @@ mod tests {
 
     #[test]
     fn app_database_path_defaults_to_data_dir_bir_data() {
-        temp_env::with_var("BIR_DATABASE_PATH", None::<&str>, || {
+        temp_env::with_var("BUWIZ_DATABASE_PATH", None::<&str>, || {
             assert_eq!(app_database_path(), default_database_path());
             assert_eq!(
                 default_database_path(),
                 crate::platform::data_dir().join("bir_data.db")
             );
         });
-        temp_env::with_var("BIR_DATABASE_PATH", Some(""), || {
+        temp_env::with_var("BUWIZ_DATABASE_PATH", Some(""), || {
             assert_eq!(app_database_path(), default_database_path());
         });
     }
@@ -1690,7 +1692,7 @@ mod tests {
     fn app_database_path_honors_bir_database_path_override() {
         let directory = tempfile::tempdir().expect("temporary directory");
         let override_path = directory.path().join("ci-bir.db");
-        temp_env::with_var("BIR_DATABASE_PATH", Some(&override_path), || {
+        temp_env::with_var("BUWIZ_DATABASE_PATH", Some(&override_path), || {
             assert_eq!(app_database_path(), override_path);
             assert_ne!(app_database_path(), default_database_path());
         });
@@ -1700,7 +1702,7 @@ mod tests {
     fn open_live_database_is_file_backed_not_ephemeral() {
         let directory = tempfile::tempdir().expect("temporary directory");
         let db_path = directory.path().join("live.db");
-        temp_env::with_var("BIR_DATABASE_PATH", Some(db_path.as_os_str()), || {
+        temp_env::with_var("BUWIZ_DATABASE_PATH", Some(db_path.as_os_str()), || {
             let (db, opened, recovered) = open_live_database().expect("open live file db");
             assert_eq!(opened, db_path);
             assert!(recovered.is_none());
@@ -2183,7 +2185,7 @@ mod tests {
     fn open_live_database_seeds_the_shipped_holidays() {
         let directory = tempfile::tempdir().expect("temporary directory");
         let db_path = directory.path().join("seeded.db");
-        temp_env::with_var("BIR_DATABASE_PATH", Some(db_path.as_os_str()), || {
+        temp_env::with_var("BUWIZ_DATABASE_PATH", Some(db_path.as_os_str()), || {
             let (db, _, _) = open_live_database().expect("open live file db");
             assert!(
                 db.get_deadline_overrides()
@@ -2197,7 +2199,7 @@ mod tests {
     fn second_open_live_database_is_refused_until_first_drops() {
         let directory = tempfile::tempdir().expect("temporary directory");
         let db_path = directory.path().join("owned.db");
-        temp_env::with_var("BIR_DATABASE_PATH", Some(db_path.as_os_str()), || {
+        temp_env::with_var("BUWIZ_DATABASE_PATH", Some(db_path.as_os_str()), || {
             let (first, opened, _) = open_live_database().expect("first live owner");
             assert_eq!(opened, db_path);
             let error = match open_live_database() {
@@ -2224,7 +2226,7 @@ mod tests {
     fn open_serve_database_does_not_quarantine() {
         let directory = tempfile::tempdir().expect("temporary directory");
         let db_path = directory.path().join("serve.db");
-        temp_env::with_var("BIR_DATABASE_PATH", Some(db_path.as_os_str()), || {
+        temp_env::with_var("BUWIZ_DATABASE_PATH", Some(db_path.as_os_str()), || {
             {
                 let db = Database::open(&db_path).expect("seed");
                 db.set_setting("probe", "keep").expect("write");

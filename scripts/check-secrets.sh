@@ -36,6 +36,16 @@ if [ -n "$code" ]; then
   if [ -n "$found" ]; then echo "$found"; hit 'a passphrase or SFTP code is in the tree'; fi
 fi
 search 'codeitlikemiley@' 'the maintainer email is in the tree (use fixtures)'
+# Buwiz reads only its own BUWIZ_* environment names: eBIRForms (its shell,
+# bir-desktop) reads these, so Buwiz reading one would let a setting made for
+# the other app pick Buwiz's database, key or server. The list lives in
+# crates/bir-core/src/foreign_env.rs, the one file allowed to name them.
+foreign='(^|[^A-Z0-9_])(BIR_DATABASE_PATH|BIR_DB_KEY(_FILE)?|BIR_NO_KEYCHAIN|EBIR_TEST_ENV|EBIR_RELAXED_VALIDATION|DEVELOPER_MODE|BUWIZ_SERVER_URL|BUWIZ_ACCOUNT_URL|BUWIZ_ACCESS_TOKEN)([^A-Z0-9_]|$)'
+envcode=$(echo "$files" | grep -E '\.(rs|sh|java|kt|swift|toml|ya?ml|json|py)$|(^|/)justfile$' | grep -v -E '^crates/bir-core/src/foreign_env\.rs$' || true)
+if [ -n "$envcode" ]; then
+  found=$(echo "$envcode" | xargs grep -n -I -E "$foreign" -- 2>/dev/null || true)
+  if [ -n "$found" ]; then echo "$found"; hit "another app's environment name is in the tree (Buwiz reads only BUWIZ_* names)"; fi
+fi
 # A real TIN root from the source repo, kept here only as a SHA-256 so this
 # script doesn't publish it: every 9-digit run (or NNN-NNN-NNN) in the tree
 # is hashed and compared.
