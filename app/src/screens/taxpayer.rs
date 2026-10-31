@@ -407,9 +407,7 @@ fn desktop_new_taxpayer() -> impl IntoElement {
     let at: [ElementRef; 5] = std::array::from_fn(|_| element_ref());
     let [tin_at, birth_at, name_at, street_at, email_at] = at;
 
-    // Add taxpayer, then the focus on the first field to fix; a list
-    // opens instead of taking the focus (its field cannot be focused from
-    // here: the combobox owns its handle).
+    // Add taxpayer, then the focus on the first field to fix.
     let create = move || match form.create() {
         Some(Field::Tin) => tin_at.focus(),
         Some(Field::Birth) => birth_at.focus(),
@@ -418,12 +416,13 @@ fn desktop_new_taxpayer() -> impl IntoElement {
         Some(Field::Email) => email_at.focus(),
         Some(field) => {
             if let Some(p) = form.picker(field) {
-                p.open.set(true);
+                p.focus();
             }
         }
         None => {}
     };
-    // Escape closes an open list, else the dialog (also from a text box).
+    // Escape closes the dialog, also from a text box (an open list takes
+    // the first Escape itself).
     on_key_with("escape", KeyOptions { when: nsh_core::keymap::When::Always, repeat: false }, move |_| {
         match form.pickers.iter().find(|p| p.open.get_untracked()) {
             Some(p) => p.open.set(false),
@@ -455,9 +454,9 @@ fn desktop_new_taxpayer() -> impl IntoElement {
     let tin = form.track(Field::Tin, tin_input_desktop(form.tin, tin_at).on_change(move |_: &str| form.typed(Field::Tin)));
 
     let note = move |field: Field| move || form.note(field);
-    let pick = move |field: Field, list: List, value: Signal<Option<String>>, popup_w: f32| {
+    let pick = move |field: Field, list: List, value: Signal<Option<String>>| {
         let state = form.picker(field).expect("a picker field");
-        field_block(list.label(), picker(list, value, state, false, popup_w, move || form.leave(field)), note(field))
+        field_block(list.label(), picker(list, value, state, false, move || form.leave(field)), note(field))
     };
 
     // 4 px round the fields, inside the scroll view, so it does not clip
@@ -475,13 +474,13 @@ fn desktop_new_taxpayer() -> impl IntoElement {
         .child(field_block("Registered name", text_field(Field::Name, form.name, "Juana Santos", name_at), note(Field::Name)))
         .child(field_block("Taxpayer type", type_radios(form), || Note::None))
         .child(field_block("Street address", text_field(Field::Street, form.street, "1 Sample Street", street_at), note(Field::Street)))
-        .child(pick(Field::City, List::City, form.city, 480.0))
+        .child(pick(Field::City, List::City, form.city))
         .child(
             view()
                 .flex_row()
                 .gap(px(12.0))
-                .child(pick(Field::Zip, List::Zip, form.zip, 280.0).w(px(220.0)))
-                .child(pick(Field::Rdo, List::Rdo, form.rdo, 380.0).flex_1()),
+                .child(pick(Field::Zip, List::Zip, form.zip).w(px(220.0)))
+                .child(pick(Field::Rdo, List::Rdo, form.rdo).flex_1()),
         )
         .child(field_block("Email", text_field(Field::Email, form.email, "name@example.com", email_at), note(Field::Email)));
 
@@ -733,10 +732,15 @@ fn phone_new_taxpayer() -> impl IntoElement {
     let pick_row = move |which: Field, list: List, value: Signal<Option<String>>| {
         let state = form.picker(which).expect("a picker field");
         view()
+            .px(px(18.0))
+            .py(px(10.0))
             .border_b(px(1.0))
             .border_color(theme::BORDER)
-            .child(picker(list, value, state, true, 0.0, move || form.leave(which)))
-            .child(view().px(px(18.0)).child(error_line(which)).pb(move || px(if form.error_of(which).is_some() { 10.0 } else { 0.0 })))
+            .bg(move || if state.focused.get() { theme::ACCENT_SOFT } else { theme::SURFACE })
+            .on_press(move || state.focus())
+            .child(text(list.label()).text_size(px(13.0)).text_color(theme::FG2))
+            .child(picker(list, value, state, true, move || form.leave(which)))
+            .child(error_line(which))
     };
 
     let r = refs.clone();
@@ -823,7 +827,7 @@ fn phone_new_taxpayer() -> impl IntoElement {
             .on_press(move || match untracked(missing) {
                 Some(f) => match (ref_of(f), form.picker(f)) {
                     (Some(i), _) => refs[i].focus(),
-                    (None, Some(p)) => p.open.set(true),
+                    (None, Some(p)) => p.focus(),
                     (None, None) => {}
                 },
                 None => {
