@@ -3610,7 +3610,7 @@ mod tests {
         super::super::migrations::migrate_database(&conn).unwrap();
         Database {
             conn,
-            _owner_lock: None,
+            _open_lock: None,
         }
     }
 
