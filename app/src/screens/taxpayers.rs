@@ -1,10 +1,12 @@
 //! Taxpayers (desktop, bir-shell `taxpayer.js` and DESIGN_SYSTEM "Main area
-//! for a taxpayer" / "Disclosure"): the selected taxpayer's page header,
-//! its profile in one disclosure group (Taxpayer, Branch, Address and
-//! contact; each with Edit in place), its branches with Add branch, and
-//! every taxpayer to switch to.
+//! for a taxpayer" / "Disclosure"; the phone reaches it from the tax
+//! profile sheet): the selected taxpayer's page header, its profile in one
+//! disclosure group (Taxpayer, Business, Branch, Address and contact; each
+//! with Edit in place), its branches with Add branch, and every taxpayer to
+//! switch to.
 
-use bir_app_core::{Taxpayer, TaxpayerUpdate};
+use bir_app_core::display::{format_form_date, parse_typed_date};
+use bir_app_core::{BirApp, Choice, ProfileDetails, Taxpayer, TaxpayerUpdate};
 use nsh_core::prelude::*;
 
 use crate::icons::Icon;
@@ -12,7 +14,7 @@ use crate::live::store;
 use crate::screens::{Route, content, page_title};
 use crate::store::{Loaded, NoticeTone, Selected, call, task};
 use crate::theme;
-use crate::widgets::{Tone, Variant, avatar, button_sm, caption, chip, code_text, empty_row, field_input, list_group, list_row, name_cell, section_title};
+use crate::widgets::{Tone, Variant, avatar, button_sm, caption, chip, code_text, empty_row, field_input, list_group, list_row, name_cell, section_title, tick_row};
 
 fn current() -> Option<(Selected, Taxpayer)> {
     let st = store();
@@ -73,16 +75,7 @@ fn page(tin: String, t: Taxpayer) -> impl IntoElement {
         )
         .child(view().h(px(16.0)))
         .child(section_title("Profile", true))
-        .child(
-            view()
-                .rounded(px(theme::R_CARD))
-                .border_1()
-                .border_color(theme::BORDER)
-                .overflow_hidden()
-                .child(taxpayer_section(t.clone()))
-                .child(branch_section(branch.clone(), true))
-                .child(address_section(branch.clone())),
-        )
+        .child(profile_group(t.clone(), branch.clone()))
         .child(section_title(format!("Branches · {}", t.branches.len()), false))
         .child(branches(t.clone(), tin.clone()))
         .child(when(others.len() > 1, move || section_title("Switch taxpayer", false)))
@@ -110,6 +103,121 @@ fn page(tin: String, t: Taxpayer) -> impl IntoElement {
             col
         }).into_element() })
         .into_element()
+}
+
+/// The profile's sections, built once the business and filing facts are
+/// read (and again after they are saved).
+fn profile_group(t: Taxpayer, branch: bir_app_core::Branch) -> impl IntoElement {
+    let details: Signal<Option<ProfileDetails>> = signal(None);
+    let reload = {
+        let root = t.tin_root.clone();
+        move || {
+            let root = root.clone();
+            task(async move {
+                let year = election_year();
+                match call(move |app| app.profile_details(&root, year)).await {
+                    Ok(read) => details.set(Some(read)),
+                    Err(why) => store().notify(NoticeTone::Danger, format!("Could not read the profile: {why}")),
+                }
+            });
+        }
+    };
+    reload();
+    each(
+        move || vec![details.get().map(|d| format!("{d:?}"))],
+        |k| k.clone(),
+        move |_, _| {
+            let Some(d) = details.get_untracked() else { return view().h(px(44.0)).into_element() };
+            view()
+                .rounded(px(theme::R_CARD))
+                .border_1()
+                .border_color(theme::BORDER)
+                .overflow_hidden()
+                .child(taxpayer_section(t.clone(), d.clone(), details))
+                .child(business_section(t.tin_root.clone(), d, details))
+                .child(branch_section(branch.clone(), true))
+                .child(address_section(branch.clone()))
+                .into_element()
+        },
+    )
+}
+
+/// The year the profile's income-tax election is shown and set for.
+fn election_year() -> u16 {
+    u16::try_from(bir_app_core::display::current_year()).unwrap_or(2026)
+}
+
+/// `YYYY-MM-DD` as the forms write a date, MM/DD/YYYY.
+fn shown_date(iso: Option<&str>) -> String {
+    iso.and_then(|d| d.parse::<chrono::NaiveDate>().ok()).map(format_form_date).unwrap_or_default()
+}
+
+/// A typed MM/DD/YYYY date as `YYYY-MM-DD`: `Ok(None)` when blank, an error
+/// naming `what` when it is not a real past date.
+fn typed_date(typed: &str, what: &str) -> Result<Option<String>, String> {
+    if typed.trim().is_empty() {
+        return Ok(None);
+    }
+    match parse_typed_date(typed) {
+        Some(date) if date > crate::store::today() => Err(format!("The {what} cannot be in the future.")),
+        Some(date) => Ok(Some(date.to_string())),
+        None => Err(format!("Enter the {what} as MM/DD/YYYY, like 01/15/1990.")),
+    }
+}
+
+/// A choice's title, "—" for none.
+fn title_of(list: &[Choice], value: Option<&str>) -> String {
+    value.and_then(|v| list.iter().find(|c| c.value == v)).map(|c| c.title.clone()).unwrap_or_default()
+}
+
+/// One pill per choice (and "Not set" when `none` is allowed); one is on.
+fn pills(list: Vec<Choice>, value: Signal<Option<String>>, none: bool) -> impl IntoElement {
+    let mut row = view().flex_row().flex_wrap().gap(px(6.0));
+    let mut all: Vec<(Option<String>, String)> = list.into_iter().map(|c| (Some(c.value), c.title)).collect();
+    if none {
+        all.push((None, "Not set".to_owned()));
+    }
+    for (choice, title) in all {
+        let (c1, c2, c3) = (choice.clone(), choice.clone(), choice);
+        row = row.child(
+            view()
+                .h(px(26.0))
+                .px(px(9.0))
+                .rounded(px(theme::R_FULL))
+                .justify_center()
+                .cursor_pointer()
+                .border_1()
+                .border_color(move || if value.get() == c1 { theme::ACCENT } else { theme::BORDER_STRONG })
+                .bg(move || if value.get() == c2 { theme::ACCENT_SOFT } else { theme::SURFACE })
+                .label(title.clone())
+                .on_press(move || value.set(c3.clone()))
+                .child(text(title).text_size(px(12.0)).text_color(theme::FG)),
+        );
+    }
+    row
+}
+
+/// A labelled group of edit controls, full width.
+fn block(label: &'static str, control: impl IntoElement) -> impl IntoElement {
+    view().pt(px(16.0)).gap(px(6.0)).child(caption(label)).child(control)
+}
+
+/// Save `d` for the taxpayer `root`; the sections show what is stored.
+fn save_details(root: String, d: ProfileDetails, busy: Signal<bool>, details: Signal<Option<ProfileDetails>>, editing: Signal<bool>, saved: &'static str) {
+    busy.set(true);
+    task(async move {
+        let done = call(move |app| app.update_profile_details(&root, &d)).await;
+        busy.set(false);
+        match done {
+            Ok(stored) => {
+                editing.set(false);
+                store().notify(NoticeTone::Success, saved);
+                details.set(Some(stored));
+                store().reload_taxpayers(None);
+            }
+            Err(why) => store().notify(NoticeTone::Danger, format!("Not saved: {why}")),
+        }
+    });
 }
 
 /// A disclosure section: a 44 tall header (chevron, title, meta, Edit while
@@ -172,22 +280,104 @@ fn edit_bar(editing: Signal<bool>, busy: Signal<bool>, save: impl Fn() + 'static
 
 const TYPES: [&str; 6] = ["Individual", "Corporation", "Partnership", "Cooperative", "Estate", "Trust"];
 
-fn taxpayer_section(t: Taxpayer) -> impl IntoElement {
+/// What the applicability flags say, as one line ("Has employees · VAT").
+fn flags_line(d: &ProfileDetails) -> String {
+    let all = [
+        (d.has_employees, "Has employees"),
+        (d.withholds_compensation, "Withholds on compensation"),
+        (d.withholds_expanded, "Withholds expanded tax"),
+        (d.withholds_final, "Withholds final tax"),
+        (d.vat_registered, "VAT-registered"),
+        (d.single_employer, "One employer"),
+        (d.dormant, "Dormant"),
+    ];
+    let on: Vec<&str> = all.iter().filter(|(set, _)| *set).map(|(_, label)| *label).collect();
+    if on.is_empty() { "None".to_owned() } else { on.join(" · ") }
+}
+
+fn taxpayer_section(t: Taxpayer, d: ProfileDetails, details: Signal<Option<ProfileDetails>>) -> impl IntoElement {
     let meta = "Shared by every branch".to_owned();
     section("Taxpayer", meta, true, true, move |editing| {
         let t = t.clone();
+        let d = d.clone();
+        let year = d.election_year;
         if !editing.get_untracked() {
-            return grid()
+            let classes = BirApp::tax_classifications(&t.taxpayer_type);
+            let mut grid = grid()
                 .child(fact("Registered name", t.name.clone()))
                 .child(fact("TIN", t.tin_display.clone()))
-                .child(fact("Taxpayer type", t.taxpayer_type.clone()))
-                .child(fact("Birth date", t.birth_date.clone().unwrap_or_default()))
+                .child(fact("Taxpayer type", t.taxpayer_type.clone()));
+            if t.taxpayer_type == "Individual" {
+                grid = grid.child(fact("Birth date", shown_date(t.birth_date.as_deref())));
+            }
+            if !classes.is_empty() {
+                grid = grid.child(fact("Tax classification", title_of(&classes, d.tax_classification.as_deref())));
+            }
+            if t.taxpayer_type == "Individual" {
+                grid = grid.child(fact_owned(format!("Income-tax election, {year}"), title_of(&BirApp::income_tax_elections(), d.income_tax_election.as_deref())));
+            }
+            return view()
+                .child(grid)
+                .child(view().pt(px(16.0)).gap(px(2.0)).child(caption("What applies")).child(text(flags_line(&d)).text_size(px(13.0)).text_color(theme::FG)))
                 .into_element();
         }
         let name = signal(t.name.clone());
         let kind = signal(t.taxpayer_type.clone());
+        let birth = signal(shown_date(t.birth_date.as_deref()));
+        let class = signal(d.tax_classification.clone());
+        let election = signal(d.income_tax_election.clone());
+        let flags: [(Signal<bool>, &'static str); 7] = [
+            (signal(d.has_employees), "Has employees"),
+            (signal(d.withholds_compensation), "Withholds tax on compensation"),
+            (signal(d.withholds_expanded), "Withholds expanded tax from suppliers"),
+            (signal(d.withholds_final), "Withholds final tax"),
+            (signal(d.vat_registered), "VAT-registered"),
+            (signal(d.single_employer), "Purely compensation, one employer"),
+            (signal(d.dormant), "Dormant (no operations)"),
+        ];
         let busy = signal(false);
         let root = t.tin_root.clone();
+        let before = d.clone();
+        let save = move || {
+            let individual = kind.get_untracked() == "Individual";
+            let birth_date = if individual {
+                match typed_date(&birth.get_untracked(), "birth date") {
+                    Ok(date) => date,
+                    Err(why) => {
+                        store().notify(NoticeTone::Danger, why);
+                        return;
+                    }
+                }
+            } else {
+                None
+            };
+            let classes = BirApp::tax_classifications(&kind.get_untracked());
+            let mut next = before.clone();
+            next.tax_classification = class.get_untracked().filter(|c| classes.iter().any(|x| &x.value == c));
+            next.income_tax_election = if individual { election.get_untracked() } else { None };
+            let [a, b, c, e, f, g, h] = flags.map(|(sig, _)| sig.get_untracked());
+            (next.has_employees, next.withholds_compensation, next.withholds_expanded, next.withholds_final, next.vat_registered, next.single_employer, next.dormant) = (a, b, c, e, f, g, h);
+            let update = TaxpayerUpdate { name: Some(name.get_untracked().trim().to_owned()), taxpayer_type: Some(kind.get_untracked()), birth_date: Some(birth_date) };
+            let root = root.clone();
+            busy.set(true);
+            task(async move {
+                let done = call(move |app| {
+                    app.update_taxpayer(&root, &update)?;
+                    app.update_profile_details(&root, &next)
+                })
+                .await;
+                busy.set(false);
+                match done {
+                    Ok(stored) => {
+                        editing.set(false);
+                        store().notify(NoticeTone::Success, "Taxpayer saved.");
+                        details.set(Some(stored));
+                        store().reload_taxpayers(None);
+                    }
+                    Err(why) => store().notify(NoticeTone::Danger, format!("Not saved: {why}")),
+                }
+            });
+        };
         let mut types = view().flex_row().flex_wrap().gap(px(6.0));
         for label in TYPES {
             types = types.child(
@@ -204,26 +394,94 @@ fn taxpayer_section(t: Taxpayer) -> impl IntoElement {
                     .child(text(label).text_size(px(12.0)).text_color(theme::FG)),
             );
         }
-        let save = move || {
-            let update = TaxpayerUpdate { name: Some(name.get_untracked().trim().to_owned()), taxpayer_type: Some(kind.get_untracked()) };
-            let root = root.clone();
-            busy.set(true);
-            task(async move {
-                let done = call(move |app| app.update_taxpayer(&root, &update)).await;
-                busy.set(false);
-                match done {
-                    Ok(_) => {
-                        editing.set(false);
-                        store().notify(NoticeTone::Success, "Taxpayer saved.");
-                        store().reload_taxpayers(None);
-                    }
-                    Err(why) => store().notify(NoticeTone::Danger, format!("Not saved: {why}")),
-                }
-            });
-        };
+        let birth_at = element_ref();
+        let mut ticks = view().gap(px(4.0));
+        for (sig, label) in flags {
+            ticks = ticks.child(tick_row(label, 13.0, move || sig.get(), move |on| sig.set(on)));
+        }
         view()
             .child(grid().child(labelled("Registered name", field_input(name, "As on the Certificate of Registration"))).child(fact("TIN", t.tin_display.clone())))
             .child(view().pt(px(16.0)).gap(px(4.0)).child(caption("Taxpayer type")).child(types))
+            .child(when(move || kind.get() == "Individual", move || {
+                view().pt(px(16.0)).child(labelled("Birth date", crate::screens::taxpayer::date_input(birth, birth_at)))
+            }))
+            .child(each(move || vec![kind.get()], |k| k.clone(), move |k, _| {
+                let classes = BirApp::tax_classifications(&k.get_untracked());
+                if classes.is_empty() {
+                    return view().into_element();
+                }
+                block("Tax classification", pills(classes, class, true)).into_element()
+            }))
+            .child(when(move || kind.get() == "Individual", move || {
+                view()
+                    .child(block_owned(format!("Income-tax election, {year}"), pills(BirApp::income_tax_elections(), election, true)))
+            }))
+            .child(block("What applies", ticks))
+            .child(edit_bar(editing, busy, save))
+            .into_element()
+    })
+}
+
+/// [`fact`] with a label made at run time.
+fn fact_owned(label: String, value: String) -> impl IntoElement {
+    view()
+        .w(px(260.0))
+        .gap(px(2.0))
+        .child(caption(label))
+        .child(text(if value.trim().is_empty() { "—".to_owned() } else { value }).text_size(px(13.0)).text_color(theme::FG))
+}
+
+/// [`block`] with a label made at run time.
+fn block_owned(label: String, control: impl IntoElement) -> impl IntoElement {
+    view().pt(px(16.0)).gap(px(6.0)).child(caption(label)).child(control)
+}
+
+fn business_section(root: String, d: ProfileDetails, details: Signal<Option<ProfileDetails>>) -> impl IntoElement {
+    let meta = if d.line_of_business.trim().is_empty() { "Line of business, start date, EOPT tier".to_owned() } else { d.line_of_business.clone() };
+    section("Business", meta, false, false, move |editing| {
+        let d = d.clone();
+        let tiers = BirApp::eopt_tiers();
+        if !editing.get_untracked() {
+            return grid()
+                .child(fact("Line of business", d.line_of_business.clone()))
+                .child(fact("Business start or incorporation", shown_date(d.business_start_date.as_deref())))
+                .child(fact("EOPT tier", title_of(&tiers, d.eopt_tier.as_deref())))
+                .child(fact("Government withholding entity", if d.government_withholding { "Yes".to_owned() } else { "No".to_owned() }))
+                .into_element();
+        }
+        let line = signal(d.line_of_business.clone());
+        let start = signal(shown_date(d.business_start_date.as_deref()));
+        let tier = signal(d.eopt_tier.clone());
+        let government = signal(d.government_withholding);
+        let busy = signal(false);
+        let root = root.clone();
+        let before = d.clone();
+        let save = move || {
+            let start_date = match typed_date(&start.get_untracked(), "start date") {
+                Ok(date) => date,
+                Err(why) => {
+                    store().notify(NoticeTone::Danger, why);
+                    return;
+                }
+            };
+            let next = ProfileDetails {
+                line_of_business: line.get_untracked().trim().to_owned(),
+                business_start_date: start_date,
+                eopt_tier: tier.get_untracked(),
+                government_withholding: government.get_untracked(),
+                ..before.clone()
+            };
+            save_details(root.clone(), next, busy, details, editing, "Business saved. New returns prefill it.");
+        };
+        let start_at = element_ref();
+        view()
+            .child(
+                grid()
+                    .child(labelled("Line of business", field_input(line, "PSIC code and description, like 47190 Retail sale")))
+                    .child(labelled("Business start or incorporation", crate::screens::taxpayer::date_input(start, start_at))),
+            )
+            .child(block("EOPT tier", pills(tiers, tier, true)))
+            .child(view().pt(px(16.0)).child(tick_row("Government withholding entity", 13.0, move || government.get(), move |on| government.set(on))))
             .child(edit_bar(editing, busy, save))
             .into_element()
     })
