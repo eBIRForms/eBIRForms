@@ -701,13 +701,19 @@ fn place_gap(place: &bir_app_core::Place) -> Option<&'static str> {
 }
 
 /// The places whose name, ZIP or RDO contains `query` (two letters or
-/// more), at most `limit`.
+/// more), at most `limit`: RDOs first (a few, so ZIP areas still show),
+/// since the ZIP table is far longer and would push them out.
 fn matching_places(all: &[bir_app_core::Place], query: &str, limit: usize) -> Vec<bir_app_core::Place> {
     let q = query.trim().to_lowercase();
     if q.len() < 2 {
         return Vec::new();
     }
-    all.iter().filter(|p| p.label.to_lowercase().contains(&q) || p.rdo_name.to_lowercase().contains(&q)).take(limit).cloned().collect()
+    let hits = || all.iter().filter(|p| p.label.to_lowercase().contains(&q) || p.rdo_name.to_lowercase().contains(&q));
+    let zips = hits().filter(|p| !p.zip.is_empty()).count();
+    let rdo_room = limit.saturating_sub(zips.min(limit / 2));
+    let mut out: Vec<_> = hits().filter(|p| p.zip.is_empty()).take(rdo_room).cloned().collect();
+    out.extend(hits().filter(|p| !p.zip.is_empty()).take(limit - out.len()).cloned());
+    out
 }
 
 /// The desktop's place box: type a city, province, ZIP or RDO and pick from
@@ -862,5 +868,14 @@ mod tests {
         assert!(by_zip.iter().any(|p| p.zip == "1600"), "a ZIP finds its area");
         let rdos = matching_places(&all, "RDO 043", 8);
         assert!(rdos.iter().any(|p| p.rdo_code == "043" && p.zip.is_empty()), "an RDO number finds the RDO");
+    }
+
+    #[test]
+    fn the_short_list_keeps_room_for_rdos_and_zip_areas() {
+        let all = bir_app_core::BirApp::places();
+        let quezon = matching_places(&all, "quezon", 8);
+        assert_eq!(quezon.len(), 8);
+        assert!(quezon.iter().any(|p| p.rdo_name == "North Quezon City"), "the RDOs show though ZIP areas match more");
+        assert!(quezon.iter().any(|p| !p.zip.is_empty()), "ZIP areas still show");
     }
 }
