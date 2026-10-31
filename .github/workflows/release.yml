@@ -1,9 +1,11 @@
 name: release
 
-# Builds, signs and uploads a version to Cloudflare R2:
-#   s3://buwiz-releases/releases/v{VERSION}/{file}         the signed files
-#   s3://buwiz-releases/releases/v{VERSION}/manifest.json  what buwiz.com reads
-#   s3://buwiz-releases/releases/v{VERSION}/SHA256SUMS
+# Builds, signs and uploads a version to Cloudflare R2, under eBIRForms'
+# folder and, until v0.1.0's Linux installers have aged out, the old root one:
+#   s3://buwiz-releases/ebirforms/releases/v{VERSION}/{file}         the signed files
+#   s3://buwiz-releases/ebirforms/releases/v{VERSION}/manifest.json  what the website reads
+#   s3://buwiz-releases/ebirforms/releases/v{VERSION}/SHA256SUMS
+#   s3://buwiz-releases/releases/v{VERSION}/…                        the same, the old path
 # Nothing goes to a GitHub Release. A version is never overwritten. A tag
 # push never touches latest.json: promotion is promote.yml, or a manual run
 # of this workflow with `promote` checked.
@@ -98,13 +100,13 @@ jobs:
           echo "Releasing $VERSION from $GITHUB_SHA"
       - run: ./scripts/check-secrets.sh
 
-  # A version is never overwritten: fail if releases/v{VERSION}/ holds
-  # anything at all.
+  # A version is never overwritten: fail if ebirforms/releases/v{VERSION}/
+  # or releases/v{VERSION}/ holds anything at all.
   guard:
     needs: preflight
     runs-on: ubuntu-24.04
     steps:
-      - name: releases/v${{ needs.preflight.outputs.version }}/ must be empty
+      - name: v${{ needs.preflight.outputs.version }} must not be published yet
         shell: bash
         env:
           VERSION: ${{ needs.preflight.outputs.version }}
@@ -118,14 +120,16 @@ jobs:
               exit 1
             fi
           done
-          keys="$(aws s3api list-objects-v2 --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
-            --prefix "releases/v$VERSION/" --max-items 5 --query 'Contents[].Key' --output text)"
-          if [ -n "$keys" ] && [ "$keys" != "None" ]; then
-            echo "s3://$R2_BUCKET/releases/v$VERSION/ already holds objects; a version is never overwritten:" >&2
-            echo "$keys" | tr '\t' '\n' >&2
-            exit 1
-          fi
-          echo "s3://$R2_BUCKET/releases/v$VERSION/ is empty"
+          for prefix in "ebirforms/releases/v$VERSION/" "releases/v$VERSION/"; do
+            keys="$(aws s3api list-objects-v2 --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
+              --prefix "$prefix" --max-items 5 --query 'Contents[].Key' --output text)"
+            if [ -n "$keys" ] && [ "$keys" != "None" ]; then
+              echo "s3://$R2_BUCKET/$prefix already holds objects; a version is never overwritten:" >&2
+              echo "$keys" | tr '\t' '\n' >&2
+              exit 1
+            fi
+            echo "s3://$R2_BUCKET/$prefix is empty"
+          done
 
   macos:
     needs: [preflight, guard]
@@ -156,7 +160,7 @@ jobs:
     secrets: inherit
 
   # The only job that writes to R2, and only once every platform has built:
-  # a failed build leaves releases/v{VERSION}/ empty, so the same version
+  # a failed build leaves both folders empty, so the same version
   # can run again. The files, then manifest.json, then SHA256SUMS.
   publish:
     needs: [preflight, macos, windows, linux, android]
@@ -196,39 +200,42 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
         run: |
           set -euo pipefail
-          prefix="releases/v$VERSION"
-          # Every listed file is in the bucket at its recorded size.
-          python3 -c 'import json,sys; [print(f["file"], f["size"]) for f in json.load(open(sys.argv[1]))["files"]]' out/manifest.json |
-          while read -r file size; do
-            remote="$(aws s3api head-object --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
-              --key "$prefix/$file" --query ContentLength --output text)"
-            if [ "$remote" != "$size" ]; then
-              echo "$prefix/$file is $remote bytes in R2, the manifest says $size" >&2
-              exit 1
-            fi
+          for prefix in "ebirforms/releases/v$VERSION" "releases/v$VERSION"; do
+            # Every listed file is in the bucket at its recorded size.
+            python3 -c 'import json,sys; [print(f["file"], f["size"]) for f in json.load(open(sys.argv[1]))["files"]]' out/manifest.json |
+            while read -r file size; do
+              remote="$(aws s3api head-object --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
+                --key "$prefix/$file" --query ContentLength --output text)"
+              if [ "$remote" != "$size" ]; then
+                echo "$prefix/$file is $remote bytes in R2, the manifest says $size" >&2
+                exit 1
+              fi
+            done
+            existing="$(aws s3api list-objects-v2 --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
+              --prefix "$prefix/" --query 'Contents[].Key' --output text | tr '\t' '\n')"
+            for name in manifest.json SHA256SUMS; do
+              if printf '%s\n' "$existing" | grep -Fxq "$prefix/$name"; then
+                echo "$prefix/$name already exists; a version is never overwritten" >&2
+                exit 1
+              fi
+            done
           done
-          existing="$(aws s3api list-objects-v2 --endpoint-url "$R2_ENDPOINT" --bucket "$R2_BUCKET" \
-            --prefix "$prefix/" --query 'Contents[].Key' --output text | tr '\t' '\n')"
-          for name in manifest.json SHA256SUMS; do
-            if printf '%s\n' "$existing" | grep -Fxq "$prefix/$name"; then
-              echo "$prefix/$name already exists; a version is never overwritten" >&2
-              exit 1
-            fi
+          for prefix in "ebirforms/releases/v$VERSION" "releases/v$VERSION"; do
+            aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress \
+              --cache-control "public, max-age=31536000, immutable" \
+              --content-type "application/json" \
+              out/manifest.json "s3://$R2_BUCKET/$prefix/manifest.json"
+            aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress \
+              --cache-control "public, max-age=31536000, immutable" \
+              --content-type "text/plain; charset=utf-8" \
+              out/SHA256SUMS "s3://$R2_BUCKET/$prefix/SHA256SUMS"
           done
-          aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress \
-            --cache-control "public, max-age=31536000, immutable" \
-            --content-type "application/json" \
-            out/manifest.json "s3://$R2_BUCKET/$prefix/manifest.json"
-          aws s3 cp --endpoint-url "$R2_ENDPOINT" --no-progress \
-            --cache-control "public, max-age=31536000, immutable" \
-            --content-type "text/plain; charset=utf-8" \
-            out/SHA256SUMS "s3://$R2_BUCKET/$prefix/SHA256SUMS"
       - name: Summary
         run: |
           {
             echo "### Buwiz $VERSION uploaded to R2"
             echo
-            echo "s3://$R2_BUCKET/releases/v$VERSION/"
+            echo "s3://$R2_BUCKET/ebirforms/releases/v$VERSION/ (and the old releases/v$VERSION/)"
             echo
             echo '```'
             cat out/SHA256SUMS

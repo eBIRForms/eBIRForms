@@ -19,7 +19,7 @@
 # guard never overwrites releases/vX.Y.Z/ in R2. Release the next version.
 set -euo pipefail
 
-REPO=buwiz-corp/buwiz-oss
+REPO=eBIRForms/eBIRForms
 cd "$(dirname "$0")/.."
 
 die() {
