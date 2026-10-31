@@ -18,6 +18,7 @@ mod linux;
 mod mac;
 pub mod live;
 pub mod mobile;
+mod picker;
 mod screens;
 mod session;
 mod store;
