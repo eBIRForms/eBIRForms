@@ -354,7 +354,8 @@ fn address_section(b: bir_app_core::Branch) -> impl IntoElement {
 /// inline band.
 fn branches(t: Taxpayer, selected: String) -> impl IntoElement {
     let st = store();
-    let adding = signal(false);
+    // Debug builds: `BUWIZ_SHEET=add-branch` opens the band (evidence.sh).
+    let adding = signal(cfg!(debug_assertions) && std::env::var("BUWIZ_SHEET").as_deref() == Ok("add-branch"));
     let code = signal(String::new());
     let name = signal(String::new());
     let busy = signal(false);

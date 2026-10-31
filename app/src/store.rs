@@ -818,7 +818,9 @@ pub(crate) fn open_of(row: &ReturnRow) -> bir_app_core::OpenReturn {
 /// - `BUWIZ_SHEET=override`: the Calendar with the Change due date sheet of
 ///   its first moved deadline (else its first deadline)
 /// - debug builds: `BUWIZ_AMEND=<form>`: an amended return of that form's
-///   first sent return; `BUWIZ_TOAST=<text>`: a notice held 30 seconds
+///   first sent return; `BUWIZ_TOAST=<text>`: a notice held 30 seconds;
+///   `BUWIZ_SHEET=signin-code`: Settings waiting on a demo sign-in code;
+///   `BUWIZ_SHEET=add-branch`: Taxpayers with the Add branch band open
 ///   (`_` reads as a space: the evidence script splits hooks on spaces)
 /// - debug builds, with `BUWIZ_SHEET=new-taxpayer`:
 ///   `BUWIZ_TAXPAYER=errors|filled|city:<query>|zip:<query>|rdo:<query>`
@@ -839,6 +841,7 @@ fn launch_hooks(st: &'static Store) {
         let dialog = var("BUWIZ_PRINT_DIALOG");
         // Debug only: an amendment writes a draft, a toast shows any text.
         let (amend, toast) = if cfg!(debug_assertions) { (var("BUWIZ_AMEND"), var("BUWIZ_TOAST")) } else { (None, None) };
+        let sheet = sheet.filter(|s| cfg!(debug_assertions) || !matches!(s.as_str(), "signin-code" | "add-branch"));
         if route.is_none() && sheet.is_none() && status.is_none() && print.is_none() && !swipe && amend.is_none() && toast.is_none() {
             return;
         }
@@ -895,6 +898,15 @@ fn launch_hooks(st: &'static Store) {
                 Some("profile") => st.open_profile(),
                 Some("new-taxpayer") => st.new_taxpayer_open.set(true),
                 Some("palette") => st.palette_open.set(true),
+                Some("signin-code") => {
+                    st.go(Route::Settings);
+                    st.sign_in.set(SignIn::Pending {
+                        user_code: "WDJB-MJHT".to_owned(),
+                        uri: "buwiz.example/device".to_owned(),
+                        uri_complete: "https://buwiz.example/device?code=WDJB-MJHT".to_owned(),
+                    });
+                }
+                Some("add-branch") => st.go(Route::Taxpayer),
                 Some("delete") => st.confirm_delete.set(rows.iter().find(|r| r.status == "Draft").cloned()),
                 Some(s) if s.starts_with("start:") => st.start_sheet.set(Some(s[6..].to_owned())),
                 Some("override") => {
