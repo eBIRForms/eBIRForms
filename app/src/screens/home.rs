@@ -87,11 +87,12 @@ pub(crate) fn due_row(d: DeadlineRow, index: ReadSignal<usize>, change: bool) ->
         }
     };
     let compact = move || window().width.0 < 760.0;
-    // A window too narrow for every column: the code column goes (the title
-    // starts with the code), Change due date shrinks to its icon and the
-    // Moved badge sits on the title's line, so the title and the moved-from
-    // line keep their width.
-    let tight = move || window().width.0 < 1040.0;
+    // Below the default window width (1180) not every column fits: a late
+    // row's penalty pill grows with the amount. The code column goes (the
+    // title starts with the code), Change due date shrinks to its icon and
+    // the Moved badge sits on the title's line, so the title, the moved-from
+    // line and the status chip keep their width.
+    let tight = move || window().width.0 < 1180.0;
     let row = d.clone();
     let sheet_row = d.clone();
     let moved = moved_line(&d);
