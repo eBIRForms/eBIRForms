@@ -181,7 +181,7 @@ fn main() -> impl std::process::Termination {
     let options = platform::AppOptions {
         title: buwiz::APP_NAME.to_owned(),
         app_id: buwiz::APP_ID.to_owned(),
-        size: (1180, 800),
+        size: buwiz::window_size(),
         // `BUWIZ_FPS=1`: nsh's performance HUD at the window's top right.
         fps: std::env::var("BUWIZ_FPS").is_ok_and(|v| v != "0"),
         // `BUWIZ_TRACE=1 RUST_LOG=nsh::perf=info`: each commit's time,

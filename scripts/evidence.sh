@@ -116,6 +116,9 @@ DESKTOP=(
     "delete-confirm|BUWIZ_ROUTE=filings BUWIZ_SHEET=delete|Delete this draft?"
     "override-sheet|BUWIZ_SHEET=override|Applies to every taxpayer"
     "calendar-override|BUWIZ_ROUTE=calendar|Moved from"
+    # 1040 pt: a late row's penalty pill once pushed the status chip out and
+    # cut the moved-from line here.
+    "calendar-narrow|BUWIZ_ROUTE=calendar BUWIZ_SIZE=1040x800|Demo extension"
     "home-empty|EMPTY_DB=1 BUWIZ_ROUTE=home|Add your first taxpayer"
     "filings-empty|EMPTY_DB=1 BUWIZ_ROUTE=filings|No returns yet"
     "add-branch|BUWIZ_ROUTE=taxpayers BUWIZ_SHEET=add-branch|Branch code"
@@ -132,40 +135,57 @@ wanted() { [ -z "${ONLY:-}" ] || [[ " $ONLY " == *" $1 "* ]]; }
 desktop_shot() {
     local name=$1 theme=$2 hooks=$3 want=$4 wait=${5:-${DESK_WAIT:-9}} png wid=""
     png="$OUT/desktop-$name-$theme.png"
-    if [[ " $hooks " == *" EMPTY_DB=1 "* ]]; then rm -rf "$TMP/desk"; mkdir -p "$TMP/desk"; else fresh_db "$TMP/desk"; fi
-    # shellcheck disable=SC2086
-    # BUWIZ_OFFSCREEN: the window stays off every screen even before the
-    # window manager has moved it.
-    env BUWIZ_DATABASE_PATH="$TMP/desk/bir_data.db" BUWIZ_DB_KEY=$KEY BUWIZ_THEME=$theme BUWIZ_OFFSCREEN=1 $hooks \
-        "$ROOT/app/target/debug/buwiz" >"$TMP/desk.out" 2>&1 &
-    APP_PID=$!
-    # Every window of the app goes to the test workspace, for as long as it runs,
-    # floating (so it keeps its own size whatever else shares the space).
-    (
-        while kill -0 "$APP_PID" 2>/dev/null; do
-            aerospace list-windows --all --format '%{window-id}|%{app-pid}|%{workspace}' 2>/dev/null |
-                awk -F'|' -v p="$APP_PID" -v w="$WORKSPACE" '$2==p && $3!=w{print $1}' |
-                while read -r id; do
-                    aerospace move-node-to-workspace --window-id "$id" "$WORKSPACE"
-                    aerospace layout floating --window-id "$id" 2>/dev/null || true
-                done
+    # The window's size in points (BUWIZ_SIZE in the hooks, else the app's
+    # 1180 x 800). A tiling window manager can resize the window before it
+    # floats; a shot of the wrong size is taken again, then fails.
+    local size=1180x800 got="" attempt
+    [[ " $hooks " =~ \ BUWIZ_SIZE=([0-9]+x[0-9]+)\  ]] && size=${BASH_REMATCH[1]}
+    for attempt in 1 2 3; do
+        wid=""
+        if [[ " $hooks " == *" EMPTY_DB=1 "* ]]; then rm -rf "$TMP/desk"; mkdir -p "$TMP/desk"; else fresh_db "$TMP/desk"; fi
+        # shellcheck disable=SC2086
+        # BUWIZ_OFFSCREEN: the window stays off every screen even before the
+        # window manager has moved it.
+        env BUWIZ_DATABASE_PATH="$TMP/desk/bir_data.db" BUWIZ_DB_KEY=$KEY BUWIZ_THEME=$theme BUWIZ_OFFSCREEN=1 $hooks \
+            "$ROOT/app/target/debug/buwiz" >"$TMP/desk.out" 2>&1 &
+        APP_PID=$!
+        # Every window of the app goes to the test workspace, for as long as it runs,
+        # floating (so it keeps its own size whatever else shares the space).
+        (
+            while kill -0 "$APP_PID" 2>/dev/null; do
+                aerospace list-windows --all --format '%{window-id}|%{app-pid}|%{workspace}' 2>/dev/null |
+                    awk -F'|' -v p="$APP_PID" -v w="$WORKSPACE" '$2==p && $3!=w{print $1}' |
+                    while read -r id; do
+                        aerospace move-node-to-workspace --window-id "$id" "$WORKSPACE"
+                        aerospace layout floating --window-id "$id" 2>/dev/null || true
+                    done
+                sleep 0.2
+            done
+        ) &
+        local mover=$!
+        for _ in $(seq 1 150); do
+            wid=$("$TMP/winid" "$APP_PID" | head -1)
+            [ -n "$wid" ] && break
+            kill -0 "$APP_PID" 2>/dev/null || break
             sleep 0.2
         done
-    ) &
-    local mover=$!
-    for _ in $(seq 1 150); do
-        wid=$("$TMP/winid" "$APP_PID" | head -1)
-        [ -n "$wid" ] && break
-        kill -0 "$APP_PID" 2>/dev/null || break
-        sleep 0.2
+        sleep "$wait"
+        rm -f "$png"
+        [ -n "$wid" ] && timeout 30 screencapture -x -o -l "$wid" "$png"
+        kill "$APP_PID" 2>/dev/null || true
+        wait "$APP_PID" 2>/dev/null || true
+        APP_PID=""
+        wait "$mover" 2>/dev/null || true
+        got=$(sips -g pixelWidth -g pixelHeight "$png" 2>/dev/null | awk '/pixelWidth/{w=$2} /pixelHeight/{h=$2} END{print w "x" h}')
+        [ "$got" = "${size%x*}x${size#*x}" ] || [ "$got" = "$((${size%x*} * 2))x$((${size#*x} * 2))" ] && break
+        echo "desktop-$name-$theme: $got, not $size (attempt $attempt)" >&2
     done
-    sleep "$wait"
-    rm -f "$png"
-    [ -n "$wid" ] && timeout 30 screencapture -x -o -l "$wid" "$png"
-    kill "$APP_PID" 2>/dev/null || true
-    wait "$APP_PID" 2>/dev/null || true
-    APP_PID=""
-    wait "$mover" 2>/dev/null || true
+    if [ "$got" != "${size%x*}x${size#*x}" ] && [ "$got" != "$((${size%x*} * 2))x$((${size#*x} * 2))" ]; then
+        FAILED+=" desktop-$name-$theme.png:size-$got"
+        [ -f "$png" ] && mv "$png" "${png%.png}.failed.png"
+        echo "desktop-$name-$theme"
+        return
+    fi
     check "$png" "$want"
     echo "desktop-$name-$theme"
 }
