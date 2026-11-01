@@ -116,7 +116,14 @@ fn profile(sel: Selected, list: Vec<Taxpayer>) -> impl IntoElement {
                 .child(fact("Taxpayer type", taxpayer.taxpayer_type.clone()))
                 .child(fact("RDO", facts.rdo_code.clone()))
                 .child(fact("Registered address", if facts.zip_code.is_empty() { facts.registered_address.clone() } else { format!("{} {}", facts.registered_address, facts.zip_code) }))
-                .child(fact("Email", facts.email.clone())),
+                .child(fact("Email", facts.email.clone()))
+                .child(fact("Contact number", facts.phone.clone())),
+        )
+        .child(
+            view().px(px(8.0)).pt(px(12.0)).flex_row().child(button_sm("Edit profile", Variant::Secondary, None, || false, move || {
+                st.profile_open.set(false);
+                st.go(crate::screens::Route::Taxpayer);
+            })),
         )
         .child(group_label("Branches"))
         .child(branches)
@@ -147,6 +154,7 @@ enum Field {
     Zip,
     Rdo,
     Email,
+    Phone,
 }
 
 /// What the New taxpayer form holds, as [`problems`] checks it.
@@ -161,6 +169,7 @@ struct Draft {
     zip: Option<String>,
     rdo: Option<String>,
     email: String,
+    phone: String,
     today: chrono::NaiveDate,
 }
 
@@ -199,6 +208,9 @@ fn problems(d: &Draft) -> Vec<(Field, &'static str)> {
     if !email_ok(&d.email) {
         out.push((Field::Email, "Enter an email like name@example.com."));
     }
+    if !phone_ok(&d.phone) {
+        out.push((Field::Phone, "Enter a contact number, like 0917 123 4567."));
+    }
     out
 }
 
@@ -210,6 +222,7 @@ fn hint(field: Field) -> Option<&'static str> {
         Field::Name => Some("As on the Certificate of Registration"),
         Field::Street => Some("House, street, barangay"),
         Field::Email => Some("BIR sends the confirmation here."),
+        Field::Phone => Some("Optional"),
         Field::City | Field::Zip | Field::Rdo => None,
     }
 }
@@ -231,7 +244,7 @@ fn new_taxpayer(d: &Draft, kind: &str, city: &bir_app_core::Choice) -> NewTaxpay
             rdo_code: d.rdo.clone().unwrap_or_default(),
             registered_address: bir_app_core::registered_address(&d.street, city),
             zip_code: d.zip.as_deref().map(bir_app_core::zip_code).unwrap_or_default().to_owned(),
-            phone: String::new(),
+            phone: d.phone.trim().to_owned(),
             email: d.email.trim().to_owned(),
         },
     }
@@ -252,6 +265,7 @@ struct Form {
     zip: Signal<Option<String>>,
     rdo: Signal<Option<String>>,
     email: Signal<String>,
+    phone: Signal<String>,
     pickers: [Picker; 3],
     left: Signal<Vec<Field>>,
     typing: Signal<Option<Field>>,
@@ -274,6 +288,7 @@ impl Form {
             zip: signal(None),
             rdo: signal(None),
             email: signal(String::new()),
+            phone: signal(String::new()),
             pickers: [Picker::new(), Picker::new(), Picker::new()],
             left: signal(Vec::new()),
             typing: signal(None),
@@ -299,6 +314,7 @@ impl Form {
             zip: self.zip.get(),
             rdo: self.rdo.get(),
             email: self.email.get(),
+            phone: self.phone.get(),
             today: crate::store::today(),
         }
     }
@@ -404,8 +420,8 @@ impl Form {
 fn desktop_new_taxpayer() -> impl IntoElement {
     let st = store();
     let form = Form::new();
-    let at: [ElementRef; 5] = std::array::from_fn(|_| element_ref());
-    let [tin_at, birth_at, name_at, street_at, email_at] = at;
+    let at: [ElementRef; 6] = std::array::from_fn(|_| element_ref());
+    let [tin_at, birth_at, name_at, street_at, email_at, phone_at] = at;
 
     // Add taxpayer, then the focus on the first field to fix.
     let create = move || match form.create() {
@@ -414,6 +430,7 @@ fn desktop_new_taxpayer() -> impl IntoElement {
         Some(Field::Name) => name_at.focus(),
         Some(Field::Street) => street_at.focus(),
         Some(Field::Email) => email_at.focus(),
+        Some(Field::Phone) => phone_at.focus(),
         Some(field) => {
             if let Some(p) = form.picker(field) {
                 p.focus();
@@ -482,7 +499,13 @@ fn desktop_new_taxpayer() -> impl IntoElement {
                 .child(pick(Field::Zip, List::Zip, form.zip).w(px(220.0)))
                 .child(pick(Field::Rdo, List::Rdo, form.rdo).flex_1()),
         )
-        .child(field_block("Email", text_field(Field::Email, form.email, "name@example.com", email_at), note(Field::Email)));
+        .child(
+            view()
+                .flex_row()
+                .gap(px(12.0))
+                .child(field_block("Email", text_field(Field::Email, form.email, "name@example.com", email_at), note(Field::Email)).flex_1())
+                .child(field_block("Contact number", text_field(Field::Phone, form.phone, "0917 123 4567", phone_at), note(Field::Phone)).w(px(220.0))),
+        );
 
     let card = view()
         .w(move || px((window().width.0 - safe_area().left.0 - safe_area().right.0 - 24.0).min(600.0)))
@@ -553,6 +576,7 @@ fn debug_hook(form: Form, create: impl Fn() + 'static) {
                 form.zip.set(Some("1600 - Pasig CPO".to_owned()));
                 form.rdo.set(Some("43A".to_owned()));
                 form.email.set("juana@example.com".to_owned());
+                form.phone.set("0917 123 4567".to_owned());
             }
         })
     });
@@ -610,14 +634,14 @@ fn type_radios(form: Form) -> impl IntoElement {
 fn phone_new_taxpayer() -> impl IntoElement {
     let st = store();
     let form = Form::new();
-    let Form { name, tin, kind, street, birth, email, busy, .. } = form;
+    let Form { name, tin, kind, street, birth, email, phone, busy, .. } = form;
     let typing = signal(None::<usize>);
-    let refs: Vec<ElementRef> = (0..5).map(|_| element_ref()).collect();
+    let refs: Vec<ElementRef> = (0..6).map(|_| element_ref()).collect();
 
     let individual = move || kind.get() == "Individual";
     // The next step: the first field to fix in the page's order, a box
     // (its index in `refs`) or a list.
-    let order = [Field::Name, Field::Tin, Field::Birth, Field::Street, Field::City, Field::Zip, Field::Rdo, Field::Email];
+    let order = [Field::Name, Field::Tin, Field::Birth, Field::Street, Field::City, Field::Zip, Field::Rdo, Field::Email, Field::Phone];
     let missing = move || -> Option<Field> {
         let found = problems(&form.draft());
         order.into_iter().find(|f| found.iter().any(|(p, _)| p == f))
@@ -631,6 +655,7 @@ fn phone_new_taxpayer() -> impl IntoElement {
         Field::Zip => "ZIP code",
         Field::Rdo => "RDO",
         Field::Email => "Email",
+        Field::Phone => "Contact number",
     };
     let ref_of = |f: Field| match f {
         Field::Name => Some(0),
@@ -638,6 +663,7 @@ fn phone_new_taxpayer() -> impl IntoElement {
         Field::Street => Some(2),
         Field::Birth => Some(3),
         Field::Email => Some(4),
+        Field::Phone => Some(5),
         _ => None,
     };
 
@@ -760,12 +786,13 @@ fn phone_new_taxpayer() -> impl IntoElement {
         .child(pick_row(Field::Zip, List::Zip, form.zip))
         .child(pick_row(Field::Rdo, List::Rdo, form.rdo))
         .child(field("Email", "BIR sends the confirmation here.", text_input(email, "name@example.com", Field::Email).keyboard_type(KeyboardType::Email), r[4], 4, Field::Email))
+        .child(field("Contact number", "Optional", text_input(phone, "0917 123 4567", Field::Phone).keyboard_type(KeyboardType::Phone), r[5], 5, Field::Phone))
         .child(when(move || !form.error.get().is_empty(), move || text(move || form.error.get()).mx(px(18.0)).mt(px(8.0)).text_size(px(12.0)).text_color(theme::DANGER)))
         .child(view().h(move || px(320.0 + safe_area().bottom.0)));
 
     // The boxes ↑ ↓ move through, in the page's order (the birth date only
     // for an individual).
-    let boxes = move || -> Vec<usize> { if individual() { vec![0, 1, 3, 2, 4] } else { vec![0, 1, 2, 4] } };
+    let boxes = move || -> Vec<usize> { if individual() { vec![0, 1, 3, 2, 4, 5] } else { vec![0, 1, 2, 4, 5] } };
     let step = {
         let refs = refs.clone();
         move |by: isize| {
@@ -779,7 +806,7 @@ fn phone_new_taxpayer() -> impl IntoElement {
         }
     };
     let step2 = step.clone();
-    let labels = ["Registered name", "TIN", "Street address", "Birth date", "Email"];
+    let labels = ["Registered name", "TIN", "Street address", "Birth date", "Email", "Contact number"];
     let accessory = move || {
         let step = step.clone();
         let step2 = step2.clone();
@@ -895,7 +922,7 @@ fn slashed(value: Signal<String>, at: ElementRef) -> Input {
 }
 
 /// The desktop's birth date box: [`slashed`] in the field style.
-fn date_input(value: Signal<String>, at: ElementRef) -> Input {
+pub(crate) fn date_input(value: Signal<String>, at: ElementRef) -> Input {
     crate::widgets::field_box("MM/DD/YYYY").value(value).element_ref(&at).on_change(move |v: &str| {
         let prev = value.get_untracked();
         let shown = crate::typing::slash_date(v);
@@ -926,6 +953,16 @@ fn email_ok(email: &str) -> bool {
     e.contains('@') && e.rsplit('@').next().is_some_and(|d| d.contains('.')) && !e.contains(' ')
 }
 
+/// Whether `phone` is blank (it is optional) or a contact number: 7 to 15
+/// digits, with spaces, dashes, dots, parentheses or a leading +.
+pub(crate) fn phone_ok(phone: &str) -> bool {
+    let p = phone.trim();
+    let digits = p.chars().filter(char::is_ascii_digit).count();
+    p.is_empty()
+        || ((7..=15).contains(&digits)
+            && p.chars().enumerate().all(|(i, c)| c.is_ascii_digit() || matches!(c, ' ' | '-' | '.' | '(' | ')') || (c == '+' && i == 0)))
+}
+
 /// Hide the keyboard, then run `close` once it has let go of the input:
 /// removing a focused input in the same commit leaves Android's keyboard
 /// up with nothing to type into.
@@ -950,6 +987,7 @@ mod tests {
             zip: Some("1600 - Pasig CPO".to_owned()),
             rdo: Some("43A".to_owned()),
             email: "juana@example.com".to_owned(),
+            phone: "0917 123 4567".to_owned(),
             today: chrono::NaiveDate::from_ymd_opt(2026, 10, 31).expect("a date"),
         }
     }
@@ -1021,7 +1059,17 @@ mod tests {
         assert_eq!(new.head_office.registered_address, "1 Sample Street, City of Pasig, Metro Manila");
         assert_eq!(new.head_office.zip_code, "1600");
         assert_eq!(new.head_office.rdo_code, "43A");
+        assert_eq!(new.head_office.phone, "0917 123 4567");
         assert_eq!(new_taxpayer(&Draft { individual: false, ..complete() }, "Corporation", &pasig).birth_date, None);
+    }
+
+    #[test]
+    fn a_contact_number_is_optional_but_must_be_a_number() {
+        assert!(problems(&Draft { phone: String::new(), ..complete() }).is_empty());
+        assert!(problems(&Draft { phone: "+63 (2) 8123-4567".to_owned(), ..complete() }).is_empty());
+        assert_eq!(only(Draft { phone: "call me".to_owned(), ..complete() }), [(Field::Phone, "Enter a contact number, like 0917 123 4567.")]);
+        assert_eq!(only(Draft { phone: "12345".to_owned(), ..complete() }), [(Field::Phone, "Enter a contact number, like 0917 123 4567.")]);
+        assert_eq!(hint(Field::Phone), Some("Optional"));
     }
 
     #[test]

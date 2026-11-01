@@ -69,7 +69,7 @@ pub(super) fn page(form: Arc<OpenForm>) -> impl IntoElement {
                         .element_ref(&content)
                         .pl(move || px(safe_area().left.0))
                         .pr(move || px(safe_area().right.0))
-                        .child(view().px(px(14.0)).pt(px(14.0)).pb(px(6.0)).gap(px(10.0)).child(when(move || st.amending.get(), super::form::amend_band)).child(filer_card(form.clone())).child(when(super::form::can_unlock_profile, || {
+                        .child(view().px(px(14.0)).pt(px(14.0)).pb(px(6.0)).gap(px(10.0)).child(when(move || st.amending.get(), super::form::amend_band)).child(filer_card(form.clone())).child(super::form::profile_banner()).child(when(super::form::can_unlock_profile, || {
                             text("Edit on this return")
                                 .self_end()
                                 .py(px(6.0))
@@ -289,11 +289,13 @@ fn item(form: Arc<OpenForm>, id: ItemId, index: ReadSignal<usize>) -> AnyElement
     // A long list says where its answer came from itself (variant D).
     let long_list = matches!(super::phone_fields::kind_of(&item, &item.fields), super::phone_fields::Kind::LongList | super::phone_fields::Kind::Place);
     let profile_keys = item.box_keys();
-    let opened_keys = profile_keys.clone();
-    let opened = move || super::form::profile_opened(&opened_keys);
-    let opened2 = opened.clone();
+    let changed_keys = profile_keys.clone();
+    let changed = move || super::form::profile_changed(&changed_keys);
+    let lines_keys = profile_keys.clone();
+    let shut_keys = profile_keys.clone();
+    let unlock_keys = profile_keys.clone();
     let penalty_keys = profile_keys.clone();
-    let from_profile = move || !long_list && !opened() && st.profile.with(|p| profile_keys.iter().any(|k| p.contains(k)));
+    let from_profile = move || !long_list && !changed() && st.profile.with(|p| profile_keys.iter().any(|k| p.contains(k)));
     view()
         .element_ref(&at)
         .px(px(16.0))
@@ -327,7 +329,18 @@ fn item(form: Arc<OpenForm>, id: ItemId, index: ReadSignal<usize>) -> AnyElement
         )
         .child(value_of(form.clone(), id, &item))
         .child(when(from_profile, || text("From your tax profile").text_size(px(12.0)).text_color(theme::FG3)))
-        .child(when(opened2, || text("On this return only. Your profile is unchanged.").text_size(px(12.0)).text_color(theme::ACCENT)))
+        .child(when(move || super::form::profile_shut(&shut_keys), move || {
+            let keys = unlock_keys.clone();
+            text("Edit on this return")
+                .self_start()
+                .py(px(4.0))
+                .text_size(px(13.0))
+                .font_weight(FontWeight::SEMIBOLD)
+                .text_color(theme::ACCENT)
+                .label("Edit on this return")
+                .on_press(move || super::form::unlock_item_profile(&keys))
+        }))
+        .child(super::form::profile_lines(lines_keys, true))
         .child(when(move || super::form::penalty_opened(&penalty_keys), || text("You're entering this penalty yourself.").text_size(px(12.0)).text_color(theme::ACCENT)))
         .child(when(move || !message().is_empty(), move || {
             text(message2.clone()).text_size(px(12.5)).font_weight(FontWeight::MEDIUM).text_color(theme::DANGER)

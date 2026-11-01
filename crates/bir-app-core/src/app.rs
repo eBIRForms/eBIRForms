@@ -153,6 +153,29 @@ pub struct OpenedReturn {
     /// Boxes filled from the tax profile.
     #[serde(default)]
     pub profile: Vec<String>,
+    /// Every profile box, filled by the profile or left blank. Pass the
+    /// ones the filer types into to [`BirApp::fill`] as `unlocked`: the edit
+    /// stays on this return and the profile is unchanged.
+    #[serde(default)]
+    pub profile_boxes: Vec<String>,
+    /// What the profile alone shows in each profile box (`""` where blank).
+    #[serde(default)]
+    pub profile_values: BTreeMap<String, String>,
+    /// The profile fact each profile box shows, for "Save to profile too"
+    /// ([`BirApp::save_box_to_profile`]); names and split lines have none.
+    #[serde(default)]
+    pub profile_facts: BTreeMap<String, String>,
+    /// Profile boxes the filer changed on this return.
+    #[serde(default)]
+    pub profile_edited: Vec<String>,
+    /// A stored draft whose untouched profile boxes followed a later
+    /// profile change, in the filer's words ("RDO 050 → 043").
+    #[serde(default)]
+    pub profile_updates: Option<Vec<String>>,
+    /// A draft with no profile baseline whose boxes differ from the profile
+    /// now ("RDO 039 (profile 043)"); [`BirApp::use_profile_values`] applies it.
+    #[serde(default)]
+    pub profile_differs: Option<Vec<String>>,
     /// A pooled text (an address spread over boxes), first key -> text.
     #[serde(default)]
     pub pools: BTreeMap<String, String>,
@@ -505,6 +528,9 @@ pub struct TaxpayerUpdate {
     pub name: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub taxpayer_type: Option<String>,
+    /// `Some(None)` clears the birth date; `Some(Some("YYYY-MM-DD"))` sets it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub birth_date: Option<Option<String>>,
 }
 
 /// One entry of the New taxpayer lists ([`BirApp::cities`],
@@ -736,6 +762,30 @@ impl BirApp {
         )
     }
 
+    /// "Use profile values": the draft with profile boxes at what the
+    /// profile makes now — `keys` only (their "Use profile value"; they stop
+    /// being the filer's edits), or with no keys every box the filer did
+    /// not edit. Nothing is saved.
+    pub fn use_profile_values(
+        &self,
+        form_code: &str,
+        year: i64,
+        period: i64,
+        draft: &Draft,
+        keys: &[String],
+    ) -> AppResult<FilledReturn> {
+        self.call_as(
+            "screen_form_use_profile",
+            vec![
+                form_code.into(),
+                year.into(),
+                period.into(),
+                draft.0.clone(),
+                serde_json::to_value(keys).unwrap_or_default(),
+            ],
+        )
+    }
+
     /// Run the form's computations and checks.
     pub fn validate(&self, form_code: &str, draft: &Draft) -> AppResult<ValidatedReturn> {
         self.call_as(
@@ -882,9 +932,9 @@ impl BirApp {
     }
 
     /// Write `value` into one fact of a branch (`email`, `rdo_code`,
-    /// `registered_address`, `zip_code`, `phone`): a profile box the filer
-    /// filled on a return ([`FilledReturn::profile_blank`]) goes back to the
-    /// profile so later forms prefill it.
+    /// `registered_address`, `zip_code`, `phone`): the profile's Address and
+    /// contact, and a return box's "Save to profile too"
+    /// ([`BirApp::save_box_to_profile`]).
     pub fn set_branch_fact(&self, tin: &str, fact: &str, value: &str) -> AppResult<()> {
         let input = serde_json::json!({ "fields": { fact: value } });
         self.call("update_branch", vec![tin.into(), input]).map(drop)

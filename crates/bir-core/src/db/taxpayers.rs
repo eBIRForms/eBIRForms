@@ -17,13 +17,13 @@ use super::{Database, DbError};
 use crate::forms::FilingStatus;
 use crate::forms::forms_set::{FormSetEntry, FormSetSource, PerYearFormsSet};
 use crate::forms::registry::canonical_form_code;
-use crate::profile::{TaxpayerProfile, TaxpayerType};
+use crate::profile::{IncomeTaxElection, TaxElectionHistory, TaxpayerProfile, TaxpayerType};
 use crate::tax_profile::templates::{form_order_key, value_at_path};
 use crate::tax_profile::{AddedTaxYear, check_tax_year, format_tin_root, snapshot_setup_answers};
 use crate::tax_profile::{
     AutoSource, BranchFacts, BranchField, BranchName, BranchSettings, BranchUpdate, FieldKind,
     FieldSetting, FormTemplate, GroupingReview, IdentitySource, NewBranch, NewTaxpayer,
-    PrefillPlan, ResolvedBranch, ResolvedPeriod, StarterPack, TaxProfileError, Taxpayer,
+    PrefillPlan, ProfileDetails, ResolvedBranch, ResolvedPeriod, StarterPack, TaxProfileError, Taxpayer,
     TaxpayerData, TaxpayerUpdate, TaxpayerWithBranches, TemplatableKind, TemplateChoice,
     TemplateField, TemplateFieldError, TemplateSource, default_branch_name, field_kinds_for,
     is_head_office_code, normalize_branch_code, parse_tin_root, resolve_facts,
@@ -1026,6 +1026,95 @@ impl Database {
         load_taxpayer(&self.conn, &root)?.ok_or_else(|| TaxProfileError::NotFound(root))
     }
 
+    /// The taxpayer's business and filing facts, as the head office's
+    /// stored profile holds them.
+    pub fn profile_details(&self, tin_root: &str) -> Result<ProfileDetails> {
+        let root = parse_tin_root(tin_root)?;
+        let rows = load_branch_rows(&self.conn, &root)?;
+        let row = head_office(&rows)
+            .or_else(|| rows.first())
+            .ok_or_else(|| TaxProfileError::NotFound(format!("No taxpayer {root}")))?;
+        // Every key has a serde default, so the profile JSON reads whole.
+        Ok(serde_json::from_value(row.data.clone()).unwrap_or_default())
+    }
+
+    /// Write the taxpayer's business and filing facts to every branch's
+    /// stored profile (only those keys of `data_json` change), so each form
+    /// prefills and applies them alike.
+    pub fn update_profile_details(&self, tin_root: &str, details: &ProfileDetails) -> Result<ProfileDetails> {
+        let root = parse_tin_root(tin_root)?;
+        if load_taxpayer(&self.conn, &root)?.is_none() {
+            return Err(TaxProfileError::NotFound(format!("No taxpayer {root}")));
+        }
+        let Value::Object(fields) = serde_json::to_value(details)? else {
+            return Err(TaxProfileError::Invalid("profile details are not an object".into()));
+        };
+        let line = details.line_of_business.trim().to_string();
+        let updates: Vec<(&str, Value)> = fields
+            .iter()
+            .map(|(key, value)| match key.as_str() {
+                "line_of_business" => ("line_of_business", Value::from(line.clone())),
+                _ => (key.as_str(), value.clone()),
+            })
+            .collect();
+        let tx = self.conn.unchecked_transaction()?;
+        for row in load_branch_rows(&tx, &root)? {
+            write_profile_keys(&tx, &row.tin, &updates)?;
+        }
+        tx.commit()?;
+        // Applicability flags (employees, VAT, dormant) change which forms
+        // are due.
+        let _ = self.request_post_commit_refresh();
+        self.profile_details(&root)
+    }
+
+    /// The taxpayer's income-tax election for `year`, from the head office's
+    /// election ledger.
+    pub fn income_tax_election(&self, tin_root: &str, year: u16) -> Result<Option<IncomeTaxElection>> {
+        let root = parse_tin_root(tin_root)?;
+        let rows = load_branch_rows(&self.conn, &root)?;
+        let Some(row) = head_office(&rows).or_else(|| rows.first()) else {
+            return Err(TaxProfileError::NotFound(format!("No taxpayer {root}")));
+        };
+        let ledger: Vec<TaxElectionHistory> =
+            serde_json::from_value(row.data["tax_elections"].clone()).unwrap_or_default();
+        Ok(ledger.into_iter().find(|entry| entry.taxable_year == year).map(|entry| entry.election))
+    }
+
+    /// Record (or with `None`, clear) the taxpayer's income-tax election for
+    /// `year` in every branch's election ledger; other years are kept.
+    pub fn set_income_tax_election(
+        &self,
+        tin_root: &str,
+        year: u16,
+        election: Option<IncomeTaxElection>,
+    ) -> Result<()> {
+        check_tax_year(year)?;
+        let root = parse_tin_root(tin_root)?;
+        if load_taxpayer(&self.conn, &root)?.is_none() {
+            return Err(TaxProfileError::NotFound(format!("No taxpayer {root}")));
+        }
+        let tx = self.conn.unchecked_transaction()?;
+        for row in load_branch_rows(&tx, &root)? {
+            let mut ledger: Vec<TaxElectionHistory> =
+                serde_json::from_value(row.data["tax_elections"].clone()).unwrap_or_default();
+            ledger.retain(|entry| entry.taxable_year != year);
+            if let Some(election) = &election {
+                ledger.push(TaxElectionHistory {
+                    taxable_year: year,
+                    election: election.clone(),
+                    elected_at: chrono::Local::now().naive_local(),
+                    source_form: "Tax profile".to_string(),
+                });
+                ledger.sort_by_key(|entry| entry.taxable_year);
+            }
+            write_profile_keys(&tx, &row.tin, &[("tax_elections", serde_json::to_value(&ledger)?)])?;
+        }
+        tx.commit()?;
+        let _ = self.request_post_commit_refresh();
+        Ok(())
+    }
+
     /// Archive or unarchive a taxpayer: the `is_archived` flag of every
     /// branch profile. Only that key of `data_json` is edited.
     pub fn set_taxpayer_archived(&self, tin_root: &str, archived: bool) -> Result<()> {
@@ -1873,6 +1962,7 @@ impl Database {
 mod tests {
     use super::*;
     use crate::tax_profile::ResolvedField;
+    use chrono::NaiveDate;
     use serde_json::json;
 
     const ROOT: &str = "123456789";
@@ -2069,6 +2159,81 @@ mod tests {
         }
         assert_eq!(db.taxpayer_settings_tin(&branch).unwrap(), HEAD);
         assert_eq!(db.taxpayer_settings_tin(HEAD).unwrap(), HEAD);
+    }
+
+    #[test]
+    fn a_birth_date_is_set_kept_and_cleared_on_every_branch() {
+        let db = db_with_taxpayer(TaxpayerType::Individual);
+        let branch = add_branch(&db, "00001", &[]);
+        let born = NaiveDate::from_ymd_opt(1990, 1, 15).unwrap();
+        let set = db
+            .update_taxpayer(ROOT, TaxpayerUpdate { birth_date: Some(Some(born)), ..TaxpayerUpdate::default() })
+            .unwrap();
+        assert_eq!(set.birth_date, Some(born));
+        for tin in [HEAD, branch.as_str()] {
+            assert_eq!(db.get_profile(tin).unwrap().unwrap().birth_date, Some(born), "{tin}");
+        }
+        // A rename alone keeps the birth date.
+        let renamed = db
+            .update_taxpayer(ROOT, TaxpayerUpdate { name: Some("Juana Santos".into()), ..TaxpayerUpdate::default() })
+            .unwrap();
+        assert_eq!(renamed.birth_date, Some(born));
+        let cleared = db
+            .update_taxpayer(ROOT, TaxpayerUpdate { birth_date: Some(None), ..TaxpayerUpdate::default() })
+            .unwrap();
+        assert_eq!(cleared.birth_date, None);
+        assert_eq!(db.get_profile(&branch).unwrap().unwrap().birth_date, None);
+    }
+
+    #[test]
+    fn profile_details_are_written_to_every_branch_and_read_back() {
+        use crate::profile::{EoptTier, TaxClassification};
+        let db = db_with_taxpayer(TaxpayerType::Individual);
+        let branch = add_branch(&db, "00001", &[]);
+        assert_eq!(db.profile_details(ROOT).unwrap(), ProfileDetails::default());
+        let details = ProfileDetails {
+            line_of_business: "  47190 Retail sale  ".into(),
+            business_start_date: NaiveDate::from_ymd_opt(2020, 3, 1),
+            eopt_tier: Some(EoptTier::Micro),
+            is_government_withholding_entity: false,
+            tax_classification: Some(TaxClassification::SelfEmployed),
+            has_employees: true,
+            withholds_compensation: true,
+            withholds_expanded: true,
+            withholds_final: false,
+            is_vat_registered: false,
+            is_dormant: false,
+            has_single_employer: false,
+        };
+        let saved = db.update_profile_details(ROOT, &details).unwrap();
+        assert_eq!(saved.line_of_business, "47190 Retail sale");
+        assert_eq!(saved, ProfileDetails { line_of_business: "47190 Retail sale".into(), ..details.clone() });
+        for tin in [HEAD, branch.as_str()] {
+            let profile = db.get_profile(tin).unwrap().unwrap();
+            assert_eq!(profile.line_of_business, "47190 Retail sale", "{tin}");
+            assert_eq!(profile.eopt_tier, Some(EoptTier::Micro), "{tin}");
+            assert_eq!(profile.tax_classification, Some(TaxClassification::SelfEmployed), "{tin}");
+            assert!(profile.has_employees && profile.withholds_expanded, "{tin}");
+            // Keys the details do not own are kept.
+            assert_eq!(profile.full_name, "Juan Dela Cruz", "{tin}");
+        }
+        assert!(db.update_profile_details("999-999-999", &details).is_err());
+    }
+
+    #[test]
+    fn an_income_tax_election_is_recorded_per_year_and_cleared() {
+        use crate::profile::IncomeTaxElection;
+        let db = db_with_taxpayer(TaxpayerType::Individual);
+        let branch = add_branch(&db, "00001", &[]);
+        db.set_income_tax_election(ROOT, 2025, Some(IncomeTaxElection::GraduatedOsd)).unwrap();
+        db.set_income_tax_election(ROOT, 2026, Some(IncomeTaxElection::EightPercent)).unwrap();
+        assert_eq!(db.income_tax_election(ROOT, 2026).unwrap(), Some(IncomeTaxElection::EightPercent));
+        assert!(db.get_profile(&branch).unwrap().unwrap().has_8_percent_election(2026));
+        db.set_income_tax_election(ROOT, 2026, Some(IncomeTaxElection::GraduatedItemized)).unwrap();
+        assert_eq!(db.income_tax_election(ROOT, 2026).unwrap(), Some(IncomeTaxElection::GraduatedItemized));
+        db.set_income_tax_election(ROOT, 2026, None).unwrap();
+        assert_eq!(db.income_tax_election(ROOT, 2026).unwrap(), None);
+        assert_eq!(db.income_tax_election(ROOT, 2025).unwrap(), Some(IncomeTaxElection::GraduatedOsd));
     }
 
     #[test]

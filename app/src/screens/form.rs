@@ -22,7 +22,7 @@ use crate::session::{FormDoc, FormSession, ItemId, OpenForm, SaveState, plural};
 use crate::store::task;
 use crate::theme;
 use crate::icons::{Icon, icon};
-use crate::widgets::{CLEAR, Tone, Variant, avatar, button, button_sm, chip};
+use crate::widgets::{CLEAR, Tone, Variant, avatar, button, button_sm, chip, tick_row};
 
 const DATE_ERROR: &str = "Enter a valid date as MM/DD/YYYY (e.g. 12/01/2020 or 12012020).";
 const OFF_OPACITY: f32 = 0.45;
@@ -630,6 +630,7 @@ fn header(form: Arc<OpenForm>) -> impl IntoElement {
         )
         .child(when(move || st.amending.get(), || view().mt(px(8.0)).max_w(px(520.0)).child(amend_band())))
         .child(view().mt(px(12.0)).max_w(px(520.0)).child(filer_card(form.clone())))
+        .child(view().mt(px(8.0)).max_w(px(520.0)).child(profile_banner()))
 }
 
 /// What an amendment is, over its form (desktop and phone).
@@ -658,7 +659,7 @@ pub(crate) fn unlock_penalties() {
 pub(crate) fn unlock_profile() {
     let st = session();
     st.unlock(st.profile.get_untracked());
-    store().notify(crate::store::NoticeTone::Info, "The profile's boxes are open on this return. What you type stays here; the profile is unchanged.");
+    store().notify(crate::store::NoticeTone::Info, "The profile's boxes are open on this return. What you type stays here unless you tick Save to profile too.");
 }
 
 /// Whether "Edit on this return" applies (tracked): an editable return
@@ -668,10 +669,110 @@ pub(super) fn can_unlock_profile() -> bool {
     st.editable.get() && !st.profile.with(|p| p.is_empty()) && !st.profile.with(|p| st.unlocked.with(|u| p.iter().all(|k| u.contains(k))))
 }
 
-/// Whether one of `keys` is a profile box opened on this return (tracked).
-pub(super) fn profile_opened(keys: &[String]) -> bool {
+/// Whether one of `keys` is a profile box changed on this return (tracked).
+pub(super) fn profile_changed(keys: &[String]) -> bool {
     let st = session();
-    st.unlocked.with(|u| st.profile.with(|p| keys.iter().any(|k| u.contains(k) && p.contains(k))))
+    keys.iter().any(|k| st.profile_changed(k))
+}
+
+/// Whether one of `keys` is a profile box the profile filled that is still
+/// shut on this return (tracked): Edit on this return opens it.
+pub(super) fn profile_shut(keys: &[String]) -> bool {
+    let st = session();
+    st.editable.get() && !st.sample.get() && st.unlocked.with(|u| st.profile.with(|p| keys.iter().any(|k| p.contains(k) && !u.contains(k))))
+}
+
+/// Open the profile boxes among `keys` for typing on this return.
+pub(super) fn unlock_item_profile(keys: &[String]) {
+    let st = session();
+    let open: Vec<String> = st.profile.with_untracked(|p| keys.iter().filter(|k| p.contains(*k)).cloned().collect());
+    st.unlock(open);
+}
+
+/// What an item's profile boxes say under its control, desktop and phone
+/// alike: a box changed on this return says how it differs from the
+/// profile, with "Use profile value", and offers "Save to profile too"
+/// (off until ticked) where the box shows a profile fact.
+pub(super) fn profile_lines(keys: Vec<String>, phone: bool) -> impl IntoElement {
+    let st = session();
+    let size = if phone { 12.5 } else { 11.0 };
+    let changed = {
+        let keys = keys.clone();
+        move || keys.iter().filter(|k| st.profile_changed(k)).cloned().collect::<Vec<String>>()
+    };
+    let savable = {
+        let keys = keys.clone();
+        move || st.profile_facts.with(|f| keys.iter().filter(|k| f.contains_key(*k)).cloned().collect::<Vec<String>>())
+    };
+    let ticked = {
+        let keys = keys.clone();
+        move || st.save_to_profile.with(|on| keys.iter().any(|k| on.contains(k)))
+    };
+    let shown = {
+        let (changed, ticked) = (changed.clone(), ticked.clone());
+        move || st.editable.get() && !st.sample.get() && (!changed().is_empty() || ticked())
+    };
+    when(shown, move || {
+        let (changed, savable, ticked) = (changed.clone(), savable.clone(), ticked.clone());
+        let changed2 = changed.clone();
+        let changed3 = changed.clone();
+        let changed4 = changed.clone();
+        let differs = move || changed().iter().map(|k| st.profile_value(k)).find(|v| !v.trim().is_empty());
+        let differs2 = differs.clone();
+        let line = move || match differs() {
+            Some(profile) => format!("Differs from your profile ({profile}). Kept on this return only."),
+            None if changed4().is_empty() => "Saved to your profile too; later changes here go there as well.".to_owned(),
+            None => "On this return only: your profile has none.".to_owned(),
+        };
+        let savable2 = savable.clone();
+        let ticked2 = ticked.clone();
+        let can_save = move || !savable().is_empty() && (!changed2().is_empty() || ticked2());
+        view()
+            .gap(px(4.0))
+            .child(
+                view()
+                    .flex_row()
+                    .flex_wrap()
+                    .items_center()
+                    .gap(px(8.0))
+                    .child(text(line).flex_shrink(1.0).text_size(px(size)).text_color(theme::FG2))
+                    .child(when(move || differs2().is_some(), move || {
+                        let changed = changed3.clone();
+                        text("Use profile value")
+                            .text_size(px(size))
+                            .font_weight(FontWeight::SEMIBOLD)
+                            .text_color(theme::ACCENT)
+                            .cursor_pointer()
+                            .label("Use profile value")
+                            .on_press(move || st.use_profile_values(untracked(&changed)))
+                    })),
+            )
+            .child(when(can_save, move || {
+                let (savable, ticked) = (savable2.clone(), ticked.clone());
+                tick_row("Save to profile too", size + 1.0, ticked, move |on| st.set_save_to_profile(untracked(&savable), on))
+            }))
+    })
+}
+
+/// The open's profile notes over the form: boxes that followed a profile
+/// change, and a draft that differs from the profile now, with "Use
+/// profile values".
+pub(super) fn profile_banner() -> impl IntoElement {
+    let st = session();
+    view()
+        .gap(px(6.0))
+        .child(when(move || !st.profile_updates.with(Vec::is_empty), move || {
+            text(move || format!("Updated from your tax profile: {}", st.profile_updates.get().join("; "))).text_size(px(12.0)).text_color(theme::FG2)
+        }))
+        .child(when(move || st.editable.get() && !st.profile_differs.with(Vec::is_empty), move || {
+            view()
+                .flex_row()
+                .flex_wrap()
+                .items_center()
+                .gap(px(8.0))
+                .child(text(move || format!("Differs from your profile: {}", st.profile_differs.get().join("; "))).flex_shrink(1.0).text_size(px(12.0)).text_color(theme::FG2))
+                .child(button_sm("Use profile values", Variant::Ghost, None, || false, move || st.use_profile_values(Vec::new())).label("Use profile values"))
+        }))
 }
 
 /// Whether one of `keys` is a penalty the filer enters (tracked).
@@ -983,9 +1084,17 @@ fn item_row(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement {
                         .child(when(optional, || text("Optional").text_size(px(11.0)).text_color(theme::FG3)))
                         .child({
                             let keys = keys.clone();
-                            let opened = move || profile_opened(&keys);
-                            let opened2 = opened.clone();
-                            when(move || from_profile() && !opened(), || chip("From tax profile", Tone::Neutral)).otherwise(move || when(opened2.clone(), || chip("On this return only", Tone::Accent)))
+                            let changed = move || profile_changed(&keys);
+                            let changed2 = changed.clone();
+                            when(move || from_profile() && !changed(), || chip("From tax profile", Tone::Neutral)).otherwise(move || when(changed2.clone(), || chip("Changed on this return", Tone::Accent)))
+                        })
+                        .child({
+                            let keys = keys.clone();
+                            let shut = keys.clone();
+                            when(move || profile_shut(&shut), move || {
+                                let keys = keys.clone();
+                                button_sm("Edit on this return", Variant::Ghost, None, || false, move || unlock_item_profile(&keys)).label("Edit on this return")
+                            })
                         })
                         .child({
                             let keys = keys.clone();
@@ -995,6 +1104,7 @@ fn item_row(form: Arc<OpenForm>, id: ItemId) -> impl IntoElement {
                 )
                 .child(each(needs, |n| n.clone(), |n, _| text(n.get_untracked()).text_size(px(11.0)).text_color(theme::FG2)))
                 .child(if item.is_schedule() { schedule_table(form.clone(), id).into_element() } else { controls(&item) })
+                .child(profile_lines(keys.clone(), false))
                 .child(each(notes, |n| n.clone(), |n, _| text(n.get_untracked()).text_size(px(11.0)).text_color(theme::FG3)))
                 // The reserved 18 px message line: a text only while there
                 // is a message (an empty one still costs a drawn layer).
