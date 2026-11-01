@@ -324,11 +324,14 @@ pub(crate) fn hold_off_app_nap(reason: &str) {
 /// every screen, at their size, so a run never shows on the screen someone
 /// is using even when the window manager has not picked the window up yet.
 /// `screencapture -l` still captures them. Repeats for a few seconds, as
-/// the window may come after the root mounts.
+/// the window may come after the root mounts; a tiling window manager can
+/// resize the window before the script floats it, so the size is put back.
 pub(crate) fn park_offscreen_for_a_while() {
-    std::thread::spawn(|| {
+    let (w, h) = crate::window_size();
+    let size = NSSize::new(f64::from(w), f64::from(h));
+    std::thread::spawn(move || {
         for _ in 0..40 {
-            DispatchQueue::main().exec_async(|| {
+            DispatchQueue::main().exec_async(move || {
                 // SAFETY: AppKit's documented NSApplication / NSWindow API,
                 // on the main thread.
                 unsafe {
@@ -336,6 +339,13 @@ pub(crate) fn park_offscreen_for_a_while() {
                     let app: Retained<AnyObject> = msg_send![class, sharedApplication];
                     let windows: Retained<NSArray<AnyObject>> = msg_send![&app, windows];
                     for w in windows.iter() {
+                        let frame: NSRect = msg_send![&*w, frame];
+                        // The main window only (the print preview is a window too).
+                        let title: Retained<NSString> = msg_send![&*w, title];
+                        let content: NSRect = msg_send![&*w, contentRectForFrameRect: frame];
+                        if title.to_string() == crate::APP_NAME && (content.size.width != size.width || content.size.height != size.height) {
+                            let _: () = msg_send![&*w, setContentSize: size];
+                        }
                         let frame: NSRect = msg_send![&*w, frame];
                         if frame.origin.x > -10000.0 {
                             let _: () = msg_send![&*w, setFrameOrigin: NSPoint::new(-20000.0, frame.origin.y)];

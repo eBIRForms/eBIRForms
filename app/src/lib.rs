@@ -47,6 +47,19 @@ fn native(registry: &mut Registry) {
 /// The shell: the hot area in a `dynamic` that rebuilds on each patch.
 /// This view runs once, when the app starts, so its signals outlive every
 /// remount.
+/// The desktop window's size in points: 1180 × 800, or in debug builds
+/// `BUWIZ_SIZE=1040x800` (evidence.sh's narrow shots).
+pub fn window_size() -> (i32, i32) {
+    cfg!(debug_assertions)
+        .then(|| std::env::var("BUWIZ_SIZE").ok())
+        .flatten()
+        .and_then(|v| {
+            let (w, h) = v.split_once('x')?;
+            Some((w.parse().ok()?, h.parse().ok()?))
+        })
+        .unwrap_or((1180, 800))
+}
+
 #[component]
 pub fn App() -> impl IntoElement {
     let remount = signal(0u64);
