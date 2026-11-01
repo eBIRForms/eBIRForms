@@ -957,6 +957,14 @@ impl BirApp {
         bir_core::reference::get_atc(&code.trim().to_ascii_uppercase()).map(atc_choice)
     }
 
+    /// Every distinct rate the ATC table has for `code` (case does not
+    /// matter), in table order and as the table writes them; empty for an
+    /// unknown code. More than one means the rate varies, and
+    /// [`Self::atc`] shows only one of them.
+    pub fn atc_rates(code: &str) -> Vec<String> {
+        bir_core::reference::get_atc_rates(&code.trim().to_ascii_uppercase())
+    }
+
     /// The ATCs whose code or description contains `query`, ignoring case
     /// (all of them for a blank query).
     pub fn search_atcs(query: &str) -> Vec<Choice> {

@@ -25,6 +25,18 @@ fn atcs_are_found_by_code_and_by_search() {
 }
 
 #[test]
+fn an_atc_lists_every_rate_the_table_has() {
+    // WI010 is listed at 10% and at 5%: the rate varies.
+    assert_eq!(BirApp::atc_rates("wi010"), ["10.0", "5.0"]);
+    assert!(BirApp::atc_rates("WI010").contains(&BirApp::atc("WI010").expect("WI010").detail));
+    // WV010 is listed twice, both at 5%: one rate.
+    assert_eq!(BirApp::atc_rates("WV010"), ["5.0"]);
+    assert!(BirApp::atc_rates("ZZ999").is_empty());
+    let varying = BirApp::atcs().iter().filter(|a| BirApp::atc_rates(&a.value).len() > 1).count();
+    assert_eq!(varying, 96);
+}
+
+#[test]
 fn rdos_are_found_by_code_and_by_search() {
     let rdo = BirApp::rdo("043").expect("RDO 043");
     assert_eq!(rdo.value, "043");
