@@ -113,23 +113,34 @@ pub(crate) fn content_in(list: ElementRef, body: ElementRef, inner: impl IntoEle
 }
 
 /// Scroll [`content_in`]'s `list` so `at` (in its `body`) is in full view
-/// once it is laid out; nothing when it already is.
+/// once its place settles, and again while the page and the window settle
+/// (for two seconds); nothing while it is in view.
 pub(crate) fn reveal_in(list: ElementRef, body: ElementRef, at: ElementRef) {
     crate::store::task(async move {
-        for _ in 0..60 {
+        let start = std::time::Instant::now();
+        let (mut last, mut still, mut done) = (None, 0, None);
+        while start.elapsed() < std::time::Duration::from_secs(4) {
             if let (Some(a), Some(b), Some(l)) = (at.measure().await, body.measure().await, list.measure().await) {
-                let pad = 16.0;
-                let shown = l.page.y.0 - b.page.y.0;
                 let top = a.page.y.0 - b.page.y.0;
                 let bottom = top + a.frame.size.height.0;
                 let view_h = l.frame.size.height.0;
-                if bottom + pad > shown + view_h || top < shown {
-                    let y = (bottom + pad - view_h).min(top - pad).max(0.0);
-                    list.scroll_to(Point { x: px(0.0), y: px(y) }, true);
+                let place = Some((top, bottom, view_h));
+                still = if place == last { still + 1 } else { 0 };
+                last = place;
+                if still >= 3 && done != place {
+                    done = place;
+                    let pad = 16.0;
+                    let shown = l.page.y.0 - b.page.y.0;
+                    if bottom + pad > shown + view_h || top < shown {
+                        let y = (bottom + pad - view_h).min(top - pad).max(0.0);
+                        list.scroll_to(Point { x: px(0.0), y: px(y) }, false);
+                    }
                 }
-                return;
+                if done.is_some() && start.elapsed() > std::time::Duration::from_secs(2) {
+                    return;
+                }
             }
-            next_frame().await;
+            timer(std::time::Duration::from_millis(50)).await;
         }
     });
 }
