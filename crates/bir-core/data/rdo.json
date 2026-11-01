@@ -157,15 +157,15 @@
   },
   {
     "code": "035",
-    "description": "RDO 035"
+    "description": "Odiongan, Romblon"
   },
   {
     "code": "036",
-    "description": "RDO 036"
+    "description": "Puerto Princesa City, Palawan"
   },
   {
     "code": "037",
-    "description": "RDO 037"
+    "description": "San Jose, Occidental Mindoro"
   },
   {
     "code": "038",
@@ -189,7 +189,7 @@
   },
   {
     "code": "043",
-    "description": "RDO 043"
+    "description": "Pasig City"
   },
   {
     "code": "43A",
@@ -501,7 +501,7 @@
   },
   {
     "code": "116",
-    "description": "Bislig City"
+    "description": "Regular LT Audit Division I"
   },
   {
     "code": "117",
@@ -521,34 +521,34 @@
   },
   {
     "code": "121",
-    "description": "RDO 121"
+    "description": "Excise LT Audit Division I"
   },
   {
     "code": "122",
-    "description": "RDO 122"
+    "description": "LT District Office - Makati"
   },
   {
     "code": "123",
-    "description": "RDO 123"
+    "description": "LT Division - Cebu"
   },
   {
     "code": "124",
-    "description": "RDO 124"
+    "description": "Excise LT Audit Division II"
   },
   {
     "code": "125",
-    "description": "RDO 125"
+    "description": "Regular LT Audit Division II"
   },
   {
     "code": "126",
-    "description": "RDO 126"
+    "description": "Regular LT Audit Division III"
   },
   {
     "code": "127",
-    "description": "RDO 127"
+    "description": "LT Division - Davao"
   },
   {
     "code": "132",
-    "description": "RDO 132"
+    "description": "East Davao City"
   }
 ]

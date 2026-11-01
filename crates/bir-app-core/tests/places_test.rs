@@ -58,9 +58,12 @@ fn every_rdo_is_listed_by_its_code() {
     assert!(unique(&rdos));
     let east = rdos.iter().find(|c| c.value == "43A").expect("RDO 43A");
     assert_eq!(east.title, "43A · East Pasig");
-    let unnamed = rdos.iter().find(|c| c.value == "043").expect("RDO 043");
-    assert_eq!(unnamed.title, "043", "a placeholder name reads as the code");
-    assert_eq!(rdos.iter().filter(|c| c.title == c.value).count(), 16);
+    let pasig = rdos.iter().find(|c| c.value == "043").expect("RDO 043");
+    assert_eq!(pasig.title, "043 · Pasig City");
+    let unnamed = rdos.iter().find(|c| c.value == "117").expect("RDO 117");
+    assert_eq!(unnamed.title, "117", "a placeholder name reads as the code");
+    let placeholders: Vec<_> = rdos.iter().filter(|c| c.title == c.value).map(|c| c.value.as_str()).collect();
+    assert_eq!(placeholders, ["117", "118", "119", "120"], "no BIR list names these");
 }
 
 #[test]
