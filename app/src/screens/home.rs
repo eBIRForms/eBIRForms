@@ -12,7 +12,7 @@ use crate::live::store;
 use crate::screens::{Route, content, library, page_title, welcome};
 use crate::store::{Db, Loaded, days_until, today};
 use crate::theme;
-use crate::widgets::{Tone, Variant, button_sm, chip, code_text, due_chip, empty_row, list_group, list_row, name_cell, peso, section_title, status_tone};
+use crate::widgets::{Tone, Variant, button_sm, chip, code_text, due_chip, empty_row, icon_button, list_group, list_row, name_cell, peso, section_title, status_tone};
 
 const MONTHS: [&str; 12] = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 
@@ -87,10 +87,17 @@ pub(crate) fn due_row(d: DeadlineRow, index: ReadSignal<usize>, change: bool) ->
         }
     };
     let compact = move || window().width.0 < 760.0;
+    // A window too narrow for every column: the code column goes (the title
+    // starts with the code), Change due date shrinks to its icon and the
+    // Moved badge sits on the title's line, so the title and the moved-from
+    // line keep their width.
+    let tight = move || window().width.0 < 1040.0;
     let row = d.clone();
     let sheet_row = d.clone();
     let moved = moved_line(&d);
+    let is_moved = moved.is_some();
     let line = moved.clone().unwrap_or_else(|| who(&d.taxpayer_name, &d.branch_name));
+    let code = d.form_code.clone();
     list_row(index)
         .cursor_pointer()
         .label(format!("{} · {}", d.form_code, d.period_label))
@@ -104,21 +111,36 @@ pub(crate) fn due_row(d: DeadlineRow, index: ReadSignal<usize>, change: bool) ->
                 .child(text(MONTHS[month - 1]).text_size(px(11.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::FG3))
                 .child(text(day.to_string()).text_size(px(16.0)).font_weight(FontWeight::SEMIBOLD).text_color(theme::FG)),
         )
-        .child(code_text(d.form_code.clone()))
+        .child(when(move || !tight(), move || code_text(code.clone())))
         .child(
             view()
                 .flex_1()
-                .min_w(px(0.0))
-                .child(text(format!("{} · {}", d.form_code, d.period_label)).text_size(px(13.0)).font_weight(FontWeight::MEDIUM).text_color(theme::FG).truncate())
-                .child(text(line).text_size(px(12.0)).text_color(if moved.is_some() { theme::ACCENT } else { theme::FG2 }).truncate()),
+                .min_w(px(160.0))
+                .child(
+                    view()
+                        .flex_row()
+                        .items_center()
+                        .gap(px(8.0))
+                        .child(text(format!("{} · {}", d.form_code, d.period_label)).min_w(px(0.0)).text_size(px(13.0)).font_weight(FontWeight::MEDIUM).text_color(theme::FG).truncate())
+                        .child(when(move || is_moved && tight(), || chip("Moved", Tone::Accent))),
+                )
+                .child(text(line).text_size(px(12.0)).text_color(if is_moved { theme::ACCENT } else { theme::FG2 }).truncate()),
         )
-        .child(when(moved.is_some(), || chip("Moved", Tone::Accent)))
+        .child(when(move || is_moved && !tight(), || chip("Moved", Tone::Accent)))
         .child(when(move || !compact(), move || view().flex_row().child(when_el())))
         .child(when(change && d.period_key.is_some(), move || {
-            let row = sheet_row.clone();
-            button_sm("Change due date", Variant::Ghost, Some(Icon::Calendar), || false, move || store().override_sheet.set(Some(row.clone()))).label("Change due date")
+            let (row, row2) = (sheet_row.clone(), sheet_row.clone());
+            view()
+                .child(when(move || !tight(), move || {
+                    let row = row.clone();
+                    button_sm("Change due date", Variant::Ghost, Some(Icon::Calendar), || false, move || store().override_sheet.set(Some(row.clone()))).label("Change due date")
+                }))
+                .child(when(tight, move || {
+                    let row = row2.clone();
+                    icon_button(Icon::Calendar, "Change due date", || false, move || store().override_sheet.set(Some(row.clone())))
+                }))
         }))
-        .child(view().w(px(88.0)).flex_row().justify_end().child(chip(d.status.clone(), status_tone(&d.status))))
+        .child(view().w(px(88.0)).flex_shrink(0.0).flex_row().justify_end().child(chip(d.status.clone(), status_tone(&d.status))))
 }
 
 /// A saved or filed return: code, name, edited date, status, Open.

@@ -89,9 +89,16 @@ pub(crate) fn screen(route: Route) -> AnyElement {
 /// The content column of non-form pages: at most 880 wide, padding 28 × 32
 /// (20 × 16 on a narrow window), scrolling vertically only.
 pub(crate) fn content(inner: impl IntoElement) -> impl IntoElement {
+    content_in(element_ref(), element_ref(), inner)
+}
+
+/// [`content`] with refs on its scroll view (`list`) and the content it
+/// scrolls (`body`), for a page that scrolls something into view
+/// ([`reveal_in`]).
+pub(crate) fn content_in(list: ElementRef, body: ElementRef, inner: impl IntoElement) -> impl IntoElement {
     let narrow = || window().width.0 < theme::BREAK_NARROW;
-    scroll().flex_1().child(
-        view().w_full().items_center().child(
+    scroll().element_ref(&list).flex_1().child(
+        view().element_ref(&body).w_full().items_center().child(
             view()
                 .w_full()
                 .max_w(px(theme::CONTENT_MAX))
@@ -103,6 +110,39 @@ pub(crate) fn content(inner: impl IntoElement) -> impl IntoElement {
                 .child(inner),
         ),
     )
+}
+
+/// Scroll [`content_in`]'s `list` so `at` (in its `body`) is in full view
+/// once its place settles, and again while the page and the window settle
+/// (for two seconds); nothing while it is in view.
+pub(crate) fn reveal_in(list: ElementRef, body: ElementRef, at: ElementRef) {
+    crate::store::task(async move {
+        let start = std::time::Instant::now();
+        let (mut last, mut still, mut done) = (None, 0, None);
+        while start.elapsed() < std::time::Duration::from_secs(4) {
+            if let (Some(a), Some(b), Some(l)) = (at.measure().await, body.measure().await, list.measure().await) {
+                let top = a.page.y.0 - b.page.y.0;
+                let bottom = top + a.frame.size.height.0;
+                let view_h = l.frame.size.height.0;
+                let place = Some((top, bottom, view_h));
+                still = if place == last { still + 1 } else { 0 };
+                last = place;
+                if still >= 3 && done != place {
+                    done = place;
+                    let pad = 16.0;
+                    let shown = l.page.y.0 - b.page.y.0;
+                    if bottom + pad > shown + view_h || top < shown {
+                        let y = (bottom + pad - view_h).min(top - pad).max(0.0);
+                        list.scroll_to(Point { x: px(0.0), y: px(y) }, false);
+                    }
+                }
+                if done.is_some() && start.elapsed() > std::time::Duration::from_secs(2) {
+                    return;
+                }
+            }
+            timer(std::time::Duration::from_millis(50)).await;
+        }
+    });
 }
 
 /// The page title, 20/600, one per view.
@@ -157,7 +197,8 @@ pub(crate) fn welcome() -> impl IntoElement {
 
 /// `BUWIZ_UNLOCK` (a launch hook): press Edit penalties (`penalties`) or
 /// Edit on this return (`profile`), then bring the first opened box into
-/// view (the desktop's penalties panel is at the top already).
+/// view (the desktop's penalties panel is at the top already); for
+/// `profile`, the first box changed on this return when there is one.
 pub(crate) fn unlock_on_launch(which: &str) {
     let st = &store().form;
     let Some(form) = st.form() else { return };
@@ -166,7 +207,9 @@ pub(crate) fn unlock_on_launch(which: &str) {
         untracked(|| st.penalties.get().into_iter().filter(|p| p.applies).flat_map(|p| p.keys).collect())
     } else {
         form::unlock_profile();
-        untracked(|| st.profile.get().into_iter().collect())
+        let all: Vec<String> = untracked(|| st.profile.get().into_iter().collect());
+        let changed: Vec<String> = untracked(|| all.iter().filter(|k| st.profile_changed(k)).cloned().collect());
+        if changed.is_empty() { all } else { changed }
     };
     if which == "penalties" && !crate::mobile::phone() {
         return;
