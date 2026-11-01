@@ -40,7 +40,7 @@ search 'codeitlikemiley@' 'the maintainer email is in the tree (use fixtures)'
 # bir-desktop) reads these, so Buwiz reading one would let a setting made for
 # the other app pick Buwiz's database, key or server. The list lives in
 # crates/bir-core/src/foreign_env.rs, the one file allowed to name them.
-foreign='(^|[^A-Z0-9_])(BIR_DATABASE_PATH|BIR_DB_KEY(_FILE)?|BIR_NO_KEYCHAIN|EBIR_TEST_ENV|EBIR_RELAXED_VALIDATION|DEVELOPER_MODE|BUWIZ_SERVER_URL|BUWIZ_ACCOUNT_URL|BUWIZ_ACCESS_TOKEN)([^A-Z0-9_]|$)'
+foreign='(^|[^A-Z0-9_])(BIR_DATABASE_PATH|BIR_DB_KEY(_FILE)?|BIR_NO_KEYCHAIN|BIR_LOG_DIR|BIR_DATA_DIR|EBIR_TEST_ENV|EBIR_RELAXED_VALIDATION|DEVELOPER_MODE|BUWIZ_SERVER_URL|BUWIZ_ACCOUNT_URL|BUWIZ_ACCESS_TOKEN)([^A-Z0-9_]|$)'
 envcode=$(echo "$files" | grep -E '\.(rs|sh|java|kt|swift|toml|ya?ml|json|py)$|(^|/)justfile$' | grep -v -E '^crates/bir-core/src/foreign_env\.rs$' || true)
 if [ -n "$envcode" ]; then
   found=$(echo "$envcode" | xargs grep -n -I -E "$foreign" -- 2>/dev/null || true)

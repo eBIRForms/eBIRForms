@@ -2,6 +2,8 @@
 //!
 //! eBIRForms (its gpui shell and bir-desktop) reads `BIR_DATABASE_PATH`,
 //! `BIR_DB_KEY`, `DEVELOPER_MODE` and its own `BUWIZ_SERVER_URL` family.
+//! `BIR_LOG_DIR` and `BIR_DATA_DIR` are Buwiz's own old names, now
+//! `BUWIZ_LOG_DIR` and `BUWIZ_DATA_DIR`.
 //! Buwiz reads only its own `BUWIZ_*` names, so a variable set for the other
 //! app never points Buwiz at its database, key or server. A foreign name that
 //! is set is logged once, so a developer sees why it had no effect.
@@ -15,6 +17,8 @@ pub const FOREIGN: &[&str] = &[
     "BIR_DB_KEY",
     "BIR_DB_KEY_FILE",
     "BIR_NO_KEYCHAIN",
+    "BIR_LOG_DIR",
+    "BIR_DATA_DIR",
     "EBIR_TEST_ENV",
     "EBIR_RELAXED_VALIDATION",
     "DEVELOPER_MODE",
@@ -53,8 +57,19 @@ mod tests {
             "BIR_DB_KEY" => Some(String::new()),
             "BUWIZ_SERVER_URL" => Some("http://127.0.0.1:9".to_owned()),
             "BUWIZ_DATABASE_PATH" => Some("/mine.db".to_owned()),
+            "BIR_LOG_DIR" => Some("/old/logs".to_owned()),
+            "BUWIZ_LOG_DIR" => Some("/my/logs".to_owned()),
             _ => None,
         };
-        assert_eq!(set_names(env), ["BIR_DATABASE_PATH", "BUWIZ_SERVER_URL"], "an empty value counts as unset; Buwiz's own names are not foreign");
+        assert_eq!(set_names(env), ["BIR_DATABASE_PATH", "BIR_LOG_DIR", "BUWIZ_SERVER_URL"], "an empty value counts as unset; Buwiz's own names are not foreign");
+    }
+
+    #[test]
+    fn a_leftover_bir_log_dir_is_not_read() {
+        let dir = tempfile::tempdir().unwrap();
+        let old = dir.path().join("old-logs");
+        temp_env::with_vars([("BUWIZ_LOG_DIR", None), ("BIR_LOG_DIR", Some(old.as_os_str()))], || {
+            assert_ne!(crate::log_files::log_dir(), old);
+        });
     }
 }

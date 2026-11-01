@@ -28,10 +28,10 @@ pub const RETENTION_CHOICES: [u32; 5] = [3, 7, 14, 30, 90];
 /// `<data_dir>/logs`, the directory both binaries write under.
 ///
 /// On macOS `data_dir` is `~/Library/Application Support/com.buwiz.ebirforms`, so
-/// the files land in its `logs` folder. `BIR_LOG_DIR`, when set and non-empty,
+/// the files land in its `logs` folder. `BUWIZ_LOG_DIR`, when set and non-empty,
 /// replaces the directory — tests point it at a scratch folder.
 pub fn log_dir() -> PathBuf {
-    if let Some(dir) = std::env::var_os("BIR_LOG_DIR")
+    if let Some(dir) = std::env::var_os("BUWIZ_LOG_DIR")
         && !dir.is_empty()
     {
         return PathBuf::from(dir);
@@ -266,13 +266,13 @@ mod tests {
     }
 
     #[test]
-    fn log_dir_honors_bir_log_dir() {
+    fn log_dir_honors_buwiz_log_dir() {
         let dir = tempfile::tempdir().unwrap();
         let expected = dir.path().join("custom-logs");
-        temp_env::with_var("BIR_LOG_DIR", Some(expected.as_os_str()), || {
+        temp_env::with_var("BUWIZ_LOG_DIR", Some(expected.as_os_str()), || {
             assert_eq!(log_dir(), expected);
         });
-        temp_env::with_var("BIR_LOG_DIR", Some(""), || {
+        temp_env::with_var("BUWIZ_LOG_DIR", Some(""), || {
             assert_ne!(log_dir(), PathBuf::from(""));
         });
     }
