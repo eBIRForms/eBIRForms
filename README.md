@@ -1,15 +1,17 @@
-# Buwiz
+# eBIRForms
 
-An offline filer for Philippine BIR tax returns. Fill a form, check it,
-see deadlines and penalties, print it, and queue it for submission. Every
-step works with the internet off except sending.
+An offline filer for Philippine BIR tax returns, by
+[Buwiz](https://ebirforms.buwiz.com). Fill a form, check it, see deadlines
+and penalties, print it, and queue it for submission. Every step works with
+the internet off except sending.
 
 The app is written in Rust. Its UI uses [Native Shell (nsh)](https://github.com/hexuria/nsh),
 and live code patching while you develop uses ra-jit from
 [blaze](https://github.com/hexuria/blaze). Both are git submodules.
 
-> Status: early. Every screen runs on macOS, iOS and Android; the Windows
-> and Linux builds are new.
+> Status: early. Every screen runs on macOS, Windows, Linux, iOS and
+> Android. Installers come from the [release workflow](#releases), not
+> GitHub Releases.
 
 ## Requirements
 
@@ -28,8 +30,8 @@ and live code patching while you develop uses ra-jit from
 ## Get the code
 
 ```sh
-git clone --recurse-submodules <repo-url> buwiz-oss
-cd buwiz-oss
+git clone --recurse-submodules https://github.com/eBIRForms/eBIRForms.git
+cd eBIRForms
 ```
 
 Already cloned without submodules? Run `git submodule update --init`.
@@ -58,6 +60,14 @@ just test         # or: cargo test
 
 This tests the domain crates (forms, validation, deadlines, penalties,
 print, submission client). The app builds separately: `just build`.
+
+Before a commit:
+
+```sh
+just check        # clippy on the crates and the app, warnings are errors
+just secrets      # fails if a BIR secret or personal data is in the tree
+just verify       # the finish line: one PASS/FAIL per criterion
+```
 
 ## Live editing
 
@@ -98,7 +108,33 @@ that gets patched:
 | `crates/sqlcipher-tomcrypt` | SQLCipher for Android, without OpenSSL |
 | `crates/bir-app-core` | The typed API the app calls |
 | `crates/ebirdesk-mcp` | The app without a window: the eBIRForms Desktop mini app the Buwiz Bot spawns ([README](crates/ebirdesk-mcp/README.md)) |
+| `app/packaging` | Installers: DMG, Inno Setup and MSI, `.deb`/`.rpm`/tarball, APK |
+| `scripts/` | `check-secrets.sh`, `verify.sh`, `release.sh`, `dmg.sh` |
+| `.github/workflows` | CI per platform, `release*.yml` and `promote.yml` |
 | `nsh/`, `blaze/` | Submodules: UI engine and live patching |
+
+## Releases
+
+A `vX.Y.Z` tag on `main` runs `release.yml`, which builds, signs and
+uploads the macOS, Windows, Linux and Android installers to Cloudflare R2 under
+`ebirforms/releases/vX.Y.Z/`, served at `downloads.buwiz.com`. A version
+is never overwritten and nothing goes to GitHub Releases.
+
+```sh
+just release 0.1.1   # tag main, push, watch release.yml
+just upload 0.1.1    # point latest.json at it (promote.yml)
+```
+
+`just release` with no version takes `app/Cargo.toml`'s, or the next patch.
+The website and the Linux installer (`app/packaging/linux/install-linux.sh`)
+read `ebirforms/latest.json`.
+
+## More
+
+- [SECURITY.md](SECURITY.md): what stays on the device, key storage, how to report a problem
+- [PRIVACY.md](PRIVACY.md): what leaves the device, and when
+- [RELAY-PROTOCOL.md](RELAY-PROTOCOL.md): how sending works
+- [AGENTS.md](AGENTS.md): rules for contributors and coding agents
 
 ## License
 
