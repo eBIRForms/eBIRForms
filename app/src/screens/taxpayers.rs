@@ -11,7 +11,7 @@ use nsh_core::prelude::*;
 
 use crate::icons::Icon;
 use crate::live::store;
-use crate::screens::{Route, content, page_title};
+use crate::screens::{Route, content_in, page_title, reveal_in};
 use crate::store::{Loaded, NoticeTone, Selected, call, task};
 use crate::theme;
 use crate::widgets::{Tone, Variant, avatar, button_sm, caption, chip, code_text, empty_row, field_input, list_group, list_row, name_cell, section_title, tick_row};
@@ -27,11 +27,12 @@ fn current() -> Option<(Selected, Taxpayer)> {
 
 pub(crate) fn screen() -> impl IntoElement {
     let st = store();
-    content(each(
+    let (list, body) = (element_ref(), element_ref());
+    content_in(list, body, each(
         move || vec![current().map(|(s, t)| (s.tin, format!("{t:?}")))],
         |k| k.clone(),
         move |k, _| match untracked(current) {
-            Some((s, t)) if k.get_untracked().is_some() => page(s.tin, t).into_element(),
+            Some((s, t)) if k.get_untracked().is_some() => page(s.tin, t, (list, body)).into_element(),
             _ => view()
                 .gap(px(12.0))
                 .child(page_title("Taxpayers"))
@@ -42,7 +43,7 @@ pub(crate) fn screen() -> impl IntoElement {
     ))
 }
 
-fn page(tin: String, t: Taxpayer) -> impl IntoElement {
+fn page(tin: String, t: Taxpayer, scroller: (ElementRef, ElementRef)) -> impl IntoElement {
     let st = store();
     let branch = t.branches.iter().find(|b| b.tin == tin).cloned();
     let Some(branch) = branch else { return view().into_element() };
@@ -77,7 +78,7 @@ fn page(tin: String, t: Taxpayer) -> impl IntoElement {
         .child(section_title("Profile", true))
         .child(profile_group(t.clone(), branch.clone()))
         .child(section_title(format!("Branches · {}", t.branches.len()), false))
-        .child(branches(t.clone(), tin.clone()))
+        .child(branches(t.clone(), tin.clone(), scroller))
         .child(when(others.len() > 1, move || section_title("Switch taxpayer", false)))
         .child(if others.len() <= 1 { view().into_element() } else { list_group().child({
             let mut col = view();
@@ -609,11 +610,17 @@ fn address_section(b: bir_app_core::Branch) -> impl IntoElement {
 }
 
 /// The taxpayer's branches, the selected one marked; Add branch opens an
-/// inline band.
-fn branches(t: Taxpayer, selected: String) -> impl IntoElement {
+/// inline band, scrolled into view (`scroller`: the page's scroll view and
+/// its content).
+fn branches(t: Taxpayer, selected: String, scroller: (ElementRef, ElementRef)) -> impl IntoElement {
     let st = store();
+    let band = element_ref();
+    let reveal = move || reveal_in(scroller.0, scroller.1, band);
     // Debug builds: `BUWIZ_SHEET=add-branch` opens the band (evidence.sh).
     let adding = signal(cfg!(debug_assertions) && std::env::var("BUWIZ_SHEET").as_deref() == Ok("add-branch"));
+    if adding.get_untracked() {
+        reveal();
+    }
     let code = signal(String::new());
     let name = signal(String::new());
     let busy = signal(false);
@@ -621,6 +628,7 @@ fn branches(t: Taxpayer, selected: String) -> impl IntoElement {
     let root2 = root.clone();
     let open_band = move || {
         adding.set(true);
+        reveal();
         name.set(String::new());
         let root = root2.clone();
         task(async move {
@@ -676,6 +684,7 @@ fn branches(t: Taxpayer, selected: String) -> impl IntoElement {
         .child(when(move || adding.get(), move || {
             let save = save.clone();
             view()
+                .element_ref(&band)
                 .p(px(16.0))
                 .gap(px(12.0))
                 .rounded(px(theme::R_CARD))

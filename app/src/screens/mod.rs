@@ -89,9 +89,16 @@ pub(crate) fn screen(route: Route) -> AnyElement {
 /// The content column of non-form pages: at most 880 wide, padding 28 × 32
 /// (20 × 16 on a narrow window), scrolling vertically only.
 pub(crate) fn content(inner: impl IntoElement) -> impl IntoElement {
+    content_in(element_ref(), element_ref(), inner)
+}
+
+/// [`content`] with refs on its scroll view (`list`) and the content it
+/// scrolls (`body`), for a page that scrolls something into view
+/// ([`reveal_in`]).
+pub(crate) fn content_in(list: ElementRef, body: ElementRef, inner: impl IntoElement) -> impl IntoElement {
     let narrow = || window().width.0 < theme::BREAK_NARROW;
-    scroll().flex_1().child(
-        view().w_full().items_center().child(
+    scroll().element_ref(&list).flex_1().child(
+        view().element_ref(&body).w_full().items_center().child(
             view()
                 .w_full()
                 .max_w(px(theme::CONTENT_MAX))
@@ -103,6 +110,28 @@ pub(crate) fn content(inner: impl IntoElement) -> impl IntoElement {
                 .child(inner),
         ),
     )
+}
+
+/// Scroll [`content_in`]'s `list` so `at` (in its `body`) is in full view
+/// once it is laid out; nothing when it already is.
+pub(crate) fn reveal_in(list: ElementRef, body: ElementRef, at: ElementRef) {
+    crate::store::task(async move {
+        for _ in 0..60 {
+            if let (Some(a), Some(b), Some(l)) = (at.measure().await, body.measure().await, list.measure().await) {
+                let pad = 16.0;
+                let shown = l.page.y.0 - b.page.y.0;
+                let top = a.page.y.0 - b.page.y.0;
+                let bottom = top + a.frame.size.height.0;
+                let view_h = l.frame.size.height.0;
+                if bottom + pad > shown + view_h || top < shown {
+                    let y = (bottom + pad - view_h).min(top - pad).max(0.0);
+                    list.scroll_to(Point { x: px(0.0), y: px(y) }, true);
+                }
+                return;
+            }
+            next_frame().await;
+        }
+    });
 }
 
 /// The page title, 20/600, one per view.
