@@ -115,10 +115,12 @@ that gets patched:
 
 ## Releases
 
-A `vX.Y.Z` tag on `main` runs `release.yml`, which builds, signs and
-uploads the macOS, Windows, Linux and Android installers to Cloudflare R2 under
-`ebirforms/releases/vX.Y.Z/`, served at `downloads.buwiz.com`. A version
-is never overwritten and nothing goes to GitHub Releases.
+A `vX.Y.Z` tag on `main` runs `release.yml`, which builds the macOS,
+Windows, Linux and Android installers and uploads them to Cloudflare R2
+under `ebirforms/releases/vX.Y.Z/`, served at `downloads.buwiz.com`. The
+DMG is signed and notarized. Without their secrets, the Windows installers
+ship unsigned (the run warns) and the APK is skipped. A version is never
+overwritten and nothing goes to GitHub Releases.
 
 ```sh
 just release 0.1.1   # tag main, push, watch release.yml
