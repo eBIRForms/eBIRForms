@@ -1405,6 +1405,7 @@ impl Database {
             existing.submitted_payload = draft.submitted_payload.clone();
         }
         existing.submission_filename = draft.submission_filename.clone();
+        existing.submission_receipt = draft.submission_receipt.clone();
         existing.submission_attempts = 0;
         existing.next_retry_at = None;
         existing.last_error = None;

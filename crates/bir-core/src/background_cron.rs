@@ -363,8 +363,8 @@ pub trait SubmissionTransport: Send + Sync {
 
     /// [`Self::store_session`] that also says whether a failure reached BIR
     /// and hands back the receipt. The default knows neither, so every
-    /// failure counts as [`StoreFailure::MaybeSent`]. Queueable forms use
-    /// this; 1601C and 2551Q still call [`Self::store_session`].
+    /// failure counts as [`StoreFailure::MaybeSent`]. Every queued send
+    /// (queueable forms, 1601C and 2551Q) uses this.
     fn store_session_reported<'a>(
         &'a self,
         session: Self::Session,
@@ -635,10 +635,12 @@ async fn process_queued_1601c_with_transport<T: SubmissionTransport>(
         return;
     }
     match transport
-        .store_session(session, &filename, xml_payload.as_bytes())
+        .store_session_reported(session, &filename, xml_payload.as_bytes())
         .await
     {
-        Ok(()) => {
+        Ok(report) => {
+            let dry_run = dry_run || report.dry_run;
+            draft.submission_receipt = report.receipt;
             if dry_run {
                 info!(
                     "Cron: dry run: simulated submission of queued 1601C {} (nothing sent to BIR)",
@@ -1394,10 +1396,12 @@ async fn process_submission_queue<T: SubmissionTransport + 'static>(
                     return;
                 }
                 match transport
-                    .store_session(session, &filename, xml_payload.as_bytes())
+                    .store_session_reported(session, &filename, xml_payload.as_bytes())
                     .await
                 {
-                    Ok(()) => {
+                    Ok(report) => {
+                        let dry_run = dry_run || report.dry_run;
+                        draft.submission_receipt = report.receipt;
                         if dry_run {
                             info!(
                                 "Cron: dry run: simulated submission of queued form {} (nothing sent to BIR)",
@@ -1848,6 +1852,8 @@ mod tests {
         calls: Mutex<Vec<RecordedSubmission>>,
         outcome: TestTransportOutcome,
         dry_run: bool,
+        /// What a successful PUT reports back; `None` keeps the trait default.
+        report: Option<StoreReport>,
     }
 
     impl RecordingSubmissionTransport {
@@ -1856,6 +1862,7 @@ mod tests {
                 calls: Mutex::new(Vec::new()),
                 outcome,
                 dry_run: false,
+                report: None,
             }
         }
 
@@ -1864,6 +1871,18 @@ mod tests {
                 calls: Mutex::new(Vec::new()),
                 outcome,
                 dry_run: true,
+                report: None,
+            }
+        }
+
+        /// A transport that is not itself in dry-run mode but whose far side
+        /// answers every PUT with `report` (a local server's signed receipt).
+        fn reporting(report: StoreReport) -> Self {
+            Self {
+                calls: Mutex::new(Vec::new()),
+                outcome: TestTransportOutcome::Success,
+                dry_run: false,
+                report: Some(report),
             }
         }
 
@@ -1927,6 +1946,21 @@ mod tests {
                         panic!("PUT must not run after a pre-store session failure")
                     }
                 }
+            })
+        }
+
+        fn store_session_reported<'a>(
+            &'a self,
+            session: Self::Session,
+            filename: &'a str,
+            payload: &'a [u8],
+        ) -> Pin<Box<dyn Future<Output = Result<StoreReport, StoreFailure>> + Send + 'a>> {
+            let report = self.report.clone();
+            Box::pin(async move {
+                self.store_session(session, filename, payload)
+                    .await
+                    .map(|()| report.unwrap_or_default())
+                    .map_err(StoreFailure::MaybeSent)
             })
         }
     }
@@ -2220,6 +2254,52 @@ mod tests {
             jobs.iter().all(|job| !is_email_poll_job(job)),
             "a dry run schedules no poll"
         );
+    }
+
+    #[tokio::test]
+    async fn process_queued_1601c_keeps_the_signed_dry_run_receipt() {
+        let profile = test_profile();
+        let queued = queued_1601c_draft(&profile);
+        let db = Arc::new(Mutex::new(
+            Database::open_in_memory_for_tests()
+                .expect("the in-memory cron database should initialize"),
+        ));
+        let id = db
+            .lock()
+            .expect("the cron database should not be poisoned")
+            .save_queued_1601c_draft(&queued)
+            .expect("the reviewed 1601C queue snapshot should persist");
+        let summary = queued_1601c_summary(id, &queued);
+        // The client transport is live; only the server's receipt says the
+        // PUT was simulated.
+        let receipt = "header.dry-run-claims.signature".to_string();
+        let transport = RecordingSubmissionTransport::reporting(StoreReport {
+            receipt: Some(receipt.clone()),
+            dry_run: true,
+        });
+
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+
+        let calls = transport.calls();
+        assert_eq!(calls.len(), 1);
+        assert_exact_1601c_transport_call(&calls[0], &queued);
+        let db_guard = db.lock().expect("the cron database should not be poisoned");
+        let submitted = db_guard
+            .get_1601c_draft(&queued.tin, queued.taxable_year, queued.month)
+            .expect("the submitted 1601C lookup should succeed")
+            .expect("the submitted 1601C snapshot should remain persisted");
+        assert_eq!(submitted.status, FilingStatus::Sent);
+        assert_eq!(submitted.submission_receipt.as_deref(), Some(receipt.as_str()));
+        assert!(submitted.submission_claim_token.is_none());
+        let alerts = db_guard
+            .list_active_alerts(Some(&profile.tin.full()))
+            .expect("the alert lookup should succeed");
+        let sent = alerts
+            .iter()
+            .find(|alert| alert.kind.starts_with("form_submitted:1601C:"))
+            .expect("the send should record a submission alert");
+        assert!(sent.title.ends_with(DRY_RUN_NOTICE_SUFFIX), "{}", sent.title);
+        assert!(sent.detail.contains(DRY_RUN_NOTICE_SUFFIX.trim_start()));
     }
 
     #[tokio::test]
