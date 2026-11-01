@@ -264,6 +264,11 @@ pub struct Form1601CDraft {
     /// queued before this field existed.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub submitted_payload: Option<String>,
+    /// The submission service's signed receipt for the send that made this
+    /// return Sent (a compact JWS; `bir-submit` verifies it). Absent on
+    /// returns sent before receipts existed and on transports without one.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub submission_receipt: Option<String>,
 
     /// SHA-256 over the exact reviewed 1601Cv2018 field map at the moment the
     /// user queues the return. Queue retries must reproduce this fingerprint.
@@ -444,6 +449,7 @@ impl Form1601CDraft {
             submission_filename: None,
             receipt_id: None,
             submitted_payload: None,
+            submission_receipt: None,
             queued_submission_fingerprint: None,
             queue_authorization: None,
             submission_claim_token: None,
