@@ -186,7 +186,8 @@ pub(crate) fn welcome() -> impl IntoElement {
 
 /// `BUWIZ_UNLOCK` (a launch hook): press Edit penalties (`penalties`) or
 /// Edit on this return (`profile`), then bring the first opened box into
-/// view (the desktop's penalties panel is at the top already).
+/// view (the desktop's penalties panel is at the top already); for
+/// `profile`, the first box changed on this return when there is one.
 pub(crate) fn unlock_on_launch(which: &str) {
     let st = &store().form;
     let Some(form) = st.form() else { return };
@@ -195,7 +196,9 @@ pub(crate) fn unlock_on_launch(which: &str) {
         untracked(|| st.penalties.get().into_iter().filter(|p| p.applies).flat_map(|p| p.keys).collect())
     } else {
         form::unlock_profile();
-        untracked(|| st.profile.get().into_iter().collect())
+        let all: Vec<String> = untracked(|| st.profile.get().into_iter().collect());
+        let changed: Vec<String> = untracked(|| all.iter().filter(|k| st.profile_changed(k)).cloned().collect());
+        if changed.is_empty() { all } else { changed }
     };
     if which == "penalties" && !crate::mobile::phone() {
         return;

@@ -122,7 +122,7 @@ DESKTOP=(
     "signin-code|BUWIZ_SHEET=signin-code|Approve this code"
     "amend|BUWIZ_AMEND=1601C|Amending a sent return|14"
     "edit-penalties|BUWIZ_OPEN=1701Q:2026:2 BUWIZ_UNLOCK=penalties|entering the penalties yourself|14"
-    "edit-on-return|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_UNLOCK=profile|On this return only|14"
+    "edit-on-return|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_UNLOCK=profile|Kept on this return only|14"
     "toast|BUWIZ_ROUTE=home BUWIZ_TOAST=Taken_off_the_queue:_an_editable_draft_again.|editable draft again"
 )
 
@@ -215,7 +215,7 @@ PHONE=(
     "calendar-override|BUWIZ_ROUTE=calendar|moved from"
     "amend|BUWIZ_AMEND=1601C|Amending a sent return|20"
     "edit-penalties|BUWIZ_OPEN=1701Q:2026:2 BUWIZ_UNLOCK=penalties|entering this penalty yourself|20"
-    "edit-on-return|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_UNLOCK=profile|On this return only|20"
+    "edit-on-return|BUWIZ_OPEN=1701Q:2026:3 BUWIZ_UNLOCK=profile|Kept on this return only|20"
     "toast|BUWIZ_ROUTE=home BUWIZ_TOAST=Taken_off_the_queue:_an_editable_draft_again.|editable draft again"
 )
 

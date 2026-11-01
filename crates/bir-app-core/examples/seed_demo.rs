@@ -8,6 +8,8 @@
 //! returns left Queued, Sending, Failed (the relay's `tin_not_active`) and
 //! Sent (with a demo receipt), and one moved deadline (1701Q Q3 2026, due
 //! Nov 23 instead of BIR's Nov 16) so the Calendar shows an overridden row.
+//! The 1701Q Q3 2026 draft has its registered address changed on that
+//! return only, so the form shows a box that differs from the profile.
 
 use std::collections::BTreeMap;
 
@@ -61,10 +63,20 @@ fn seed_returns(app: &BirApp, tin: &str) -> Result<(), Box<dyn std::error::Error
         app.call("set_yearly_forms", vec![tin.into(), year.into(), serde_json::json!(["1701Q", "2551Q", "1601C", "1701"])])?;
     }
     let open = |code: &str, year: i64, period: i64| app.open_return(&OpenReturn { tin: tin.to_owned(), form_code: code.into(), year, period, key: None });
-    for (code, year, period) in [("2551Q", 2026, 3), ("1701Q", 2026, 2), ("1701Q", 2026, 3)] {
+    for (code, year, period) in [("2551Q", 2026, 3), ("1701Q", 2026, 2)] {
         let opened = open(code, year, period)?;
         app.save(code, &opened.draft)?;
     }
+    // The 1701Q Q3 draft keeps another registered address than the
+    // profile's, changed on that return only.
+    let opened = open("1701Q", 2026, 3)?;
+    let address = opened.profile_facts.iter().find(|(_, fact)| *fact == "registered_address").map(|(key, _)| key.clone()).ok_or("1701Q shows no registered address")?;
+    let edits = BTreeMap::from([(address.clone(), FieldValue::from("2 Demo Avenue, Pasig City"))]);
+    let filled = app.fill("1701Q", &opened.draft, &edits, std::slice::from_ref(&address))?;
+    if let Some(why) = filled.rejected.get(&address) {
+        return Err(format!("the return's address was refused: {why}").into());
+    }
+    app.save("1701Q", &filled.draft)?;
     app.save_payee(TIN_ROOT, &Payee { name: "Reyes Law Office".into(), tin: "000345675".into() })?;
 
     let layout = app.form_layout("1601C")?;
