@@ -459,7 +459,7 @@ mod tests {
         };
         temp_env::with_vars(
             [
-                ("BIR_LOG_DIR", Some(dir.path().as_os_str())),
+                ("BUWIZ_LOG_DIR", Some(dir.path().as_os_str())),
                 ("RUST_LOG", None),
             ],
             || {

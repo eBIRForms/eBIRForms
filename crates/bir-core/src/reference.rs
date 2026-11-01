@@ -58,6 +58,7 @@ const ZIPCODES_JSON: &[u8] = crate::packed_bytes!("data/geo/zipcodes.json");
 
 static RDOS_BY_CODE: OnceLock<HashMap<String, Rdo>> = OnceLock::new();
 static ATCS_BY_CODE: OnceLock<HashMap<String, Atc>> = OnceLock::new();
+static ATC_RATES: OnceLock<HashMap<String, Vec<String>>> = OnceLock::new();
 static REGIONS_BY_CODE: OnceLock<HashMap<String, Region>> = OnceLock::new();
 static PROVINCES_BY_CODE: OnceLock<HashMap<String, Province>> = OnceLock::new();
 static CITIES_BY_CODE: OnceLock<HashMap<String, City>> = OnceLock::new();
@@ -123,6 +124,33 @@ pub fn get_all_rdos() -> Vec<Rdo> {
 pub fn get_atc(code: &str) -> Option<Atc> {
     let map = ATCS_BY_CODE.get_or_init(init_atcs);
     map.get(code).cloned()
+}
+
+/// Every distinct rate the ATC table lists for `code`, in table order and
+/// as the table writes them (blank included); empty for an unknown code.
+/// 96 codes have more than one; [`get_atc`] answers one of them.
+pub fn get_atc_rates(code: &str) -> Vec<String> {
+    let map = ATC_RATES.get_or_init(|| {
+        let list: Vec<Atc> =
+            serde_json::from_str(&crate::packed::inflate(ATC_JSON)).expect("Invalid atcCodes.json");
+        let mut rates: HashMap<String, Vec<String>> = HashMap::new();
+        for atc in list {
+            let seen = rates.entry(atc.code).or_default();
+            if !seen.contains(&atc.rate) {
+                seen.push(atc.rate);
+            }
+        }
+        rates
+    });
+    map.get(code).cloned().unwrap_or_default()
+}
+
+/// Get all ATCs, one per code (the one [`get_atc`] answers)
+pub fn get_all_atcs() -> Vec<Atc> {
+    let map = ATCS_BY_CODE.get_or_init(init_atcs);
+    let mut atcs: Vec<Atc> = map.values().cloned().collect();
+    atcs.sort_by(|a, b| a.code.cmp(&b.code));
+    atcs
 }
 
 pub fn get_all_regions() -> Vec<Region> {

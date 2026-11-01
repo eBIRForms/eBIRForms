@@ -921,13 +921,58 @@ impl BirApp {
     /// Every RDO, code first ("43A · East Pasig"); one whose name the table
     /// does not have reads as its code alone.
     pub fn rdos() -> Vec<Choice> {
+        bir_core::reference::get_all_rdos().into_iter().map(rdo_choice).collect()
+    }
+
+    /// The RDO with `code`, shaped as [`Self::rdos`] lists it. Every code
+    /// in the table is three characters, so "43" finds "043" and "43a"
+    /// finds "43A".
+    pub fn rdo(code: &str) -> Option<Choice> {
+        let code = code.trim().to_ascii_uppercase();
+        bir_core::reference::get_rdo(&format!("{code:0>3}")).map(rdo_choice)
+    }
+
+    /// The RDOs whose code or office name contains `query`, ignoring case
+    /// (all of them for a blank query).
+    pub fn search_rdos(query: &str) -> Vec<Choice> {
+        let query = query.trim().to_lowercase();
         bir_core::reference::get_all_rdos()
             .into_iter()
-            .map(|r| {
-                let placeholder = r.description == format!("RDO {}", r.code);
-                let title = if placeholder { r.code.clone() } else { format!("{} · {}", r.code, r.description) };
-                Choice { value: r.code, title, detail: String::new() }
-            })
+            .filter(|r| r.code.to_lowercase().contains(&query) || r.description.to_lowercase().contains(&query))
+            .map(rdo_choice)
+            .collect()
+    }
+
+    /// Every ATC, code first ("WV010 · VAT WITHHOLDING ON PURCHASE OF
+    /// GOODS"), its rate the detail as the table has it ("5.0"; blank for
+    /// the excise codes that carry none). A code the table lists more than
+    /// once answers one of its entries, the one [`Self::atc`] answers.
+    pub fn atcs() -> Vec<Choice> {
+        bir_core::reference::get_all_atcs().into_iter().map(atc_choice).collect()
+    }
+
+    /// The ATC with `code` ("WV010"; case does not matter), shaped as
+    /// [`Self::atcs`] lists it.
+    pub fn atc(code: &str) -> Option<Choice> {
+        bir_core::reference::get_atc(&code.trim().to_ascii_uppercase()).map(atc_choice)
+    }
+
+    /// Every distinct rate the ATC table has for `code` (case does not
+    /// matter), in table order and as the table writes them; empty for an
+    /// unknown code. More than one means the rate varies, and
+    /// [`Self::atc`] shows only one of them.
+    pub fn atc_rates(code: &str) -> Vec<String> {
+        bir_core::reference::get_atc_rates(&code.trim().to_ascii_uppercase())
+    }
+
+    /// The ATCs whose code or description contains `query`, ignoring case
+    /// (all of them for a blank query).
+    pub fn search_atcs(query: &str) -> Vec<Choice> {
+        let query = query.trim().to_lowercase();
+        bir_core::reference::get_all_atcs()
+            .into_iter()
+            .filter(|a| a.code.to_lowercase().contains(&query) || a.description.to_lowercase().contains(&query))
+            .map(atc_choice)
             .collect()
     }
 
@@ -980,6 +1025,20 @@ impl BirApp {
     pub fn print_html(&self, form_code: &str, draft: &Draft) -> AppResult<PrintedReturn> {
         self.call_as("screen_form_print", vec![form_code.into(), draft.0.clone()])
     }
+}
+
+/// An RDO as [`BirApp::rdos`] lists it; one whose name the table does not
+/// have reads as its code alone.
+fn rdo_choice(r: bir_core::reference::Rdo) -> Choice {
+    let placeholder = r.description == format!("RDO {}", r.code);
+    let title = if placeholder { r.code.clone() } else { format!("{} · {}", r.code, r.description) };
+    Choice { value: r.code, title, detail: String::new() }
+}
+
+/// An ATC as [`BirApp::atcs`] lists it, the table's doubled spaces closed up.
+fn atc_choice(a: bir_core::reference::Atc) -> Choice {
+    let description = a.description.split_whitespace().collect::<Vec<_>>().join(" ");
+    Choice { title: format!("{} · {description}", a.code), value: a.code, detail: a.rate }
 }
 
 /// 1601C and 2551Q queue through their own typed path, keyed by TIN, year
