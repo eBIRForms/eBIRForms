@@ -2303,6 +2303,67 @@ mod tests {
     }
 
     #[tokio::test]
+    async fn queued_2551q_keeps_the_signed_dry_run_receipt() {
+        let db = Arc::new(Mutex::new(
+            Database::open_in_memory_for_tests()
+                .expect("the in-memory cron database should initialize"),
+        ));
+        let profile = db
+            .lock()
+            .expect("the cron database should not be poisoned")
+            .save_profile(reviewed_profile())
+            .expect("the reviewed profile should persist");
+        let queued = queued_draft(&profile);
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .save_queued_2551q_draft_and_election(&queued)
+            .expect("the reviewed 2551Q queue snapshot should persist");
+        // The client transport is live; only the server's receipt says the
+        // PUT was simulated.
+        let receipt = "header.dry-run-claims.signature".to_string();
+        let transport = Arc::new(RecordingSubmissionTransport::reporting(StoreReport {
+            receipt: Some(receipt.clone()),
+            dry_run: true,
+        }));
+
+        run_queue_tick(db.clone(), &transport).await;
+        // The 2551Q worker runs on a spawned task: wait for it to finish.
+        let stored = || {
+            db.lock()
+                .expect("the cron database should not be poisoned")
+                .get_2551q_draft(&queued.tin, queued.taxable_year, queued.quarter)
+                .expect("the 2551Q lookup should succeed")
+                .expect("the 2551Q snapshot should remain persisted")
+        };
+        for _ in 0..500 {
+            if stored().status != FilingStatus::Queued {
+                break;
+            }
+            tokio::time::sleep(std::time::Duration::from_millis(10)).await;
+        }
+
+        let calls = transport.calls();
+        assert_eq!(calls.len(), 1);
+        assert_eq!(calls[0].filename, queued.default_submission_filename());
+        let submitted = stored();
+        assert_eq!(submitted.status, FilingStatus::Sent);
+        assert_eq!(submitted.submission_receipt.as_deref(), Some(receipt.as_str()));
+        assert!(submitted.submission_claim_token.is_none());
+        assert!(submitted.submission_claimed_at.is_none());
+        let alerts = db
+            .lock()
+            .expect("the cron database should not be poisoned")
+            .list_active_alerts(Some(&profile.tin.full()))
+            .expect("the alert lookup should succeed");
+        let sent = alerts
+            .iter()
+            .find(|alert| alert.kind.starts_with("form_submitted:2551Q:"))
+            .expect("the send should record a submission alert");
+        assert!(sent.title.ends_with(DRY_RUN_NOTICE_SUFFIX), "{}", sent.title);
+        assert!(sent.detail.contains(DRY_RUN_NOTICE_SUFFIX.trim_start()));
+    }
+
+    #[tokio::test]
     async fn process_queued_1601c_unknown_outcome_remains_claimed_and_is_not_retried() {
         let profile = test_profile();
         let queued = queued_1601c_draft(&profile);
