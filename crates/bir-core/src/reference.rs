@@ -125,6 +125,14 @@ pub fn get_atc(code: &str) -> Option<Atc> {
     map.get(code).cloned()
 }
 
+/// Get all ATCs, one per code (the one [`get_atc`] answers)
+pub fn get_all_atcs() -> Vec<Atc> {
+    let map = ATCS_BY_CODE.get_or_init(init_atcs);
+    let mut atcs: Vec<Atc> = map.values().cloned().collect();
+    atcs.sort_by(|a, b| a.code.cmp(&b.code));
+    atcs
+}
+
 pub fn get_all_regions() -> Vec<Region> {
     let map = REGIONS_BY_CODE.get_or_init(init_regions);
     let mut list: Vec<Region> = map.values().cloned().collect();
