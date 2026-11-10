@@ -26,11 +26,14 @@ use crate::seal::SealingKey;
 
 pub const TYP: &str = "buwiz-trust+jwt";
 
-/// The Ed25519 public keys (base64url, 32 bytes) that sign the trust list.
-/// **A release must fill this** with the key made by
-/// `buwiz-trust-sign keygen`; while it is empty a release build cannot
-/// send. Tests and lab set [`crate::SubmitConfig::trust_keys`] in code.
-pub const TRUST_KEYS: &[&str] = &[];
+/// The Ed25519 public keys (base64url, 32 bytes) that sign the trust list,
+/// made by `buwiz-trust-sign keygen` and kept offline by Buwiz's owner. To
+/// rotate, release the new key next to this one first. Tests and lab set
+/// [`crate::SubmitConfig::trust_keys`] in code.
+pub const TRUST_KEYS: &[&str] = &[
+    // kid 65dbcb7282a88471, made 2026-11-10.
+    "qyjpSeVbiWvpVOX9mIzkPsuXARRi0de8SQTetHj5o4M",
+];
 
 /// Comma-separated base64url keys that replace [`TRUST_KEYS`]. Honoured
 /// only in debug builds or with the `lab` feature, never in a release.
