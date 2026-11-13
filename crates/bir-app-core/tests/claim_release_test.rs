@@ -135,7 +135,7 @@ fn release_seen(app: &BirApp, tin: &str, code: &str, slot: i64, seen: Option<&st
     app.release_abandoned_claim(tin, code, YEAR.into(), Some(slot), seen, reason).map_err(|error| error.to_string())
 }
 
-/// `queued_send_state`'s answer: `{stage, reason, claim, releasable}`.
+/// `queued_send_state`'s answer: `{stage, reason, chip, line, next, step, claim, releasable}`.
 fn send_state(app: &BirApp, tin: &str, code: &str, slot: i64) -> Value {
     app.call("queued_send_state", vec![tin.into(), code.into(), YEAR.into(), slot.into()]).expect("queued_send_state")
 }
@@ -246,7 +246,7 @@ fn a_claimed_1601c_is_released_to_draft_with_the_audit_note() {
     assert!(released.submission_claim_token.is_none());
     assert!(released.submission_claimed_at.is_none());
     assert_eq!(released.submission_error.as_deref(), Some(AUDIT));
-    assert_eq!(send_state(&app, &tin, "1601C", 9), json!({ "stage": null, "reason": null, "claim": null, "releasable": false }));
+    assert_eq!(send_state(&app, &tin, "1601C", 9), json!({ "stage": null, "reason": null, "chip": null, "line": null, "next": null, "step": null, "claim": null, "releasable": false }));
 
     // Nothing left to release: told apart from a release.
     assert_eq!(release(&app, &tin, "1601C", 9, REASON), Ok(false));
@@ -274,7 +274,7 @@ fn a_claimed_2551q_is_released_to_draft_with_the_audit_note() {
     assert!(released.submission_claim_token.is_none());
     assert!(released.submission_claimed_at.is_none());
     assert_eq!(released.last_error.as_deref(), Some(AUDIT));
-    assert_eq!(send_state(&app, &tin, "2551Q", 1), json!({ "stage": null, "reason": null, "claim": null, "releasable": false }));
+    assert_eq!(send_state(&app, &tin, "2551Q", 1), json!({ "stage": null, "reason": null, "chip": null, "line": null, "next": null, "step": null, "claim": null, "releasable": false }));
 }
 
 fn a_claimed_generic_return_is_released_to_draft_with_the_audit_note() {
@@ -295,7 +295,7 @@ fn a_claimed_generic_return_is_released_to_draft_with_the_audit_note() {
     assert_eq!(format!("{:?}", released.lifecycle().status), "Draft");
     assert!(released.lifecycle().is_unclaimed());
     assert_eq!(released.lifecycle().submission_error.as_deref(), Some(AUDIT));
-    assert_eq!(send_state(&app, &tin, "0619E", 1), json!({ "stage": null, "reason": null, "claim": null, "releasable": false }));
+    assert_eq!(send_state(&app, &tin, "0619E", 1), json!({ "stage": null, "reason": null, "chip": null, "line": null, "next": null, "step": null, "claim": null, "releasable": false }));
 }
 
 fn a_wrong_reason_a_sent_return_and_an_unclaimed_queue_are_refused() {
@@ -355,7 +355,7 @@ fn a_wrong_reason_a_sent_return_and_an_unclaimed_queue_are_refused() {
     let saved = app.save("0619E", &checked.draft).expect("save");
     let id = saved.id.expect("a saved id");
     assert_eq!(row(&worker, id).0, "Draft");
-    assert_eq!(send_state(&app, &tin, "0619E", 2), json!({ "stage": null, "reason": null, "claim": null, "releasable": false }));
+    assert_eq!(send_state(&app, &tin, "0619E", 2), json!({ "stage": null, "reason": null, "chip": null, "line": null, "next": null, "step": null, "claim": null, "releasable": false }));
     assert_eq!(release(&app, &tin, "0619E", 2, REASON), Ok(false));
 }
 

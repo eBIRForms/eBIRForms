@@ -732,10 +732,14 @@ fn optional_text(arguments: &HostArguments, index: usize) -> Result<Option<Strin
 /// Where a stored return is on its way to BIR, as the app's send stages
 /// show it ([`crate::sending::send_stage_for`], then
 /// [`crate::sending::shown_stage`]: a claim this process is still sending
-/// reads `Sending`): `{ stage, reason, claim, releasable }`. `stage` is named
-/// as its `SendStage` variant (`Queued`, `Sending`, `Failed`,
-/// `NeedsAttention`, `GaveUp`, `Sent`, `Confirmed`, `Paid`), `reason` set for
-/// the three that carry one (both null for a plain draft). `claim` is the
+/// reads `Sending`): `{ stage, reason, chip, line, next, step, claim,
+/// releasable }`. `stage` is named as its `SendStage` variant (`Queued`,
+/// `Sending`, `Failed`, `NeedsAttention`, `GaveUp`, `Refused`, `Sent`,
+/// `Confirmed`, `Paid`), `reason` set for the four that carry one (both null
+/// for a plain draft). For a refusal for the TIN (`Refused`, or a `Failed`
+/// whose reason carries a code) `chip`, `line`, `next` and `step` (`add`,
+/// `verify`, `fix` or null) are the wording table's
+/// ([`BirApp::tin_statement_for_stage`]); null otherwise. `claim` is the
 /// row's `claimed_at` (null when unclaimed), to pass back to
 /// `release_abandoned_claim`. `releasable` is [`release_gate`]'s answer, read
 /// from the claim and the queue, not from the stage. Writes nothing and
@@ -757,6 +761,23 @@ fn queued_send_state(arguments: &HostArguments) -> HostResult {
         let data: serde_json::Value = serde_json::from_str(&claim.json).map_err(db_error)?;
         let stage = crate::sending::send_stage_for(&form_code, &claim.status, &data)
             .map(|stage| crate::sending::shown_stage(stage, claim.sending_now));
+        let statement = stage
+            .as_ref()
+            .and_then(crate::BirApp::tin_statement_for_stage);
+        let words = |pick: fn(&crate::TinStatement) -> String| {
+            statement.as_ref().map_or(HostValue::Null, |statement| {
+                HostValue::from(pick(statement))
+            })
+        };
+        let (chip, line, next) = (
+            words(|statement| statement.chip.to_owned()),
+            words(|statement| statement.line.clone()),
+            words(|statement| statement.next.clone()),
+        );
+        let step = statement
+            .as_ref()
+            .and_then(|statement| statement.step)
+            .map_or(HostValue::Null, |step| HostValue::from(step.kind()));
         let (stage, reason) = match stage {
             Some(stage) => {
                 let (name, reason) = stage_name(&stage);
@@ -770,6 +791,10 @@ fn queued_send_state(arguments: &HostArguments) -> HostResult {
         Ok(HostObject::new()
             .field("stage", stage)
             .field("reason", reason)
+            .field("chip", chip)
+            .field("line", line)
+            .field("next", next)
+            .field("step", step)
             .field(
                 "claim",
                 claim.claimed_at.map_or(HostValue::Null, HostValue::from),
