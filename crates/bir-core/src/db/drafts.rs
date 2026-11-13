@@ -1558,6 +1558,23 @@ impl Database {
         claim_token: &str,
         error: String,
     ) -> Result<bool, DbError> {
+        self.update_claimed_2551q(tin, taxable_year, quarter, claim_token, |draft| {
+            draft.record_submission_failure(error)
+        })
+    }
+
+    /// Change this worker's claimed 2551Q with `change` and store it (the
+    /// status column follows the draft), by the claim token and an
+    /// exact-JSON compare-and-swap. `false` when the claim is no longer this
+    /// worker's.
+    fn update_claimed_2551q(
+        &self,
+        tin: &str,
+        taxable_year: u16,
+        quarter: u8,
+        claim_token: &str,
+        change: impl FnOnce(&mut Form2551QDraft),
+    ) -> Result<bool, DbError> {
         let tx = Transaction::new_unchecked(&self.conn, TransactionBehavior::Immediate)?;
         let Some((id, raw_json)) = tx
             .query_row(
@@ -1577,7 +1594,7 @@ impl Database {
         {
             return Ok(false);
         }
-        draft.record_submission_failure(error);
+        change(&mut draft);
         let json = serde_json::to_string(&draft)?;
         let updated = tx.execute(
             "UPDATE form_drafts SET status = ?1, data_json = ?2, updated_at = datetime('now')
@@ -2686,6 +2703,23 @@ impl Database {
         claim_token: &str,
         error: String,
     ) -> Result<bool, DbError> {
+        self.update_claimed_1601c(tin, taxable_year, month, claim_token, |draft| {
+            draft.record_submission_failure(error)
+        })
+    }
+
+    /// Change this worker's claimed 1601C with `change` and store it (the
+    /// status column follows the draft), by the claim token and an
+    /// exact-JSON compare-and-swap. `false` when the claim is no longer this
+    /// worker's.
+    fn update_claimed_1601c(
+        &self,
+        tin: &str,
+        taxable_year: u16,
+        month: u8,
+        claim_token: &str,
+        change: impl FnOnce(&mut Form1601CDraft),
+    ) -> Result<bool, DbError> {
         let tx = Transaction::new_unchecked(&self.conn, TransactionBehavior::Immediate)?;
         let Some((id, raw_json)) = tx
             .query_row(
@@ -2705,7 +2739,7 @@ impl Database {
         {
             return Ok(false);
         }
-        draft.record_submission_failure(error);
+        change(&mut draft);
         let json = serde_json::to_string(&draft)?;
         let updated = tx.execute(
             "UPDATE form_drafts SET status = ?1, data_json = ?2, updated_at = datetime('now')
