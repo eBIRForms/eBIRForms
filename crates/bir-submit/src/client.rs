@@ -3,6 +3,7 @@
 
 use std::sync::Mutex;
 
+use bir_core::tin_refusal::TinRefusal;
 use serde::{Deserialize, Serialize};
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
@@ -143,6 +144,16 @@ pub enum ClientError {
     Other(String),
 }
 
+impl ClientError {
+    /// The TIN refusal the server's code names, if any.
+    pub fn tin_refusal(&self) -> Option<TinRefusal> {
+        match self {
+            ClientError::Server { code, .. } => TinRefusal::from_code(code),
+            _ => None,
+        }
+    }
+}
+
 impl From<reqwest::Error> for ClientError {
     fn from(error: reqwest::Error) -> Self {
         Self::Network(error.to_string())
@@ -164,6 +175,18 @@ pub enum SendError {
     /// BIR may have the return. Never send it again automatically.
     #[error("{0}")]
     MaybeSent(String),
+}
+
+impl SendError {
+    /// The TIN refusal a not-sent reason ends with
+    /// ([`TinRefusal::from_reason`]). Never one for [`SendError::MaybeSent`]:
+    /// BIR may have that return whatever its text says.
+    pub fn refusal(&self) -> Option<TinRefusal> {
+        match self {
+            SendError::NotSent(reason) => TinRefusal::from_reason(reason),
+            SendError::MaybeSent(_) => None,
+        }
+    }
 }
 
 #[derive(Clone, Debug)]
@@ -206,6 +229,8 @@ pub struct Submitter {
     pending: Mutex<Option<(DeviceCode, i64)>>,
     /// Serializes token refreshes and device registration.
     session_lock: tokio::sync::Mutex<()>,
+    /// The account's TIN list ([`crate::tins`]).
+    pub(crate) tins: crate::tins::TinsCache,
 }
 
 impl Submitter {
@@ -221,6 +246,7 @@ impl Submitter {
             store,
             pending: Mutex::new(None),
             session_lock: tokio::sync::Mutex::new(()),
+            tins: crate::tins::TinsCache::default(),
         }
     }
 
@@ -313,6 +339,8 @@ impl Submitter {
         }
         let tokens: Value = response.json().await?;
         self.store_tokens(&tokens, None)?;
+        // A new sign-in, perhaps another login: no earlier TIN list holds.
+        self.tins.clear();
         *self.pending.lock().expect("pending") = None;
         if let Ok(me) = self.authorized_get("/me").await {
             let mut session = self.session()?.ok_or(ClientError::SignedOut)?;
@@ -342,6 +370,7 @@ impl Submitter {
     }
 
     fn forget_session(&self) -> Result<(), ClientError> {
+        self.tins.clear();
         self.store.delete(SESSION)?;
         // A new sign-in registers a new key.
         self.store.delete(DEVICE_KEY)?;
@@ -394,6 +423,38 @@ impl Submitter {
         }
         let tokens: Value = ok_json(response).await?;
         self.store_tokens(&tokens, Some(&session))
+    }
+
+    /// Who is signed in (the email, empty when unknown); `None` when no one
+    /// is. Reads only the stored session.
+    pub(crate) fn login(&self) -> Option<String> {
+        let session = self.session().ok().flatten()?;
+        Some(session.email.unwrap_or_default())
+    }
+
+    /// `GET path` with the bearer token alone and a 5 second limit, for
+    /// [`crate::tins`]: once more with a refreshed token when the server says
+    /// the token expired.
+    pub(crate) async fn bearer_get(&self, path: &str) -> Result<Value, ClientError> {
+        let mut refreshed = false;
+        loop {
+            let session = self.live_session(refreshed).await?;
+            let response = self
+                .http
+                .get(self.url(path))
+                .bearer_auth(&session.access_token)
+                .timeout(std::time::Duration::from_secs(5))
+                .send()
+                .await?;
+            match ok_json(response).await {
+                Err(ClientError::Server {
+                    status: 401, code, ..
+                }) if code == "invalid_token" && !refreshed => {
+                    refreshed = true;
+                }
+                other => return other,
+            }
+        }
     }
 
     async fn authorized_get(&self, path: &str) -> Result<Value, ClientError> {
@@ -563,7 +624,18 @@ impl Submitter {
     // --------------------------------------------------------------- send
 
     /// Sends one return: ticket, sealed envelope, relay, verified receipt.
+    /// A refusal for the TIN makes the next TIN list read ask the server.
     pub async fn send(&self, filename: &str, xml: &[u8]) -> Result<Sent, SendError> {
+        let sent = self.send_return(filename, xml).await;
+        if let Err(error) = &sent
+            && error.refusal().is_some()
+        {
+            self.tins.invalidate();
+        }
+        sent
+    }
+
+    async fn send_return(&self, filename: &str, xml: &[u8]) -> Result<Sent, SendError> {
         let name = FileName::parse(filename)
             .ok_or_else(|| SendError::NotSent(format!("not an eBIRForms file name: {filename}")))?;
         let xml_sha256 = hex(&Sha256::digest(xml));
@@ -931,6 +1003,75 @@ mod tests {
             assert_eq!(message(outcome(ending, "expired", Some("the ticket expired".into()), None, ok)), "the ticket expired");
             assert_eq!(message(outcome(ending, "ready", None, None, ok)), "the server did not send the return");
         }
+    }
+
+    const TIN_CODES: [&str; 6] = [
+        "tin_not_active",
+        "tin_unverified",
+        "tin_pending",
+        "tin_needs_fix",
+        "tin_paused",
+        "account_banned",
+    ];
+
+    /// A ticket refusal reaches the worker as `ClientError::Server`'s text,
+    /// which keeps the code for the one decoder.
+    #[test]
+    fn a_ticket_refusal_keeps_its_code_in_the_text() {
+        for code in TIN_CODES {
+            let error = ClientError::Server {
+                status: 403,
+                code: code.into(),
+                message: "Some sentence (with brackets) the server chose.".into(),
+            };
+            let text = error.to_string();
+            assert!(text.ends_with(&format!("({code})")), "{text}");
+            let refusal = TinRefusal::from_reason(&text).expect(code);
+            assert_eq!(refusal.code(), code);
+            assert_eq!(error.tin_refusal(), Some(refusal));
+            let not_sent = SendError::NotSent(format!("Not sent (nothing reached BIR): {text}"));
+            assert_eq!(not_sent.refusal(), Some(refusal));
+        }
+        let other = ClientError::Server {
+            status: 409,
+            code: "already_submitted".into(),
+            message: "x".into(),
+        };
+        assert_eq!(other.tin_refusal(), None);
+        assert_eq!(
+            ClientError::Network("tin_not_active".into()).tin_refusal(),
+            None
+        );
+    }
+
+    /// The relay may end `failed` with a TIN code when the TIN stopped
+    /// being sendable after the ticket: nothing reached BIR, the same
+    /// refusal. A maybe-sent text with a code is never one.
+    #[test]
+    fn a_relay_failed_with_a_tin_code_is_a_refusal() {
+        let ok = |_: &str| Ok::<(), String>(());
+        for ending in [
+            Ending::Result,
+            Ending::DroppedBeforeOpening,
+            Ending::DroppedAfterOpening,
+        ] {
+            let error = Some(
+                "Sending is paused for this TIN. Write to support@buwiz.com. (tin_paused)"
+                    .to_owned(),
+            );
+            let Err(failure) = outcome(ending, "failed", error, None, ok) else {
+                panic!("a failed relay is not sent");
+            };
+            assert!(matches!(failure, SendError::NotSent(_)), "{failure:?}");
+            assert_eq!(failure.refusal(), Some(TinRefusal::Paused));
+        }
+        let maybe =
+            SendError::MaybeSent("the connection ended during the send (tin_paused)".into());
+        assert_eq!(maybe.refusal(), None);
+        assert_eq!(
+            SendError::NotSent("the relay closed early (relay_closed)".into()).refusal(),
+            None
+        );
     }
 
     /// A good receipt comes back with its JWS; `verify` runs only for one.
