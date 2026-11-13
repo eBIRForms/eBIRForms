@@ -3644,4 +3644,202 @@ mod tests {
             Some(newer.as_str())
         );
     }
+
+    // ----- A TIN refusal goes back to Draft by claim token -----
+
+    const REFUSED_UNVERIFIED: &str =
+        "Not sent (nothing reached BIR): This TIN is not verified yet. (tin_unverified)";
+
+    #[tokio::test]
+    async fn a_stale_1601c_worker_cannot_refuse_a_newer_claim() {
+        let (_profile, queued, db, _summary) = saved_queued_1601c();
+        let stale = claim_stored_1601c(&db, &queued);
+        {
+            let db_guard = db.lock().expect("the cron database should not be poisoned");
+            assert!(matches!(
+                db_guard
+                    .release_abandoned_claimed_1601c_submission(
+                        &queued.tin,
+                        queued.taxable_year,
+                        queued.month,
+                        crate::db::ABANDONED_CLAIM_RELEASE_REASON,
+                    )
+                    .expect("release"),
+                crate::db::AbandonedClaimRelease::Released { .. }
+            ));
+        }
+        let mut requeued = stored_1601c(&db, &queued);
+        requeued
+            .transition_to_queued()
+            .expect("the released 1601C should queue again");
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .save_queued_1601c_draft(&requeued)
+            .expect("requeue");
+        let newer = claim_stored_1601c(&db, &queued);
+        let before = raw_row(&db, "1601C", &queued.tin, queued.taxable_year, queued.month);
+        let refuse = |token: &str| {
+            db.lock()
+                .expect("the cron database should not be poisoned")
+                .refuse_claimed_1601c_tin(
+                    &queued.tin,
+                    queued.taxable_year,
+                    queued.month,
+                    token,
+                    REFUSED_UNVERIFIED.to_string(),
+                )
+                .expect("the refusal should run")
+        };
+
+        assert!(!refuse(&stale));
+        assert_eq!(
+            raw_row(&db, "1601C", &queued.tin, queued.taxable_year, queued.month),
+            before
+        );
+
+        assert!(refuse(&newer));
+        let refused = stored_1601c(&db, &queued);
+        assert_eq!(refused.status, FilingStatus::Draft);
+        assert_eq!(
+            refused.submission_error.as_deref(),
+            Some(REFUSED_UNVERIFIED)
+        );
+        assert!(refused.submission_claim_token.is_none());
+        assert_eq!(
+            form_drafts_status_column(&db, "1601C", &queued.tin, queued.taxable_year, queued.month),
+            "Draft"
+        );
+    }
+
+    #[tokio::test]
+    async fn a_stale_2551q_worker_cannot_refuse_a_newer_claim() {
+        let (queued, db) = saved_queued_2551q("806");
+        let stale = claim_stored_2551q(&db, &queued);
+        {
+            let db_guard = db.lock().expect("the cron database should not be poisoned");
+            assert!(matches!(
+                db_guard
+                    .release_abandoned_claimed_2551q_submission(
+                        &queued.tin,
+                        queued.taxable_year,
+                        queued.quarter,
+                        crate::db::ABANDONED_CLAIM_RELEASE_REASON,
+                    )
+                    .expect("release"),
+                crate::db::AbandonedClaimRelease::Released { .. }
+            ));
+        }
+        let mut requeued = stored_2551q(&db, &queued);
+        requeued
+            .transition_to_queued()
+            .expect("the released 2551Q should queue again");
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .save_queued_2551q_draft_and_election(&requeued)
+            .expect("requeue");
+        let newer = claim_stored_2551q(&db, &queued);
+        let (tin, year, quarter) = (&queued.tin, queued.taxable_year, queued.quarter);
+        let before = raw_row(&db, "2551Q", tin, year, quarter);
+        let refuse = |token: &str| {
+            db.lock()
+                .expect("the cron database should not be poisoned")
+                .refuse_claimed_2551q_tin(tin, year, quarter, token, REFUSED_UNVERIFIED.to_string())
+                .expect("the refusal should run")
+        };
+
+        assert!(!refuse(&stale));
+        assert_eq!(raw_row(&db, "2551Q", tin, year, quarter), before);
+
+        assert!(refuse(&newer));
+        let refused = stored_2551q(&db, &queued);
+        assert_eq!(refused.status, FilingStatus::Draft);
+        assert_eq!(refused.last_error.as_deref(), Some(REFUSED_UNVERIFIED));
+        assert!(refused.submission_claim_token.is_none());
+        assert_eq!(
+            form_drafts_status_column(&db, "2551Q", tin, year, quarter),
+            "Draft"
+        );
+    }
+
+    fn claim_stored_test_form(db: &Arc<Mutex<Database>>, form: &TestForm) -> String {
+        let stored = stored_test_form(db, form);
+        let lifecycle = stored.lifecycle();
+        let claim = db
+            .lock()
+            .unwrap()
+            .claim_queued_queueable::<TestForm>(
+                &stored.tin,
+                stored.taxable_year,
+                i64::from(stored.month),
+                &lifecycle.queued_submission_fingerprint,
+                &lifecycle.next_retry_at,
+                lifecycle.submission_attempts,
+            )
+            .expect("claim");
+        let crate::db::ClaimQueueableResult::Claimed { token, .. } = claim else {
+            panic!("the test form should claim");
+        };
+        token
+    }
+
+    #[tokio::test]
+    async fn a_stale_generic_worker_cannot_refuse_a_newer_claim() {
+        let db = test_db();
+        let (queued, _summary) = queued_test_form(&db);
+        let (tin, year, period) = (&queued.tin, queued.taxable_year, i64::from(queued.month));
+        let stale = claim_stored_test_form(&db, &queued);
+        assert!(matches!(
+            db.lock()
+                .unwrap()
+                .release_abandoned_claimed_queueable::<TestForm>(
+                    tin,
+                    year,
+                    period,
+                    crate::db::ABANDONED_CLAIM_RELEASE_REASON,
+                )
+                .expect("release"),
+            crate::db::AbandonedClaimRelease::Released { .. }
+        ));
+        let mut requeued = stored_test_form(&db, &queued);
+        requeued
+            .queue(crate::filing_queue::QueueAuthSource::Gui)
+            .expect("the released test form should queue again");
+        db.lock()
+            .unwrap()
+            .save_queued_queueable(&requeued)
+            .expect("requeue");
+        let newer = claim_stored_test_form(&db, &queued);
+        let before = raw_row(&db, TestForm::CODE, tin, year, queued.month);
+        let refuse = |token: &str| {
+            db.lock()
+                .unwrap()
+                .refuse_claimed_queueable_tin::<TestForm>(
+                    tin,
+                    year,
+                    period,
+                    token,
+                    REFUSED_UNVERIFIED.to_string(),
+                )
+                .expect("the refusal should run")
+        };
+
+        assert!(!refuse(&stale));
+        assert_eq!(
+            raw_row(&db, TestForm::CODE, tin, year, queued.month),
+            before
+        );
+
+        assert!(refuse(&newer));
+        let refused = stored_test_form(&db, &queued);
+        assert_eq!(refused.lifecycle.status, FilingStatus::Draft);
+        assert_eq!(
+            refused.lifecycle.submission_error.as_deref(),
+            Some(REFUSED_UNVERIFIED)
+        );
+        assert!(refused.lifecycle.is_unclaimed());
+        assert_eq!(
+            form_drafts_status_column(&db, TestForm::CODE, tin, year, queued.month),
+            "Draft"
+        );
+    }
 }
