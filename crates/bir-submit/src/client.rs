@@ -614,7 +614,19 @@ impl Submitter {
 
     /// Everything a send needs before the return itself: a live sign-in,
     /// a registered device, a valid trust list and a listed sealing key.
+    /// A TIN refusal on the way (a banned account) makes the next TIN list
+    /// read ask the server, as one on a send does.
     pub async fn ready(&self) -> Result<(), ClientError> {
+        let ready = self.check_ready().await;
+        if let Err(error) = &ready
+            && error.tin_refusal().is_some()
+        {
+            self.tins.invalidate();
+        }
+        ready
+    }
+
+    async fn check_ready(&self) -> Result<(), ClientError> {
         let list = self.trust_list().await?;
         self.ensure_device().await?;
         self.sealing_key(&list).await?;

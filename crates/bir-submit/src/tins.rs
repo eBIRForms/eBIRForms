@@ -408,9 +408,11 @@ mod tests {
     use std::io::{BufRead, BufReader, Read, Write};
     use std::sync::{Arc, Mutex};
 
+    use bir_core::tin_refusal::TinRefusal;
     use serde_json::json;
 
     use super::*;
+    use crate::client::PollOutcome;
     use crate::client::{CLIENT_ID, SubmitConfig};
     use crate::secrets::{MemoryStore, SecretStore};
 
@@ -472,17 +474,82 @@ mod tests {
     const SIGNED_IN: &str = r#"{"access_token":"a","refresh_token":"r","access_expires_at":4102444800,"email":"juana@example.com","device_id":"d"}"#;
 
     fn submitter(url: &str, signed_in: bool) -> Submitter {
-        let store = MemoryStore::default();
+        let store = SharedStore::default();
         if signed_in {
             store.set("session", SIGNED_IN).unwrap();
         }
+        submitter_with(url, store, Vec::new())
+    }
+
+    /// A submitter on `store` that pins `trust_keys`.
+    fn submitter_with(url: &str, store: SharedStore, trust_keys: Vec<String>) -> Submitter {
         let config = SubmitConfig {
             server_url: url.to_owned(),
             client_id: CLIENT_ID.into(),
             device_name: "test".into(),
-            trust_keys: Vec::new(),
+            trust_keys,
         };
         Submitter::new(config, Box::new(store))
+    }
+
+    /// A secret store the test keeps a handle on, to write a session back
+    /// the way a sign-in elsewhere would.
+    #[derive(Clone, Default)]
+    struct SharedStore(Arc<MemoryStore>);
+
+    impl SecretStore for SharedStore {
+        fn get(&self, name: &str) -> Result<Option<String>, crate::secrets::StoreError> {
+            self.0.get(name)
+        }
+
+        fn set(&self, name: &str, value: &str) -> Result<(), crate::secrets::StoreError> {
+            self.0.set(name, value)
+        }
+
+        fn delete(&self, name: &str) -> Result<(), crate::secrets::StoreError> {
+            self.0.delete(name)
+        }
+    }
+
+    /// How many list reads the fake server saw.
+    fn list_reads(seen: &Mutex<Vec<String>>) -> usize {
+        seen.lock()
+            .unwrap()
+            .iter()
+            .filter(|request| request.starts_with("GET /api/tax-profiles"))
+            .count()
+    }
+
+    /// The pinned key, a trust list it signed and the sealing key document
+    /// the list names: what a send reads before its ticket.
+    fn trust_documents() -> (String, String, String) {
+        use base64::Engine;
+        use base64::engine::general_purpose::URL_SAFE_NO_PAD;
+        use ed25519_dalek::{Signer, SigningKey};
+        use sha2::{Digest, Sha256};
+
+        let key = SigningKey::from_bytes(&[7; 32]);
+        let public = URL_SAFE_NO_PAD.encode(key.verifying_key().as_bytes());
+        let kid = crate::device::hex(&Sha256::digest(key.verifying_key().as_bytes())[..8]);
+        let sealing = json!({ "kid": "s1", "kem": crate::seal::KEM, "public_key": URL_SAFE_NO_PAD.encode([1; 32]) });
+        let claims = json!({
+            "hosts": ["127.0.0.1:9"],
+            "sealing_keys": [sealing],
+            "receipt_keys": [{ "kty": "OKP", "crv": "Ed25519", "kid": kid, "x": public }],
+            "iat": 1,
+            "exp": 4_102_444_800_i64,
+        });
+        let header = json!({ "alg": "EdDSA", "kid": kid, "typ": crate::trust::TYP });
+        let input = format!(
+            "{}.{}",
+            URL_SAFE_NO_PAD.encode(serde_json::to_vec(&header).unwrap()),
+            URL_SAFE_NO_PAD.encode(serde_json::to_vec(&claims).unwrap())
+        );
+        let jws = format!(
+            "{input}.{}",
+            URL_SAFE_NO_PAD.encode(key.sign(input.as_bytes()).to_bytes())
+        );
+        (public, jws, json!({ "keys": [sealing] }).to_string())
     }
 
     fn ok(body: Value) -> Answer {
@@ -867,15 +934,193 @@ mod tests {
         assert!(seen.lock().unwrap().is_empty());
     }
 
+    /// Signing out forgets the list: signed in again as the same login,
+    /// with no read in between, the next read asks the server.
     #[tokio::test]
     async fn sign_out_clears_the_cached_list() {
-        let (url, _) = fake_server(0, |_, _| ok(json!({"include":"all","profiles":[]})));
-        let submitter = submitter(&url, true);
+        let (url, seen) = fake_server(0, |_, _| ok(json!({"include":"all","profiles":[]})));
+        let store = SharedStore::default();
+        store.set("session", SIGNED_IN).unwrap();
+        let submitter = submitter_with(&url, store.clone(), Vec::new());
         assert!(submitter.account_tins(60).await.is_ok());
         assert!(submitter.cached_account_tins().is_some());
         submitter.sign_out().await.unwrap();
         assert!(submitter.cached_account_tins().is_none());
+        // The same login signs in again (its session written back, as a
+        // sign-in in another window would leave it).
+        store.set("session", SIGNED_IN).unwrap();
+        assert!(submitter.cached_account_tins().is_none());
+        assert!(submitter.account_tins(60).await.is_ok());
+        assert_eq!(list_reads(&seen), 2, "a fresh read after signing in again");
+        submitter.sign_out().await.unwrap();
         assert_eq!(submitter.account_tins(60).await, Err(TinsError::SignedOut));
+    }
+
+    /// A device sign-in, another login or the same one, forgets the list.
+    #[tokio::test]
+    async fn a_new_sign_in_clears_the_cached_list() {
+        let login = Arc::new(Mutex::new("juana@example.com".to_owned()));
+        let me = login.clone();
+        let (url, seen) = fake_server(0, move |_, path| match path {
+            "/auth/device/start" => ok(json!({
+                "device_code": "dc", "user_code": "ABCD",
+                "verification_uri": "http://127.0.0.1/device",
+                "verification_uri_complete": "http://127.0.0.1/device?code=ABCD",
+                "expires_in": 600, "interval": 5
+            })),
+            "/auth/device/poll" => {
+                ok(json!({"access_token":"a2","refresh_token":"r2","expires_in":900}))
+            }
+            "/me" => ok(json!({ "email": *me.lock().unwrap() })),
+            "/api/devices" => ok(json!({"id":"d2"})),
+            _ => ok(json!({"include":"all","profiles":[]})),
+        });
+        let submitter = submitter(&url, true);
+        let sign_in = || async {
+            submitter.start_sign_in().await.unwrap();
+            assert_eq!(
+                submitter.poll_sign_in().await.unwrap(),
+                PollOutcome::SignedIn
+            );
+        };
+        assert!(submitter.account_tins(60).await.is_ok());
+        assert_eq!(list_reads(&seen), 1);
+
+        *login.lock().unwrap() = "pedro@example.com".to_owned();
+        sign_in().await;
+        assert!(submitter.cached_account_tins().is_none());
+        assert!(submitter.account_tins(60).await.is_ok());
+        assert_eq!(list_reads(&seen), 2, "another login reads its own list");
+
+        sign_in().await;
+        assert!(submitter.cached_account_tins().is_none());
+        assert!(submitter.account_tins(60).await.is_ok());
+        assert_eq!(
+            list_reads(&seen),
+            3,
+            "the same login signing in again reads anew"
+        );
+    }
+
+    /// A 401 `invalid_token` is asked once more with a refreshed token, and
+    /// only once.
+    #[tokio::test]
+    async fn an_expired_token_is_refreshed_and_the_list_asked_once_more() {
+        let (url, seen) = fake_server(0, |n, path| match (n, path) {
+            (0, _) => Some((
+                401,
+                r#"{"error":{"code":"invalid_token","message":"expired"}}"#.into(),
+            )),
+            (_, "/oauth/token") => {
+                ok(json!({"access_token":"a2","refresh_token":"r2","expires_in":900}))
+            }
+            _ => ok(json!({"include":"all","profiles":[]})),
+        });
+        assert!(submitter(&url, true).account_tins(60).await.is_ok());
+        assert_eq!(
+            *seen.lock().unwrap(),
+            [
+                "GET /api/tax-profiles?include=all,pending",
+                "POST /oauth/token",
+                "GET /api/tax-profiles?include=all,pending"
+            ]
+        );
+
+        let (url, seen) = fake_server(0, |_, path| match path {
+            "/oauth/token" => {
+                ok(json!({"access_token":"a2","refresh_token":"r2","expires_in":900}))
+            }
+            _ => Some((
+                401,
+                r#"{"error":{"code":"invalid_token","message":"expired"}}"#.into(),
+            )),
+        });
+        let read = submitter(&url, true).account_tins(60).await;
+        assert!(
+            matches!(read, Err(TinsError::Server { ref code, .. }) if code == "invalid_token"),
+            "{read:?}"
+        );
+        assert_eq!(seen.lock().unwrap().len(), 3, "refreshed once, not again");
+    }
+
+    /// A send the server refuses for its TIN makes the next read ask; one
+    /// that fails otherwise does not.
+    #[tokio::test]
+    async fn a_send_refused_for_its_tin_makes_the_next_read_ask() {
+        const FILE: &str = "00012345300000-1701Qv2018-2026Q1#juana@example.com#.xml";
+        for (ticket, invalidates) in [
+            (
+                (
+                    403,
+                    r#"{"error":{"code":"tin_paused","message":"Sending is paused for this TIN."}}"#,
+                ),
+                true,
+            ),
+            (
+                (
+                    500,
+                    r#"{"error":{"code":"internal","message":"try again later"}}"#,
+                ),
+                false,
+            ),
+        ] {
+            let (public, trust, hpke) = trust_documents();
+            let (url, seen) = fake_server(0, move |_, path| match path {
+                "/.well-known/buwiz-trust.json" => Some((200, trust.clone())),
+                "/.well-known/buwiz-hpke.json" => Some((200, hpke.clone())),
+                "/api/tickets" => Some((ticket.0, ticket.1.to_owned())),
+                _ => ok(json!({"include":"all","profiles":[]})),
+            });
+            let store = SharedStore::default();
+            store.set("session", SIGNED_IN).unwrap();
+            let submitter = submitter_with(&url, store, vec![public]);
+            assert!(submitter.account_tins(60).await.is_ok());
+            let sent = submitter.send(FILE, b"<xml/>").await;
+            let Err(error) = sent else {
+                panic!("the ticket was refused");
+            };
+            assert!(matches!(error, crate::SendError::NotSent(_)), "{error:?}");
+            assert_eq!(error.refusal().is_some(), invalidates, "{error:?}");
+            assert!(submitter.account_tins(60).await.is_ok());
+            assert_eq!(
+                list_reads(&seen),
+                if invalidates { 2 } else { 1 },
+                "{error:?}"
+            );
+        }
+    }
+
+    /// A refusal at session open (here a banned account registering its
+    /// device) makes the next read ask too.
+    #[tokio::test]
+    async fn a_refusal_at_session_open_makes_the_next_read_ask() {
+        let (public, trust, _) = trust_documents();
+        let (url, seen) = fake_server(0, move |_, path| match path {
+            "/.well-known/buwiz-trust.json" => Some((200, trust.clone())),
+            "/api/devices" => Some((
+                403,
+                r#"{"error":{"code":"account_banned","message":"This Buwiz account is banned."}}"#
+                    .into(),
+            )),
+            _ => ok(json!({"include":"all","profiles":[]})),
+        });
+        let store = SharedStore::default();
+        store
+            .set(
+                "session",
+                r#"{"access_token":"a","refresh_token":"r","access_expires_at":4102444800,"email":"juana@example.com"}"#,
+            )
+            .unwrap();
+        let submitter = submitter_with(&url, store, vec![public]);
+        assert!(submitter.account_tins(60).await.is_ok());
+        let ready = submitter.ready().await;
+        assert_eq!(
+            ready.as_ref().err().and_then(ClientError::tin_refusal),
+            Some(TinRefusal::AccountBanned),
+            "{ready:?}"
+        );
+        assert!(submitter.account_tins(60).await.is_ok());
+        assert_eq!(list_reads(&seen), 2);
     }
 
     #[test]
