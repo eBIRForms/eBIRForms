@@ -4,7 +4,7 @@
 //! those fields into what the person sees. [`plain_send_error`] puts the
 //! worker's and the relay's reasons in plain words.
 
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 
 use serde_json::Value;
 
@@ -64,6 +64,30 @@ pub fn send_stage_for(form_code: &str, status: &str, data: &Value) -> Option<Sen
     let error = text(data, "submission_error")
         .or_else(|| (form_code == "2551Q").then(|| text(data, "last_error")).flatten());
     stage_with_error(status, data, error)
+}
+
+/// The queued returns this process's worker is sending now, by id: those
+/// whose job key (from the worker's own list of queued rows) is in its
+/// in-flight set. When that set cannot be read, every queued return.
+pub(crate) fn sending_now(db: &bir_core::db::Database) -> Result<BTreeSet<i64>, bir_core::db::DbError> {
+    let queued = db.list_all_queued_submissions()?;
+    let jobs = bir_core::background_cron::get_active_jobs();
+    let Ok(jobs) = jobs.lock() else {
+        return Ok(queued.into_iter().map(|summary| summary.id).collect());
+    };
+    Ok(queued.into_iter().filter(|summary| jobs.contains(&bir_core::background_cron::queue_job_key(summary))).map(|summary| summary.id).collect())
+}
+
+/// The stage to show. A claim writes its "outcome pending" note as it is
+/// taken, so a claimed return reads `NeedsAttention` from that instant;
+/// while this process is still sending it (`sending_now`) it is `Sending`.
+/// [`send_stage`] stays a pure reading of the row; only callers that know
+/// this process's worker apply this.
+pub(crate) fn shown_stage(stage: SendStage, sending_now: bool) -> SendStage {
+    match stage {
+        SendStage::NeedsAttention { .. } if sending_now => SendStage::Sending,
+        stage => stage,
+    }
 }
 
 fn stage_with_error(status: &str, data: &Value, error: Option<String>) -> Option<SendStage> {
@@ -194,13 +218,14 @@ impl BirApp {
     pub fn send_states(&self) -> AppResult<BTreeMap<i64, SendStage>> {
         let rows: Vec<(i64, String)> = self.list_returns(crate::ReturnFilter::All)?.into_iter().map(|r| (r.id, r.form_code)).collect();
         let db = self.db.lock().map_err(|_| AppError::Call("the database lock is poisoned".into()))?;
+        let sending = sending_now(&db)?;
         let mut out = BTreeMap::new();
         for (id, form_code) in rows {
             if let Some((status, json)) = db.draft_status_and_json(id)?
                 && let Ok(data) = serde_json::from_str::<Value>(&json)
                 && let Some(stage) = send_stage_for(&form_code, &status, &data)
             {
-                out.insert(id, stage);
+                out.insert(id, shown_stage(stage, sending.contains(&id)));
             }
         }
         Ok(out)

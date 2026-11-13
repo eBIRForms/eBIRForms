@@ -1013,6 +1013,40 @@ impl BirApp {
         .map(drop)
     }
 
+    /// Put a queued return the worker left claimed (BIR may have it) back to
+    /// Draft, once the person confirmed nothing reached BIR. `slot` is the
+    /// month or quarter (`ReturnRow::return_key`), `claim` the `claim`
+    /// `queued_send_state` showed for it, `reason` must be
+    /// `abandoned_no_bir_filing`. True when released, false when there was
+    /// nothing to release; refused while a send for it may be running, for
+    /// a sent return, for an unclaimed queue, and when the claim changed.
+    pub fn release_abandoned_claim(
+        &self,
+        tin: &str,
+        form_code: &str,
+        year: i64,
+        slot: Option<i64>,
+        claim: Option<&str>,
+        reason: &str,
+    ) -> AppResult<bool> {
+        #[derive(Deserialize)]
+        struct Released {
+            released: bool,
+        }
+        let answer: Released = self.call_as(
+            "release_abandoned_claim",
+            vec![
+                tin.into(),
+                form_code.into(),
+                year.into(),
+                slot.into(),
+                reason.into(),
+                claim.into(),
+            ],
+        )?;
+        Ok(answer.released)
+    }
+
     /// Every queued return across taxpayers.
     pub fn list_queue(&self) -> AppResult<Vec<QueuedReturn>> {
         self.call_as("list_queued", vec![])

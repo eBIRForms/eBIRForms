@@ -7,8 +7,8 @@
 //! to open a file dialog takes the path instead; the UI picks the file.
 
 use bir_core::db::{self, Database};
-use bir_core::forms::FORM_REGISTRY;
 use bir_core::forms::queueable::QueueableForm as _;
+use bir_core::forms::{FORM_REGISTRY, FilingStatus};
 
 use crate::database::{json, serialize, to_json, wake_submission_worker, with_database};
 use crate::host::{HostArguments, HostError, HostModule, HostObject, HostResult, HostValue};
@@ -622,6 +622,430 @@ fn cancel_queued(arguments: &HostArguments) -> HostResult {
     Ok(cancelled)
 }
 
+/// A person's confirmed release of a queued return the worker left claimed
+/// (its send outcome was unknown) back to Draft, with bir-core's audit note.
+/// `claim` (argument 5) is the `claim` `queued_send_state` showed.
+///
+/// First the queue guard: this process runs the send queue, or no process
+/// does and the worker lease is taken here and held until this returns, so
+/// no other process can claim or send the row meanwhile. Then, under one
+/// database lock (which this process's worker also needs to claim): no row
+/// answers `released: false` without asking bir-core; another process
+/// running the queue, or a changed claim, refuses; otherwise
+/// [`release_gate`] decides, and only a releasable claim or a row bir-core
+/// answers itself goes to bir-core with `reason` as given (bir-core refuses
+/// anything but `abandoned_no_bir_filing` and a Submitted, Confirmed or Paid
+/// return). Answers `{ released, status }`: `released` is false when there
+/// was nothing to release, with the row's status.
+fn release_abandoned_claim(arguments: &HostArguments) -> HostResult {
+    let tin = arguments.string(0)?.to_owned();
+    let form_code = arguments.string(1)?.to_owned();
+    let year = arguments.integer(2)? as u16;
+    let quarter = optional_quarter(arguments, 3)?;
+    let reason = arguments.string(4)?.to_owned();
+    let seen_claim = optional_text(arguments, 5)?;
+    with_database(|db| {
+        // Held (as `QueueRunner::Nobody`'s lease) until this returns.
+        let runner = queue_runner(&crate::database::database_path(), true);
+        let Some(claim) = stored_claim(db, &tin, &form_code, year, quarter)? else {
+            return Ok(release_answer(false, None));
+        };
+        let unguarded = match runner {
+            QueueRunner::Other => Some(ReleaseGate::OtherWindow),
+            QueueRunner::Unknown => Some(ReleaseGate::CannotCheck),
+            QueueRunner::ThisProcess | QueueRunner::Nobody { .. } => None,
+        };
+        if let Some(refused) = unguarded {
+            return Err(HostError::new(refusal(&refused, &form_code)));
+        }
+        if claim.claimed_at != seen_claim {
+            return Err(HostError::new(
+                "This return changed since you looked; open it again.",
+            ));
+        }
+        match release_gate(&claim, &runner, chrono::Utc::now()) {
+            ReleaseGate::Releasable | ReleaseGate::Library => {}
+            refused => return Err(HostError::new(refusal(&refused, &form_code))),
+        }
+        let outcome: Result<_, HostError> = (|| match form_code.as_str() {
+            "2551Q" => crate::screen_form_module::out_of_line(|| {
+                db.release_abandoned_claimed_2551q_submission(&tin, year, claim.slot as u8, &reason)
+                    .map(|release| release_outcome(&release))
+                    .map_err(db_error)
+            }),
+            "1601C" => crate::screen_form_module::out_of_line(|| {
+                db.release_abandoned_claimed_1601c_submission(&tin, year, claim.slot as u8, &reason)
+                    .map(|release| release_outcome(&release))
+                    .map_err(db_error)
+            }),
+            _ => {
+                use bir_core::forms::queueable::QueueableKind;
+                let kind = QueueableKind::from_form_code(&form_code)
+                    .ok_or_else(|| HostError::new(format!("Form {form_code} is not queueable")))?;
+                bir_core::with_queueable_kind!(kind, F => crate::screen_form_module::out_of_line(|| {
+                    db.release_abandoned_claimed_queueable::<F>(&tin, year, claim.slot, &reason)
+                        .map(|release| release_outcome(&release))
+                        .map_err(db_error)
+                }))
+            }
+        })();
+        let (released, status) = outcome?;
+        drop(runner);
+        Ok(release_answer(released, status))
+    })
+}
+
+fn release_answer(released: bool, status: Option<FilingStatus>) -> HostValue {
+    HostObject::new()
+        .field("released", released)
+        .field(
+            "status",
+            status.map_or(HostValue::Null, |status| {
+                HostValue::from(format!("{status:?}"))
+            }),
+        )
+        .into()
+}
+
+/// Whether a release happened, and the row's status after it.
+fn release_outcome<T>(release: &db::AbandonedClaimRelease<T>) -> (bool, Option<FilingStatus>) {
+    match release {
+        db::AbandonedClaimRelease::Released { .. } => (true, Some(FilingStatus::Draft)),
+        db::AbandonedClaimRelease::AlreadyClear {
+            previous_status, ..
+        } => (false, previous_status.clone()),
+    }
+}
+
+/// Argument `index` as text, or `None` for null or no argument.
+fn optional_text(arguments: &HostArguments, index: usize) -> Result<Option<String>, HostError> {
+    match arguments.get(index) {
+        Some(HostValue::Null) | None => Ok(None),
+        Some(HostValue::Str(text)) => Ok(Some(text.clone())),
+        Some(other) => Err(HostError::new(format!(
+            "argument {index} must be text or null, got {}",
+            other.describe()
+        ))),
+    }
+}
+
+/// Where a stored return is on its way to BIR, as the app's send stages
+/// show it ([`crate::sending::send_stage_for`], then
+/// [`crate::sending::shown_stage`]: a claim this process is still sending
+/// reads `Sending`): `{ stage, reason, claim, releasable }`. `stage` is named
+/// as its `SendStage` variant (`Queued`, `Sending`, `Failed`,
+/// `NeedsAttention`, `GaveUp`, `Sent`, `Confirmed`, `Paid`), `reason` set for
+/// the three that carry one (both null for a plain draft). `claim` is the
+/// row's `claimed_at` (null when unclaimed), to pass back to
+/// `release_abandoned_claim`. `releasable` is [`release_gate`]'s answer, read
+/// from the claim and the queue, not from the stage. Writes nothing and
+/// takes no lease: who runs the queue is checked with
+/// `WorkerLease::is_held`.
+fn queued_send_state(arguments: &HostArguments) -> HostResult {
+    let tin = arguments.string(0)?.to_owned();
+    let form_code = arguments.string(1)?.to_owned();
+    let year = arguments.integer(2)? as u16;
+    let quarter = optional_quarter(arguments, 3)?;
+    with_database(|db| {
+        let claim = stored_claim(db, &tin, &form_code, year, quarter)?
+            .ok_or_else(|| HostError::new(format!("No {form_code} return for that period")))?;
+        let runner = queue_runner(&crate::database::database_path(), false);
+        let releasable = matches!(
+            release_gate(&claim, &runner, chrono::Utc::now()),
+            ReleaseGate::Releasable
+        );
+        let data: serde_json::Value = serde_json::from_str(&claim.json).map_err(db_error)?;
+        let stage = crate::sending::send_stage_for(&form_code, &claim.status, &data)
+            .map(|stage| crate::sending::shown_stage(stage, claim.sending_now));
+        let (stage, reason) = match stage {
+            Some(stage) => {
+                let (name, reason) = stage_name(&stage);
+                (
+                    HostValue::from(name),
+                    reason.map_or(HostValue::Null, HostValue::from),
+                )
+            }
+            None => (HostValue::Null, HostValue::Null),
+        };
+        Ok(HostObject::new()
+            .field("stage", stage)
+            .field("reason", reason)
+            .field(
+                "claim",
+                claim.claimed_at.map_or(HostValue::Null, HostValue::from),
+            )
+            .field("releasable", releasable)
+            .into())
+    })
+}
+
+fn stage_name(stage: &crate::sending::SendStage) -> (&'static str, Option<String>) {
+    use crate::sending::SendStage;
+    match stage {
+        SendStage::Queued { .. } => ("Queued", None),
+        SendStage::Sending => ("Sending", None),
+        SendStage::Failed { reason, .. } => ("Failed", Some(reason.clone())),
+        SendStage::NeedsAttention { reason } => ("NeedsAttention", Some(reason.clone())),
+        SendStage::GaveUp { reason } => ("GaveUp", Some(reason.clone())),
+        SendStage::Sent { .. } => ("Sent", None),
+        SendStage::Confirmed { .. } => ("Confirmed", None),
+        SendStage::Paid => ("Paid", None),
+    }
+}
+
+/// The claim fields of a stored return, read off its typed draft the way
+/// bir-core reads them for each kind, with its status column and JSON.
+struct StoredClaim {
+    /// The `status` column.
+    status: String,
+    json: String,
+    /// The JSON's status is Queued.
+    queued: bool,
+    token: Option<String>,
+    claimed_at: Option<String>,
+    lease_until: Option<String>,
+    /// The `quarter` column (a month, a quarter, an entry).
+    slot: i64,
+    /// This process's worker is sending it now
+    /// ([`crate::sending::sending_now`]).
+    sending_now: bool,
+}
+
+/// Who runs the send queue of this database.
+enum QueueRunner {
+    /// This process: its worker's in-flight jobs say what is being sent.
+    ThisProcess,
+    /// No process. `lease` is the worker lease a release took to keep it
+    /// so until it is done; `None` for a read, which takes nothing.
+    Nobody {
+        #[allow(dead_code)]
+        lease: Option<bir_core::db::WorkerLease>,
+    },
+    /// Another process.
+    Other,
+    /// It could not be checked.
+    Unknown,
+}
+
+/// Who runs the queue of the database at `db_path`. With `take`, when no
+/// process does, the worker lease is taken and kept in the answer; without
+/// it, the lock is only checked ([`bir_core::db::WorkerLease::is_held`]).
+fn queue_runner(db_path: &std::path::Path, take: bool) -> QueueRunner {
+    use bir_core::db::WorkerLease;
+    if WorkerLease::held_in_this_process(db_path) {
+        return QueueRunner::ThisProcess;
+    }
+    if take {
+        return match WorkerLease::try_acquire(db_path) {
+            Ok(Some(lease)) => QueueRunner::Nobody { lease: Some(lease) },
+            Ok(None) => QueueRunner::Other,
+            Err(_) => QueueRunner::Unknown,
+        };
+    }
+    match WorkerLease::is_held(db_path) {
+        Ok(false) => QueueRunner::Nobody { lease: None },
+        Ok(true) => QueueRunner::Other,
+        Err(_) => QueueRunner::Unknown,
+    }
+}
+
+/// What `release_abandoned_claim` does with a stored return.
+#[derive(Debug, PartialEq)]
+enum ReleaseGate {
+    /// A claimed queue no send can still be running for: bir-core releases it.
+    Releasable,
+    /// Claimed less than [`bir_core::filing_queue::CLAIM_LEASE`] ago (its
+    /// recorded lease end, else `claimed_at` plus the lease): `until`.
+    ClaimedRecently {
+        until: chrono::DateTime<chrono::Utc>,
+    },
+    /// Claimed, but neither its lease end nor `claimed_at` can be read.
+    UnreadableClaim,
+    /// This process's worker has this return's send in flight.
+    BeingSent,
+    /// Another process holds the worker lease, so its send may be running.
+    OtherWindow,
+    /// The worker lease could not be checked.
+    CannotCheck,
+    /// A queue nobody claimed: cancelled, not released.
+    Unclaimed,
+    /// Not queued, or an incomplete claim: bir-core answers (already clear,
+    /// or refused). No worker claims such a row.
+    Library,
+}
+
+/// The one rule `release_abandoned_claim` and `queued_send_state` share. A
+/// claimed row is releasable only once its claim is at least
+/// [`bir_core::filing_queue::CLAIM_LEASE`] old, no other process runs the
+/// queue, and this process's worker is not sending it (that check holds
+/// whether or not this process holds the worker lease: a worker can run
+/// without it).
+fn release_gate(
+    claim: &StoredClaim,
+    runner: &QueueRunner,
+    now: chrono::DateTime<chrono::Utc>,
+) -> ReleaseGate {
+    let parse = |at: &Option<String>| {
+        at.as_deref()
+            .and_then(|at| chrono::DateTime::parse_from_rfc3339(at).ok())
+            .map(|at| at.with_timezone(&chrono::Utc))
+    };
+    if claim.token.is_some() || claim.claimed_at.is_some() {
+        let lease_end = parse(&claim.lease_until).or_else(|| {
+            parse(&claim.claimed_at).map(|at| at + bir_core::filing_queue::CLAIM_LEASE)
+        });
+        let Some(until) = lease_end else {
+            return ReleaseGate::UnreadableClaim;
+        };
+        if until > now {
+            return ReleaseGate::ClaimedRecently { until };
+        }
+    }
+    let queued = claim.queued && claim.status == "Queued";
+    match (queued, claim.token.is_some(), claim.claimed_at.is_some()) {
+        (true, true, true) => {}
+        (true, false, false) => return ReleaseGate::Unclaimed,
+        _ => return ReleaseGate::Library,
+    }
+    match runner {
+        QueueRunner::Other => ReleaseGate::OtherWindow,
+        QueueRunner::Unknown => ReleaseGate::CannotCheck,
+        QueueRunner::ThisProcess | QueueRunner::Nobody { .. } if claim.sending_now => {
+            ReleaseGate::BeingSent
+        }
+        QueueRunner::ThisProcess | QueueRunner::Nobody { .. } => ReleaseGate::Releasable,
+    }
+}
+
+/// What a refused release tells the person.
+fn refusal(gate: &ReleaseGate, form_code: &str) -> String {
+    match gate {
+        ReleaseGate::ClaimedRecently { until } => {
+            // The minute after the claim's lease ends, never before it.
+            let after = (*until + chrono::Duration::seconds(59))
+                .with_timezone(&chrono::Local)
+                .format("%H:%M");
+            format!(
+                "This return was handed to the send queue moments ago and may still be on its way to BIR. Try again after {after}."
+            )
+        }
+        ReleaseGate::UnreadableClaim => "This return's claim times cannot be read, so it is not safe to release it here. Contact support.".to_owned(),
+        ReleaseGate::BeingSent => "This return is being sent right now. Wait for the send to finish, then look at the return again. If it never finishes, quit and reopen the app first.".to_owned(),
+        ReleaseGate::OtherWindow => "Another open copy of this app is running the send queue, so this one cannot tell whether the return is still being sent. Release it from there, or close that copy and try again.".to_owned(),
+        ReleaseGate::CannotCheck => "Could not check whether another open copy of this app is sending this return. Try again.".to_owned(),
+        ReleaseGate::Unclaimed => format!(
+            "This {form_code} return is queued but the queue has not claimed it; take it out of the queue with Cancel instead."
+        ),
+        ReleaseGate::Releasable | ReleaseGate::Library => String::new(),
+    }
+}
+
+/// The stored return `cancel_queued` and `release_abandoned_claim` act on
+/// for these arguments, with its claim. A 1601C month must be 1-12 and a
+/// 2551Q quarter 1-4.
+fn stored_claim(
+    db: &Database,
+    tin: &str,
+    form_code: &str,
+    year: u16,
+    quarter: Option<u8>,
+) -> Result<Option<StoredClaim>, HostError> {
+    type Typed = (Option<i64>, bool, i64, [Option<String>; 3]);
+    let typed: Option<Typed> = match form_code {
+        "2551Q" => crate::screen_form_module::out_of_line(|| {
+            let q = quarter
+                .ok_or_else(|| HostError::new("2551Q drafts are quarterly: pass quarter 1-4"))?;
+            if !(1..=4).contains(&q) {
+                return Err(HostError::new(format!("2551Q quarters are 1-4, got {q}")));
+            }
+            let draft = db.get_2551q_draft(tin, year, q).map_err(db_error)?;
+            Ok(draft.map(|draft| {
+                (
+                    draft.id,
+                    draft.status == FilingStatus::Queued,
+                    i64::from(q),
+                    [
+                        draft.submission_claim_token,
+                        draft.submission_claimed_at,
+                        draft.submission_claim_lease_until,
+                    ],
+                )
+            }))
+        })?,
+        "1601C" => crate::screen_form_module::out_of_line(|| {
+            let month = quarter
+                .ok_or_else(|| HostError::new("1601C drafts are monthly: pass the month"))?;
+            if !(1..=12).contains(&month) {
+                return Err(HostError::new(format!(
+                    "1601C months are 1-12, got {month}"
+                )));
+            }
+            let draft = db.get_1601c_draft(tin, year, month).map_err(db_error)?;
+            Ok(draft.map(|draft| {
+                (
+                    draft.id,
+                    draft.status == FilingStatus::Queued,
+                    i64::from(month),
+                    [
+                        draft.submission_claim_token,
+                        draft.submission_claimed_at,
+                        draft.submission_claim_lease_until,
+                    ],
+                )
+            }))
+        })?,
+        _ => {
+            use bir_core::forms::queueable::QueueableKind;
+            let kind = QueueableKind::from_form_code(form_code)
+                .ok_or_else(|| HostError::new(format!("Form {form_code} is not queueable")))?;
+            bir_core::with_queueable_kind!(kind, F => crate::screen_form_module::out_of_line(|| {
+                let Some(draft) = db
+                    .get_form_draft::<F>(tin, form_code, year, quarter)
+                    .map_err(db_error)?
+                else {
+                    return Ok::<_, HostError>(None);
+                };
+                let slot = draft.period_column();
+                Ok(db
+                    .get_queueable_draft::<F>(tin, year, slot)
+                    .map_err(db_error)?
+                    .map(|stored| {
+                        let lifecycle = stored.lifecycle();
+                        (
+                            stored.draft_id(),
+                            lifecycle.status == FilingStatus::Queued,
+                            slot,
+                            [
+                                lifecycle.submission_claim_token.clone(),
+                                lifecycle.submission_claimed_at.clone(),
+                                lifecycle.submission_claim_lease_until.clone(),
+                            ],
+                        )
+                    }))
+            }))?
+        }
+    };
+    let Some((Some(id), queued, slot, [token, claimed_at, lease_until])) = typed else {
+        return Ok(None);
+    };
+    let Some((status, json)) = db.draft_status_and_json(id).map_err(db_error)? else {
+        return Ok(None);
+    };
+    let sending_now = crate::sending::sending_now(db)
+        .map_err(db_error)?
+        .contains(&id);
+    Ok(Some(StoredClaim {
+        status,
+        json,
+        queued,
+        token,
+        claimed_at,
+        lease_until,
+        slot,
+        sending_now,
+    }))
+}
+
 /// Today's rotated log (`ebirforms.YYYY-MM-DD.log`), tailed like the painted
 /// Logs tab — it keeps at most the newest 5,000 lines.
 pub(crate) fn job_log_tail() -> HostResult {
@@ -971,6 +1395,8 @@ pub fn module() -> HostModule {
         .function("list_queued", |_| list_queued())
         .function("queue_form_draft", queue_form_draft)
         .function("cancel_queued", cancel_queued)
+        .function("release_abandoned_claim", release_abandoned_claim)
+        .function("queued_send_state", queued_send_state)
         .function("list_deadlines", |_| list_deadlines())
         .function("import_archive", import_archive)
         .function("export_profile", export_profile)
