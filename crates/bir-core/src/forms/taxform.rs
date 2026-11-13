@@ -347,6 +347,47 @@ pub fn tin_digits(word: &str) -> Option<String> {
     }
 }
 
+/// The one key two TINs are compared by: the 9-digit root and the 5-digit
+/// branch. A 9-digit TIN is its head office (`00000`), a 12-digit one has a
+/// 3-digit branch. Its `Debug` never shows the digits.
+#[derive(Clone, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct TinKey {
+    root: String,
+    branch: String,
+}
+
+impl TinKey {
+    /// The key of a TIN with 9, 12 or 14 digits (anything else between the
+    /// digits, such as dashes, is ignored).
+    pub fn parse(tin: &str) -> Option<Self> {
+        let digits: String = tin.chars().filter(char::is_ascii_digit).collect();
+        let branch = match digits.len() {
+            9 => "00000".to_owned(),
+            12 => format!("00{}", &digits[9..]),
+            14 => digits[9..].to_owned(),
+            _ => return None,
+        };
+        Some(Self {
+            root: digits[..9].to_owned(),
+            branch,
+        })
+    }
+
+    pub fn root(&self) -> &str {
+        &self.root
+    }
+
+    pub fn branch(&self) -> &str {
+        &self.branch
+    }
+}
+
+impl std::fmt::Debug for TinKey {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "TinKey(***-***-***-{})", self.branch)
+    }
+}
+
 /// The TIN a token names: the 9-digit root for a head office, else all 14.
 pub fn token_tin(tin: &str) -> String {
     let digits: String = tin.chars().filter(char::is_ascii_digit).collect();
@@ -847,5 +888,47 @@ mod tests {
         assert_eq!(tin_digits("2026-10-26"), None);
         assert_eq!(token_tin("123-456-789-00000"), "123456789");
         assert_eq!(token_tin("12345678900002"), "12345678900002");
+    }
+
+    #[test]
+    fn a_tin_key_is_one_root_and_branch_for_9_12_and_14_digits() {
+        let key = |tin: &str| {
+            TinKey::parse(tin).map(|key| (key.root().to_owned(), key.branch().to_owned()))
+        };
+        let head = Some(("000123453".to_owned(), "00000".to_owned()));
+        assert_eq!(key("000123453"), head);
+        assert_eq!(key("000-123-453"), head);
+        assert_eq!(key("000123453000"), head);
+        assert_eq!(key("000-123-453-000"), head);
+        assert_eq!(key("00012345300000"), head);
+        assert_eq!(key("000-123-453-00000"), head);
+        let branch = Some(("000123453".to_owned(), "00002".to_owned()));
+        assert_eq!(key("000-123-453-002"), branch);
+        assert_eq!(key("000-123-453-00002"), branch);
+        // A head office given as its 9-digit root is the 14-digit row.
+        assert_eq!(
+            TinKey::parse("000123453"),
+            TinKey::parse("000-123-453-00000")
+        );
+        assert_ne!(
+            TinKey::parse("000123453"),
+            TinKey::parse("000-123-453-00002")
+        );
+        for bad in [
+            "",
+            "2026",
+            "0001234530",
+            "000-123-453-0000",
+            "000123453000000",
+        ] {
+            assert_eq!(TinKey::parse(bad), None, "{bad:?}");
+        }
+    }
+
+    #[test]
+    fn a_tin_key_never_shows_its_digits_in_debug() {
+        let key = TinKey::parse("000-123-453-00002").unwrap();
+        let shown = format!("{key:?}");
+        assert!(!shown.contains("123") && !shown.contains("453"), "{shown}");
     }
 }
