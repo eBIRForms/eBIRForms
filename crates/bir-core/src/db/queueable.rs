@@ -11,7 +11,7 @@ use super::amendment_snapshots::{
 };
 use super::drafts::{
     AbandonedClaimRelease, abandoned_claim_audit, claim_fields_partial, claim_fields_present,
-    filing_status_to_db, require_abandoned_release_reason,
+    filing_status_to_db, refuse_release_while_sending, require_abandoned_release_reason,
 };
 use super::receipts::ReceiptConfirmationOutcome;
 use super::{Database, DbError, SubmissionReceipt};
@@ -682,6 +682,7 @@ impl Database {
                 reason: reason.to_string(),
             });
         };
+        refuse_release_while_sending(&tx, id)?;
         let current: F = serde_json::from_str(&raw_json)?;
         let lifecycle = current.lifecycle();
         let claimed = claim_fields_present(
@@ -1535,5 +1536,68 @@ mod tests {
         );
         assert!(snapshots(&db).is_empty());
         assert_eq!(rows(&db), vec![(id, 6, "Submitted".to_string())]);
+    }
+
+    /// The whole stored row, to show a refusal changed nothing.
+    fn raw(db: &Database, id: i64) -> (String, String) {
+        db.conn
+            .query_row(
+                "SELECT status, data_json FROM form_drafts WHERE id = ?1",
+                params![id],
+                |row| Ok((row.get(0)?, row.get(1)?)),
+            )
+            .unwrap()
+    }
+
+    /// The library refuses to release a claim this process's worker is
+    /// sending (its job key is in flight), whoever calls it.
+    #[test]
+    fn a_claim_this_process_is_sending_is_not_released() {
+        let db = Database::open_in_memory_for_tests().unwrap();
+        let mut form = TestForm::new(6, 10.0);
+        form.tin = "000-111-901-00000".to_string();
+        form.queue(crate::filing_queue::QueueAuthSource::Gui)
+            .unwrap();
+        let id = db.save_queued_queueable(&form).unwrap();
+        let ClaimQueueableResult::Claimed { .. } = db
+            .claim_queued_queueable::<TestForm>(
+                &form.tin,
+                2025,
+                6,
+                &form.lifecycle.queued_submission_fingerprint,
+                &form.lifecycle.next_retry_at,
+                form.lifecycle.submission_attempts,
+            )
+            .unwrap()
+        else {
+            panic!("the queued test form should claim");
+        };
+        let key = format!("form:{}:{}:2025:6", TestForm::CODE, form.tin);
+        let jobs = crate::background_cron::get_active_jobs();
+        assert!(jobs.lock().unwrap().insert(key.clone()));
+        let before = raw(&db, id);
+        let refused = db.release_abandoned_claimed_queueable::<TestForm>(
+            &form.tin,
+            2025,
+            6,
+            crate::db::ABANDONED_CLAIM_RELEASE_REASON,
+        );
+        assert!(jobs.lock().unwrap().remove(&key));
+        let Err(DbError::Other(message)) = refused else {
+            panic!("released while sending: {:?}", refused.map(|_| ()));
+        };
+        assert!(message.contains("this app is sending it now"), "{message}");
+        assert_eq!(raw(&db, id), before);
+
+        let released = db
+            .release_abandoned_claimed_queueable::<TestForm>(
+                &form.tin,
+                2025,
+                6,
+                crate::db::ABANDONED_CLAIM_RELEASE_REASON,
+            )
+            .unwrap();
+        assert!(matches!(released, AbandonedClaimRelease::Released { .. }));
+        assert_eq!(raw(&db, id).0, "Draft");
     }
 }

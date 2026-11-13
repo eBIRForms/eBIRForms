@@ -1,10 +1,10 @@
 //! Where each return is on its way to BIR, read from the database: the
 //! queue worker (`bir_core::background_cron`) records its claim, its
-//! failures and the signed receipt on the return, and [`send_stage`] turns
+//! failures and the signed receipt on the return, and [`send_stage_for`] turns
 //! those fields into what the person sees. [`plain_send_error`] puts the
 //! worker's and the relay's reasons in plain words.
 
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 
 use serde_json::Value;
 
@@ -51,10 +51,56 @@ fn text(data: &Value, key: &str) -> Option<String> {
     data.get(key).and_then(Value::as_str).filter(|s| !s.is_empty()).map(str::to_owned)
 }
 
-/// The stage of a stored return: `status` is its status column, `data` its
-/// JSON. `None` for a plain draft (one that never failed a send).
-pub fn send_stage(status: &str, data: &Value) -> Option<SendStage> {
-    let error = text(data, "submission_error");
+/// The stage of a stored return from its `submission_error` only: it reads
+/// no 2551Q error (a 2551Q's is in `last_error`), so it is kept for this
+/// module's tests and callers use [`send_stage_for`].
+#[cfg(test)]
+fn send_stage(status: &str, data: &Value) -> Option<SendStage> {
+    stage_with_error(status, data, text(data, "submission_error"))
+}
+
+/// The stage of a stored return of `form_code`: `status` is its status
+/// column, `data` its JSON. `None` for a plain draft (one that never failed
+/// a send). A 2551Q has no `submission_error`: the queue writes its
+/// reasons to `last_error`. Other forms' `last_error` is text from builds
+/// before the queue and is not read.
+pub fn send_stage_for(form_code: &str, status: &str, data: &Value) -> Option<SendStage> {
+    let error = text(data, "submission_error")
+        .or_else(|| (form_code == "2551Q").then(|| text(data, "last_error")).flatten());
+    stage_with_error(status, data, error)
+}
+
+/// The queued returns this process's worker is sending now, by id: those
+/// whose job key (from the worker's own list of queued rows) is in its
+/// in-flight set. When that set cannot be read, every queued return. An
+/// empty set answers without reading the database.
+pub(crate) fn sending_now(db: &bir_core::db::Database) -> Result<BTreeSet<i64>, bir_core::db::DbError> {
+    let jobs = bir_core::background_cron::get_active_jobs();
+    let jobs = match jobs.lock() {
+        Ok(jobs) if jobs.is_empty() => return Ok(BTreeSet::new()),
+        Ok(jobs) => Some(jobs.clone()),
+        Err(_) => None,
+    };
+    let queued = db.list_all_queued_submissions()?;
+    let Some(jobs) = jobs else {
+        return Ok(queued.into_iter().map(|summary| summary.id).collect());
+    };
+    Ok(queued.into_iter().filter(|summary| jobs.contains(&bir_core::background_cron::queue_job_key(summary))).map(|summary| summary.id).collect())
+}
+
+/// The stage to show. A claim writes its "outcome pending" note as it is
+/// taken, so a claimed return reads `NeedsAttention` from that instant;
+/// while this process is still sending it (`sending_now`) it is `Sending`.
+/// [`send_stage_for`] stays a pure reading of the row; only callers that know
+/// this process's worker apply this.
+pub(crate) fn shown_stage(stage: SendStage, sending_now: bool) -> SendStage {
+    match stage {
+        SendStage::NeedsAttention { .. } if sending_now => SendStage::Sending,
+        stage => stage,
+    }
+}
+
+fn stage_with_error(status: &str, data: &Value, error: Option<String>) -> Option<SendStage> {
     let claimed = text(data, "submission_claim_token").is_some();
     let attempts = data.get("submission_attempts").and_then(Value::as_u64).unwrap_or(0) as u32;
     let next_retry_at = text(data, "next_retry_at");
@@ -180,15 +226,16 @@ fn call_error(error: impl std::fmt::Display) -> AppError {
 impl BirApp {
     /// The stage of every return that has one, by return id.
     pub fn send_states(&self) -> AppResult<BTreeMap<i64, SendStage>> {
-        let ids: Vec<i64> = self.list_returns(crate::ReturnFilter::All)?.into_iter().map(|r| r.id).collect();
+        let rows: Vec<(i64, String)> = self.list_returns(crate::ReturnFilter::All)?.into_iter().map(|r| (r.id, r.form_code)).collect();
         let db = self.db.lock().map_err(|_| AppError::Call("the database lock is poisoned".into()))?;
+        let sending = sending_now(&db)?;
         let mut out = BTreeMap::new();
-        for id in ids {
+        for (id, form_code) in rows {
             if let Some((status, json)) = db.draft_status_and_json(id)?
                 && let Ok(data) = serde_json::from_str::<Value>(&json)
-                && let Some(stage) = send_stage(&status, &data)
+                && let Some(stage) = send_stage_for(&form_code, &status, &data)
             {
-                out.insert(id, stage);
+                out.insert(id, shown_stage(stage, sending.contains(&id)));
             }
         }
         Ok(out)
@@ -313,6 +360,30 @@ mod tests {
             send_stage("Draft", &json!({"submission_error": "gave up", "submission_attempts": 5})),
             Some(SendStage::GaveUp { reason: "gave up".into() })
         );
+    }
+
+    #[test]
+    fn a_2551q_reads_its_send_error_from_last_error() {
+        let claimed = json!({"submission_claim_token": "t", "last_error": "Submission outcome pending."});
+        assert_eq!(send_stage_for("2551Q", "Queued", &claimed), Some(SendStage::NeedsAttention { reason: "Submission outcome pending.".into() }));
+        let not_sent = json!({"last_error": "Not sent (nothing reached BIR): x", "submission_attempts": 1, "next_retry_at": "later"});
+        assert_eq!(
+            send_stage_for("2551Q", "Queued", &not_sent),
+            Some(SendStage::Failed { reason: "Not sent (nothing reached BIR): x".into(), attempts: 1, next_retry_at: Some("later".into()) })
+        );
+        let gave_up = json!({"last_error": "Not sent (nothing reached BIR): x", "submission_attempts": 5});
+        assert_eq!(send_stage_for("2551Q", "Draft", &gave_up), Some(SendStage::GaveUp { reason: "Not sent (nothing reached BIR): x".into() }));
+        // `submission_error` still wins where a row has both.
+        let both = json!({"submission_error": "a", "last_error": "b", "submission_attempts": 1});
+        assert_eq!(send_stage_for("2551Q", "Queued", &both), Some(SendStage::Failed { reason: "a".into(), attempts: 1, next_retry_at: None }));
+    }
+
+    #[test]
+    fn another_forms_old_last_error_is_not_a_send_error() {
+        let legacy = json!({"last_error": "old", "submission_attempts": 2});
+        assert_eq!(send_stage_for("0619E", "Queued", &legacy), Some(SendStage::Queued { next_retry_at: None }));
+        assert_eq!(send_stage_for("1601C", "Draft", &legacy), None);
+        assert_eq!(send_stage("Queued", &legacy), Some(SendStage::Queued { next_retry_at: None }));
     }
 
     #[test]

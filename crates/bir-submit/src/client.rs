@@ -621,25 +621,33 @@ impl Submitter {
         };
 
         let ended = self.relay_with(&list, relay_path).await.map_err(not_sent)?;
-        let (status, error, receipt_jws) = match ended {
+        let (ending, status, error, receipt_jws) = match ended {
             Ended::Result {
                 status,
                 error,
                 receipt,
-            } => (status, error, receipt),
+            } => (Ending::Result, status, error, receipt),
             Ended::Dropped { opened } => {
+                let ending = if opened {
+                    Ending::DroppedAfterOpening
+                } else {
+                    Ending::DroppedBeforeOpening
+                };
                 match self.authorized_get(&format!("/api/submissions/{id}")).await {
                     Ok(view) => (
+                        ending,
                         view["status"].as_str().unwrap_or("unknown").to_owned(),
                         view["error"].as_str().map(str::to_owned),
                         view["receipt_jws"].as_str().map(str::to_owned),
                     ),
                     Err(_) if !opened => (
+                        ending,
                         "failed".to_owned(),
                         Some("the connection ended before sending".into()),
                         None,
                     ),
                     Err(_) => (
+                        ending,
                         "unknown".to_owned(),
                         Some("the connection ended during the send".into()),
                         None,
@@ -647,20 +655,10 @@ impl Submitter {
                 }
             }
         };
-        match (status.as_str(), receipt_jws) {
-            ("sent" | "dry_run", Some(receipt_jws)) => match list.verify_receipt(&receipt_jws, &xml_sha256, Some(jti)) {
-                Ok(receipt) => Ok(Sent { submission_id: id.to_owned(), receipt_jws, receipt }),
-                Err(error) => Err(SendError::MaybeSent(format!(
-                    "the server reports the return sent, but its receipt does not check out ({error}); check for BIR's confirmation email"
-                ))),
-            },
-            ("failed" | "expired" | "ready", _) => {
-                Err(SendError::NotSent(error.unwrap_or_else(|| "the server did not send the return".into())))
-            }
-            _ => Err(SendError::MaybeSent(error.unwrap_or_else(|| {
-                "BIR may have received this return; check for its confirmation email before sending again".into()
-            }))),
-        }
+        let (receipt_jws, receipt) = outcome(ending, &status, error, receipt_jws, |receipt_jws| {
+            list.verify_receipt(receipt_jws, &xml_sha256, Some(jti))
+        })?;
+        Ok(Sent { submission_id: id.to_owned(), receipt_jws, receipt })
     }
 
     /// Opens the relay WebSocket for a submission and forwards, only to the
@@ -702,6 +700,49 @@ impl Submitter {
                 other => ClientError::Network(other.to_string()),
             })?;
         Ok(pipe::serve(socket, list).await)
+    }
+}
+
+/// How the relay ended, for [`outcome`].
+#[derive(Clone, Copy, Debug, PartialEq)]
+enum Ending {
+    /// The server delivered its `result` over the socket.
+    Result,
+    /// The socket closed before any connection toward BIR was made; the
+    /// status was read back from the server.
+    DroppedBeforeOpening,
+    /// The socket closed after the relay had opened a connection toward
+    /// BIR; the status was read back from the server.
+    DroppedAfterOpening,
+}
+
+/// What a send's final status means. `verify` checks a receipt and runs
+/// only for `sent` or `dry_run` with one. Once the relay had opened toward
+/// BIR and dropped, a status read back at that moment may not record the
+/// upload yet, so only an explicit `failed` is not sent.
+fn outcome<R, E: std::fmt::Display>(
+    ending: Ending,
+    status: &str,
+    error: Option<String>,
+    receipt_jws: Option<String>,
+    verify: impl FnOnce(&str) -> Result<R, E>,
+) -> Result<(String, R), SendError> {
+    match (status, receipt_jws) {
+        ("sent" | "dry_run", Some(receipt_jws)) => match verify(&receipt_jws) {
+            Ok(receipt) => Ok((receipt_jws, receipt)),
+            Err(error) => Err(SendError::MaybeSent(format!(
+                "the server reports the return sent, but its receipt does not check out ({error}); check for BIR's confirmation email"
+            ))),
+        },
+        ("expired" | "ready", _) if ending == Ending::DroppedAfterOpening => Err(SendError::MaybeSent(format!(
+            "the connection ended after the relay opened toward BIR, and the server still reports the return {status}; BIR may have received this return; check for its confirmation email before sending again"
+        ))),
+        ("failed" | "expired" | "ready", _) => {
+            Err(SendError::NotSent(error.unwrap_or_else(|| "the server did not send the return".into())))
+        }
+        _ => Err(SendError::MaybeSent(error.unwrap_or_else(|| {
+            "BIR may have received this return; check for its confirmation email before sending again".into()
+        }))),
     }
 }
 
@@ -803,6 +844,104 @@ mod tests {
             SubmitConfig::new(Some("https://lab.example/")).server_url,
             "https://lab.example"
         );
+    }
+
+    /// What `outcome` answers, as a word: sent, not sent or maybe sent.
+    fn decided(ending: Ending, status: &str, receipt: Option<&str>) -> &'static str {
+        let verify = |jws: &str| if jws == "good" { Ok(()) } else { Err("bad signature") };
+        match outcome(ending, status, None, receipt.map(str::to_owned), verify) {
+            Ok(_) => "sent",
+            Err(SendError::NotSent(_)) => "not sent",
+            Err(SendError::MaybeSent(_)) => "maybe sent",
+        }
+    }
+
+    /// RELAY-PROTOCOL.md §6: only `failed` says nothing reached BIR. Once
+    /// the relay had opened toward BIR and dropped, a `ready` or `expired`
+    /// read back may only mean the server has not recorded the upload yet.
+    #[test]
+    fn every_final_status_maps_to_one_outcome() {
+        use Ending::{DroppedAfterOpening as Opened, DroppedBeforeOpening as Before, Result as Res};
+        let rows: [(&str, Option<&str>, [&str; 3]); 9] = [
+            ("sent", Some("good"), ["sent", "sent", "sent"]),
+            ("dry_run", Some("good"), ["sent", "sent", "sent"]),
+            ("sent", Some("forged"), ["maybe sent", "maybe sent", "maybe sent"]),
+            ("sent", None, ["maybe sent", "maybe sent", "maybe sent"]),
+            ("failed", None, ["not sent", "not sent", "not sent"]),
+            ("expired", None, ["not sent", "not sent", "maybe sent"]),
+            ("ready", None, ["not sent", "not sent", "maybe sent"]),
+            ("unknown", None, ["maybe sent", "maybe sent", "maybe sent"]),
+            ("uploading", None, ["maybe sent", "maybe sent", "maybe sent"]),
+        ];
+        for (status, receipt, want) in rows {
+            for (ending, want) in [Res, Before, Opened].into_iter().zip(want) {
+                assert_eq!(decided(ending, status, receipt), want, "{ending:?}, {status}, receipt {receipt:?}");
+            }
+        }
+    }
+
+    /// After the relay opened and dropped, a `ready` or `expired` tells the
+    /// person BIR may have the return, not the server's own error.
+    #[test]
+    fn a_dropped_relay_that_opened_says_bir_may_have_the_return() {
+        for status in ["ready", "expired"] {
+            let answer = outcome(
+                Ending::DroppedAfterOpening,
+                status,
+                Some("the ticket expired".into()),
+                None,
+                |_: &str| Ok::<(), String>(()),
+            );
+            let Err(SendError::MaybeSent(message)) = answer else {
+                panic!("{status}: {answer:?}");
+            };
+            assert!(message.contains("BIR may have received this return"), "{message}");
+            assert!(message.contains("confirmation email"), "{message}");
+        }
+    }
+
+    /// The server's error and the verifier's text pass through as before.
+    #[test]
+    fn outcome_messages_are_unchanged_where_the_outcome_is() {
+        let message = |answer: Result<(String, ()), SendError>| match answer {
+            Err(SendError::NotSent(message) | SendError::MaybeSent(message)) => message,
+            Ok(_) => panic!("sent"),
+        };
+        let ok = |_: &str| Ok::<(), String>(());
+        for ending in [Ending::Result, Ending::DroppedBeforeOpening, Ending::DroppedAfterOpening] {
+            assert_eq!(message(outcome(ending, "failed", Some("no ticket".into()), None, ok)), "no ticket");
+            assert_eq!(
+                message(outcome(ending, "failed", None, None, ok)),
+                "the server did not send the return"
+            );
+            assert_eq!(
+                message(outcome(ending, "unknown", Some("the connection ended during the send".into()), None, ok)),
+                "the connection ended during the send"
+            );
+            assert_eq!(
+                message(outcome(ending, "unknown", None, None, ok)),
+                "BIR may have received this return; check for its confirmation email before sending again"
+            );
+            assert_eq!(
+                message(outcome(ending, "sent", None, Some("x".into()), |_: &str| Err::<(), _>("bad signature"))),
+                "the server reports the return sent, but its receipt does not check out (bad signature); check for BIR's confirmation email"
+            );
+        }
+        for ending in [Ending::Result, Ending::DroppedBeforeOpening] {
+            assert_eq!(message(outcome(ending, "expired", Some("the ticket expired".into()), None, ok)), "the ticket expired");
+            assert_eq!(message(outcome(ending, "ready", None, None, ok)), "the server did not send the return");
+        }
+    }
+
+    /// A good receipt comes back with its JWS; `verify` runs only for one.
+    #[test]
+    fn outcome_verifies_only_a_sent_receipt() {
+        let answer = outcome(Ending::Result, "dry_run", None, Some("jws".into()), |jws: &str| Ok::<_, String>(jws.len()));
+        assert_eq!(answer.unwrap(), ("jws".to_owned(), 3));
+        let answer = outcome(Ending::Result, "failed", None, Some("jws".into()), |_: &str| -> Result<(), String> {
+            panic!("verified a failed send's receipt")
+        });
+        assert!(matches!(answer, Err(SendError::NotSent(_))));
     }
 
     /// A server without device keys (no `/api/devices`, as before v2) still

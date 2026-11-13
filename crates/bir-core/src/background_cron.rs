@@ -400,6 +400,21 @@ pub enum StoreFailure {
     MaybeSent(TransportError),
 }
 
+/// How the queue's reason for a [`StoreFailure::NotSent`] attempt begins.
+pub(crate) const NOT_SENT_PREFIX: &str = "Not sent (nothing reached BIR): ";
+
+/// The in-flight job key of a queued return in [`get_active_jobs`]: held
+/// while this process's worker runs that return's send.
+pub fn queue_job_key(summary: &FormDraftSummary) -> String {
+    format!(
+        "form:{}:{}:{}:{}",
+        summary.form_code,
+        summary.tin,
+        summary.taxable_year,
+        summary.month.unwrap_or(summary.quarter.unwrap_or(0))
+    )
+}
+
 async fn process_queued_1601c_with_transport<T: SubmissionTransport>(
     summary: &FormDraftSummary,
     profile: &TaxpayerProfile,
@@ -685,7 +700,25 @@ async fn process_queued_1601c_with_transport<T: SubmissionTransport>(
                 }
             }
         }
-        Err(error) => {
+        Err(StoreFailure::NotSent(error)) => {
+            warn!(
+                "Cron: 1601C {} was not sent (nothing reached BIR); recording the failed attempt: {}",
+                draft.period_code(),
+                error
+            );
+            if let Ok(db_guard) = db.lock()
+                && let Err(db_error) = db_guard.fail_claimed_1601c_not_sent(
+                    &draft.tin,
+                    draft.taxable_year,
+                    draft.month,
+                    &claim_token,
+                    format!("{NOT_SENT_PREFIX}{error}"),
+                )
+            {
+                warn!("Cron: could not record the failed 1601C send: {db_error}");
+            }
+        }
+        Err(StoreFailure::MaybeSent(error)) => {
             warn!(
                 %error,
                 "Cron: 1601C PUT ended after the network claim; outcome is unknown and support-assisted manual reconciliation is required"
@@ -1036,7 +1069,7 @@ async fn process_queued_queueable<F: QueueableForm, T: SubmissionTransport>(
         }
         Err(StoreFailure::NotSent(error)) => {
             warn!(
-                "Cron: {} {} was not sent; retrying later: {}",
+                "Cron: {} {} was not sent (nothing reached BIR); recording the failed attempt: {}",
                 F::FORM_CODE,
                 draft.period_code(),
                 error
@@ -1047,7 +1080,7 @@ async fn process_queued_queueable<F: QueueableForm, T: SubmissionTransport>(
                     draft.taxable_year(),
                     draft.period_column(),
                     &claim_token,
-                    format!("Not sent (nothing reached BIR): {error}"),
+                    format!("{NOT_SENT_PREFIX}{error}"),
                 )
             {
                 warn!(
@@ -1128,13 +1161,8 @@ async fn process_submission_queue<T: SubmissionTransport + 'static>(
         .filter(|s| s.status == FilingStatus::Queued)
         .filter(|s| crate::forms::can_queue_for_submission(&s.form_code))
     {
-        let job_key = format!(
-            "form:{}:{}:{}:{}",
-            summary.form_code,
-            profile.tin.full(),
-            summary.taxable_year,
-            summary.month.unwrap_or(summary.quarter.unwrap_or(0))
-        );
+        // `summary.tin` is `profile.tin.full()`: the list is filtered on it.
+        let job_key = queue_job_key(&summary);
 
         let active_jobs = get_active_jobs();
         {
@@ -1444,7 +1472,25 @@ async fn process_submission_queue<T: SubmissionTransport + 'static>(
                             }
                         }
                     }
-                    Err(error) => {
+                    Err(StoreFailure::NotSent(error)) => {
+                        warn!(
+                            "Cron: Form {} was not sent (nothing reached BIR); recording the failed attempt: {}",
+                            draft.period_code(),
+                            error
+                        );
+                        if let Ok(db_guard) = db_clone.lock()
+                            && let Err(db_error) = db_guard.fail_claimed_2551q_not_sent(
+                                &draft.tin,
+                                draft.taxable_year,
+                                draft.quarter,
+                                &claim_token,
+                                format!("{NOT_SENT_PREFIX}{error}"),
+                            )
+                        {
+                            warn!("Cron: could not record the failed 2551Q send: {db_error}");
+                        }
+                    }
+                    Err(StoreFailure::MaybeSent(error)) => {
                         // Once PUT has started, an error does not prove that BIR
                         // received no bytes. Keep the durable claim just like a
                         // process crash: retrying could duplicate a return.
@@ -1846,6 +1892,9 @@ mod tests {
         Success,
         PreStore,
         UnknownIo,
+        /// The PUT is attempted but the far side says nothing reached BIR
+        /// (for example the ticket request was refused).
+        NotSentAtStore,
     }
 
     struct RecordingSubmissionTransport {
@@ -1914,9 +1963,9 @@ mod tests {
                     TestTransportOutcome::PreStore => {
                         Err(TransportError("simulated connect timeout".to_string()))
                     }
-                    TestTransportOutcome::Success | TestTransportOutcome::UnknownIo => {
-                        Ok(form_type)
-                    }
+                    TestTransportOutcome::Success
+                    | TestTransportOutcome::UnknownIo
+                    | TestTransportOutcome::NotSentAtStore => Ok(form_type),
                 }
             })
         }
@@ -1942,6 +1991,9 @@ mod tests {
                     TestTransportOutcome::UnknownIo => Err(TransportError(
                         "simulated unknown network outcome".to_string(),
                     )),
+                    TestTransportOutcome::NotSentAtStore => Err(TransportError(
+                        "simulated ticket refused before upload".to_string(),
+                    )),
                     TestTransportOutcome::PreStore => {
                         panic!("PUT must not run after a pre-store session failure")
                     }
@@ -1956,11 +2008,15 @@ mod tests {
             payload: &'a [u8],
         ) -> Pin<Box<dyn Future<Output = Result<StoreReport, StoreFailure>> + Send + 'a>> {
             let report = self.report.clone();
+            let outcome = self.outcome;
             Box::pin(async move {
                 self.store_session(session, filename, payload)
                     .await
                     .map(|()| report.unwrap_or_default())
-                    .map_err(StoreFailure::MaybeSent)
+                    .map_err(|error| match outcome {
+                        TestTransportOutcome::NotSentAtStore => StoreFailure::NotSent(error),
+                        _ => StoreFailure::MaybeSent(error),
+                    })
             })
         }
     }
@@ -2908,6 +2964,674 @@ mod tests {
                 .iter()
                 .all(|job| !is_email_poll_job(job)),
             "a dry run schedules no poll"
+        );
+    }
+
+    // ----- A store failure that reached nothing at BIR -----
+
+    fn retry_is_in_the_future(next_retry_at: Option<&str>) -> bool {
+        next_retry_at
+            .and_then(|at| chrono::DateTime::parse_from_rfc3339(at).ok())
+            .is_some_and(|at| at.with_timezone(&Utc) > Utc::now())
+    }
+
+    /// The `status` column of the row, which list queries read, as opposed
+    /// to the status inside `data_json`.
+    fn form_drafts_status_column(
+        db: &Arc<Mutex<Database>>,
+        form_code: &str,
+        tin: &str,
+        taxable_year: u16,
+        slot: u8,
+    ) -> String {
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .conn
+            .query_row(
+                "SELECT status FROM form_drafts
+                 WHERE tin = ?1 AND form_code = ?2 AND taxable_year = ?3 AND quarter = ?4",
+                rusqlite::params![tin, form_code, i64::from(taxable_year), i64::from(slot)],
+                |row| row.get::<_, String>(0),
+            )
+            .expect("the form_drafts row should exist")
+    }
+
+    fn stored_1601c(db: &Arc<Mutex<Database>>, queued: &Form1601CDraft) -> Form1601CDraft {
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .get_1601c_draft(&queued.tin, queued.taxable_year, queued.month)
+            .expect("the 1601C lookup should succeed")
+            .expect("the 1601C snapshot should remain persisted")
+    }
+
+    /// Move the stored generation's retry time into the past, the way the
+    /// pre-store failure test does, so the next worker run is due.
+    fn make_1601c_retry_due(db: &Arc<Mutex<Database>>, queued: &Form1601CDraft) {
+        let stored = stored_1601c(db, queued);
+        let mut due = stored.clone();
+        due.next_retry_at = Some("1999-01-01T00:00:00Z".to_string());
+        assert!(
+            db.lock()
+                .expect("the cron database should not be poisoned")
+                .replace_unclaimed_queued_1601c_submission(
+                    &due,
+                    &stored.queued_submission_fingerprint,
+                    &stored.next_retry_at,
+                    stored.submission_attempts,
+                )
+                .expect("forcing the retry timestamp should CAS-succeed")
+        );
+    }
+
+    fn saved_queued_1601c() -> (
+        TaxpayerProfile,
+        Form1601CDraft,
+        Arc<Mutex<Database>>,
+        FormDraftSummary,
+    ) {
+        let profile = test_profile();
+        let queued = queued_1601c_draft(&profile);
+        let db = test_db();
+        let id = db
+            .lock()
+            .expect("the cron database should not be poisoned")
+            .save_queued_1601c_draft(&queued)
+            .expect("the reviewed 1601C queue snapshot should persist");
+        let summary = queued_1601c_summary(id, &queued);
+        (profile, queued, db, summary)
+    }
+
+    #[tokio::test]
+    async fn process_queued_1601c_not_sent_at_store_releases_the_claim_and_backs_off() {
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentAtStore);
+
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+
+        assert_eq!(transport.calls().len(), 1);
+        let failed = stored_1601c(&db, &queued);
+        assert_eq!(failed.status, FilingStatus::Queued);
+        assert_eq!(
+            failed.queued_submission_fingerprint,
+            queued.queued_submission_fingerprint
+        );
+        assert_eq!(failed.submission_attempts, 1);
+        assert!(failed.submission_claim_token.is_none());
+        assert!(failed.submission_claimed_at.is_none());
+        assert!(failed.submission_claim_lease_until.is_none());
+        assert!(failed.submission_put_started_at.is_none());
+        let error = failed.submission_error.as_deref().unwrap_or_default();
+        assert!(error.starts_with(NOT_SENT_PREFIX), "{error}");
+        assert!(
+            retry_is_in_the_future(failed.next_retry_at.as_deref()),
+            "{:?}",
+            failed.next_retry_at
+        );
+        assert_eq!(
+            form_drafts_status_column(&db, "1601C", &queued.tin, queued.taxable_year, queued.month),
+            "Queued"
+        );
+
+        // Unclaimed again, so the person can cancel it.
+        let canceled = db
+            .lock()
+            .expect("the cron database should not be poisoned")
+            .cancel_queued_1601c_submission(&failed)
+            .expect("a released not-sent row should cancel");
+        assert_eq!(canceled.status, FilingStatus::Draft);
+        assert_eq!(stored_1601c(&db, &queued).status, FilingStatus::Draft);
+    }
+
+    #[tokio::test]
+    async fn process_queued_1601c_not_sent_at_store_retries_once_the_backoff_passes() {
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        let failing = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentAtStore);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &failing).await;
+        assert_eq!(failing.calls().len(), 1);
+
+        // Still inside the backoff: no second PUT.
+        let early = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &early).await;
+        assert!(early.calls().is_empty());
+        assert_eq!(stored_1601c(&db, &queued).status, FilingStatus::Queued);
+
+        make_1601c_retry_due(&db, &queued);
+        let retry = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &retry).await;
+        let calls = retry.calls();
+        assert_eq!(calls.len(), 1);
+        assert_exact_1601c_transport_call(&calls[0], &queued);
+        let submitted = stored_1601c(&db, &queued);
+        assert_eq!(submitted.status, FilingStatus::Sent);
+        assert!(submitted.submission_claim_token.is_none());
+    }
+
+    #[tokio::test]
+    async fn process_queued_1601c_fifth_not_sent_failure_returns_to_draft() {
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        for attempt in 1..=5 {
+            let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentAtStore);
+            process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+            assert_eq!(transport.calls().len(), 1, "attempt {attempt}");
+            assert_eq!(stored_1601c(&db, &queued).submission_attempts, attempt);
+            if attempt < 5 {
+                make_1601c_retry_due(&db, &queued);
+            }
+        }
+
+        let exhausted = stored_1601c(&db, &queued);
+        assert_eq!(exhausted.status, FilingStatus::Draft);
+        assert_eq!(
+            form_drafts_status_column(&db, "1601C", &queued.tin, queued.taxable_year, queued.month),
+            "Draft"
+        );
+        assert!(exhausted.next_retry_at.is_none());
+        assert!(exhausted.queued_submission_fingerprint.is_none());
+        assert!(exhausted.queue_authorization.is_none());
+        assert!(exhausted.submitted_payload.is_none());
+        assert!(exhausted.submission_claim_token.is_none());
+        assert!(exhausted.submission_claimed_at.is_none());
+        assert!(
+            exhausted
+                .submission_error
+                .as_deref()
+                .is_some_and(|error| error.starts_with(NOT_SENT_PREFIX))
+        );
+
+        let after = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &after).await;
+        assert!(after.calls().is_empty());
+    }
+
+    /// A reviewed profile under its own TIN: the queue's job key is global,
+    /// so each 2551Q tick test needs a key no other test uses.
+    fn reviewed_profile_with_tin(segment3: &str) -> TaxpayerProfile {
+        let mut profile = test_profile();
+        profile.tin.segment1 = "000".to_string();
+        profile.tin.segment3 = segment3.to_string();
+        profile.tax_elections.push(TaxElectionHistory {
+            taxable_year: 2024,
+            election: IncomeTaxElection::GraduatedUnspecified,
+            elected_at: chrono::NaiveDateTime::default(),
+            source_form: "2551Qv2018".to_string(),
+        });
+        profile.ensure_profile_version_ledger();
+        profile
+    }
+
+    fn saved_queued_2551q(segment3: &str) -> (Form2551QDraft, Arc<Mutex<Database>>) {
+        let db = test_db();
+        let profile = db
+            .lock()
+            .expect("the cron database should not be poisoned")
+            .save_profile(reviewed_profile_with_tin(segment3))
+            .expect("the reviewed profile should persist");
+        let queued = queued_draft(&profile);
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .save_queued_2551q_draft_and_election(&queued)
+            .expect("the reviewed 2551Q queue snapshot should persist");
+        (queued, db)
+    }
+
+    fn stored_2551q(db: &Arc<Mutex<Database>>, queued: &Form2551QDraft) -> Form2551QDraft {
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .get_2551q_draft(&queued.tin, queued.taxable_year, queued.quarter)
+            .expect("the 2551Q lookup should succeed")
+            .expect("the 2551Q snapshot should remain persisted")
+    }
+
+    /// One queue tick, then wait for the spawned 2551Q task to finish: it
+    /// holds its job key until it returns.
+    async fn tick_2551q(
+        db: &Arc<Mutex<Database>>,
+        transport: &Arc<RecordingSubmissionTransport>,
+        queued: &Form2551QDraft,
+    ) {
+        run_queue_tick(db.clone(), transport).await;
+        let key = format!(
+            "form:2551Q:{}:{}:{}",
+            queued.tin, queued.taxable_year, queued.quarter
+        );
+        for _ in 0..500 {
+            if !get_active_jobs()
+                .lock()
+                .expect("the active job set should not be poisoned")
+                .contains(&key)
+            {
+                return;
+            }
+            tokio::time::sleep(std::time::Duration::from_millis(10)).await;
+        }
+        panic!("the 2551Q queue task did not finish");
+    }
+
+    fn make_2551q_retry_due(db: &Arc<Mutex<Database>>, queued: &Form2551QDraft) {
+        let stored = stored_2551q(db, queued);
+        let mut due = stored.clone();
+        due.next_retry_at = Some("1999-01-01T00:00:00Z".to_string());
+        assert!(
+            db.lock()
+                .expect("the cron database should not be poisoned")
+                .replace_unclaimed_queued_2551q_submission(
+                    &due,
+                    &stored.queued_submission_fingerprint,
+                    &stored.next_retry_at,
+                    stored.submission_attempts,
+                )
+                .expect("forcing the retry timestamp should CAS-succeed")
+        );
+    }
+
+    #[tokio::test]
+    async fn queued_2551q_not_sent_at_store_releases_the_claim_and_retries_after_backoff() {
+        let (queued, db) = saved_queued_2551q("801");
+        let failing = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::NotSentAtStore,
+        ));
+        tick_2551q(&db, &failing, &queued).await;
+
+        assert_eq!(failing.calls().len(), 1);
+        let failed = stored_2551q(&db, &queued);
+        assert_eq!(failed.status, FilingStatus::Queued);
+        assert_eq!(
+            failed.queued_submission_fingerprint,
+            queued.queued_submission_fingerprint
+        );
+        assert_eq!(failed.submission_attempts, 1);
+        assert!(failed.submission_claim_token.is_none());
+        assert!(failed.submission_claimed_at.is_none());
+        assert!(failed.submission_claim_lease_until.is_none());
+        assert!(failed.submission_put_started_at.is_none());
+        let error = failed.last_error.as_deref().unwrap_or_default();
+        assert!(error.starts_with(NOT_SENT_PREFIX), "{error}");
+        assert!(
+            retry_is_in_the_future(failed.next_retry_at.as_deref()),
+            "{:?}",
+            failed.next_retry_at
+        );
+        assert_eq!(
+            form_drafts_status_column(
+                &db,
+                "2551Q",
+                &queued.tin,
+                queued.taxable_year,
+                queued.quarter
+            ),
+            "Queued"
+        );
+
+        // Still inside the backoff: no second PUT.
+        let early = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::Success,
+        ));
+        tick_2551q(&db, &early, &queued).await;
+        assert!(early.calls().is_empty());
+
+        make_2551q_retry_due(&db, &queued);
+        let retry = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::Success,
+        ));
+        tick_2551q(&db, &retry, &queued).await;
+        let calls = retry.calls();
+        assert_eq!(calls.len(), 1);
+        assert_eq!(calls[0].filename, queued.default_submission_filename());
+        let submitted = stored_2551q(&db, &queued);
+        assert_eq!(submitted.status, FilingStatus::Sent);
+        assert!(submitted.submission_claim_token.is_none());
+    }
+
+    #[tokio::test]
+    async fn queued_2551q_not_sent_at_store_can_be_canceled() {
+        // Seeded as the app does: the Draft is saved and reopened before it
+        // is queued, so the stored JSON carries the row id that
+        // `get_2551q_draft` sets and the exact-JSON cancel compares.
+        let db = test_db();
+        let profile = db
+            .lock()
+            .expect("the cron database should not be poisoned")
+            .save_profile(reviewed_profile_with_tin("802"))
+            .expect("the reviewed profile should persist");
+        let mut draft = Form2551QDraft::new_from_effective_profile(&profile, 2024, 1);
+        draft.item_13_election = Item13Election::Graduated;
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .save_2551q_draft(&draft)
+            .expect("the 2551Q draft should persist");
+        let mut queued = stored_2551q(&db, &draft);
+        queued
+            .transition_to_queued()
+            .expect("the reviewed draft should queue");
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .save_queued_2551q_draft_and_election(&queued)
+            .expect("the reviewed 2551Q queue snapshot should persist");
+        let failing = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::NotSentAtStore,
+        ));
+        tick_2551q(&db, &failing, &queued).await;
+        assert_eq!(failing.calls().len(), 1);
+
+        let failed = stored_2551q(&db, &queued);
+        let canceled = db
+            .lock()
+            .expect("the cron database should not be poisoned")
+            .cancel_queued_2551q_submission(&failed)
+            .expect("a released not-sent row should cancel");
+        assert_eq!(canceled.status, FilingStatus::Draft);
+        assert_eq!(stored_2551q(&db, &queued).status, FilingStatus::Draft);
+    }
+
+    #[tokio::test]
+    async fn queued_2551q_fifth_not_sent_failure_returns_to_draft() {
+        let (queued, db) = saved_queued_2551q("803");
+        for attempt in 1..=5 {
+            let transport = Arc::new(RecordingSubmissionTransport::new(
+                TestTransportOutcome::NotSentAtStore,
+            ));
+            tick_2551q(&db, &transport, &queued).await;
+            assert_eq!(transport.calls().len(), 1, "attempt {attempt}");
+            assert_eq!(stored_2551q(&db, &queued).submission_attempts, attempt);
+            if attempt < 5 {
+                make_2551q_retry_due(&db, &queued);
+            }
+        }
+
+        let exhausted = stored_2551q(&db, &queued);
+        assert_eq!(exhausted.status, FilingStatus::Draft);
+        assert_eq!(
+            form_drafts_status_column(
+                &db,
+                "2551Q",
+                &queued.tin,
+                queued.taxable_year,
+                queued.quarter
+            ),
+            "Draft"
+        );
+        assert!(exhausted.next_retry_at.is_none());
+        assert!(exhausted.queued_submission_fingerprint.is_none());
+        assert!(exhausted.queue_authorization.is_none());
+        assert!(exhausted.submitted_payload.is_none());
+        assert!(exhausted.submission_claim_token.is_none());
+        assert!(exhausted.submission_claimed_at.is_none());
+        assert!(
+            exhausted
+                .last_error
+                .as_deref()
+                .is_some_and(|error| error.starts_with(NOT_SENT_PREFIX))
+        );
+
+        let after = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::Success,
+        ));
+        tick_2551q(&db, &after, &queued).await;
+        assert!(after.calls().is_empty());
+    }
+
+    #[tokio::test]
+    async fn generic_worker_not_sent_at_store_releases_the_claim_and_backs_off() {
+        let profile = test_profile();
+        let db = test_db();
+        let (queued, summary) = queued_test_form(&db);
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentAtStore);
+
+        process_queued_queueable::<TestForm, _>(
+            &summary,
+            &profile,
+            db.clone(),
+            &transport,
+            allow_test_form,
+        )
+        .await;
+
+        assert_eq!(transport.calls().len(), 1);
+        let failed = stored_test_form(&db, &queued);
+        assert_eq!(failed.lifecycle.status, FilingStatus::Queued);
+        assert_eq!(failed.lifecycle.submission_attempts, 1);
+        assert!(failed.lifecycle.is_unclaimed());
+        assert!(failed.lifecycle.submission_put_started_at.is_none());
+        let error = failed
+            .lifecycle
+            .submission_error
+            .as_deref()
+            .unwrap_or_default();
+        assert!(error.starts_with(NOT_SENT_PREFIX), "{error}");
+        assert!(retry_is_in_the_future(
+            failed.lifecycle.next_retry_at.as_deref()
+        ));
+
+        // Still inside the backoff: no second PUT.
+        let early = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_queueable::<TestForm, _>(
+            &summary,
+            &profile,
+            db.clone(),
+            &early,
+            allow_test_form,
+        )
+        .await;
+        assert!(early.calls().is_empty());
+    }
+
+    #[tokio::test]
+    async fn queued_2551q_unknown_outcome_stays_claimed_and_is_not_retried() {
+        let (queued, db) = saved_queued_2551q("804");
+        let failing = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::UnknownIo,
+        ));
+        tick_2551q(&db, &failing, &queued).await;
+
+        assert_eq!(failing.calls().len(), 1);
+        let claimed = stored_2551q(&db, &queued);
+        assert_eq!(claimed.status, FilingStatus::Queued);
+        assert_eq!(claimed.submission_attempts, 0);
+        assert!(claimed.submission_claim_token.is_some());
+        assert!(claimed.submission_claimed_at.is_some());
+        assert!(claimed.submission_put_started_at.is_some());
+        assert!(
+            claimed
+                .last_error
+                .as_deref()
+                .is_some_and(|message| message.contains("outcome pending"))
+        );
+        assert_eq!(
+            form_drafts_status_column(
+                &db,
+                "2551Q",
+                &queued.tin,
+                queued.taxable_year,
+                queued.quarter
+            ),
+            "Queued"
+        );
+
+        // A later tick must not PUT again: the outcome is unknown.
+        let retry = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::Success,
+        ));
+        tick_2551q(&db, &retry, &queued).await;
+        assert!(retry.calls().is_empty());
+        assert_eq!(
+            stored_2551q(&db, &queued).submission_claim_token,
+            claimed.submission_claim_token
+        );
+    }
+
+    /// The stored `(status, data_json)` of a row.
+    fn raw_row(
+        db: &Arc<Mutex<Database>>,
+        form_code: &str,
+        tin: &str,
+        taxable_year: u16,
+        slot: u8,
+    ) -> (String, String) {
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .conn
+            .query_row(
+                "SELECT status, data_json FROM form_drafts
+                 WHERE tin = ?1 AND form_code = ?2 AND taxable_year = ?3 AND quarter = ?4",
+                rusqlite::params![tin, form_code, i64::from(taxable_year), i64::from(slot)],
+                |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)),
+            )
+            .expect("the form_drafts row should exist")
+    }
+
+    fn claim_stored_1601c(db: &Arc<Mutex<Database>>, queued: &Form1601CDraft) -> String {
+        let stored = stored_1601c(db, queued);
+        let claim = db
+            .lock()
+            .expect("the cron database should not be poisoned")
+            .claim_queued_1601c_submission(
+                &stored.tin,
+                stored.taxable_year,
+                stored.month,
+                &stored.queued_submission_fingerprint,
+                &stored.next_retry_at,
+                stored.submission_attempts,
+            )
+            .expect("claim");
+        let crate::db::Claim1601CSubmissionResult::Claimed { token, .. } = claim else {
+            panic!("the 1601C should claim");
+        };
+        token
+    }
+
+    #[tokio::test]
+    async fn a_stale_1601c_worker_cannot_fail_a_newer_claim() {
+        let (_profile, queued, db, _summary) = saved_queued_1601c();
+        let stale = claim_stored_1601c(&db, &queued);
+        {
+            let db_guard = db.lock().expect("the cron database should not be poisoned");
+            assert!(matches!(
+                db_guard
+                    .release_abandoned_claimed_1601c_submission(
+                        &queued.tin,
+                        queued.taxable_year,
+                        queued.month,
+                        crate::db::ABANDONED_CLAIM_RELEASE_REASON,
+                    )
+                    .expect("release"),
+                crate::db::AbandonedClaimRelease::Released { .. }
+            ));
+        }
+        let mut requeued = stored_1601c(&db, &queued);
+        requeued
+            .transition_to_queued()
+            .expect("the released 1601C should queue again");
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .save_queued_1601c_draft(&requeued)
+            .expect("requeue");
+        let newer = claim_stored_1601c(&db, &queued);
+        assert_ne!(stale, newer);
+        let before = raw_row(&db, "1601C", &queued.tin, queued.taxable_year, queued.month);
+
+        let failed = db
+            .lock()
+            .expect("the cron database should not be poisoned")
+            .fail_claimed_1601c_not_sent(
+                &queued.tin,
+                queued.taxable_year,
+                queued.month,
+                &stale,
+                format!("{NOT_SENT_PREFIX}stale worker"),
+            )
+            .expect("the stale call should run");
+        assert!(!failed);
+        assert_eq!(
+            raw_row(&db, "1601C", &queued.tin, queued.taxable_year, queued.month),
+            before
+        );
+        assert_eq!(
+            stored_1601c(&db, &queued).submission_claim_token.as_deref(),
+            Some(newer.as_str())
+        );
+    }
+
+    fn claim_stored_2551q(db: &Arc<Mutex<Database>>, queued: &Form2551QDraft) -> String {
+        let stored = stored_2551q(db, queued);
+        let claim = db
+            .lock()
+            .expect("the cron database should not be poisoned")
+            .claim_queued_2551q_submission(
+                &stored.tin,
+                stored.taxable_year,
+                stored.quarter,
+                &stored.queued_submission_fingerprint,
+                &stored.next_retry_at,
+                stored.submission_attempts,
+            )
+            .expect("claim");
+        let crate::db::Claim2551QSubmissionResult::Claimed { token, .. } = claim else {
+            panic!("the 2551Q should claim");
+        };
+        token
+    }
+
+    #[tokio::test]
+    async fn a_stale_2551q_worker_cannot_fail_a_newer_claim() {
+        let (queued, db) = saved_queued_2551q("805");
+        let stale = claim_stored_2551q(&db, &queued);
+        {
+            let db_guard = db.lock().expect("the cron database should not be poisoned");
+            assert!(matches!(
+                db_guard
+                    .release_abandoned_claimed_2551q_submission(
+                        &queued.tin,
+                        queued.taxable_year,
+                        queued.quarter,
+                        crate::db::ABANDONED_CLAIM_RELEASE_REASON,
+                    )
+                    .expect("release"),
+                crate::db::AbandonedClaimRelease::Released { .. }
+            ));
+        }
+        let mut requeued = stored_2551q(&db, &queued);
+        requeued
+            .transition_to_queued()
+            .expect("the released 2551Q should queue again");
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .save_queued_2551q_draft_and_election(&requeued)
+            .expect("requeue");
+        let newer = claim_stored_2551q(&db, &queued);
+        assert_ne!(stale, newer);
+        let before = raw_row(
+            &db,
+            "2551Q",
+            &queued.tin,
+            queued.taxable_year,
+            queued.quarter,
+        );
+
+        let failed = db
+            .lock()
+            .expect("the cron database should not be poisoned")
+            .fail_claimed_2551q_not_sent(
+                &queued.tin,
+                queued.taxable_year,
+                queued.quarter,
+                &stale,
+                format!("{NOT_SENT_PREFIX}stale worker"),
+            )
+            .expect("the stale call should run");
+        assert!(!failed);
+        assert_eq!(
+            raw_row(
+                &db,
+                "2551Q",
+                &queued.tin,
+                queued.taxable_year,
+                queued.quarter
+            ),
+            before
+        );
+        assert_eq!(
+            stored_2551q(&db, &queued).submission_claim_token.as_deref(),
+            Some(newer.as_str())
         );
     }
 }
