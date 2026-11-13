@@ -336,6 +336,16 @@ fn queued_retry_is_due(
 #[error("{0}")]
 pub struct TransportError(pub String);
 
+pub use crate::tin_refusal::TinRefusal;
+
+impl TransportError {
+    /// The TIN refusal this error's text ends with, if any
+    /// ([`TinRefusal::from_reason`]).
+    pub fn refusal(&self) -> Option<TinRefusal> {
+        TinRefusal::from_reason(&self.0)
+    }
+}
+
 /// The seam the queue submits through. `bir-core` ships no implementation
 /// that opens a connection: the app injects one, and the tests use a
 /// recording mock. `payload` is the plaintext IAF XML; any encryption and
