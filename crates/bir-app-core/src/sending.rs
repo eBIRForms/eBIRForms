@@ -54,7 +54,19 @@ fn text(data: &Value, key: &str) -> Option<String> {
 /// The stage of a stored return: `status` is its status column, `data` its
 /// JSON. `None` for a plain draft (one that never failed a send).
 pub fn send_stage(status: &str, data: &Value) -> Option<SendStage> {
-    let error = text(data, "submission_error");
+    stage_with_error(status, data, text(data, "submission_error"))
+}
+
+/// [`send_stage`] for a return of `form_code`. A 2551Q has no
+/// `submission_error`: the queue writes its reasons to `last_error`. Other
+/// forms' `last_error` is text from builds before the queue and is not read.
+pub fn send_stage_for(form_code: &str, status: &str, data: &Value) -> Option<SendStage> {
+    let error = text(data, "submission_error")
+        .or_else(|| (form_code == "2551Q").then(|| text(data, "last_error")).flatten());
+    stage_with_error(status, data, error)
+}
+
+fn stage_with_error(status: &str, data: &Value, error: Option<String>) -> Option<SendStage> {
     let claimed = text(data, "submission_claim_token").is_some();
     let attempts = data.get("submission_attempts").and_then(Value::as_u64).unwrap_or(0) as u32;
     let next_retry_at = text(data, "next_retry_at");
@@ -180,13 +192,13 @@ fn call_error(error: impl std::fmt::Display) -> AppError {
 impl BirApp {
     /// The stage of every return that has one, by return id.
     pub fn send_states(&self) -> AppResult<BTreeMap<i64, SendStage>> {
-        let ids: Vec<i64> = self.list_returns(crate::ReturnFilter::All)?.into_iter().map(|r| r.id).collect();
+        let rows: Vec<(i64, String)> = self.list_returns(crate::ReturnFilter::All)?.into_iter().map(|r| (r.id, r.form_code)).collect();
         let db = self.db.lock().map_err(|_| AppError::Call("the database lock is poisoned".into()))?;
         let mut out = BTreeMap::new();
-        for id in ids {
+        for (id, form_code) in rows {
             if let Some((status, json)) = db.draft_status_and_json(id)?
                 && let Ok(data) = serde_json::from_str::<Value>(&json)
-                && let Some(stage) = send_stage(&status, &data)
+                && let Some(stage) = send_stage_for(&form_code, &status, &data)
             {
                 out.insert(id, stage);
             }
@@ -313,6 +325,30 @@ mod tests {
             send_stage("Draft", &json!({"submission_error": "gave up", "submission_attempts": 5})),
             Some(SendStage::GaveUp { reason: "gave up".into() })
         );
+    }
+
+    #[test]
+    fn a_2551q_reads_its_send_error_from_last_error() {
+        let claimed = json!({"submission_claim_token": "t", "last_error": "Submission outcome pending."});
+        assert_eq!(send_stage_for("2551Q", "Queued", &claimed), Some(SendStage::NeedsAttention { reason: "Submission outcome pending.".into() }));
+        let not_sent = json!({"last_error": "Not sent (nothing reached BIR): x", "submission_attempts": 1, "next_retry_at": "later"});
+        assert_eq!(
+            send_stage_for("2551Q", "Queued", &not_sent),
+            Some(SendStage::Failed { reason: "Not sent (nothing reached BIR): x".into(), attempts: 1, next_retry_at: Some("later".into()) })
+        );
+        let gave_up = json!({"last_error": "Not sent (nothing reached BIR): x", "submission_attempts": 5});
+        assert_eq!(send_stage_for("2551Q", "Draft", &gave_up), Some(SendStage::GaveUp { reason: "Not sent (nothing reached BIR): x".into() }));
+        // `submission_error` still wins where a row has both.
+        let both = json!({"submission_error": "a", "last_error": "b", "submission_attempts": 1});
+        assert_eq!(send_stage_for("2551Q", "Queued", &both), Some(SendStage::Failed { reason: "a".into(), attempts: 1, next_retry_at: None }));
+    }
+
+    #[test]
+    fn another_forms_old_last_error_is_not_a_send_error() {
+        let legacy = json!({"last_error": "old", "submission_attempts": 2});
+        assert_eq!(send_stage_for("0619E", "Queued", &legacy), Some(SendStage::Queued { next_retry_at: None }));
+        assert_eq!(send_stage_for("1601C", "Draft", &legacy), None);
+        assert_eq!(send_stage("Queued", &legacy), Some(SendStage::Queued { next_retry_at: None }));
     }
 
     #[test]
