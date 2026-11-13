@@ -4,7 +4,9 @@
 //! - One read is shared: concurrent callers wait for one request, and a
 //!   list younger than the caller's `max_age` is answered from memory. A
 //!   failure is kept for 30 seconds.
-//! - Offline, the last list is answered for 10 minutes, marked `stale`.
+//! - Offline, the last list is answered for 10 minutes, marked `stale`,
+//!   unless a send was refused for a TIN since that list's read started.
+//! - A banned read forgets the earlier list.
 //! - Signed out, there is no request. Signing out or in clears the list.
 //! - The list is complete (a TIN missing from it is not on the account)
 //!   only when the server says so with `"include":"all"`.
@@ -196,16 +198,21 @@ pub(crate) struct TinsCache {
 /// Ages in the cache are timed on the monotonic clock, so a wall clock set
 /// back or ahead cannot make a read look young. `fetched_at` stays the wall
 /// clock's, for the gate.
+///
+/// Each read is kept with the generation it started in. An invalidation (a
+/// send refused for a TIN) starts a new generation: a read from an older
+/// one, even one still in flight then, is neither answered from memory nor
+/// offline.
 #[derive(Default)]
 struct CacheState {
     /// The sign-in the reads below belong to.
     login: Option<String>,
-    /// The last read and when it ended.
-    last: Option<(Instant, TinsRead)>,
-    /// The last list read and when it ended, for answering offline.
-    good: Option<(Instant, AccountTins)>,
-    /// The next read asks the server whatever its age.
-    dirty: bool,
+    /// Bumped by every invalidation and every reset; never goes back.
+    generation: u64,
+    /// The last read, when it ended and the generation it started in.
+    last: Option<(Instant, u64, TinsRead)>,
+    /// The last list read, the same way, for answering offline.
+    good: Option<(Instant, u64, AccountTins)>,
 }
 
 /// Whether a read that ended at `at` is younger than `secs` at `now`. A
@@ -217,11 +224,23 @@ fn younger(at: Instant, now: Instant, secs: i64) -> bool {
 }
 
 impl CacheState {
+    /// Forget every read, for `login` (none: signed out), in a generation
+    /// no earlier read started in.
+    fn reset(&mut self, login: Option<String>) {
+        *self = CacheState {
+            login,
+            generation: self.generation + 1,
+            ..CacheState::default()
+        };
+    }
+
     /// What a failed read answers: offline, the last list (marked stale)
-    /// while it is under [`STALE_LIMIT_SECS`] old.
+    /// while it is under [`STALE_LIMIT_SECS`] old and of this generation.
     fn fallback(&self, now: Instant, error: TinsError) -> TinsRead {
         match (&error, &self.good) {
-            (TinsError::Offline, Some((at, good))) if younger(*at, now, STALE_LIMIT_SECS) => {
+            (TinsError::Offline, Some((at, generation, good)))
+                if *generation == self.generation && younger(*at, now, STALE_LIMIT_SECS) =>
+            {
                 Ok(AccountTins {
                     stale: true,
                     ..good.clone()
@@ -235,56 +254,61 @@ impl CacheState {
 impl TinsCache {
     /// Forget every read (a sign-out, or a new sign-in).
     pub(crate) fn clear(&self) {
-        *self.state.lock().expect("tins cache") = CacheState::default();
+        self.state.lock().expect("tins cache").reset(None);
     }
 
-    /// The next read asks the server (a send was just refused for a TIN).
+    /// The next read asks the server, and no read from before answers
+    /// offline (a send was just refused for a TIN).
     pub(crate) fn invalidate(&self) {
-        self.state.lock().expect("tins cache").dirty = true;
+        self.state.lock().expect("tins cache").generation += 1;
+    }
+
+    /// The generation a read starting now belongs to.
+    fn generation(&self) -> u64 {
+        self.state.lock().expect("tins cache").generation
     }
 
     /// The answer from memory for `login` at `now`, when the last read is
-    /// young enough: a list younger than `max_age`, a failure younger than
-    /// 30 seconds (and than `max_age`). `None`: ask the server.
+    /// of this generation and young enough: a list younger than `max_age`,
+    /// a failure younger than 30 seconds (and than `max_age`). `None`: ask
+    /// the server.
     fn answer(&self, login: &str, now: Instant, max_age: i64) -> Option<TinsRead> {
         let mut state = self.state.lock().expect("tins cache");
         if state.login.as_deref() != Some(login) {
-            *state = CacheState {
-                login: Some(login.to_owned()),
-                ..CacheState::default()
-            };
-            return None;
-        }
-        if state.dirty {
+            state.reset(Some(login.to_owned()));
             return None;
         }
         match &state.last {
-            Some((at, Ok(list))) if younger(*at, now, max_age) => Some(Ok(list.clone())),
-            Some((at, Err(error))) if younger(*at, now, max_age.min(FAILURE_SECS)) => {
+            Some((_, generation, _)) if *generation != state.generation => None,
+            Some((at, _, Ok(list))) if younger(*at, now, max_age) => Some(Ok(list.clone())),
+            Some((at, _, Err(error))) if younger(*at, now, max_age.min(FAILURE_SECS)) => {
                 Some(state.fallback(now, error.clone()))
             }
             _ => None,
         }
     }
 
-    /// Keep a read that ended at `now` and answer it (offline, the last
-    /// list while it is young enough).
-    fn store(&self, login: &str, now: Instant, read: TinsRead) -> TinsRead {
+    /// Keep a read that started in generation `started` and ended at `now`,
+    /// and answer it (offline, the last list while it is young enough). A
+    /// banned read forgets the list from before the ban.
+    fn store(&self, login: &str, started: u64, now: Instant, read: TinsRead) -> TinsRead {
         let mut state = self.state.lock().expect("tins cache");
         if read == Err(TinsError::SignedOut) {
-            *state = CacheState::default();
+            state.reset(None);
             return read;
         }
         if state.login.as_deref() != Some(login) {
-            *state = CacheState::default();
+            state.reset(Some(login.to_owned()));
         }
-        state.login = Some(login.to_owned());
-        state.dirty = false;
-        state.last = Some((now, read.clone()));
+        state.last = Some((now, started, read.clone()));
         match read {
             Ok(list) => {
-                state.good = Some((now, list.clone()));
+                state.good = Some((now, started, list.clone()));
                 Ok(list)
+            }
+            Err(TinsError::Banned) => {
+                state.good = None;
+                Err(TinsError::Banned)
             }
             Err(error) => state.fallback(now, error),
         }
@@ -299,10 +323,10 @@ impl TinsCache {
             *at = if secs >= 0 { *at - by } else { *at + by };
         };
         let mut state = self.state.lock().expect("tins cache");
-        if let Some((at, _)) = &mut state.last {
+        if let Some((at, _, _)) = &mut state.last {
             shift(at);
         }
-        if let Some((at, good)) = &mut state.good {
+        if let Some((at, _, good)) = &mut state.good {
             shift(at);
             good.fetched_at -= secs;
         }
@@ -325,6 +349,7 @@ impl Submitter {
         if let Some(read) = self.tins.answer(&login, Instant::now(), max_age_secs) {
             return read;
         }
+        let started = self.tins.generation();
         let fetched_at = device::now();
         let read = match self.bearer_get(PATH).await {
             Ok(body) => Ok(AccountTins::parse(&body, fetched_at)),
@@ -340,7 +365,7 @@ impl Submitter {
             },
             Err(error) => Err(tins_error(error)),
         };
-        self.tins.store(&login, Instant::now(), read)
+        self.tins.store(&login, started, Instant::now(), read)
     }
 
     /// "Check again": a new read, unless one ended in the last 15 seconds.
@@ -349,12 +374,13 @@ impl Submitter {
     }
 
     /// The last list read for this sign-in, without a request (for
-    /// rendering); judge its age by `fetched_at`.
+    /// rendering); judge its age by `fetched_at`. `None` after a banned
+    /// read.
     pub fn cached_account_tins(&self) -> Option<AccountTins> {
         let login = self.login()?;
         let state = self.tins.state.lock().expect("tins cache");
         (state.login.as_deref() == Some(login.as_str()))
-            .then(|| state.good.as_ref().map(|(_, good)| good.clone()))
+            .then(|| state.good.as_ref().map(|(_, _, good)| good.clone()))
             .flatten()
     }
 
@@ -690,6 +716,69 @@ mod tests {
         submitter.invalidate_account_tins();
         assert!(submitter.account_tins(60).await.is_ok());
         assert_eq!(seen.lock().unwrap().len(), 2);
+    }
+
+    /// A send refused while a list read is out: the list that read brings
+    /// back is from before the refusal, so the next read still asks.
+    #[tokio::test]
+    async fn a_read_in_flight_when_the_list_is_invalidated_does_not_clear_it() {
+        let (url, seen) = fake_server(300, |_, _| ok(json!({"include":"all","profiles":[]})));
+        let submitter = Arc::new(submitter(&url, true));
+        let reading = {
+            let submitter = submitter.clone();
+            tokio::spawn(async move { submitter.account_tins(60).await })
+        };
+        tokio::time::sleep(std::time::Duration::from_millis(100)).await;
+        submitter.invalidate_account_tins();
+        assert!(reading.await.unwrap().is_ok());
+        assert_eq!(seen.lock().unwrap().len(), 1);
+        assert!(submitter.account_tins(60).await.is_ok());
+        assert_eq!(
+            seen.lock().unwrap().len(),
+            2,
+            "the read that started before the refusal does not count"
+        );
+        assert!(submitter.account_tins(60).await.is_ok());
+        assert_eq!(seen.lock().unwrap().len(), 2);
+    }
+
+    /// After a refusal the list from before it is not answered offline: the
+    /// read is offline, not the old list marked stale.
+    #[tokio::test]
+    async fn offline_after_an_invalidation_does_not_answer_the_older_list() {
+        let (url, _) = fake_server(0, |n, _| match n {
+            0 => {
+                ok(json!({"include":"all","profiles":[{"tin":"000123453","registered_name":"X"}]}))
+            }
+            _ => None,
+        });
+        let submitter = submitter(&url, true);
+        assert!(submitter.account_tins(60).await.is_ok());
+        submitter.invalidate_account_tins();
+        assert_eq!(submitter.account_tins(60).await, Err(TinsError::Offline));
+        assert_eq!(submitter.account_tins(0).await, Err(TinsError::Offline));
+    }
+
+    /// After a banned read neither the cache nor the offline answer hands
+    /// back the list from before the ban.
+    #[tokio::test]
+    async fn a_banned_read_hides_the_earlier_list() {
+        let (url, _) = fake_server(0, |n, _| match n {
+            0 => {
+                ok(json!({"include":"all","profiles":[{"tin":"000123453","registered_name":"X"}]}))
+            }
+            1 => Some((
+                403,
+                r#"{"error":{"code":"account_banned","message":"banned"}}"#.into(),
+            )),
+            _ => None,
+        });
+        let submitter = submitter(&url, true);
+        assert!(submitter.account_tins(60).await.is_ok());
+        assert!(submitter.cached_account_tins().is_some());
+        assert_eq!(submitter.account_tins(0).await, Err(TinsError::Banned));
+        assert_eq!(submitter.cached_account_tins(), None);
+        assert_eq!(submitter.account_tins(0).await, Err(TinsError::Offline));
     }
 
     #[tokio::test]
