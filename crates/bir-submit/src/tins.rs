@@ -131,15 +131,17 @@ pub struct AccountTins {
 
 impl AccountTins {
     /// A `/api/tax-profiles` answer read at `fetched_at`. A row whose `tin`
-    /// is not 9, 12 or 14 digits is left out.
+    /// is not 9, 12 or 14 digits is left out, and then the list is not
+    /// complete: a TIN missing from it may be that row. It is complete only
+    /// when `include` is exactly `"all"` and `profiles` is a list whose every
+    /// row was read.
     pub fn parse(body: &Value, fetched_at: i64) -> Self {
-        let complete = body["include"]
-            .as_str()
-            .is_some_and(|include| include.split(',').any(|part| part.trim() == "all"));
-        let rows = body["profiles"]
-            .as_array()
+        let profiles = body["profiles"].as_array();
+        let rows: Vec<AccountTin> = profiles
             .map(|profiles| profiles.iter().filter_map(AccountTin::parse).collect())
             .unwrap_or_default();
+        let complete = body["include"].as_str() == Some("all")
+            && profiles.is_some_and(|profiles| profiles.len() == rows.len());
         Self {
             rows,
             complete,
@@ -489,6 +491,49 @@ mod tests {
         let list = submitter(&url, true).account_tins(60).await.unwrap();
         assert!(list.complete);
         assert!(list.rows.is_empty());
+    }
+
+    /// A row that cannot be read leaves a hole: a TIN missing from the list
+    /// may be that row, so the list is not complete.
+    #[test]
+    fn a_list_with_an_unreadable_row_is_not_complete() {
+        let good = json!({"tin":"000-123-453-00000","registered_name":"X","status":"approved","can_send":true});
+        for bad in [
+            json!({"tin_masked":"***-***-454-00000","registered_name":"Y","status":"paused"}),
+            json!({"tin":"000-123-454-0000","registered_name":"Y"}),
+            json!({"tin":123454,"registered_name":"Y"}),
+            json!("not a row"),
+        ] {
+            let list = AccountTins::parse(&json!({"include":"all","profiles":[good, bad]}), 1);
+            assert_eq!(list.rows.len(), 1, "{bad}");
+            assert!(!list.complete, "{bad}");
+        }
+        for body in [
+            json!({"include":"all"}),
+            json!({"include":"all","profiles":null}),
+            json!({"include":"all","profiles":{"tin":"000123453"}}),
+            json!({"include":"all","tins":[good]}),
+        ] {
+            assert!(!AccountTins::parse(&body, 1).complete, "{body}");
+        }
+        assert!(AccountTins::parse(&json!({"include":"all","profiles":[good]}), 1).complete);
+    }
+
+    /// Only `"include":"all"` itself marks the list complete; a server that
+    /// echoes the request's include string does not.
+    #[test]
+    fn only_include_all_exactly_is_complete() {
+        for include in [
+            json!("all,pending"),
+            json!("pending,all"),
+            json!(" all"),
+            json!("ALL"),
+            json!(["all"]),
+            json!(true),
+        ] {
+            let list = AccountTins::parse(&json!({"include":include,"profiles":[]}), 1);
+            assert!(!list.complete, "{include}");
+        }
     }
 
     #[tokio::test]
