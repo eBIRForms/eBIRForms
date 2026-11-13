@@ -87,6 +87,21 @@ impl TinRefusal {
             .to_owned()
     }
 
+    /// `reason` with the text before its trailing code cut to `max_chars`
+    /// characters (an ellipsis marks the cut), the code kept; text without
+    /// a code is cut the same way.
+    pub(crate) fn capped(reason: &str, max_chars: usize) -> String {
+        let cut = |text: &str| match text.char_indices().nth(max_chars) {
+            Some((end, _)) => format!("{}\u{2026}", &text[..end]),
+            None => text.to_owned(),
+        };
+        match trailing_code(reason) {
+            Some((message, code)) if message.is_empty() => format!("({code})"),
+            Some((message, code)) => format!("{} ({code})", cut(message)),
+            None => cut(reason),
+        }
+    }
+
     /// The fixed reason sentences of a `tin_needs_fix` reason, when the
     /// server named any (`Sent back for a fix: <sentences> (tin_needs_fix)`);
     /// `None` for any other reason.
@@ -231,6 +246,31 @@ mod tests {
                 "{live:?}"
             );
         }
+    }
+
+    #[test]
+    fn a_capped_reason_keeps_its_code_and_short_text_whole() {
+        let long = format!(
+            "Not sent (nothing reached BIR): {} (tin_paused)",
+            "y".repeat(500)
+        );
+        let capped = TinRefusal::capped(&long, 40);
+        assert_eq!(
+            capped,
+            format!(
+                "Not sent (nothing reached BIR): {}\u{2026} (tin_paused)",
+                "y".repeat(8)
+            )
+        );
+        assert_eq!(TinRefusal::from_reason(&capped), Some(TinRefusal::Paused));
+        let short = "Not sent (nothing reached BIR): Paused. (tin_paused)";
+        assert_eq!(TinRefusal::capped(short, 40), short);
+        assert_eq!(
+            TinRefusal::capped(" (tin_paused)", 40),
+            "(tin_paused)",
+            "an empty message stays empty"
+        );
+        assert_eq!(TinRefusal::capped("abcdef", 3), "abc\u{2026}");
     }
 
     #[test]

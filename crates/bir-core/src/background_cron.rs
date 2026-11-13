@@ -338,6 +338,17 @@ fn previous_tin_refusal(error: Option<&str>) -> bool {
     error.and_then(TinRefusal::from_reason).is_some()
 }
 
+/// The most characters of a refusal's text the queue stores and logs,
+/// before its code: a server that put long free text there cannot fill the
+/// row or the log.
+const REFUSAL_REASON_CAP: usize = 300;
+
+/// The reason stored for a TIN refusal: `prefix` and the error's text, cut
+/// to [`REFUSAL_REASON_CAP`], ending with the code.
+fn refusal_reason(prefix: &str, error: &TransportError) -> String {
+    TinRefusal::capped(&format!("{prefix}{error}"), REFUSAL_REASON_CAP)
+}
+
 /// Why a transport call failed. The queue only needs the message: before
 /// PUT a failure is retried, after PUT the outcome is unknown.
 #[derive(Debug, thiserror::Error)]
@@ -420,6 +431,9 @@ pub enum StoreFailure {
 
 /// How the queue's reason for a [`StoreFailure::NotSent`] attempt begins.
 pub(crate) const NOT_SENT_PREFIX: &str = "Not sent (nothing reached BIR): ";
+
+/// How the queue's reason for a session that failed before any PUT begins.
+const SESSION_FAILED_PREFIX: &str = "Submission session failed before upload (no PUT attempted): ";
 
 /// The in-flight job key of a queued return in [`get_active_jobs`]: held
 /// while this process's worker runs that return's send.
@@ -591,7 +605,7 @@ async fn process_queued_1601c_with_transport<T: SubmissionTransport>(
                 &queue_revision,
                 &db,
                 profile,
-                format!("Submission session failed before upload (no PUT attempted): {error}"),
+                refusal_reason(SESSION_FAILED_PREFIX, &error),
             );
             return;
         }
@@ -729,10 +743,11 @@ async fn process_queued_1601c_with_transport<T: SubmissionTransport>(
             }
         }
         Err(StoreFailure::NotSent(error)) if error.refusal().is_some() => {
+            let reason = refusal_reason(NOT_SENT_PREFIX, &error);
             warn!(
                 "Cron: 1601C {} was refused for its TIN (nothing reached BIR); back to Draft: {}",
                 draft.period_code(),
-                error
+                reason
             );
             if let Ok(db_guard) = db.lock() {
                 match db_guard.refuse_claimed_1601c_tin(
@@ -740,7 +755,7 @@ async fn process_queued_1601c_with_transport<T: SubmissionTransport>(
                     draft.taxable_year,
                     draft.month,
                     &claim_token,
-                    format!("{NOT_SENT_PREFIX}{error}"),
+                    reason,
                 ) {
                     Ok(true) => record_refusal_alert(
                         &db_guard,
@@ -992,7 +1007,7 @@ async fn process_queued_queueable<F: QueueableForm, T: SubmissionTransport>(
                 &generation,
                 &db,
                 profile,
-                format!("Submission session failed before upload (no PUT attempted): {error}"),
+                refusal_reason(SESSION_FAILED_PREFIX, &error),
             );
             return;
         }
@@ -1138,11 +1153,12 @@ async fn process_queued_queueable<F: QueueableForm, T: SubmissionTransport>(
             }
         }
         Err(StoreFailure::NotSent(error)) if error.refusal().is_some() => {
+            let reason = refusal_reason(NOT_SENT_PREFIX, &error);
             warn!(
                 "Cron: {} {} was refused for its TIN (nothing reached BIR); back to Draft: {}",
                 F::FORM_CODE,
                 draft.period_code(),
-                error
+                reason
             );
             if let Ok(db_guard) = db.lock() {
                 match db_guard.refuse_claimed_queueable_tin::<F>(
@@ -1150,7 +1166,7 @@ async fn process_queued_queueable<F: QueueableForm, T: SubmissionTransport>(
                     draft.taxable_year(),
                     draft.period_column(),
                     &claim_token,
-                    format!("{NOT_SENT_PREFIX}{error}"),
+                    reason,
                 ) {
                     Ok(true) => record_refusal_alert(
                         &db_guard,
@@ -1444,9 +1460,7 @@ async fn process_submission_queue<T: SubmissionTransport + 'static>(
                             &queue_revision,
                             &db_clone,
                             &current_profile,
-                            format!(
-                                "Submission session failed before upload (no PUT attempted): {error}"
-                            ),
+                            refusal_reason(SESSION_FAILED_PREFIX, &error),
                         );
                         return;
                     }
@@ -1588,10 +1602,11 @@ async fn process_submission_queue<T: SubmissionTransport + 'static>(
                         }
                     }
                     Err(StoreFailure::NotSent(error)) if error.refusal().is_some() => {
+                        let reason = refusal_reason(NOT_SENT_PREFIX, &error);
                         warn!(
                             "Cron: Form {} was refused for its TIN (nothing reached BIR); back to Draft: {}",
                             draft.period_code(),
-                            error
+                            reason
                         );
                         if let Ok(db_guard) = db_clone.lock() {
                             match db_guard.refuse_claimed_2551q_tin(
@@ -1599,7 +1614,7 @@ async fn process_submission_queue<T: SubmissionTransport + 'static>(
                                 draft.taxable_year,
                                 draft.quarter,
                                 &claim_token,
-                                format!("{NOT_SENT_PREFIX}{error}"),
+                                reason,
                             ) {
                                 Ok(true) => record_refusal_alert(
                                     &db_guard,
@@ -4384,6 +4399,67 @@ mod tests {
             assert!(refused.lifecycle.next_retry_at.is_none());
             assert_eq!(refusal_alerts(&db, TestForm::CODE), 1, "{reason:?}");
         }
+    }
+
+    /// A server that put pages of free text in a refusal fills neither the
+    /// row nor the log: the stored reason is cut, and still ends with its
+    /// code.
+    #[tokio::test]
+    async fn a_long_refusal_is_stored_cut_to_its_cap_with_its_code() {
+        let long: &'static str = Box::leak(
+            format!("{} (tin_needs_fix)", "Sent back for a fix: x".repeat(400)).into_boxed_str(),
+        );
+        let check = |stored: Option<&str>| {
+            let stored = stored.unwrap_or_default();
+            assert!(
+                stored.chars().count() <= REFUSAL_REASON_CAP + " (account_banned)".len(),
+                "{} characters",
+                stored.chars().count()
+            );
+            assert!(stored.ends_with("\u{2026} (tin_needs_fix)"), "{stored}");
+            assert_eq!(TinRefusal::from_reason(stored), Some(TinRefusal::NeedsFix));
+        };
+
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(long));
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+        let refused = stored_1601c(&db, &queued);
+        assert_eq!(refused.status, FilingStatus::Draft);
+        check(refused.submission_error.as_deref());
+
+        let (queued, db) = saved_queued_2551q("822");
+        let transport = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::NotSentWith(long),
+        ));
+        tick_2551q(&db, &transport, &queued).await;
+        let refused = stored_2551q(&db, &queued);
+        assert_eq!(refused.status, FilingStatus::Draft);
+        check(refused.last_error.as_deref());
+
+        let profile = test_profile();
+        let db = test_db();
+        let (queued, summary) = queued_test_form(&db);
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(long));
+        process_queued_queueable::<TestForm, _>(
+            &summary,
+            &profile,
+            db.clone(),
+            &transport,
+            allow_test_form,
+        )
+        .await;
+        let refused = stored_test_form(&db, &queued);
+        assert_eq!(refused.lifecycle.status, FilingStatus::Draft);
+        check(refused.lifecycle.submission_error.as_deref());
+
+        // At session open too.
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        let transport =
+            RecordingSubmissionTransport::new(TestTransportOutcome::SessionFailsWith(long));
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+        let refused = stored_1601c(&db, &queued);
+        assert_eq!(refused.status, FilingStatus::Draft);
+        check(refused.submission_error.as_deref());
     }
 
     #[tokio::test]
