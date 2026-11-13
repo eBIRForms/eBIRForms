@@ -78,7 +78,7 @@ impl TinRefusal {
             None => text.to_owned(),
         };
         match trailing_code(reason) {
-            Some((message, code)) if message.is_empty() => format!("({code})"),
+            Some(("", code)) => format!("({code})"),
             Some((message, code)) => format!("{} ({code})", cut(message)),
             None => cut(reason),
         }
