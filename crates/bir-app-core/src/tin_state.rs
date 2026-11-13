@@ -81,6 +81,11 @@ impl TinStep {
     /// when the list gave one that is a page of the account site
     /// ([`bir_submit::tins::pinned_account_url`]), else the account's TIN
     /// list.
+    ///
+    /// For app-only screens: the "Add it" link holds the TIN's root and
+    /// branch, and a row's page names its claim, so never give a link to an
+    /// assistant or write it to a log. The links are always on
+    /// [`ACCOUNT_SITE`], whatever server URL is set.
     pub fn link(self, key: &TinKey, action_url: Option<&str>) -> String {
         match (self, action_url.and_then(pinned_account_url)) {
             (TinStep::Add, _) => format!("{ACCOUNT_SITE}/tins/new?tin={}&branch={}", key.root(), key.branch()),
@@ -113,7 +118,8 @@ pub struct TinStatement {
     /// from the account's list only. For app-only surfaces: never give it to
     /// an assistant, and never store it.
     pub staff_note: Option<String>,
-    /// The row's own page for its step, from the account's list.
+    /// The row's own page for its step, from the account's list. For
+    /// app-only screens, like [`TinStep::link`].
     pub action_url: Option<String>,
 }
 
@@ -158,7 +164,8 @@ impl std::fmt::Debug for RefusedReturn {
 }
 
 impl TinStatement {
-    /// Where its step opens for the return's TIN `key` ([`TinStep::link`]).
+    /// Where its step opens for the return's TIN `key` ([`TinStep::link`]);
+    /// for app-only screens.
     pub fn link(&self, key: &TinKey) -> Option<String> {
         self.step.map(|step| step.link(key, self.action_url.as_deref()))
     }

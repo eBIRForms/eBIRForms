@@ -95,6 +95,7 @@ pub struct AccountTin {
     pub note: Option<String>,
     /// The row's own page for its Verify or Fix step (`action.url`), kept
     /// only when it is a page of [`ACCOUNT_SITE`] ([`pinned_account_url`]).
+    /// For app-only surfaces, like `note`: it names the row's claim.
     pub action_url: Option<String>,
 }
 
