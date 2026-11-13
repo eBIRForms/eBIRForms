@@ -14,6 +14,7 @@
 //! No row, TIN or name is logged, and the types' `Debug` shows none.
 
 use std::sync::Mutex;
+use std::time::{Duration, Instant};
 
 use bir_core::forms::taxform::TinKey;
 use serde_json::Value;
@@ -192,24 +193,35 @@ pub(crate) struct TinsCache {
     flight: tokio::sync::Mutex<()>,
 }
 
+/// Ages in the cache are timed on the monotonic clock, so a wall clock set
+/// back or ahead cannot make a read look young. `fetched_at` stays the wall
+/// clock's, for the gate.
 #[derive(Default)]
 struct CacheState {
     /// The sign-in the reads below belong to.
     login: Option<String>,
     /// The last read and when it ended.
-    last: Option<(i64, TinsRead)>,
-    /// The last list read, for answering offline.
-    good: Option<AccountTins>,
+    last: Option<(Instant, TinsRead)>,
+    /// The last list read and when it ended, for answering offline.
+    good: Option<(Instant, AccountTins)>,
     /// The next read asks the server whatever its age.
     dirty: bool,
+}
+
+/// Whether a read that ended at `at` is younger than `secs` at `now`. A
+/// read that seems to have ended after `now` has no known age: it is not.
+fn younger(at: Instant, now: Instant, secs: i64) -> bool {
+    let limit = Duration::from_secs(u64::try_from(secs).unwrap_or(0));
+    now.checked_duration_since(at)
+        .is_some_and(|age| age < limit)
 }
 
 impl CacheState {
     /// What a failed read answers: offline, the last list (marked stale)
     /// while it is under [`STALE_LIMIT_SECS`] old.
-    fn fallback(&self, now: i64, error: TinsError) -> TinsRead {
+    fn fallback(&self, now: Instant, error: TinsError) -> TinsRead {
         match (&error, &self.good) {
-            (TinsError::Offline, Some(good)) if now - good.fetched_at < STALE_LIMIT_SECS => {
+            (TinsError::Offline, Some((at, good))) if younger(*at, now, STALE_LIMIT_SECS) => {
                 Ok(AccountTins {
                     stale: true,
                     ..good.clone()
@@ -234,7 +246,7 @@ impl TinsCache {
     /// The answer from memory for `login` at `now`, when the last read is
     /// young enough: a list younger than `max_age`, a failure younger than
     /// 30 seconds (and than `max_age`). `None`: ask the server.
-    fn answer(&self, login: &str, now: i64, max_age: i64) -> Option<TinsRead> {
+    fn answer(&self, login: &str, now: Instant, max_age: i64) -> Option<TinsRead> {
         let mut state = self.state.lock().expect("tins cache");
         if state.login.as_deref() != Some(login) {
             *state = CacheState {
@@ -247,8 +259,8 @@ impl TinsCache {
             return None;
         }
         match &state.last {
-            Some((at, Ok(list))) if now - at < max_age => Some(Ok(list.clone())),
-            Some((at, Err(error))) if now - at < max_age.min(FAILURE_SECS) => {
+            Some((at, Ok(list))) if younger(*at, now, max_age) => Some(Ok(list.clone())),
+            Some((at, Err(error))) if younger(*at, now, max_age.min(FAILURE_SECS)) => {
                 Some(state.fallback(now, error.clone()))
             }
             _ => None,
@@ -257,7 +269,7 @@ impl TinsCache {
 
     /// Keep a read that ended at `now` and answer it (offline, the last
     /// list while it is young enough).
-    fn store(&self, login: &str, now: i64, read: TinsRead) -> TinsRead {
+    fn store(&self, login: &str, now: Instant, read: TinsRead) -> TinsRead {
         let mut state = self.state.lock().expect("tins cache");
         if read == Err(TinsError::SignedOut) {
             *state = CacheState::default();
@@ -271,21 +283,27 @@ impl TinsCache {
         state.last = Some((now, read.clone()));
         match read {
             Ok(list) => {
-                state.good = Some(list.clone());
+                state.good = Some((now, list.clone()));
                 Ok(list)
             }
             Err(error) => state.fallback(now, error),
         }
     }
 
-    /// Make every read `secs` older, as if that much time had passed.
+    /// Make every read `secs` older, as if that much time had passed (a
+    /// negative `secs`: as if it ended that far ahead of now).
     #[cfg(test)]
     fn age_for_tests(&self, secs: i64) {
+        let shift = |at: &mut Instant| {
+            let by = Duration::from_secs(secs.unsigned_abs());
+            *at = if secs >= 0 { *at - by } else { *at + by };
+        };
         let mut state = self.state.lock().expect("tins cache");
         if let Some((at, _)) = &mut state.last {
-            *at -= secs;
+            shift(at);
         }
-        if let Some(good) = &mut state.good {
+        if let Some((at, good)) = &mut state.good {
+            shift(at);
             good.fetched_at -= secs;
         }
     }
@@ -299,12 +317,12 @@ impl Submitter {
             self.tins.clear();
             return Err(TinsError::SignedOut);
         };
-        if let Some(read) = self.tins.answer(&login, device::now(), max_age_secs) {
+        if let Some(read) = self.tins.answer(&login, Instant::now(), max_age_secs) {
             return read;
         }
         let _flight = self.tins.flight.lock().await;
         // Another caller may have read it while this one waited.
-        if let Some(read) = self.tins.answer(&login, device::now(), max_age_secs) {
+        if let Some(read) = self.tins.answer(&login, Instant::now(), max_age_secs) {
             return read;
         }
         let fetched_at = device::now();
@@ -322,7 +340,7 @@ impl Submitter {
             },
             Err(error) => Err(tins_error(error)),
         };
-        self.tins.store(&login, device::now(), read)
+        self.tins.store(&login, Instant::now(), read)
     }
 
     /// "Check again": a new read, unless one ended in the last 15 seconds.
@@ -336,7 +354,7 @@ impl Submitter {
         let login = self.login()?;
         let state = self.tins.state.lock().expect("tins cache");
         (state.login.as_deref() == Some(login.as_str()))
-            .then(|| state.good.clone())
+            .then(|| state.good.as_ref().map(|(_, good)| good.clone()))
             .flatten()
     }
 
@@ -710,6 +728,35 @@ mod tests {
         // Past the limit the list is too old to answer.
         submitter.tins.age_for_tests(STALE_LIMIT_SECS + 1);
         assert_eq!(submitter.account_tins(0).await, Err(TinsError::Offline));
+    }
+
+    /// A read whose time is ahead of now (the clock was set back) is of no
+    /// known age: it is asked again, a failure does not hold requests off,
+    /// and the list is not answered offline.
+    #[tokio::test]
+    async fn a_read_from_ahead_of_now_is_expired() {
+        let (url, seen) = fake_server(0, |n, _| match n {
+            1 => None,
+            _ => {
+                ok(json!({"include":"all","profiles":[{"tin":"000123453","registered_name":"X"}]}))
+            }
+        });
+        let submitter = submitter(&url, true);
+        assert!(submitter.account_tins(60).await.is_ok());
+        submitter.tins.age_for_tests(-86_400);
+        assert_eq!(
+            submitter.account_tins(60).await,
+            Err(TinsError::Offline),
+            "a list from ahead of now is neither answered from memory nor offline"
+        );
+        assert_eq!(seen.lock().unwrap().len(), 2);
+        submitter.tins.age_for_tests(-86_400);
+        assert!(submitter.account_tins(60).await.is_ok());
+        assert_eq!(
+            seen.lock().unwrap().len(),
+            3,
+            "a failure from ahead of now does not hold requests off"
+        );
     }
 
     #[tokio::test]
