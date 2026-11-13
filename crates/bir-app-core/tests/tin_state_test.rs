@@ -1,0 +1,299 @@
+//! What the apps say about a TIN's state on the Buwiz account, and the
+//! Queue gate over the account's list. The table below is the only copy of
+//! the wording outside `src/tin_state.rs`.
+
+use bir_app_core::bir_submit::{AccountTins, TinsError, TinsRead};
+use bir_app_core::{BirApp, QueueGate, SendStage, TinKey, TinRefusal, TinState, TinStatement, TinStep, TinTone, Unknown};
+use serde_json::{Value, json};
+
+const NOW: i64 = 1_767_225_600;
+const HEAD: &str = "000-123-453-00000";
+
+/// A list read at `NOW` with `rows`, complete or not.
+fn list(complete: bool, rows: Value) -> TinsRead {
+    let mut body = json!({ "profiles": rows });
+    if complete {
+        body["include"] = "all".into();
+    }
+    Ok(AccountTins::parse(&body, NOW))
+}
+
+fn row(tin: &str, status: &str) -> Value {
+    json!({"tin": tin, "registered_name": "SYNTHETIC TAXPAYER ONE", "status": status, "can_send": status == "approved"})
+}
+
+fn gate(tin: &str, read: TinsRead) -> QueueGate {
+    BirApp::tin_gate(tin, &[read], NOW)
+}
+
+/// (state, chip, line, next, step, tone): one row of the wording table.
+type Row = (TinState, &'static str, &'static str, &'static str, Option<TinStep>, TinTone);
+
+fn table() -> Vec<Row> {
+    vec![
+        (
+            TinState::NotOnAccount,
+            "Not on your Buwiz account",
+            "This TIN is not on your Buwiz account.",
+            "Add the TIN to your Buwiz account, then queue the return again. Your answers are kept.",
+            Some(TinStep::Add),
+            TinTone::Danger,
+        ),
+        (
+            TinState::NotVerified,
+            "Not verified",
+            "This TIN is on your Buwiz account but not verified yet.",
+            "Verify the TIN on your Buwiz account, then queue the return again. Your answers are kept.",
+            Some(TinStep::Verify),
+            TinTone::Warning,
+        ),
+        (
+            TinState::WaitingForReview,
+            "Waiting for review",
+            "Buwiz is reviewing this TIN. You can send it once it is approved.",
+            "Wait for Buwiz to finish the review, then queue the return again. Your answers are kept.",
+            None,
+            TinTone::Info,
+        ),
+        (
+            TinState::SentBack,
+            "Sent back",
+            "Buwiz sent this TIN back for a fix.",
+            "Fix what Buwiz asked for on your Buwiz account, then queue the return again. Your answers are kept.",
+            Some(TinStep::Fix),
+            TinTone::Danger,
+        ),
+        (
+            TinState::Paused,
+            "Paused",
+            "Buwiz staff paused this TIN. It can't send until they turn it back on.",
+            "Write to support@buwiz.com to have it turned back on, then queue the return again. Your answers are kept.",
+            None,
+            TinTone::Warning,
+        ),
+        (
+            TinState::AccountBanned,
+            "Account banned",
+            "This Buwiz account is banned, so nothing can be sent.",
+            "Write to support@buwiz.com about the account. Your answers are kept.",
+            None,
+            TinTone::Danger,
+        ),
+        (
+            TinState::NotAllowed,
+            "Can't send",
+            "This Buwiz account is not allowed to send this TIN.",
+            "Only a Buwiz account allowed to send this TIN can send the return. Your answers are kept.",
+            None,
+            TinTone::Warning,
+        ),
+    ]
+}
+
+fn assert_row(statement: &TinStatement, want: &Row) {
+    let (state, chip, line, next, step, tone) = want;
+    assert_eq!(statement.state, *state);
+    assert_eq!(statement.chip, *chip, "{state:?}");
+    assert_eq!(statement.line, *line, "{state:?}");
+    assert_eq!(statement.next, *next, "{state:?}");
+    assert_eq!(statement.step, *step, "{state:?}");
+    assert_eq!(statement.tone, *tone, "{state:?}");
+}
+
+#[test]
+fn every_state_has_its_exact_line_chip_and_button() {
+    let table = table();
+    // From a stored or live refusal code.
+    let codes = [
+        (TinRefusal::NotActive, 0),
+        (TinRefusal::Unverified, 1),
+        (TinRefusal::Pending, 2),
+        (TinRefusal::NeedsFix, 3),
+        (TinRefusal::Paused, 4),
+        (TinRefusal::AccountBanned, 5),
+    ];
+    for (code, at) in codes {
+        assert_row(&BirApp::tin_statement_for_refusal(code, None), &table[at]);
+    }
+    // From the account's list.
+    let live = [
+        ("unverified", 1),
+        ("pending", 2),
+        ("needs_fix", 3),
+        ("paused", 4),
+    ];
+    for (status, at) in live {
+        let gate = gate(HEAD, list(true, json!([row(HEAD, status)])));
+        assert!(!gate.can_queue, "{status}");
+        assert_row(gate.statement.as_ref().expect(status), &table[at]);
+    }
+    let missing = gate(HEAD, list(true, json!([])));
+    assert_row(missing.statement.as_ref().unwrap(), &table[0]);
+    let banned = gate(HEAD, Err(TinsError::Banned));
+    assert_row(banned.statement.as_ref().unwrap(), &table[5]);
+    let not_allowed = json!([{"tin": HEAD, "registered_name": "X", "status": "approved", "can_send": false}]);
+    let not_allowed = gate(HEAD, list(true, not_allowed));
+    assert_row(not_allowed.statement.as_ref().unwrap(), &table[6]);
+    // Active is quiet.
+    let active = gate(HEAD, list(true, json!([row(HEAD, "approved")])));
+    assert!(active.can_queue);
+    assert_eq!(active.statement, None);
+    assert_eq!(active.unknown, None);
+    assert_eq!(active.checked_at, Some(NOW));
+
+    let labels = [(TinStep::Add, "Add it", "add"), (TinStep::Verify, "Verify it", "verify"), (TinStep::Fix, "Fix it", "fix")];
+    for (step, label, kind) in labels {
+        assert_eq!((step.label(), step.kind()), (label, kind));
+    }
+    assert_eq!(BirApp::DRAFT_NOTE, "Back to a draft. Nothing was sent.");
+}
+
+#[test]
+fn a_sent_back_line_names_the_fixed_reasons_and_the_note_stays_apart() {
+    let stored = "Not sent (nothing reached BIR): Sent back for a fix: A photo is too blurry to read. (tin_needs_fix)";
+    let statement = BirApp::tin_statement_for_refusal(TinRefusal::NeedsFix, Some(stored));
+    assert_eq!(statement.line, "Buwiz sent this TIN back for a fix: A photo is too blurry to read.");
+    assert_eq!(statement.staff_note, None, "a stored reason never carries the note");
+
+    let fixed = json!([{
+        "tin": HEAD, "registered_name": "X", "status": "needs_fix", "can_send": false,
+        "reasons": ["A photo is too blurry to read.", "The name does not match."],
+        "note": "JUANA DELA CRUZ, retake it in daylight.",
+        "action": {"url": "https://account.buwiz.com/tins/claims/c5/fix"}
+    }]);
+    let gate = gate(HEAD, list(true, fixed));
+    let statement = gate.statement.unwrap();
+    assert_eq!(statement.line, "Buwiz sent this TIN back for a fix: A photo is too blurry to read. The name does not match.");
+    assert_eq!(statement.staff_note.as_deref(), Some("JUANA DELA CRUZ, retake it in daylight."));
+    for shown in [&statement.chip.to_owned(), &statement.line, &statement.next] {
+        assert!(!shown.contains("JUANA"), "the note reached {shown}");
+    }
+    assert_eq!(statement.link(&TinKey::parse(HEAD).unwrap()).as_deref(), Some("https://account.buwiz.com/tins/claims/c5/fix"));
+}
+
+#[test]
+fn sent_back_reason_is_sanitized() {
+    let long = "x ".repeat(150);
+    let stored = format!("Not sent (nothing reached BIR): Sent back for a fix: TIN 000-123-453 and   0001234530000\n differ. {long} (tin_needs_fix)");
+    let line = BirApp::tin_statement_for_refusal(TinRefusal::NeedsFix, Some(&stored)).line;
+    assert!(line.starts_with("Buwiz sent this TIN back for a fix: TIN [TIN] and [TIN] differ. x x"), "{line}");
+    assert!(!line.contains("123"), "{line}");
+    let note = json!([{"tin": HEAD, "registered_name": "X", "status": "needs_fix", "can_send": false, "note": format!("see   000123453 {}", "y".repeat(300))}]);
+    let note = gate(HEAD, list(true, note)).statement.unwrap().staff_note.unwrap();
+    assert!(note.starts_with("see [TIN] yyy"), "{note}");
+    assert_eq!(note.chars().count(), 200);
+    let short = json!([{"tin": HEAD, "registered_name": "X", "status": "needs_fix", "can_send": false, "note": "Retake it"}]);
+    assert_eq!(gate(HEAD, list(true, short)).statement.unwrap().staff_note.as_deref(), Some("Retake it."));
+}
+
+#[test]
+fn gate_blocks_each_non_active_state_and_allows_active() {
+    for status in ["unverified", "pending", "needs_fix", "paused"] {
+        let gate = gate(HEAD, list(false, json!([row(HEAD, status)])));
+        assert!(!gate.can_queue, "{status} blocks, even on a list without the marker");
+        assert_eq!(gate.unknown, None);
+    }
+    assert!(gate(HEAD, list(false, json!([row(HEAD, "approved")]))).can_queue);
+}
+
+#[test]
+fn gate_fails_open_when_the_list_is_incomplete_or_unreadable() {
+    let cases: [(TinsRead, Unknown); 5] = [
+        (list(false, json!([row("000-123-454-00000", "approved")])), Unknown::Incomplete),
+        (Err(TinsError::Offline), Unknown::Offline),
+        (Err(TinsError::SignedOut), Unknown::SignedOut),
+        (Err(TinsError::Server { code: "error".into(), message: "x".into() }), Unknown::Unreadable),
+        (list(true, json!([row(HEAD, "frozen")])), Unknown::UnknownStatus),
+    ];
+    for (read, why) in cases {
+        let gate = gate(HEAD, read);
+        assert!(gate.can_queue, "{why:?}");
+        assert_eq!(gate.statement, None, "{why:?}");
+        assert_eq!(gate.unknown, Some(why));
+    }
+    // A list too old to trust, and no list at all.
+    let mut old = AccountTins::parse(&json!({"include": "all", "profiles": [row(HEAD, "paused")]}), NOW - 601);
+    old.stale = true;
+    let stale = BirApp::tin_gate(HEAD, &[Ok(old.clone())], NOW);
+    assert!(stale.can_queue);
+    assert_eq!(stale.unknown, Some(Unknown::Stale));
+    old.fetched_at = NOW - 599;
+    assert!(!BirApp::tin_gate(HEAD, &[Ok(old)], NOW).can_queue, "a stale list under the limit still counts");
+    let none = BirApp::tin_gate(HEAD, &[], NOW);
+    assert!(none.can_queue);
+    assert_eq!(none.unknown, Some(Unknown::SignedOut));
+    let bad_tin = gate("12345", list(true, json!([])));
+    assert!(bad_tin.can_queue);
+    assert_eq!(bad_tin.unknown, Some(Unknown::Unreadable));
+}
+
+#[test]
+fn a_missing_tin_in_a_complete_list_is_not_on_account() {
+    let gate = gate(HEAD, list(true, json!([row("000-123-453-00002", "approved")])));
+    assert!(!gate.can_queue);
+    assert_eq!(gate.statement.unwrap().state, TinState::NotOnAccount);
+}
+
+#[test]
+fn the_gate_compares_one_key_for_9_12_and_14_digit_tins() {
+    let rows = json!([row("000-123-453-00000", "approved"), row("000123453002", "paused")]);
+    for head in ["000123453", "000-123-453", "000123453000", "00012345300000", "000-123-453-00000"] {
+        let gate = gate(head, list(true, rows.clone()));
+        assert!(gate.can_queue, "{head}");
+        assert_eq!(gate.unknown, None, "{head} is found, not unknown");
+    }
+    for branch in ["000-123-453-002", "00012345300002", "000-123-453-00002"] {
+        let gate = gate(branch, list(true, rows.clone()));
+        assert_eq!(gate.statement.map(|s| s.state), Some(TinState::Paused), "{branch}");
+    }
+    // A head office given as its root against a 14-digit row of a branch.
+    let only_branch = json!([row("000-123-453-00002", "approved")]);
+    assert_eq!(gate("000123453", list(true, only_branch)).statement.map(|s| s.state), Some(TinState::NotOnAccount));
+}
+
+#[test]
+fn live_state_wins_over_a_stored_refusal() {
+    let stored = BirApp::tin_statement_for_refusal(TinRefusal::NotActive, None);
+    let live = gate(HEAD, list(false, json!([row(HEAD, "pending")])));
+    assert_eq!(BirApp::effective_statement(Some(stored), &live).map(|s| s.state), Some(TinState::WaitingForReview));
+}
+
+#[test]
+fn a_stored_refusal_stands_when_the_list_is_stale_or_missing() {
+    let stored = BirApp::tin_statement_for_refusal(TinRefusal::Unverified, None);
+    for read in [Err(TinsError::Offline), list(false, json!([])), Err(TinsError::SignedOut)] {
+        let live = gate(HEAD, read);
+        assert_eq!(BirApp::effective_statement(Some(stored.clone()), &live), Some(stored.clone()));
+    }
+    let live = BirApp::tin_gate(HEAD, &[], NOW);
+    assert_eq!(BirApp::effective_statement(Some(stored.clone()), &live), Some(stored));
+}
+
+#[test]
+fn a_stored_refusal_is_hidden_when_the_tin_is_now_active() {
+    let stored = BirApp::tin_statement_for_refusal(TinRefusal::Paused, None);
+    let live = gate(HEAD, list(true, json!([row(HEAD, "approved")])));
+    assert_eq!(BirApp::effective_statement(Some(stored), &live), None);
+}
+
+#[test]
+fn link_for_add_carries_root_and_branch() {
+    let key = TinKey::parse("000-123-453-002").unwrap();
+    assert_eq!(TinStep::Add.link(&key, None), "https://account.buwiz.com/tins/new?tin=000123453&branch=00002");
+    assert_eq!(TinStep::Verify.link(&key, None), "https://account.buwiz.com/tins");
+    assert_eq!(TinStep::Fix.link(&key, Some("https://account.buwiz.com/tins/claims/c1/fix")), "https://account.buwiz.com/tins/claims/c1/fix");
+    // Only "Add it" carries the TIN.
+    assert!(!TinStep::Verify.link(&key, Some("https://account.buwiz.com/tins/claims/c1/verify")).contains("123"));
+}
+
+#[test]
+fn stages_read_their_statement_and_a_maybe_sent_never_does() {
+    let reason = "Not sent (nothing reached BIR): any wording (tin_paused)".to_owned();
+    let refused = SendStage::Refused { code: TinRefusal::Paused, reason: reason.clone() };
+    assert_eq!(BirApp::tin_statement_for_stage(&refused).map(|s| s.state), Some(TinState::Paused));
+    let legacy = SendStage::Failed { reason: reason.clone(), attempts: 1, next_retry_at: None };
+    assert_eq!(BirApp::tin_statement_for_stage(&legacy).map(|s| s.state), Some(TinState::Paused));
+    assert_eq!(BirApp::tin_statement_for_stage(&SendStage::NeedsAttention { reason }), None);
+    let other = SendStage::Failed { reason: "Not sent (nothing reached BIR): the relay closed early".into(), attempts: 1, next_retry_at: None };
+    assert_eq!(BirApp::tin_statement_for_stage(&other), None);
+}

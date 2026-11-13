@@ -18,12 +18,14 @@ mod schema;
 mod screen_form_module;
 mod submit;
 mod tax_profile_module;
+mod tin_state;
 
 pub use app::*;
 pub use filer::*;
 pub use profile_details::*;
 pub use sending::*;
 pub use schema::*;
+pub use tin_state::*;
 pub use submit::{QueueLease, SERVER_URL_SETTING, block_on, set_sending_paused};
 pub use {bir_core, bir_print, bir_submit};
 

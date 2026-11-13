@@ -731,7 +731,7 @@ fn failed_page(r: ReturnRow, raw: String, attention: bool) -> impl IntoElement {
             "This return wasn't sent",
             plain.text.clone(),
             match plain.action {
-                ErrorAction::ClaimTin => "Claim the TIN on your account page, then send it again. Your answers are kept.",
+                ErrorAction::Tin(_) => "Fix the TIN on your Buwiz account, then queue the return again. Your answers are kept.",
                 ErrorAction::SignIn => "Sign in, and it sends by itself. Your answers are kept.",
                 ErrorAction::None => "It tries again by itself. You can also send it again now. Your answers are kept.",
             },
@@ -773,7 +773,7 @@ fn failed_page(r: ReturnRow, raw: String, attention: bool) -> impl IntoElement {
                 st.sign_in_start();
             })
             .into_element(),
-            (false, ErrorAction::ClaimTin) => page_bar("Fix · TIN".to_owned(), "Check the TIN in your profile", Icon::ArrowRight, 0, move || st.profile_open.set(true)).into_element(),
+            (false, ErrorAction::Tin(_)) => page_bar("Fix · TIN".to_owned(), "Check the TIN in your profile", Icon::ArrowRight, 0, move || st.profile_open.set(true)).into_element(),
             (false, ErrorAction::None) => page_bar("It tries again by itself".to_owned(), "Send again now", Icon::Send, 2, move || st.retry(id)).into_element(),
         })
 }

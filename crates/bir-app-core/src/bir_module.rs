@@ -787,6 +787,7 @@ fn stage_name(stage: &crate::sending::SendStage) -> (&'static str, Option<String
         SendStage::Failed { reason, .. } => ("Failed", Some(reason.clone())),
         SendStage::NeedsAttention { reason } => ("NeedsAttention", Some(reason.clone())),
         SendStage::GaveUp { reason } => ("GaveUp", Some(reason.clone())),
+        SendStage::Refused { reason, .. } => ("Refused", Some(reason.clone())),
         SendStage::Sent { .. } => ("Sent", None),
         SendStage::Confirmed { .. } => ("Confirmed", None),
         SendStage::Paid => ("Paid", None),
