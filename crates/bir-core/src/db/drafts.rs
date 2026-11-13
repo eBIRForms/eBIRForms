@@ -70,6 +70,79 @@ pub(super) fn require_abandoned_release_reason(reason: &str) -> Result<(), DbErr
     Ok(())
 }
 
+/// The columns [`summary_from_row`] reads, in its order.
+const SUMMARY_COLUMNS: &str =
+    "id, tin, form_code, taxable_year, quarter, period_key, status, updated_at";
+
+/// A `form_drafts` row selected as [`SUMMARY_COLUMNS`], as its summary.
+fn summary_from_row(row: &rusqlite::Row<'_>) -> rusqlite::Result<FormDraftSummary> {
+    let form_code: String = row.get(2)?;
+    let period_val = row.get::<_, Option<i64>>(4)?.map(|q| q as u8);
+    let legacy_slot = row.get::<_, Option<i64>>(4)?;
+    let period_key = row.get::<_, Option<String>>(5)?;
+    let period = period_from_row(&form_code, legacy_slot, period_key.as_deref());
+    let (quarter, month) = summary_period_fields(&period);
+    let frequency = frequency_for_form(&form_code);
+    let quarter = quarter.or({
+        if matches!(&frequency, FilingFrequency::Quarterly) {
+            period_val
+        } else {
+            None
+        }
+    });
+    let month = month.or({
+        if matches!(&frequency, FilingFrequency::Monthly) {
+            period_val
+        } else {
+            None
+        }
+    });
+
+    Ok(FormDraftSummary {
+        id: row.get(0)?,
+        tin: row.get(1)?,
+        form_code,
+        taxable_year: row.get::<_, i64>(3)? as u16,
+        quarter,
+        month,
+        status: filing_status_from_db(row.get::<_, String>(6)?.as_str()),
+        updated_at: row.get(7)?,
+    })
+}
+
+/// Refuses to release row `id` while this process's queue worker is
+/// sending it: its job key ([`crate::background_cron::queue_job_key`]) is
+/// in [`crate::background_cron::get_active_jobs`]. An unreadable job set
+/// refuses too.
+pub(super) fn refuse_release_while_sending(
+    conn: &rusqlite::Connection,
+    id: i64,
+) -> Result<(), DbError> {
+    let summary = conn.query_row(
+        &format!("SELECT {SUMMARY_COLUMNS} FROM form_drafts WHERE id = ?1"),
+        params![id],
+        summary_from_row,
+    )?;
+    let key = crate::background_cron::queue_job_key(&summary);
+    let jobs = crate::background_cron::get_active_jobs();
+    let sending = match jobs.lock() {
+        Ok(jobs) => jobs.contains(&key),
+        Err(_) => {
+            return Err(DbError::Other(format!(
+                "Will not release the {} claim: cannot tell whether this app is sending it",
+                summary.form_code
+            )));
+        }
+    };
+    if sending {
+        return Err(DbError::Other(format!(
+            "Will not release the {} claim: this app is sending it now",
+            summary.form_code
+        )));
+    }
+    Ok(())
+}
+
 pub(super) fn claim_fields_present(token: &Option<String>, claimed_at: &Option<String>) -> bool {
     token.is_some() && claimed_at.is_some()
 }
@@ -1130,6 +1203,7 @@ impl Database {
                 reason: reason.to_string(),
             });
         };
+        refuse_release_while_sending(&tx, id)?;
         let current: Form2551QDraft = serde_json::from_str(&raw_json)?;
         let claimed = claim_fields_present(
             &current.submission_claim_token,
@@ -2311,6 +2385,7 @@ impl Database {
                 reason: reason.to_string(),
             });
         };
+        refuse_release_while_sending(&tx, id)?;
         let current: Form1601CDraft = serde_json::from_str(&raw_json)?;
         let claimed = claim_fields_present(
             &current.submission_claim_token,
@@ -3345,44 +3420,11 @@ impl Database {
         // Fixed literals from the two callers above, never caller input.
         let placeholders = statuses.iter().map(|_| "?").collect::<Vec<_>>().join(", ");
         let mut stmt = self.conn.prepare(&format!(
-            "SELECT id, tin, form_code, taxable_year, quarter, period_key, status, updated_at
+            "SELECT {SUMMARY_COLUMNS}
              FROM form_drafts
              WHERE status IN ({placeholders})"
         ))?;
-        let rows = stmt.query_map(rusqlite::params_from_iter(statuses.iter()), |row| {
-            let form_code: String = row.get(2)?;
-            let period_val = row.get::<_, Option<i64>>(4)?.map(|q| q as u8);
-            let legacy_slot = row.get::<_, Option<i64>>(4)?;
-            let period_key = row.get::<_, Option<String>>(5)?;
-            let period = period_from_row(&form_code, legacy_slot, period_key.as_deref());
-            let (quarter, month) = summary_period_fields(&period);
-            let frequency = frequency_for_form(&form_code);
-            let quarter = quarter.or({
-                if matches!(&frequency, FilingFrequency::Quarterly) {
-                    period_val
-                } else {
-                    None
-                }
-            });
-            let month = month.or({
-                if matches!(&frequency, FilingFrequency::Monthly) {
-                    period_val
-                } else {
-                    None
-                }
-            });
-
-            Ok(FormDraftSummary {
-                id: row.get(0)?,
-                tin: row.get(1)?,
-                form_code,
-                taxable_year: row.get::<_, i64>(3)? as u16,
-                quarter,
-                month,
-                status: filing_status_from_db(row.get::<_, String>(6)?.as_str()),
-                updated_at: row.get(7)?,
-            })
-        })?;
+        let rows = stmt.query_map(rusqlite::params_from_iter(statuses.iter()), summary_from_row)?;
 
         let mut summaries = Vec::new();
         for row in rows {
@@ -6836,5 +6878,132 @@ mod tests {
         assert_eq!(summaries[1].form_code, "2551Q");
         assert_eq!(summaries[1].quarter, Some(4));
         assert_eq!(summaries[1].month, None);
+    }
+
+    /// A synthetic taxpayer of its own, so no other test's job key matches.
+    fn sending_profile(segment3: &str) -> TaxpayerProfile {
+        let mut profile = test_profile();
+        profile.tin.segment1 = "000".to_string();
+        profile.tin.segment2 = "111".to_string();
+        profile.tin.segment3 = segment3.to_string();
+        profile
+    }
+
+    /// The whole stored row, to show a refusal changed nothing.
+    fn raw_draft_row(db: &Database, form_code: &str, tin: &str) -> (String, String) {
+        db.conn
+            .query_row(
+                "SELECT status, data_json FROM form_drafts WHERE form_code = ?1 AND tin = ?2",
+                params![form_code, tin],
+                |row| Ok((row.get(0)?, row.get(1)?)),
+            )
+            .unwrap()
+    }
+
+    /// `key` is the worker's job key for the one queued row of `tin`.
+    fn assert_worker_key(db: &Database, tin: &str, key: &str) {
+        let queued = db.list_all_queued_submissions().unwrap();
+        let summary = queued
+            .iter()
+            .find(|summary| summary.tin == tin)
+            .expect("a queued row");
+        assert_eq!(crate::background_cron::queue_job_key(summary), key);
+    }
+
+    /// Runs `release` with `key` in this process's in-flight set, then
+    /// without it: the first is refused and changes nothing.
+    fn refused_while_sending<T>(
+        db: &Database,
+        form_code: &str,
+        tin: &str,
+        key: &str,
+        release: impl Fn() -> Result<T, DbError>,
+    ) -> T {
+        let jobs = crate::background_cron::get_active_jobs();
+        assert!(jobs.lock().unwrap().insert(key.to_string()));
+        let before = raw_draft_row(db, form_code, tin);
+        let refused = release();
+        assert!(jobs.lock().unwrap().remove(key));
+        let Err(DbError::Other(message)) = refused else {
+            panic!("{form_code} was released while this process sends it");
+        };
+        assert_eq!(
+            message,
+            format!("Will not release the {form_code} claim: this app is sending it now")
+        );
+        assert_eq!(raw_draft_row(db, form_code, tin), before);
+        release().expect("released once the send is no longer in flight")
+    }
+
+    #[test]
+    fn a_claimed_1601c_this_process_is_sending_is_not_released() {
+        let db = test_db();
+        let queued = queued_1601c_draft(&sending_profile("901"));
+        db.save_queued_1601c_draft(&queued).unwrap();
+        let Claim1601CSubmissionResult::Claimed { .. } = db
+            .claim_queued_1601c_submission(
+                &queued.tin,
+                queued.taxable_year,
+                queued.month,
+                &queued.queued_submission_fingerprint,
+                &queued.next_retry_at,
+                queued.submission_attempts,
+            )
+            .unwrap()
+        else {
+            panic!("queued 1601C should be claimed");
+        };
+        let key = format!("form:1601C:{}:{}:{}", queued.tin, queued.taxable_year, queued.month);
+        assert_worker_key(&db, &queued.tin, &key);
+        let released = refused_while_sending(&db, "1601C", &queued.tin, &key, || {
+            db.release_abandoned_claimed_1601c_submission(
+                &queued.tin,
+                queued.taxable_year,
+                queued.month,
+                ABANDONED_CLAIM_RELEASE_REASON,
+            )
+        });
+        let AbandonedClaimRelease::Released { draft, .. } = released else {
+            panic!("the claimed 1601C should release to Draft");
+        };
+        assert_eq!(draft.status, FilingStatus::Draft);
+        assert_eq!(raw_draft_row(&db, "1601C", &queued.tin).0, "Draft");
+    }
+
+    #[test]
+    fn a_claimed_2551q_this_process_is_sending_is_not_released() {
+        let db = test_db();
+        let profile = sending_profile("902");
+        insert_test_profile(&db, &profile);
+        let queued = queued_graduated_draft(&profile);
+        db.save_queued_2551q_draft_and_election(&queued).unwrap();
+        let Claim2551QSubmissionResult::Claimed { .. } = db
+            .claim_queued_2551q_submission(
+                &queued.tin,
+                queued.taxable_year,
+                queued.quarter,
+                &queued.queued_submission_fingerprint,
+                &queued.next_retry_at,
+                queued.submission_attempts,
+            )
+            .unwrap()
+        else {
+            panic!("queued 2551Q should be claimed");
+        };
+        let key = format!("form:2551Q:{}:{}:{}", queued.tin, queued.taxable_year, queued.quarter);
+        assert_worker_key(&db, &queued.tin, &key);
+        let released = refused_while_sending(&db, "2551Q", &queued.tin, &key, || {
+            db.release_abandoned_claimed_2551q_submission(
+                &queued.tin,
+                queued.taxable_year,
+                queued.quarter,
+                ABANDONED_CLAIM_RELEASE_REASON,
+            )
+        });
+        let AbandonedClaimRelease::Released { draft, .. } = released else {
+            panic!("the claimed 2551Q should release to Draft");
+        };
+        assert_eq!(draft.status, FilingStatus::Draft);
+        assert_eq!(raw_draft_row(&db, "2551Q", &queued.tin).0, "Draft");
     }
 }
