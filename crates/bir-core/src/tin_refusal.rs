@@ -107,18 +107,24 @@ impl TinRefusal {
 }
 
 /// `"{message} ({code})"` split at its trailing code, when it has one: the
-/// text ends in `)`, and the brackets after the last ` (` hold only
-/// lowercase letters and `_`.
+/// text ends in `)`, the last `(` opens the text or follows whitespace (an
+/// empty message reads `" (code)"`, which is `"(code)"` trimmed), and the
+/// brackets hold only lowercase letters and `_`. A prefix the queue adds in
+/// front never changes the answer.
 fn trailing_code(reason: &str) -> Option<(&str, &str)> {
     let reason = reason.trim();
     let inner = reason.strip_suffix(')')?;
-    let open = inner.rfind(" (")?;
-    let code = &inner[open + 2..];
+    let open = inner.rfind('(')?;
+    let message = &inner[..open];
+    if !(message.is_empty() || message.ends_with(char::is_whitespace)) {
+        return None;
+    }
+    let code = &inner[open + 1..];
     let is_code = !code.is_empty()
         && code
             .bytes()
             .all(|byte| byte.is_ascii_lowercase() || byte == b'_');
-    is_code.then(|| (inner[..open].trim_end(), code))
+    is_code.then(|| (message.trim_end(), code))
 }
 
 #[cfg(test)]
@@ -191,6 +197,39 @@ mod tests {
             "",
         ] {
             assert_eq!(TinRefusal::from_reason(reason), None, "{reason:?}");
+        }
+    }
+
+    /// An empty server message displays as `" (code)"`, and a relay error
+    /// can be just `"(code)"`: the live text and the stored reason built
+    /// from it decode alike.
+    #[test]
+    fn a_live_error_and_its_stored_reason_decode_alike() {
+        for live in [
+            " (tin_paused)",
+            "(tin_paused)",
+            "\t(tin_paused)",
+            "Sending is paused. (tin_paused)",
+            "x(tin_paused)",
+            "(tin_paused",
+            "",
+            "the relay closed early",
+        ] {
+            for prefix in SOURCE_PREFIXES {
+                let stored = format!("{prefix}{live}");
+                assert_eq!(
+                    TinRefusal::from_reason(live),
+                    TinRefusal::from_reason(&stored),
+                    "{live:?} / {stored:?}"
+                );
+            }
+        }
+        for live in [" (tin_paused)", "(tin_paused)", "\t(tin_paused)"] {
+            assert_eq!(
+                TinRefusal::from_reason(live),
+                Some(TinRefusal::Paused),
+                "{live:?}"
+            );
         }
     }
 

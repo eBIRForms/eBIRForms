@@ -4335,6 +4335,57 @@ mod tests {
         }
     }
 
+    /// A refusal whose server message is empty reaches the worker as
+    /// `" (code)"`, and a relay `failed` error can be just `"(code)"`: each
+    /// goes back to Draft at once, the same as a refusal with words.
+    #[tokio::test]
+    async fn a_refusal_with_no_message_returns_to_draft_at_once() {
+        for (n, reason) in [" (tin_paused)", "(tin_paused)"].into_iter().enumerate() {
+            let (profile, queued, db, summary) = saved_queued_1601c();
+            let transport =
+                RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(reason));
+            process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+            assert_eq!(transport.calls().len(), 1, "{reason:?}");
+            let refused = stored_1601c(&db, &queued);
+            assert_eq!(refused.status, FilingStatus::Draft, "{reason:?}");
+            assert_eq!(refused.submission_attempts, 1);
+            assert!(refused.next_retry_at.is_none());
+            assert_eq!(refusal_alerts(&db, "1601C"), 1, "{reason:?}");
+
+            let (queued, db) = saved_queued_2551q(["820", "821"][n]);
+            let transport = Arc::new(RecordingSubmissionTransport::new(
+                TestTransportOutcome::NotSentWith(reason),
+            ));
+            tick_2551q(&db, &transport, &queued).await;
+            assert_eq!(transport.calls().len(), 1, "{reason:?}");
+            let refused = stored_2551q(&db, &queued);
+            assert_eq!(refused.status, FilingStatus::Draft, "{reason:?}");
+            assert_eq!(refused.submission_attempts, 1);
+            assert!(refused.next_retry_at.is_none());
+            assert_eq!(refusal_alerts(&db, "2551Q"), 1, "{reason:?}");
+
+            let profile = test_profile();
+            let db = test_db();
+            let (queued, summary) = queued_test_form(&db);
+            let transport =
+                RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(reason));
+            process_queued_queueable::<TestForm, _>(
+                &summary,
+                &profile,
+                db.clone(),
+                &transport,
+                allow_test_form,
+            )
+            .await;
+            assert_eq!(transport.calls().len(), 1, "{reason:?}");
+            let refused = stored_test_form(&db, &queued);
+            assert_eq!(refused.lifecycle.status, FilingStatus::Draft, "{reason:?}");
+            assert_eq!(refused.lifecycle.submission_attempts, 1);
+            assert!(refused.lifecycle.next_retry_at.is_none());
+            assert_eq!(refusal_alerts(&db, TestForm::CODE), 1, "{reason:?}");
+        }
+    }
+
     #[tokio::test]
     async fn a_not_sent_that_is_not_a_tin_refusal_still_backs_off() {
         for reason in [
