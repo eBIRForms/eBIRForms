@@ -22,6 +22,7 @@
 use std::cell::RefCell;
 use std::fs::{File, OpenOptions, TryLockError};
 use std::path::{Path, PathBuf};
+use std::sync::Mutex;
 use std::time::{Duration, Instant};
 
 use rusqlite::{Connection, ErrorCode};
@@ -275,13 +276,21 @@ pub struct WorkerLease {
     path: PathBuf,
 }
 
+/// The lock file of every worker lease this process holds, once per lease.
+static HELD_LEASES: Mutex<Vec<PathBuf>> = Mutex::new(Vec::new());
+
 impl WorkerLease {
     /// Take the lease if no other process holds it. `Ok(None)`: follower.
     pub fn try_acquire(db_path: &Path) -> Result<Option<WorkerLease>, DbError> {
         let path = worker_lock_path(db_path);
         let file = open_sidecar(&path)?;
         match file.try_lock() {
-            Ok(()) => Ok(Some(WorkerLease { _file: file, path })),
+            Ok(()) => {
+                if let Ok(mut held) = HELD_LEASES.lock() {
+                    held.push(path.clone());
+                }
+                Ok(Some(WorkerLease { _file: file, path }))
+            }
             Err(TryLockError::WouldBlock) => Ok(None),
             Err(TryLockError::Error(error)) => Err(DbError::Io(error)),
         }
@@ -335,6 +344,31 @@ impl WorkerLease {
         }
     }
 
+    /// Whether this process holds the worker lease of the database at
+    /// `db_path` (so it, and no other process, runs that send queue).
+    /// [`Self::try_acquire`] cannot answer that here: the lock refuses a
+    /// second handle in the holding process too.
+    pub fn held_in_this_process(db_path: &Path) -> bool {
+        let path = worker_lock_path(db_path);
+        HELD_LEASES
+            .lock()
+            .map(|held| held.contains(&path))
+            .unwrap_or(false)
+    }
+
+    /// Whether any process (this one included) holds the worker lease of
+    /// the database at `db_path`. Checked by trying the lock on a fresh
+    /// handle and letting it go at once: no lease is taken, recorded or
+    /// logged, and the lock is held only for that instant.
+    pub fn is_held(db_path: &Path) -> Result<bool, DbError> {
+        let file = open_sidecar(&worker_lock_path(db_path))?;
+        match file.try_lock() {
+            Ok(()) => Ok(false),
+            Err(TryLockError::WouldBlock) => Ok(true),
+            Err(TryLockError::Error(error)) => Err(DbError::Io(error)),
+        }
+    }
+
     pub fn role(lease: &Option<WorkerLease>) -> WorkerRole {
         if lease.is_some() {
             WorkerRole::Holder
@@ -346,6 +380,11 @@ impl WorkerLease {
 
 impl Drop for WorkerLease {
     fn drop(&mut self) {
+        if let Ok(mut held) = HELD_LEASES.lock()
+            && let Some(index) = held.iter().position(|path| *path == self.path)
+        {
+            held.remove(index);
+        }
         info!(lock = %self.path.display(), "worker lease released");
     }
 }
@@ -433,6 +472,37 @@ mod tests {
         drop(first);
         let third = WorkerLease::acquire_or_follow(&db, Duration::from_millis(20), || false);
         assert!(third.is_some());
+    }
+
+    #[test]
+    fn this_process_knows_it_holds_the_worker_lease() {
+        let dir = tempfile::tempdir().unwrap();
+        let db = dir.path().join("bir_data.db");
+        let other = dir.path().join("other.db");
+        assert!(!WorkerLease::held_in_this_process(&db));
+        let lease = WorkerLease::try_acquire(&db).unwrap().expect("the lease");
+        assert!(WorkerLease::held_in_this_process(&db));
+        assert!(!WorkerLease::held_in_this_process(&other));
+        // A second handle in this same process is refused, so only the
+        // record says this process is the holder.
+        assert!(WorkerLease::try_acquire(&db).unwrap().is_none());
+        assert!(WorkerLease::held_in_this_process(&db));
+        drop(lease);
+        assert!(!WorkerLease::held_in_this_process(&db));
+    }
+
+    #[test]
+    fn checking_the_worker_lease_takes_nothing() {
+        let dir = tempfile::tempdir().unwrap();
+        let db = dir.path().join("bir_data.db");
+        assert!(!WorkerLease::is_held(&db).unwrap());
+        // The check took no lease: the next acquire succeeds, and the
+        // check now sees it held.
+        assert!(!WorkerLease::held_in_this_process(&db));
+        let lease = WorkerLease::try_acquire(&db).unwrap().expect("the lease");
+        assert!(WorkerLease::is_held(&db).unwrap());
+        drop(lease);
+        assert!(!WorkerLease::is_held(&db).unwrap());
     }
 
     #[test]
