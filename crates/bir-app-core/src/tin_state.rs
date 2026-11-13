@@ -451,12 +451,13 @@ fn statement(state: TinState, facts: Facts) -> TinStatement {
 }
 
 /// Text from the server or staff, made fit to show: whitespace collapsed,
-/// any run of 9 or more digits (dashes allowed) masked as `[TIN]`, at most
-/// 200 characters, ending in a full stop.
+/// any run of 9 or more digits (groups split by dashes, spaces, dots or
+/// slashes) masked as `[TIN]`, at most 200 characters, ending in a full
+/// stop.
 fn sanitize(text: &str) -> String {
     const CAP: usize = 200;
-    let words: Vec<String> = text.split_whitespace().map(mask_tins).collect();
-    let text = words.join(" ");
+    let words: Vec<&str> = text.split_whitespace().collect();
+    let text = mask_tins(&words.join(" "));
     if text.is_empty() {
         return text;
     }
@@ -467,24 +468,27 @@ fn sanitize(text: &str) -> String {
     if text.ends_with(['.', '!', '?']) { text } else { format!("{text}.") }
 }
 
-/// `word` with each run of digits and dashes that holds 9 or more digits
-/// replaced by `[TIN]`.
-fn mask_tins(word: &str) -> String {
+/// `text` with each run of digits that holds 9 or more digits replaced by
+/// `[TIN]`. A run goes on through dashes, and through one space, dot or
+/// slash between two digits.
+fn mask_tins(text: &str) -> String {
+    const SEPARATORS: [char; 4] = ['-', ' ', '.', '/'];
     let mut out = String::new();
     let mut run = String::new();
     let flush = |run: &mut String, out: &mut String| {
         let digits = run.chars().filter(char::is_ascii_digit).count();
         if digits >= 9 {
-            let trailing = run.len() - run.trim_end_matches('-').len();
+            let kept = run.trim_end_matches(SEPARATORS);
             out.push_str("[TIN]");
-            out.push_str(&"-".repeat(trailing));
+            out.push_str(&run[kept.len()..]);
         } else {
             out.push_str(run);
         }
         run.clear();
     };
-    for c in word.chars() {
-        if c.is_ascii_digit() || (c == '-' && !run.is_empty()) {
+    for c in text.chars() {
+        let after_digit = run.ends_with(|last: char| last.is_ascii_digit());
+        if c.is_ascii_digit() || (SEPARATORS.contains(&c) && !run.is_empty() && (c == '-' || after_digit)) {
             run.push(c);
         } else {
             flush(&mut run, &mut out);

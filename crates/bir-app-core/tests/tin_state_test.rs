@@ -186,6 +186,28 @@ fn sent_back_reason_is_sanitized() {
     assert_eq!(gate(HEAD, list(true, short)).statement.unwrap().staff_note.as_deref(), Some("Retake it."));
 }
 
+/// A TIN written with spaces, dots or slashes between its groups is masked
+/// as one written with dashes is; short numbers and dates are kept.
+#[test]
+fn a_tin_written_with_spaces_dots_or_slashes_is_masked() {
+    let line = |text: &str| {
+        let stored = format!("Not sent (nothing reached BIR): Sent back for a fix: {text} (tin_needs_fix)");
+        BirApp::tin_statement_for_refusal(TinRefusal::NeedsFix, Some(&stored)).line
+    };
+    for tin in ["000 123 453 000", "000.123.453.000", "000/123/453/000", "000 123 453", "000-123 453.00000", "000123453 00000", "000-123-453-000"] {
+        let shown = line(&format!("TIN {tin} 456 789 012 differs."));
+        assert!(!shown.contains("123") && !shown.contains("789"), "{tin}: {shown}");
+        assert!(shown.starts_with("Buwiz sent this TIN back for a fix: TIN [TIN]"), "{tin}: {shown}");
+    }
+    assert_eq!(line("TIN 000 123 453 000 differs."), "Buwiz sent this TIN back for a fix: TIN [TIN] differs.");
+    assert_eq!(line("TIN 000.123.453. Retake it."), "Buwiz sent this TIN back for a fix: TIN [TIN]. Retake it.");
+    for kept in ["Retake 2 photos by 2026/11/14.", "Pay 1 500.00 by 30 June.", "Form 2551Q, 3 pages."] {
+        assert_eq!(line(kept), format!("Buwiz sent this TIN back for a fix: {kept}"), "{kept}");
+    }
+    let note = json!([{"tin": HEAD, "registered_name": "X", "status": "needs_fix", "can_send": false, "note": "see 000 123 453 000 now"}]);
+    assert_eq!(gate(HEAD, list(true, note)).statement.unwrap().staff_note.as_deref(), Some("see [TIN] now."));
+}
+
 #[test]
 fn gate_blocks_each_non_active_state_and_allows_active() {
     for status in ["unverified", "pending", "needs_fix", "paused"] {
