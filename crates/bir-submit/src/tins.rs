@@ -31,6 +31,25 @@ const FAILURE_SECS: i64 = 30;
 /// The shortest time between two forced reads ("Check again").
 const FORCED_SECS: i64 = 15;
 pub(crate) const PATH: &str = "/api/tax-profiles?include=all,pending";
+
+/// The Buwiz account site: the only host a row's `action.url` may open,
+/// and the site of every link the apps build for a TIN's step.
+pub const ACCOUNT_SITE: &str = "https://account.buwiz.com";
+
+/// `url` when it is a page of [`ACCOUNT_SITE`], as the URL parser writes
+/// it: https, that host exactly, no user name or password, the default
+/// port. `None` for anything else.
+pub fn pinned_account_url(url: &str) -> Option<String> {
+    let site = url::Url::parse(ACCOUNT_SITE).expect("the account site is a URL");
+    let page = url::Url::parse(url.trim()).ok()?;
+    (page.scheme() == "https"
+        && page.host_str().is_some()
+        && page.host_str() == site.host_str()
+        && page.username().is_empty()
+        && page.password().is_none()
+        && page.port().is_none())
+    .then(|| page.to_string())
+}
 pub(crate) const PLAIN_PATH: &str = "/api/tax-profiles";
 
 /// A row's state on the account. An unknown value is kept as `Other` and
@@ -74,7 +93,8 @@ pub struct AccountTin {
     /// never copied into a stored reason, a line an assistant reads, or an
     /// alert.
     pub note: Option<String>,
-    /// The row's own page for its Verify or Fix step (`action.url`).
+    /// The row's own page for its Verify or Fix step (`action.url`), kept
+    /// only when it is a page of [`ACCOUNT_SITE`] ([`pinned_account_url`]).
     pub action_url: Option<String>,
 }
 
@@ -101,7 +121,7 @@ impl AccountTin {
                 .map(|reasons| reasons.iter().filter_map(text).collect())
                 .unwrap_or_default(),
             note: text(&row["note"]),
-            action_url: text(&row["action"]["url"]).filter(|url| url.starts_with("https://")),
+            action_url: text(&row["action"]["url"]).and_then(|url| pinned_account_url(&url)),
         })
     }
 }
@@ -1121,6 +1141,58 @@ mod tests {
         );
         assert!(submitter.account_tins(60).await.is_ok());
         assert_eq!(list_reads(&seen), 2);
+    }
+
+    /// Pages that look like the account site but are not, and the account
+    /// site with something odd about it.
+    const LOOKALIKES: [&str; 14] = [
+        "https://account.buwiz.com.evil.example/tins/claims/c1/fix",
+        "https://account.buwiz.com@evil.example/tins/claims/c1/fix",
+        "https://evil.example/tins/claims/c1/fix",
+        "https://evil.example\\@account.buwiz.com/tins",
+        "http://account.buwiz.com/tins/claims/c1/fix",
+        "https://user@account.buwiz.com/tins/claims/c1/fix",
+        "https://user:secret@account.buwiz.com/tins/claims/c1/fix",
+        "https://account.buwiz.com:8443/tins/claims/c1/fix",
+        "https://account.buwiz.com./tins/claims/c1/fix",
+        "https://xaccount.buwiz.com/tins",
+        "https://buwiz.com/tins",
+        "//account.buwiz.com/tins",
+        "javascript:alert(1)",
+        "account.buwiz.com/tins",
+    ];
+
+    #[test]
+    fn only_a_page_of_the_account_site_is_kept_as_a_rows_link() {
+        for url in LOOKALIKES {
+            assert_eq!(pinned_account_url(url), None, "{url}");
+            let body = json!({"include":"all","profiles":[{
+                "tin":"000-123-457-00000","registered_name":"X","status":"needs_fix","can_send":false,
+                "action":{"label":"Fix","url":url}
+            }]});
+            assert_eq!(
+                AccountTins::parse(&body, 1).rows[0].action_url,
+                None,
+                "{url}"
+            );
+        }
+        for (url, kept) in [
+            (
+                "https://account.buwiz.com/tins/claims/c1/fix",
+                "https://account.buwiz.com/tins/claims/c1/fix",
+            ),
+            (
+                "https://account.buwiz.com:443/tins/claims/c1/verify",
+                "https://account.buwiz.com/tins/claims/c1/verify",
+            ),
+            (
+                "https://ACCOUNT.buwiz.com/tins",
+                "https://account.buwiz.com/tins",
+            ),
+        ] {
+            assert_eq!(pinned_account_url(url).as_deref(), Some(kept), "{url}");
+        }
+        assert!(ACCOUNT_SITE.starts_with("https://"));
     }
 
     #[test]

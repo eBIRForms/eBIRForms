@@ -3,7 +3,7 @@
 //! the wording outside `src/tin_state.rs`.
 
 use bir_app_core::bir_submit::{AccountTins, TinsError, TinsRead};
-use bir_app_core::{BirApp, QueueGate, SendStage, TinKey, TinRefusal, TinState, TinStatement, TinStep, TinTone, Unknown};
+use bir_app_core::{ACCOUNT_SITE, BirApp, QueueGate, SendStage, TinKey, TinRefusal, TinState, TinStatement, TinStep, TinTone, Unknown};
 use serde_json::{Value, json};
 
 const NOW: i64 = 1_767_225_600;
@@ -284,6 +284,31 @@ fn link_for_add_carries_root_and_branch() {
     assert_eq!(TinStep::Fix.link(&key, Some("https://account.buwiz.com/tins/claims/c1/fix")), "https://account.buwiz.com/tins/claims/c1/fix");
     // Only "Add it" carries the TIN.
     assert!(!TinStep::Verify.link(&key, Some("https://account.buwiz.com/tins/claims/c1/verify")).contains("123"));
+}
+
+/// A Verify or Fix link that is not a page of the account site opens the
+/// account's TIN list instead; "Add it" is built on the same site.
+#[test]
+fn a_step_link_off_the_account_site_falls_back_to_the_tin_list() {
+    let key = TinKey::parse(HEAD).unwrap();
+    let tins = format!("{ACCOUNT_SITE}/tins");
+    for url in [
+        "https://account.buwiz.com.evil.example/tins/claims/c1/fix",
+        "https://account.buwiz.com@evil.example/tins/claims/c1/fix",
+        "https://evil.example/tins/claims/c1/fix",
+        "http://account.buwiz.com/tins/claims/c1/fix",
+        "https://user@account.buwiz.com/tins/claims/c1/fix",
+        "https://account.buwiz.com:8443/tins/claims/c1/fix",
+    ] {
+        for step in [TinStep::Verify, TinStep::Fix] {
+            assert_eq!(step.link(&key, Some(url)), tins, "{url}");
+        }
+        let statement = BirApp::tin_statement_for_refusal(TinRefusal::NeedsFix, None);
+        let statement = TinStatement { action_url: Some(url.to_owned()), ..statement };
+        assert_eq!(statement.link(&key).as_deref(), Some(tins.as_str()), "{url}");
+    }
+    assert!(TinStep::Add.link(&key, None).starts_with(&format!("{ACCOUNT_SITE}/tins/new?")));
+    assert_eq!(ACCOUNT_SITE, bir_app_core::bir_submit::tins::ACCOUNT_SITE);
 }
 
 #[test]

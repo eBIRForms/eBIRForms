@@ -11,14 +11,12 @@
 
 pub use bir_core::forms::taxform::TinKey;
 pub use bir_core::tin_refusal::TinRefusal;
-use bir_submit::tins::STALE_LIMIT_SECS;
+pub use bir_submit::tins::ACCOUNT_SITE;
+use bir_submit::tins::{STALE_LIMIT_SECS, pinned_account_url};
 use bir_submit::{AccountTin, TinStatus, TinsError, TinsRead};
 
 use crate::sending::SendStage;
 use crate::{AppResult, BirApp, ReturnRow};
-
-/// The account site the steps open.
-pub const ACCOUNT_SITE: &str = "https://account.buwiz.com";
 
 /// A TIN's state on the account, as the apps name it.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -77,13 +75,15 @@ impl TinStep {
         }
     }
 
-    /// Where the step opens. Only "Add it" carries the TIN (`key`); Verify
-    /// and Fix open the row's own page (`action_url`) when the list gave
-    /// one, else the account's TIN list.
+    /// Where the step opens, on [`ACCOUNT_SITE`]. Only "Add it" carries the
+    /// TIN (`key`); Verify and Fix open the row's own page (`action_url`)
+    /// when the list gave one that is a page of the account site
+    /// ([`bir_submit::tins::pinned_account_url`]), else the account's TIN
+    /// list.
     pub fn link(self, key: &TinKey, action_url: Option<&str>) -> String {
-        match (self, action_url) {
+        match (self, action_url.and_then(pinned_account_url)) {
             (TinStep::Add, _) => format!("{ACCOUNT_SITE}/tins/new?tin={}&branch={}", key.root(), key.branch()),
-            (_, Some(url)) => url.to_owned(),
+            (_, Some(url)) => url,
             (_, None) => format!("{ACCOUNT_SITE}/tins"),
         }
     }
