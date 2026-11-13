@@ -20,7 +20,7 @@ use crate::icons::{Icon, icon};
 use crate::live::store;
 use crate::screens::home::{greeting, late_penalty, open_deadline, open_status};
 use crate::screens::{Route, library, preview, welcome};
-use bir_app_core::{ErrorAction, SendStage, plain_send_error};
+use bir_app_core::{ErrorAction, SendStage, TinKey, TinRefusal, plain_send_error};
 
 use crate::store::{Catalog, Db, FilingsFilter, Loaded, days_until, today};
 use crate::theme;
@@ -720,20 +720,22 @@ fn secondary(label: &'static str, act: impl Fn() + 'static) -> impl IntoElement 
 fn failed_page(r: ReturnRow, raw: String, attention: bool) -> impl IntoElement {
     let st = store();
     let plain = plain_send_error(&raw);
+    // A refusal for the TIN: the wording table's next step and link for its state.
+    let tin = TinRefusal::from_reason(&raw).map(|code| BirApp::tin_statement_for_refusal(code, Some(&raw)));
     let (title, why, next) = if attention {
         (
             "BIR may already have this return",
             "The connection ended while it was being sent, so eBIRForms can't tell whether BIR got it.".to_owned(),
-            "Check your email for BIR's confirmation before you do anything else. eBIRForms won't send it again by itself.",
+            "Check your email for BIR's confirmation before you do anything else. eBIRForms won't send it again by itself.".to_owned(),
         )
     } else {
         (
             "This return wasn't sent",
             plain.text.clone(),
             match plain.action {
-                ErrorAction::Tin(_) => "Fix the TIN on your Buwiz account, then queue the return again. Your answers are kept.",
-                ErrorAction::SignIn => "Sign in, and it sends by itself. Your answers are kept.",
-                ErrorAction::None => "It tries again by itself. You can also send it again now. Your answers are kept.",
+                ErrorAction::Tin(_) => tin.as_ref().map(|statement| statement.next.clone()).unwrap_or_default(),
+                ErrorAction::SignIn => "Sign in, and it sends by itself. Your answers are kept.".to_owned(),
+                ErrorAction::None => "It tries again by itself. You can also send it again now. Your answers are kept.".to_owned(),
             },
         )
     };
@@ -773,7 +775,21 @@ fn failed_page(r: ReturnRow, raw: String, attention: bool) -> impl IntoElement {
                 st.sign_in_start();
             })
             .into_element(),
-            (false, ErrorAction::Tin(_)) => page_bar("Fix · TIN".to_owned(), "Check the TIN in your profile", Icon::ArrowRight, 0, move || st.profile_open.set(true)).into_element(),
+            (false, ErrorAction::Tin(_)) => {
+                let link = tin.as_ref().zip(TinKey::parse(&r.tin)).and_then(|(statement, key)| statement.link(&key));
+                match (tin.as_ref().and_then(|statement| statement.step), link) {
+                    (Some(step), Some(link)) => page_bar("Fix · TIN".to_owned(), step.label(), Icon::ArrowRight, 2, move || {
+                        let _ = open_url(link.clone());
+                    })
+                    .into_element(),
+                    // Waiting for review, paused or banned: nothing to open; `next` says what to do.
+                    _ => {
+                        let open = r.clone();
+                        let chip = tin.as_ref().map_or("TIN", |statement| statement.chip);
+                        page_bar(chip.to_owned(), "Open the return", Icon::ArrowRight, 0, move || st.open_row(&open)).into_element()
+                    }
+                }
+            }
             (false, ErrorAction::None) => page_bar("It tries again by itself".to_owned(), "Send again now", Icon::Send, 2, move || st.retry(id)).into_element(),
         })
 }
