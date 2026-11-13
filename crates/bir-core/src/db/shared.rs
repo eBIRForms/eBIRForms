@@ -357,9 +357,12 @@ impl WorkerLease {
     }
 
     /// Whether any process (this one included) holds the worker lease of
-    /// the database at `db_path`. Checked by trying the lock on a fresh
-    /// handle and letting it go at once: no lease is taken, recorded or
-    /// logged, and the lock is held only for that instant.
+    /// the database at `db_path`. Checked by trying the exclusive lock on a
+    /// fresh handle to the sidecar lock file, which (with its directory) is
+    /// created if missing. When the try succeeds, the exclusive lock is held
+    /// for an instant, until the handle closes as this returns, and a
+    /// [`Self::try_acquire`] in that instant, by any process, finds the
+    /// lease held. Nothing is recorded or logged.
     pub fn is_held(db_path: &Path) -> Result<bool, DbError> {
         let file = open_sidecar(&worker_lock_path(db_path))?;
         match file.try_lock() {

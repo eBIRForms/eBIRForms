@@ -1,6 +1,6 @@
 //! Where each return is on its way to BIR, read from the database: the
 //! queue worker (`bir_core::background_cron`) records its claim, its
-//! failures and the signed receipt on the return, and [`send_stage`] turns
+//! failures and the signed receipt on the return, and [`send_stage_for`] turns
 //! those fields into what the person sees. [`plain_send_error`] puts the
 //! worker's and the relay's reasons in plain words.
 
@@ -51,15 +51,19 @@ fn text(data: &Value, key: &str) -> Option<String> {
     data.get(key).and_then(Value::as_str).filter(|s| !s.is_empty()).map(str::to_owned)
 }
 
-/// The stage of a stored return: `status` is its status column, `data` its
-/// JSON. `None` for a plain draft (one that never failed a send).
-pub fn send_stage(status: &str, data: &Value) -> Option<SendStage> {
+/// The stage of a stored return from its `submission_error` only: it reads
+/// no 2551Q error (a 2551Q's is in `last_error`), so it is kept for this
+/// module's tests and callers use [`send_stage_for`].
+#[cfg(test)]
+fn send_stage(status: &str, data: &Value) -> Option<SendStage> {
     stage_with_error(status, data, text(data, "submission_error"))
 }
 
-/// [`send_stage`] for a return of `form_code`. A 2551Q has no
-/// `submission_error`: the queue writes its reasons to `last_error`. Other
-/// forms' `last_error` is text from builds before the queue and is not read.
+/// The stage of a stored return of `form_code`: `status` is its status
+/// column, `data` its JSON. `None` for a plain draft (one that never failed
+/// a send). A 2551Q has no `submission_error`: the queue writes its
+/// reasons to `last_error`. Other forms' `last_error` is text from builds
+/// before the queue and is not read.
 pub fn send_stage_for(form_code: &str, status: &str, data: &Value) -> Option<SendStage> {
     let error = text(data, "submission_error")
         .or_else(|| (form_code == "2551Q").then(|| text(data, "last_error")).flatten());
@@ -68,11 +72,17 @@ pub fn send_stage_for(form_code: &str, status: &str, data: &Value) -> Option<Sen
 
 /// The queued returns this process's worker is sending now, by id: those
 /// whose job key (from the worker's own list of queued rows) is in its
-/// in-flight set. When that set cannot be read, every queued return.
+/// in-flight set. When that set cannot be read, every queued return. An
+/// empty set answers without reading the database.
 pub(crate) fn sending_now(db: &bir_core::db::Database) -> Result<BTreeSet<i64>, bir_core::db::DbError> {
-    let queued = db.list_all_queued_submissions()?;
     let jobs = bir_core::background_cron::get_active_jobs();
-    let Ok(jobs) = jobs.lock() else {
+    let jobs = match jobs.lock() {
+        Ok(jobs) if jobs.is_empty() => return Ok(BTreeSet::new()),
+        Ok(jobs) => Some(jobs.clone()),
+        Err(_) => None,
+    };
+    let queued = db.list_all_queued_submissions()?;
+    let Some(jobs) = jobs else {
         return Ok(queued.into_iter().map(|summary| summary.id).collect());
     };
     Ok(queued.into_iter().filter(|summary| jobs.contains(&bir_core::background_cron::queue_job_key(summary))).map(|summary| summary.id).collect())
@@ -81,7 +91,7 @@ pub(crate) fn sending_now(db: &bir_core::db::Database) -> Result<BTreeSet<i64>, 
 /// The stage to show. A claim writes its "outcome pending" note as it is
 /// taken, so a claimed return reads `NeedsAttention` from that instant;
 /// while this process is still sending it (`sending_now`) it is `Sending`.
-/// [`send_stage`] stays a pure reading of the row; only callers that know
+/// [`send_stage_for`] stays a pure reading of the row; only callers that know
 /// this process's worker apply this.
 pub(crate) fn shown_stage(stage: SendStage, sending_now: bool) -> SendStage {
     match stage {
