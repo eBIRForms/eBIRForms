@@ -218,9 +218,24 @@ impl BirApp {
     }
 
     /// What to show for a return: the live state when the list knew the
-    /// TIN (nothing when it is active now), else the stored refusal.
+    /// TIN (nothing when it is active now), else the stored refusal. It
+    /// cannot tell which is newer: when the refusal's time is known
+    /// ([`RefusedReturn::refused_at`]), use [`Self::effective_statement_since`].
     pub fn effective_statement(stored: Option<TinStatement>, live: &QueueGate) -> Option<TinStatement> {
-        if live.unknown.is_none() { live.statement.clone() } else { stored }
+        Self::effective_statement_since(stored, None, live)
+    }
+
+    /// [`Self::effective_statement`] for a refusal stored at `refused_at`
+    /// (seconds since the epoch): a list read at or before that time says
+    /// nothing about it, so the stored refusal stands. A banned read, which
+    /// has no read time, is always newer.
+    pub fn effective_statement_since(stored: Option<TinStatement>, refused_at: Option<i64>, live: &QueueGate) -> Option<TinStatement> {
+        let newer = match (refused_at, live.checked_at) {
+            (None, _) => true,
+            (Some(refused_at), Some(checked_at)) => checked_at > refused_at,
+            (Some(_), None) => live.statement.is_some(),
+        };
+        if live.unknown.is_none() && newer { live.statement.clone() } else { stored }
     }
 
     /// The returns the server refused for their TIN, now drafts.
@@ -234,6 +249,19 @@ impl BirApp {
                 _ => None,
             })
             .collect())
+    }
+}
+
+impl RefusedReturn {
+    /// When the return was last written (it went back to a draft then, or
+    /// was edited since), in seconds since the epoch: the time to give
+    /// [`BirApp::effective_statement_since`].
+    pub fn refused_at(&self) -> Option<i64> {
+        let at = self.row.updated_at.trim();
+        chrono::DateTime::parse_from_rfc3339(at)
+            .map(|at| at.timestamp())
+            .or_else(|_| chrono::NaiveDateTime::parse_from_str(at, "%Y-%m-%d %H:%M:%S").map(|at| at.and_utc().timestamp()))
+            .ok()
     }
 }
 

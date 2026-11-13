@@ -357,6 +357,27 @@ fn a_stored_refusal_is_hidden_when_the_tin_is_now_active() {
     assert_eq!(BirApp::effective_statement(Some(stored), &live), None);
 }
 
+/// A list read before the stored refusal says nothing about it: the
+/// refusal stands. A list read after it decides, as before.
+#[test]
+fn a_list_read_before_the_refusal_does_not_hide_it() {
+    let stored = BirApp::tin_statement_for_refusal(TinRefusal::Paused, None);
+    let active = gate(HEAD, list(true, json!([row(HEAD, "approved")])));
+    let pending = gate(HEAD, list(true, json!([row(HEAD, "pending")])));
+    for refused_at in [NOW, NOW + 1, NOW + 3600] {
+        assert_eq!(BirApp::effective_statement_since(Some(stored.clone()), Some(refused_at), &active), Some(stored.clone()), "{refused_at}");
+        assert_eq!(BirApp::effective_statement_since(Some(stored.clone()), Some(refused_at), &pending), Some(stored.clone()), "{refused_at}");
+    }
+    assert_eq!(BirApp::effective_statement_since(Some(stored.clone()), Some(NOW - 1), &active), None);
+    assert_eq!(BirApp::effective_statement_since(Some(stored.clone()), Some(NOW - 1), &pending).map(|s| s.state), Some(TinState::WaitingForReview));
+    // A time not known: the live state decides, as `effective_statement`.
+    assert_eq!(BirApp::effective_statement_since(Some(stored.clone()), None, &active), None);
+    assert_eq!(BirApp::effective_statement(Some(stored.clone()), &active), None);
+    // A ban read now carries no read time, and still shows.
+    let banned = gate(HEAD, Err(TinsError::Banned));
+    assert_eq!(BirApp::effective_statement_since(Some(stored), Some(NOW + 3600), &banned).map(|s| s.state), Some(TinState::AccountBanned));
+}
+
 #[test]
 fn link_for_add_carries_root_and_branch() {
     let key = TinKey::parse("000-123-453-002").unwrap();

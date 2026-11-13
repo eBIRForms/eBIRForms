@@ -82,6 +82,8 @@ fn refused_returns_lists_only_refused_drafts() {
     assert_eq!(listed[0].row.id, ids[0]);
     assert_eq!(listed[0].row.status, "Draft");
     assert_eq!(listed[0].stage, refused);
+    let refused_at = listed[0].refused_at().expect("a refused return knows when");
+    assert!((refused_at - chrono::Utc::now().timestamp()).abs() < 600, "{refused_at}");
     // A refused draft is a draft: it is not retried by hand either.
     assert!(app.retry_now(ids[0]).is_err());
 }
