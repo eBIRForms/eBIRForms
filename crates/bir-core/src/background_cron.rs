@@ -743,6 +743,7 @@ async fn process_queued_1601c_with_transport<T: SubmissionTransport>(
             }
         }
         Err(StoreFailure::NotSent(error)) if error.refusal().is_some() => {
+            let refusal = error.refusal();
             let reason = refusal_reason(NOT_SENT_PREFIX, &error);
             warn!(
                 "Cron: 1601C {} was refused for its TIN (nothing reached BIR); back to Draft: {}",
@@ -762,6 +763,7 @@ async fn process_queued_1601c_with_transport<T: SubmissionTransport>(
                         profile,
                         "1601C",
                         &monthly_period_label(draft.taxable_year, draft.month),
+                        refusal,
                     ),
                     Ok(false) => info!(
                         "Cron: 1601C {} claim changed before its refusal was recorded",
@@ -1153,6 +1155,7 @@ async fn process_queued_queueable<F: QueueableForm, T: SubmissionTransport>(
             }
         }
         Err(StoreFailure::NotSent(error)) if error.refusal().is_some() => {
+            let refusal = error.refusal();
             let reason = refusal_reason(NOT_SENT_PREFIX, &error);
             warn!(
                 "Cron: {} {} was refused for its TIN (nothing reached BIR); back to Draft: {}",
@@ -1173,6 +1176,7 @@ async fn process_queued_queueable<F: QueueableForm, T: SubmissionTransport>(
                         profile,
                         F::FORM_CODE,
                         &queueable_period_label(&draft),
+                        refusal,
                     ),
                     Ok(false) => info!(
                         "Cron: {} {} claim changed before its refusal was recorded",
@@ -1602,6 +1606,7 @@ async fn process_submission_queue<T: SubmissionTransport + 'static>(
                         }
                     }
                     Err(StoreFailure::NotSent(error)) if error.refusal().is_some() => {
+                        let refusal = error.refusal();
                         let reason = refusal_reason(NOT_SENT_PREFIX, &error);
                         warn!(
                             "Cron: Form {} was refused for its TIN (nothing reached BIR); back to Draft: {}",
@@ -1621,6 +1626,7 @@ async fn process_submission_queue<T: SubmissionTransport + 'static>(
                                     &current_profile,
                                     "2551Q",
                                     &quarterly_period_label(draft.taxable_year, draft.quarter),
+                                    refusal,
                                 ),
                                 Ok(false) => info!(
                                     "Cron: Form {} claim changed before its refusal was recorded",
@@ -1771,11 +1777,17 @@ fn record_refusal_alert(
     profile: &TaxpayerProfile,
     form_code: &str,
     period_label: &str,
+    refusal: Option<TinRefusal>,
 ) {
     let kind = format!("form_refused:{form_code}:{period_label}");
     let title = format!("BIR Form {form_code} {period_label} was not sent");
+    let why = if refusal == Some(TinRefusal::AccountBanned) {
+        "Buwiz would not send it because this Buwiz account is banned"
+    } else {
+        "Buwiz would not send it for this TIN"
+    };
     let detail = format!(
-        "{}\nTIN {}\nBuwiz would not send it for this TIN, so it is back to a draft. Nothing reached BIR. Open the return to see what to do.",
+        "{}\nTIN {}\n{why}, so it is back to a draft. Nothing reached BIR. Open the return to see what to do.",
         profile.full_name,
         profile.tin.formatted()
     );
@@ -1804,6 +1816,7 @@ fn refuse_unclaimed_1601c(
         draft.period_code(),
         error_message
     );
+    let refusal = TinRefusal::from_reason(&error_message);
     draft.record_tin_refusal(error_message);
     if let Ok(db_guard) = db.lock() {
         match db_guard.replace_unclaimed_queued_1601c_submission(
@@ -1817,6 +1830,7 @@ fn refuse_unclaimed_1601c(
                 profile,
                 "1601C",
                 &monthly_period_label(draft.taxable_year, draft.month),
+                refusal,
             ),
             Ok(false) => info!(
                 "Cron: 1601C {} was canceled or superseded before its refusal persisted",
@@ -1844,6 +1858,7 @@ fn refuse_unclaimed_2551q(
         draft.period_code(),
         error_message
     );
+    let refusal = TinRefusal::from_reason(&error_message);
     draft.record_tin_refusal(error_message);
     if let Ok(db_guard) = db.lock() {
         match db_guard.replace_unclaimed_queued_2551q_submission(
@@ -1857,6 +1872,7 @@ fn refuse_unclaimed_2551q(
                 profile,
                 "2551Q",
                 &quarterly_period_label(draft.taxable_year, draft.quarter),
+                refusal,
             ),
             Ok(false) => info!(
                 "Cron: Form {} was canceled or superseded before its refusal persisted",
@@ -1885,6 +1901,7 @@ fn refuse_unclaimed_queueable<F: QueueableForm>(
         draft.period_code(),
         error_message
     );
+    let refusal = TinRefusal::from_reason(&error_message);
     draft.lifecycle_mut().record_tin_refusal(error_message);
     if let Ok(db_guard) = db.lock() {
         match db_guard.replace_unclaimed_queued_queueable(
@@ -1898,6 +1915,7 @@ fn refuse_unclaimed_queueable<F: QueueableForm>(
                 profile,
                 F::FORM_CODE,
                 &queueable_period_label(draft),
+                refusal,
             ),
             Ok(false) => info!(
                 "Cron: {} {} was canceled or superseded before its refusal persisted",
@@ -4348,6 +4366,72 @@ mod tests {
             .await;
             assert!(after.calls().is_empty(), "{code}");
         }
+    }
+
+    fn refusal_alert(db: &Arc<Mutex<Database>>, form_code: &str) -> crate::db::AppAlert {
+        let mut alerts: Vec<_> = db
+            .lock()
+            .unwrap()
+            .list_active_alerts(None)
+            .unwrap()
+            .into_iter()
+            .filter(|alert| {
+                alert
+                    .kind
+                    .starts_with(&format!("form_refused:{form_code}:"))
+            })
+            .collect();
+        assert_eq!(alerts.len(), 1);
+        alerts.remove(0)
+    }
+
+    /// The alert's words are the queue's own: never the server's message,
+    /// and for a banned account they name the account, not the TIN.
+    #[tokio::test]
+    async fn the_refusal_alert_names_the_account_for_a_ban_and_never_the_servers_message() {
+        let check = |alert: crate::db::AppAlert, code: &str| {
+            let shown = format!("{}\n{}", alert.title, alert.detail);
+            assert!(!shown.contains("SERVER SENTENCE"), "{shown}");
+            assert!(!shown.contains("999-888"), "{shown}");
+            if code == "account_banned" {
+                assert!(!shown.contains("for this TIN"), "{shown}");
+                assert!(shown.contains("this Buwiz account is banned"), "{shown}");
+            } else {
+                assert!(shown.contains("for this TIN"), "{shown}");
+            }
+        };
+        for code in TIN_CODES {
+            let reason: &'static str = Box::leak(
+                format!("SERVER SENTENCE about 000-999-888-000 ({code})").into_boxed_str(),
+            );
+            let (profile, _queued, db, summary) = saved_queued_1601c();
+            let transport =
+                RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(reason));
+            process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+            check(refusal_alert(&db, "1601C"), code);
+
+            let profile = test_profile();
+            let db = test_db();
+            let (_queued, summary) = queued_test_form(&db);
+            let transport =
+                RecordingSubmissionTransport::new(TestTransportOutcome::SessionFailsWith(reason));
+            process_queued_queueable::<TestForm, _>(
+                &summary,
+                &profile,
+                db.clone(),
+                &transport,
+                allow_test_form,
+            )
+            .await;
+            check(refusal_alert(&db, TestForm::CODE), code);
+        }
+        let reason = "SERVER SENTENCE about 000-999-888-000 (account_banned)";
+        let (queued, db) = saved_queued_2551q("823");
+        let transport = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::NotSentWith(reason),
+        ));
+        tick_2551q(&db, &transport, &queued).await;
+        check(refusal_alert(&db, "2551Q"), "account_banned");
     }
 
     /// A refusal whose server message is empty reaches the worker as
