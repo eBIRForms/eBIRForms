@@ -378,6 +378,37 @@ fn a_list_read_before_the_refusal_does_not_hide_it() {
     assert_eq!(BirApp::effective_statement_since(Some(stored), Some(NOW + 3600), &banned).map(|s| s.state), Some(TinState::AccountBanned));
 }
 
+/// `{:?}` of a statement, a gate or a refused return names no TIN, name,
+/// staff note, link or server reason: a log line or an assert can print it.
+#[test]
+fn debug_never_shows_a_tin_a_name_a_note_a_link_or_a_reason() {
+    let rows = json!([{
+        "tin": HEAD, "registered_name": "SYNTHETIC TAXPAYER ONE", "status": "needs_fix", "can_send": false,
+        "reasons": ["The name on JUANA DELA CRUZ's paper does not match."],
+        "note": "JUANA DELA CRUZ, retake it in daylight.",
+        "action": {"url": "https://account.buwiz.com/tins/claims/c5/fix"}
+    }]);
+    let gate = gate(HEAD, list(true, rows));
+    let statement = gate.statement.clone().unwrap();
+    assert!(statement.staff_note.is_some() && statement.action_url.is_some());
+    let reason = "Not sent (nothing reached BIR): Sent back for a fix: TIN 000-123-453 of JUANA DELA CRUZ does not match. (tin_needs_fix)";
+    let stored = BirApp::tin_statement_for_refusal(TinRefusal::NeedsFix, Some(reason));
+    let row: bir_app_core::ReturnRow = serde_json::from_value(json!({
+        "id": 7, "tin": "000-123-453-000", "taxpayer_name": "JUANA DELA CRUZ", "branch_name": "Head office",
+        "form_code": "1601C", "taxable_year": 2026, "period": 9, "period_label": "September 2026",
+        "status": "Draft", "updated_at": "2026-09-30 01:02:03", "return_key": null
+    }))
+    .unwrap();
+    let refused = bir_app_core::RefusedReturn { row, stage: SendStage::Refused { code: TinRefusal::NeedsFix, reason: reason.into() } };
+    let shown = format!("{gate:?}\n{statement:?}\n{stored:?}\n{refused:?}");
+    for secret in ["123", "453", "JUANA", "SYNTHETIC", "daylight", "claims", "account.buwiz.com", "match", "Sent back for a fix"] {
+        assert!(!shown.contains(secret), "{secret} in {shown}");
+    }
+    for kept in ["SentBack", "tin_needs_fix", "1601C", "can_queue: false"] {
+        assert!(shown.contains(kept), "{kept} not in {shown}");
+    }
+}
+
 #[test]
 fn link_for_add_carries_root_and_branch() {
     let key = TinKey::parse("000-123-453-002").unwrap();

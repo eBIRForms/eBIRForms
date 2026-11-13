@@ -97,8 +97,8 @@ pub enum TinTone {
     Info,
 }
 
-/// One state in words.
-#[derive(Clone, Debug, PartialEq, Eq)]
+/// One state in words. Its `Debug` shows no line, note or link.
+#[derive(Clone, PartialEq, Eq)]
 pub struct TinStatement {
     pub state: TinState,
     /// A short label for a chip.
@@ -115,6 +115,46 @@ pub struct TinStatement {
     pub staff_note: Option<String>,
     /// The row's own page for its step, from the account's list.
     pub action_url: Option<String>,
+}
+
+impl std::fmt::Debug for TinStatement {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("TinStatement")
+            .field("state", &self.state)
+            .field("chip", &self.chip)
+            .field("step", &self.step)
+            .field("tone", &self.tone)
+            .field("staff_note", &self.staff_note.is_some())
+            .field("action_url", &self.action_url.is_some())
+            .finish_non_exhaustive()
+    }
+}
+
+impl std::fmt::Debug for QueueGate {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("QueueGate")
+            .field("can_queue", &self.can_queue)
+            .field("statement", &self.statement)
+            .field("unknown", &self.unknown)
+            .field("checked_at", &self.checked_at)
+            .finish()
+    }
+}
+
+impl std::fmt::Debug for RefusedReturn {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let code = match &self.stage {
+            SendStage::Refused { code, .. } => Some(code.code()),
+            _ => None,
+        };
+        f.debug_struct("RefusedReturn")
+            .field("id", &self.row.id)
+            .field("form_code", &self.row.form_code)
+            .field("taxable_year", &self.row.taxable_year)
+            .field("period", &self.row.period)
+            .field("code", &code)
+            .finish_non_exhaustive()
+    }
 }
 
 impl TinStatement {
@@ -141,8 +181,9 @@ pub enum Unknown {
     Unreadable,
 }
 
-/// The Queue gate's answer for one TIN.
-#[derive(Clone, Debug, PartialEq, Eq)]
+/// The Queue gate's answer for one TIN. Its `Debug` shows its statement's
+/// as [`TinStatement`]'s does.
+#[derive(Clone, PartialEq, Eq)]
 pub struct QueueGate {
     pub can_queue: bool,
     /// The known state that is not active (`None` when active or unknown).
@@ -154,8 +195,9 @@ pub struct QueueGate {
     pub checked_at: Option<i64>,
 }
 
-/// A return the server refused for its TIN, back to a draft.
-#[derive(Clone, Debug, PartialEq)]
+/// A return the server refused for its TIN, back to a draft. Its `Debug`
+/// shows no TIN, name or reason.
+#[derive(Clone, PartialEq)]
 pub struct RefusedReturn {
     pub row: ReturnRow,
     /// Always [`SendStage::Refused`].
