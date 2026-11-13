@@ -4787,4 +4787,217 @@ mod tests {
             FilingStatus::Sent
         );
     }
+
+    /// What `a_not_sent_that_is_not_a_tin_refusal_still_backs_off` shows for
+    /// the 1601C, for the 2551Q and the generic worker: a code that is not a
+    /// TIN refusal, or one mid-sentence, keeps the backoff, and the next tick
+    /// sends nothing.
+    #[tokio::test]
+    async fn a_2551q_or_generic_not_sent_that_is_not_a_tin_refusal_still_backs_off() {
+        for (reason, segment3) in [
+            (
+                "the server refused the relay (502 Bad Gateway) (relay_refused)",
+                "824",
+            ),
+            (
+                "this TIN is not active on your account (tin_not_active), said an old proxy",
+                "825",
+            ),
+            ("the relay closed early", "826"),
+        ] {
+            let (queued, db) = saved_queued_2551q(segment3);
+            let transport = Arc::new(RecordingSubmissionTransport::new(
+                TestTransportOutcome::NotSentWith(reason),
+            ));
+            tick_2551q(&db, &transport, &queued).await;
+            assert_eq!(transport.calls().len(), 1, "{reason}");
+            let failed = stored_2551q(&db, &queued);
+            assert_eq!(failed.status, FilingStatus::Queued, "{reason}");
+            assert_eq!(failed.submission_attempts, 1);
+            assert!(failed.submission_claim_token.is_none());
+            assert!(retry_is_in_the_future(failed.next_retry_at.as_deref()));
+            assert_eq!(refusal_alerts(&db, "2551Q"), 0);
+            let early = Arc::new(RecordingSubmissionTransport::new(
+                TestTransportOutcome::Success,
+            ));
+            tick_2551q(&db, &early, &queued).await;
+            assert!(early.calls().is_empty(), "{reason}");
+
+            let profile = test_profile();
+            let db = test_db();
+            let (queued, summary) = queued_test_form(&db);
+            let transport =
+                RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(reason));
+            process_queued_queueable::<TestForm, _>(
+                &summary,
+                &profile,
+                db.clone(),
+                &transport,
+                allow_test_form,
+            )
+            .await;
+            assert_eq!(transport.calls().len(), 1, "{reason}");
+            let failed = stored_test_form(&db, &queued);
+            assert_eq!(failed.lifecycle.status, FilingStatus::Queued, "{reason}");
+            assert_eq!(failed.lifecycle.submission_attempts, 1);
+            assert!(failed.lifecycle.is_unclaimed());
+            assert!(retry_is_in_the_future(
+                failed.lifecycle.next_retry_at.as_deref()
+            ));
+            assert_eq!(refusal_alerts(&db, TestForm::CODE), 0);
+            let early = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+            process_queued_queueable::<TestForm, _>(
+                &summary,
+                &profile,
+                db.clone(),
+                &early,
+                allow_test_form,
+            )
+            .await;
+            assert!(early.calls().is_empty(), "{reason}");
+        }
+    }
+
+    /// The generic worker stores a maybe-sent reason on the claimed row,
+    /// and that reason ends with the code here: the row is still not tried
+    /// again on the next tick, whatever its text says.
+    #[tokio::test]
+    async fn a_generic_maybe_sent_ending_in_a_tin_code_is_not_retried_on_the_next_tick() {
+        let reason = "the connection ended during the send (tin_not_active)";
+        let profile = test_profile();
+        let db = test_db();
+        let (queued, summary) = queued_test_form(&db);
+        let transport =
+            RecordingSubmissionTransport::new(TestTransportOutcome::MaybeSentWith(reason));
+        process_queued_queueable::<TestForm, _>(
+            &summary,
+            &profile,
+            db.clone(),
+            &transport,
+            allow_test_form,
+        )
+        .await;
+        assert_eq!(transport.calls().len(), 1);
+        let claimed = stored_test_form(&db, &queued);
+        assert!(!claimed.lifecycle.is_unclaimed());
+        assert_eq!(claimed.lifecycle.status, FilingStatus::Queued);
+
+        let retry = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_queueable::<TestForm, _>(
+            &summary,
+            &profile,
+            db.clone(),
+            &retry,
+            allow_test_form,
+        )
+        .await;
+        assert!(retry.calls().is_empty());
+        let after = stored_test_form(&db, &queued);
+        assert!(!after.lifecycle.is_unclaimed());
+        assert_eq!(after.lifecycle.status, FilingStatus::Queued);
+        assert_eq!(refusal_alerts(&db, TestForm::CODE), 0);
+    }
+
+    /// A legacy row whose reason ends with a TIN code is tried at once. When
+    /// that try fails for another reason, the new reason has no code, so the
+    /// row is back on its backoff: tried once, not on every tick.
+    #[tokio::test]
+    async fn a_legacy_coded_row_that_fails_otherwise_goes_back_on_its_backoff() {
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        leave_1601c_failed(&db, &queued, LEGACY_NOT_ACTIVE);
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentAtStore);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+        assert_eq!(transport.calls().len(), 1);
+        let failed = stored_1601c(&db, &queued);
+        assert_eq!(failed.status, FilingStatus::Queued);
+        assert_eq!(failed.submission_attempts, 3);
+        assert!(retry_is_in_the_future(failed.next_retry_at.as_deref()));
+        let next = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &next).await;
+        assert!(next.calls().is_empty(), "tried once, not on every tick");
+
+        // A session that fails before the PUT does the same.
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        leave_1601c_failed(&db, &queued, LEGACY_NOT_ACTIVE);
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::PreStore);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+        let failed = stored_1601c(&db, &queued);
+        assert_eq!(failed.status, FilingStatus::Queued);
+        assert_eq!(failed.submission_attempts, 3);
+        assert!(retry_is_in_the_future(failed.next_retry_at.as_deref()));
+        let next = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &next).await;
+        assert!(next.calls().is_empty(), "tried once, not on every tick");
+
+        let (queued, db) = saved_queued_2551q("827");
+        let stored = stored_2551q(&db, &queued);
+        let mut legacy = stored.clone();
+        legacy.last_error = Some(LEGACY_NOT_ACTIVE.to_string());
+        legacy.submission_attempts = 2;
+        legacy.next_retry_at = Some("2099-01-01T00:00:00Z".to_string());
+        assert!(
+            db.lock()
+                .unwrap()
+                .replace_unclaimed_queued_2551q_submission(
+                    &legacy,
+                    &stored.queued_submission_fingerprint,
+                    &stored.next_retry_at,
+                    stored.submission_attempts,
+                )
+                .unwrap()
+        );
+        let transport = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::NotSentAtStore,
+        ));
+        tick_2551q(&db, &transport, &queued).await;
+        assert_eq!(transport.calls().len(), 1);
+        let failed = stored_2551q(&db, &queued);
+        assert_eq!(failed.status, FilingStatus::Queued);
+        assert!(retry_is_in_the_future(failed.next_retry_at.as_deref()));
+        let next = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::Success,
+        ));
+        tick_2551q(&db, &next, &queued).await;
+        assert!(next.calls().is_empty(), "tried once, not on every tick");
+
+        let profile = test_profile();
+        let db = test_db();
+        let (queued, summary) = queued_test_form(&db);
+        let stored = stored_test_form(&db, &queued);
+        let mut legacy = stored.clone();
+        legacy.lifecycle.submission_error = Some(LEGACY_NOT_ACTIVE.to_string());
+        legacy.lifecycle.submission_attempts = 2;
+        legacy.lifecycle.next_retry_at = Some("2099-01-01T00:00:00Z".to_string());
+        assert!(
+            db.lock()
+                .unwrap()
+                .replace_unclaimed_queued_queueable(
+                    &legacy,
+                    &stored.lifecycle.queued_submission_fingerprint,
+                    &stored.lifecycle.next_retry_at,
+                    stored.lifecycle.submission_attempts,
+                )
+                .unwrap()
+        );
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentAtStore);
+        let run = |transport| {
+            process_queued_queueable::<TestForm, _>(
+                &summary,
+                &profile,
+                db.clone(),
+                transport,
+                allow_test_form,
+            )
+        };
+        run(&transport).await;
+        assert_eq!(transport.calls().len(), 1);
+        let failed = stored_test_form(&db, &queued);
+        assert_eq!(failed.lifecycle.status, FilingStatus::Queued);
+        assert!(retry_is_in_the_future(
+            failed.lifecycle.next_retry_at.as_deref()
+        ));
+        let next = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        run(&next).await;
+        assert!(next.calls().is_empty(), "tried once, not on every tick");
+    }
 }
