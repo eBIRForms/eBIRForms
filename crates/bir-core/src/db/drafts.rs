@@ -1473,6 +1473,51 @@ impl Database {
         Ok(true)
     }
 
+    /// The far side said nothing reached BIR: release this worker's 2551Q
+    /// claim and schedule a retry with backoff (five failures go back to
+    /// Draft). `false` when the claim is no longer this worker's.
+    pub(crate) fn fail_claimed_2551q_not_sent(
+        &self,
+        tin: &str,
+        taxable_year: u16,
+        quarter: u8,
+        claim_token: &str,
+        error: String,
+    ) -> Result<bool, DbError> {
+        let tx = Transaction::new_unchecked(&self.conn, TransactionBehavior::Immediate)?;
+        let Some((id, raw_json)) = tx
+            .query_row(
+                "SELECT id, data_json FROM form_drafts
+                 WHERE tin = ?1 AND form_code = '2551Q'
+                   AND taxable_year = ?2 AND quarter = ?3 AND status = 'Queued'",
+                params![tin, i64::from(taxable_year), i64::from(quarter)],
+                |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)),
+            )
+            .optional()?
+        else {
+            return Ok(false);
+        };
+        let mut draft: Form2551QDraft = serde_json::from_str(&raw_json)?;
+        if !matches!(draft.status, FilingStatus::Queued)
+            || draft.submission_claim_token.as_deref() != Some(claim_token)
+        {
+            return Ok(false);
+        }
+        draft.record_submission_failure(error);
+        let json = serde_json::to_string(&draft)?;
+        let updated = tx.execute(
+            "UPDATE form_drafts SET status = ?1, data_json = ?2, updated_at = datetime('now')
+             WHERE id = ?3 AND status = 'Queued' AND data_json = ?4",
+            params![filing_status_to_db(&draft.status), json, id, raw_json],
+        )?;
+        if updated != 1 {
+            return Ok(false);
+        }
+        tx.commit()?;
+        let _ = self.request_post_commit_refresh();
+        Ok(true)
+    }
+
     pub fn recover_expired_unstarted_2551q_claim(
         &self,
         tin: &str,
@@ -2552,6 +2597,51 @@ impl Database {
             return Ok(false);
         }
         tx.commit()?;
+        Ok(true)
+    }
+
+    /// The far side said nothing reached BIR: release this worker's 1601C
+    /// claim and schedule a retry with backoff (five failures go back to
+    /// Draft). `false` when the claim is no longer this worker's.
+    pub(crate) fn fail_claimed_1601c_not_sent(
+        &self,
+        tin: &str,
+        taxable_year: u16,
+        month: u8,
+        claim_token: &str,
+        error: String,
+    ) -> Result<bool, DbError> {
+        let tx = Transaction::new_unchecked(&self.conn, TransactionBehavior::Immediate)?;
+        let Some((id, raw_json)) = tx
+            .query_row(
+                "SELECT id, data_json FROM form_drafts
+                 WHERE tin = ?1 AND form_code = '1601C'
+                   AND taxable_year = ?2 AND quarter = ?3 AND status = 'Queued'",
+                params![tin, i64::from(taxable_year), i64::from(month)],
+                |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)),
+            )
+            .optional()?
+        else {
+            return Ok(false);
+        };
+        let mut draft: Form1601CDraft = serde_json::from_str(&raw_json)?;
+        if !matches!(draft.status, FilingStatus::Queued)
+            || draft.submission_claim_token.as_deref() != Some(claim_token)
+        {
+            return Ok(false);
+        }
+        draft.record_submission_failure(error);
+        let json = serde_json::to_string(&draft)?;
+        let updated = tx.execute(
+            "UPDATE form_drafts SET status = ?1, data_json = ?2, updated_at = datetime('now')
+             WHERE id = ?3 AND status = 'Queued' AND data_json = ?4",
+            params![filing_status_to_db(&draft.status), json, id, raw_json],
+        )?;
+        if updated != 1 {
+            return Ok(false);
+        }
+        tx.commit()?;
+        let _ = self.request_post_commit_refresh();
         Ok(true)
     }
 
