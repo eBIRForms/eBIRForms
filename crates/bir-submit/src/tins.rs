@@ -173,9 +173,13 @@ impl AccountTins {
         }
     }
 
-    /// The row for `key`.
+    /// The row for `key`: of two rows for one TIN, the one that can send,
+    /// else the first.
     pub fn find(&self, key: &TinKey) -> Option<&AccountTin> {
-        self.rows.iter().find(|row| &row.key == key)
+        let mut rows = self.rows.iter().filter(|row| &row.key == key);
+        rows.clone()
+            .find(|row| row.can_send)
+            .or_else(|| rows.next())
     }
 }
 
@@ -648,6 +652,20 @@ mod tests {
             assert!(!AccountTins::parse(&body, 1).complete, "{body}");
         }
         assert!(AccountTins::parse(&json!({"include":"all","profiles":[good]}), 1).complete);
+    }
+
+    #[test]
+    fn find_prefers_the_row_that_can_send() {
+        let list = AccountTins::parse(
+            &json!({"include":"all","profiles":[
+                {"tin":"000-123-453-00000","registered_name":"X","status":"pending","can_send":false},
+                {"tin":"000123453","registered_name":"X","status":"approved","can_send":true}
+            ]}),
+            1,
+        );
+        let found = list.find(&key("000123453")).unwrap();
+        assert!(found.can_send);
+        assert_eq!(found.status, TinStatus::Approved);
     }
 
     /// Only `"include":"all"` itself marks the list complete; a server that

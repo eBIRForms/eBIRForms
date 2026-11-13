@@ -227,6 +227,87 @@ fn gate_fails_open_when_the_list_is_incomplete_or_unreadable() {
     assert_eq!(bad_tin.unknown, Some(Unknown::Unreadable));
 }
 
+/// A list whose read time is ahead of now beyond a small skew (the clock
+/// was set back since) is of no known age: stale, so it never blocks.
+#[test]
+fn a_list_read_ahead_of_now_is_stale() {
+    let paused = |at: i64| -> TinsRead { Ok(AccountTins::parse(&json!({"include": "all", "profiles": [row(HEAD, "paused")]}), at)) };
+    assert!(!BirApp::tin_gate(HEAD, &[paused(NOW + 30)], NOW).can_queue, "inside the skew it still counts");
+    for ahead in [NOW + 120, NOW + 86_400] {
+        let gate = BirApp::tin_gate(HEAD, &[paused(ahead)], NOW);
+        assert!(gate.can_queue, "{ahead}");
+        assert_eq!(gate.unknown, Some(Unknown::Stale));
+        assert_eq!(gate.statement, None);
+    }
+}
+
+/// The server's `can_send` decides: true never blocks, whatever the status
+/// says (the state is then shown as information only); false on an
+/// approved row blocks.
+#[test]
+fn can_send_decides_whatever_the_status_says() {
+    let rows = [
+        ("pending", TinState::WaitingForReview),
+        ("unverified", TinState::NotVerified),
+        ("needs_fix", TinState::SentBack),
+        ("paused", TinState::Paused),
+    ];
+    for (status, state) in rows {
+        let sends = json!([{"tin": HEAD, "registered_name": "X", "status": status, "can_send": true}]);
+        let gate = gate(HEAD, list(true, sends));
+        assert!(gate.can_queue, "{status} with can_send true");
+        assert_eq!(gate.unknown, None, "{status}");
+        assert_eq!(gate.statement.map(|s| s.state), Some(state), "{status}");
+    }
+    let other = json!([{"tin": HEAD, "registered_name": "X", "status": "frozen", "can_send": true}]);
+    assert!(gate(HEAD, list(true, other)).can_queue);
+    let held = json!([{"tin": HEAD, "registered_name": "X", "status": "approved", "can_send": false}]);
+    let held = gate(HEAD, list(true, held));
+    assert!(!held.can_queue);
+    assert_eq!(held.statement.map(|s| s.state), Some(TinState::NotAllowed));
+}
+
+/// Two rows for one TIN: the one that can send wins; rows that disagree
+/// otherwise make the TIN unknown, which never blocks.
+#[test]
+fn two_rows_for_one_tin_prefer_the_one_that_can_send() {
+    for rows in [json!([row(HEAD, "pending"), row(HEAD, "approved")]), json!([row(HEAD, "approved"), row(HEAD, "pending")])] {
+        let gate = gate(HEAD, list(true, rows.clone()));
+        assert!(gate.can_queue, "{rows}");
+        assert_eq!(gate.statement, None, "{rows}");
+        assert_eq!(gate.unknown, None, "{rows}");
+    }
+    let conflict = gate(HEAD, list(true, json!([row(HEAD, "pending"), row("000123453", "paused")])));
+    assert!(conflict.can_queue);
+    assert_eq!(conflict.statement, None);
+    assert_eq!(conflict.unknown, Some(Unknown::Unreadable));
+    let agree = gate(HEAD, list(true, json!([row(HEAD, "paused"), row(HEAD, "paused")])));
+    assert!(!agree.can_queue);
+    assert_eq!(agree.statement.map(|s| s.state), Some(TinState::Paused));
+}
+
+/// Today's rule for reads of several sign-ins (a later phase gates on the
+/// login that will send): a read that can send lets Queue through; then a
+/// read that cannot tell; only when every read knows the TIN cannot send
+/// does Queue close, with the first read's state.
+#[test]
+fn several_reads_follow_todays_rule() {
+    let active = list(true, json!([row(HEAD, "approved")]));
+    let paused = list(true, json!([row(HEAD, "paused")]));
+    let pending = list(true, json!([row(HEAD, "pending")]));
+    for reads in [vec![paused.clone(), active.clone()], vec![Err(TinsError::Banned), active.clone()], vec![active.clone(), Err(TinsError::Offline)]] {
+        let gate = BirApp::tin_gate(HEAD, &reads, NOW);
+        assert!(gate.can_queue);
+        assert_eq!((gate.statement, gate.unknown), (None, None));
+    }
+    let unsure = BirApp::tin_gate(HEAD, &[paused.clone(), Err(TinsError::Offline)], NOW);
+    assert!(unsure.can_queue);
+    assert_eq!(unsure.unknown, Some(Unknown::Offline));
+    let closed = BirApp::tin_gate(HEAD, &[pending, paused], NOW);
+    assert!(!closed.can_queue);
+    assert_eq!(closed.statement.map(|s| s.state), Some(TinState::WaitingForReview));
+}
+
 #[test]
 fn a_missing_tin_in_a_complete_list_is_not_on_account() {
     let gate = gate(HEAD, list(true, json!([row("000-123-453-00002", "approved")])));

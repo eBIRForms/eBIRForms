@@ -7,7 +7,8 @@
 //!   they hold the fixed sentences only. Staff's free-text note of a
 //!   sent-back TIN is [`TinStatement::staff_note`], for app-only surfaces.
 //! - The gate fails open: it blocks only on a known state that cannot send,
-//!   or on a TIN missing from a list the server marked complete.
+//!   or on a TIN missing from a list the server marked complete. The row's
+//!   `can_send` decides: true never blocks, whatever its status.
 
 pub use bir_core::forms::taxform::TinKey;
 pub use bir_core::tin_refusal::TinRefusal;
@@ -145,6 +146,8 @@ pub enum Unknown {
 pub struct QueueGate {
     pub can_queue: bool,
     /// The known state that is not active (`None` when active or unknown).
+    /// With `can_queue` true it is information only: the server says the
+    /// TIN can send although its status is not approved.
     pub statement: Option<TinStatement>,
     pub unknown: Option<Unknown>,
     /// When the list that decided was read.
@@ -165,7 +168,9 @@ impl BirApp {
 
     /// Whether the return's TIN (9, 12 or 14 digits) may be queued, from the
     /// account lists the caller read (one per sign-in; today one) at `now`
-    /// (seconds since the epoch).
+    /// (seconds since the epoch). A list read more than
+    /// [`bir_submit::tins::STALE_LIMIT_SECS`] before `now`, or more than a
+    /// minute after it (the clock moved back since), is stale.
     pub fn tin_gate(tin: &str, account: &[TinsRead], now: i64) -> QueueGate {
         let Some(key) = TinKey::parse(tin) else {
             return QueueGate::unknown(Unknown::Unreadable, None);
@@ -173,14 +178,15 @@ impl BirApp {
         let reads: Vec<(Known, Option<i64>)> = account.iter().map(|read| known(&key, read, now)).collect();
         // Any sign-in that can send it lets it through; then any that cannot
         // tell; only when every one knows it cannot send does Queue close.
-        if let Some((_, at)) = reads.iter().find(|(known, _)| matches!(known, Known::State(TinState::Active, _))) {
-            return QueueGate { can_queue: true, statement: None, unknown: None, checked_at: *at };
+        if let Some((Known::State(state, facts, _), at)) = reads.iter().find(|(known, _)| matches!(known, Known::State(_, _, true))) {
+            let statement = (*state != TinState::Active).then(|| statement(*state, facts.clone()));
+            return QueueGate { can_queue: true, statement, unknown: None, checked_at: *at };
         }
         if let Some((Known::Unknown(why), at)) = reads.iter().find(|(known, _)| matches!(known, Known::Unknown(_))) {
             return QueueGate::unknown(*why, *at);
         }
         match reads.into_iter().next() {
-            Some((Known::State(state, row), at)) => QueueGate { can_queue: false, statement: Some(statement(state, row)), unknown: None, checked_at: at },
+            Some((Known::State(state, row, _), at)) => QueueGate { can_queue: false, statement: Some(statement(state, row)), unknown: None, checked_at: at },
             _ => QueueGate::unknown(Unknown::SignedOut, None),
         }
     }
@@ -239,12 +245,13 @@ impl QueueGate {
 
 /// What one account list says about a TIN.
 enum Known {
-    State(TinState, Facts),
+    /// Its state, and whether the server says it can send (which decides).
+    State(TinState, Facts, bool),
     Unknown(Unknown),
 }
 
 /// What a sent-back statement and a step's link take from the list's row.
-#[derive(Default)]
+#[derive(Clone, Default)]
 struct Facts {
     /// The fixed reason sentences.
     reasons: Option<String>,
@@ -252,23 +259,38 @@ struct Facts {
     action_url: Option<String>,
 }
 
+/// How far ahead of `now` a list's read time may be and still count: the
+/// clock moved back by more than this since the read.
+const CLOCK_SKEW_SECS: i64 = 60;
+
 /// What `read` (read at its `fetched_at`) says about `key` at `now`, and
 /// when it was read.
 fn known(key: &TinKey, read: &TinsRead, now: i64) -> (Known, Option<i64>) {
     let list = match read {
         Ok(list) => list,
-        Err(TinsError::Banned) => return (Known::State(TinState::AccountBanned, Facts::default()), None),
+        Err(TinsError::Banned) => return (Known::State(TinState::AccountBanned, Facts::default(), false), None),
         Err(TinsError::SignedOut) => return (Known::Unknown(Unknown::SignedOut), None),
         Err(TinsError::Offline) => return (Known::Unknown(Unknown::Offline), None),
         Err(_) => return (Known::Unknown(Unknown::Unreadable), None),
     };
     let at = Some(list.fetched_at);
-    if now - list.fetched_at >= STALE_LIMIT_SECS {
+    if now - list.fetched_at >= STALE_LIMIT_SECS || list.fetched_at - now > CLOCK_SKEW_SECS {
         return (Known::Unknown(Unknown::Stale), at);
     }
-    let Some(row) = list.find(key) else {
-        let known = if list.complete { Known::State(TinState::NotOnAccount, Facts::default()) } else { Known::Unknown(Unknown::Incomplete) };
-        return (known, at);
+    // Two rows for one TIN: the one that can send; rows that disagree
+    // otherwise say nothing for sure.
+    let rows: Vec<&AccountTin> = list.rows.iter().filter(|row| &row.key == key).collect();
+    let row = match rows.as_slice() {
+        [] => {
+            let known = if list.complete { Known::State(TinState::NotOnAccount, Facts::default(), false) } else { Known::Unknown(Unknown::Incomplete) };
+            return (known, at);
+        }
+        [row] => *row,
+        many => match many.iter().find(|row| row.can_send) {
+            Some(row) => *row,
+            None if many.iter().all(|row| row.status == many[0].status) => many[0],
+            None => return (Known::Unknown(Unknown::Unreadable), at),
+        },
     };
     (row_state(row), at)
 }
@@ -284,7 +306,7 @@ fn row_state(row: &AccountTin) -> Known {
         _ => return Known::Unknown(Unknown::UnknownStatus),
     };
     let reasons = (!row.reasons.is_empty()).then(|| row.reasons.join(" "));
-    Known::State(state, Facts { reasons, note: row.note.clone(), action_url: row.action_url.clone() })
+    Known::State(state, Facts { reasons, note: row.note.clone(), action_url: row.action_url.clone() }, row.can_send)
 }
 
 /// The wording table.
