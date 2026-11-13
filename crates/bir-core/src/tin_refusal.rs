@@ -27,7 +27,7 @@ pub enum TinRefusal {
 /// reason sentences.
 const FIX_PREFIX: &str = "Sent back for a fix: ";
 
-/// Where the queue says a reason came from; [`TinRefusal::message_of`]
+/// Where the queue says a reason came from; [`TinRefusal::fix_reasons`]
 /// takes them off.
 const SOURCE_PREFIXES: [&str; 3] = [
     "Needs attention: ",
@@ -67,24 +67,6 @@ impl TinRefusal {
     /// one of the six codes.
     pub fn from_reason(reason: &str) -> Option<Self> {
         trailing_code(reason).and_then(|(_, code)| Self::from_code(code))
-    }
-
-    /// The server's sentence of a reason: the queue's prefix, the
-    /// `Sent back for a fix: ` prefix and the trailing code taken off.
-    pub fn message_of(reason: &str) -> String {
-        let mut rest = reason.trim();
-        for prefix in SOURCE_PREFIXES {
-            if let Some(after) = rest.strip_prefix(prefix) {
-                rest = after.trim();
-            }
-        }
-        if let Some((message, _)) = trailing_code(rest) {
-            rest = message;
-        }
-        rest.strip_prefix(FIX_PREFIX)
-            .unwrap_or(rest)
-            .trim()
-            .to_owned()
     }
 
     /// `reason` with the text before its trailing code cut to `max_chars`
@@ -271,29 +253,6 @@ mod tests {
             "an empty message stays empty"
         );
         assert_eq!(TinRefusal::capped("abcdef", 3), "abc\u{2026}");
-    }
-
-    #[test]
-    fn the_message_is_the_servers_sentence_alone() {
-        assert_eq!(
-            TinRefusal::message_of(
-                "Not sent (nothing reached BIR): This TIN is not verified yet. (tin_unverified)"
-            ),
-            "This TIN is not verified yet."
-        );
-        assert_eq!(
-            TinRefusal::message_of(
-                "Not sent (nothing reached BIR): Sent back for a fix: A photo is too blurry to read. (tin_needs_fix)"
-            ),
-            "A photo is too blurry to read."
-        );
-        assert_eq!(
-            TinRefusal::message_of(
-                "Submission session failed before upload (no PUT attempted): This Buwiz account is banned. (account_banned)"
-            ),
-            "This Buwiz account is banned."
-        );
-        assert_eq!(TinRefusal::message_of("no code here"), "no code here");
     }
 
     #[test]
