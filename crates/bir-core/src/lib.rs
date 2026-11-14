@@ -62,6 +62,7 @@ pub mod receipt;
 pub mod reference;
 pub mod tax_profile;
 pub mod time_utils;
+pub mod tin_refusal;
 pub mod validation;
 
 // Re-export core types

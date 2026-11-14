@@ -4,9 +4,10 @@
 //! `BUWIZ_DATABASE_PATH=/tmp/x.db BUWIZ_DB_KEY=<64 hex> cargo run -p bir-app-core --example seed_demo`
 //!
 //! `-- --full` adds what screenshots need: the forms Juana files (so the
-//! calendar has deadlines), drafts, a saved payee, and five queued 1601C
-//! returns left Queued, Sending, Failed (the relay's `tin_not_active`) and
-//! Sent (with a demo receipt), and one moved deadline (1701Q Q3 2026, due
+//! calendar has deadlines), drafts, a saved payee, and six queued 1601C
+//! returns left Queued, Sending, Failed, Needs attention, Sent (with a demo
+//! receipt) and Refused (the server's `tin_not_active`: back to a draft),
+//! and one moved deadline (1701Q Q3 2026, due
 //! Nov 23 instead of BIR's Nov 16) so the Calendar shows an overridden row.
 //! The 1701Q Q3 2026 draft has its registered address changed on that
 //! return only, so the form shows a box that differs from the profile.
@@ -81,7 +82,7 @@ fn seed_returns(app: &BirApp, tin: &str) -> Result<(), Box<dyn std::error::Error
 
     let layout = app.form_layout("1601C")?;
     let mut ids = Vec::new();
-    for month in [6i64, 7, 8, 9, 10] {
+    for month in [6i64, 7, 8, 9, 10, 5] {
         let opened = open("1601C", 2026, month)?;
         let mut edits = BTreeMap::new();
         edits.insert("frm1601c:TaxWithheld_1".to_string(), FieldValue::Tick(true));
@@ -103,7 +104,7 @@ fn seed_returns(app: &BirApp, tin: &str) -> Result<(), Box<dyn std::error::Error
     app.demo_set_send_stage(
         ids[1],
         &SendStage::Failed {
-            reason: "Not sent (nothing reached BIR): TIN 000123453 is not active on this account (tin_not_active)".into(),
+            reason: "Submission session failed before upload (no PUT attempted): could not reach the Buwiz server: connection refused".into(),
             attempts: 1,
             next_retry_at: Some(in_two_minutes),
         },
@@ -115,9 +116,16 @@ fn seed_returns(app: &BirApp, tin: &str) -> Result<(), Box<dyn std::error::Error
             reason: "The connection broke during the upload, so BIR may have the file. Check your email for BIR's confirmation before you send it again.".into(),
         },
     )?;
+    app.demo_set_send_stage(
+        ids[5],
+        &SendStage::Refused {
+            code: bir_app_core::TinRefusal::NotActive,
+            reason: "Not sent (nothing reached BIR): this TIN is not active on your account (tin_not_active)".into(),
+        },
+    )?;
     println!(
-        "seeded drafts and 1601C returns: sent {}, failed {}, sending {}, queued {}, needs attention {}",
-        ids[0], ids[1], ids[2], ids[3], ids[4]
+        "seeded drafts and 1601C returns: sent {}, failed {}, sending {}, queued {}, needs attention {}, refused {}",
+        ids[0], ids[1], ids[2], ids[3], ids[4], ids[5]
     );
     Ok(())
 }

@@ -279,6 +279,28 @@ impl SubmissionLifecycle {
         self.touch();
     }
 
+    /// Buwiz refused the send because of the TIN's state (or a banned
+    /// account; [`crate::tin_refusal::TinRefusal`]): nothing reached BIR, and
+    /// retrying cannot help, so the return goes back to Draft at once with
+    /// `error_msg` kept. The same end state as the fifth failure of
+    /// [`Self::record_submission_failure`]; queueing it again clears both.
+    pub fn record_tin_refusal(&mut self, error_msg: String) {
+        assert!(
+            matches!(self.status, FilingStatus::Queued),
+            "Cannot record a TIN refusal in {:?} status - must be Queued",
+            self.status
+        );
+        self.submission_attempts += 1;
+        self.submission_error = Some(error_msg);
+        self.clear_claim();
+        self.status = FilingStatus::Draft;
+        self.next_retry_at = None;
+        self.queued_submission_fingerprint = None;
+        self.queue_authorization = None;
+        self.submitted_payload = None;
+        self.touch();
+    }
+
     /// Take the network claim. Callers hold the storage transaction.
     pub(crate) fn claim(&mut self, token: String, claimed_at: chrono::DateTime<chrono::Utc>) {
         self.submission_claim_token = Some(token);
@@ -1130,5 +1152,33 @@ mod tests {
             .record_submission_failure("try 5".to_string());
         assert_eq!(form.lifecycle.status, FilingStatus::Draft);
         assert!(form.lifecycle.queue_authorization.is_none());
+    }
+
+    #[test]
+    fn a_tin_refusal_returns_to_draft_at_once_keeping_the_reason() {
+        let reason =
+            "Not sent (nothing reached BIR): This TIN is not verified yet. (tin_unverified)";
+        let mut form = TestForm::new(6, 10.0);
+        form.queue(QueueAuthSource::Gui).unwrap();
+        form.lifecycle.claim("t".to_string(), chrono::Utc::now());
+        form.lifecycle.submission_put_started_at = Some(chrono::Utc::now().to_rfc3339());
+        form.lifecycle.record_tin_refusal(reason.to_string());
+        let lifecycle = &form.lifecycle;
+        assert_eq!(lifecycle.status, FilingStatus::Draft);
+        assert_eq!(lifecycle.submission_attempts, 1);
+        assert_eq!(lifecycle.submission_error.as_deref(), Some(reason));
+        assert!(lifecycle.is_unclaimed());
+        assert!(lifecycle.submission_claim_lease_until.is_none());
+        assert!(lifecycle.submission_put_started_at.is_none());
+        assert!(lifecycle.next_retry_at.is_none());
+        assert!(lifecycle.queued_submission_fingerprint.is_none());
+        assert!(lifecycle.queue_authorization.is_none());
+        assert!(lifecycle.submitted_payload.is_none());
+
+        // Queueing it again clears the reason and the count.
+        form.queue(QueueAuthSource::Gui).unwrap();
+        assert_eq!(form.lifecycle.status, FilingStatus::Queued);
+        assert_eq!(form.lifecycle.submission_attempts, 0);
+        assert!(form.lifecycle.submission_error.is_none());
     }
 }

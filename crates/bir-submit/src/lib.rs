@@ -21,6 +21,7 @@ pub mod pipe;
 pub mod receipt;
 pub mod seal;
 pub mod secrets;
+pub mod tins;
 pub mod transport;
 pub mod trust;
 
@@ -30,6 +31,7 @@ pub use client::{
     ClientError, DEFAULT_SERVER_URL, DeviceCode, PollOutcome, SendError, Sent, SignInStatus,
     SubmitConfig, Submitter,
 };
+pub use tins::{AccountTin, AccountTins, TinStatus, TinsError, TinsRead};
 pub use transport::BuwizTransport;
 
 /// The app's door into submission: sign-in and "send now". The queue
@@ -91,5 +93,21 @@ impl Submission {
     /// Runs the queue now instead of at its next minute.
     pub fn send_now(&self) {
         bir_core::background_cron::wake();
+    }
+
+    /// The account's TINs ([`Submitter::account_tins`]).
+    pub async fn account_tins(&self, max_age_secs: i64) -> TinsRead {
+        self.submitter.account_tins(max_age_secs).await
+    }
+
+    /// "Check again" ([`Submitter::refresh_account_tins`]).
+    pub async fn refresh_account_tins(&self) -> TinsRead {
+        self.submitter.refresh_account_tins().await
+    }
+
+    /// The last list read, without a request
+    /// ([`Submitter::cached_account_tins`]).
+    pub fn cached_account_tins(&self) -> Option<AccountTins> {
+        self.submitter.cached_account_tins()
     }
 }

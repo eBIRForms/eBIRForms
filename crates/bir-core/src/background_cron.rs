@@ -330,11 +330,40 @@ fn queued_retry_is_due(
     Ok(now >= next_retry.with_timezone(&Utc))
 }
 
+/// A queued return whose last reason is a TIN refusal (left Queued by a
+/// build that retried those) is due now, whatever its backoff says: the
+/// server decides whether the TIN can send yet, and a refusal now sends it
+/// back to Draft at once.
+fn previous_tin_refusal(error: Option<&str>) -> bool {
+    error.and_then(TinRefusal::from_reason).is_some()
+}
+
+/// The most characters of a refusal's text the queue stores and logs,
+/// before its code: a server that put long free text there cannot fill the
+/// row or the log.
+const REFUSAL_REASON_CAP: usize = 300;
+
+/// The reason stored for a TIN refusal: `prefix` and the error's text, cut
+/// to [`REFUSAL_REASON_CAP`], ending with the code.
+fn refusal_reason(prefix: &str, error: &TransportError) -> String {
+    TinRefusal::capped(&format!("{prefix}{error}"), REFUSAL_REASON_CAP)
+}
+
 /// Why a transport call failed. The queue only needs the message: before
 /// PUT a failure is retried, after PUT the outcome is unknown.
 #[derive(Debug, thiserror::Error)]
 #[error("{0}")]
 pub struct TransportError(pub String);
+
+pub use crate::tin_refusal::TinRefusal;
+
+impl TransportError {
+    /// The TIN refusal this error's text ends with, if any
+    /// ([`TinRefusal::from_reason`]).
+    pub fn refusal(&self) -> Option<TinRefusal> {
+        TinRefusal::from_reason(&self.0)
+    }
+}
 
 /// The seam the queue submits through. `bir-core` ships no implementation
 /// that opens a connection: the app injects one, and the tests use a
@@ -402,6 +431,9 @@ pub enum StoreFailure {
 
 /// How the queue's reason for a [`StoreFailure::NotSent`] attempt begins.
 pub(crate) const NOT_SENT_PREFIX: &str = "Not sent (nothing reached BIR): ";
+
+/// How the queue's reason for a session that failed before any PUT begins.
+const SESSION_FAILED_PREFIX: &str = "Submission session failed before upload (no PUT attempted): ";
 
 /// The in-flight job key of a queued return in [`get_active_jobs`]: held
 /// while this process's worker runs that return's send.
@@ -507,8 +539,8 @@ async fn process_queued_1601c_with_transport<T: SubmissionTransport>(
     };
 
     match queued_retry_is_due(draft.next_retry_at.as_deref(), Utc::now()) {
-        Ok(false) => return,
-        Ok(true) => {}
+        Ok(false) if !previous_tin_refusal(draft.submission_error.as_deref()) => return,
+        Ok(_) => {}
         Err(error) => {
             warn!(
                 "Cron: Refusing queued 1601C {} because its retry timestamp is invalid: {}",
@@ -567,6 +599,16 @@ async fn process_queued_1601c_with_transport<T: SubmissionTransport>(
 
     let session = match transport.open_session(form_type, &draft.tin).await {
         Ok(session) => session,
+        Err(error) if error.refusal().is_some() => {
+            refuse_unclaimed_1601c(
+                &mut draft,
+                &queue_revision,
+                &db,
+                profile,
+                refusal_reason(SESSION_FAILED_PREFIX, &error),
+            );
+            return;
+        }
         Err(error) => {
             fail_draft_1601c(
                 &mut draft,
@@ -697,6 +739,39 @@ async fn process_queued_1601c_with_transport<T: SubmissionTransport>(
                         draft.period_code(),
                         error
                     ),
+                }
+            }
+        }
+        Err(StoreFailure::NotSent(error)) if error.refusal().is_some() => {
+            let refusal = error.refusal();
+            let reason = refusal_reason(NOT_SENT_PREFIX, &error);
+            warn!(
+                "Cron: 1601C {} was refused for its TIN (nothing reached BIR); back to Draft: {}",
+                draft.period_code(),
+                reason
+            );
+            if let Ok(db_guard) = db.lock() {
+                match db_guard.refuse_claimed_1601c_tin(
+                    &draft.tin,
+                    draft.taxable_year,
+                    draft.month,
+                    &claim_token,
+                    reason,
+                ) {
+                    Ok(true) => record_refusal_alert(
+                        &db_guard,
+                        profile,
+                        "1601C",
+                        &monthly_period_label(draft.taxable_year, draft.month),
+                        refusal,
+                    ),
+                    Ok(false) => info!(
+                        "Cron: 1601C {} claim changed before its refusal was recorded",
+                        draft.period_code()
+                    ),
+                    Err(db_error) => {
+                        warn!("Cron: could not record the refused 1601C send: {db_error}")
+                    }
                 }
             }
         }
@@ -877,8 +952,10 @@ async fn process_queued_queueable<F: QueueableForm, T: SubmissionTransport>(
     }
 
     match queued_retry_is_due(draft.lifecycle().next_retry_at.as_deref(), Utc::now()) {
-        Ok(false) => return,
-        Ok(true) => {}
+        Ok(false) if !previous_tin_refusal(draft.lifecycle().submission_error.as_deref()) => {
+            return;
+        }
+        Ok(_) => {}
         Err(error) => {
             warn!(
                 "Cron: Refusing queued {} {} because its retry timestamp is invalid: {}",
@@ -926,6 +1003,16 @@ async fn process_queued_queueable<F: QueueableForm, T: SubmissionTransport>(
 
     let session = match transport.open_session(form_type, draft.tin()).await {
         Ok(session) => session,
+        Err(error) if error.refusal().is_some() => {
+            refuse_unclaimed_queueable(
+                &mut draft,
+                &generation,
+                &db,
+                profile,
+                refusal_reason(SESSION_FAILED_PREFIX, &error),
+            );
+            return;
+        }
         Err(error) => {
             fail_queueable(
                 &mut draft,
@@ -1063,6 +1150,42 @@ async fn process_queued_queueable<F: QueueableForm, T: SubmissionTransport>(
                         F::FORM_CODE,
                         draft.period_code(),
                         error
+                    ),
+                }
+            }
+        }
+        Err(StoreFailure::NotSent(error)) if error.refusal().is_some() => {
+            let refusal = error.refusal();
+            let reason = refusal_reason(NOT_SENT_PREFIX, &error);
+            warn!(
+                "Cron: {} {} was refused for its TIN (nothing reached BIR); back to Draft: {}",
+                F::FORM_CODE,
+                draft.period_code(),
+                reason
+            );
+            if let Ok(db_guard) = db.lock() {
+                match db_guard.refuse_claimed_queueable_tin::<F>(
+                    draft.tin(),
+                    draft.taxable_year(),
+                    draft.period_column(),
+                    &claim_token,
+                    reason,
+                ) {
+                    Ok(true) => record_refusal_alert(
+                        &db_guard,
+                        profile,
+                        F::FORM_CODE,
+                        &queueable_period_label(&draft),
+                        refusal,
+                    ),
+                    Ok(false) => info!(
+                        "Cron: {} {} claim changed before its refusal was recorded",
+                        F::FORM_CODE,
+                        draft.period_code()
+                    ),
+                    Err(db_error) => warn!(
+                        "Cron: could not record the refused {} send: {db_error}",
+                        F::FORM_CODE
                     ),
                 }
             }
@@ -1262,8 +1385,8 @@ async fn process_submission_queue<T: SubmissionTransport + 'static>(
                     };
 
                 match queued_retry_is_due(draft.next_retry_at.as_deref(), Utc::now()) {
-                    Ok(false) => return,
-                    Ok(true) => {}
+                    Ok(false) if !previous_tin_refusal(draft.last_error.as_deref()) => return,
+                    Ok(_) => {}
                     Err(error) => {
                         warn!(
                             "Cron: Refusing queued form {} because its retry timestamp is invalid: {}",
@@ -1335,6 +1458,16 @@ async fn process_submission_queue<T: SubmissionTransport + 'static>(
 
                 let session = match transport.open_session(form_type, &draft.tin).await {
                     Ok(session) => session,
+                    Err(error) if error.refusal().is_some() => {
+                        refuse_unclaimed_2551q(
+                            &mut draft,
+                            &queue_revision,
+                            &db_clone,
+                            &current_profile,
+                            refusal_reason(SESSION_FAILED_PREFIX, &error),
+                        );
+                        return;
+                    }
                     Err(error) => {
                         fail_draft_2551q(
                             &mut draft,
@@ -1472,6 +1605,39 @@ async fn process_submission_queue<T: SubmissionTransport + 'static>(
                             }
                         }
                     }
+                    Err(StoreFailure::NotSent(error)) if error.refusal().is_some() => {
+                        let refusal = error.refusal();
+                        let reason = refusal_reason(NOT_SENT_PREFIX, &error);
+                        warn!(
+                            "Cron: Form {} was refused for its TIN (nothing reached BIR); back to Draft: {}",
+                            draft.period_code(),
+                            reason
+                        );
+                        if let Ok(db_guard) = db_clone.lock() {
+                            match db_guard.refuse_claimed_2551q_tin(
+                                &draft.tin,
+                                draft.taxable_year,
+                                draft.quarter,
+                                &claim_token,
+                                reason,
+                            ) {
+                                Ok(true) => record_refusal_alert(
+                                    &db_guard,
+                                    &current_profile,
+                                    "2551Q",
+                                    &quarterly_period_label(draft.taxable_year, draft.quarter),
+                                    refusal,
+                                ),
+                                Ok(false) => info!(
+                                    "Cron: Form {} claim changed before its refusal was recorded",
+                                    draft.period_code()
+                                ),
+                                Err(db_error) => warn!(
+                                    "Cron: could not record the refused 2551Q send: {db_error}"
+                                ),
+                            }
+                        }
+                    }
                     Err(StoreFailure::NotSent(error)) => {
                         warn!(
                             "Cron: Form {} was not sent (nothing reached BIR); recording the failed attempt: {}",
@@ -1601,6 +1767,169 @@ fn record_submission_alert(
         &detail,
         crate::db::AlertAction::None,
     );
+}
+
+/// A return Buwiz refused for its TIN gets an entry on the Notifications
+/// page too, once per return period: back to Draft without a word would
+/// read as lost. The text is fixed, never the server's message.
+fn record_refusal_alert(
+    db: &Database,
+    profile: &TaxpayerProfile,
+    form_code: &str,
+    period_label: &str,
+    refusal: Option<TinRefusal>,
+) {
+    let kind = format!("form_refused:{form_code}:{period_label}");
+    let title = format!("BIR Form {form_code} {period_label} was not sent");
+    let why = if refusal == Some(TinRefusal::AccountBanned) {
+        "Buwiz would not send it because this Buwiz account is banned"
+    } else {
+        "Buwiz would not send it for this TIN"
+    };
+    let detail = format!(
+        "{}\nTIN {}\n{why}, so it is back to a draft. Nothing reached BIR. Open the return to see what to do.",
+        profile.full_name,
+        profile.tin.formatted()
+    );
+    let _ = db.record_alert(
+        Some(&profile.tin.full()),
+        &kind,
+        crate::db::AlertSeverity::Warning,
+        &title,
+        &detail,
+        crate::db::AlertAction::None,
+    );
+}
+
+/// The session opened with a TIN refusal (a banned account): no claim was
+/// taken, so the unclaimed row goes back to Draft through the same CAS a
+/// failed session uses.
+fn refuse_unclaimed_1601c(
+    draft: &mut Form1601CDraft,
+    revision: &Queued1601CRevision,
+    db: &Arc<Mutex<Database>>,
+    profile: &TaxpayerProfile,
+    error_message: String,
+) {
+    warn!(
+        "Cron: 1601C {} was refused for its TIN before upload; back to Draft: {}",
+        draft.period_code(),
+        error_message
+    );
+    let refusal = TinRefusal::from_reason(&error_message);
+    draft.record_tin_refusal(error_message);
+    if let Ok(db_guard) = db.lock() {
+        match db_guard.replace_unclaimed_queued_1601c_submission(
+            draft,
+            &revision.fingerprint,
+            &revision.next_retry_at,
+            revision.submission_attempts,
+        ) {
+            Ok(true) => record_refusal_alert(
+                &db_guard,
+                profile,
+                "1601C",
+                &monthly_period_label(draft.taxable_year, draft.month),
+                refusal,
+            ),
+            Ok(false) => info!(
+                "Cron: 1601C {} was canceled or superseded before its refusal persisted",
+                draft.period_code()
+            ),
+            Err(error) => warn!(
+                "Cron: Failed to persist the 1601C refusal for {}: {}",
+                draft.period_code(),
+                error
+            ),
+        }
+    }
+}
+
+/// [`refuse_unclaimed_1601c`] for a 2551Q.
+fn refuse_unclaimed_2551q(
+    draft: &mut Form2551QDraft,
+    revision: &Queued2551QRevision,
+    db: &Arc<Mutex<Database>>,
+    profile: &TaxpayerProfile,
+    error_message: String,
+) {
+    warn!(
+        "Cron: Form {} was refused for its TIN before upload; back to Draft: {}",
+        draft.period_code(),
+        error_message
+    );
+    let refusal = TinRefusal::from_reason(&error_message);
+    draft.record_tin_refusal(error_message);
+    if let Ok(db_guard) = db.lock() {
+        match db_guard.replace_unclaimed_queued_2551q_submission(
+            draft,
+            &revision.fingerprint,
+            &revision.next_retry_at,
+            revision.submission_attempts,
+        ) {
+            Ok(true) => record_refusal_alert(
+                &db_guard,
+                profile,
+                "2551Q",
+                &quarterly_period_label(draft.taxable_year, draft.quarter),
+                refusal,
+            ),
+            Ok(false) => info!(
+                "Cron: Form {} was canceled or superseded before its refusal persisted",
+                draft.period_code()
+            ),
+            Err(error) => warn!(
+                "Cron: Failed to persist the refusal for {}: {}",
+                draft.period_code(),
+                error
+            ),
+        }
+    }
+}
+
+/// [`refuse_unclaimed_1601c`] for a form on the generic queue.
+fn refuse_unclaimed_queueable<F: QueueableForm>(
+    draft: &mut F,
+    generation: &QueueGeneration,
+    db: &Arc<Mutex<Database>>,
+    profile: &TaxpayerProfile,
+    error_message: String,
+) {
+    warn!(
+        "Cron: {} {} was refused for its TIN before upload; back to Draft: {}",
+        F::FORM_CODE,
+        draft.period_code(),
+        error_message
+    );
+    let refusal = TinRefusal::from_reason(&error_message);
+    draft.lifecycle_mut().record_tin_refusal(error_message);
+    if let Ok(db_guard) = db.lock() {
+        match db_guard.replace_unclaimed_queued_queueable(
+            draft,
+            &generation.fingerprint,
+            &generation.next_retry_at,
+            generation.submission_attempts,
+        ) {
+            Ok(true) => record_refusal_alert(
+                &db_guard,
+                profile,
+                F::FORM_CODE,
+                &queueable_period_label(draft),
+                refusal,
+            ),
+            Ok(false) => info!(
+                "Cron: {} {} was canceled or superseded before its refusal persisted",
+                F::FORM_CODE,
+                draft.period_code()
+            ),
+            Err(error) => warn!(
+                "Cron: Failed to persist the {} refusal for {}: {}",
+                F::FORM_CODE,
+                draft.period_code(),
+                error
+            ),
+        }
+    }
 }
 
 fn fail_draft_2551q(
@@ -1895,6 +2224,12 @@ mod tests {
         /// The PUT is attempted but the far side says nothing reached BIR
         /// (for example the ticket request was refused).
         NotSentAtStore,
+        /// [`Self::NotSentAtStore`] with this reason, as the server worded it.
+        NotSentWith(&'static str),
+        /// The PUT ends with BIR maybe having the return, with this reason.
+        MaybeSentWith(&'static str),
+        /// The session fails before any PUT, with this reason.
+        SessionFailsWith(&'static str),
     }
 
     struct RecordingSubmissionTransport {
@@ -1963,9 +2298,14 @@ mod tests {
                     TestTransportOutcome::PreStore => {
                         Err(TransportError("simulated connect timeout".to_string()))
                     }
+                    TestTransportOutcome::SessionFailsWith(reason) => {
+                        Err(TransportError(reason.to_string()))
+                    }
                     TestTransportOutcome::Success
                     | TestTransportOutcome::UnknownIo
-                    | TestTransportOutcome::NotSentAtStore => Ok(form_type),
+                    | TestTransportOutcome::NotSentAtStore
+                    | TestTransportOutcome::NotSentWith(_)
+                    | TestTransportOutcome::MaybeSentWith(_) => Ok(form_type),
                 }
             })
         }
@@ -1994,7 +2334,11 @@ mod tests {
                     TestTransportOutcome::NotSentAtStore => Err(TransportError(
                         "simulated ticket refused before upload".to_string(),
                     )),
-                    TestTransportOutcome::PreStore => {
+                    TestTransportOutcome::NotSentWith(reason)
+                    | TestTransportOutcome::MaybeSentWith(reason) => {
+                        Err(TransportError(reason.to_string()))
+                    }
+                    TestTransportOutcome::PreStore | TestTransportOutcome::SessionFailsWith(_) => {
                         panic!("PUT must not run after a pre-store session failure")
                     }
                 }
@@ -2014,7 +2358,8 @@ mod tests {
                     .await
                     .map(|()| report.unwrap_or_default())
                     .map_err(|error| match outcome {
-                        TestTransportOutcome::NotSentAtStore => StoreFailure::NotSent(error),
+                        TestTransportOutcome::NotSentAtStore
+                        | TestTransportOutcome::NotSentWith(_) => StoreFailure::NotSent(error),
                         _ => StoreFailure::MaybeSent(error),
                     })
             })
@@ -3633,5 +3978,1026 @@ mod tests {
             stored_2551q(&db, &queued).submission_claim_token.as_deref(),
             Some(newer.as_str())
         );
+    }
+
+    // ----- A TIN refusal goes back to Draft by claim token -----
+
+    const REFUSED_UNVERIFIED: &str =
+        "Not sent (nothing reached BIR): This TIN is not verified yet. (tin_unverified)";
+
+    #[tokio::test]
+    async fn a_stale_1601c_worker_cannot_refuse_a_newer_claim() {
+        let (_profile, queued, db, _summary) = saved_queued_1601c();
+        let stale = claim_stored_1601c(&db, &queued);
+        {
+            let db_guard = db.lock().expect("the cron database should not be poisoned");
+            assert!(matches!(
+                db_guard
+                    .release_abandoned_claimed_1601c_submission(
+                        &queued.tin,
+                        queued.taxable_year,
+                        queued.month,
+                        crate::db::ABANDONED_CLAIM_RELEASE_REASON,
+                    )
+                    .expect("release"),
+                crate::db::AbandonedClaimRelease::Released { .. }
+            ));
+        }
+        let mut requeued = stored_1601c(&db, &queued);
+        requeued
+            .transition_to_queued()
+            .expect("the released 1601C should queue again");
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .save_queued_1601c_draft(&requeued)
+            .expect("requeue");
+        let newer = claim_stored_1601c(&db, &queued);
+        let before = raw_row(&db, "1601C", &queued.tin, queued.taxable_year, queued.month);
+        let refuse = |token: &str| {
+            db.lock()
+                .expect("the cron database should not be poisoned")
+                .refuse_claimed_1601c_tin(
+                    &queued.tin,
+                    queued.taxable_year,
+                    queued.month,
+                    token,
+                    REFUSED_UNVERIFIED.to_string(),
+                )
+                .expect("the refusal should run")
+        };
+
+        assert!(!refuse(&stale));
+        assert_eq!(
+            raw_row(&db, "1601C", &queued.tin, queued.taxable_year, queued.month),
+            before
+        );
+
+        assert!(refuse(&newer));
+        let refused = stored_1601c(&db, &queued);
+        assert_eq!(refused.status, FilingStatus::Draft);
+        assert_eq!(
+            refused.submission_error.as_deref(),
+            Some(REFUSED_UNVERIFIED)
+        );
+        assert!(refused.submission_claim_token.is_none());
+        assert_eq!(
+            form_drafts_status_column(&db, "1601C", &queued.tin, queued.taxable_year, queued.month),
+            "Draft"
+        );
+    }
+
+    #[tokio::test]
+    async fn a_stale_2551q_worker_cannot_refuse_a_newer_claim() {
+        let (queued, db) = saved_queued_2551q("806");
+        let stale = claim_stored_2551q(&db, &queued);
+        {
+            let db_guard = db.lock().expect("the cron database should not be poisoned");
+            assert!(matches!(
+                db_guard
+                    .release_abandoned_claimed_2551q_submission(
+                        &queued.tin,
+                        queued.taxable_year,
+                        queued.quarter,
+                        crate::db::ABANDONED_CLAIM_RELEASE_REASON,
+                    )
+                    .expect("release"),
+                crate::db::AbandonedClaimRelease::Released { .. }
+            ));
+        }
+        let mut requeued = stored_2551q(&db, &queued);
+        requeued
+            .transition_to_queued()
+            .expect("the released 2551Q should queue again");
+        db.lock()
+            .expect("the cron database should not be poisoned")
+            .save_queued_2551q_draft_and_election(&requeued)
+            .expect("requeue");
+        let newer = claim_stored_2551q(&db, &queued);
+        let (tin, year, quarter) = (&queued.tin, queued.taxable_year, queued.quarter);
+        let before = raw_row(&db, "2551Q", tin, year, quarter);
+        let refuse = |token: &str| {
+            db.lock()
+                .expect("the cron database should not be poisoned")
+                .refuse_claimed_2551q_tin(tin, year, quarter, token, REFUSED_UNVERIFIED.to_string())
+                .expect("the refusal should run")
+        };
+
+        assert!(!refuse(&stale));
+        assert_eq!(raw_row(&db, "2551Q", tin, year, quarter), before);
+
+        assert!(refuse(&newer));
+        let refused = stored_2551q(&db, &queued);
+        assert_eq!(refused.status, FilingStatus::Draft);
+        assert_eq!(refused.last_error.as_deref(), Some(REFUSED_UNVERIFIED));
+        assert!(refused.submission_claim_token.is_none());
+        assert_eq!(
+            form_drafts_status_column(&db, "2551Q", tin, year, quarter),
+            "Draft"
+        );
+    }
+
+    fn claim_stored_test_form(db: &Arc<Mutex<Database>>, form: &TestForm) -> String {
+        let stored = stored_test_form(db, form);
+        let lifecycle = stored.lifecycle();
+        let claim = db
+            .lock()
+            .unwrap()
+            .claim_queued_queueable::<TestForm>(
+                &stored.tin,
+                stored.taxable_year,
+                i64::from(stored.month),
+                &lifecycle.queued_submission_fingerprint,
+                &lifecycle.next_retry_at,
+                lifecycle.submission_attempts,
+            )
+            .expect("claim");
+        let crate::db::ClaimQueueableResult::Claimed { token, .. } = claim else {
+            panic!("the test form should claim");
+        };
+        token
+    }
+
+    #[tokio::test]
+    async fn a_stale_generic_worker_cannot_refuse_a_newer_claim() {
+        let db = test_db();
+        let (queued, _summary) = queued_test_form(&db);
+        let (tin, year, period) = (&queued.tin, queued.taxable_year, i64::from(queued.month));
+        let stale = claim_stored_test_form(&db, &queued);
+        assert!(matches!(
+            db.lock()
+                .unwrap()
+                .release_abandoned_claimed_queueable::<TestForm>(
+                    tin,
+                    year,
+                    period,
+                    crate::db::ABANDONED_CLAIM_RELEASE_REASON,
+                )
+                .expect("release"),
+            crate::db::AbandonedClaimRelease::Released { .. }
+        ));
+        let mut requeued = stored_test_form(&db, &queued);
+        requeued
+            .queue(crate::filing_queue::QueueAuthSource::Gui)
+            .expect("the released test form should queue again");
+        db.lock()
+            .unwrap()
+            .save_queued_queueable(&requeued)
+            .expect("requeue");
+        let newer = claim_stored_test_form(&db, &queued);
+        let before = raw_row(&db, TestForm::CODE, tin, year, queued.month);
+        let refuse = |token: &str| {
+            db.lock()
+                .unwrap()
+                .refuse_claimed_queueable_tin::<TestForm>(
+                    tin,
+                    year,
+                    period,
+                    token,
+                    REFUSED_UNVERIFIED.to_string(),
+                )
+                .expect("the refusal should run")
+        };
+
+        assert!(!refuse(&stale));
+        assert_eq!(
+            raw_row(&db, TestForm::CODE, tin, year, queued.month),
+            before
+        );
+
+        assert!(refuse(&newer));
+        let refused = stored_test_form(&db, &queued);
+        assert_eq!(refused.lifecycle.status, FilingStatus::Draft);
+        assert_eq!(
+            refused.lifecycle.submission_error.as_deref(),
+            Some(REFUSED_UNVERIFIED)
+        );
+        assert!(refused.lifecycle.is_unclaimed());
+        assert_eq!(
+            form_drafts_status_column(&db, TestForm::CODE, tin, year, queued.month),
+            "Draft"
+        );
+    }
+
+    // ----- The worker sends a TIN refusal back to Draft at once -----
+
+    const TIN_CODES: [&str; 6] = [
+        "tin_not_active",
+        "tin_unverified",
+        "tin_pending",
+        "tin_needs_fix",
+        "tin_paused",
+        "account_banned",
+    ];
+
+    /// The server's refusal for `code`, as the transport hands it over.
+    fn refused_with(code: &str) -> &'static str {
+        Box::leak(format!("Buwiz would not send this for its TIN ({code})").into_boxed_str())
+    }
+
+    fn refusal_alerts(db: &Arc<Mutex<Database>>, form_code: &str) -> usize {
+        db.lock()
+            .unwrap()
+            .list_active_alerts(None)
+            .unwrap()
+            .iter()
+            .filter(|alert| {
+                alert
+                    .kind
+                    .starts_with(&format!("form_refused:{form_code}:"))
+            })
+            .count()
+    }
+
+    #[tokio::test]
+    async fn process_queued_1601c_tin_refusal_returns_to_draft_at_once() {
+        for code in TIN_CODES {
+            let (profile, queued, db, summary) = saved_queued_1601c();
+            let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(
+                refused_with(code),
+            ));
+            process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+
+            assert_eq!(transport.calls().len(), 1, "{code}");
+            let refused = stored_1601c(&db, &queued);
+            assert_eq!(refused.status, FilingStatus::Draft, "{code}");
+            assert_eq!(
+                form_drafts_status_column(
+                    &db,
+                    "1601C",
+                    &queued.tin,
+                    queued.taxable_year,
+                    queued.month
+                ),
+                "Draft"
+            );
+            assert_eq!(refused.submission_attempts, 1);
+            let error = refused.submission_error.as_deref().unwrap_or_default();
+            assert!(error.starts_with(NOT_SENT_PREFIX), "{error}");
+            assert!(error.ends_with(&format!("({code})")), "{error}");
+            assert!(refused.submission_claim_token.is_none());
+            assert!(refused.submission_claimed_at.is_none());
+            assert!(refused.submission_claim_lease_until.is_none());
+            assert!(refused.submission_put_started_at.is_none());
+            assert!(refused.queued_submission_fingerprint.is_none());
+            assert!(refused.queue_authorization.is_none());
+            assert!(refused.submitted_payload.is_none());
+            assert!(refused.next_retry_at.is_none());
+            assert_eq!(refusal_alerts(&db, "1601C"), 1, "{code}");
+
+            // A Draft is never sent by itself.
+            let after = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+            process_queued_1601c_with_transport(&summary, &profile, db.clone(), &after).await;
+            assert!(after.calls().is_empty(), "{code}");
+
+            // Queueing it again clears the reason.
+            let mut requeued = stored_1601c(&db, &queued);
+            requeued
+                .transition_to_queued()
+                .expect("the refused 1601C should queue again");
+            db.lock()
+                .unwrap()
+                .save_queued_1601c_draft(&requeued)
+                .expect("requeue");
+            let requeued = stored_1601c(&db, &queued);
+            assert_eq!(requeued.status, FilingStatus::Queued);
+            assert_eq!(requeued.submission_attempts, 0);
+            assert!(requeued.submission_error.is_none());
+        }
+    }
+
+    #[tokio::test]
+    async fn queued_2551q_tin_refusal_returns_to_draft_at_once() {
+        for (code, segment3) in TIN_CODES
+            .into_iter()
+            .zip(["811", "812", "813", "814", "815", "816"])
+        {
+            let (queued, db) = saved_queued_2551q(segment3);
+            let transport = Arc::new(RecordingSubmissionTransport::new(
+                TestTransportOutcome::NotSentWith(refused_with(code)),
+            ));
+            tick_2551q(&db, &transport, &queued).await;
+
+            assert_eq!(transport.calls().len(), 1, "{code}");
+            let refused = stored_2551q(&db, &queued);
+            assert_eq!(refused.status, FilingStatus::Draft, "{code}");
+            assert_eq!(
+                form_drafts_status_column(
+                    &db,
+                    "2551Q",
+                    &queued.tin,
+                    queued.taxable_year,
+                    queued.quarter
+                ),
+                "Draft"
+            );
+            assert_eq!(refused.submission_attempts, 1);
+            let error = refused.last_error.as_deref().unwrap_or_default();
+            assert!(error.starts_with(NOT_SENT_PREFIX), "{error}");
+            assert!(error.ends_with(&format!("({code})")), "{error}");
+            assert!(refused.submission_claim_token.is_none());
+            assert!(refused.submission_claimed_at.is_none());
+            assert!(refused.submission_put_started_at.is_none());
+            assert!(refused.queued_submission_fingerprint.is_none());
+            assert!(refused.queue_authorization.is_none());
+            assert!(refused.submitted_payload.is_none());
+            assert!(refused.next_retry_at.is_none());
+            assert_eq!(refusal_alerts(&db, "2551Q"), 1, "{code}");
+
+            let after = Arc::new(RecordingSubmissionTransport::new(
+                TestTransportOutcome::Success,
+            ));
+            tick_2551q(&db, &after, &queued).await;
+            assert!(after.calls().is_empty(), "{code}");
+        }
+    }
+
+    #[tokio::test]
+    async fn generic_worker_tin_refusal_returns_to_draft_at_once() {
+        for code in TIN_CODES {
+            let profile = test_profile();
+            let db = test_db();
+            let (queued, summary) = queued_test_form(&db);
+            let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(
+                refused_with(code),
+            ));
+            process_queued_queueable::<TestForm, _>(
+                &summary,
+                &profile,
+                db.clone(),
+                &transport,
+                allow_test_form,
+            )
+            .await;
+
+            assert_eq!(transport.calls().len(), 1, "{code}");
+            let refused = stored_test_form(&db, &queued);
+            let lifecycle = &refused.lifecycle;
+            assert_eq!(lifecycle.status, FilingStatus::Draft, "{code}");
+            assert_eq!(
+                form_drafts_status_column(
+                    &db,
+                    TestForm::CODE,
+                    &queued.tin,
+                    queued.taxable_year,
+                    queued.month
+                ),
+                "Draft"
+            );
+            assert_eq!(lifecycle.submission_attempts, 1);
+            let error = lifecycle.submission_error.as_deref().unwrap_or_default();
+            assert!(error.starts_with(NOT_SENT_PREFIX), "{error}");
+            assert!(error.ends_with(&format!("({code})")), "{error}");
+            assert!(lifecycle.is_unclaimed());
+            assert!(lifecycle.submission_put_started_at.is_none());
+            assert!(lifecycle.queued_submission_fingerprint.is_none());
+            assert!(lifecycle.queue_authorization.is_none());
+            assert!(lifecycle.submitted_payload.is_none());
+            assert!(lifecycle.next_retry_at.is_none());
+            assert_eq!(refusal_alerts(&db, TestForm::CODE), 1, "{code}");
+
+            let after = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+            process_queued_queueable::<TestForm, _>(
+                &summary,
+                &profile,
+                db.clone(),
+                &after,
+                allow_test_form,
+            )
+            .await;
+            assert!(after.calls().is_empty(), "{code}");
+        }
+    }
+
+    fn refusal_alert(db: &Arc<Mutex<Database>>, form_code: &str) -> crate::db::AppAlert {
+        let mut alerts: Vec<_> = db
+            .lock()
+            .unwrap()
+            .list_active_alerts(None)
+            .unwrap()
+            .into_iter()
+            .filter(|alert| {
+                alert
+                    .kind
+                    .starts_with(&format!("form_refused:{form_code}:"))
+            })
+            .collect();
+        assert_eq!(alerts.len(), 1);
+        alerts.remove(0)
+    }
+
+    /// The alert's words are the queue's own: never the server's message,
+    /// and for a banned account they name the account, not the TIN.
+    #[tokio::test]
+    async fn the_refusal_alert_names_the_account_for_a_ban_and_never_the_servers_message() {
+        let check = |alert: crate::db::AppAlert, code: &str| {
+            let shown = format!("{}\n{}", alert.title, alert.detail);
+            assert!(!shown.contains("SERVER SENTENCE"), "{shown}");
+            assert!(!shown.contains("999-888"), "{shown}");
+            if code == "account_banned" {
+                assert!(!shown.contains("for this TIN"), "{shown}");
+                assert!(shown.contains("this Buwiz account is banned"), "{shown}");
+            } else {
+                assert!(shown.contains("for this TIN"), "{shown}");
+            }
+        };
+        for code in TIN_CODES {
+            let reason: &'static str = Box::leak(
+                format!("SERVER SENTENCE about 000-999-888-000 ({code})").into_boxed_str(),
+            );
+            let (profile, _queued, db, summary) = saved_queued_1601c();
+            let transport =
+                RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(reason));
+            process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+            check(refusal_alert(&db, "1601C"), code);
+
+            let profile = test_profile();
+            let db = test_db();
+            let (_queued, summary) = queued_test_form(&db);
+            let transport =
+                RecordingSubmissionTransport::new(TestTransportOutcome::SessionFailsWith(reason));
+            process_queued_queueable::<TestForm, _>(
+                &summary,
+                &profile,
+                db.clone(),
+                &transport,
+                allow_test_form,
+            )
+            .await;
+            check(refusal_alert(&db, TestForm::CODE), code);
+        }
+        let reason = "SERVER SENTENCE about 000-999-888-000 (account_banned)";
+        let (queued, db) = saved_queued_2551q("823");
+        let transport = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::NotSentWith(reason),
+        ));
+        tick_2551q(&db, &transport, &queued).await;
+        check(refusal_alert(&db, "2551Q"), "account_banned");
+    }
+
+    /// A refusal whose server message is empty reaches the worker as
+    /// `" (code)"`, and a relay `failed` error can be just `"(code)"`: each
+    /// goes back to Draft at once, the same as a refusal with words.
+    #[tokio::test]
+    async fn a_refusal_with_no_message_returns_to_draft_at_once() {
+        for (n, reason) in [" (tin_paused)", "(tin_paused)"].into_iter().enumerate() {
+            let (profile, queued, db, summary) = saved_queued_1601c();
+            let transport =
+                RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(reason));
+            process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+            assert_eq!(transport.calls().len(), 1, "{reason:?}");
+            let refused = stored_1601c(&db, &queued);
+            assert_eq!(refused.status, FilingStatus::Draft, "{reason:?}");
+            assert_eq!(refused.submission_attempts, 1);
+            assert!(refused.next_retry_at.is_none());
+            assert_eq!(refusal_alerts(&db, "1601C"), 1, "{reason:?}");
+
+            let (queued, db) = saved_queued_2551q(["820", "821"][n]);
+            let transport = Arc::new(RecordingSubmissionTransport::new(
+                TestTransportOutcome::NotSentWith(reason),
+            ));
+            tick_2551q(&db, &transport, &queued).await;
+            assert_eq!(transport.calls().len(), 1, "{reason:?}");
+            let refused = stored_2551q(&db, &queued);
+            assert_eq!(refused.status, FilingStatus::Draft, "{reason:?}");
+            assert_eq!(refused.submission_attempts, 1);
+            assert!(refused.next_retry_at.is_none());
+            assert_eq!(refusal_alerts(&db, "2551Q"), 1, "{reason:?}");
+
+            let profile = test_profile();
+            let db = test_db();
+            let (queued, summary) = queued_test_form(&db);
+            let transport =
+                RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(reason));
+            process_queued_queueable::<TestForm, _>(
+                &summary,
+                &profile,
+                db.clone(),
+                &transport,
+                allow_test_form,
+            )
+            .await;
+            assert_eq!(transport.calls().len(), 1, "{reason:?}");
+            let refused = stored_test_form(&db, &queued);
+            assert_eq!(refused.lifecycle.status, FilingStatus::Draft, "{reason:?}");
+            assert_eq!(refused.lifecycle.submission_attempts, 1);
+            assert!(refused.lifecycle.next_retry_at.is_none());
+            assert_eq!(refusal_alerts(&db, TestForm::CODE), 1, "{reason:?}");
+        }
+    }
+
+    /// A server that put pages of free text in a refusal fills neither the
+    /// row nor the log: the stored reason is cut, and still ends with its
+    /// code.
+    #[tokio::test]
+    async fn a_long_refusal_is_stored_cut_to_its_cap_with_its_code() {
+        let long: &'static str = Box::leak(
+            format!("{} (tin_needs_fix)", "Sent back for a fix: x".repeat(400)).into_boxed_str(),
+        );
+        let check = |stored: Option<&str>| {
+            let stored = stored.unwrap_or_default();
+            assert!(
+                stored.chars().count() <= REFUSAL_REASON_CAP + " (account_banned)".len(),
+                "{} characters",
+                stored.chars().count()
+            );
+            assert!(stored.ends_with("\u{2026} (tin_needs_fix)"), "{stored}");
+            assert_eq!(TinRefusal::from_reason(stored), Some(TinRefusal::NeedsFix));
+        };
+
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(long));
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+        let refused = stored_1601c(&db, &queued);
+        assert_eq!(refused.status, FilingStatus::Draft);
+        check(refused.submission_error.as_deref());
+
+        let (queued, db) = saved_queued_2551q("822");
+        let transport = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::NotSentWith(long),
+        ));
+        tick_2551q(&db, &transport, &queued).await;
+        let refused = stored_2551q(&db, &queued);
+        assert_eq!(refused.status, FilingStatus::Draft);
+        check(refused.last_error.as_deref());
+
+        let profile = test_profile();
+        let db = test_db();
+        let (queued, summary) = queued_test_form(&db);
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(long));
+        process_queued_queueable::<TestForm, _>(
+            &summary,
+            &profile,
+            db.clone(),
+            &transport,
+            allow_test_form,
+        )
+        .await;
+        let refused = stored_test_form(&db, &queued);
+        assert_eq!(refused.lifecycle.status, FilingStatus::Draft);
+        check(refused.lifecycle.submission_error.as_deref());
+
+        // At session open too.
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        let transport =
+            RecordingSubmissionTransport::new(TestTransportOutcome::SessionFailsWith(long));
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+        let refused = stored_1601c(&db, &queued);
+        assert_eq!(refused.status, FilingStatus::Draft);
+        check(refused.submission_error.as_deref());
+    }
+
+    #[tokio::test]
+    async fn a_not_sent_that_is_not_a_tin_refusal_still_backs_off() {
+        for reason in [
+            "the server refused the relay (502 Bad Gateway) (relay_refused)",
+            "this TIN is not active on your account (tin_not_active), said an old proxy",
+            "the relay closed early",
+        ] {
+            let (profile, queued, db, summary) = saved_queued_1601c();
+            let transport =
+                RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(reason));
+            process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+
+            assert_eq!(transport.calls().len(), 1);
+            let failed = stored_1601c(&db, &queued);
+            assert_eq!(failed.status, FilingStatus::Queued, "{reason}");
+            assert_eq!(failed.submission_attempts, 1);
+            assert!(failed.submission_claim_token.is_none());
+            assert!(retry_is_in_the_future(failed.next_retry_at.as_deref()));
+            assert_eq!(refusal_alerts(&db, "1601C"), 0);
+        }
+    }
+
+    #[tokio::test]
+    async fn maybe_sent_with_a_tin_code_in_its_text_stays_claimed() {
+        let reason = "the connection ended during the send (tin_not_active)";
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        let transport =
+            RecordingSubmissionTransport::new(TestTransportOutcome::MaybeSentWith(reason));
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+        assert_eq!(transport.calls().len(), 1);
+        let claimed = stored_1601c(&db, &queued);
+        assert_eq!(claimed.status, FilingStatus::Queued);
+        assert_eq!(claimed.submission_attempts, 0);
+        assert!(claimed.submission_claim_token.is_some());
+        assert!(claimed.submission_put_started_at.is_some());
+        let retry = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &retry).await;
+        assert!(retry.calls().is_empty());
+
+        let (queued, db) = saved_queued_2551q("817");
+        let transport = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::MaybeSentWith(reason),
+        ));
+        tick_2551q(&db, &transport, &queued).await;
+        assert_eq!(transport.calls().len(), 1);
+        let claimed = stored_2551q(&db, &queued);
+        assert_eq!(claimed.status, FilingStatus::Queued);
+        assert!(claimed.submission_claim_token.is_some());
+        assert!(claimed.submission_put_started_at.is_some());
+
+        let profile = test_profile();
+        let db = test_db();
+        let (queued, summary) = queued_test_form(&db);
+        let transport =
+            RecordingSubmissionTransport::new(TestTransportOutcome::MaybeSentWith(reason));
+        process_queued_queueable::<TestForm, _>(
+            &summary,
+            &profile,
+            db.clone(),
+            &transport,
+            allow_test_form,
+        )
+        .await;
+        let claimed = stored_test_form(&db, &queued);
+        assert_eq!(claimed.lifecycle.status, FilingStatus::Queued);
+        assert!(!claimed.lifecycle.is_unclaimed());
+        assert!(claimed.lifecycle.submission_put_started_at.is_some());
+    }
+
+    #[tokio::test]
+    async fn a_banned_account_at_session_open_returns_to_draft_without_a_put() {
+        let reason = "This Buwiz account is banned: it can't send returns. (account_banned)";
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        let transport =
+            RecordingSubmissionTransport::new(TestTransportOutcome::SessionFailsWith(reason));
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+        assert!(transport.calls().is_empty());
+        let refused = stored_1601c(&db, &queued);
+        assert_eq!(refused.status, FilingStatus::Draft);
+        assert_eq!(refused.submission_attempts, 1);
+        let error = refused.submission_error.as_deref().unwrap_or_default();
+        assert!(
+            error.contains("no PUT attempted") && error.ends_with("(account_banned)"),
+            "{error}"
+        );
+        assert_eq!(refusal_alerts(&db, "1601C"), 1);
+
+        let (queued, db) = saved_queued_2551q("818");
+        let transport = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::SessionFailsWith(reason),
+        ));
+        tick_2551q(&db, &transport, &queued).await;
+        assert!(transport.calls().is_empty());
+        let refused = stored_2551q(&db, &queued);
+        assert_eq!(refused.status, FilingStatus::Draft);
+        assert_eq!(refused.submission_attempts, 1);
+        assert!(
+            refused
+                .last_error
+                .as_deref()
+                .unwrap_or_default()
+                .ends_with("(account_banned)")
+        );
+
+        let profile = test_profile();
+        let db = test_db();
+        let (queued, summary) = queued_test_form(&db);
+        let transport =
+            RecordingSubmissionTransport::new(TestTransportOutcome::SessionFailsWith(reason));
+        process_queued_queueable::<TestForm, _>(
+            &summary,
+            &profile,
+            db.clone(),
+            &transport,
+            allow_test_form,
+        )
+        .await;
+        assert!(transport.calls().is_empty());
+        let refused = stored_test_form(&db, &queued);
+        assert_eq!(refused.lifecycle.status, FilingStatus::Draft);
+        assert_eq!(refused.lifecycle.submission_attempts, 1);
+    }
+
+    /// Store `error` on the queued 1601C as an older build left it: a failed
+    /// try still Queued, with its next retry far off.
+    fn leave_1601c_failed(db: &Arc<Mutex<Database>>, queued: &Form1601CDraft, error: &str) {
+        let stored = stored_1601c(db, queued);
+        let mut failed = stored.clone();
+        failed.submission_error = Some(error.to_string());
+        failed.submission_attempts = 2;
+        failed.next_retry_at = Some("2099-01-01T00:00:00Z".to_string());
+        assert!(
+            db.lock()
+                .unwrap()
+                .replace_unclaimed_queued_1601c_submission(
+                    &failed,
+                    &stored.queued_submission_fingerprint,
+                    &stored.next_retry_at,
+                    stored.submission_attempts,
+                )
+                .unwrap()
+        );
+    }
+
+    const LEGACY_NOT_ACTIVE: &str =
+        "Not sent (nothing reached BIR): this TIN is not active on your account (tin_not_active)";
+
+    #[tokio::test]
+    async fn an_already_queued_failed_row_with_a_legacy_tin_code_is_tried_now_and_goes_to_draft() {
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        leave_1601c_failed(&db, &queued, LEGACY_NOT_ACTIVE);
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(
+            refused_with("tin_not_active"),
+        ));
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+        assert_eq!(transport.calls().len(), 1);
+        let refused = stored_1601c(&db, &queued);
+        assert_eq!(refused.status, FilingStatus::Draft);
+        assert_eq!(refused.submission_attempts, 3);
+
+        // The twin: the TIN is active by now, so it sends.
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        leave_1601c_failed(&db, &queued, LEGACY_NOT_ACTIVE);
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+        assert_eq!(transport.calls().len(), 1);
+        assert_eq!(stored_1601c(&db, &queued).status, FilingStatus::Sent);
+
+        // Any other failure keeps its backoff.
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        leave_1601c_failed(
+            &db,
+            &queued,
+            "Not sent (nothing reached BIR): the relay closed early",
+        );
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+        assert!(transport.calls().is_empty());
+        assert_eq!(stored_1601c(&db, &queued).status, FilingStatus::Queued);
+    }
+
+    #[tokio::test]
+    async fn an_already_queued_2551q_or_generic_row_with_a_legacy_tin_code_is_tried_now() {
+        let (queued, db) = saved_queued_2551q("819");
+        let stored = stored_2551q(&db, &queued);
+        let mut failed = stored.clone();
+        failed.last_error = Some(LEGACY_NOT_ACTIVE.to_string());
+        failed.submission_attempts = 2;
+        failed.next_retry_at = Some("2099-01-01T00:00:00Z".to_string());
+        assert!(
+            db.lock()
+                .unwrap()
+                .replace_unclaimed_queued_2551q_submission(
+                    &failed,
+                    &stored.queued_submission_fingerprint,
+                    &stored.next_retry_at,
+                    stored.submission_attempts,
+                )
+                .unwrap()
+        );
+        let transport = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::NotSentWith(refused_with("tin_pending")),
+        ));
+        tick_2551q(&db, &transport, &queued).await;
+        assert_eq!(transport.calls().len(), 1);
+        assert_eq!(stored_2551q(&db, &queued).status, FilingStatus::Draft);
+
+        let profile = test_profile();
+        let db = test_db();
+        let (queued, summary) = queued_test_form(&db);
+        let stored = stored_test_form(&db, &queued);
+        let mut failed = stored.clone();
+        failed.lifecycle.submission_error = Some(LEGACY_NOT_ACTIVE.to_string());
+        failed.lifecycle.submission_attempts = 2;
+        failed.lifecycle.next_retry_at = Some("2099-01-01T00:00:00Z".to_string());
+        assert!(
+            db.lock()
+                .unwrap()
+                .replace_unclaimed_queued_queueable(
+                    &failed,
+                    &stored.lifecycle.queued_submission_fingerprint,
+                    &stored.lifecycle.next_retry_at,
+                    stored.lifecycle.submission_attempts,
+                )
+                .unwrap()
+        );
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_queueable::<TestForm, _>(
+            &summary,
+            &profile,
+            db.clone(),
+            &transport,
+            allow_test_form,
+        )
+        .await;
+        assert_eq!(transport.calls().len(), 1);
+        assert_eq!(
+            stored_test_form(&db, &queued).lifecycle.status,
+            FilingStatus::Sent
+        );
+    }
+
+    /// What `a_not_sent_that_is_not_a_tin_refusal_still_backs_off` shows for
+    /// the 1601C, for the 2551Q and the generic worker: a code that is not a
+    /// TIN refusal, or one mid-sentence, keeps the backoff, and the next tick
+    /// sends nothing.
+    #[tokio::test]
+    async fn a_2551q_or_generic_not_sent_that_is_not_a_tin_refusal_still_backs_off() {
+        for (reason, segment3) in [
+            (
+                "the server refused the relay (502 Bad Gateway) (relay_refused)",
+                "824",
+            ),
+            (
+                "this TIN is not active on your account (tin_not_active), said an old proxy",
+                "825",
+            ),
+            ("the relay closed early", "826"),
+        ] {
+            let (queued, db) = saved_queued_2551q(segment3);
+            let transport = Arc::new(RecordingSubmissionTransport::new(
+                TestTransportOutcome::NotSentWith(reason),
+            ));
+            tick_2551q(&db, &transport, &queued).await;
+            assert_eq!(transport.calls().len(), 1, "{reason}");
+            let failed = stored_2551q(&db, &queued);
+            assert_eq!(failed.status, FilingStatus::Queued, "{reason}");
+            assert_eq!(failed.submission_attempts, 1);
+            assert!(failed.submission_claim_token.is_none());
+            assert!(retry_is_in_the_future(failed.next_retry_at.as_deref()));
+            assert_eq!(refusal_alerts(&db, "2551Q"), 0);
+            let early = Arc::new(RecordingSubmissionTransport::new(
+                TestTransportOutcome::Success,
+            ));
+            tick_2551q(&db, &early, &queued).await;
+            assert!(early.calls().is_empty(), "{reason}");
+
+            let profile = test_profile();
+            let db = test_db();
+            let (queued, summary) = queued_test_form(&db);
+            let transport =
+                RecordingSubmissionTransport::new(TestTransportOutcome::NotSentWith(reason));
+            process_queued_queueable::<TestForm, _>(
+                &summary,
+                &profile,
+                db.clone(),
+                &transport,
+                allow_test_form,
+            )
+            .await;
+            assert_eq!(transport.calls().len(), 1, "{reason}");
+            let failed = stored_test_form(&db, &queued);
+            assert_eq!(failed.lifecycle.status, FilingStatus::Queued, "{reason}");
+            assert_eq!(failed.lifecycle.submission_attempts, 1);
+            assert!(failed.lifecycle.is_unclaimed());
+            assert!(retry_is_in_the_future(
+                failed.lifecycle.next_retry_at.as_deref()
+            ));
+            assert_eq!(refusal_alerts(&db, TestForm::CODE), 0);
+            let early = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+            process_queued_queueable::<TestForm, _>(
+                &summary,
+                &profile,
+                db.clone(),
+                &early,
+                allow_test_form,
+            )
+            .await;
+            assert!(early.calls().is_empty(), "{reason}");
+        }
+    }
+
+    /// The generic worker stores a maybe-sent reason on the claimed row,
+    /// and that reason ends with the code here: the row is still not tried
+    /// again on the next tick, whatever its text says.
+    #[tokio::test]
+    async fn a_generic_maybe_sent_ending_in_a_tin_code_is_not_retried_on_the_next_tick() {
+        let reason = "the connection ended during the send (tin_not_active)";
+        let profile = test_profile();
+        let db = test_db();
+        let (queued, summary) = queued_test_form(&db);
+        let transport =
+            RecordingSubmissionTransport::new(TestTransportOutcome::MaybeSentWith(reason));
+        process_queued_queueable::<TestForm, _>(
+            &summary,
+            &profile,
+            db.clone(),
+            &transport,
+            allow_test_form,
+        )
+        .await;
+        assert_eq!(transport.calls().len(), 1);
+        let claimed = stored_test_form(&db, &queued);
+        assert!(!claimed.lifecycle.is_unclaimed());
+        assert_eq!(claimed.lifecycle.status, FilingStatus::Queued);
+
+        let retry = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_queueable::<TestForm, _>(
+            &summary,
+            &profile,
+            db.clone(),
+            &retry,
+            allow_test_form,
+        )
+        .await;
+        assert!(retry.calls().is_empty());
+        let after = stored_test_form(&db, &queued);
+        assert!(!after.lifecycle.is_unclaimed());
+        assert_eq!(after.lifecycle.status, FilingStatus::Queued);
+        assert_eq!(refusal_alerts(&db, TestForm::CODE), 0);
+    }
+
+    /// A legacy row whose reason ends with a TIN code is tried at once. When
+    /// that try fails for another reason, the new reason has no code, so the
+    /// row is back on its backoff: tried once, not on every tick.
+    #[tokio::test]
+    async fn a_legacy_coded_row_that_fails_otherwise_goes_back_on_its_backoff() {
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        leave_1601c_failed(&db, &queued, LEGACY_NOT_ACTIVE);
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentAtStore);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+        assert_eq!(transport.calls().len(), 1);
+        let failed = stored_1601c(&db, &queued);
+        assert_eq!(failed.status, FilingStatus::Queued);
+        assert_eq!(failed.submission_attempts, 3);
+        assert!(retry_is_in_the_future(failed.next_retry_at.as_deref()));
+        let next = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &next).await;
+        assert!(next.calls().is_empty(), "tried once, not on every tick");
+
+        // A session that fails before the PUT does the same.
+        let (profile, queued, db, summary) = saved_queued_1601c();
+        leave_1601c_failed(&db, &queued, LEGACY_NOT_ACTIVE);
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::PreStore);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &transport).await;
+        let failed = stored_1601c(&db, &queued);
+        assert_eq!(failed.status, FilingStatus::Queued);
+        assert_eq!(failed.submission_attempts, 3);
+        assert!(retry_is_in_the_future(failed.next_retry_at.as_deref()));
+        let next = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        process_queued_1601c_with_transport(&summary, &profile, db.clone(), &next).await;
+        assert!(next.calls().is_empty(), "tried once, not on every tick");
+
+        let (queued, db) = saved_queued_2551q("827");
+        let stored = stored_2551q(&db, &queued);
+        let mut legacy = stored.clone();
+        legacy.last_error = Some(LEGACY_NOT_ACTIVE.to_string());
+        legacy.submission_attempts = 2;
+        legacy.next_retry_at = Some("2099-01-01T00:00:00Z".to_string());
+        assert!(
+            db.lock()
+                .unwrap()
+                .replace_unclaimed_queued_2551q_submission(
+                    &legacy,
+                    &stored.queued_submission_fingerprint,
+                    &stored.next_retry_at,
+                    stored.submission_attempts,
+                )
+                .unwrap()
+        );
+        let transport = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::NotSentAtStore,
+        ));
+        tick_2551q(&db, &transport, &queued).await;
+        assert_eq!(transport.calls().len(), 1);
+        let failed = stored_2551q(&db, &queued);
+        assert_eq!(failed.status, FilingStatus::Queued);
+        assert!(retry_is_in_the_future(failed.next_retry_at.as_deref()));
+        let next = Arc::new(RecordingSubmissionTransport::new(
+            TestTransportOutcome::Success,
+        ));
+        tick_2551q(&db, &next, &queued).await;
+        assert!(next.calls().is_empty(), "tried once, not on every tick");
+
+        let profile = test_profile();
+        let db = test_db();
+        let (queued, summary) = queued_test_form(&db);
+        let stored = stored_test_form(&db, &queued);
+        let mut legacy = stored.clone();
+        legacy.lifecycle.submission_error = Some(LEGACY_NOT_ACTIVE.to_string());
+        legacy.lifecycle.submission_attempts = 2;
+        legacy.lifecycle.next_retry_at = Some("2099-01-01T00:00:00Z".to_string());
+        assert!(
+            db.lock()
+                .unwrap()
+                .replace_unclaimed_queued_queueable(
+                    &legacy,
+                    &stored.lifecycle.queued_submission_fingerprint,
+                    &stored.lifecycle.next_retry_at,
+                    stored.lifecycle.submission_attempts,
+                )
+                .unwrap()
+        );
+        let transport = RecordingSubmissionTransport::new(TestTransportOutcome::NotSentAtStore);
+        let run = |transport| {
+            process_queued_queueable::<TestForm, _>(
+                &summary,
+                &profile,
+                db.clone(),
+                transport,
+                allow_test_form,
+            )
+        };
+        run(&transport).await;
+        assert_eq!(transport.calls().len(), 1);
+        let failed = stored_test_form(&db, &queued);
+        assert_eq!(failed.lifecycle.status, FilingStatus::Queued);
+        assert!(retry_is_in_the_future(
+            failed.lifecycle.next_retry_at.as_deref()
+        ));
+        let next = RecordingSubmissionTransport::new(TestTransportOutcome::Success);
+        run(&next).await;
+        assert!(next.calls().is_empty(), "tried once, not on every tick");
     }
 }

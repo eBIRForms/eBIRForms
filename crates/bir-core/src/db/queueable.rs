@@ -911,6 +911,23 @@ impl Database {
         })
     }
 
+    /// Buwiz refused the send because of the TIN's state: release this
+    /// worker's claim and put the return back to Draft at once, with `error`
+    /// kept (`SubmissionLifecycle::record_tin_refusal`). `false` when the
+    /// claim is no longer this worker's.
+    pub(crate) fn refuse_claimed_queueable_tin<F: QueueableForm>(
+        &self,
+        tin: &str,
+        taxable_year: u16,
+        period: i64,
+        claim_token: &str,
+        error: String,
+    ) -> Result<bool, DbError> {
+        self.update_claimed_queueable::<F>(tin, taxable_year, period, claim_token, |lifecycle| {
+            lifecycle.record_tin_refusal(error)
+        })
+    }
+
     /// BIR may have the return: keep the claim (so it is never sent again
     /// automatically) and record why, for the person to check.
     pub(crate) fn note_claimed_queueable_outcome_unknown<F: QueueableForm>(

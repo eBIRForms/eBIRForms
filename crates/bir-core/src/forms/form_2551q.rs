@@ -1468,6 +1468,32 @@ impl Form2551QDraft {
         }
         self.updated_at = chrono::Utc::now().to_rfc3339();
     }
+
+    /// Buwiz refused the send because of the TIN's state (or a banned
+    /// account; [`crate::tin_refusal::TinRefusal`]): nothing reached BIR, and
+    /// retrying cannot help, so the return goes back to Draft at once with
+    /// `error_msg` kept in `last_error`. The same end state as the fifth
+    /// not-sent failure of [`Self::record_submission_failure`]; queueing it
+    /// again clears both.
+    pub fn record_tin_refusal(&mut self, error_msg: String) {
+        assert!(
+            matches!(self.status, FilingStatus::Queued),
+            "Cannot record a TIN refusal in {:?} status — must be Queued",
+            self.status
+        );
+        self.submission_attempts += 1;
+        self.last_error = Some(error_msg);
+        self.submission_claim_token = None;
+        self.submission_claimed_at = None;
+        self.submission_claim_lease_until = None;
+        self.submission_put_started_at = None;
+        self.status = FilingStatus::Draft;
+        self.next_retry_at = None;
+        self.queued_submission_fingerprint = None;
+        self.queue_authorization = None;
+        self.submitted_payload = None;
+        self.updated_at = chrono::Utc::now().to_rfc3339();
+    }
 }
 
 fn cents(value: f64) -> i64 {
@@ -3797,6 +3823,39 @@ mod tests {
             .transition_to_queued()
             .expect_err("Graduated must not queue when Item 13 is inapplicable");
         assert!(errors.iter().any(|(field, _)| field == "item_13_election"));
+    }
+
+    #[test]
+    fn a_tin_refusal_returns_to_draft_at_once_keeping_the_reason() {
+        let reason = "Not sent (nothing reached BIR): Sending is paused for this TIN. (tin_paused)";
+        let mut draft = make_draft(50_000.0, 0.0, 2026, 1);
+        draft
+            .transition_to_queued()
+            .expect("the fixture should queue");
+        let now = chrono::Utc::now().to_rfc3339();
+        draft.submission_claim_token = Some("t".to_string());
+        draft.submission_claimed_at = Some(now.clone());
+        draft.submission_claim_lease_until = Some(now.clone());
+        draft.submission_put_started_at = Some(now);
+        draft.record_tin_refusal(reason.to_string());
+        assert_eq!(draft.status, FilingStatus::Draft);
+        assert_eq!(draft.submission_attempts, 1);
+        assert_eq!(draft.last_error.as_deref(), Some(reason));
+        assert!(draft.submission_claim_token.is_none());
+        assert!(draft.submission_claimed_at.is_none());
+        assert!(draft.submission_claim_lease_until.is_none());
+        assert!(draft.submission_put_started_at.is_none());
+        assert!(draft.next_retry_at.is_none());
+        assert!(draft.queued_submission_fingerprint.is_none());
+        assert!(draft.queue_authorization.is_none());
+        assert!(draft.submitted_payload.is_none());
+
+        // Queueing it again clears the reason and the count.
+        draft
+            .transition_to_queued()
+            .expect("the refused draft queues again");
+        assert_eq!(draft.submission_attempts, 0);
+        assert!(draft.last_error.is_none());
     }
 
     #[test]

@@ -6,7 +6,8 @@
 //! - Sending → Sent: a verified receipt. It is kept on the return; a
 //!   dry-run receipt marks the send as a test.
 //! - Not sent (the server says nothing reached BIR): Failed, retried with
-//!   backoff.
+//!   backoff; when the reason ends with a TIN refusal code
+//!   (`bir_core::tin_refusal::TinRefusal`), back to Draft at once.
 //! - Unknown (BIR may have it): needs attention, never resent
 //!   automatically.
 

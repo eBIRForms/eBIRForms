@@ -8,7 +8,7 @@ use std::collections::{BTreeMap, BTreeSet};
 
 use serde_json::Value;
 
-use crate::{AppError, AppResult, BirApp};
+use crate::{AppError, AppResult, BirApp, TinRefusal, TinStep};
 
 /// A return's place on the way out.
 #[derive(Clone, Debug, PartialEq)]
@@ -23,6 +23,9 @@ pub enum SendStage {
     NeedsAttention { reason: String },
     /// Five sends failed: back to Draft with the last reason.
     GaveUp { reason: String },
+    /// Buwiz refused it for its TIN (`code`): back to Draft at once with
+    /// the stored `reason`. Nothing reached BIR.
+    Refused { code: TinRefusal, reason: String },
     /// Sent, with the signed receipt when the relay gave one.
     Sent { at: Option<String>, receipt: Option<ReceiptInfo> },
     Confirmed { at: Option<String> },
@@ -119,7 +122,10 @@ fn stage_with_error(status: &str, data: &Value, error: Option<String>) -> Option
         }),
         "Confirmed" => Some(SendStage::Confirmed { at: text(data, "confirmed_at") }),
         "Paid" => Some(SendStage::Paid),
-        "Draft" if attempts > 0 => error.map(|reason| SendStage::GaveUp { reason }),
+        "Draft" if attempts > 0 => error.map(|reason| match TinRefusal::from_reason(&reason) {
+            Some(code) => SendStage::Refused { code, reason },
+            None => SendStage::GaveUp { reason },
+        }),
         _ => None,
     }
 }
@@ -164,8 +170,9 @@ pub fn decode_receipt(jws: &str) -> Option<ReceiptInfo> {
 pub enum ErrorAction {
     None,
     SignIn,
-    /// Claim the TIN on the account page (BIR Form 2303).
-    ClaimTin,
+    /// Refused for the TIN's state on the Buwiz account: nothing is retried
+    /// by itself; the step, when there is one, is the thing to do.
+    Tin(Option<TinStep>),
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -178,13 +185,12 @@ pub struct PlainError {
 /// reached BIR): …"); the person gets one plain sentence and, when there is
 /// one, the thing to do.
 pub fn plain_send_error(raw: &str) -> PlainError {
-    let lower = raw.to_lowercase();
-    if lower.contains("tin_not_active") {
-        return PlainError {
-            text: "This TIN isn't on your account yet. Claim it with your BIR Form 2303 on your account page.".into(),
-            action: ErrorAction::ClaimTin,
-        };
+    // A refusal for the TIN is read by its code alone, never its English.
+    if let Some(code) = TinRefusal::from_reason(raw) {
+        let statement = BirApp::tin_statement_for_refusal(code, Some(raw));
+        return PlainError { text: statement.line, action: ErrorAction::Tin(statement.step) };
     }
+    let lower = raw.to_lowercase();
     if lower.contains("sign in to send") || lower.contains("signed_out") || lower.contains("not signed in") {
         return PlainError { text: "Sign in to send this return.".into(), action: ErrorAction::SignIn };
     }
@@ -276,9 +282,10 @@ impl BirApp {
     }
 
     /// Demo and test data only: put the queued return `id` in `stage`
-    /// (Sending, Failed with `reason`, Needs attention, or Sent with a
-    /// demo receipt), as the queue worker would leave it. Screenshots and
-    /// checks use it where no relay runs.
+    /// (Sending, Failed with `reason`, Needs attention, Sent with a demo
+    /// receipt, or Refused: back to Draft with `reason`, which ends with the
+    /// code), as the queue worker would leave it. Screenshots and checks use
+    /// it where no relay runs.
     #[doc(hidden)]
     pub fn demo_set_send_stage(&self, id: i64, stage: &SendStage) -> AppResult<()> {
         let stage = stage.clone();
@@ -287,6 +294,7 @@ impl BirApp {
                 return Err(AppError::Call("Only a queued return takes a demo send state.".into()));
             }
             let now = chrono::Utc::now().to_rfc3339();
+            let attempts = map.get("submission_attempts").and_then(Value::as_u64).unwrap_or(0);
             let mut set = |k: &str, v: Value| {
                 map.insert(k.into(), v);
             };
@@ -317,6 +325,23 @@ impl BirApp {
                     set("submission_receipt", Value::String(jws));
                     set("submission_error", Value::Null);
                     set("next_retry_at", Value::Null);
+                }
+                SendStage::Refused { reason, .. } => {
+                    set("status", Value::String("Draft".into()));
+                    set("submission_error", Value::String(reason));
+                    set("submission_attempts", Value::from(attempts.max(1)));
+                    for key in [
+                        "submission_claim_token",
+                        "submission_claimed_at",
+                        "submission_claim_lease_until",
+                        "submission_put_started_at",
+                        "next_retry_at",
+                        "queued_submission_fingerprint",
+                        "queue_authorization",
+                        "submitted_payload",
+                    ] {
+                        set(key, Value::Null);
+                    }
                 }
                 _ => return Err(AppError::Call("That stage has no demo state.".into())),
             }
@@ -411,13 +436,78 @@ mod tests {
     #[test]
     fn send_errors_read_in_plain_words() {
         let tin = plain_send_error("Not sent (nothing reached BIR): TIN 000123453 is not active on this account (tin_not_active)");
-        assert_eq!(tin.action, ErrorAction::ClaimTin);
-        assert!(tin.text.starts_with("This TIN isn't on your account yet."));
+        assert_eq!(tin.action, ErrorAction::Tin(Some(TinStep::Add)));
+        assert_eq!(tin.text, "This TIN is not on your Buwiz account.");
         let signed_out = plain_send_error("Submission session failed before upload (no PUT attempted): Sign in to send returns.");
         assert_eq!(signed_out.action, ErrorAction::SignIn);
         let net = plain_send_error("Submission session failed before upload (no PUT attempted): could not reach the Buwiz server: connection refused");
         assert_eq!(net.text, "Couldn't reach the relay. It will try again.");
         let other = plain_send_error("Not sent (nothing reached BIR): the relay closed early (relay_closed)");
         assert_eq!(other, PlainError { text: "The relay closed early.".into(), action: ErrorAction::None });
+    }
+
+    #[test]
+    fn plain_send_error_reads_codes_not_english() {
+        let rows = [
+            ("tin_not_active", "This TIN is not on your Buwiz account.", Some(TinStep::Add)),
+            ("tin_unverified", "This TIN is on your Buwiz account but not verified yet.", Some(TinStep::Verify)),
+            ("tin_pending", "Buwiz is reviewing this TIN. You can send it once it is approved.", None),
+            ("tin_needs_fix", "Buwiz sent this TIN back for a fix.", Some(TinStep::Fix)),
+            ("tin_paused", "Buwiz staff paused this TIN. It can't send until they turn it back on.", None),
+            ("account_banned", "This Buwiz account is banned, so nothing can be sent.", None),
+        ];
+        for (code, line, step) in rows {
+            for raw in [
+                format!("Not sent (nothing reached BIR): words nobody matches on ({code})"),
+                format!("Submission session failed before upload (no PUT attempted): sign in to send, could not reach the buwiz server ({code})"),
+            ] {
+                assert_eq!(plain_send_error(&raw), PlainError { text: line.into(), action: ErrorAction::Tin(step) }, "{raw}");
+            }
+        }
+        // English alone is no longer read as a TIN state.
+        let text = plain_send_error("Not sent (nothing reached BIR): tin_not_active somewhere in the text");
+        assert_eq!(text.action, ErrorAction::None);
+    }
+
+    #[test]
+    fn a_draft_with_attempts_and_a_tin_code_reads_refused() {
+        let reason = "Not sent (nothing reached BIR): This TIN is not verified yet. (tin_unverified)";
+        assert_eq!(
+            send_stage("Draft", &json!({"submission_error": reason, "submission_attempts": 1})),
+            Some(SendStage::Refused { code: TinRefusal::Unverified, reason: reason.into() })
+        );
+        let paused = "Not sent (nothing reached BIR): Sending is paused for this TIN. (tin_paused)";
+        assert_eq!(
+            send_stage_for("2551Q", "Draft", &json!({"last_error": paused, "submission_attempts": 1})),
+            Some(SendStage::Refused { code: TinRefusal::Paused, reason: paused.into() })
+        );
+        // Queued and unclaimed with a code: a failure the next tick retries.
+        assert!(matches!(
+            send_stage("Queued", &json!({"submission_error": reason, "submission_attempts": 1})),
+            Some(SendStage::Failed { .. })
+        ));
+        // Claimed: BIR may have it, whatever the text says.
+        assert!(matches!(
+            send_stage("Queued", &json!({"submission_claim_token": "t", "submission_error": reason})),
+            Some(SendStage::NeedsAttention { .. })
+        ));
+    }
+
+    #[test]
+    fn a_legacy_five_try_draft_with_tin_not_active_reads_refused() {
+        let reason = "Not sent (nothing reached BIR): this TIN is not active on your account (tin_not_active)";
+        assert_eq!(
+            send_stage("Draft", &json!({"submission_error": reason, "submission_attempts": 5})),
+            Some(SendStage::Refused { code: TinRefusal::NotActive, reason: reason.into() })
+        );
+    }
+
+    #[test]
+    fn a_draft_without_a_code_still_reads_gave_up() {
+        let reason = "Not sent (nothing reached BIR): the relay closed early (relay_closed)";
+        assert_eq!(
+            send_stage("Draft", &json!({"submission_error": reason, "submission_attempts": 5})),
+            Some(SendStage::GaveUp { reason: reason.into() })
+        );
     }
 }

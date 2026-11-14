@@ -47,6 +47,7 @@ pub(crate) fn stage_line(stage: Option<&SendStage>) -> String {
         Some(SendStage::Failed { reason, .. }) => plain_send_error(reason).text,
         Some(SendStage::NeedsAttention { .. }) => "BIR may already have this return. Check for BIR's confirmation email before you do anything else.".to_owned(),
         Some(SendStage::GaveUp { reason }) => format!("Not sent after five tries: {} Open it and queue it again.", plain_send_error(reason).text),
+        Some(SendStage::Refused { reason, .. }) => format!("{} {}", plain_send_error(reason).text, bir_app_core::BirApp::DRAFT_NOTE),
         Some(SendStage::Sent { receipt, at }) => {
             let when = at.as_deref().and_then(|a| a.get(..10)).map(crate::screens::steps::short_date).unwrap_or_default();
             match receipt {
