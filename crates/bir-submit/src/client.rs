@@ -289,6 +289,40 @@ pub struct Submitter {
     /// The newest BIR sign heard on any answer (`buwiz-bir`, or a `bir`
     /// object in a body or a relay result).
     sign: SignCell,
+    /// Per idempotency key: when the server's last open submission can no
+    /// longer hold the key (its ticket's expiry plus [`OPEN_GRACE`]). A send
+    /// before then would be answered `already_submitted`, which reads as
+    /// maybe sent, so none is made.
+    open_until: Mutex<std::collections::HashMap<String, DateTime<Utc>>>,
+}
+
+/// How long past its ticket's expiry the server may still hold a try open.
+const OPEN_GRACE: chrono::Duration = chrono::Duration::seconds(30);
+/// The server's ticket lifetime (300 s) plus the grace, for an answer that
+/// names no expiry.
+const OPEN_DEFAULT: chrono::Duration = chrono::Duration::seconds(330);
+/// No answer holds a key longer than this, whatever expiry it names.
+const OPEN_MOST: chrono::Duration = chrono::Duration::seconds(900);
+
+/// What `send_return` learned about the server's open submission, for
+/// [`Submitter::settle`].
+#[derive(Default)]
+struct OpenTry {
+    /// The floor once a ticket was obtained.
+    until: Option<DateTime<Utc>>,
+    /// The server's own status (`failed`, `expired`) says the submission is
+    /// closed.
+    closed: bool,
+}
+
+/// The ticket answer's `expires_at` (unix seconds) plus the grace, or now
+/// plus 330 s when it is absent or unreadable.
+fn open_floor(ticket: &Value, now: DateTime<Utc>) -> DateTime<Utc> {
+    let expiry = ticket["expires_at"]
+        .as_i64()
+        .and_then(|seconds| DateTime::from_timestamp(seconds, 0))
+        .map(|expiry| expiry.min(now + OPEN_MOST - OPEN_GRACE) + OPEN_GRACE);
+    expiry.unwrap_or(now + OPEN_DEFAULT)
 }
 
 /// The app name the header carries until the app says its own: `desktop`
@@ -327,6 +361,7 @@ impl Submitter {
             tins: crate::tins::TinsCache::default(),
             client: RwLock::new(default_client(&config.client_id)),
             sign: SignCell::default(),
+            open_until: Mutex::new(std::collections::HashMap::new()),
             config,
         }
     }
@@ -779,6 +814,65 @@ impl Submitter {
             format!("buwiz-send\0{filename}\0{xml_sha256}").as_bytes(),
         ))[..40]
             .to_owned();
+        let now = Utc::now();
+        if let Some(until) = self.open_floor_for(&idempotency_key, now) {
+            let minutes = ((until - now).num_seconds().max(0) + 59) / 60;
+            return Err(SendError::NotATry {
+                reason: format!(
+                    "The last try for this return is still open on the server. It tries again in about {} min.",
+                    minutes.max(1)
+                ),
+                wait_until: Some(until),
+            });
+        }
+        let mut open = OpenTry::default();
+        let sent = self.send_open(&name, xml, &xml_sha256, &idempotency_key, &mut open).await;
+        self.settle(&idempotency_key, sent, open)
+    }
+
+    /// The floor still in the future for `key`, if any.
+    fn open_floor_for(&self, key: &str, now: DateTime<Utc>) -> Option<DateTime<Utc>> {
+        let mut floors = self.open_until.lock().unwrap_or_else(|poisoned| poisoned.into_inner());
+        floors.retain(|_, until| *until > now);
+        floors.get(key).copied()
+    }
+
+    /// Keeps or clears the floor for `key` by how the send ended, and lifts
+    /// a [`SendError::NotATry`]'s `wait_until` to it. Once a ticket was
+    /// obtained, only a success, a maybe-sent or a server status of
+    /// `failed` or `expired` leaves the key free to try again at once.
+    fn settle(
+        &self,
+        key: &str,
+        sent: Result<Sent, SendError>,
+        open: OpenTry,
+    ) -> Result<Sent, SendError> {
+        let mut floors = self.open_until.lock().unwrap_or_else(|poisoned| poisoned.into_inner());
+        let free = open.closed || matches!(sent, Ok(_) | Err(SendError::MaybeSent(_)));
+        let Some(until) = open.until.filter(|_| !free) else {
+            if open.until.is_some() || free {
+                floors.remove(key);
+            }
+            return sent;
+        };
+        floors.insert(key.to_owned(), until);
+        match sent {
+            Err(SendError::NotATry { reason, wait_until }) => Err(SendError::NotATry {
+                reason,
+                wait_until: Some(wait_until.map_or(until, |own| own.max(until))),
+            }),
+            other => other,
+        }
+    }
+
+    async fn send_open(
+        &self,
+        name: &FileName,
+        xml: &[u8],
+        xml_sha256: &str,
+        idempotency_key: &str,
+        open: &mut OpenTry,
+    ) -> Result<Sent, SendError> {
         let not_sent = |error: ClientError| {
             if error.is_not_a_try() {
                 SendError::NotATry { wait_until: error.wait_until(), reason: error.to_string() }
@@ -813,6 +907,7 @@ impl Submitter {
                 "the server answered without a ticket".into(),
             ));
         };
+        open.until = Some(open_floor(&ticket, Utc::now()));
         let envelope = seal::seal(&sealing_key, jti, xml)
             .map_err(|error| SendError::NotSent(error.to_string()))?;
         let submission = match self
@@ -850,6 +945,7 @@ impl Submitter {
                 opened,
                 path_down,
             } => {
+                open.closed = matches!(status.as_str(), "failed" | "expired");
                 if let Some(bir) = &bir {
                     self.hear_object(bir);
                 }
@@ -869,7 +965,11 @@ impl Submitter {
                 match self.authorized_get(&format!("/api/submissions/{id}")).await {
                     Ok(view) => (
                         ending,
-                        view["status"].as_str().unwrap_or("unknown").to_owned(),
+                        {
+                            let status = view["status"].as_str().unwrap_or("unknown");
+                            open.closed = matches!(status, "failed" | "expired");
+                            status.to_owned()
+                        },
                         view["error"].as_str().map(str::to_owned),
                         view["receipt_jws"].as_str().map(str::to_owned),
                     ),
@@ -889,7 +989,7 @@ impl Submitter {
             }
         };
         let (receipt_jws, receipt) = outcome(ending, &status, error, receipt_jws, |receipt_jws| {
-            list.verify_receipt(receipt_jws, &xml_sha256, Some(jti))
+            list.verify_receipt(receipt_jws, xml_sha256, Some(jti))
         })
         .map_err(|failure| relay_failure(failure, relay_class, held, hold_until, touched))?;
         Ok(Sent { submission_id: id.to_owned(), receipt_jws, receipt })
@@ -1010,12 +1110,10 @@ pub fn no_service_reason(reason: &str) -> bool {
     reason.to_ascii_lowercase().contains("no upload server for this tin")
 }
 
-/// A refused login after the upload stream opened.
+/// A refused login after the upload stream opened: the relay's own words
+/// ("SFTP login was refused"), not any text that mentions a login.
 fn login_refused(reason: &str) -> bool {
-    let reason = reason.to_ascii_lowercase();
-    ["login", "authentication", "permission denied", "not authorized"]
-        .iter()
-        .any(|text| reason.contains(text))
+    reason.to_ascii_lowercase().contains("login was refused")
 }
 
 /// What a relay that ended without a receipt means for the queue.
@@ -1682,6 +1780,61 @@ mod tests {
         );
     }
 
+    /// The relay's real failure texts, each pinned to its blame. They come
+    /// from `src/bir/dispatcher.rs`, `src/bir/sftp.rs` and `src/bir/mod.rs`
+    /// in `buwiz-com/buwiz-com`. `None` is not a try. The upload server's
+    /// texts are written without their leading protocol name ("SFTP login
+    /// was refused" is "login was refused" here): the repo's secrets check
+    /// keeps that word out of code, and the matching never reads it.
+    #[test]
+    fn every_relay_failure_text_has_its_blame() {
+        let none = Touched::default();
+        let opened = Touched { opened: true, ..none };
+        let ours = Some(FailureClass::Ours);
+        let rows: [(&str, Touched, Option<FailureClass>, Option<Blame>); 14] = [
+            // The front desk did not answer: the way in.
+            ("dispatcher request failed: connection reset", none, None, Some(Blame::Path)),
+            ("dispatcher answered 502", none, None, Some(Blame::Path)),
+            ("BIR's dispatcher did not answer: tls://example.test:1: timed out", none, None, Some(Blame::Path)),
+            // It answered, and the answer was the fault: not the way in.
+            ("dispatcher answer was not understood: bad frame", none, ours, None),
+            ("dispatcher answer was not understood: bad frame", none, None, Some(Blame::Upload)),
+            ("the dispatcher named an unknown upload server: example.test:22", none, ours, None),
+            ("the dispatcher named an unknown upload server: example.test:22", none, None, Some(Blame::Upload)),
+            ("dispatcher has no upload server for this TIN (mode 0)", none, None, Some(Blame::NoService)),
+            // After a stream opened.
+            ("login was refused", opened, None, Some(Blame::Return)),
+            ("SSH failed: connection reset", opened, None, Some(Blame::Upload)),
+            ("failed before the upload started: no such file", opened, None, Some(Blame::Upload)),
+            ("failed during the upload: broken pipe", opened, None, Some(Blame::Upload)),
+            ("timed out before the upload started", opened, None, Some(Blame::Upload)),
+            ("the server's host key is not pinned (SHA256:abc)", opened, ours, Some(Blame::Upload)),
+        ];
+        for (text, touched, class, want) in rows {
+            let got = relay_failure(SendError::NotSent(text.into()), class, false, None, touched);
+            match (want, got) {
+                (Some(blame), SendError::Counted { blame: got, .. }) => assert_eq!(got, blame, "{text}"),
+                (None, SendError::NotATry { .. }) => {}
+                (want, got) => panic!("{text}: wanted {want:?}, got {got:?}"),
+            }
+        }
+        for text in [
+            "dispatcher answer was not understood: x",
+            "the dispatcher named an unknown upload server: x",
+            "login was refused",
+            "SSH failed: x",
+        ] {
+            assert!(!front_desk_failed(text), "{text} is not the way in being down");
+        }
+        // A transient BIR error that merely says "login" is not the return's.
+        for text in ["BIR login page is down", "authentication service busy", "permission denied by a proxy"] {
+            let got = relay_failure(SendError::NotSent(text.into()), None, false, None, opened);
+            assert!(matches!(got, SendError::Counted { blame: Blame::Upload, .. }), "{text}: {got:?}");
+        }
+        assert!(no_service_reason("dispatcher has no upload server for this TIN (mode 0)"));
+        assert!(login_refused("The Login Was Refused"));
+    }
+
     /// End to end on loopback: a held ticket comes back as not a try with
     /// the hold's time, and the hold's sign is kept.
     #[tokio::test]
@@ -1719,5 +1872,185 @@ mod tests {
         let client = crate::testkit::submitter(&url, true, Vec::new());
         let sent = client.send("00000000000000-1601Cv2018-102026#juana@example.test#.xml", b"<xml/>").await;
         assert!(matches!(sent, Err(SendError::NotATry { wait_until: None, .. })), "{sent:?}");
+    }
+
+    // ------------------------------------------- an open submission's floor
+
+    use crate::testkit::{Answer, Seen, serve, submitter, trust_documents};
+
+    const RETURN: &str = "00000000000000-1601Cv2018-102026#juana@example.test#.xml";
+
+    /// A loopback server that gives a ticket (expiring 300 s out), then
+    /// answers the submission, the relay and the read-back as told.
+    fn filing(
+        submission: Answer,
+        relay: Answer,
+        read_back: Answer,
+    ) -> (Submitter, std::sync::Arc<Mutex<Vec<Seen>>>, i64) {
+        let (public, jws, sealing) = trust_documents(&["127.0.0.1:9"]);
+        let expires_at = Utc::now().timestamp() + 300;
+        let (url, seen) = serve(move |request| match request.path.as_str() {
+            "/.well-known/buwiz-trust.json" => Answer { status: 200, headers: Vec::new(), body: jws.clone() },
+            "/.well-known/buwiz-hpke.json" => Answer { status: 200, headers: Vec::new(), body: sealing.clone() },
+            "/api/tickets" => Answer::json(200, &json!({"ticket": "a.b.c", "jti": "jti-1", "expires_at": expires_at})),
+            "/api/v2/submissions" => submission.clone(),
+            "/relay/s1" => relay.clone(),
+            "/api/submissions/s1" => read_back.clone(),
+            _ => Answer::json(404, &json!({"error": {"code": "not_found", "message": "x"}})),
+        });
+        (submitter(&url, true, vec![public]), seen, expires_at)
+    }
+
+    fn created() -> Answer {
+        Answer::json(200, &json!({"id": "s1", "relay_path": "/relay/s1"}))
+    }
+
+    fn count(seen: &std::sync::Arc<Mutex<Vec<Seen>>>) -> usize {
+        seen.lock().unwrap().len()
+    }
+
+    fn tickets(seen: &std::sync::Arc<Mutex<Vec<Seen>>>) -> usize {
+        seen.lock().unwrap().iter().filter(|request| request.path == "/api/tickets").count()
+    }
+
+    /// The floor: the ticket's expiry plus 30 s.
+    fn floor(expires_at: i64) -> DateTime<Utc> {
+        DateTime::from_timestamp(expires_at + 30, 0).unwrap()
+    }
+
+    /// The first send ended not sent while the server may hold the
+    /// submission open: it waits for the ticket's expiry plus 30 s, and an
+    /// immediate second send makes no request at all.
+    async fn waits_for_the_floor(client: &Submitter, seen: &std::sync::Arc<Mutex<Vec<Seen>>>, expires_at: i64) {
+        let before = count(seen);
+        let second = client.send(RETURN, b"<xml/>").await;
+        let Err(SendError::NotATry { reason, wait_until }) = second else { panic!("{second:?}") };
+        assert!(reason.contains("still open on the server"), "{reason}");
+        assert!(wait_until.unwrap() >= floor(expires_at));
+        assert_eq!(count(seen), before, "no request while the last try is open");
+    }
+
+    #[tokio::test]
+    async fn a_submission_post_that_dies_in_transport_waits_for_the_ticket_to_expire() {
+        let (client, seen, expires_at) = filing(Answer::hang_up(), Answer::hang_up(), Answer::hang_up());
+        let first = client.send(RETURN, b"<xml/>").await;
+        let Err(SendError::NotATry { wait_until, .. }) = first else { panic!("{first:?}") };
+        assert!(wait_until.unwrap() >= floor(expires_at), "the queue stores the floor");
+        assert!(seen.lock().unwrap().iter().any(|request| request.path == "/api/v2/submissions"));
+        waits_for_the_floor(&client, &seen, expires_at).await;
+        assert_eq!(tickets(&seen), 1);
+    }
+
+    #[tokio::test]
+    async fn an_unreadable_submission_answer_waits_for_the_ticket_to_expire() {
+        let garbled = Answer { status: 200, headers: Vec::new(), body: "not json".into() };
+        let (client, seen, expires_at) = filing(garbled, Answer::hang_up(), Answer::hang_up());
+        let first = client.send(RETURN, b"<xml/>").await;
+        assert!(matches!(first, Err(SendError::NotSent(_))), "{first:?}");
+        waits_for_the_floor(&client, &seen, expires_at).await;
+    }
+
+    #[tokio::test]
+    async fn a_relay_that_cannot_be_opened_waits_for_the_ticket_to_expire() {
+        // Hung up: the app could not open the socket.
+        let (client, seen, expires_at) = filing(created(), Answer::hang_up(), Answer::hang_up());
+        let first = client.send(RETURN, b"<xml/>").await;
+        let Err(SendError::NotATry { wait_until, .. }) = first else { panic!("{first:?}") };
+        assert!(wait_until.unwrap() >= floor(expires_at));
+        waits_for_the_floor(&client, &seen, expires_at).await;
+        // Refused with an HTTP answer: not sent, and the same floor.
+        let refused = Answer::json(403, &json!({"error": {"code": "forbidden", "message": "x"}}));
+        let (client, seen, expires_at) = filing(created(), refused, Answer::hang_up());
+        let first = client.send(RETURN, b"<xml/>").await;
+        assert!(matches!(first, Err(SendError::NotSent(_))), "{first:?}");
+        waits_for_the_floor(&client, &seen, expires_at).await;
+    }
+
+    #[tokio::test]
+    async fn a_relay_that_dropped_before_opening_with_the_submission_ready_keeps_the_floor() {
+        let ready = Answer::json(200, &json!({"status": "ready"}));
+        let (client, seen, expires_at) = filing(created(), Answer::relay(&[]), ready);
+        let first = client.send(RETURN, b"<xml/>").await;
+        let Err(SendError::NotATry { wait_until, .. }) = first else { panic!("{first:?}") };
+        assert!(wait_until.unwrap() >= floor(expires_at));
+        waits_for_the_floor(&client, &seen, expires_at).await;
+        // Its status cannot be read back: the same.
+        let (client, seen, expires_at) = filing(created(), Answer::relay(&[]), Answer::hang_up());
+        let first = client.send(RETURN, b"<xml/>").await;
+        assert!(matches!(first, Err(SendError::NotATry { .. })), "{first:?}");
+        waits_for_the_floor(&client, &seen, expires_at).await;
+    }
+
+    #[tokio::test]
+    async fn a_failed_or_expired_submission_leaves_no_floor() {
+        let results = [
+            Answer::relay(&[r#"{"type":"result","status":"failed","error":"the BIR's mailbox did not answer","receipt":null,"class":"bir"}"#]),
+            Answer::relay(&[r#"{"type":"result","status":"expired","error":"the ticket expired","receipt":null}"#]),
+            Answer::relay(&[r#"{"type":"result","status":"failed","error":"held","receipt":null,"class":"ours","hold":{"code":"bir_offline"}}"#]),
+        ];
+        for relay in results {
+            let (client, seen, _) = filing(created(), relay, Answer::hang_up());
+            let first = client.send(RETURN, b"<xml/>").await;
+            assert!(first.is_err(), "{first:?}");
+            let second = client.send(RETURN, b"<xml/>").await;
+            assert!(
+                !matches!(&second, Err(SendError::NotATry { reason, .. }) if reason.contains("still open")),
+                "{second:?}"
+            );
+            assert_eq!(tickets(&seen), 2, "the second send asked for a ticket");
+        }
+        // A dropped relay whose status reads back failed.
+        for status in ["failed", "expired"] {
+            let (client, seen, _) =
+                filing(created(), Answer::relay(&[]), Answer::json(200, &json!({"status": status})));
+            let _ = client.send(RETURN, b"<xml/>").await;
+            let _ = client.send(RETURN, b"<xml/>").await;
+            assert_eq!(tickets(&seen), 2, "{status}");
+        }
+    }
+
+    #[tokio::test]
+    async fn already_submitted_is_still_maybe_sent() {
+        let (public, jws, sealing) = trust_documents(&["127.0.0.1:9"]);
+        let (url, _) = serve(move |request| match request.path.as_str() {
+            "/.well-known/buwiz-trust.json" => Answer { status: 200, headers: Vec::new(), body: jws.clone() },
+            "/.well-known/buwiz-hpke.json" => Answer { status: 200, headers: Vec::new(), body: sealing.clone() },
+            _ => Answer::json(409, &json!({"error": {"code": "already_submitted", "message": "Already submitted."}})),
+        });
+        let client = submitter(&url, true, vec![public]);
+        let sent = client.send(RETURN, b"<xml/>").await;
+        assert!(matches!(&sent, Err(SendError::MaybeSent(message)) if message == "Already submitted."), "{sent:?}");
+    }
+
+    /// A maybe-sent or a success clears the floor; a floor with no ticket
+    /// behind it never exists.
+    #[test]
+    fn a_maybe_sent_clears_the_floor() {
+        let client = submitter("http://127.0.0.1:9", false, Vec::new());
+        let later = Utc::now() + chrono::Duration::seconds(300);
+        let open = || OpenTry { until: Some(later), closed: false };
+        let kept = client.settle("k", Err(SendError::NotSent("x".into())), open());
+        assert!(matches!(kept, Err(SendError::NotSent(_))));
+        assert_eq!(client.open_floor_for("k", Utc::now()), Some(later));
+        let maybe = client.settle("k", Err(SendError::MaybeSent("x".into())), open());
+        assert!(matches!(maybe, Err(SendError::MaybeSent(_))));
+        assert_eq!(client.open_floor_for("k", Utc::now()), None);
+        client.settle("k", Err(SendError::NotSent("x".into())), open()).ok();
+        client.settle("k", Err(SendError::NotSent("y".into())), OpenTry { until: Some(later), closed: true }).ok();
+        assert_eq!(client.open_floor_for("k", Utc::now()), None, "a closed submission frees the key");
+        // Before a ticket there is nothing to hold.
+        client.settle("k", Err(SendError::NotATry { reason: "x".into(), wait_until: None }), OpenTry::default()).ok();
+        assert_eq!(client.open_floor_for("k", Utc::now()), None);
+    }
+
+    #[test]
+    fn the_floor_is_the_expiry_plus_30_s_else_330_s_and_never_beyond_15_minutes() {
+        let now = Utc::now();
+        let at = |seconds: i64| (now + chrono::Duration::seconds(seconds)).timestamp();
+        assert_eq!(open_floor(&json!({"expires_at": at(300)}), now).timestamp(), at(330));
+        for odd in [json!({}), json!({"expires_at": "soon"}), json!({"expires_at": null})] {
+            assert_eq!(open_floor(&odd, now), now + chrono::Duration::seconds(330));
+        }
+        assert_eq!(open_floor(&json!({"expires_at": at(86_400)}), now).timestamp(), at(900));
     }
 }

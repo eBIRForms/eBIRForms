@@ -28,6 +28,7 @@ impl Seen {
 }
 
 /// An answer: status, extra headers, body.
+#[derive(Clone)]
 pub(crate) struct Answer {
     pub status: u16,
     pub headers: Vec<(&'static str, String)>,
@@ -41,6 +42,17 @@ impl Answer {
             headers: Vec::new(),
             body: body.to_string(),
         }
+    }
+
+    /// Hangs up without answering: the request was read and recorded.
+    pub fn hang_up() -> Self {
+        Self { status: 0, headers: Vec::new(), body: String::new() }
+    }
+
+    /// Accepts a WebSocket upgrade, sends `frames` as text frames, then
+    /// closes the connection.
+    pub fn relay(frames: &[&str]) -> Self {
+        Self { status: 101, headers: Vec::new(), body: frames.join("\n") }
     }
 
     pub fn with(mut self, name: &'static str, value: impl Into<String>) -> Self {
@@ -90,7 +102,34 @@ pub(crate) fn serve(
                 headers,
             };
             let reply = answer(&request);
+            let key = request.header("sec-websocket-key").map(str::to_owned);
             log.lock().unwrap().push(request);
+            if reply.status == 0 {
+                continue;
+            }
+            if reply.status == 101 {
+                let accept = key
+                    .map(|key| tokio_tungstenite::tungstenite::handshake::derive_accept_key(key.as_bytes()))
+                    .unwrap_or_default();
+                let _ = write!(
+                    stream,
+                    "HTTP/1.1 101 Switching Protocols\r\nupgrade: websocket\r\nconnection: Upgrade\r\nsec-websocket-accept: {accept}\r\n\r\n"
+                );
+                for frame in reply.body.split('\n').filter(|frame| !frame.is_empty()) {
+                    let bytes = frame.as_bytes();
+                    let mut out = vec![0x81];
+                    if bytes.len() < 126 {
+                        out.push(bytes.len() as u8);
+                    } else {
+                        out.push(126);
+                        out.extend((bytes.len() as u16).to_be_bytes());
+                    }
+                    out.extend(bytes);
+                    let _ = stream.write_all(&out);
+                }
+                let _ = stream.flush();
+                continue;
+            }
             let mut head = format!(
                 "HTTP/1.1 {} X\r\ncontent-type: application/json\r\ncontent-length: {}\r\nconnection: close\r\n",
                 reply.status,

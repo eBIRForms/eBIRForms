@@ -102,7 +102,7 @@ pub enum Ended {
         /// none did, nothing touched the BIR.
         opened: bool,
         /// Every `open` the app attempted failed on the way in (kinds `dns`,
-        /// `refused`, `timeout`, `unreachable`) and none opened: the try
+        /// `refused`, `timeout`, `unreachable`, `denied`, `reset`) and none opened: the try
         /// never got past the BIR's front desk.
         path_down: bool,
     },
@@ -348,11 +348,18 @@ impl RefusedKind {
         }
     }
 
-    /// A failure on the way in: the connection never got to the far end.
+    /// A failure on the way in: the connection never got to the far end. A
+    /// local firewall that denies every open and a reset at connect are
+    /// that too; a name off the trust list is not (the app never tried).
     pub fn is_path(self) -> bool {
         matches!(
             self,
-            Self::Dns | Self::Refused | Self::Timeout | Self::Unreachable
+            Self::Dns
+                | Self::Refused
+                | Self::Timeout
+                | Self::Unreachable
+                | Self::Denied
+                | Self::Reset
         )
     }
 
@@ -703,6 +710,17 @@ mod tests {
                 json!("not_listed")
             ]
         );
+    }
+
+    /// Which connect failures say the way in is down, so the whole queue
+    /// waits as one.
+    #[test]
+    fn denied_and_reset_connects_are_failures_on_the_way_in() {
+        use RefusedKind::*;
+        for kind in [Dns, Refused, Timeout, Unreachable, Denied, Reset] {
+            assert!(kind.is_path(), "{kind:?}");
+        }
+        assert!(!NotListed.is_path());
     }
 
     /// The lookups here are the test's own: no query leaves the machine.
