@@ -647,6 +647,9 @@ impl BirApp {
         let path = self.path.clone();
         std::thread::Builder::new()
             .name("bir-submission-worker".into())
+            // The queue's future holds a whole send (the relay, the sealing,
+            // the deadlines around them).
+            .stack_size(crate::DEEP_STACK)
             .spawn(move || {
                 let Some(lease) = WorkerLease::acquire_or_follow(
                     &path,
