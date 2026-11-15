@@ -420,7 +420,9 @@ fn tins_error(error: ClientError) -> TinsError {
         ClientError::SignedOut => TinsError::SignedOut,
         ClientError::Network(_) => TinsError::Offline,
         ClientError::Server { code, .. } if code == "account_banned" => TinsError::Banned,
-        ClientError::Server { code, message, .. } => TinsError::Server { code, message },
+        ClientError::Server { code, message, .. } | ClientError::NotATry { code, message, .. } => {
+            TinsError::Server { code, message }
+        }
         ClientError::Other(message) => TinsError::Server {
             code: "unreadable".to_owned(),
             message,

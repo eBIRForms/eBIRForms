@@ -897,7 +897,7 @@ impl Database {
     }
 
     /// The far side said nothing reached BIR: release this worker's claim
-    /// and schedule a retry with backoff (five failures go back to Draft).
+    /// and set its next try to `retry` (the return stays queued).
     pub(crate) fn fail_claimed_queueable_not_sent<F: QueueableForm>(
         &self,
         tin: &str,
@@ -905,9 +905,10 @@ impl Database {
         period: i64,
         claim_token: &str,
         error: String,
+        retry: &crate::smart_queue::Retry,
     ) -> Result<bool, DbError> {
         self.update_claimed_queueable::<F>(tin, taxable_year, period, claim_token, |lifecycle| {
-            lifecycle.record_submission_failure(error)
+            lifecycle.record_failed_try(error, retry)
         })
     }
 

@@ -263,6 +263,23 @@ mod tests {
         assert_eq!(find("list_tax_years"), None);
     }
 
+    /// An AI agent can queue and cancel, but no tool it can call presses
+    /// Retry or sets `try_anyway`: the person's Retry is the person's, and
+    /// queueing again after a cancel keeps the schedule (the queue's own
+    /// rule), so no sequence of these tools reaches an earlier try.
+    #[test]
+    fn no_agent_tool_can_press_retry_or_set_try_anyway() {
+        for (name, ..) in FORMS {
+            let word = name.to_ascii_lowercase();
+            assert!(
+                !word.contains("retry") && !word.contains("try_anyway") && !word.contains("send_now"),
+                "{name}"
+            );
+        }
+        assert_eq!(find("ebirdesk_app_retry"), None);
+        assert_eq!(find("ebirdesk_app_try_anyway"), None);
+    }
+
     #[test]
     fn arguments_naming_another_root_are_refused() {
         let scope = "000123453";

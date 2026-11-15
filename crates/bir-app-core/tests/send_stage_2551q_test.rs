@@ -91,6 +91,12 @@ fn retry_due(worker: &Arc<Mutex<Database>>, id: i64) {
     let (status, json) = db.draft_status_and_json(id).unwrap().unwrap();
     let mut data: Value = serde_json::from_str(&json).unwrap();
     data["next_retry_at"] = "1999-01-01T00:00:00Z".into();
+    // The queue's own time is the one that rules.
+    if let Some(queue) = data.get_mut("smart_queue").and_then(Value::as_object_mut) {
+        queue.insert("next_try_at".into(), "1999-01-01T00:00:00Z".into());
+        queue.remove("ended_at");
+        queue.remove("wait_until");
+    }
     assert!(db.replace_draft_json_if_unchanged(id, &json, &status, &data.to_string()).unwrap());
 }
 
@@ -98,11 +104,31 @@ fn retry_due(worker: &Arc<Mutex<Database>>, id: i64) {
 fn a_2551q_send_reason_is_shown() {
     // SAFETY: set once, before any database opens.
     unsafe { std::env::set_var("BUWIZ_DB_KEY", TEST_KEY) };
-    a_not_sent_2551q_reads_failed_then_gave_up();
+    a_not_sent_2551q_reads_failed_and_stays_queued();
     a_claimed_2551q_reads_needs_attention();
+    pause_holds_every_waiting_return_and_auto_lets_them_go();
 }
 
-fn a_not_sent_2551q_reads_failed_then_gave_up() {
+fn pause_holds_every_waiting_return_and_auto_lets_them_go() {
+    use bir_app_core::QueueMode;
+    let dir = tempfile::tempdir().unwrap();
+    let (app, worker, _tin, id) = queued_2551q(dir.path());
+    assert_eq!(app.queue_mode().unwrap(), QueueMode::Auto);
+    app.set_queue_mode(QueueMode::Paused).unwrap();
+    assert_eq!(app.queue_mode().unwrap(), QueueMode::Paused);
+    assert_eq!(app.send_states().unwrap().get(&id), Some(&SendStage::Paused));
+    let runtime = tokio::runtime::Runtime::new().unwrap();
+    runtime.block_on(run_queue_tick(worker.clone(), &Arc::new(NotSentTransport)));
+    let (status, data) = row(&worker, id);
+    assert_eq!(status, "Queued");
+    assert_eq!(data["submission_attempts"], 0, "a paused queue sends nothing");
+    app.set_queue_mode(QueueMode::Auto).unwrap();
+    assert!(matches!(app.send_states().unwrap().get(&id), Some(SendStage::Queued { .. })));
+    runtime.block_on(tick(&worker, id));
+    assert!(matches!(app.send_states().unwrap().get(&id), Some(SendStage::Failed { attempts: 1, .. })));
+}
+
+fn a_not_sent_2551q_reads_failed_and_stays_queued() {
     let dir = tempfile::tempdir().unwrap();
     let (app, worker, _tin, id) = queued_2551q(dir.path());
     let runtime = tokio::runtime::Runtime::new().unwrap();
@@ -115,14 +141,20 @@ fn a_not_sent_2551q_reads_failed_then_gave_up() {
         other => panic!("expected Failed after a not-sent 2551Q, got {other:?}"),
     }
 
-    for _ in 2..=5 {
+    for _ in 2..=6 {
         retry_due(&worker, id);
         runtime.block_on(tick(&worker, id));
     }
-    assert_eq!(row(&worker, id).0, "Draft");
+    // No number of failed tries sends it back to Draft: it stays queued,
+    // authorized, and reads as failed with its next try.
+    let (status, data) = row(&worker, id);
+    assert_eq!(status, "Queued");
+    assert!(data["queue_authorization"].is_object());
     match app.send_states().unwrap().get(&id) {
-        Some(SendStage::GaveUp { reason }) => assert!(reason.starts_with("Not sent (nothing reached BIR): "), "{reason}"),
-        other => panic!("expected GaveUp after the fifth not-sent 2551Q, got {other:?}"),
+        Some(SendStage::Failed { reason, attempts: 6, next_retry_at: Some(_) }) => {
+            assert!(reason.starts_with("Not sent (nothing reached BIR): "), "{reason}")
+        }
+        other => panic!("expected Failed after the sixth not-sent 2551Q, got {other:?}"),
     }
 }
 

@@ -303,6 +303,7 @@ version = "0.1.0"
 dependencies = [
  "base64 0.22.1",
  "bir-core",
+ "chrono",
  "ed25519-dalek",
  "futures-util",
  "hpke",

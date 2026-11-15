@@ -1,0 +1,30 @@
+{
+  "v": 1,
+  "seq": 4182,
+  "state": "offline",
+  "since": "2026-11-11T07:10:00Z",
+  "evaluated_at": "2026-11-11T09:00:00Z",
+  "source": "tries",
+  "relay": "ok",
+  "windows": {
+    "dispatcher": { "state": "online",  "since": "2026-11-11T01:00:00Z", "last_ok_at": "2026-11-11T08:55:00Z" },
+    "upload":     { "state": "offline", "since": "2026-11-11T07:10:00Z", "last_ok_at": "2026-11-11T07:00:00Z" }
+  },
+  "last_success_at": "2026-11-11T07:00:00Z",
+  "last_news_at": "2026-11-11T08:55:00Z",
+  "last_state": null,
+  "scout_at": "2026-11-11T09:13:41Z",
+  "wait_until": "2026-11-11T09:13:41Z",
+  "admission": false,
+  "note": null,
+  "words": {
+    "title": "BIR is offline",
+    "line": "The BIR's mailbox is offline since 3:10 PM. Buwiz holds returns until it is back."
+  },
+  "queue": { "waits_s": [300, 1800, 3600, 7200], "repeat_s": 7200, "spread": 0.5,
+             "notice_after_s": 86400, "sign_read_s": 60, "report_s": 300, "stale_after_s": 600 },
+  "links": {
+    "status_page": "https://example.test/bir-status",
+    "manual_filing": "https://example.test/bir-status#another-way"
+  }
+}

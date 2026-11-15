@@ -1,0 +1,6 @@
+{"type": "result", "status": "failed",
+ "error": "The BIR is offline, so Buwiz held this return. Nothing reached the BIR. Wait until about 5:15 PM.",
+ "receipt": null,
+ "hold": {"code": "bir_offline", "wait_until": "2026-11-11T09:13:41Z"},
+ "class": "ours",
+ "bir": {"v": 1, "seq": 4183, "state": "offline", "relay": "ok"}}

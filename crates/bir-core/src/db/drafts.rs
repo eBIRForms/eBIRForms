@@ -1548,8 +1548,8 @@ impl Database {
     }
 
     /// The far side said nothing reached BIR: release this worker's 2551Q
-    /// claim and schedule a retry with backoff (five failures go back to
-    /// Draft). `false` when the claim is no longer this worker's.
+    /// claim and set its next try to `retry` (the return stays queued).
+    /// `false` when the claim is no longer this worker's.
     pub(crate) fn fail_claimed_2551q_not_sent(
         &self,
         tin: &str,
@@ -1557,9 +1557,10 @@ impl Database {
         quarter: u8,
         claim_token: &str,
         error: String,
+        retry: &crate::smart_queue::Retry,
     ) -> Result<bool, DbError> {
         self.update_claimed_2551q(tin, taxable_year, quarter, claim_token, |draft| {
-            draft.record_submission_failure(error)
+            draft.record_failed_try(error, retry)
         })
     }
 
@@ -2710,8 +2711,8 @@ impl Database {
     }
 
     /// The far side said nothing reached BIR: release this worker's 1601C
-    /// claim and schedule a retry with backoff (five failures go back to
-    /// Draft). `false` when the claim is no longer this worker's.
+    /// claim and set its next try to `retry` (the return stays queued).
+    /// `false` when the claim is no longer this worker's.
     pub(crate) fn fail_claimed_1601c_not_sent(
         &self,
         tin: &str,
@@ -2719,9 +2720,10 @@ impl Database {
         month: u8,
         claim_token: &str,
         error: String,
+        retry: &crate::smart_queue::Retry,
     ) -> Result<bool, DbError> {
         self.update_claimed_1601c(tin, taxable_year, month, claim_token, |draft| {
-            draft.record_submission_failure(error)
+            draft.record_failed_try(error, retry)
         })
     }
 
@@ -3382,6 +3384,24 @@ impl Database {
                 |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)),
             )
             .optional()?)
+    }
+
+    /// Change the stored JSON of the queued return `draft_id` to `new_json`
+    /// only while it is still Queued and holds `expected_json`, leaving
+    /// `updated_at` alone: a queue stamp (its next try, its queue facts) is
+    /// not an edit of the return. Whether the row was written.
+    pub fn restamp_queued_draft(
+        &self,
+        draft_id: i64,
+        expected_json: &str,
+        new_json: &str,
+    ) -> Result<bool, DbError> {
+        let changed = self.conn.execute(
+            "UPDATE form_drafts SET data_json = ?1
+             WHERE id = ?2 AND status = 'Queued' AND data_json = ?3",
+            params![new_json, draft_id, expected_json],
+        )?;
+        Ok(changed == 1)
     }
 
     /// Replace the stored JSON (and status column) of `draft_id`, but only
@@ -5567,7 +5587,7 @@ mod tests {
     }
 
     #[test]
-    fn exact_unclaimed_2551q_queue_revision_accepts_fifth_failure_draft_cas() {
+    fn exact_unclaimed_2551q_queue_revision_keeps_a_fifth_failure_queued() {
         let db = test_db();
         let profile = test_profile();
         insert_test_profile(&db, &profile);
@@ -5583,13 +5603,13 @@ mod tests {
         let expected_fingerprint = stored.queued_submission_fingerprint.clone();
         let expected_retry = stored.next_retry_at.clone();
         let expected_attempts = stored.submission_attempts;
-        let mut exhausted = stored;
-        exhausted.record_submission_failure("fifth preparation failure".to_string());
-        assert_eq!(exhausted.status, FilingStatus::Draft);
+        let mut failed = stored;
+        failed.record_submission_failure("fifth preparation failure".to_string());
+        assert_eq!(failed.status, FilingStatus::Queued);
 
         assert!(
             db.replace_unclaimed_queued_2551q_submission(
-                &exhausted,
+                &failed,
                 &expected_fingerprint,
                 &expected_retry,
                 expected_attempts,
@@ -5601,10 +5621,17 @@ mod tests {
             .get_2551q_draft(&queued.tin, queued.taxable_year, queued.quarter)
             .unwrap()
             .unwrap();
-        assert_eq!(persisted.status, FilingStatus::Draft);
+        assert_eq!(persisted.status, FilingStatus::Queued);
         assert_eq!(persisted.submission_attempts, 5);
-        assert!(persisted.queued_submission_fingerprint.is_none());
-        assert!(persisted.next_retry_at.is_none());
+        assert_eq!(
+            persisted.queued_submission_fingerprint,
+            expected_fingerprint
+        );
+        assert!(persisted.queue_authorization.is_some());
+        assert!(persisted.next_retry_at.is_some());
+        // Its fourth try under the old rules is history: the new schedule
+        // counts this as its first failure (a 5 minute wait).
+        assert_eq!(persisted.smart_queue.failures, 1);
         assert_eq!(
             persisted.last_error.as_deref(),
             Some("fifth preparation failure")
@@ -5802,11 +5829,11 @@ mod tests {
             _ => panic!("the exact fourth-retry generation should be claimed"),
         };
         claimed.record_submission_failure("fifth failure after claim".to_string());
-        assert_eq!(claimed.status, FilingStatus::Draft);
+        assert_eq!(claimed.status, FilingStatus::Queued);
         assert!(
             db.finish_claimed_2551q_submission(&claimed, &token)
                 .is_err(),
-            "retry exhaustion after claim must not clear an unknown-outcome claim"
+            "a failure recorded after claim must not clear an unknown-outcome claim"
         );
         let still_claimed = db
             .get_2551q_draft(&queued.tin, queued.taxable_year, queued.quarter)

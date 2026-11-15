@@ -357,6 +357,13 @@ pub struct Form2551QDraft {
     pub submission_attempts: u32,
     #[serde(default)]
     pub next_retry_at: Option<String>,
+    /// The smart queue's facts about this queueing
+    /// ([`crate::smart_queue::QueueState`]); absent until it writes one.
+    #[serde(
+        default,
+        skip_serializing_if = "crate::smart_queue::QueueState::is_empty"
+    )]
+    pub smart_queue: crate::smart_queue::QueueState,
     #[serde(default)]
     pub last_error: Option<String>,
     /// Profile boxes the filer edited on this return (their on-screen
@@ -496,6 +503,7 @@ impl Form2551QDraft {
             profile_resolution_error: None,
             submission_attempts: 0,
             next_retry_at: None,
+            smart_queue: Default::default(),
             last_error: None,
             profile_edits: Vec::new(),
             profile_baseline: std::collections::BTreeMap::new(),
@@ -1250,7 +1258,13 @@ impl Form2551QDraft {
         self.submission_put_started_at = None;
         self.status = FilingStatus::Queued;
         self.submission_attempts = 0;
-        self.next_retry_at = Some(chrono::Utc::now().to_rfc3339());
+        // Queued again within 6 hours of leaving, it keeps its place on the
+        // ladder (its failures and its next try).
+        let now = chrono::Utc::now();
+        self.smart_queue = self
+            .smart_queue
+            .requeued(now, self.queued_submission_fingerprint.as_deref());
+        self.next_retry_at = Some(self.smart_queue.requeue_next_retry_at(now));
         self.last_error = None;
         self.profile_snapshot_stale = false;
         self.profile_snapshot_stale_reason = None;
@@ -1277,6 +1291,7 @@ impl Form2551QDraft {
         self.submission_filename = Some(filename);
         self.submission_attempts = 0;
         self.next_retry_at = None;
+        self.smart_queue = Default::default();
         self.last_error = None;
         self.submission_claim_token = None;
         self.submission_claimed_at = None;
@@ -1329,6 +1344,11 @@ impl Form2551QDraft {
         assert!(
             !matches!(self.status, FilingStatus::Paid),
             "Cannot revert a Paid form to Draft"
+        );
+        // What the queue knew stays for 6 hours ([`QueueState::requeued`]).
+        self.smart_queue.left(
+            chrono::Utc::now(),
+            self.queued_submission_fingerprint.as_deref(),
         );
         self.status = FilingStatus::Draft;
         // Back to Draft (an amended copy, a cancelled queue, a refused
@@ -1418,8 +1438,6 @@ impl Form2551QDraft {
         Err(errors)
     }
 
-    /// Record a failed submission attempt with exponential backoff.
-    /// After 5 failures, automatically reverts to Draft.
     /// Release a claim whose lease expired before PUT started.
     ///
     /// Nothing reached BIR, so this is not a submission failure: the attempt
@@ -1438,43 +1456,48 @@ impl Form2551QDraft {
         self.submission_claim_lease_until = None;
         self.submission_put_started_at = None;
         self.next_retry_at = Some(chrono::Utc::now().to_rfc3339());
+        self.smart_queue.next_try_at = None;
         self.updated_at = chrono::Utc::now().to_rfc3339();
         true
     }
 
+    /// A counted try that did not reach BIR, on the owner's schedule with
+    /// the default numbers ([`crate::smart_queue::default_retry`]).
     pub fn record_submission_failure(&mut self, error_msg: String) {
+        let retry =
+            crate::smart_queue::default_retry(self.smart_queue.failures, chrono::Utc::now());
+        self.record_failed_try(error_msg, &retry);
+    }
+
+    /// A try that did not reach BIR (as
+    /// [`crate::forms::queueable::SubmissionLifecycle::record_failed_try`]):
+    /// it goes again at `retry.at`; a counted one adds to
+    /// `submission_attempts` and the queue's failure count (not a try, nor a
+    /// failure on the way in, does); it stays queued
+    /// and authorized however many tries fail.
+    pub fn record_failed_try(&mut self, error_msg: String, retry: &crate::smart_queue::Retry) {
         assert!(
             matches!(self.status, FilingStatus::Queued),
             "Cannot record submission failure in {:?} status — must be Queued",
             self.status
         );
-        self.submission_attempts += 1;
+        if retry.counted {
+            self.submission_attempts += 1;
+        }
         self.last_error = Some(error_msg);
         self.submission_claim_token = None;
         self.submission_claimed_at = None;
         self.submission_claim_lease_until = None;
         self.submission_put_started_at = None;
-
-        if self.submission_attempts >= 5 {
-            self.status = FilingStatus::Draft;
-            self.next_retry_at = None;
-            self.queued_submission_fingerprint = None;
-            self.queue_authorization = None;
-            self.submitted_payload = None;
-        } else {
-            let delay_mins = 2i64.pow(self.submission_attempts - 1);
-            let next_time = chrono::Utc::now() + chrono::Duration::minutes(delay_mins);
-            self.next_retry_at = Some(next_time.to_rfc3339());
-        }
+        self.next_retry_at = Some(retry.at.to_rfc3339());
+        self.smart_queue.after(retry);
         self.updated_at = chrono::Utc::now().to_rfc3339();
     }
 
     /// Buwiz refused the send because of the TIN's state (or a banned
     /// account; [`crate::tin_refusal::TinRefusal`]): nothing reached BIR, and
     /// retrying cannot help, so the return goes back to Draft at once with
-    /// `error_msg` kept in `last_error`. The same end state as the fifth
-    /// not-sent failure of [`Self::record_submission_failure`]; queueing it
-    /// again clears both.
+    /// `error_msg` kept in `last_error`; queueing it again clears both.
     pub fn record_tin_refusal(&mut self, error_msg: String) {
         assert!(
             matches!(self.status, FilingStatus::Queued),
@@ -1489,6 +1512,7 @@ impl Form2551QDraft {
         self.submission_put_started_at = None;
         self.status = FilingStatus::Draft;
         self.next_retry_at = None;
+        self.smart_queue = Default::default();
         self.queued_submission_fingerprint = None;
         self.queue_authorization = None;
         self.submitted_payload = None;
@@ -3880,6 +3904,18 @@ mod tests {
         );
         assert_eq!(draft.submission_attempts, 0);
         assert!(draft.next_retry_at.is_none());
+    }
+
+    #[test]
+    fn ten_path_failures_leave_the_2551q_untouched_and_queued() {
+        let mut draft = make_draft(50_000.0, 0.0, 2026, 1);
+        draft.transition_to_queued().expect("fixture must queue");
+        for retry in crate::forms::queueable::path_failure_retries(10) {
+            draft.record_failed_try("the way in is down".into(), &retry);
+            assert_eq!(draft.status, FilingStatus::Queued);
+        }
+        assert_eq!(draft.submission_attempts, 0);
+        assert_eq!(draft.smart_queue.failures, 0);
     }
 
     #[test]
