@@ -575,6 +575,11 @@ pub struct BirApp {
     watch: Mutex<ChangeWatch>,
 }
 
+/// The submission worker's stack. The queue's future holds a whole send
+/// (the relay, the sealing, the deadlines around them), and an unoptimised
+/// build overflows a thread's default stack on it, which ends the process.
+const WORKER_STACK: usize = 16 * 1024 * 1024;
+
 impl BirApp {
     /// Open the app's live database (`BUWIZ_DATABASE_PATH`, else the platform
     /// data dir). Other processes may have it open too. The key comes from
@@ -647,6 +652,7 @@ impl BirApp {
         let path = self.path.clone();
         std::thread::Builder::new()
             .name("bir-submission-worker".into())
+            .stack_size(WORKER_STACK)
             .spawn(move || {
                 let Some(lease) = WorkerLease::acquire_or_follow(
                     &path,
@@ -658,7 +664,8 @@ impl BirApp {
                 match tokio::runtime::Runtime::new() {
                     Ok(runtime) => runtime.block_on(async {
                         let watcher = tokio::spawn(wake_on_other_commits(db.clone()));
-                        bir_core::background_cron::start_cron_jobs(db, transport).await;
+                        // On the heap: the queue's future holds a whole send.
+                        Box::pin(bir_core::background_cron::start_cron_jobs(db, transport)).await;
                         watcher.abort();
                     }),
                     Err(error) => tracing::error!("submission worker not started: {error}"),
