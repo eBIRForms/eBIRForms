@@ -474,6 +474,49 @@ pub fn retry_going_words(not_before: Option<chrono::DateTime<chrono::Utc>>, now:
     }
 }
 
+/// [`BirApp::retry_at`] on an open database: what the host function
+/// `retry_queued` shares with the person's button. `try_anyway` is the
+/// person's confirmation in the desktop app and nothing else sets it.
+pub(crate) fn retry_row(db: &bir_core::db::Database, id: i64, try_anyway: bool, now: chrono::DateTime<chrono::Utc>) -> AppResult<RetryAnswer> {
+    let path_floor = bir_core::smart_queue::PathBackoff::from_setting(db.get_setting(bir_core::smart_queue::PATH_SETTING)?.as_deref()).floor(now);
+    let mut answer = None;
+    change_lifecycle_in(db, id, |status, map| {
+        if status != "Queued" {
+            return Err(AppError::Call("Only a queued return can be sent again.".into()));
+        }
+        if map.get("submission_claim_token").is_some_and(|v| !v.is_null()) {
+            return Err(AppError::Call("BIR may already have this return. Check for BIR's confirmation email before sending it again.".into()));
+        }
+        let mut state: bir_core::smart_queue::QueueState =
+            map.get("smart_queue").and_then(|value| serde_json::from_value(value.clone()).ok()).unwrap_or_default();
+        if let Some(at) = state.retry_allowed_at(now) {
+            answer = Some(RetryAnswer::NotBefore(at));
+            return Ok(());
+        }
+        state.press_retry(now, try_anyway);
+        map.insert("next_retry_at".into(), Value::String(now.to_rfc3339()));
+        map.insert("smart_queue".into(), serde_json::to_value(&state).map_err(call_error)?);
+        answer = Some(RetryAnswer::Going { not_before: path_floor.filter(|_| !try_anyway) });
+        Ok(())
+    })?;
+    answer.ok_or_else(|| AppError::Call("The return could not be read.".into()))
+}
+
+/// [`BirApp::change_lifecycle`] on an open database.
+fn change_lifecycle_in(db: &bir_core::db::Database, id: i64, change: impl FnOnce(&str, &mut serde_json::Map<String, Value>) -> AppResult<()>) -> AppResult<()> {
+    let (status, json) = db.draft_status_and_json(id)?.ok_or_else(|| AppError::Call("That return is gone.".into()))?;
+    let mut data: Value = serde_json::from_str(&json).map_err(call_error)?;
+    let map = data.as_object_mut().ok_or_else(|| AppError::Call("The stored return is not an object.".into()))?;
+    change(&status, map)?;
+    let new_status = map.get("status").and_then(Value::as_str).unwrap_or(&status).to_owned();
+    let new_json = serde_json::to_string(&data).map_err(call_error)?;
+    if db.replace_draft_json_if_unchanged(id, &json, &new_status, &new_json)? {
+        Ok(())
+    } else {
+        Err(AppError::Call("The queue is working on that return; try again in a moment.".into()))
+    }
+}
+
 fn call_error(error: impl std::fmt::Display) -> AppError {
     AppError::Call(error.to_string())
 }
@@ -527,17 +570,7 @@ impl BirApp {
     /// worker changed the row meanwhile.
     fn change_lifecycle(&self, id: i64, change: impl FnOnce(&str, &mut serde_json::Map<String, Value>) -> AppResult<()>) -> AppResult<()> {
         let db = self.db.lock().map_err(|_| AppError::Call("the database lock is poisoned".into()))?;
-        let (status, json) = db.draft_status_and_json(id)?.ok_or_else(|| AppError::Call("That return is gone.".into()))?;
-        let mut data: Value = serde_json::from_str(&json).map_err(call_error)?;
-        let map = data.as_object_mut().ok_or_else(|| AppError::Call("The stored return is not an object.".into()))?;
-        change(&status, map)?;
-        let new_status = map.get("status").and_then(Value::as_str).unwrap_or(&status).to_owned();
-        let new_json = serde_json::to_string(&data).map_err(call_error)?;
-        if db.replace_draft_json_if_unchanged(id, &json, &new_status, &new_json)? {
-            Ok(())
-        } else {
-            Err(AppError::Call("The queue is working on that return; try again in a moment.".into()))
-        }
+        change_lifecycle_in(&db, id, change)
     }
 
     /// A person's Retry on one return, at `now`. At most once per 30
@@ -557,31 +590,8 @@ impl BirApp {
 
     #[doc(hidden)]
     pub fn retry_at(&self, id: i64, try_anyway: bool, now: chrono::DateTime<chrono::Utc>) -> AppResult<RetryAnswer> {
-        let path_floor = {
-            let db = self.db.lock().map_err(|_| AppError::Call("the database lock is poisoned".into()))?;
-            bir_core::smart_queue::PathBackoff::from_setting(db.get_setting(bir_core::smart_queue::PATH_SETTING)?.as_deref()).floor(now)
-        };
-        let mut answer = None;
-        self.change_lifecycle(id, |status, map| {
-            if status != "Queued" {
-                return Err(AppError::Call("Only a queued return can be sent again.".into()));
-            }
-            if map.get("submission_claim_token").is_some_and(|v| !v.is_null()) {
-                return Err(AppError::Call("BIR may already have this return. Check for BIR's confirmation email before sending it again.".into()));
-            }
-            let mut state: bir_core::smart_queue::QueueState =
-                map.get("smart_queue").and_then(|value| serde_json::from_value(value.clone()).ok()).unwrap_or_default();
-            if let Some(at) = state.retry_allowed_at(now) {
-                answer = Some(RetryAnswer::NotBefore(at));
-                return Ok(());
-            }
-            state.press_retry(now, try_anyway);
-            map.insert("next_retry_at".into(), Value::String(now.to_rfc3339()));
-            map.insert("smart_queue".into(), serde_json::to_value(&state).map_err(call_error)?);
-            answer = Some(RetryAnswer::Going { not_before: path_floor.filter(|_| !try_anyway) });
-            Ok(())
-        })?;
-        answer.ok_or_else(|| AppError::Call("The return could not be read.".into()))
+        let db = self.db.lock().map_err(|_| AppError::Call("the database lock is poisoned".into()))?;
+        retry_row(&db, id, try_anyway, now)
     }
 
     /// [`Self::retry`] without "try anyway", for callers that only need to
