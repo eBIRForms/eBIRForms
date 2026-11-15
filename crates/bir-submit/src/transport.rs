@@ -64,7 +64,8 @@ impl SubmissionTransport for BuwizTransport {
                 .map_err(|failure| match failure {
                     StoreFailure::NotSent(error)
                     | StoreFailure::MaybeSent(error)
-                    | StoreFailure::NotATry { error, .. } => error,
+                    | StoreFailure::NotATry { error, .. }
+                    | StoreFailure::Counted { error, .. } => error,
                 })
         })
     }
@@ -87,6 +88,10 @@ impl SubmissionTransport for BuwizTransport {
                 Err(SendError::NotATry { reason, wait_until }) => Err(StoreFailure::NotATry {
                     error: TransportError(reason),
                     wait_until,
+                }),
+                Err(SendError::Counted { reason, blame }) => Err(StoreFailure::Counted {
+                    error: TransportError(reason),
+                    blame,
                 }),
                 Err(SendError::MaybeSent(reason)) => {
                     Err(StoreFailure::MaybeSent(TransportError(reason)))
@@ -121,7 +126,7 @@ mod tests {
     #[tokio::test]
     async fn a_held_ticket_is_not_a_try_for_the_queue() {
         let (public, jws, sealing) = trust_documents(&["127.0.0.1:9"]);
-        let header = fixture("api-2.3-compact-sign.txt").trim().to_owned();
+        let header = fixture("contract-compact-sign-header.txt").trim().to_owned();
         let (url, _) = serve(move |request| match request.path.as_str() {
             "/.well-known/buwiz-trust.json" => Answer {
                 status: 200,
@@ -133,7 +138,7 @@ mod tests {
                 headers: Vec::new(),
                 body: sealing.clone(),
             },
-            "/api/tickets" => Answer::json(503, &fixture_json("api-5.2-hold-bir-offline.json")),
+            "/api/tickets" => Answer::json(503, &fixture_json("contract-hold-bir-offline.json")),
             _ => Answer::json(
                 404,
                 &json!({"error": {"code": "not_found", "message": "x"}}),
@@ -159,12 +164,12 @@ mod tests {
         assert_eq!(sign.sign.wait_until, wait_until);
     }
 
-    /// The full sign object of API.md section 2.2 reads, queue numbers and
+    /// The full sign object of the public contract reads, queue numbers and
     /// all.
     #[test]
-    fn the_api_2_2_sign_object_reads_with_its_queue_numbers() {
+    fn the_contract_sign_object_reads_with_its_queue_numbers() {
         let sign =
-            bir_core::bir_sign::Sign::from_json(&fixture_json("api-2.2-sign-object.json")).unwrap();
+            bir_core::bir_sign::Sign::from_json(&fixture_json("contract-sign-object.json")).unwrap();
         assert_eq!(sign.seq, 4182);
         assert_eq!(
             sign.queue,

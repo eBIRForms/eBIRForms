@@ -176,8 +176,14 @@ impl SubmissionLifecycle {
         self.status = FilingStatus::Queued;
         self.submission_attempts = 0;
         self.submission_error = None;
-        self.next_retry_at = Some(chrono::Utc::now().to_rfc3339());
-        self.smart_queue = Default::default();
+        // Queued again within 6 hours of leaving, it keeps its place on the
+        // ladder: its failures and its next try (the person cancelling and
+        // queueing again gets no earlier try than the schedule gave).
+        let now = chrono::Utc::now();
+        self.smart_queue = self
+            .smart_queue
+            .requeued(now, self.queued_submission_fingerprint.as_deref());
+        self.next_retry_at = Some(self.smart_queue.requeue_next_retry_at(now));
         self.touch();
     }
 
@@ -243,13 +249,18 @@ impl SubmissionLifecycle {
         self.receipt_id = None;
         self.submission_filename = None;
         self.submitted_payload = None;
+        // What the queue knew stays for 6 hours, so queueing it again keeps
+        // its place on the ladder ([`QueueState::requeued`]).
+        self.smart_queue.left(
+            chrono::Utc::now(),
+            self.queued_submission_fingerprint.as_deref(),
+        );
         self.queued_submission_fingerprint = None;
         self.queue_authorization = None;
         self.clear_claim();
         self.submission_attempts = 0;
         self.submission_error = None;
         self.next_retry_at = None;
-        self.smart_queue = Default::default();
         self.touch();
     }
 
@@ -1196,6 +1207,11 @@ mod tests {
             counted: false,
             failures: 12,
             slowed: false,
+            ended_at: chrono::Utc::now(),
+            wait_until: None,
+            not_tried: 1,
+            blame: None,
+            kind: None,
         };
         form.lifecycle.record_failed_try("held".into(), &hold);
         assert_eq!(
@@ -1205,11 +1221,22 @@ mod tests {
             ),
             (12, 12)
         );
-        // Queueing again, or back to Draft, starts the queue's facts afresh.
+        // Back to Draft and queued again at once (a cancel and a requeue
+        // loop) keeps its place on the ladder: same failures, and no earlier
+        // try than the schedule gave.
+        let next_before = form.lifecycle.smart_queue.next_try();
         form.lifecycle.revert_to_draft();
-        assert!(form.lifecycle.smart_queue.is_empty());
         form.queue(QueueAuthSource::Gui).unwrap();
-        assert!(form.lifecycle.smart_queue.is_empty());
+        assert_eq!(form.lifecycle.smart_queue.failures, 12);
+        assert_eq!(form.lifecycle.smart_queue.next_try(), next_before);
+        let stored = form.lifecycle.next_retry_at.as_deref().and_then(crate::smart_queue::parse_time);
+        assert!(stored >= next_before, "{stored:?} {next_before:?}");
+        // A return that was never tried starts afresh, with no queue facts.
+        let mut fresh = TestForm::new(7, 10.0);
+        fresh.queue(QueueAuthSource::Gui).unwrap();
+        fresh.lifecycle.revert_to_draft();
+        fresh.queue(QueueAuthSource::Gui).unwrap();
+        assert!(fresh.lifecycle.smart_queue.is_empty());
     }
 
     #[test]

@@ -534,9 +534,14 @@ impl Form1601CDraft {
         self.status = FilingStatus::Queued;
         self.submission_attempts = 0;
         self.submission_error = None;
-        self.next_retry_at = Some(chrono::Utc::now().to_rfc3339());
-        self.smart_queue = Default::default();
-        self.updated_at = chrono::Utc::now().to_rfc3339();
+        // Queued again within 6 hours of leaving, it keeps its place on the
+        // ladder (its failures and its next try).
+        let now = chrono::Utc::now();
+        self.smart_queue = self
+            .smart_queue
+            .requeued(now, self.queued_submission_fingerprint.as_deref());
+        self.next_retry_at = Some(self.smart_queue.requeue_next_retry_at(now));
+        self.updated_at = now.to_rfc3339();
         Ok(())
     }
 
@@ -599,6 +604,11 @@ impl Form1601CDraft {
             !matches!(self.status, FilingStatus::Paid),
             "Cannot revert a Paid form to Draft"
         );
+        // What the queue knew stays for 6 hours ([`QueueState::requeued`]).
+        self.smart_queue.left(
+            chrono::Utc::now(),
+            self.queued_submission_fingerprint.as_deref(),
+        );
         self.status = FilingStatus::Draft;
         // Back to Draft (an amended copy, a cancelled queue, a refused
         // submission) its boxes were not built from the profile as it is
@@ -619,7 +629,6 @@ impl Form1601CDraft {
         self.submission_attempts = 0;
         self.submission_error = None;
         self.next_retry_at = None;
-        self.smart_queue = Default::default();
         self.updated_at = chrono::Utc::now().to_rfc3339();
     }
 

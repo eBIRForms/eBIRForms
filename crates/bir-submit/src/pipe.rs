@@ -22,7 +22,35 @@ use tokio_tungstenite::tungstenite::Message;
 
 use crate::trust::TrustList;
 
+/// The whole of one `open`: the lookup and every address tried in turn.
 const CONNECT_TIMEOUT: Duration = Duration::from_secs(10);
+/// The name lookup alone. One that takes longer is a `dns` failure, not a
+/// slow connection.
+const LOOKUP_TIMEOUT: Duration = Duration::from_secs(5);
+
+/// How long a relay may run, and how silent the server may be, before the
+/// app lets go of it. A send that was cut short this way is read back from
+/// Buwiz: after any stream opened, the outcome is "maybe sent".
+#[derive(Clone, Copy, Debug)]
+pub struct Limits {
+    /// The most one pipe lives, from the first frame to the `result`.
+    pub overall: Duration,
+    /// No frame (a ping's pong included) from the server for this long ends
+    /// it.
+    pub idle: Duration,
+    /// The app pings this often, so a quiet but live server is not idle.
+    pub ping: Duration,
+}
+
+impl Default for Limits {
+    fn default() -> Self {
+        Self {
+            overall: Duration::from_secs(9 * 60),
+            idle: Duration::from_secs(3 * 60),
+            ping: Duration::from_secs(30),
+        }
+    }
+}
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
@@ -70,14 +98,39 @@ pub enum Ended {
         class: Option<String>,
         hold: Option<Hold>,
         bir: Option<Value>,
+        /// Whether any connection the app made toward the BIR opened: when
+        /// none did, nothing touched the BIR.
+        opened: bool,
+        /// Every `open` the app attempted failed on the way in (kinds `dns`,
+        /// `refused`, `timeout`, `unreachable`) and none opened: the try
+        /// never got past the BIR's front desk.
+        path_down: bool,
     },
     /// The socket closed first. `opened` tells whether any connection was
     /// made, so whether anything could have reached BIR.
-    Dropped { opened: bool },
+    Dropped {
+        opened: bool,
+        /// As [`Ended::Result`]'s `path_down`.
+        path_down: bool,
+    },
 }
 
-/// Forwards until the server's `result` or the socket ends.
+/// Forwards until the server's `result` or the socket ends, within the
+/// default [`Limits`].
 pub async fn serve<S>(socket: S, allowed: &TrustList) -> Ended
+where
+    S: Stream<Item = Result<Message, tokio_tungstenite::tungstenite::Error>>
+        + futures_util::Sink<Message, Error = tokio_tungstenite::tungstenite::Error>
+        + Unpin
+        + Send
+        + 'static,
+{
+    serve_within(socket, allowed, Limits::default()).await
+}
+
+/// [`serve`] with its own [`Limits`]: the pipe ends as dropped when it runs
+/// past `overall` or the server is silent for `idle`.
+pub async fn serve_within<S>(socket: S, allowed: &TrustList, limits: Limits) -> Ended
 where
     S: Stream<Item = Result<Message, tokio_tungstenite::tungstenite::Error>>
         + futures_util::Sink<Message, Error = tokio_tungstenite::tungstenite::Error>
@@ -97,9 +150,41 @@ where
     });
     let mut writers: HashMap<u8, mpsc::UnboundedSender<Option<Vec<u8>>>> = HashMap::new();
     let mut opened = false;
+    let (mut attempted, mut path_failed) = (0u32, 0u32);
+    let started = tokio::time::Instant::now();
+    let deadline = started + limits.overall;
+    let mut last_heard = started;
+    let mut ping = tokio::time::interval_at(started + limits.ping, limits.ping);
     let ended = loop {
-        let Some(Ok(message)) = stream.next().await else {
-            break Ended::Dropped { opened };
+        let message = tokio::select! {
+            next = stream.next() => match next {
+                Some(Ok(message)) => {
+                    last_heard = tokio::time::Instant::now();
+                    message
+                }
+                _ => break Ended::Dropped {
+                        opened,
+                        path_down: !opened && attempted > 0 && path_failed == attempted,
+                    },
+            },
+            _ = ping.tick() => {
+                if last_heard.elapsed() >= limits.idle {
+                    tracing::warn!("relay: the server went quiet; letting go of the pipe");
+                    break Ended::Dropped {
+                        opened,
+                        path_down: !opened && attempted > 0 && path_failed == attempted,
+                    };
+                }
+                let _ = out.try_send(Message::Ping(Default::default()));
+                continue;
+            }
+            _ = tokio::time::sleep_until(deadline) => {
+                tracing::warn!("relay: the pipe ran past its time limit; letting go of it");
+                break Ended::Dropped {
+                        opened,
+                        path_down: !opened && attempted > 0 && path_failed == attempted,
+                    };
+            }
         };
         match message {
             Message::Text(text) => match serde_json::from_str::<Control>(&text) {
@@ -115,7 +200,13 @@ where
                             port,
                         )
                     } else {
-                        match tokio::time::timeout(CONNECT_TIMEOUT, connect(&host, port)).await {
+                        attempted += 1;
+                        match tokio::time::timeout(
+                            CONNECT_TIMEOUT + LOOKUP_TIMEOUT + Duration::from_secs(1),
+                            connect(&host, port),
+                        )
+                        .await
+                        {
                             Ok(Ok(tcp)) => {
                                 let _ = tcp.set_nodelay(true);
                                 // `opened` goes out before any byte the far
@@ -126,14 +217,20 @@ where
                                 continue;
                             }
                             Ok(Err((kind, error))) => {
+                                if kind.is_some_and(RefusedKind::is_path) {
+                                    path_failed += 1;
+                                }
                                 refused(stream, error.to_string(), kind, port)
                             }
-                            Err(_) => refused(
-                                stream,
-                                "connection timed out".into(),
-                                Some(RefusedKind::Timeout),
-                                port,
-                            ),
+                            Err(_) => {
+                                path_failed += 1;
+                                refused(
+                                    stream,
+                                    "connection timed out".into(),
+                                    Some(RefusedKind::Timeout),
+                                    port,
+                                )
+                            }
                         }
                     };
                     let _ = out.send(answer).await;
@@ -165,6 +262,8 @@ where
                                 .and_then(bir_core::smart_queue::parse_time),
                         }),
                         bir: extras.bir.filter(|bir| !bir.is_null()),
+                        opened,
+                        path_down: !opened && attempted > 0 && path_failed == attempted,
                     };
                 }
                 // Only the app sends these; anything else is ignored.
@@ -177,7 +276,10 @@ where
                     let _ = writer.send(Some(data.to_vec()));
                 }
             }
-            Message::Close(_) => break Ended::Dropped { opened },
+            Message::Close(_) => break Ended::Dropped {
+                        opened,
+                        path_down: !opened && attempted > 0 && path_failed == attempted,
+                    },
             _ => {}
         }
     };
@@ -224,6 +326,8 @@ pub enum RefusedKind {
     Unreachable,
     /// This machine forbids the connection (a firewall, a sandbox).
     Denied,
+    /// The connection was reset or aborted on the way.
+    Reset,
     /// Not on the signed trust list: the app never tried.
     NotListed,
 }
@@ -235,9 +339,33 @@ impl RefusedKind {
         match error.kind() {
             ErrorKind::ConnectionRefused | ErrorKind::HostUnreachable => Some(Self::Refused),
             ErrorKind::TimedOut => Some(Self::Timeout),
-            ErrorKind::NetworkUnreachable => Some(Self::Unreachable),
+            ErrorKind::NetworkUnreachable
+            | ErrorKind::NetworkDown
+            | ErrorKind::AddrNotAvailable => Some(Self::Unreachable),
             ErrorKind::PermissionDenied => Some(Self::Denied),
+            ErrorKind::ConnectionReset | ErrorKind::ConnectionAborted => Some(Self::Reset),
             _ => None,
+        }
+    }
+
+    /// A failure on the way in: the connection never got to the far end.
+    pub fn is_path(self) -> bool {
+        matches!(
+            self,
+            Self::Dns | Self::Refused | Self::Timeout | Self::Unreachable
+        )
+    }
+
+    /// How much a failed connect says, to pick one among several
+    /// addresses: the far end answering "no" says the most.
+    fn informative(kind: Option<Self>) -> u8 {
+        match kind {
+            Some(Self::Refused) => 6,
+            Some(Self::Reset) => 5,
+            Some(Self::Denied) => 4,
+            Some(Self::Unreachable) => 3,
+            Some(Self::Timeout) => 2,
+            _ => 1,
         }
     }
 }
@@ -270,28 +398,80 @@ fn refused(stream: u8, reason: String, kind: Option<RefusedKind>, port: u16) -> 
     )
 }
 
-/// Resolve `host`, then connect to its addresses in turn, as
-/// `TcpStream::connect((host, port))` does, telling a failed lookup apart.
+/// Resolve `host`, then connect to its addresses in turn within the
+/// connect timeout, telling a failed or timed-out lookup (`dns`) apart.
 async fn connect(
     host: &str,
     port: u16,
 ) -> Result<TcpStream, (Option<RefusedKind>, std::io::Error)> {
-    let addresses: Vec<std::net::SocketAddr> = tokio::net::lookup_host((host, port))
-        .await
-        .map_err(|error| (Some(RefusedKind::Dns), error))?
-        .collect();
+    let lookup = async {
+        tokio::net::lookup_host((host, port))
+            .await
+            .map(Iterator::collect::<Vec<std::net::SocketAddr>>)
+    };
+    connect_after(lookup, host, LOOKUP_TIMEOUT, CONNECT_TIMEOUT).await
+}
+
+/// [`connect`] over any lookup (a test's own, so no query leaves the
+/// machine). `connect_budget` bounds every address together; when several
+/// fail, the most informative error is the answer.
+async fn connect_after(
+    lookup: impl std::future::Future<Output = std::io::Result<Vec<std::net::SocketAddr>>>,
+    host: &str,
+    lookup_budget: Duration,
+    connect_budget: Duration,
+) -> Result<TcpStream, (Option<RefusedKind>, std::io::Error)> {
+    use std::io::{Error, ErrorKind};
+    let addresses = match tokio::time::timeout(lookup_budget, lookup).await {
+        Ok(Ok(addresses)) => addresses,
+        Ok(Err(error)) => return Err((Some(RefusedKind::Dns), error)),
+        Err(_) => {
+            return Err((
+                Some(RefusedKind::Dns),
+                Error::new(ErrorKind::TimedOut, format!("looking up {host} timed out")),
+            ));
+        }
+    };
     if addresses.is_empty() {
         return Err((
             Some(RefusedKind::Dns),
-            std::io::Error::new(
-                std::io::ErrorKind::NotFound,
-                format!("no address for {host}"),
-            ),
+            Error::new(ErrorKind::NotFound, format!("no address for {host}")),
         ));
     }
-    TcpStream::connect(&addresses[..])
-        .await
-        .map_err(|error| (RefusedKind::of(&error), error))
+    let started = tokio::time::Instant::now();
+    let mut failures: Vec<(Option<RefusedKind>, Error)> = Vec::new();
+    for address in addresses {
+        let left = connect_budget.saturating_sub(started.elapsed());
+        if left.is_zero() {
+            break;
+        }
+        match tokio::time::timeout(left, TcpStream::connect(address)).await {
+            Ok(Ok(tcp)) => return Ok(tcp),
+            Ok(Err(error)) => failures.push((RefusedKind::of(&error), error)),
+            Err(_) => {
+                failures.push((
+                    Some(RefusedKind::Timeout),
+                    Error::new(ErrorKind::TimedOut, "connection timed out"),
+                ));
+                break;
+            }
+        }
+    }
+    let mut best: Option<(Option<RefusedKind>, Error)> = None;
+    for failure in failures {
+        if best
+            .as_ref()
+            .is_none_or(|(kind, _)| RefusedKind::informative(failure.0) > RefusedKind::informative(*kind))
+        {
+            best = Some(failure);
+        }
+    }
+    Err(best.unwrap_or_else(|| {
+        (
+            Some(RefusedKind::Timeout),
+            Error::new(ErrorKind::TimedOut, "connection timed out"),
+        )
+    }))
 }
 
 fn control(control: &Control) -> Message {
@@ -369,12 +549,12 @@ mod tests {
         }
     }
 
-    /// API.md §5.2: a v1 relay's hold arrives as `failed` with `hold`,
+    /// The public contract (`docs/bir-uptime.md` in `buwiz-com/buwiz-com`): a v1 relay's hold arrives as `failed` with `hold`,
     /// `class: ours` and the sign.
     #[tokio::test]
     async fn a_result_with_a_hold_carries_class_hold_and_sign() {
         let (app, mut server) = pipe(&[]).await;
-        let frame = fixture("api-5.2-v1-relay-hold-result.json");
+        let frame = fixture("contract-relay-hold-result.json");
         server.send(Message::Text(frame.into())).await.unwrap();
         let Ended::Result {
             status,
@@ -383,10 +563,13 @@ mod tests {
             class,
             hold,
             bir,
+            opened,
+            path_down,
         } = app.await.unwrap()
         else {
             panic!("a result")
         };
+        assert!(!opened && !path_down, "no open was asked for");
         assert_eq!(status, "failed");
         assert!(error.unwrap().contains("Nothing reached the BIR"));
         assert_eq!(receipt, None);
@@ -417,10 +600,12 @@ mod tests {
                 class: None,
                 hold: None,
                 bir: None,
+                opened: false,
+                path_down: false,
             }
         );
         let (app, mut server) = pipe(&[]).await;
-        let frame = fixture("api-10-relay-result-failed-bir.json");
+        let frame = fixture("contract-relay-result-failed-bir.json");
         server.send(Message::Text(frame.into())).await.unwrap();
         let Ended::Result { class, hold, .. } = app.await.unwrap() else {
             panic!()
@@ -469,7 +654,8 @@ mod tests {
         );
         assert_eq!(answer["port"], port);
         server.close(None).await.unwrap();
-        assert_eq!(app.await.unwrap(), Ended::Dropped { opened: false });
+        // The one open it tried was refused on the way in.
+        assert_eq!(app.await.unwrap(), Ended::Dropped { opened: false, path_down: true });
     }
 
     #[test]
@@ -484,7 +670,10 @@ mod tests {
                 Some(RefusedKind::Unreachable),
             ),
             (ErrorKind::PermissionDenied, Some(RefusedKind::Denied)),
-            (ErrorKind::ConnectionReset, None),
+            (ErrorKind::NetworkDown, Some(RefusedKind::Unreachable)),
+            (ErrorKind::AddrNotAvailable, Some(RefusedKind::Unreachable)),
+            (ErrorKind::ConnectionReset, Some(RefusedKind::Reset)),
+            (ErrorKind::ConnectionAborted, Some(RefusedKind::Reset)),
             (ErrorKind::Other, None),
         ];
         for (kind, want) in rows {
@@ -496,6 +685,7 @@ mod tests {
             RefusedKind::Timeout,
             RefusedKind::Unreachable,
             RefusedKind::Denied,
+            RefusedKind::Reset,
             RefusedKind::NotListed,
         ]
         .into_iter()
@@ -509,17 +699,128 @@ mod tests {
                 json!("timeout"),
                 json!("unreachable"),
                 json!("denied"),
+                json!("reset"),
                 json!("not_listed")
             ]
         );
     }
 
+    /// The lookups here are the test's own: no query leaves the machine.
     #[tokio::test]
-    async fn a_name_that_does_not_resolve_is_dns() {
-        // An empty name fails in the resolver before any query goes out.
-        let Err((kind, _)) = connect("", 443).await else {
-            panic!("resolved an empty name")
+    async fn a_lookup_that_fails_or_times_out_is_dns() {
+        let ms = Duration::from_millis;
+        let failed = async { Err(std::io::Error::other("no such host")) };
+        let Err((kind, _)) = connect_after(failed, "example.test", ms(50), ms(50)).await else {
+            panic!("connected")
         };
         assert_eq!(kind, Some(RefusedKind::Dns));
+        let empty = async { Ok(Vec::new()) };
+        let Err((kind, _)) = connect_after(empty, "example.test", ms(50), ms(50)).await else {
+            panic!("connected")
+        };
+        assert_eq!(kind, Some(RefusedKind::Dns));
+        // A lookup that never answers is `dns`, not `timeout`.
+        let hung = std::future::pending();
+        let Err((kind, error)) = connect_after(hung, "example.test", ms(30), ms(50)).await else {
+            panic!("connected")
+        };
+        assert_eq!(kind, Some(RefusedKind::Dns));
+        assert_eq!(error.kind(), std::io::ErrorKind::TimedOut);
+    }
+
+    /// With several addresses, the far end saying no (a refusal) is more
+    /// informative than the one that never answered.
+    #[tokio::test]
+    async fn with_several_addresses_the_most_informative_error_is_reported() {
+        let closed = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
+        let address = closed.local_addr().unwrap();
+        drop(closed);
+        let ms = Duration::from_millis;
+        let both = async move { Ok(vec![address, address]) };
+        let Err((kind, _)) = connect_after(both, "example.test", ms(50), ms(500)).await else {
+            panic!("connected")
+        };
+        assert_eq!(kind, Some(RefusedKind::Refused));
+        assert!(RefusedKind::informative(Some(RefusedKind::Refused)) > RefusedKind::informative(Some(RefusedKind::Timeout)));
+        assert!(RefusedKind::informative(Some(RefusedKind::Reset)) > RefusedKind::informative(None));
+    }
+
+    /// Every open refused on the way in, none opened: `path_down`. One that
+    /// opened: never. A try with no open at all: neither.
+    #[tokio::test]
+    async fn the_result_says_whether_a_stream_opened_and_whether_the_way_in_was_down() {
+        let open = |stream: u8, port: u16| {
+            Message::Text(
+                serde_json::to_string(&Control::Open { stream, host: "127.0.0.1".into(), port })
+                    .unwrap()
+                    .into(),
+            )
+        };
+        let result = || {
+            Message::Text(
+                r#"{"type":"result","status":"failed","error":"x","receipt":null,"class":"user_network"}"#
+                    .into(),
+            )
+        };
+        let closed = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
+        let down = closed.local_addr().unwrap().port();
+        drop(closed);
+        let live = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
+        let up = live.local_addr().unwrap().port();
+        let listed = format!("127.0.0.1:{down}");
+        let listed_up = format!("127.0.0.1:{up}");
+
+        // Both opens refused: the way in is down.
+        let (app, mut server) = pipe(&[&listed, &listed_up]).await;
+        server.send(open(1, down)).await.unwrap();
+        next_text(&mut server).await;
+        server.send(open(2, down)).await.unwrap();
+        next_text(&mut server).await;
+        server.send(result()).await.unwrap();
+        let Ended::Result { opened, path_down, .. } = app.await.unwrap() else { panic!() };
+        assert_eq!((opened, path_down), (false, true));
+
+        // One opened, one refused: it got past the front desk.
+        let (app, mut server) = pipe(&[&listed, &listed_up]).await;
+        server.send(open(1, up)).await.unwrap();
+        assert_eq!(next_text(&mut server).await["type"], "opened");
+        server.send(open(2, down)).await.unwrap();
+        next_text(&mut server).await;
+        server.send(result()).await.unwrap();
+        let Ended::Result { opened, path_down, .. } = app.await.unwrap() else { panic!() };
+        assert_eq!((opened, path_down), (true, false));
+
+        // A name off the trust list is never a try of the app's: not "down".
+        let (app, mut server) = pipe(&[&listed]).await;
+        server.send(open(1, down + 1)).await.unwrap();
+        next_text(&mut server).await;
+        server.send(result()).await.unwrap();
+        let Ended::Result { opened, path_down, .. } = app.await.unwrap() else { panic!() };
+        assert_eq!((opened, path_down), (false, false));
+    }
+
+    /// A server that goes quiet, or a pipe that runs on, is let go of.
+    #[tokio::test]
+    async fn a_quiet_server_and_a_pipe_that_runs_on_are_let_go_of() {
+        let limits = |overall, idle, ping| Limits {
+            overall: Duration::from_millis(overall),
+            idle: Duration::from_millis(idle),
+            ping: Duration::from_millis(ping),
+        };
+        for limit in [limits(60_000, 150, 50), limits(150, 60_000, 50)] {
+            let (public, jws, _) = trust_documents(&[]);
+            let list = crate::trust::verify(&[public], &jws, crate::device::now()).unwrap();
+            let (app, server) = tokio::io::duplex(64 * 1024);
+            let app = WebSocketStream::from_raw_socket(app, Role::Client, None).await;
+            // The server end is held open and never answers.
+            let _server = WebSocketStream::from_raw_socket(server, Role::Server, None).await;
+            let ended = tokio::time::timeout(
+                Duration::from_secs(5),
+                serve_within(app, &list, limit),
+            )
+            .await
+            .expect("let go of in time");
+            assert_eq!(ended, Ended::Dropped { opened: false, path_down: false });
+        }
     }
 }

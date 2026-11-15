@@ -3386,6 +3386,24 @@ impl Database {
             .optional()?)
     }
 
+    /// Change the stored JSON of the queued return `draft_id` to `new_json`
+    /// only while it is still Queued and holds `expected_json`, leaving
+    /// `updated_at` alone: a queue stamp (its next try, its queue facts) is
+    /// not an edit of the return. Whether the row was written.
+    pub fn restamp_queued_draft(
+        &self,
+        draft_id: i64,
+        expected_json: &str,
+        new_json: &str,
+    ) -> Result<bool, DbError> {
+        let changed = self.conn.execute(
+            "UPDATE form_drafts SET data_json = ?1
+             WHERE id = ?2 AND status = 'Queued' AND data_json = ?3",
+            params![new_json, draft_id, expected_json],
+        )?;
+        Ok(changed == 1)
+    }
+
     /// Replace the stored JSON (and status column) of `draft_id`, but only
     /// while the row still holds `expected_json`: a write that raced the
     /// queue worker changes nothing. Whether the row was written.

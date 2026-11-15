@@ -6,7 +6,8 @@ use crate::forms::queueable::{QueueableForm, QueueableKind};
 use crate::forms::{FilingStatus, FormDraftSummary};
 use crate::profile::TaxpayerProfile;
 use crate::smart_queue::{
-    self, DeviceTries, QueueMode, QueuePolicy, QueueRng, QueueState, Retry, TryClass, Waiting,
+    self, Blame, DeviceTries, Ending, PathBackoff, QueueMode, QueuePolicy, QueueRng, QueueState,
+    Retry, TryClass, Waiting,
 };
 use chrono::{DateTime, Utc};
 use std::collections::{HashMap, HashSet};
@@ -14,14 +15,25 @@ use std::future::Future;
 use std::pin::Pin;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Mutex, OnceLock};
-use tokio::sync::mpsc;
+use tokio::sync::{Notify, mpsc};
 use tracing::{error, info, warn};
 
 static WAKE_TX: OnceLock<mpsc::Sender<()>> = OnceLock::new();
 static ACTIVE_JOBS: OnceLock<Arc<Mutex<HashSet<String>>>> = OnceLock::new();
-/// Set by [`request_shutdown`]. The cron loop finishes the tick it is already
-/// on, then returns, so the submission worker can drop the database.
+/// Set by [`request_shutdown`]. The cron loop stops, cutting short a tick
+/// that is waiting on the network, so the submission worker can drop the
+/// database and its lease.
 static SHUTDOWN: AtomicBool = AtomicBool::new(false);
+/// Rung by [`request_shutdown`]: interrupts a tick in progress.
+static SHUTDOWN_RING: Notify = Notify::const_new();
+/// The longest one send may take, from the session to the result. One that
+/// takes longer is left as "BIR may have it": it is never sent again by
+/// itself, and the queue goes on.
+pub const SEND_DEADLINE: std::time::Duration = std::time::Duration::from_secs(10 * 60);
+/// The longest opening a session may take (it talks to Buwiz only).
+pub const SESSION_DEADLINE: std::time::Duration = std::time::Duration::from_secs(2 * 60);
+/// What a send that ran past [`SEND_DEADLINE`] stores as its reason.
+pub const SEND_TIMED_OUT: &str = "the send did not finish within 10 minutes, so BIR may have received this return; check for its confirmation email before sending it again";
 /// The app holds this while submission must not run (e.g. before the user
 /// has signed in to the submission service). Default false.
 static SUBMISSION_PAUSED: AtomicBool = AtomicBool::new(false);
@@ -41,6 +53,8 @@ pub(crate) enum WakeDispatchStatus {
 pub struct QueueEnv {
     clock: Box<dyn Fn() -> DateTime<Utc> + Send + Sync>,
     rng: Mutex<Box<dyn QueueRng + Send>>,
+    send_deadline: std::time::Duration,
+    session_deadline: std::time::Duration,
 }
 
 impl QueueEnv {
@@ -56,29 +70,66 @@ impl QueueEnv {
         Self {
             clock: Box::new(clock),
             rng: Mutex::new(Box::new(rng)),
+            send_deadline: SEND_DEADLINE,
+            session_deadline: SESSION_DEADLINE,
         }
+    }
+
+    /// The same env with other deadlines for a send and a session (tests
+    /// of a hung send).
+    pub fn with_deadlines(
+        mut self,
+        send: std::time::Duration,
+        session: std::time::Duration,
+    ) -> Self {
+        self.send_deadline = send;
+        self.session_deadline = session;
+        self
     }
 
     pub fn now(&self) -> DateTime<Utc> {
         (self.clock)()
     }
+
+    fn with_rng<R>(&self, use_it: impl FnOnce(&mut dyn QueueRng) -> R) -> R {
+        let mut rng = self
+            .rng
+            .lock()
+            .unwrap_or_else(|poisoned| poisoned.into_inner());
+        use_it(&mut **rng)
+    }
 }
 
 /// What one send needs to plan the retry of a try that did not land: the
-/// time, the numbers, and whether the device guard trips on a counted
-/// failure now.
+/// time, the numbers, whether the device guard trips on a counted failure
+/// now, and the queue-wide back-off a path failure moves. It remembers
+/// where the last try failed, for the tick.
 struct Planner<'a> {
     env: &'a QueueEnv,
     policy: QueuePolicy,
     slowed_down: bool,
+    path: Mutex<PathBackoff>,
+    last_blame: Mutex<Option<Blame>>,
 }
 
 impl<'a> Planner<'a> {
+    #[cfg(test)]
     fn new(env: &'a QueueEnv, policy: QueuePolicy, slowed_down: bool) -> Self {
+        Self::with_path(env, policy, slowed_down, PathBackoff::default())
+    }
+
+    fn with_path(
+        env: &'a QueueEnv,
+        policy: QueuePolicy,
+        slowed_down: bool,
+        path: PathBackoff,
+    ) -> Self {
         Self {
             env,
             policy,
             slowed_down,
+            path: Mutex::new(path),
+            last_blame: Mutex::new(None),
         }
     }
 
@@ -86,30 +137,86 @@ impl<'a> Planner<'a> {
         self.env.now()
     }
 
-    /// The retry for a try of `class` that ended now. `None` only for a
-    /// refusal or an unknown outcome, which the callers never pass.
-    fn retry(
-        &self,
-        failures_before: u32,
-        class: TryClass,
-        wait_until: Option<DateTime<Utc>>,
-    ) -> Option<Retry> {
+    /// The retry of a return in `state` whose try ended now as `ending`.
+    fn retry(&self, state: &QueueState, ending: Ending<'_>) -> Retry {
         let now = self.now();
-        let mut rng = self
-            .env
-            .rng
+        if let Ending::Failed { blame, .. } = ending
+            && let Ok(mut last) = self.last_blame.lock()
+        {
+            *last = Some(blame);
+        }
+        let mut path = self
+            .path
             .lock()
             .unwrap_or_else(|poisoned| poisoned.into_inner());
-        smart_queue::plan_retry(
-            failures_before,
-            class,
-            self.slowed_down,
-            now,
-            wait_until,
-            now,
-            &self.policy,
-            &mut **rng,
-        )
+        self.env.with_rng(|rng| {
+            smart_queue::plan(
+                state,
+                ending,
+                self.slowed_down,
+                now,
+                now,
+                &mut path,
+                &self.policy,
+                rng,
+            )
+        })
+    }
+
+    /// Where the last counted try failed, if one did.
+    fn last_blame(&self) -> Option<Blame> {
+        self.last_blame.lock().ok().and_then(|last| *last)
+    }
+
+    fn path(&self) -> PathBackoff {
+        self.path
+            .lock()
+            .map(|path| path.clone())
+            .unwrap_or_default()
+    }
+
+    /// `send`, or "BIR may have it" when it runs past the send deadline.
+    async fn within_deadline(
+        &self,
+        send: impl Future<Output = Result<StoreReport, StoreFailure>>,
+    ) -> Result<StoreReport, StoreFailure> {
+        match tokio::time::timeout(self.env.send_deadline, send).await {
+            Ok(result) => result,
+            Err(_) => Err(StoreFailure::MaybeSent(TransportError(
+                SEND_TIMED_OUT.to_owned(),
+            ))),
+        }
+    }
+
+    /// `open`, or a failed session when it runs past the session deadline.
+    async fn session<S>(
+        &self,
+        open: impl Future<Output = Result<S, TransportError>>,
+    ) -> Result<S, TransportError> {
+        tokio::time::timeout(self.env.session_deadline, open)
+            .await
+            .unwrap_or_else(|_| {
+                Err(TransportError(
+                    "the session did not open within 2 minutes".to_owned(),
+                ))
+            })
+    }
+}
+
+/// What a failed session (not a final refusal) means, for [`Planner::retry`].
+fn session_ending(class: TryClass, reason: &str) -> Ending<'_> {
+    match class {
+        TryClass::NotATry | TryClass::Refused | TryClass::MaybeSent => {
+            Ending::NotATry { wait_until: None }
+        }
+        TryClass::Counted => Ending::Failed {
+            blame: Blame::Upload,
+            reason,
+        },
+        TryClass::NoService => Ending::Failed {
+            blame: Blame::NoService,
+            reason,
+        },
     }
 }
 
@@ -136,6 +243,8 @@ pub fn get_active_jobs() -> Arc<Mutex<HashSet<String>>> {
 /// there. A second call is a no-op aside from another wake.
 pub fn request_shutdown() {
     SHUTDOWN.store(true, Ordering::SeqCst);
+    // A permit, so a loop that is not waiting yet still sees it.
+    SHUTDOWN_RING.notify_one();
     wake();
 }
 
@@ -213,8 +322,12 @@ pub async fn start_cron_jobs<T: SubmissionTransport + 'static>(
             continue;
         }
         // We run a tick, then wait for either 60 seconds or a wake signal.
-        run_queue_tick_with(db.clone(), &transport, &env).await;
-        if shutdown_requested() {
+        // A shutdown cuts the tick short: a send it interrupts is claimed
+        // with its PUT started, so it is never sent again by itself.
+        let stopped = run_tick_until(&SHUTDOWN_RING, db.clone(), &transport, &env)
+            .await
+            .is_none();
+        if stopped || shutdown_requested() {
             break;
         }
 
@@ -226,6 +339,22 @@ pub async fn start_cron_jobs<T: SubmissionTransport + 'static>(
         }
     }
     info!("Background cron engine stopped");
+}
+
+/// One tick, unless `stop` rings first: `None` when it was cut short.
+pub(crate) async fn run_tick_until<T: SubmissionTransport + 'static>(
+    stop: &Notify,
+    db: Arc<Mutex<Database>>,
+    transport: &Arc<T>,
+    env: &QueueEnv,
+) -> Option<Option<SendOutcome>> {
+    tokio::select! {
+        outcome = run_queue_tick_with(db, transport, env) => Some(outcome),
+        _ = stop.notified() => {
+            warn!("Cron: shutdown interrupted the queue tick");
+            None
+        }
+    }
 }
 
 /// Runs a single iteration of the background job queue: at most one
@@ -504,6 +633,25 @@ pub enum StoreFailure {
         error: TransportError,
         wait_until: Option<DateTime<Utc>>,
     },
+    /// Nothing reached BIR's mailbox and the try counts; `blame` says
+    /// where it failed, which decides who waits: the whole queue for a try
+    /// that never got past the front desk ([`Blame::Path`]), this return
+    /// alone for the rest. [`StoreFailure::NotSent`] is this with
+    /// [`Blame::Upload`].
+    #[error("{error}")]
+    Counted { error: TransportError, blame: Blame },
+}
+
+impl StoreFailure {
+    /// The error, whatever the outcome.
+    pub fn error(&self) -> &TransportError {
+        match self {
+            Self::NotSent(error)
+            | Self::MaybeSent(error)
+            | Self::NotATry { error, .. }
+            | Self::Counted { error, .. } => error,
+        }
+    }
 }
 
 /// How the queue's reason for a [`StoreFailure::NotSent`] attempt begins.
@@ -622,24 +770,13 @@ async fn process_queued_1601c_in<T: SubmissionTransport>(
         }
         Ok(_) => {}
         Err(error) => {
+            // Never Draft for a bad time: the tick stamps a real one, and
+            // the return goes when that comes.
             warn!(
-                "Cron: Refusing queued 1601C {} because its retry timestamp is invalid: {}",
+                "Cron: queued 1601C {} has an unreadable retry time ({}); it waits for the queue to stamp a real one",
                 draft.period_code(),
                 error
             );
-            draft.revert_to_draft();
-            draft.submission_error = Some(
-                "Submission blocked because queued retry metadata is invalid; review and queue the return again"
-                    .to_string(),
-            );
-            if let Ok(db_guard) = db.lock() {
-                let _ = db_guard.replace_unclaimed_queued_1601c_submission(
-                    &draft,
-                    &queue_revision.fingerprint,
-                    &queue_revision.next_retry_at,
-                    queue_revision.submission_attempts,
-                );
-            }
             return SendOutcome::NotTried;
         }
     }
@@ -677,9 +814,12 @@ async fn process_queued_1601c_in<T: SubmissionTransport>(
         return SendOutcome::NotTried;
     };
 
-    let session = match transport.open_session(form_type, &draft.tin).await {
+    let session = match planner
+        .session(transport.open_session(form_type, &draft.tin))
+        .await
+    {
         Ok(session) => session,
-        Err(error) if error.refusal().is_some() => {
+        Err(error) if smart_queue::is_final_reason(&error.0) => {
             refuse_unclaimed_1601c(
                 &mut draft,
                 &queue_revision,
@@ -774,9 +914,9 @@ async fn process_queued_1601c_in<T: SubmissionTransport>(
         );
         return SendOutcome::NotTried;
     }
-    let failures_before = draft.smart_queue.failures;
-    match transport
-        .store_session_reported(session, &filename, xml_payload.as_bytes())
+    let state_before = draft.smart_queue.clone();
+    match planner
+        .within_deadline(transport.store_session_reported(session, &filename, xml_payload.as_bytes()))
         .await
     {
         Ok(report) => {
@@ -827,11 +967,10 @@ async fn process_queued_1601c_in<T: SubmissionTransport>(
             }
             SendOutcome::Sent
         }
-        Err(StoreFailure::NotSent(error)) if error.refusal().is_some() => {
-            let refusal = error.refusal();
-            let reason = refusal_reason(NOT_SENT_PREFIX, &error);
+        Err(failure) if is_final(&failure) => {
+            let reason = refusal_reason(NOT_SENT_PREFIX, failure.error());
             warn!(
-                "Cron: 1601C {} was refused for its TIN (nothing reached BIR); back to Draft: {}",
+                "Cron: 1601C {} was refused for good (nothing reached BIR); back to Draft: {}",
                 draft.period_code(),
                 reason
             );
@@ -841,14 +980,14 @@ async fn process_queued_1601c_in<T: SubmissionTransport>(
                     draft.taxable_year,
                     draft.month,
                     &claim_token,
-                    reason,
+                    reason.clone(),
                 ) {
                     Ok(true) => record_refusal_alert(
                         &db_guard,
                         profile,
                         "1601C",
                         &monthly_period_label(draft.taxable_year, draft.month),
-                        refusal,
+                        &reason,
                     ),
                     Ok(false) => info!(
                         "Cron: 1601C {} claim changed before its refusal was recorded",
@@ -861,12 +1000,15 @@ async fn process_queued_1601c_in<T: SubmissionTransport>(
             }
             SendOutcome::Failed(TryClass::Refused)
         }
-        Err(failure @ (StoreFailure::NotSent(_) | StoreFailure::NotATry { .. })) => {
-            let (class, error, wait_until) = not_sent_class(failure);
-            let retry = planner
-                .retry(failures_before, class, wait_until)
-                .expect("a not-sent try has a retry");
-            log_not_sent("1601C", &draft.period_code(), &error, &retry);
+        Err(
+            failure @ (StoreFailure::NotSent(_)
+            | StoreFailure::NotATry { .. }
+            | StoreFailure::Counted { .. }),
+        ) => {
+            let (ending, class) = not_sent_ending(&failure);
+            let error = failure.error();
+            let retry = planner.retry(&state_before, ending);
+            log_not_sent("1601C", &draft.period_code(), error, &retry);
             if let Ok(db_guard) = db.lock()
                 && let Err(db_error) = db_guard.fail_claimed_1601c_not_sent(
                     &draft.tin,
@@ -905,15 +1047,41 @@ async fn process_queued_1601c_with_transport<T: SubmissionTransport>(
     process_queued_1601c_in(summary, profile, db, transport, &planner).await;
 }
 
-/// A not-sent store failure: its class (counted, or not a try), its error
-/// and the server's `wait_until`.
-fn not_sent_class(failure: StoreFailure) -> (TryClass, TransportError, Option<DateTime<Utc>>) {
+/// A store failure that reached nothing at BIR: what it means for the
+/// queue, its class for the tick, and its error. A plain `NotSent` is the
+/// return's own failure after the upload, as before the queue knew more.
+fn not_sent_ending(failure: &StoreFailure) -> (Ending<'_>, TryClass) {
     match failure {
-        StoreFailure::NotATry { error, wait_until } => (TryClass::NotATry, error, wait_until),
-        StoreFailure::NotSent(error) | StoreFailure::MaybeSent(error) => {
-            (TryClass::Counted, error, None)
-        }
+        StoreFailure::NotATry { wait_until, .. } => (
+            Ending::NotATry {
+                wait_until: *wait_until,
+            },
+            TryClass::NotATry,
+        ),
+        StoreFailure::Counted { error, blame } => (
+            Ending::Failed {
+                blame: *blame,
+                reason: &error.0,
+            },
+            blame.class(),
+        ),
+        StoreFailure::NotSent(error) | StoreFailure::MaybeSent(error) => (
+            Ending::Failed {
+                blame: Blame::Upload,
+                reason: &error.0,
+            },
+            TryClass::Counted,
+        ),
     }
+}
+
+/// A store failure whose reason ends in a code no retry changes (a TIN
+/// refusal, `return_mismatch`): back to Draft at once, whatever its class.
+fn is_final(failure: &StoreFailure) -> bool {
+    matches!(
+        failure,
+        StoreFailure::NotSent(_) | StoreFailure::Counted { .. } | StoreFailure::NotATry { .. }
+    ) && smart_queue::is_final_reason(&failure.error().0)
 }
 
 /// A queued return that did not reach BIR stays queued: say when it goes
@@ -988,9 +1156,10 @@ fn fail_queueable<F: QueueableForm>(
     planner: &Planner<'_>,
     class: TryClass,
 ) {
-    let retry = planner
-        .retry(draft.lifecycle().smart_queue.failures, class, None)
-        .expect("a session failure has a retry");
+    let retry = planner.retry(
+        &draft.lifecycle().smart_queue,
+        session_ending(class, &error_message),
+    );
     warn!(
         "Cron: {} submission preparation failed for {}{}: {}; next try at {}",
         F::FORM_CODE,
@@ -1093,18 +1262,13 @@ async fn process_queued_queueable_in<F: QueueableForm, T: SubmissionTransport>(
         }
         Ok(_) => {}
         Err(error) => {
+            // Never Draft for a bad time: the tick stamps a real one.
             warn!(
-                "Cron: Refusing queued {} {} because its retry timestamp is invalid: {}",
+                "Cron: queued {} {} has an unreadable retry time ({}); it waits for the queue to stamp a real one",
                 F::FORM_CODE,
                 draft.period_code(),
                 error
             );
-            draft.lifecycle_mut().revert_to_draft();
-            draft.lifecycle_mut().submission_error = Some(
-                "Submission blocked because queued retry metadata is invalid; review and queue the return again"
-                    .to_string(),
-            );
-            replace_queueable(&db, &draft, &generation);
             return SendOutcome::NotTried;
         }
     }
@@ -1137,9 +1301,12 @@ async fn process_queued_queueable_in<F: QueueableForm, T: SubmissionTransport>(
         return SendOutcome::NotTried;
     };
 
-    let session = match transport.open_session(form_type, draft.tin()).await {
+    let session = match planner
+        .session(transport.open_session(form_type, draft.tin()))
+        .await
+    {
         Ok(session) => session,
-        Err(error) if error.refusal().is_some() => {
+        Err(error) if smart_queue::is_final_reason(&error.0) => {
             refuse_unclaimed_queueable(
                 &mut draft,
                 &generation,
@@ -1237,9 +1404,9 @@ async fn process_queued_queueable_in<F: QueueableForm, T: SubmissionTransport>(
         return SendOutcome::NotTried;
     }
 
-    let failures_before = draft.lifecycle().smart_queue.failures;
-    match transport
-        .store_session_reported(session, &filename, payload.as_bytes())
+    let state_before = draft.lifecycle().smart_queue.clone();
+    match planner
+        .within_deadline(transport.store_session_reported(session, &filename, payload.as_bytes()))
         .await
     {
         Ok(report) => {
@@ -1295,11 +1462,10 @@ async fn process_queued_queueable_in<F: QueueableForm, T: SubmissionTransport>(
             }
             SendOutcome::Sent
         }
-        Err(StoreFailure::NotSent(error)) if error.refusal().is_some() => {
-            let refusal = error.refusal();
-            let reason = refusal_reason(NOT_SENT_PREFIX, &error);
+        Err(failure) if is_final(&failure) => {
+            let reason = refusal_reason(NOT_SENT_PREFIX, failure.error());
             warn!(
-                "Cron: {} {} was refused for its TIN (nothing reached BIR); back to Draft: {}",
+                "Cron: {} {} was refused for good (nothing reached BIR); back to Draft: {}",
                 F::FORM_CODE,
                 draft.period_code(),
                 reason
@@ -1310,14 +1476,14 @@ async fn process_queued_queueable_in<F: QueueableForm, T: SubmissionTransport>(
                     draft.taxable_year(),
                     draft.period_column(),
                     &claim_token,
-                    reason,
+                    reason.clone(),
                 ) {
                     Ok(true) => record_refusal_alert(
                         &db_guard,
                         profile,
                         F::FORM_CODE,
                         &queueable_period_label(&draft),
-                        refusal,
+                        &reason,
                     ),
                     Ok(false) => info!(
                         "Cron: {} {} claim changed before its refusal was recorded",
@@ -1332,12 +1498,15 @@ async fn process_queued_queueable_in<F: QueueableForm, T: SubmissionTransport>(
             }
             SendOutcome::Failed(TryClass::Refused)
         }
-        Err(failure @ (StoreFailure::NotSent(_) | StoreFailure::NotATry { .. })) => {
-            let (class, error, wait_until) = not_sent_class(failure);
-            let retry = planner
-                .retry(failures_before, class, wait_until)
-                .expect("a not-sent try has a retry");
-            log_not_sent(F::FORM_CODE, &draft.period_code(), &error, &retry);
+        Err(
+            failure @ (StoreFailure::NotSent(_)
+            | StoreFailure::NotATry { .. }
+            | StoreFailure::Counted { .. }),
+        ) => {
+            let (ending, class) = not_sent_ending(&failure);
+            let error = failure.error();
+            let retry = planner.retry(&state_before, ending);
+            log_not_sent(F::FORM_CODE, &draft.period_code(), error, &retry);
             if let Ok(db_guard) = db.lock()
                 && let Err(db_error) = db_guard.fail_claimed_queueable_not_sent::<F>(
                     draft.tin(),
@@ -1516,24 +1685,12 @@ async fn process_queued_2551q_in<T: SubmissionTransport>(
         }
         Ok(_) => {}
         Err(error) => {
+            // Never Draft for a bad time: the tick stamps a real one.
             warn!(
-                "Cron: Refusing queued form {} because its retry timestamp is invalid: {}",
+                "Cron: queued form {} has an unreadable retry time ({}); it waits for the queue to stamp a real one",
                 draft.period_code(),
                 error
             );
-            draft.revert_to_draft();
-            draft.last_error = Some(
-                "Submission blocked because queued retry metadata is invalid; review and queue the return again"
-                    .to_string(),
-            );
-            if let Ok(db_guard) = db.lock() {
-                let _ = db_guard.replace_unclaimed_queued_2551q_submission(
-                    &draft,
-                    &queue_revision.fingerprint,
-                    &queue_revision.next_retry_at,
-                    queue_revision.submission_attempts,
-                );
-            }
             return SendOutcome::NotTried;
         }
     }
@@ -1584,9 +1741,12 @@ async fn process_queued_2551q_in<T: SubmissionTransport>(
         return SendOutcome::NotTried;
     };
 
-    let session = match transport.open_session(form_type, &draft.tin).await {
+    let session = match planner
+        .session(transport.open_session(form_type, &draft.tin))
+        .await
+    {
         Ok(session) => session,
-        Err(error) if error.refusal().is_some() => {
+        Err(error) if smart_queue::is_final_reason(&error.0) => {
             refuse_unclaimed_2551q(
                 &mut draft,
                 &queue_revision,
@@ -1685,9 +1845,9 @@ async fn process_queued_2551q_in<T: SubmissionTransport>(
         );
         return SendOutcome::NotTried;
     }
-    let failures_before = draft.smart_queue.failures;
-    match transport
-        .store_session_reported(session, &filename, xml_payload.as_bytes())
+    let state_before = draft.smart_queue.clone();
+    match planner
+        .within_deadline(transport.store_session_reported(session, &filename, xml_payload.as_bytes()))
         .await
     {
         Ok(report) => {
@@ -1735,11 +1895,10 @@ async fn process_queued_2551q_in<T: SubmissionTransport>(
             }
             SendOutcome::Sent
         }
-        Err(StoreFailure::NotSent(error)) if error.refusal().is_some() => {
-            let refusal = error.refusal();
-            let reason = refusal_reason(NOT_SENT_PREFIX, &error);
+        Err(failure) if is_final(&failure) => {
+            let reason = refusal_reason(NOT_SENT_PREFIX, failure.error());
             warn!(
-                "Cron: Form {} was refused for its TIN (nothing reached BIR); back to Draft: {}",
+                "Cron: Form {} was refused for good (nothing reached BIR); back to Draft: {}",
                 draft.period_code(),
                 reason
             );
@@ -1749,14 +1908,14 @@ async fn process_queued_2551q_in<T: SubmissionTransport>(
                     draft.taxable_year,
                     draft.quarter,
                     &claim_token,
-                    reason,
+                    reason.clone(),
                 ) {
                     Ok(true) => record_refusal_alert(
                         &db_guard,
                         &current_profile,
                         "2551Q",
                         &quarterly_period_label(draft.taxable_year, draft.quarter),
-                        refusal,
+                        &reason,
                     ),
                     Ok(false) => info!(
                         "Cron: Form {} claim changed before its refusal was recorded",
@@ -1769,12 +1928,15 @@ async fn process_queued_2551q_in<T: SubmissionTransport>(
             }
             SendOutcome::Failed(TryClass::Refused)
         }
-        Err(failure @ (StoreFailure::NotSent(_) | StoreFailure::NotATry { .. })) => {
-            let (class, error, wait_until) = not_sent_class(failure);
-            let retry = planner
-                .retry(failures_before, class, wait_until)
-                .expect("a not-sent try has a retry");
-            log_not_sent("2551Q", &draft.period_code(), &error, &retry);
+        Err(
+            failure @ (StoreFailure::NotSent(_)
+            | StoreFailure::NotATry { .. }
+            | StoreFailure::Counted { .. }),
+        ) => {
+            let (ending, class) = not_sent_ending(&failure);
+            let error = failure.error();
+            let retry = planner.retry(&state_before, ending);
+            log_not_sent("2551Q", &draft.period_code(), error, &retry);
             if let Ok(db_guard) = db.lock()
                 && let Err(db_error) = db_guard.fail_claimed_2551q_not_sent(
                     &draft.tin,
@@ -1807,25 +1969,39 @@ struct QueuedRow {
     summary: FormDraftSummary,
     profile: TaxpayerProfile,
     waiting: Waiting,
+    /// Its own time, before the queue-wide back-off: what a row without
+    /// queue facts keeps as its own when it is stamped behind another.
+    own: Option<DateTime<Utc>>,
     /// Its stored `next_retry_at`; `None` when absent or unreadable.
     stored_next: Option<DateTime<Utc>>,
-    /// The stored `next_retry_at` does not parse: left for the worker,
-    /// which sends such a row back to Draft, never restamped.
+    /// The stored `next_retry_at` is there but does not parse: the tick
+    /// stamps a real one (never Draft for a bad time).
     invalid_next: bool,
-    notices: u32,
+    /// The queue's facts on the row.
+    state: QueueState,
+    /// When it was queued, if the row says (its authorization, or when the
+    /// queue first saw it).
+    queued_at: Option<DateTime<Utc>>,
 }
 
 /// A return's form and period, for its due date.
 type DueKey = (String, u16, Option<u8>, Option<u8>);
 
 /// Every queued return of a TIN this database has a profile for, with what
-/// [`smart_queue::line_up`] needs. Read from the stored JSON; nothing is
-/// written here.
-fn queued_rows(db: &Database, profiles: &[TaxpayerProfile], now: DateTime<Utc>) -> Vec<QueuedRow> {
+/// [`smart_queue::line_up_after`] needs. Read from the stored JSON; nothing
+/// is written here. Returns moved to the back of the line count only while
+/// the run of path failures that moved them (`path`) lasts.
+fn queued_rows(
+    db: &Database,
+    profiles: &[TaxpayerProfile],
+    now: DateTime<Utc>,
+    path: &PathBackoff,
+) -> Vec<QueuedRow> {
     let by_tin: HashMap<String, &TaxpayerProfile> = profiles
         .iter()
         .map(|profile| (profile.tin.full(), profile))
         .collect();
+    let path_since = path.since();
     let mut due_dates: HashMap<DueKey, Option<chrono::NaiveDate>> = HashMap::new();
     let mut rows = Vec::new();
     for summary in db.list_all_queued_submissions().unwrap_or_default() {
@@ -1870,25 +2046,22 @@ fn queued_rows(db: &Database, profiles: &[TaxpayerProfile], now: DateTime<Utc>) 
         let stored_raw = text("next_retry_at");
         let stored_next = stored_raw.and_then(smart_queue::parse_time);
         let invalid_next = stored_raw.is_some() && stored_next.is_none();
-        // Its own time; an earlier stored time (a person's "send again", an
-        // older build) is honoured. A row whose last reason is a TIN
-        // refusal, or whose time does not parse, is due now: the worker
-        // decides it at once.
-        let ready_at = if invalid_next || previous_tin_refusal(error) {
+        // Its own time, from when its last try ended; without queue facts
+        // (an older build, a fresh queueing), the stored time. A row whose
+        // last reason is a TIN refusal is due now: the worker decides it at
+        // once. One whose stored time does not parse and has no own time is
+        // due now too, and gets a real stamp.
+        let own = if previous_tin_refusal(error) {
             None
         } else {
-            match (state.next_try(), stored_next) {
-                (Some(own), Some(stored)) => Some(own.min(stored)),
-                (own, stored) => own.or(stored),
-            }
+            state.ready_at(now).or(stored_next)
         };
         let queued_at = data
             .get("queue_authorization")
             .and_then(|auth| auth.get("authorized_at"))
             .and_then(serde_json::Value::as_str)
             .and_then(smart_queue::parse_time)
-            .or_else(|| text("created_at").and_then(smart_queue::parse_time))
-            .unwrap_or(now);
+            .or_else(|| state.queued_at.as_deref().and_then(smart_queue::parse_time));
         let due = *due_dates
             .entry((
                 summary.form_code.clone(),
@@ -1897,18 +2070,25 @@ fn queued_rows(db: &Database, profiles: &[TaxpayerProfile], now: DateTime<Utc>) 
                 summary.quarter,
             ))
             .or_insert_with(|| return_due_date(&summary));
+        let rotated = state
+            .rotated()
+            .filter(|at| path_since.is_some_and(|since| *at >= since));
         rows.push(QueuedRow {
             waiting: Waiting {
                 due,
-                queued_at,
-                ready_at,
-                blocked: claimed && !recoverable,
+                queued_at: queued_at.unwrap_or(now),
+                ready_at: own,
+                blocked: (claimed && !recoverable) || state.is_stuck(),
+                rotated,
+                try_anyway: state.try_anyway,
             },
+            own,
             profile: (*profile).clone(),
             summary,
             stored_next,
             invalid_next,
-            notices: state.notices,
+            state,
+            queued_at,
         });
     }
     rows
@@ -1932,80 +2112,63 @@ fn return_due_date(summary: &FormDraftSummary) -> Option<chrono::NaiveDate> {
     crate::forms::penalty_items::resolve_due_date(&summary.form_code, &period, &[])
 }
 
-/// Change an unclaimed queued row's `next_retry_at` and queue facts through
-/// its own form's compare-and-swap. `false` when it changed meanwhile, or is
-/// no longer queued and unclaimed.
+/// Change an unclaimed queued row's `next_retry_at` and queue facts, only
+/// when `edit` changes them, and without touching its `updated_at` (a
+/// stamp is not an edit). `false` when nothing changed, or the row changed
+/// meanwhile, or is no longer queued and unclaimed.
 fn edit_queued_row(
     db: &Database,
     summary: &FormDraftSummary,
-    edit: impl Fn(&mut Option<String>, &mut QueueState),
+    edit: impl FnOnce(&mut Option<String>, &mut QueueState),
 ) -> bool {
-    match summary.form_code.as_str() {
-        "1601C" => {
-            let Some(month) = summary.month else {
-                return false;
-            };
-            let Ok(Some(mut draft)) = db.get_1601c_draft(&summary.tin, summary.taxable_year, month)
-            else {
-                return false;
-            };
-            let Some(revision) = queued_1601c_revision(&draft) else {
-                return false;
-            };
-            edit(&mut draft.next_retry_at, &mut draft.smart_queue);
-            db.replace_unclaimed_queued_1601c_submission(
-                &draft,
-                &revision.fingerprint,
-                &revision.next_retry_at,
-                revision.submission_attempts,
-            )
-            .unwrap_or(false)
-        }
-        "2551Q" => {
-            let quarter = summary.quarter.unwrap_or(0);
-            let Ok(Some(mut draft)) =
-                db.get_2551q_draft(&summary.tin, summary.taxable_year, quarter)
-            else {
-                return false;
-            };
-            let Some(revision) = queued_2551q_revision(&draft) else {
-                return false;
-            };
-            edit(&mut draft.next_retry_at, &mut draft.smart_queue);
-            db.replace_unclaimed_queued_2551q_submission(
-                &draft,
-                &revision.fingerprint,
-                &revision.next_retry_at,
-                revision.submission_attempts,
-            )
-            .unwrap_or(false)
-        }
-        code => {
-            let Some(kind) = QueueableKind::from_form_code(code) else {
-                return false;
-            };
-            let period = i64::from(summary.month.or(summary.quarter).unwrap_or(0));
-            crate::with_queueable_kind!(kind, F => {
-                let Ok(Some(mut draft)) =
-                    db.get_queueable_draft::<F>(&summary.tin, summary.taxable_year, period)
-                else {
-                    return false;
-                };
-                let Some(generation) = queue_generation(&draft) else {
-                    return false;
-                };
-                let lifecycle = draft.lifecycle_mut();
-                edit(&mut lifecycle.next_retry_at, &mut lifecycle.smart_queue);
-                db.replace_unclaimed_queued_queueable(
-                    &draft,
-                    &generation.fingerprint,
-                    &generation.next_retry_at,
-                    generation.submission_attempts,
-                )
-                .unwrap_or(false)
-            })
-        }
+    let Ok(Some((status, json))) = db.draft_status_and_json(summary.id) else {
+        return false;
+    };
+    if status != "Queued" {
+        return false;
     }
+    let Ok(mut data) = serde_json::from_str::<serde_json::Value>(&json) else {
+        return false;
+    };
+    let Some(map) = data.as_object_mut() else {
+        return false;
+    };
+    let text = |key: &str| {
+        map.get(key)
+            .and_then(serde_json::Value::as_str)
+            .filter(|value| !value.is_empty())
+            .map(str::to_owned)
+    };
+    if text("submission_claim_token").is_some()
+        || text("submission_claimed_at").is_some()
+        || text("status").as_deref() != Some("Queued")
+    {
+        return false;
+    }
+    let before_next = text("next_retry_at");
+    let before_state: QueueState = map
+        .get("smart_queue")
+        .and_then(|value| serde_json::from_value(value.clone()).ok())
+        .unwrap_or_default();
+    let (mut next, mut state) = (before_next.clone(), before_state.clone());
+    edit(&mut next, &mut state);
+    if next == before_next && state == before_state {
+        return false;
+    }
+    map.insert(
+        "next_retry_at".to_owned(),
+        next.map_or(serde_json::Value::Null, serde_json::Value::String),
+    );
+    if state.is_empty() {
+        map.remove("smart_queue");
+    } else if let Ok(value) = serde_json::to_value(&state) {
+        map.insert("smart_queue".to_owned(), value);
+    }
+    let Ok(new_json) = serde_json::to_string(&data) else {
+        return false;
+    };
+    db.restamp_queued_draft(summary.id, &json, &new_json)
+        .unwrap_or(false)
 }
 
 /// The period of a queued return as notices print it.
@@ -2027,7 +2190,8 @@ fn still_waiting_kind(summary: &FormDraftSummary) -> String {
     )
 }
 
-/// The words of API.md section 10, once per `notice_after_s` of waiting.
+/// The words of the public contract (`docs/bir-uptime.md` in
+/// `buwiz-com/buwiz-com`), once per `notice_after_s` of waiting.
 fn record_still_waiting_alert(
     db: &Database,
     profile: &TaxpayerProfile,
@@ -2061,7 +2225,7 @@ const PAUSED_REMINDER_SETTING: &str = "smart_queue_paused_reminded";
 
 /// While the queue is paused with returns waiting, one reminder a day.
 fn remind_paused(db: &Database, profiles: &[TaxpayerProfile], now: DateTime<Utc>) {
-    let waiting = queued_rows(db, profiles, now)
+    let waiting = queued_rows(db, profiles, now, &PathBackoff::default())
         .iter()
         .filter(|row| !row.waiting.blocked)
         .count();
@@ -2126,11 +2290,152 @@ impl Drop for TickGuard {
     }
 }
 
+/// Order the queue and stamp every waiting row whose stored time changes:
+/// the head now, every other row its own time but a minute apart and never
+/// before the queue-wide back-off. A row without queue facts keeps its own
+/// time when it is stamped later. Answers the line.
+fn stamp_line(
+    db: &Database,
+    rows: &[QueuedRow],
+    now: DateTime<Utc>,
+    policy: &QueuePolicy,
+    path: &PathBackoff,
+    head_now: bool,
+) -> smart_queue::LineUp {
+    let waiting: Vec<Waiting> = rows.iter().map(|row| row.waiting.clone()).collect();
+    // After a send nobody is stamped "now": the next return goes when the
+    // worker wakes for it, and an older build sharing the database finds
+    // every row a minute or more ahead.
+    let basis = if head_now {
+        now
+    } else {
+        now + chrono::Duration::seconds(smart_queue::BEHIND_GAP_S)
+    };
+    let line = smart_queue::line_up_after(&waiting, basis, policy, path.floor(now));
+    for (i, row) in rows.iter().enumerate() {
+        let Some(stamp) = line.stamps[i] else {
+            continue;
+        };
+        let head = head_now && Some(i) == line.head;
+        let changes = row.invalid_next
+            || match row.stored_next {
+                None => true,
+                // The head goes now: a time stored later is brought forward
+                // so the worker finds it due.
+                Some(stored) if head => stored > now,
+                Some(stored) => (stored - stamp).num_seconds().abs() >= 1,
+            };
+        if !changes {
+            continue;
+        }
+        let own = row.own;
+        let at = if head { now } else { stamp };
+        edit_queued_row(db, &row.summary, |next, state| {
+            *next = Some(at.to_rfc3339());
+            if state.next_try_at.is_none()
+                && !head
+                && let Some(own) = own
+            {
+                state.next_try_at = Some(own.to_rfc3339());
+            }
+        });
+    }
+    line
+}
+
+/// The settings key that remembers how many "still waiting" notices one
+/// queueing of a return raised, so an older build that rewrote the row
+/// (and dropped the queue's facts) does not make it raise them again.
+fn notice_setting_key(row: &QueuedRow) -> String {
+    format!(
+        "smart_queue_notice:{}:{}",
+        row.profile.tin.full(),
+        still_waiting_kind(&row.summary)
+    )
+}
+
+/// One "still waiting" notice per `notice_after_s` of waiting since the
+/// return was queued (its authorization, never when its draft was made),
+/// once each, for the rows still waiting by themselves.
+fn notice_rows(db: &Database, rows: &[QueuedRow], now: DateTime<Utc>, policy: &QueuePolicy) {
+    for row in rows.iter().filter(|row| !row.waiting.blocked) {
+        let Some(queued_at) = row.queued_at else {
+            // No time on the row: the queue's first sight is when it began.
+            edit_queued_row(db, &row.summary, |_, state| {
+                state.queued_at = Some(now.to_rfc3339());
+            });
+            continue;
+        };
+        let due = smart_queue::notices_due(queued_at, now, policy);
+        if due == 0 {
+            continue;
+        }
+        let key = notice_setting_key(row);
+        let stamp = queued_at.to_rfc3339();
+        let remembered = db
+            .get_setting(&key)
+            .ok()
+            .flatten()
+            .and_then(|stored| {
+                let (at, count) = stored.split_once(' ')?;
+                (at == stamp).then(|| count.parse::<u32>().ok()).flatten()
+            })
+            .unwrap_or(0);
+        if due > row.state.notices.max(remembered) {
+            record_still_waiting_alert(db, &row.profile, &row.summary, due, policy);
+            let _ = db.set_setting(&key, &format!("{stamp} {due}"));
+        }
+        if due > row.state.notices {
+            edit_queued_row(db, &row.summary, |_, state| state.notices = due);
+        }
+    }
+}
+
+/// A "still waiting" notice stays only while its return still waits by
+/// itself: cancelled, refused, stopped, needing attention or sent, it goes.
+fn clear_stale_notices(db: &Database, rows: &[QueuedRow]) {
+    let waiting: HashSet<(String, String)> = rows
+        .iter()
+        .filter(|row| !row.waiting.blocked)
+        .map(|row| (row.profile.tin.full(), still_waiting_kind(&row.summary)))
+        .collect();
+    let prefix = format!("{}:", crate::db::alert_kinds::QUEUE_STILL_WAITING);
+    for alert in db.list_active_alerts(None).unwrap_or_default() {
+        let tin = alert.tin.clone().unwrap_or_default();
+        if alert.kind.starts_with(&prefix) && !waiting.contains(&(tin, alert.kind.clone())) {
+            let _ = db.resolve_alert(alert.tin.as_deref(), &alert.kind);
+        }
+    }
+}
+
+/// Send one row through its form's worker.
+async fn send_row<T: SubmissionTransport>(
+    row: &QueuedRow,
+    db: &Arc<Mutex<Database>>,
+    transport: &T,
+    planner: &Planner<'_>,
+) -> SendOutcome {
+    match row.summary.form_code.as_str() {
+        "2551Q" => {
+            process_queued_2551q_in(&row.summary, &row.profile, db.clone(), transport, planner)
+                .await
+        }
+        "1601C" => {
+            process_queued_1601c_in(&row.summary, &row.profile, db.clone(), transport, planner)
+                .await
+        }
+        _ => process_queued_by_kind(&row.summary, &row.profile, db.clone(), transport, planner).await,
+    }
+}
+
 /// A queue tick on `env`'s clock and random source: at most one return is
-/// sent, the head of the line across every TIN; every other queued return
-/// keeps a real next try ([`smart_queue::line_up`]). Returns how the send
-/// ended, or `None` when nothing was due, the queue is paused or another
-/// tick on this database is running.
+/// sent, the head of the line across every TIN, and never before the
+/// queue-wide back-off; every other queued return keeps a real next try
+/// ([`smart_queue::line_up_after`]). A head the worker could not take
+/// (not tried) gets a growing wait of its own and the next head is tried,
+/// so one bad row never starves the queue. Returns how the send ended, or
+/// `None` when nothing was due, the queue is paused or another tick on
+/// this database is running.
 pub async fn run_queue_tick_with<T: SubmissionTransport + 'static>(
     db: Arc<Mutex<Database>>,
     transport: &Arc<T>,
@@ -2138,7 +2443,7 @@ pub async fn run_queue_tick_with<T: SubmissionTransport + 'static>(
 ) -> Option<SendOutcome> {
     let _ticking = TickGuard::take(&db)?;
     let now = env.now();
-    let (profiles, global_cron_enabled, mode, tries) = {
+    let (profiles, global_cron_enabled, mode, tries, mut path) = {
         let db_guard = match db.lock() {
             Ok(guard) => guard,
             Err(e) => {
@@ -2158,20 +2463,13 @@ pub async fn run_queue_tick_with<T: SubmissionTransport + 'static>(
             .unwrap_or(Some("true".to_string()))
             .map(|s| s == "true")
             .unwrap_or(true);
-        let mode = QueueMode::from_setting(
-            db_guard
-                .get_setting(smart_queue::QUEUE_MODE_SETTING)
-                .ok()
-                .flatten()
-                .as_deref(),
-        );
-        let tries = db_guard
-            .get_setting(smart_queue::DEVICE_TRIES_SETTING)
-            .ok()
-            .flatten()
+        let setting = |key: &str| db_guard.get_setting(key).ok().flatten();
+        let mode = QueueMode::from_setting(setting(smart_queue::QUEUE_MODE_SETTING).as_deref());
+        let tries = setting(smart_queue::DEVICE_TRIES_SETTING)
             .map(|stored| DeviceTries::from_setting(&stored))
             .unwrap_or_default();
-        (p, c, mode, tries)
+        let path = PathBackoff::from_setting(setting(smart_queue::PATH_SETTING).as_deref());
+        (p, c, mode, tries, path)
     };
 
     let test_enabled = profiles.iter().any(|p| p.test_notification_enabled);
@@ -2212,101 +2510,126 @@ pub async fn run_queue_tick_with<T: SubmissionTransport + 'static>(
         .as_ref()
         .filter(|seen| seen.is_fresh(now, &policy))
         .map(|seen| seen.sign.state);
+    let path_before = path.clone();
 
-    let (rows, head) = {
-        let Ok(db_guard) = db.lock() else {
-            return None;
-        };
-        let rows = queued_rows(&db_guard, &profiles, now);
-        let waiting: Vec<Waiting> = rows.iter().map(|row| row.waiting.clone()).collect();
-        let line = smart_queue::line_up(&waiting, now, &policy);
-        for (i, row) in rows.iter().enumerate() {
-            if row.waiting.blocked {
-                continue;
-            }
-            let notices = smart_queue::notices_due(row.waiting.queued_at, now, &policy);
-            if notices > row.notices
-                && edit_queued_row(&db_guard, &row.summary, |_, state| state.notices = notices)
-            {
-                record_still_waiting_alert(&db_guard, &row.profile, &row.summary, notices, &policy);
-            }
-            if row.invalid_next {
-                continue;
-            }
-            let Some(stamp) = line.stamps[i] else {
-                continue;
+    // The head; one the worker could not take steps aside on a wait of its
+    // own, and the next is tried. Each row at most once a tick.
+    let mut seen_heads: HashSet<i64> = HashSet::new();
+    let mut last: Option<(SendOutcome, Option<Blame>, QueuedRow)> = None;
+    loop {
+        let (rows, head) = {
+            let Ok(db_guard) = db.lock() else {
+                return None;
             };
-            if Some(i) == line.head {
-                // It goes now: a time stored later (it waited behind
-                // another) is brought forward so the worker finds it due.
-                if row.stored_next.is_some_and(|stored| stored > now) {
-                    edit_queued_row(&db_guard, &row.summary, |next, _| {
-                        *next = Some(now.to_rfc3339());
+            // A clock that went back (it reads earlier than when a try
+            // ended): the waits owed are owed from now, stored once.
+            if path.reanchor(now) {
+                let _ = db_guard.set_setting(smart_queue::PATH_SETTING, &path.to_setting());
+            }
+            let mut rows = queued_rows(&db_guard, &profiles, now, &path);
+            let mut moved = false;
+            for row in &rows {
+                if row.state.ended_at.as_deref().and_then(smart_queue::parse_time).is_some_and(|ended| ended > now) {
+                    moved |= edit_queued_row(&db_guard, &row.summary, |next, state| {
+                        state.reanchor(now, next);
                     });
                 }
-            } else if row
-                .stored_next
-                .is_none_or(|stored| (stored - stamp).num_seconds().abs() >= 1)
-            {
-                let own = line.ready[i];
-                edit_queued_row(&db_guard, &row.summary, |next, state| {
-                    *next = Some(stamp.to_rfc3339());
-                    state.next_try_at = Some(own.to_rfc3339());
-                });
+            }
+            if moved {
+                rows = queued_rows(&db_guard, &profiles, now, &path);
+            }
+            let line = stamp_line(&db_guard, &rows, now, &policy, &path, true);
+            if seen_heads.is_empty() {
+                notice_rows(&db_guard, &rows, now, &policy);
+                clear_stale_notices(&db_guard, &rows);
+            }
+            (rows, line.head)
+        };
+        let Some(row) = head.and_then(|head| rows.into_iter().nth(head)) else {
+            break;
+        };
+        if !seen_heads.insert(row.summary.id) {
+            break;
+        }
+        let job_key = queue_job_key(&row.summary);
+        let active_jobs = get_active_jobs();
+        {
+            let mut jobs = active_jobs.lock().ok()?;
+            if !jobs.insert(job_key.clone()) {
+                return None; // Already running
             }
         }
-        (rows, line.head)
-    };
-    let row = &rows[head?];
-
-    let job_key = queue_job_key(&row.summary);
-    let active_jobs = get_active_jobs();
-    {
-        let mut jobs = active_jobs.lock().ok()?;
-        if !jobs.insert(job_key.clone()) {
-            return None; // Already running
+        let cleanup = JobCleanup {
+            key: job_key,
+            active_jobs: active_jobs.clone(),
+        };
+        let planner = Planner::with_path(
+            env,
+            policy.clone(),
+            smart_queue::guard_trips(sign_state, &tries),
+            path.clone(),
+        );
+        let outcome = send_row(&row, &db, &**transport, &planner).await;
+        drop(cleanup);
+        path = planner.path();
+        if outcome == SendOutcome::NotTried {
+            if let Ok(db_guard) = db.lock() {
+                env.with_rng(|rng| {
+                    edit_queued_row(&db_guard, &row.summary, |next, state| {
+                        state.skipped(now, &policy, rng);
+                        next.clone_from(&state.next_try_at);
+                    })
+                });
+            }
+            info!(
+                "Cron: {} {} was not tried; it waits a while, and the next return goes",
+                row.summary.form_code,
+                summary_period_label(&row.summary)
+            );
+            last = Some((outcome, None, row));
+            continue;
         }
+        last = Some((outcome, planner.last_blame(), row));
+        break;
     }
-    let _cleanup = JobCleanup {
-        key: job_key,
-        active_jobs: active_jobs.clone(),
-    };
-    let planner = Planner::new(env, policy, smart_queue::guard_trips(sign_state, &tries));
-    let transport = &**transport;
-    let outcome = match row.summary.form_code.as_str() {
-        "2551Q" => {
-            process_queued_2551q_in(&row.summary, &row.profile, db.clone(), transport, &planner)
-                .await
-        }
-        "1601C" => {
-            process_queued_1601c_in(&row.summary, &row.profile, db.clone(), transport, &planner)
-                .await
-        }
-        _ => {
-            process_queued_by_kind(&row.summary, &row.profile, db.clone(), transport, &planner)
-                .await
-        }
-    };
+    let (outcome, blame, row) = last?;
 
-    // This device's counted tries, for the guard: a landing or a counted
-    // failure. Not a try, a refusal, an unknown outcome and "no upload
-    // service" say nothing about this device's connection.
+    // This device's tries toward the BIR, for the guard: a landing, or a
+    // failure that says something about its way there. Not a try, a
+    // refusal, an unknown outcome and a failure about the return itself
+    // (a refused login, no upload service, a validation refusal, Buwiz's
+    // own errors) say nothing about this device's connection.
     let mut after = tries.clone();
-    match outcome {
-        SendOutcome::Sent => after.record(true),
-        SendOutcome::Failed(TryClass::Counted) => after.record(false),
+    match (outcome, blame) {
+        (SendOutcome::Sent, _) => after.record(true),
+        (SendOutcome::Failed(_), Some(blame)) if blame.heard_by_guard() => after.record(false),
         _ => {}
+    }
+    // A landing anywhere: the way in works again.
+    if outcome == SendOutcome::Sent {
+        path.clear();
     }
     if let Ok(db_guard) = db.lock() {
         if after != tries {
             let _ = db_guard.set_setting(smart_queue::DEVICE_TRIES_SETTING, &after.to_setting());
         }
-        if outcome == SendOutcome::Sent {
+        if path != path_before {
+            let _ = db_guard.set_setting(smart_queue::PATH_SETTING, &path.to_setting());
+        }
+        if matches!(
+            outcome,
+            SendOutcome::Sent | SendOutcome::Failed(TryClass::Refused | TryClass::MaybeSent)
+        ) {
             let _ = db_guard.resolve_alert(
                 Some(&row.profile.tin.full()),
                 &still_waiting_kind(&row.summary),
             );
         }
+        // Stamp the line again: the return just tried keeps a minute from
+        // the rows behind it, and none is before a new back-off.
+        let now = env.now();
+        let rows = queued_rows(&db_guard, &profiles, now, &path);
+        stamp_line(&db_guard, &rows, now, &policy, &path, false);
     }
     if outcome == SendOutcome::Sent {
         // The next return goes at once, not at the next minute.
@@ -2410,11 +2733,13 @@ fn record_refusal_alert(
     profile: &TaxpayerProfile,
     form_code: &str,
     period_label: &str,
-    refusal: Option<TinRefusal>,
+    reason: &str,
 ) {
     let kind = format!("form_refused:{form_code}:{period_label}");
     let title = format!("BIR Form {form_code} {period_label} was not sent");
-    let why = if refusal == Some(TinRefusal::AccountBanned) {
+    let why = if smart_queue::is_mismatch_reason(reason) {
+        "Buwiz found that the return it got did not match what was checked before sending"
+    } else if TinRefusal::from_reason(reason) == Some(TinRefusal::AccountBanned) {
         "Buwiz would not send it because this Buwiz account is banned"
     } else {
         "Buwiz would not send it for this TIN"
@@ -2449,7 +2774,7 @@ fn refuse_unclaimed_1601c(
         draft.period_code(),
         error_message
     );
-    let refusal = TinRefusal::from_reason(&error_message);
+    let reason = error_message.clone();
     draft.record_tin_refusal(error_message);
     if let Ok(db_guard) = db.lock() {
         match db_guard.replace_unclaimed_queued_1601c_submission(
@@ -2463,7 +2788,7 @@ fn refuse_unclaimed_1601c(
                 profile,
                 "1601C",
                 &monthly_period_label(draft.taxable_year, draft.month),
-                refusal,
+                &reason,
             ),
             Ok(false) => info!(
                 "Cron: 1601C {} was canceled or superseded before its refusal persisted",
@@ -2491,7 +2816,7 @@ fn refuse_unclaimed_2551q(
         draft.period_code(),
         error_message
     );
-    let refusal = TinRefusal::from_reason(&error_message);
+    let reason = error_message.clone();
     draft.record_tin_refusal(error_message);
     if let Ok(db_guard) = db.lock() {
         match db_guard.replace_unclaimed_queued_2551q_submission(
@@ -2505,7 +2830,7 @@ fn refuse_unclaimed_2551q(
                 profile,
                 "2551Q",
                 &quarterly_period_label(draft.taxable_year, draft.quarter),
-                refusal,
+                &reason,
             ),
             Ok(false) => info!(
                 "Cron: Form {} was canceled or superseded before its refusal persisted",
@@ -2534,7 +2859,7 @@ fn refuse_unclaimed_queueable<F: QueueableForm>(
         draft.period_code(),
         error_message
     );
-    let refusal = TinRefusal::from_reason(&error_message);
+    let reason = error_message.clone();
     draft.lifecycle_mut().record_tin_refusal(error_message);
     if let Ok(db_guard) = db.lock() {
         match db_guard.replace_unclaimed_queued_queueable(
@@ -2548,7 +2873,7 @@ fn refuse_unclaimed_queueable<F: QueueableForm>(
                 profile,
                 F::FORM_CODE,
                 &queueable_period_label(draft),
-                refusal,
+                &reason,
             ),
             Ok(false) => info!(
                 "Cron: {} {} was canceled or superseded before its refusal persisted",
@@ -2573,9 +2898,7 @@ fn fail_draft_2551q(
     planner: &Planner<'_>,
     class: TryClass,
 ) {
-    let retry = planner
-        .retry(draft.smart_queue.failures, class, None)
-        .expect("a session failure has a retry");
+    let retry = planner.retry(&draft.smart_queue, session_ending(class, &error_msg));
     warn!(
         "Cron: Submission failed for {}{}: {}; it stays queued, next try at {}",
         draft.period_code(),
@@ -2614,9 +2937,7 @@ fn fail_draft_1601c(
     planner: &Planner<'_>,
     class: TryClass,
 ) {
-    let retry = planner
-        .retry(draft.smart_queue.failures, class, None)
-        .expect("a session failure has a retry");
+    let retry = planner.retry(&draft.smart_queue, session_ending(class, &error_message));
     warn!(
         "Cron: 1601C submission preparation failed for {}{}: {}; next try at {}",
         draft.period_code(),
@@ -4194,6 +4515,10 @@ mod tests {
         let stored = stored_2551q(db, queued);
         let mut due = stored.clone();
         due.next_retry_at = Some("1999-01-01T00:00:00Z".to_string());
+        // The queue's own time is the one that rules: make it due too.
+        due.smart_queue.next_try_at = due.next_retry_at.clone();
+        due.smart_queue.ended_at = None;
+        due.smart_queue.wait_until = None;
         assert!(
             db.lock()
                 .expect("the cron database should not be poisoned")
@@ -5648,8 +5973,23 @@ mod tests {
     /// How the simulated far side answers.
     #[derive(Clone, Copy, Debug, PartialEq)]
     enum Far {
-        /// The BIR is down: every try fails, nothing reached it.
+        /// The BIR is down: every try fails at the front desk, nothing
+        /// reached it, no stream opened: the way in is down for everyone.
         Outage,
+        /// An upload stream opened and the send broke after it: this
+        /// return's own failure (the way in works).
+        UploadFails,
+        /// The login was refused after the stream opened: about this
+        /// return alone.
+        LoginRefused,
+        /// The BIR has no upload service for this TIN.
+        NoService,
+        /// The relay said class `ours` and no stream opened: not a try.
+        OursNothingOpened,
+        /// Class `ours`, but a stream opened: a counted failure.
+        OursAfterOpening,
+        /// The send never answers (a hung relay).
+        Hang,
         /// The BIR takes it.
         Up,
         /// Buwiz holds the ticket until this time: not a try.
@@ -5741,14 +6081,38 @@ mod tests {
             Box::pin(async move {
                 let at = *self.clock.lock().unwrap();
                 self.tries.lock().unwrap().push((filename.to_owned(), at));
+                if *self.far.lock().unwrap() == Far::Hang {
+                    std::future::pending::<()>().await;
+                }
                 // Let a second tick run if it could.
                 tokio::time::sleep(std::time::Duration::from_millis(2)).await;
                 self.in_flight.fetch_sub(1, Ordering::SeqCst);
                 match *self.far.lock().unwrap() {
                     Far::Up => Ok(StoreReport::default()),
-                    Far::Outage | Far::SignedOut => Err(StoreFailure::NotSent(TransportError(
-                        "the BIR's mailbox did not answer".into(),
-                    ))),
+                    Far::Outage => Err(StoreFailure::Counted {
+                        error: TransportError("the BIR's mailbox did not answer".into()),
+                        blame: Blame::Path,
+                    }),
+                    Far::SignedOut | Far::UploadFails | Far::OursAfterOpening => {
+                        Err(StoreFailure::NotSent(TransportError(
+                            "the BIR's mailbox did not answer".into(),
+                        )))
+                    }
+                    Far::LoginRefused => Err(StoreFailure::Counted {
+                        error: TransportError("the login was refused".into()),
+                        blame: Blame::Return,
+                    }),
+                    Far::NoService => Err(StoreFailure::Counted {
+                        error: TransportError(
+                            "dispatcher has no upload server for this TIN (mode 0)".into(),
+                        ),
+                        blame: Blame::NoService,
+                    }),
+                    Far::OursNothingOpened => Err(StoreFailure::NotATry {
+                        error: TransportError("Buwiz had a problem on its side (internal)".into()),
+                        wait_until: None,
+                    }),
+                    Far::Hang => unreachable!("a hung send never answers"),
                     Far::Hold(until) => Err(StoreFailure::NotATry {
                         error: TransportError(
                             "The BIR is offline, so Buwiz held this return. (bir_offline)".into(),
@@ -5915,7 +6279,7 @@ mod tests {
     async fn a_return_that_failed_steps_aside_for_the_next() {
         let (db, drafts) = queued_1601cs("904", &[5, 6]);
         let (clock, env) = sim_clock(3);
-        let transport = SimTransport::new(Far::Outage, &clock);
+        let transport = SimTransport::new(Far::UploadFails, &clock);
         let start = *clock.lock().unwrap();
         run_queue_tick_with(db.clone(), &transport, &env).await;
         set_clock(&clock, start + chrono::Duration::minutes(1));
@@ -5958,7 +6322,7 @@ mod tests {
     async fn waking_from_sleep_or_a_clock_jump_sends_only_the_head() {
         let (db, drafts) = queued_1601cs("905", &[5, 6, 7]);
         let (clock, env) = sim_clock(4);
-        let transport = SimTransport::new(Far::Outage, &clock);
+        let transport = SimTransport::new(Far::UploadFails, &clock);
         let start = *clock.lock().unwrap();
         run_minutes(&db, &transport, &env, &clock, start, 3).await;
         assert_eq!(transport.tries().len(), 3);
@@ -6095,7 +6459,7 @@ mod tests {
     async fn the_device_guard_slows_down_a_device_that_cannot_get_in() {
         let (db, drafts) = queued_1601cs("910", &[5, 6, 7]);
         let (clock, env) = sim_clock(9);
-        let transport = SimTransport::new(Far::Outage, &clock);
+        let transport = SimTransport::new(Far::UploadFails, &clock);
         let start = *clock.lock().unwrap();
         let online = crate::bir_sign::Sign::from_header("v=1, seq=5, state=online").unwrap();
         *transport.sign.lock().unwrap() = Some(SeenSign {
@@ -6116,7 +6480,7 @@ mod tests {
         assert_eq!(third.status, FilingStatus::Queued);
         // Without the sign the same three failures are plain failures.
         let (db, drafts) = queued_1601cs("911", &[5, 6, 7]);
-        let transport = SimTransport::new(Far::Outage, &clock);
+        let transport = SimTransport::new(Far::UploadFails, &clock);
         run_minutes(&db, &transport, &env, &clock, start, 3).await;
         assert!(!stored_1601c(&db, &drafts[2]).smart_queue.slowed);
     }
@@ -6189,7 +6553,7 @@ mod tests {
                 )
                 .unwrap()
         );
-        let transport = SimTransport::new(Far::Outage, &clock);
+        let transport = SimTransport::new(Far::UploadFails, &clock);
         run_minutes(&db, &transport, &env, &clock, start, 8).await;
         assert!(transport.tries().is_empty(), "its old time is honoured");
         run_minutes(
@@ -6290,126 +6654,602 @@ mod tests {
     /// After the new queue's tick, at most one row is due in any minute.
     #[tokio::test]
     async fn an_older_build_on_the_same_database_finds_at_most_one_return_due() {
-        let (db, drafts) = queued_1601cs("917", &[5, 6, 7, 8]);
-        let (clock, env) = sim_clock(14);
+        // Any seed: the head's new time is spaced from the rows stamped
+        // behind it, whatever the random numbers were.
+        for seed in 0..40u64 {
+            let (db, drafts) = queued_1601cs(&format!("{}", 950 + seed % 40), &[5, 6, 7, 8]);
+            let (clock, env) = sim_clock(seed);
+            let transport = SimTransport::new(if seed % 2 == 0 { Far::Outage } else { Far::UploadFails }, &clock);
+            let start = *clock.lock().unwrap();
+            run_queue_tick_with(db.clone(), &transport, &env).await;
+            let mut times: Vec<DateTime<Utc>> = drafts
+                .iter()
+                .map(|draft| stored_next(&db, draft).expect("never null"))
+                .collect();
+            times.sort();
+            for pair in times.windows(2) {
+                assert!(
+                    pair[1] - pair[0] >= chrono::Duration::seconds(60),
+                    "seed {seed}: {pair:?}"
+                );
+            }
+            // An older build ticks once a minute and sends every row whose
+            // time has passed: never two in one tick, over the next day.
+            for minute in 0..(24 * 60) {
+                let tick = start + chrono::Duration::minutes(minute);
+                let due = times
+                    .iter()
+                    .filter(|at| **at <= tick && **at > tick - chrono::Duration::minutes(1))
+                    .count();
+                assert!(due <= 1, "seed {seed}, minute {minute}");
+            }
+        }
+    }
+
+    /// A stamp is written only when it changes, and is never an edit: an
+    /// idle tick rewrites nothing and leaves `updated_at` alone.
+    #[tokio::test]
+    async fn a_tick_that_changes_nothing_writes_nothing() {
+        let (db, _drafts) = queued_1601cs("990", &[5, 6, 7]);
+        let (clock, env) = sim_clock(77);
         let transport = SimTransport::new(Far::Outage, &clock);
         let start = *clock.lock().unwrap();
         run_queue_tick_with(db.clone(), &transport, &env).await;
-        let mut times: Vec<DateTime<Utc>> = drafts
-            .iter()
-            .map(|draft| stored_next(&db, draft).expect("never null"))
-            .collect();
-        times.sort();
-        for pair in times.windows(2) {
-            assert!(
-                pair[1] - pair[0] >= chrono::Duration::seconds(60),
-                "{pair:?}"
-            );
+        let snapshot = |db: &Arc<Mutex<Database>>| -> Vec<(i64, String, String)> {
+            let guard = db.lock().unwrap();
+            let mut rows: Vec<_> = guard
+                .list_all_queued_submissions()
+                .unwrap()
+                .into_iter()
+                .map(|s| (s.id, guard.draft_status_and_json(s.id).unwrap().unwrap().1, s.updated_at))
+                .collect();
+            rows.sort();
+            rows
+        };
+        let before = snapshot(&db);
+        for minute in 1..4 {
+            set_clock(&clock, start + chrono::Duration::minutes(minute));
+            assert_eq!(run_queue_tick_with(db.clone(), &transport, &env).await, None);
         }
+        assert_eq!(snapshot(&db), before, "nothing rewritten while the queue waits");
+    }
+
+    fn path_setting(db: &Arc<Mutex<Database>>) -> PathBackoff {
+        PathBackoff::from_setting(
+            db.lock()
+                .unwrap()
+                .get_setting(smart_queue::PATH_SETTING)
+                .unwrap()
+                .as_deref(),
+        )
+    }
+
+    /// Run the worker once a minute for `minutes`, returning the sends.
+    async fn probes(
+        db: &Arc<Mutex<Database>>,
+        transport: &Arc<SimTransport>,
+        env: &QueueEnv,
+        clock: &Arc<Mutex<DateTime<Utc>>>,
+        from: DateTime<Utc>,
+        minutes: i64,
+    ) -> usize {
+        let before = transport.tries().len();
+        run_minutes(db, transport, env, clock, from, minutes).await;
+        transport.tries().len() - before
+    }
+
+    #[tokio::test]
+    async fn a_failure_at_the_front_desk_makes_the_whole_queue_wait_and_the_next_probe_is_another_return() {
+        let (db, drafts) = queued_1601cs("930", &[5, 6, 7]);
+        let (clock, env) = sim_clock(30);
+        let transport = SimTransport::new(Far::Outage, &clock);
+        let start = *clock.lock().unwrap();
+        assert_eq!(
+            run_queue_tick_with(db.clone(), &transport, &env).await,
+            Some(SendOutcome::Failed(TryClass::Counted))
+        );
+        let first = transport.tries()[0].0.clone();
+        let path = path_setting(&db);
+        assert_eq!(path.failures, 1);
+        let floor = path.floor(start).expect("a queue-wide wait");
         assert!(
-            times
-                .iter()
-                .filter(|at| **at <= start + chrono::Duration::seconds(59))
-                .count()
-                <= 1
+            floor >= start + chrono::Duration::seconds(150) && floor <= start + chrono::Duration::seconds(450),
+            "{floor}"
+        );
+        // The failed return's own count did not move; every queued row is
+        // stamped at or after the floor, so an older build waits too.
+        for draft in &drafts {
+            let row = stored_1601c(&db, draft);
+            assert_eq!(row.smart_queue.failures, 0, "the return itself did nothing wrong");
+            assert!(stored_next(&db, draft).unwrap() >= floor);
+        }
+        // Nothing goes before it, however many ticks.
+        assert_eq!(
+            probes(&db, &transport, &env, &clock, start + chrono::Duration::minutes(1), 2).await,
+            0
+        );
+        // After it exactly one goes, and it is a different return.
+        set_clock(&clock, floor + chrono::Duration::seconds(1));
+        run_queue_tick_with(db.clone(), &transport, &env).await;
+        assert_eq!(transport.tries().len(), 2);
+        assert_ne!(transport.tries()[1].0, first, "the probe rotates");
+        // The wait grew a step, and it is stored: a restart (a new env, the
+        // same database) keeps it.
+        let path = path_setting(&db);
+        assert_eq!(path.failures, 2);
+        let (_, other_env) = sim_clock(31);
+        let now = *clock.lock().unwrap();
+        assert!(path.floor(now).unwrap() >= now + chrono::Duration::minutes(14));
+        assert_eq!(run_queue_tick_with(db.clone(), &transport, &other_env).await, None);
+        // A landing anywhere clears it and wakes the queue.
+        transport.set(Far::Up);
+        set_clock(&clock, path.floor(now).unwrap() + chrono::Duration::seconds(1));
+        assert_eq!(
+            run_queue_tick_with(db.clone(), &transport, &env).await,
+            Some(SendOutcome::Sent)
+        );
+        assert!(path_setting(&db).is_clear());
+    }
+
+    #[tokio::test]
+    async fn a_failure_after_the_upload_opened_moves_only_that_return() {
+        let (db, drafts) = queued_1601cs("931", &[5, 6, 7]);
+        let (clock, env) = sim_clock(32);
+        let transport = SimTransport::new(Far::UploadFails, &clock);
+        let start = *clock.lock().unwrap();
+        run_minutes(&db, &transport, &env, &clock, start, 3).await;
+        assert_eq!(transport.tries().len(), 3, "each steps aside for the next");
+        assert!(path_setting(&db).is_clear(), "the way in is not blamed");
+        for draft in &drafts {
+            assert_eq!(stored_1601c(&db, draft).smart_queue.failures, 1);
+        }
+    }
+
+    #[tokio::test]
+    async fn three_refused_logins_in_a_row_stop_that_return_and_nothing_else() {
+        let (db, drafts) = queued_1601cs("932", &[5, 6]);
+        let (clock, env) = sim_clock(33);
+        let transport = SimTransport::new(Far::LoginRefused, &clock);
+        let start = *clock.lock().unwrap();
+        // May goes first each time; June is never tried while the other
+        // return is the due one, so let June wait behind a long clock.
+        let mut now = start;
+        for _ in 0..3 {
+            set_clock(&clock, now);
+            let outcome = run_queue_tick_with(db.clone(), &transport, &env).await;
+            assert_eq!(outcome, Some(SendOutcome::Failed(TryClass::Counted)));
+            now += chrono::Duration::hours(4);
+        }
+        let tried: Vec<String> = transport.tries().into_iter().map(|(file, _)| file).collect();
+        assert_eq!(tried.len(), 3);
+        assert!(path_setting(&db).is_clear(), "a login is not the way in");
+        // The one tried three times is stopped, with its reason.
+        let stuck: Vec<&Form1601CDraft> = drafts
+            .iter()
+            .filter(|d| stored_1601c(&db, d).smart_queue.is_stuck())
+            .collect();
+        assert_eq!(stuck.len(), 1);
+        let row = stored_1601c(&db, stuck[0]);
+        assert_eq!(row.status, FilingStatus::Queued);
+        assert!(row.smart_queue.stuck.as_deref().unwrap().contains("login"));
+        // No more tries for it, however long we wait; the other return is
+        // unaffected and still goes.
+        let other = drafts.iter().find(|d| !stored_1601c(&db, d).smart_queue.is_stuck()).unwrap();
+        set_clock(&clock, now + chrono::Duration::days(3));
+        transport.set(Far::Up);
+        assert_eq!(
+            run_queue_tick_with(db.clone(), &transport, &env).await,
+            Some(SendOutcome::Sent)
+        );
+        assert_eq!(stored_1601c(&db, other).status, FilingStatus::Sent);
+        assert_eq!(run_queue_tick_with(db.clone(), &transport, &env).await, None);
+        let tries = transport.tries().len();
+        set_clock(&clock, now + chrono::Duration::days(30));
+        assert_eq!(run_queue_tick_with(db.clone(), &transport, &env).await, None);
+        assert_eq!(transport.tries().len(), tries, "stopped until the person presses Retry");
+        // The person's Retry ends the stop: it goes.
+        let mut state = row.smart_queue.clone();
+        state.press_retry(now + chrono::Duration::days(30), false);
+        let mut pressed = row.clone();
+        pressed.smart_queue = state;
+        pressed.next_retry_at = Some((now + chrono::Duration::days(30)).to_rfc3339());
+        assert!(
+            db.lock()
+                .unwrap()
+                .replace_unclaimed_queued_1601c_submission(
+                    &pressed,
+                    &row.queued_submission_fingerprint,
+                    &row.next_retry_at,
+                    row.submission_attempts,
+                )
+                .unwrap()
+        );
+        assert_eq!(
+            run_queue_tick_with(db.clone(), &transport, &env).await,
+            Some(SendOutcome::Sent)
         );
     }
 
-    /// Simulates an outage of `outage_hours` with three queued returns
-    /// under an injected clock (a tick a minute), then the BIR back for up
-    /// to `after_hours`. Returns the tries per return and the transport.
-    async fn simulate(
-        segment3: &str,
-        seed: u64,
-        outage_minutes: i64,
-        after_minutes: i64,
-    ) -> (
-        Vec<usize>,
-        Arc<SimTransport>,
-        Arc<Mutex<Database>>,
-        Vec<Form1601CDraft>,
-    ) {
-        let (db, drafts) = queued_1601cs(segment3, &[5, 6, 7]);
+    #[tokio::test]
+    async fn no_upload_service_for_a_tin_stops_after_three_and_is_not_the_device() {
+        let (db, drafts) = queued_1601cs("933", &[5]);
+        let (clock, env) = sim_clock(34);
+        let transport = SimTransport::new(Far::NoService, &clock);
+        let mut now = *clock.lock().unwrap();
+        for _ in 0..3 {
+            set_clock(&clock, now);
+            run_queue_tick_with(db.clone(), &transport, &env).await;
+            now += chrono::Duration::hours(4);
+        }
+        let row = stored_1601c(&db, &drafts[0]);
+        assert!(row.smart_queue.is_stuck(), "{:?}", row.smart_queue);
+        assert_eq!(device_tries(&db).to_setting(), "", "not the device's connection");
+        assert!(path_setting(&db).is_clear());
+    }
+
+    /// Class `ours` with nothing opened is not a try, on a ladder of its own
+    /// (5 min, 30 min, 1 h, 2 h, then 2 h); a stream that opened is counted
+    /// whatever the class.
+    #[tokio::test]
+    async fn class_ours_is_not_a_try_only_when_no_stream_opened_and_never_loops_short() {
+        let (db, drafts) = queued_1601cs("934", &[5]);
+        let (clock, env) = sim_clock(35);
+        let transport = SimTransport::new(Far::OursNothingOpened, &clock);
+        let mut now = *clock.lock().unwrap();
+        let mut waits = Vec::new();
+        for _ in 0..6 {
+            set_clock(&clock, now);
+            assert_eq!(
+                run_queue_tick_with(db.clone(), &transport, &env).await,
+                Some(SendOutcome::Failed(TryClass::NotATry))
+            );
+            let row = stored_1601c(&db, &drafts[0]);
+            assert_eq!((row.submission_attempts, row.smart_queue.failures), (0, 0));
+            let next = stored_next(&db, &drafts[0]).unwrap();
+            waits.push((next - now).num_seconds());
+            now = next;
+        }
+        for (wait, base) in waits.iter().zip([300, 1800, 3600, 7200, 7200, 7200]) {
+            assert!(*wait as f64 >= base as f64 * 0.5 - 1.0 && *wait as f64 <= base as f64 * 1.5 + 1.0, "{waits:?}");
+        }
+        assert_eq!(stored_1601c(&db, &drafts[0]).smart_queue.not_tried, 6);
+        assert!(path_setting(&db).is_clear());
+        // The same class, but a stream opened: counted, and it resets the
+        // not-a-try count.
+        transport.set(Far::OursAfterOpening);
+        set_clock(&clock, now);
+        assert_eq!(
+            run_queue_tick_with(db.clone(), &transport, &env).await,
+            Some(SendOutcome::Failed(TryClass::Counted))
+        );
+        let row = stored_1601c(&db, &drafts[0]);
+        assert_eq!((row.submission_attempts, row.smart_queue.failures, row.smart_queue.not_tried), (1, 1, 0));
+    }
+
+    /// A send that never answers is cut at its deadline: "BIR may have it",
+    /// never sent again by itself, and the queue goes on with the next.
+    #[tokio::test]
+    async fn a_hung_send_is_maybe_sent_never_resent_and_does_not_stop_the_queue() {
+        let (db, drafts) = queued_1601cs("935", &[5, 6]);
+        let (clock, env) = sim_clock(36);
+        let env = env.with_deadlines(
+            std::time::Duration::from_millis(60),
+            std::time::Duration::from_millis(60),
+        );
+        let transport = SimTransport::new(Far::Hang, &clock);
+        let start = *clock.lock().unwrap();
+        assert_eq!(
+            run_queue_tick_with(db.clone(), &transport, &env).await,
+            Some(SendOutcome::Failed(TryClass::MaybeSent))
+        );
+        let hung = transport.tries()[0].0.clone();
+        let hung_draft = drafts.iter().find(|d| d.default_submission_filename() == hung).unwrap();
+        let row = stored_1601c(&db, hung_draft);
+        assert!(row.submission_claim_token.is_some(), "claimed, PUT started: needs attention");
+        assert!(row.submission_put_started_at.is_some());
+        assert!(row.submission_error.as_deref().unwrap().contains("outcome pending"), "{:?}", row.submission_error);
+        // The queue goes on: the other return goes next, and the hung one
+        // is never touched again, however long we wait.
+        transport.set(Far::Up);
+        set_clock(&clock, start + chrono::Duration::minutes(1));
+        assert_eq!(
+            run_queue_tick_with(db.clone(), &transport, &env).await,
+            Some(SendOutcome::Sent)
+        );
+        assert_ne!(transport.tries()[1].0, hung);
+        set_clock(&clock, start + chrono::Duration::days(10));
+        assert_eq!(run_queue_tick_with(db.clone(), &transport, &env).await, None);
+        assert_eq!(transport.tries_of(&hung), 1);
+        // (The hung send never decremented the counter: its future was dropped.)
+    }
+
+    /// Shutdown cuts a tick that waits on the network. The send it cut is
+    /// claimed with its PUT started, so a restart never sends it again.
+    #[tokio::test]
+    async fn shutdown_interrupts_a_tick_and_a_restart_does_not_resend_that_return() {
+        let (db, drafts) = queued_1601cs("936", &[5]);
+        let (clock, env) = sim_clock(37);
+        let transport = SimTransport::new(Far::Hang, &clock);
+        let stop = Notify::new();
+        let tick = run_tick_until(&stop, db.clone(), &transport, &env);
+        let ring = async {
+            tokio::time::sleep(std::time::Duration::from_millis(100)).await;
+            stop.notify_one();
+        };
+        let (cut, ()) = tokio::join!(tick, ring);
+        assert!(cut.is_none(), "the tick was cut short");
+        let row = stored_1601c(&db, &drafts[0]);
+        assert!(row.submission_claim_token.is_some() && row.submission_put_started_at.is_some());
+        // A new process, the same database: the claim is held, nothing goes.
+        let (clock2, env2) = sim_clock(38);
+        let again = SimTransport::new(Far::Up, &clock2);
+        set_clock(&clock2, *clock.lock().unwrap() + chrono::Duration::days(2));
+        assert_eq!(run_queue_tick_with(db.clone(), &again, &env2).await, None);
+        assert!(again.tries().is_empty());
+    }
+
+    /// A head the worker cannot take (its clock reads earlier than the time
+    /// the line stamped) is not tried: it waits on a growing ladder of its
+    /// own and the next return goes in the same tick.
+    #[tokio::test]
+    async fn a_head_that_is_not_tried_waits_longer_each_time_and_the_next_goes() {
+        let (db, drafts) = queued_1601cs("937", &[5, 6]);
+        let t0 = Utc::now();
+        // The tick reads the clock first; the worker's first read (the
+        // second call) is an hour behind, so the head is not yet due to it.
+        let calls = Arc::new(AtomicUsize::new(0));
+        let counted = calls.clone();
+        let env = QueueEnv::new(
+            move || {
+                if counted.fetch_add(1, Ordering::SeqCst) == 1 {
+                    t0 - chrono::Duration::hours(1)
+                } else {
+                    t0
+                }
+            },
+            SeededRng::new(39),
+        );
+        let clock = Arc::new(Mutex::new(t0));
+        let transport = SimTransport::new(Far::Up, &clock);
+        assert_eq!(
+            run_queue_tick_with(db.clone(), &transport, &env).await,
+            Some(SendOutcome::Sent),
+            "the next return goes in the same tick"
+        );
+        assert_eq!(transport.tries().len(), 1);
+        assert_eq!(transport.tries()[0].0, drafts[1].default_submission_filename());
+        let may = stored_1601c(&db, &drafts[0]);
+        assert_eq!(may.status, FilingStatus::Queued);
+        assert_eq!(may.smart_queue.skips, 1);
+        assert_eq!(may.smart_queue.failures, 0, "not a failure of the return");
+        let wait = (stored_next(&db, &drafts[0]).unwrap() - t0).num_seconds();
+        assert!((150..=450).contains(&wait), "{wait} s");
+    }
+
+    /// A time that cannot be read never sends a return to Draft: the tick
+    /// stamps a real one.
+    #[tokio::test]
+    async fn an_unreadable_retry_time_is_restamped_and_never_sends_the_return_to_draft() {
+        let (db, drafts) = queued_1601cs("938", &[5]);
+        let (clock, env) = sim_clock(40);
+        let transport = SimTransport::new(Far::Up, &clock);
+        let stored = stored_1601c(&db, &drafts[0]);
+        let mut bad = stored.clone();
+        bad.next_retry_at = Some("not a time".into());
+        assert!(
+            db.lock()
+                .unwrap()
+                .replace_unclaimed_queued_1601c_submission(
+                    &bad,
+                    &stored.queued_submission_fingerprint,
+                    &stored.next_retry_at,
+                    stored.submission_attempts,
+                )
+                .unwrap()
+        );
+        let outcome = run_queue_tick_with(db.clone(), &transport, &env).await;
+        assert_ne!(stored_1601c(&db, &drafts[0]).status, FilingStatus::Draft);
+        assert!(matches!(outcome, Some(SendOutcome::Sent)), "{outcome:?}");
+    }
+
+    /// A clock set back a day: the waits the queue stored are kept from the
+    /// time the try ended, so nobody is stranded and nobody goes early.
+    #[tokio::test]
+    async fn a_clock_set_back_keeps_the_same_wait_from_now_and_never_goes_early() {
+        let (db, drafts) = queued_1601cs("939", &[5]);
+        let (clock, env) = sim_clock(41);
+        let transport = SimTransport::new(Far::UploadFails, &clock);
+        let start = *clock.lock().unwrap();
+        run_queue_tick_with(db.clone(), &transport, &env).await;
+        let wait = stored_next(&db, &drafts[0]).unwrap() - start;
+        let back = start - chrono::Duration::days(1);
+        // The clock reads a day earlier: the wait owed is counted from here.
+        set_clock(&clock, back);
+        assert_eq!(run_queue_tick_with(db.clone(), &transport, &env).await, None);
+        set_clock(&clock, back + wait - chrono::Duration::seconds(30));
+        assert_eq!(run_queue_tick_with(db.clone(), &transport, &env).await, None, "not before the same wait");
+        set_clock(&clock, back + wait + chrono::Duration::seconds(90));
+        assert!(run_queue_tick_with(db.clone(), &transport, &env).await.is_some());
+    }
+
+    /// "Still waiting": cleared when the return is cancelled or refused, and
+    /// not raised again after an older build rewrote the row.
+    #[tokio::test]
+    async fn the_still_waiting_notice_is_cleared_when_the_return_leaves_and_not_repeated() {
+        let (db, drafts) = queued_1601cs("940", &[5]);
+        let (clock, env) = sim_clock(42);
+        let transport = SimTransport::new(Far::Outage, &clock);
+        let start = *clock.lock().unwrap();
+        let notices = |db: &Arc<Mutex<Database>>| {
+            db.lock()
+                .unwrap()
+                .list_active_alerts(None)
+                .unwrap()
+                .into_iter()
+                .filter(|alert| alert.kind.starts_with("queue_still_waiting:"))
+                .count()
+        };
+        set_clock(&clock, start + chrono::Duration::hours(25));
+        run_queue_tick_with(db.clone(), &transport, &env).await;
+        assert_eq!(notices(&db), 1);
+        // An older build rewrote the row without the queue's facts.
+        let row = stored_1601c(&db, &drafts[0]);
+        let mut old = row.clone();
+        old.smart_queue = QueueState::default();
+        assert!(
+            db.lock()
+                .unwrap()
+                .replace_unclaimed_queued_1601c_submission(
+                    &old,
+                    &row.queued_submission_fingerprint,
+                    &row.next_retry_at,
+                    row.submission_attempts,
+                )
+                .unwrap()
+        );
+        set_clock(&clock, start + chrono::Duration::hours(26));
+        run_queue_tick_with(db.clone(), &transport, &env).await;
+        let raised = db.lock().unwrap().list_active_alerts(None).unwrap();
+        let occurrences: u32 = raised
+            .iter()
+            .filter(|alert| alert.kind.starts_with("queue_still_waiting:"))
+            .map(|alert| alert.occurrences as u32)
+            .sum();
+        assert_eq!(occurrences, 1, "not raised again");
+        // Cancelled: the notice goes.
+        let current = stored_1601c(&db, &drafts[0]);
+        db.lock().unwrap().cancel_queued_1601c_submission(&current).unwrap();
+        set_clock(&clock, start + chrono::Duration::hours(27));
+        run_queue_tick_with(db.clone(), &transport, &env).await;
+        assert_eq!(notices(&db), 0);
+    }
+
+    /// A database holding one saved profile (TIN segment `segment3`) and
+    /// `n` queued 1601Cs (up to 24: the months of 2023 and 2024).
+    fn queued_n_1601cs(segment3: &str, n: usize) -> (Arc<Mutex<Database>>, Vec<Form1601CDraft>) {
+        let db = test_db();
+        let profile = db
+            .lock()
+            .unwrap()
+            .save_profile(reviewed_profile_with_tin(segment3))
+            .expect("the profile should persist");
+        let drafts = (0..n)
+            .map(|i| {
+                let (year, month) = (2023 + (i / 12) as u16, (i % 12) as u8 + 1);
+                let mut draft = Form1601CDraft::new_from_profile(&profile, year, month);
+                draft.any_taxes_withheld = false;
+                draft.transition_to_queued().expect("the 1601C should queue");
+                db.lock().unwrap().save_queued_1601c_draft(&draft).expect("persist");
+                draft
+            })
+            .collect();
+        (db, drafts)
+    }
+
+    /// What one simulated outage came to.
+    struct Outage {
+        /// Every try, any return: how many.
+        attempts: usize,
+        /// The most sends at once.
+        most_at_once: usize,
+        /// Minutes from the BIR coming back until the last return is sent
+        /// (`None` when some was not sent by the end).
+        sent_after: Option<i64>,
+        /// Returns still queued at the end.
+        still_queued: usize,
+        /// Tries made in the first 20 minutes.
+        first_20_minutes: usize,
+    }
+
+    /// `n` queued returns, the BIR down for `outage_minutes` (every try
+    /// fails at the front desk), then up for `after_minutes`; the worker
+    /// ticks once a minute, as it does.
+    async fn simulate_outage(segment3: &str, n: usize, seed: u64, outage_minutes: i64, after_minutes: i64) -> Outage {
+        let (db, drafts) = queued_n_1601cs(segment3, n);
         let (clock, env) = sim_clock(seed);
         let transport = SimTransport::new(Far::Outage, &clock);
         let start = *clock.lock().unwrap();
+        let mut done_at = None;
         for minute in 0..outage_minutes + after_minutes {
             if minute == outage_minutes {
                 transport.set(Far::Up);
             }
             set_clock(&clock, start + chrono::Duration::minutes(minute));
             run_queue_tick_with(db.clone(), &transport, &env).await;
-            if minute % 30 == 0 {
-                for draft in &drafts {
-                    let row = stored_1601c(&db, draft);
-                    if row.status == FilingStatus::Queued {
-                        assert!(row.next_retry_at.is_some(), "never null");
-                    }
-                }
+            if done_at.is_none()
+                && minute >= outage_minutes
+                && drafts.iter().all(|d| stored_1601c(&db, d).status == FilingStatus::Sent)
+            {
+                done_at = Some(minute - outage_minutes);
             }
         }
-        let per_return = drafts
-            .iter()
-            .map(|draft| transport.tries_of(&draft.default_submission_filename()))
-            .collect();
-        (per_return, transport, db, drafts)
+        let tries = transport.tries();
+        let first = tries[0].1;
+        Outage {
+            attempts: tries.len(),
+            most_at_once: transport.most_in_flight(),
+            sent_after: done_at,
+            still_queued: drafts.iter().filter(|d| stored_1601c(&db, d).status == FilingStatus::Queued).count(),
+            first_20_minutes: tries.iter().filter(|(_, at)| *at < first + chrono::Duration::minutes(20)).count(),
+        }
     }
 
+    /// An 18-hour outage costs the same number of tries whether 1, 3 or 20
+    /// returns are queued: the whole queue waits as one on the ladder
+    /// (5 min, 30 min, 1 h, 2 h, then 2 h, each x 0.5 to 1.5), one probe at
+    /// a time, and nothing is dropped. The old queue made 5 tries per
+    /// return at 0, 1, 3, 7 and 15 minutes (5, 15 and 100 tries for 1, 3
+    /// and 20 returns, all at once) and then sent every return to Draft.
     #[tokio::test]
-    async fn an_18_hour_outage_with_three_returns_is_a_dozen_tries_each_one_at_a_time() {
+    async fn an_18_hour_outage_costs_the_same_tries_for_1_3_and_20_returns() {
         for (segment, seed) in [("918", 18), ("919", 1918), ("920", 2026)] {
-            let (per_return, transport, db, drafts) = simulate(segment, seed, 18 * 60, 0).await;
-            let total: usize = per_return.iter().sum();
-            eprintln!("18 h outage, seed {seed}: tries per return {per_return:?}, total {total}");
-            assert_eq!(transport.most_in_flight(), 1, "never two sends at once");
-            for tries in &per_return {
-                assert!((10..=13).contains(tries), "{per_return:?}");
+            let one = simulate_outage(segment, 1, seed, 18 * 60, 0).await;
+            let three = simulate_outage(&format!("{segment}1"), 3, seed, 18 * 60, 0).await;
+            let twenty = simulate_outage(&format!("{segment}2"), 20, seed, 18 * 60, 0).await;
+            eprintln!(
+                "18 h outage, seed {seed}: attempts 1/3/20 returns = {}/{}/{}, most at once {}/{}/{}, first 20 min {}/{}/{}",
+                one.attempts, three.attempts, twenty.attempts,
+                one.most_at_once, three.most_at_once, twenty.most_at_once,
+                one.first_20_minutes, three.first_20_minutes, twenty.first_20_minutes,
+            );
+            for outage in [&one, &three, &twenty] {
+                assert_eq!(outage.most_at_once, 1, "never two sends at once");
+                // 1 + 4 steps up the ladder + the 2-hour repeats, over
+                // 18 hours, from every wait at x 1.5 (9 tries) to x 0.5 (21).
+                assert!((9..=21).contains(&outage.attempts), "{} attempts", outage.attempts);
+                assert!(outage.first_20_minutes <= 3, "{} tries in the first 20 minutes", outage.first_20_minutes);
             }
-            // Today: 1, 2, 4, 8 minutes, all three at once: 15 tries in the
-            // first 20 minutes, then all three back in Draft.
-            let start = transport.tries()[0].1;
-            let early = transport
-                .tries()
-                .iter()
-                .filter(|(_, at)| *at < start + chrono::Duration::minutes(20))
-                .count();
-            assert!(early <= 6, "{early} tries in the first 20 minutes");
-            for draft in &drafts {
-                let row = stored_1601c(&db, draft);
-                assert_eq!(
-                    row.status,
-                    FilingStatus::Queued,
-                    "still queued after 18 hours"
-                );
-                assert!(row.queue_authorization.is_some());
+            // The same random numbers, the same ladder: 3 and 20 returns
+            // cost the same as 1, within the spread of one step.
+            for many in [&three, &twenty] {
+                assert!(many.attempts.abs_diff(one.attempts) <= 1, "{} vs {}", many.attempts, one.attempts);
             }
-            // No two tries closer than a minute: one at a time, a tick apart.
-            let mut times: Vec<DateTime<Utc>> =
-                transport.tries().into_iter().map(|(_, at)| at).collect();
-            times.sort();
-            assert!(times.windows(2).all(|pair| pair[1] > pair[0]));
+            assert_eq!(one.still_queued, 1);
+            assert_eq!(three.still_queued, 3);
+            assert_eq!(twenty.still_queued, 20, "nothing was sent back to Draft");
         }
     }
 
+    /// A 1-hour outage: the queue probes on the ladder, and once the BIR is
+    /// back the first probe that lands wakes the queue: every return goes,
+    /// one a tick. Numbers: all sent within the ladder's next wait (at most
+    /// 1.5 x 1 h after the 35-minute try) plus one minute per return.
     #[tokio::test]
-    async fn a_one_hour_outage_sends_everything_soon_after_it_ends() {
+    async fn a_one_hour_outage_sends_every_return_soon_after_it_ends() {
         for (segment, seed) in [("921", 1), ("922", 60), ("923", 3600)] {
-            let (per_return, transport, db, drafts) = simulate(segment, seed, 60, 3 * 60).await;
-            let total: usize = per_return.iter().sum();
-            let last = transport.tries().last().unwrap().1;
-            let first = transport.tries()[0].1;
-            eprintln!(
-                "1 h outage, seed {seed}: tries per return {per_return:?}, total {total}, all sent {} min after the first try",
-                (last - first).num_minutes()
-            );
-            assert_eq!(transport.most_in_flight(), 1);
-            for tries in &per_return {
-                assert!((3..=5).contains(tries), "{per_return:?}");
+            for n in [1usize, 3, 20] {
+                let outage = simulate_outage(&format!("{segment}{n}"), n, seed, 60, 4 * 60).await;
+                let sent_after = outage.sent_after.expect("every return was sent");
+                eprintln!(
+                    "1 h outage, seed {seed}, {n} returns: {} attempts, all sent {sent_after} min after the BIR came back, most at once {}",
+                    outage.attempts, outage.most_at_once
+                );
+                assert_eq!(outage.most_at_once, 1);
+                assert_eq!(outage.still_queued, 0);
+                // Failed probes before it ended (at most 4), then n sends.
+                assert!(outage.attempts > n && outage.attempts <= n + 5, "{}", outage.attempts);
+                assert!(sent_after <= 90 + n as i64 + 2, "{sent_after} min");
             }
-            for draft in &drafts {
-                assert_eq!(stored_1601c(&db, draft).status, FilingStatus::Sent);
-            }
-            assert!(last - first <= chrono::Duration::minutes(170));
         }
     }
 }

@@ -91,6 +91,12 @@ fn retry_due(worker: &Arc<Mutex<Database>>, id: i64) {
     let (status, json) = db.draft_status_and_json(id).unwrap().unwrap();
     let mut data: Value = serde_json::from_str(&json).unwrap();
     data["next_retry_at"] = "1999-01-01T00:00:00Z".into();
+    // The queue's own time is the one that rules.
+    if let Some(queue) = data.get_mut("smart_queue").and_then(Value::as_object_mut) {
+        queue.insert("next_try_at".into(), "1999-01-01T00:00:00Z".into());
+        queue.remove("ended_at");
+        queue.remove("wait_until");
+    }
     assert!(db.replace_draft_json_if_unchanged(id, &json, &status, &data.to_string()).unwrap());
 }
 

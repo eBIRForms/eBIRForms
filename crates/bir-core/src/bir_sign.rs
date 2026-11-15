@@ -97,7 +97,7 @@ pub struct Sign {
 }
 
 impl Sign {
-    /// The compact `buwiz-bir` header (API §2.3). `None` without `v=1` and
+    /// The compact `buwiz-bir` header (public contract, `docs/bir-uptime.md` in `buwiz-com/buwiz-com`). `None` without `v=1` and
     /// a `seq`. Members it does not know, or cannot read, are skipped.
     pub fn from_header(value: &str) -> Option<Self> {
         let members = parse_dictionary(value);
@@ -123,7 +123,7 @@ impl Sign {
         })
     }
 
-    /// The full sign object (API §2.2). `None` without `"v": 1` and a
+    /// The full sign object (public contract). `None` without `"v": 1` and a
     /// `seq`.
     pub fn from_json(value: &Value) -> Option<Self> {
         if value.get("v")?.as_u64()? != SIGN_VERSION {
@@ -191,26 +191,55 @@ impl SeenSign {
 #[derive(Debug, Default)]
 pub struct SignCell(Mutex<Option<SeenSign>>);
 
+/// A `seq` further ahead of the wall clock (in Unix seconds) than this is
+/// not believed: the server's `seq` is at least the 5-minute mark in Unix
+/// seconds, so one more than a day ahead of it is a broken or hostile
+/// answer, and keeping it would make every true sign after it "older".
+pub const SEQ_AHEAD_LIMIT_S: i64 = 86_400;
+
 impl SignCell {
-    /// Keep `sign` if its `seq` is higher than the one held, or equal and it
-    /// carries the queue numbers the held one lacks (the same sign, read in
-    /// full). An older sign is ignored. `true` when kept.
-    pub fn observe(&self, sign: Sign, seen_at: DateTime<Utc>) -> bool {
+    /// Keep `sign` if its `seq` is higher than the one held; a newer sign
+    /// that carries no queue numbers (the header) keeps the last ones. The
+    /// same `seq` again refreshes when it was seen, and takes the queue
+    /// numbers if the held copy lacks them. An older sign is ignored, and so
+    /// is a `seq` more than a day ahead of the wall clock in Unix seconds
+    /// ([`SEQ_AHEAD_LIMIT_S`]). `true` when the sign changed.
+    pub fn observe(&self, mut sign: Sign, seen_at: DateTime<Utc>) -> bool {
+        let absurd = i64::try_from(sign.seq)
+            .map_or(true, |seq| seq > seen_at.timestamp().saturating_add(SEQ_AHEAD_LIMIT_S));
+        if absurd {
+            return false;
+        }
         let Ok(mut held) = self.0.lock() else {
             return false;
         };
-        let newer = match held.as_ref() {
-            None => true,
-            Some(old) => {
-                sign.seq > old.sign.seq
-                    || (sign.seq == old.sign.seq
-                        && (sign.queue.is_some() || old.sign.queue.is_none()))
+        match held.as_mut() {
+            None => {
+                *held = Some(SeenSign { sign, seen_at });
+                true
             }
-        };
-        if newer {
-            *held = Some(SeenSign { sign, seen_at });
+            Some(old) if sign.seq > old.sign.seq => {
+                if sign.queue.is_none() {
+                    sign.queue = old.sign.queue.clone();
+                }
+                *old = SeenSign { sign, seen_at };
+                true
+            }
+            Some(old) if sign.seq == old.sign.seq => {
+                // Seen again: still current, whatever else changes.
+                old.seen_at = seen_at;
+                // The same `seq` read in full (or read again where the held
+                // copy has no queue numbers) replaces it; a header copy of a
+                // sign held in full does not drop the numbers.
+                if (sign.queue.is_some() || old.sign.queue.is_none()) && sign != old.sign {
+                    old.sign = sign;
+                    true
+                } else {
+                    false
+                }
+            }
+            Some(_) => false,
         }
-        newer
     }
 
     pub fn latest(&self) -> Option<SeenSign> {
@@ -362,12 +391,12 @@ mod tests {
     use super::*;
     use serde_json::json;
 
-    /// API.md §2.3, verbatim.
-    const API_2_3_HEADER: &str = "v=1, seq=4182, state=offline, dispatcher=online, upload=offline, relay=ok, since=1762845000, until=1762852421, scout=1762852421, admit=?0, note=?0";
+    /// The compact header of the public contract (`docs/bir-uptime.md` in `buwiz-com/buwiz-com`), verbatim.
+    const CONTRACT_HEADER: &str = "v=1, seq=4182, state=offline, dispatcher=online, upload=offline, relay=ok, since=1762845000, until=1762852421, scout=1762852421, admit=?0, note=?0";
 
     #[test]
-    fn the_compact_header_of_api_2_3_reads_every_member() {
-        let sign = Sign::from_header(API_2_3_HEADER).expect("a v=1 sign");
+    fn the_compact_header_of_the_contract_reads_every_member() {
+        let sign = Sign::from_header(CONTRACT_HEADER).expect("a v=1 sign");
         assert_eq!(sign.seq, 4182);
         assert_eq!(sign.state, SignState::Offline);
         assert_eq!(sign.dispatcher, Some(SignState::Online));
@@ -424,8 +453,8 @@ mod tests {
         assert!(!sign.note);
     }
 
-    /// API.md §2.2, with the links pointed at example.test.
-    fn api_2_2_sign_object() -> Value {
+    /// The sign object of the public contract, with the links pointed at example.test.
+    fn contract_sign_object() -> Value {
         json!({
           "v": 1,
           "seq": 4182,
@@ -453,8 +482,8 @@ mod tests {
     }
 
     #[test]
-    fn the_sign_object_of_api_2_2_reads_its_lights_times_and_queue() {
-        let sign = Sign::from_json(&api_2_2_sign_object()).unwrap();
+    fn the_sign_object_of_the_contract_reads_its_lights_times_and_queue() {
+        let sign = Sign::from_json(&contract_sign_object()).unwrap();
         assert_eq!(sign.seq, 4182);
         assert_eq!(sign.state, SignState::Offline);
         assert_eq!(sign.dispatcher, Some(SignState::Online));
@@ -466,7 +495,7 @@ mod tests {
         assert_eq!(sign.scout_at, sign.wait_until);
         assert!(!sign.note);
         assert_eq!(sign.queue, Some(QueuePolicy::default()));
-        let mut with_note = api_2_2_sign_object();
+        let mut with_note = contract_sign_object();
         with_note["note"] = json!({"kind": "outage", "text": "x"});
         assert!(Sign::from_json(&with_note).unwrap().note);
         for broken in [
@@ -494,15 +523,44 @@ mod tests {
         assert_eq!(cell.latest().unwrap().sign.state, SignState::Online);
         assert_eq!(cell.latest().unwrap().seen_at, at);
         // The same sign read in full replaces the header copy.
-        let mut full = Sign::from_json(&api_2_2_sign_object()).unwrap();
+        let mut full = Sign::from_json(&contract_sign_object()).unwrap();
         full.seq = 10;
         assert!(cell.observe(full, at + Duration::minutes(2)));
         assert!(cell.latest().unwrap().sign.queue.is_some());
-        // …and a header copy of it does not drop the queue numbers.
+        // …and a header copy of it does not drop the queue numbers, but
+        // does say the sign is still current.
         assert!(!cell.observe(new, at + Duration::minutes(3)));
-        assert!(cell.latest().unwrap().sign.queue.is_some());
+        let held = cell.latest().unwrap();
+        assert!(held.sign.queue.is_some());
+        assert_eq!(held.seen_at, at + Duration::minutes(3), "seen again: fresh again");
+        // A newer header-only sign keeps the last queue numbers.
+        let newer = Sign::from_header("v=1, seq=11, state=busy").unwrap();
+        assert!(cell.observe(newer, at + Duration::minutes(4)));
+        let held = cell.latest().unwrap();
+        assert_eq!((held.sign.seq, held.sign.state), (11, SignState::Busy));
+        assert!(held.sign.queue.is_some(), "the numbers stay until new ones come");
         cell.clear();
         assert_eq!(cell.latest(), None);
+    }
+
+    #[test]
+    fn a_seq_absurdly_ahead_of_the_clock_is_ignored() {
+        let cell = SignCell::default();
+        let at = Utc.with_ymd_and_hms(2026, 11, 11, 9, 0, 0).unwrap();
+        let now_s = at.timestamp();
+        let real = Sign::from_header(&format!("v=1, seq={}, state=online", now_s - 300)).unwrap();
+        assert!(cell.observe(real, at));
+        for seq in [now_s + SEQ_AHEAD_LIMIT_S + 1, i64::MAX] {
+            let absurd = Sign::from_header(&format!("v=1, seq={seq}, state=offline")).unwrap();
+            assert!(!cell.observe(absurd, at), "{seq}");
+        }
+        assert_eq!(cell.latest().unwrap().sign.state, SignState::Online);
+        // A day ahead at most is still read (clocks differ).
+        let ahead = Sign::from_header(&format!("v=1, seq={}, state=busy", now_s + 3600)).unwrap();
+        assert!(cell.observe(ahead, at));
+        // And the next true sign after a rejected one is not "older".
+        let next = Sign::from_header(&format!("v=1, seq={}, state=online", now_s + 3601)).unwrap();
+        assert!(cell.observe(next, at));
     }
 
     #[test]

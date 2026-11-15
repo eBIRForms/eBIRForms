@@ -6,30 +6,46 @@
 //! Every connection toward the BIR is opened by the person's own app, from
 //! their own internet address. So every rule here is about sending less:
 //!
-//! - **Waits.** After a return's n-th counted failure it waits
-//!   `waits_s[n-1]` (5 min, 30 min, 1 h, 2 h), then `repeat_s` (2 h) every
-//!   time after, each multiplied by a random factor uniform in
-//!   `[1 - spread, 1 + spread]` (0.5 to 1.5 by default), so queues that
-//!   failed together do not come back together ([`next_try_at`]).
+//! - **Waits.** Every wait follows one ladder: 5 min, 30 min, 1 h, 2 h
+//!   (`waits_s`), then `repeat_s` (2 h) every time after, each multiplied
+//!   by a random factor uniform in `[1 - spread, 1 + spread]` (0.5 to 1.5
+//!   by default), so queues that failed together do not come back
+//!   together ([`next_try_at`]).
 //! - **Clamps.** The server may tune the numbers ([`QueuePolicy::from_json`])
 //!   only toward sending less: a wait below its default, a repeat below
 //!   2 h, a spread outside 0.2 to 0.5, any value missing or out of range,
 //!   reads as the default. One return at a time ([`PARALLEL`]) is fixed.
-//! - **One at a time.** [`line_up`] picks the one return that may go now
-//!   (due soonest first, across every TIN) and gives every other a real
-//!   next-try time at least a minute apart, so a build that knows none of
-//!   this, sharing the database, does not send them all at once.
-//! - **Step aside.** A counted failure moves only that return's own time
-//!   forward, so the next due return is the head: one stuck return never
-//!   blocks the others.
+//! - **The way in waits as one** ([`Blame::Path`], [`PathBackoff`]). A try
+//!   that never got past the BIR's front desk says nothing about the
+//!   return: it moves a queue-wide back-off up the ladder, no return starts
+//!   before it, and when it passes one return (due soonest, a different one
+//!   each time) goes. So an outage costs the same number of tries with 1
+//!   or 20 returns queued. A landing anywhere clears it.
+//! - **A return's own failure moves only it** ([`Blame::Upload`],
+//!   [`Blame::Return`], [`Blame::NoService`]): its own ladder, and it steps
+//!   aside so the next return is the head. Three in a row of the same kind
+//!   about the return itself (a refused login, no upload service for the
+//!   TIN, the same validation refusal) stop its automatic tries until the
+//!   person presses Retry ([`STUCK_AFTER`]).
+//! - **One at a time.** [`line_up_after`] picks the one return that may go
+//!   now (due soonest first, across every TIN) and gives every other a real
+//!   next-try time at least a minute apart and never before the queue-wide
+//!   back-off, so a build that knows none of this, sharing the database,
+//!   does not send them all at once.
 //! - **Device guard.** When the sign says returns get in and this device's
-//!   last three counted tries all failed, the next wait is at least
-//!   `repeat_s` and the person is told it may be their own connection
-//!   ([`guard_trips`]).
+//!   last three tries that reached for the BIR all failed, the next wait is
+//!   at least `repeat_s` and the person is told it may be their own
+//!   connection ([`guard_trips`]).
 //! - **What counts** ([`TryClass`]): a hold, being signed out, Buwiz being
-//!   unreachable and a failure of class `ours` are never tries. An
+//!   unreachable or answering 5xx or 429, and a failure of class `ours`
+//!   before any stream opened are never tries; they climb a ladder of their
+//!   own (`not_tried`), so nothing loops at a short fixed interval. An
 //!   `unknown` outcome is never resent by itself; a TIN refusal goes back
-//!   to Draft. Neither gets a retry ([`plan_retry`]).
+//!   to Draft. Neither gets a retry ([`plan`]).
+//! - **A person's Retry** is at most once per 30 minutes and three times a
+//!   day per return ([`QueueState::retry_allowed_at`]), and a cancelled
+//!   return queued again within 6 hours keeps its place on the ladder
+//!   ([`QueueState::requeued`]).
 //! - **The gate** ([`gate`]) is what the sign-aware queue will drive
 //!   (sleep while Offline or while Buwiz pauses, turns while Busy). Nothing
 //!   calls it yet.
@@ -58,8 +74,21 @@ pub const SPREAD_RANGE: (f64, f64) = (0.2, 0.5);
 /// Rows behind the head are at least this far apart in their stored
 /// next-try time.
 pub const BEHIND_GAP_S: i64 = 60;
+/// The longest any time the server names (`wait_until`, `Retry-After`) is
+/// believed: anything further reads as this far.
+pub const MAX_SERVER_WAIT_S: i64 = 7 * 86_400;
+/// After this many failures in a row of the same kind about the return
+/// itself, its automatic tries stop until the person presses Retry.
+pub const STUCK_AFTER: u32 = 3;
+/// A person's Retry on one return: at most once per this many seconds…
+pub const RETRY_GAP_S: i64 = 1800;
+/// …and this many times in any 24 hours.
+pub const RETRIES_PER_DAY: usize = 3;
+/// A return cancelled and queued again within this long keeps its place on
+/// the ladder (failures and next try).
+pub const REQUEUE_KEEP_S: i64 = 6 * 3600;
 
-/// The queue numbers (API §9), always within their clamps.
+/// The queue numbers (public contract, `docs/bir-uptime.md` in `buwiz-com/buwiz-com`), always within their clamps.
 #[derive(Clone, Debug, PartialEq)]
 pub struct QueuePolicy {
     /// The wait after a return's 1st, 2nd, 3rd and 4th counted failure.
@@ -156,8 +185,7 @@ impl QueuePolicy {
         }
     }
 
-    /// The longest any one wait can be, spread included. A stored next try
-    /// further away than this (the clock went back) is taken as this far.
+    /// The longest any one wait of the ladder can be, spread included.
     pub fn longest_wait(&self) -> Duration {
         let longest = self
             .waits_s
@@ -232,13 +260,23 @@ pub enum Wait {
     Failed { failures: u32, slowed: bool },
     /// Not a try: the first wait, and no count.
     NotATry,
+    /// The `n`-th not-a-try in a row, never shorter than the wait the
+    /// return's own `failures` already earned: nothing class-driven
+    /// shortens a wait.
+    NotATryAgain { n: u32, failures: u32 },
+}
+
+/// `until`, read as at most [`MAX_SERVER_WAIT_S`] after `now`.
+pub fn capped_wait_until(until: DateTime<Utc>, now: DateTime<Utc>) -> DateTime<Utc> {
+    until.min(now + Duration::seconds(MAX_SERVER_WAIT_S))
 }
 
 /// When a return may try again. The wait starts when the try ended
 /// (`ended_at`); it is the base wait for `wait` times the spread factor.
 /// When the server's `wait_until` is later than that, the try goes at
 /// `wait_until` plus a random share (0 to `spread`) of the time that was
-/// left until it (`wait_until - now`): never before `wait_until`.
+/// left until it (`wait_until - now`): never before `wait_until`. A
+/// `wait_until` more than 7 days ahead reads as 7 days.
 pub fn next_try_at(
     wait: Wait,
     ended_at: DateTime<Utc>,
@@ -257,9 +295,13 @@ pub fn next_try_at(
             }
         }
         Wait::NotATry => policy.waits_s[0],
+        Wait::NotATryAgain { n, failures } => {
+            let own = if failures > 0 { policy.wait_s(failures) } else { 0 };
+            policy.wait_s(n).max(own)
+        }
     };
     let at = ended_at + seconds_f64(f64::from(base) * spread_factor(rng, policy.spread));
-    match wait_until {
+    match wait_until.map(|until| capped_wait_until(until, now)) {
         Some(until) if until > at => {
             let left = (until - now).max(Duration::zero());
             let share = policy.spread * unit(rng);
@@ -302,7 +344,7 @@ impl TryClass {
 }
 
 /// The server's `class` on a failure: whose side it failed on. An unknown
-/// word reads as `bir` (API §12).
+/// word reads as `bir` (public contract).
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum FailureClass {
     Bir,
@@ -337,6 +379,72 @@ pub fn is_hold_code(code: &str) -> bool {
     HOLD_CODES.contains(&code)
 }
 
+/// The `429` codes that say "not now" about Buwiz's own limits: nothing
+/// reached the BIR, so never a try; the answer's `Retry-After` is the wait.
+pub const LIMIT_CODES: [&str; 3] = ["rate_limited", "quota_exceeded", "try_anyway_limited"];
+
+pub fn is_limit_code(code: &str) -> bool {
+    LIMIT_CODES.contains(&code)
+}
+
+/// The code with which Buwiz says the sealed return does not match its
+/// ticket. Final, like a TIN refusal: the return goes back to Draft.
+pub const RETURN_MISMATCH: &str = "return_mismatch";
+
+/// A reason that ends in a code no retry can change: a TIN refusal
+/// (`tin_*`, `account_banned`) or [`RETURN_MISMATCH`]. Such a reason sends
+/// the return back to Draft whatever class the server gave it.
+pub fn is_final_reason(reason: &str) -> bool {
+    crate::tin_refusal::TinRefusal::from_reason(reason).is_some() || is_mismatch_reason(reason)
+}
+
+/// The reason ends in `(return_mismatch)`.
+pub fn is_mismatch_reason(reason: &str) -> bool {
+    reason
+        .trim()
+        .strip_suffix(')')
+        .and_then(|inner| inner.rsplit_once('('))
+        .is_some_and(|(message, code)| {
+            code == RETURN_MISMATCH && (message.is_empty() || message.ends_with(char::is_whitespace))
+        })
+}
+
+/// Where a counted try failed, which decides who waits for it.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum Blame {
+    /// The try never got past the BIR's front desk (every connection it
+    /// opened toward the BIR was refused or timed out, no upload stream
+    /// opened, or the front desk failed). It says nothing about this
+    /// return: the whole queue backs off ([`PathBackoff`]), and the device
+    /// guard hears it.
+    Path,
+    /// An upload stream opened and the send broke after it (a write, the
+    /// session). This return's own ladder; the device guard hears it.
+    Upload,
+    /// About this return: a refused login, a validation refusal, Buwiz's
+    /// answer to its ticket. Its own ladder; not the device guard. Three
+    /// of the same kind in a row stop its automatic tries.
+    Return,
+    /// The BIR has no upload service for this TIN: like `Return`.
+    NoService,
+}
+
+impl Blame {
+    pub fn class(self) -> TryClass {
+        match self {
+            Self::NoService => TryClass::NoService,
+            _ => TryClass::Counted,
+        }
+    }
+
+    /// Whether the device guard hears this failure: only those that say
+    /// something about this device's way to the BIR.
+    pub fn heard_by_guard(self) -> bool {
+        matches!(self, Self::Path | Self::Upload)
+    }
+}
+
 /// When a return that did not land goes again.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Retry {
@@ -346,13 +454,129 @@ pub struct Retry {
     pub failures: u32,
     /// The device guard set this wait.
     pub slowed: bool,
+    /// When the try ended (a clock that later reads earlier went back).
+    pub ended_at: DateTime<Utc>,
+    /// The server's time, never tried before (already capped to 7 days).
+    pub wait_until: Option<DateTime<Utc>>,
+    /// Not-a-try in a row, after this one (0 after a counted try).
+    pub not_tried: u32,
+    /// Where it failed, for a counted try.
+    pub blame: Option<Blame>,
+    /// For `Return` and `NoService`: what kind of failure (its reason), to
+    /// tell three of the same kind in a row.
+    pub kind: Option<String>,
+}
+
+/// How a try that did not land ended, for [`plan`].
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Ending<'a> {
+    /// Not a try: nothing reached for the BIR. `wait_until` is the
+    /// server's time, if it gave one.
+    NotATry { wait_until: Option<DateTime<Utc>> },
+    /// A counted try that failed, with where and why.
+    Failed { blame: Blame, reason: &'a str },
+}
+
+/// The retry of a return in `state` whose try ended at `ended_at` as
+/// `ending`. A `Path` failure moves `path`, the queue-wide back-off, and
+/// the return waits for it; every other failure moves only the return's
+/// own ladder. `slowed_down` is the device guard's answer
+/// ([`guard_trips`]); it lengthens only failures the guard hears.
+#[allow(clippy::too_many_arguments)]
+pub fn plan(
+    state: &QueueState,
+    ending: Ending<'_>,
+    slowed_down: bool,
+    ended_at: DateTime<Utc>,
+    now: DateTime<Utc>,
+    path: &mut PathBackoff,
+    policy: &QueuePolicy,
+    rng: &mut dyn QueueRng,
+) -> Retry {
+    match ending {
+        Ending::NotATry { wait_until } => {
+            let n = state.not_tried.saturating_add(1);
+            let wait = Wait::NotATryAgain {
+                n,
+                failures: state.failures,
+            };
+            let wait_until = wait_until.map(|until| capped_wait_until(until, now));
+            Retry {
+                at: next_try_at(wait, ended_at, wait_until, now, policy, rng),
+                counted: false,
+                failures: state.failures,
+                slowed: false,
+                ended_at,
+                wait_until,
+                not_tried: n,
+                blame: None,
+                kind: None,
+            }
+        }
+        Ending::Failed {
+            blame: Blame::Path,
+            ..
+        } => {
+            let at = path.record(ended_at, slowed_down, policy, rng);
+            Retry {
+                at,
+                counted: true,
+                failures: state.failures,
+                slowed: slowed_down,
+                ended_at,
+                wait_until: None,
+                not_tried: 0,
+                blame: Some(Blame::Path),
+                kind: None,
+            }
+        }
+        Ending::Failed { blame, reason } => {
+            let failures = state.failures.saturating_add(1);
+            let slowed = slowed_down && blame.heard_by_guard();
+            Retry {
+                at: next_try_at(
+                    Wait::Failed { failures, slowed },
+                    ended_at,
+                    None,
+                    now,
+                    policy,
+                    rng,
+                ),
+                counted: true,
+                failures,
+                slowed,
+                ended_at,
+                wait_until: None,
+                not_tried: 0,
+                blame: Some(blame),
+                kind: matches!(blame, Blame::Return | Blame::NoService)
+                    .then(|| failure_kind(reason)),
+            }
+        }
+    }
+}
+
+/// The kind of a failure about the return, from its reason: the text
+/// without the queue's own prefix, so the same refusal reads the same.
+pub fn failure_kind(reason: &str) -> String {
+    let mut rest = reason.trim();
+    for prefix in [
+        "Needs attention: ",
+        "Not sent (nothing reached BIR): ",
+        "Submission session failed before upload (no PUT attempted): ",
+    ] {
+        if let Some(after) = rest.strip_prefix(prefix) {
+            rest = after.trim();
+        }
+    }
+    rest.chars().take(300).collect()
 }
 
 /// The retry for a try of `class` that ended at `ended_at`, for a return
-/// that had `failures_before` counted failures. `None` for a refusal or an
-/// unknown outcome: neither is ever retried by the queue. `slowed_down` is
-/// the device guard's answer ([`guard_trips`]); it only lengthens a
-/// counted failure's wait.
+/// that had `failures_before` counted failures, as before the queue knew
+/// where a try failed: a counted failure is the return's own (`Upload`).
+/// `None` for a refusal or an unknown outcome: neither is ever retried by
+/// the queue.
 #[allow(clippy::too_many_arguments)]
 pub fn plan_retry(
     failures_before: u32,
@@ -364,38 +588,173 @@ pub fn plan_retry(
     policy: &QueuePolicy,
     rng: &mut dyn QueueRng,
 ) -> Option<Retry> {
-    let (wait, failures, slowed) = match class {
+    let ending = match class {
         TryClass::Refused | TryClass::MaybeSent => return None,
-        TryClass::NotATry => (Wait::NotATry, failures_before, false),
-        TryClass::Counted | TryClass::NoService => {
-            let failures = failures_before.saturating_add(1);
-            let slowed = slowed_down && class == TryClass::Counted;
-            (Wait::Failed { failures, slowed }, failures, slowed)
-        }
+        TryClass::NotATry => Ending::NotATry { wait_until },
+        TryClass::Counted => Ending::Failed {
+            blame: Blame::Upload,
+            reason: "",
+        },
+        TryClass::NoService => Ending::Failed {
+            blame: Blame::NoService,
+            reason: "",
+        },
     };
-    Some(Retry {
-        at: next_try_at(wait, ended_at, wait_until, now, policy, rng),
-        counted: class.counts(),
-        failures,
-        slowed,
-    })
+    let state = QueueState {
+        failures: failures_before,
+        ..QueueState::default()
+    };
+    Some(plan(
+        &state,
+        ending,
+        slowed_down,
+        ended_at,
+        now,
+        &mut PathBackoff::default(),
+        policy,
+        rng,
+    ))
 }
 
 /// A counted failure at `now` on the default numbers and the OS random
 /// source: what a caller without the worker's policy (a test, a tool)
 /// records.
 pub fn default_retry(failures_before: u32, now: DateTime<Utc>) -> Retry {
-    plan_retry(
-        failures_before,
-        TryClass::Counted,
+    let state = QueueState {
+        failures: failures_before,
+        ..QueueState::default()
+    };
+    plan(
+        &state,
+        Ending::Failed {
+            blame: Blame::Upload,
+            reason: "",
+        },
         false,
         now,
-        None,
         now,
+        &mut PathBackoff::default(),
         &QueuePolicy::default(),
         &mut OsRng,
     )
-    .expect("a counted failure has a retry")
+}
+
+// ------------------------------------------------- the way in, queue-wide
+
+/// The settings key of the queue-wide [`PathBackoff`].
+pub const PATH_SETTING: &str = "smart_queue_path";
+
+/// The queue-wide back-off after tries that never got past the BIR's front
+/// desk. Stored in the settings table, so a restart keeps it; every queued
+/// row's `next_retry_at` is also stamped at or after it, so an older build
+/// sharing the database waits too.
+#[derive(Clone, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub struct PathBackoff {
+    /// Path failures in a row.
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub failures: u32,
+    /// No return starts before this (RFC 3339).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub next_try_at: Option<String>,
+    /// When the last path failure ended (a clock that reads earlier went
+    /// back).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub ended_at: Option<String>,
+    /// When this run of path failures began: returns moved to the back of
+    /// the line since then go after the others.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub since: Option<String>,
+}
+
+impl PathBackoff {
+    /// The stored back-off; anything unreadable is none.
+    pub fn from_setting(stored: Option<&str>) -> Self {
+        stored
+            .and_then(|text| serde_json::from_str(text).ok())
+            .unwrap_or_default()
+    }
+
+    pub fn to_setting(&self) -> String {
+        serde_json::to_string(self).unwrap_or_else(|_| "{}".to_owned())
+    }
+
+    pub fn is_clear(&self) -> bool {
+        *self == Self::default()
+    }
+
+    /// A path failure that ended at `ended`: one more on the ladder, and no
+    /// return before `ended + wait(failures) × spread`. The answer is that
+    /// time.
+    pub fn record(
+        &mut self,
+        ended: DateTime<Utc>,
+        slowed: bool,
+        policy: &QueuePolicy,
+        rng: &mut dyn QueueRng,
+    ) -> DateTime<Utc> {
+        self.failures = self.failures.saturating_add(1);
+        let at = next_try_at(
+            Wait::Failed {
+                failures: self.failures,
+                slowed,
+            },
+            ended,
+            None,
+            ended,
+            policy,
+            rng,
+        );
+        self.next_try_at = Some(at.to_rfc3339());
+        self.ended_at = Some(ended.to_rfc3339());
+        if self.since.is_none() {
+            self.since = Some(ended.to_rfc3339());
+        }
+        at
+    }
+
+    /// No return starts before this, as of `now`; `None` when it has passed
+    /// or there is none. A clock that went back (it reads earlier than the
+    /// failure ended) keeps the same wait from now, never more.
+    pub fn floor(&self, now: DateTime<Utc>) -> Option<DateTime<Utc>> {
+        let next = self.next_try_at.as_deref().and_then(parse_time)?;
+        let next = match self.ended_at.as_deref().and_then(parse_time) {
+            Some(ended) if now < ended => now + (next - ended).max(Duration::zero()),
+            _ => next,
+        };
+        (next > now).then_some(next)
+    }
+
+    /// A clock that reads earlier than when the last path failure ended
+    /// went back: move every stored time back by the same amount, once, so
+    /// the wait that was owed is owed from now and no more. `true` when it
+    /// changed.
+    pub fn reanchor(&mut self, now: DateTime<Utc>) -> bool {
+        let Some(ended) = self.ended_at.as_deref().and_then(parse_time) else {
+            return false;
+        };
+        if now >= ended {
+            return false;
+        }
+        let shift = |stored: &mut Option<String>| {
+            if let Some(at) = stored.as_deref().and_then(parse_time) {
+                *stored = Some((at - (ended - now)).to_rfc3339());
+            }
+        };
+        shift(&mut self.next_try_at);
+        shift(&mut self.since);
+        self.ended_at = Some(now.to_rfc3339());
+        true
+    }
+
+    /// When this run of path failures began.
+    pub fn since(&self) -> Option<DateTime<Utc>> {
+        self.since.as_deref().and_then(parse_time)
+    }
+
+    /// A landing anywhere: no back-off.
+    pub fn clear(&mut self) {
+        *self = Self::default();
+    }
 }
 
 // ---------------------------------------------------------- device guard
@@ -466,9 +825,15 @@ pub struct Waiting {
     pub queued_at: DateTime<Utc>,
     /// When it may next try on its own schedule; `None` is now.
     pub ready_at: Option<DateTime<Utc>>,
-    /// Claimed (being sent, or with an unknown outcome): never the head,
-    /// never restamped.
+    /// Claimed (being sent, or with an unknown outcome), or stopped until
+    /// the person presses Retry: never the head, never restamped.
     pub blocked: bool,
+    /// Moved to the back of the line by a path failure in the current run
+    /// of them, at this time: it goes after every return not moved.
+    pub rotated: Option<DateTime<Utc>>,
+    /// A person confirmed "try anyway": it may go before the queue-wide
+    /// back-off, once, and before the rest.
+    pub try_anyway: bool,
 }
 
 /// The queue's order at one moment.
@@ -476,8 +841,8 @@ pub struct Waiting {
 pub struct LineUp {
     /// The one return that may go now.
     pub head: Option<usize>,
-    /// Each row's own next-try time, a clock that went back clamped to
-    /// [`QueuePolicy::longest_wait`] from now. Blocked rows keep theirs.
+    /// Each row's own next-try time, never before the queue-wide back-off
+    /// (but for a row with "try anyway"). Blocked rows keep theirs.
     pub ready: Vec<DateTime<Utc>>,
     /// The next-try time to store on each row (`None` for a blocked row):
     /// now for the head, and for every other row its own time but at least
@@ -488,22 +853,41 @@ pub struct LineUp {
     pub behind: Vec<bool>,
 }
 
-/// Order the queue: the head is the eligible row (not blocked, its own
-/// time passed) due soonest (BIR due date, then the time it was queued);
-/// the rest follow, the eligible ones in the same order, then the others
-/// by their own time. Every row's stamp keeps a gap after the one before.
+/// [`line_up_after`] with no queue-wide back-off.
 pub fn line_up(rows: &[Waiting], now: DateTime<Utc>, policy: &QueuePolicy) -> LineUp {
-    let cap = now + policy.longest_wait();
+    line_up_after(rows, now, policy, None)
+}
+
+/// Order the queue: the head is the eligible row (not blocked, its own
+/// time passed, and the queue-wide back-off `not_before` passed) due
+/// soonest (BIR due date, then the time it was queued), a row moved to the
+/// back by a path failure after every row not moved; the rest follow, the
+/// eligible ones in the same order, then the others by their own time.
+/// Every row's stamp keeps a gap after the one before, and none is before
+/// `not_before`. Stored times are never cut: a clock that went back is
+/// read from when the try ended ([`QueueState::ready_at`]).
+pub fn line_up_after(
+    rows: &[Waiting],
+    now: DateTime<Utc>,
+    _policy: &QueuePolicy,
+    not_before: Option<DateTime<Utc>>,
+) -> LineUp {
+    let not_before = not_before.filter(|floor| *floor > now);
     let ready: Vec<DateTime<Utc>> = rows
         .iter()
         .map(|row| {
             let own = row.ready_at.unwrap_or(now);
-            if row.blocked { own } else { own.min(cap) }
+            match not_before {
+                Some(floor) if !row.blocked && !row.try_anyway => own.max(floor),
+                _ => own,
+            }
         })
         .collect();
     let eligible = |i: usize| !rows[i].blocked && ready[i] <= now;
     let by_due = |i: &usize| {
         (
+            !rows[*i].try_anyway,
+            rows[*i].rotated.unwrap_or(DateTime::<Utc>::MIN_UTC),
             rows[*i].due.unwrap_or(NaiveDate::MAX),
             rows[*i].queued_at,
             *i,
@@ -608,6 +992,51 @@ pub struct QueueState {
     /// "Still waiting" notices already raised for this queueing.
     #[serde(default, skip_serializing_if = "is_zero")]
     pub notices: u32,
+    /// When its last try ended. A clock that reads earlier went back.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub ended_at: Option<String>,
+    /// The server's time it waits for (never tried before it).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub wait_until: Option<String>,
+    /// Not-a-try in a row: its own ladder, so nothing loops at a short
+    /// fixed interval. A counted try or a landing resets it.
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub not_tried: u32,
+    /// Times in a row it was the head and was not tried (the worker could
+    /// not take it): its own ladder, so one bad row never starves the rest.
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub skips: u32,
+    /// Moved to the back of the line by a path failure (RFC 3339).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub rotated_at: Option<String>,
+    /// The kind of its last failure about the return itself, and how many
+    /// of that kind came in a row.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub kind: Option<String>,
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub same_kind: u32,
+    /// Stopped: it keeps being refused for this reason, and only the
+    /// person's Retry tries it again.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub stuck: Option<String>,
+    /// The person's Retry presses in the last 24 hours (RFC 3339).
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub retries: Vec<String>,
+    /// The person confirmed "try anyway": the next try may go before the
+    /// queue-wide back-off, once.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub try_anyway: bool,
+    /// When it went back to Draft (cancelled), for a requeue within 6 hours.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub left_at: Option<String>,
+    /// The fingerprint it was queued with, so a requeue of the same content
+    /// keeps a stop and one of changed content clears it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub fingerprint: Option<String>,
+    /// When the queue first saw it waiting, for a row with no queue
+    /// authorization time.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub queued_at: Option<String>,
 }
 
 fn is_zero(n: &u32) -> bool {
@@ -624,11 +1053,223 @@ impl QueueState {
         self.next_try_at.as_deref().and_then(parse_time)
     }
 
+    /// When it may go, as of `now`: its own next try, never before its
+    /// stored `wait_until`. A clock that went back (it reads earlier than
+    /// when the try ended) keeps the same waits from now; no stored time is
+    /// cut. A time stored without when the try ended (an older build) is
+    /// read as at most 7 days from now. `None` when it has no own time.
+    pub fn ready_at(&self, now: DateTime<Utc>) -> Option<DateTime<Utc>> {
+        let next = self.next_try()?;
+        let until = self.wait_until.as_deref().and_then(parse_time);
+        Some(match self.ended_at.as_deref().and_then(parse_time) {
+            Some(ended) if now < ended => {
+                let from_now = |at: DateTime<Utc>| now + (at - ended).max(Duration::zero());
+                let own = from_now(next);
+                until.map_or(own, |until| own.max(from_now(until)))
+            }
+            Some(_) => until.map_or(next, |until| next.max(until)),
+            None => next
+                .max(until.unwrap_or(next))
+                .min(now + Duration::seconds(MAX_SERVER_WAIT_S)),
+        })
+    }
+
+    /// A clock that reads earlier than when its last try ended went back:
+    /// move the times that try set back by the same amount, once, so the wait
+    /// it owed is owed from now and no more (and it is not stranded until
+    /// the clock catches up). `true` when it changed; `next_retry_at` is
+    /// the row's stored time, moved the same way.
+    pub fn reanchor(&mut self, now: DateTime<Utc>, next_retry_at: &mut Option<String>) -> bool {
+        let Some(ended) = self.ended_at.as_deref().and_then(parse_time) else {
+            return false;
+        };
+        if now >= ended {
+            return false;
+        }
+        let back = ended - now;
+        let shift = |stored: &mut Option<String>| {
+            if let Some(at) = stored.as_deref().and_then(parse_time) {
+                *stored = Some((at - back).to_rfc3339());
+            }
+        };
+        shift(&mut self.next_try_at);
+        shift(&mut self.wait_until);
+        shift(&mut self.rotated_at);
+        shift(next_retry_at);
+        self.ended_at = Some(now.to_rfc3339());
+        true
+    }
+
+    /// Stopped until the person presses Retry.
+    pub fn is_stuck(&self) -> bool {
+        self.stuck.is_some()
+    }
+
+    /// When it was moved to the back of the line.
+    pub fn rotated(&self) -> Option<DateTime<Utc>> {
+        self.rotated_at.as_deref().and_then(parse_time)
+    }
+
     /// After a try that did not land.
     pub fn after(&mut self, retry: &Retry) {
         self.failures = retry.failures;
         self.next_try_at = Some(retry.at.to_rfc3339());
         self.slowed = retry.slowed;
+        self.ended_at = Some(retry.ended_at.to_rfc3339());
+        self.wait_until = retry.wait_until.map(|until| until.to_rfc3339());
+        self.not_tried = retry.not_tried;
+        self.skips = 0;
+        self.try_anyway = false;
+        match retry.blame {
+            Some(Blame::Path) => {
+                self.rotated_at = Some(retry.ended_at.to_rfc3339());
+                self.kind = None;
+                self.same_kind = 0;
+            }
+            Some(Blame::Upload) => {
+                self.kind = None;
+                self.same_kind = 0;
+            }
+            Some(Blame::Return | Blame::NoService) => {
+                if retry.kind.is_some() && retry.kind == self.kind {
+                    self.same_kind = self.same_kind.saturating_add(1);
+                } else {
+                    self.kind = retry.kind.clone();
+                    self.same_kind = 1;
+                }
+                if self.same_kind >= STUCK_AFTER {
+                    self.stuck = self.kind.clone();
+                }
+            }
+            None => {}
+        }
+    }
+
+    /// The worker could not take it as the head: the next skip waits
+    /// longer (the same ladder), from `now`.
+    pub fn skipped(&mut self, now: DateTime<Utc>, policy: &QueuePolicy, rng: &mut dyn QueueRng) {
+        self.skips = self.skips.saturating_add(1);
+        let at = next_try_at(
+            Wait::Failed {
+                failures: self.skips,
+                slowed: false,
+            },
+            now,
+            None,
+            now,
+            policy,
+            rng,
+        );
+        self.next_try_at = Some(at.to_rfc3339());
+        self.ended_at = Some(now.to_rfc3339());
+    }
+
+    /// The person's Retry presses still counted at `now` (the last 24 h). A
+    /// press stored "in the future" (the clock went back) reads as now.
+    fn presses(&self, now: DateTime<Utc>) -> Vec<DateTime<Utc>> {
+        let mut presses: Vec<DateTime<Utc>> = self
+            .retries
+            .iter()
+            .filter_map(|at| parse_time(at))
+            .filter(|at| *at > now - Duration::days(1))
+            .map(|at| at.min(now))
+            .collect();
+        presses.sort();
+        presses
+    }
+
+    /// When the person may press Retry on this return again: `None` now.
+    /// At most once per [`RETRY_GAP_S`] and [`RETRIES_PER_DAY`] times in any
+    /// 24 hours.
+    pub fn retry_allowed_at(&self, now: DateTime<Utc>) -> Option<DateTime<Utc>> {
+        let presses = self.presses(now);
+        let after_last = presses
+            .last()
+            .map(|last| *last + Duration::seconds(RETRY_GAP_S));
+        let after_day = (presses.len() >= RETRIES_PER_DAY)
+            .then(|| presses[presses.len() - RETRIES_PER_DAY] + Duration::days(1));
+        after_last
+            .into_iter()
+            .chain(after_day)
+            .max()
+            .filter(|at| *at > now)
+    }
+
+    /// The person pressed Retry at `now` (allowed: see
+    /// [`Self::retry_allowed_at`]): it goes as soon as the line lets it; a
+    /// stop ends. `try_anyway` lets it go before the queue-wide back-off,
+    /// once. Its failure count stays.
+    pub fn press_retry(&mut self, now: DateTime<Utc>, try_anyway: bool) {
+        let mut kept: Vec<String> = self
+            .presses(now)
+            .into_iter()
+            .map(|at| at.to_rfc3339())
+            .collect();
+        kept.push(now.to_rfc3339());
+        self.retries = kept;
+        self.next_try_at = Some(now.to_rfc3339());
+        self.ended_at = Some(now.to_rfc3339());
+        self.wait_until = None;
+        self.stuck = None;
+        self.kind = None;
+        self.same_kind = 0;
+        self.skips = 0;
+        self.try_anyway = try_anyway;
+    }
+
+    /// It went back to Draft at `now` (cancelled, or rejected before a
+    /// try): what the queue knows stays, so a requeue within 6 hours keeps
+    /// its place on the ladder.
+    pub fn left(&mut self, now: DateTime<Utc>, fingerprint: Option<&str>) {
+        if self.is_empty() {
+            return;
+        }
+        self.left_at = Some(now.to_rfc3339());
+        self.fingerprint = fingerprint.map(str::to_owned);
+        self.notices = 0;
+        self.try_anyway = false;
+        self.rotated_at = None;
+        self.queued_at = None;
+    }
+
+    /// Queued again at `now` with `fingerprint`. Within
+    /// [`REQUEUE_KEEP_S`] of leaving, it keeps its failures, its next try
+    /// and its Retry presses; a stop stays when the content is the same.
+    /// Later (or never left), it starts afresh but keeps its Retry presses.
+    pub fn requeued(&self, now: DateTime<Utc>, fingerprint: Option<&str>) -> Self {
+        let fresh = Self {
+            retries: self
+                .presses(now)
+                .into_iter()
+                .map(|at| at.to_rfc3339())
+                .collect(),
+            ..Self::default()
+        };
+        let Some(left) = self.left_at.as_deref().and_then(parse_time) else {
+            return fresh;
+        };
+        if now < left || now - left > Duration::seconds(REQUEUE_KEEP_S) {
+            return fresh;
+        }
+        let same = fingerprint.is_some() && fingerprint == self.fingerprint.as_deref();
+        Self {
+            failures: self.failures,
+            next_try_at: self.next_try_at.clone(),
+            slowed: self.slowed,
+            ended_at: self.ended_at.clone(),
+            wait_until: self.wait_until.clone(),
+            not_tried: self.not_tried,
+            kind: if same { self.kind.clone() } else { None },
+            same_kind: if same { self.same_kind } else { 0 },
+            stuck: if same { self.stuck.clone() } else { None },
+            ..fresh
+        }
+    }
+
+    /// The `next_retry_at` a requeue at `now` stores: now, or its kept own
+    /// time when that is later.
+    pub fn requeue_next_retry_at(&self, now: DateTime<Utc>) -> String {
+        self.ready_at(now).unwrap_or(now).max(now).to_rfc3339()
     }
 }
 
@@ -662,7 +1303,7 @@ pub enum Gate {
     WaitUntil(DateTime<Utc>),
 }
 
-/// The gate for the newest sign (API §9's fixed rules). No sign, or one
+/// The gate for the newest sign (the public contract's fixed rules). No sign, or one
 /// older than `stale_after_s`, is Open: an app that cannot hear the sign
 /// sends as it would without one. A turn wins over `wait_until` and over
 /// admission, and a scout turn over Offline; nothing lifts `relay: paused`.
@@ -726,11 +1367,23 @@ mod tests {
         assert_eq!(PARALLEL, 1);
     }
 
+    /// The numbers reach the waits: a policy the server lengthened is what
+    /// a failed try waits, and one it tried to shorten is not.
     #[test]
-    fn the_api_9_queue_object_reads_as_the_defaults() {
-        let api_9 = json!({ "waits_s": [300, 1800, 3600, 7200], "repeat_s": 7200, "spread": 0.5,
-                            "notice_after_s": 86400, "sign_read_s": 60, "report_s": 300, "stale_after_s": 600 });
-        assert_eq!(QueuePolicy::from_json(&api_9), QueuePolicy::default());
+    fn the_policy_in_use_decides_the_waits() {
+        let longer = QueuePolicy::from_json(&json!({ "waits_s": [600, 3600, 7200, 21600], "repeat_s": 21600, "spread": 0.2 }));
+        let shorter = QueuePolicy::from_json(&json!({ "waits_s": [60, 60, 60, 60], "repeat_s": 60, "spread": 0.5 }));
+        let state = QueueState::default();
+        let ending = Ending::Failed { blame: Blame::Upload, reason: "x" };
+        let mut rng = SeededRng::new(5);
+        for _ in 0..100 {
+            let mut path = PathBackoff::default();
+            let at = plan(&state, ending, false, t0(), t0(), &mut path, &longer, &mut rng).at;
+            let wait = (at - t0()).num_seconds();
+            assert!((480..=720).contains(&wait), "{wait}: 600 s at 0.8 to 1.2");
+            let at = plan(&state, ending, false, t0(), t0(), &mut path, &shorter, &mut rng).at;
+            assert!((at - t0()).num_seconds() >= 150, "never below the default 300 s x 0.5");
+        }
     }
 
     #[test]
@@ -1106,9 +1759,10 @@ mod tests {
             (false, 3, false)
         );
         assert!(
-            not_a_try.at <= t0() + Duration::seconds(450),
-            "the first wait, not the fourth"
+            not_a_try.at >= t0() + Duration::seconds(1800),
+            "never shorter than the wait the return's own failures earned (the fourth)"
         );
+        assert!(not_a_try.not_tried == 1);
         let counted = plan_retry(
             3,
             TryClass::Counted,
@@ -1223,6 +1877,8 @@ mod tests {
             queued_at: t0() - Duration::days(2) + Duration::minutes(queued_min),
             ready_at: ready_min.map(|m| t0() + Duration::minutes(m)),
             blocked: false,
+            rotated: None,
+            try_anyway: false,
         }
     }
 
@@ -1321,36 +1977,47 @@ mod tests {
                         _ => Some(t0() + Duration::days((rng.next_u64() % 400) as i64)),
                     },
                     blocked: rng.next_u64().is_multiple_of(6),
+                    rotated: None,
+                    try_anyway: false,
                 })
                 .collect();
-            let line = line_up(&rows, t0(), &policy);
-            let mut stamps: Vec<DateTime<Utc>> = Vec::new();
+            let floor = match rng.next_u64() % 3 {
+                0 => None,
+                1 => Some(t0() + Duration::minutes((rng.next_u64() % 300) as i64 + 1)),
+                _ => Some(t0() - Duration::minutes(5)),
+            };
+            let line = line_up_after(&rows, t0(), &policy, floor);
+            let mut stamps: Vec<(DateTime<Utc>, usize)> = Vec::new();
             for (i, row) in rows.iter().enumerate() {
                 match line.stamps[i] {
                     None => assert!(row.blocked),
                     Some(stamp) => {
                         assert!(!row.blocked);
-                        assert!(
-                            stamp >= line.ready[i].min(t0()),
-                            "never before its own time"
-                        );
-                        assert!(line.ready[i] <= t0() + policy.longest_wait());
-                        stamps.push(stamp);
+                        let own = row.ready_at.unwrap_or(t0());
+                        if Some(i) != line.head {
+                            assert!(stamp >= own, "never before its own time");
+                        }
+                        if let Some(floor) = floor.filter(|f| *f > t0()) {
+                            assert!(stamp >= floor, "never before the back-off");
+                            assert_eq!(line.head, None, "nobody starts before it");
+                        }
+                        stamps.push((stamp, i));
                     }
                 }
             }
-            stamps.sort();
-            for pair in stamps.windows(2) {
-                assert!(
-                    pair[1] - pair[0] >= Duration::seconds(BEHIND_GAP_S),
-                    "{pair:?}"
-                );
+            // An older build sharing the database ticks once a minute and
+            // sends every row whose stored time has passed. Replay that
+            // over the next day against the stamps: never two in one tick,
+            // and never a row before its own time.
+            for minute in 0..(24 * 60) {
+                let tick = t0() + Duration::minutes(minute);
+                let due: Vec<usize> = stamps
+                    .iter()
+                    .filter(|(at, _)| *at <= tick && *at > tick - Duration::minutes(1))
+                    .map(|(_, i)| *i)
+                    .collect();
+                assert!(due.len() <= 1, "{due:?} at minute {minute}");
             }
-            let due_now = stamps.iter().filter(|stamp| **stamp <= t0()).count();
-            assert!(
-                due_now <= 1,
-                "an older build would find at most one row due"
-            );
             if let Some(head) = line.head {
                 assert!(!rows[head].blocked && line.ready[head] <= t0());
                 assert_eq!(line.stamps[head], Some(t0()));
@@ -1359,12 +2026,256 @@ mod tests {
     }
 
     #[test]
-    fn a_clock_that_went_back_cannot_strand_a_return() {
+    fn no_stored_time_is_cut_and_a_clock_that_went_back_keeps_the_same_waits() {
         let policy = QueuePolicy::default();
-        let far = row(10, 0, Some(60 * 24 * 30));
+        // A server repeat of 6 hours, stored with when the try ended: read
+        // as stored, whatever the policy of this process says.
+        let ended = t0();
+        let state = QueueState {
+            next_try_at: Some((ended + Duration::hours(6)).to_rfc3339()),
+            ended_at: Some(ended.to_rfc3339()),
+            ..QueueState::default()
+        };
+        assert_eq!(
+            state.ready_at(t0() + Duration::minutes(1)),
+            Some(ended + Duration::hours(6))
+        );
+        let far = row(10, 0, Some(60 * 6));
         let line = line_up(&[far], t0(), &policy);
-        assert_eq!(line.ready[0], t0() + policy.longest_wait());
-        assert_eq!(policy.longest_wait(), Duration::seconds(10_800));
+        assert_eq!(line.ready[0], t0() + Duration::hours(6), "not cut");
+        // The clock went back a day: the same 6 hours, counted from now.
+        let back = t0() - Duration::days(1);
+        assert_eq!(state.ready_at(back), Some(back + Duration::hours(6)));
+        // A stored wait_until is never undercut, and goes back with it.
+        let held = QueueState {
+            wait_until: Some((ended + Duration::hours(9)).to_rfc3339()),
+            ..state.clone()
+        };
+        assert_eq!(held.ready_at(t0()), Some(ended + Duration::hours(9)));
+        assert_eq!(held.ready_at(back), Some(back + Duration::hours(9)));
+        // An older build's time, without when it ended: at most 7 days.
+        let old = QueueState {
+            next_try_at: Some((t0() + Duration::days(400)).to_rfc3339()),
+            ..QueueState::default()
+        };
+        assert_eq!(old.ready_at(t0()), Some(t0() + Duration::days(7)));
+    }
+
+    #[test]
+    fn a_wait_until_beyond_seven_days_reads_as_seven_days() {
+        let policy = QueuePolicy::default();
+        let mut rng = SeededRng::new(31);
+        let far = t0() + Duration::days(365);
+        for _ in 0..200 {
+            let at = next_try_at(Wait::NotATry, t0(), Some(far), t0(), &policy, &mut rng);
+            let week = t0() + Duration::seconds(MAX_SERVER_WAIT_S);
+            assert!(at >= week && at <= week + Duration::seconds(MAX_SERVER_WAIT_S / 2 + 1));
+        }
+        assert_eq!(capped_wait_until(far, t0()), t0() + Duration::days(7));
+    }
+
+    // -------------------------------------------- the way in, queue-wide
+
+    fn failed(blame: Blame) -> Ending<'static> {
+        Ending::Failed {
+            blame,
+            reason: "Not sent (nothing reached BIR): the login was refused",
+        }
+    }
+
+    #[test]
+    fn a_path_failure_backs_off_the_whole_queue_on_the_ladder() {
+        let policy = QueuePolicy::default();
+        let mut rng = SeededRng::new(40);
+        let mut path = PathBackoff::default();
+        let state = QueueState::default();
+        let mut now = t0();
+        let mut waits = Vec::new();
+        for _ in 0..6 {
+            let retry = plan(&state, failed(Blame::Path), false, now, now, &mut path, &policy, &mut rng);
+            assert_eq!(retry.failures, 0, "the return's own count does not move");
+            assert!(retry.counted);
+            assert_eq!(path.floor(now), Some(retry.at));
+            waits.push((retry.at - now).num_seconds());
+            now = retry.at;
+        }
+        for (wait, base) in waits.iter().zip([300, 1800, 3600, 7200, 7200, 7200]) {
+            assert!(
+                (*wait as f64) >= base as f64 * 0.5 && (*wait as f64) <= base as f64 * 1.5,
+                "{waits:?}"
+            );
+        }
+        // It survives a restart through its setting.
+        let stored = path.to_setting();
+        assert_eq!(PathBackoff::from_setting(Some(&stored)), path);
+        assert_eq!(PathBackoff::from_setting(Some("not json")), PathBackoff::default());
+        // A landing clears it.
+        path.clear();
+        assert!(path.is_clear() && path.floor(now).is_none());
+    }
+
+    #[test]
+    fn nobody_starts_before_the_back_off_and_then_one_other_return_goes() {
+        let policy = QueuePolicy::default();
+        let floor = t0() + Duration::minutes(5);
+        let mut rows = vec![row(10, 0, None), row(20, 0, None), row(30, 0, None)];
+        // The first was the probe that failed: back of the line.
+        rows[0].rotated = Some(t0());
+        let before = line_up_after(&rows, t0(), &policy, Some(floor));
+        assert_eq!(before.head, None);
+        assert!(before.stamps.iter().all(|s| s.unwrap() >= floor));
+        let at = line_up_after(&rows, floor, &policy, Some(floor));
+        assert_eq!(at.head, Some(1), "due soonest among those not moved back");
+        // "Try anyway" may go before it, and first.
+        rows[2].try_anyway = true;
+        assert_eq!(line_up_after(&rows, t0(), &policy, Some(floor)).head, Some(2));
+    }
+
+    #[test]
+    fn a_not_a_try_climbs_its_own_ladder_and_never_undercuts_the_returns_own_wait() {
+        let policy = QueuePolicy::default();
+        let mut rng = SeededRng::new(41);
+        let mut path = PathBackoff::default();
+        let mut state = QueueState::default();
+        let mut now = t0();
+        let mut waits = Vec::new();
+        for _ in 0..6 {
+            let retry = plan(
+                &state,
+                Ending::NotATry { wait_until: None },
+                false,
+                now,
+                now,
+                &mut path,
+                &policy,
+                &mut rng,
+            );
+            assert!(!retry.counted && path.is_clear());
+            waits.push((retry.at - now).num_seconds());
+            state.after(&retry);
+            now = retry.at;
+        }
+        assert_eq!(state.not_tried, 6);
+        for (wait, base) in waits.iter().zip([300, 1800, 3600, 7200, 7200, 7200]) {
+            assert!((*wait as f64) >= base as f64 * 0.5, "{waits:?}");
+        }
+        // A return three failures in (its own wait 1 h) is not shortened
+        // by a first not-a-try.
+        let three = QueueState {
+            failures: 3,
+            ..QueueState::default()
+        };
+        for _ in 0..200 {
+            let retry = plan(&three, Ending::NotATry { wait_until: None }, false, t0(), t0(), &mut path, &policy, &mut rng);
+            assert!(retry.at >= t0() + Duration::seconds(1800), "{}", retry.at);
+            assert_eq!(retry.failures, 3);
+        }
+        // A counted try resets it.
+        let retry = plan(&state, failed(Blame::Upload), false, now, now, &mut path, &policy, &mut rng);
+        state.after(&retry);
+        assert_eq!((state.not_tried, state.failures), (0, 1));
+    }
+
+    #[test]
+    fn three_refusals_of_the_same_kind_stop_a_return_until_retry() {
+        let policy = QueuePolicy::default();
+        let mut rng = SeededRng::new(42);
+        let mut path = PathBackoff::default();
+        let mut state = QueueState::default();
+        let other = Ending::Failed {
+            blame: Blame::Return,
+            reason: "Not sent (nothing reached BIR): the period is not valid",
+        };
+        for (ending, stuck) in [
+            (failed(Blame::Return), false),
+            (failed(Blame::Return), false),
+            (other, false),
+            (failed(Blame::Return), false),
+            (failed(Blame::Upload), false),
+            (failed(Blame::Return), false),
+            (failed(Blame::Return), false),
+            (failed(Blame::Return), true),
+        ] {
+            let retry = plan(&state, ending, false, t0(), t0(), &mut path, &policy, &mut rng);
+            state.after(&retry);
+            assert_eq!(state.is_stuck(), stuck, "{state:?}");
+        }
+        assert_eq!(state.stuck.as_deref(), Some("the login was refused"));
+        assert!(path.is_clear(), "a return's own failures never touch the back-off");
+        state.press_retry(t0(), false);
+        assert!(!state.is_stuck() && state.same_kind == 0);
+        // No service counts as the return's own kind too.
+        let mut no_service = QueueState::default();
+        for _ in 0..3 {
+            let retry = plan(&no_service, failed(Blame::NoService), true, t0(), t0(), &mut path, &policy, &mut rng);
+            assert!(!retry.slowed, "the device guard does not hear it");
+            no_service.after(&retry);
+        }
+        assert!(no_service.is_stuck());
+    }
+
+    #[test]
+    fn retry_is_once_per_30_minutes_and_three_times_a_day() {
+        let mut state = QueueState::default();
+        let mut now = t0();
+        assert_eq!(state.retry_allowed_at(now), None);
+        state.press_retry(now, false);
+        assert_eq!(state.retry_allowed_at(now), Some(now + Duration::minutes(30)));
+        assert_eq!(
+            state.retry_allowed_at(now + Duration::minutes(29)),
+            Some(now + Duration::minutes(30))
+        );
+        now += Duration::minutes(30);
+        assert_eq!(state.retry_allowed_at(now), None);
+        state.press_retry(now, false);
+        now += Duration::minutes(45);
+        state.press_retry(now, true);
+        assert!(state.try_anyway);
+        // Three today: the next is a day after the first.
+        assert_eq!(state.retry_allowed_at(now + Duration::hours(1)), Some(t0() + Duration::days(1)));
+        assert_eq!(state.retry_allowed_at(t0() + Duration::days(1)), None);
+        // A clock that went back does not reset the count.
+        assert!(state.retry_allowed_at(t0() - Duration::days(3)).is_some());
+    }
+
+    #[test]
+    fn a_requeue_within_six_hours_keeps_its_place_on_the_ladder() {
+        let next = t0() + Duration::hours(1);
+        let mut state = QueueState {
+            failures: 3,
+            next_try_at: Some(next.to_rfc3339()),
+            ended_at: Some(t0().to_rfc3339()),
+            stuck: Some("the login was refused".into()),
+            same_kind: 3,
+            kind: Some("the login was refused".into()),
+            fingerprint: Some("f1".into()),
+            notices: 2,
+            ..QueueState::default()
+        };
+        state.left(t0() + Duration::minutes(1), Some("f1"));
+        let again = state.requeued(t0() + Duration::minutes(2), Some("f1"));
+        assert_eq!((again.failures, again.next_try(), again.notices), (3, Some(next), 0));
+        assert!(again.is_stuck(), "the same content stays stopped");
+        assert_eq!(again.requeue_next_retry_at(t0() + Duration::minutes(2)), next.to_rfc3339());
+        let edited = state.requeued(t0() + Duration::minutes(2), Some("f2"));
+        assert!(!edited.is_stuck() && edited.failures == 3);
+        let later = state.requeued(t0() + Duration::hours(7), Some("f1"));
+        assert_eq!(later.failures, 0);
+        assert!(!later.is_stuck());
+        // Never left (a fresh queueing): fresh.
+        assert_eq!(QueueState::default().requeued(t0(), None).failures, 0);
+    }
+
+    #[test]
+    fn final_codes_are_refusals_and_return_mismatch() {
+        assert!(is_final_reason("Not sent: x (tin_paused)"));
+        assert!(is_final_reason("Not sent (nothing reached BIR): did not match (return_mismatch)"));
+        assert!(is_final_reason("(return_mismatch)"));
+        assert!(!is_final_reason("x(return_mismatch)"));
+        assert!(!is_final_reason("the relay closed early (relay_closed)"));
+        for code in ["rate_limited", "quota_exceeded", "try_anyway_limited"] {
+            assert!(is_limit_code(code) && !is_hold_code(code));
+        }
     }
 
     // ---------------------------------------------------- notices, mode
@@ -1405,11 +2316,17 @@ mod tests {
             counted: true,
             failures: 2,
             slowed: true,
+            ended_at: t0(),
+            wait_until: None,
+            not_tried: 0,
+            blame: Some(Blame::Upload),
+            kind: None,
         });
         assert_eq!(state.next_try(), Some(t0()));
         assert_eq!(
             serde_json::to_value(&state).unwrap(),
-            json!({"failures": 2, "next_try_at": "2026-11-11T07:00:00+00:00", "slowed": true})
+            json!({"failures": 2, "next_try_at": "2026-11-11T07:00:00+00:00", "slowed": true,
+                   "ended_at": "2026-11-11T07:00:00+00:00"})
         );
     }
 

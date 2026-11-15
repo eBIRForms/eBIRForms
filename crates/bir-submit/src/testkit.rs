@@ -156,7 +156,7 @@ pub(crate) fn trust_documents(hosts: &[&str]) -> (String, String, String) {
     (public, jws, json!({ "keys": [sealing] }).to_string())
 }
 
-/// A fixture from `tests/fixtures`, named after its `API.md` section.
+/// A fixture from `tests/fixtures`, a sample of the public contract (`docs/bir-uptime.md` in `buwiz-com/buwiz-com`).
 pub(crate) fn fixture(name: &str) -> String {
     let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("tests/fixtures")
