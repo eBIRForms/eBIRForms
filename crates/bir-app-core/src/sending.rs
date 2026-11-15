@@ -20,9 +20,11 @@ use crate::{AppError, AppResult, BirApp, TinRefusal, TinStep};
 pub enum SendStage {
     /// Waiting for its turn (`next_retry_at`, RFC 3339).
     Queued { next_retry_at: Option<String> },
-    /// Its own time has come, but one return goes at a time: it goes right
-    /// after the one ahead of it (`next_retry_at`, the stored time it waits
-    /// for).
+    /// Its own time has come, but one return goes at a time: another
+    /// queued return is tried before it, and it goes right after
+    /// (`next_retry_at`, the stored time it waits for). Only when another
+    /// really goes first: a return that waits alone for the queue-wide
+    /// back-off reads `Failed` or `Queued` with its time.
     Behind { reason: Option<String>, next_retry_at: Option<String> },
     /// Returns get in for others, but this device's last tries all failed:
     /// it waits at least 2 hours and the problem may be the person's own
@@ -159,6 +161,62 @@ pub(crate) fn sending_now(db: &bir_core::db::Database) -> Result<BTreeSet<i64>, 
 /// needs the person, or may already be at the BIR, keeps its own.
 pub(crate) fn paused_stage(stage: SendStage, paused: bool) -> SendStage {
     if paused && stage.is_waiting() { SendStage::Paused } else { stage }
+}
+
+/// Where a stage's stored next try is, for the stages that wait for one.
+fn stored_time(stage: &SendStage) -> Option<chrono::DateTime<chrono::Utc>> {
+    let at = match stage {
+        SendStage::Queued { next_retry_at }
+        | SendStage::Behind { next_retry_at, .. }
+        | SendStage::SlowedDown { next_retry_at, .. }
+        | SendStage::StillWaiting { next_retry_at, .. }
+        | SendStage::Failed { next_retry_at, .. } => next_retry_at.as_deref()?,
+        _ => return None,
+    };
+    bir_core::smart_queue::parse_time(at)
+}
+
+/// A row's stage reads `Behind` when its stored time is later than its own,
+/// which also happens when it only waits for the queue-wide back-off. This
+/// keeps `Behind` for a return that has another one ahead of it (one being
+/// sent, or waiting with an earlier stored time, ties by id) and lets the
+/// rest read as what they are: `Failed` with the reason, or `Queued`, each
+/// with its time. `rows` are each return's id, stage and stored attempts.
+pub(crate) fn settle_behind(rows: Vec<(i64, SendStage, u32)>) -> BTreeMap<i64, SendStage> {
+    let goes_first = |id: i64, at: Option<chrono::DateTime<chrono::Utc>>| {
+        rows.iter().any(|(other, stage, _)| {
+            *other != id
+                && match stage {
+                    SendStage::Sending => true,
+                    SendStage::Queued { .. }
+                    | SendStage::Behind { .. }
+                    | SendStage::SlowedDown { .. }
+                    | SendStage::StillWaiting { .. }
+                    | SendStage::Failed { .. } => match (stored_time(stage), at) {
+                        (Some(theirs), Some(ours)) => (theirs, *other) < (ours, id),
+                        _ => false,
+                    },
+                    _ => false,
+                }
+        })
+    };
+    let ahead: BTreeSet<i64> = rows
+        .iter()
+        .filter(|(id, stage, _)| matches!(stage, SendStage::Behind { .. }) && goes_first(*id, stored_time(stage)))
+        .map(|(id, _, _)| *id)
+        .collect();
+    rows.into_iter()
+        .map(|(id, stage, attempts)| {
+            let stage = match stage {
+                SendStage::Behind { reason, next_retry_at } if !ahead.contains(&id) => match reason {
+                    Some(reason) => SendStage::Failed { reason, attempts, next_retry_at },
+                    None => SendStage::Queued { next_retry_at },
+                },
+                stage => stage,
+            };
+            (id, stage)
+        })
+        .collect()
 }
 
 /// The stage to show. A claim writes its "outcome pending" note as it is
@@ -370,6 +428,13 @@ pub fn queue_line(stage: &SendStage, now: chrono::DateTime<chrono::Utc>) -> Opti
             format!("Still waiting after {hours} hours. It keeps trying by itself; you can cancel it or file another way.")
         }
         SendStage::Paused => "Your queue is paused · press Auto to send".to_owned(),
+        // Waiting a while for the queue-wide back-off, with nothing to say
+        // but when: a time a minute away or less is just "waiting to send".
+        SendStage::Queued { next_retry_at: Some(at) }
+            if bir_core::smart_queue::parse_time(at).is_some_and(|at| at > now + chrono::Duration::seconds(60)) =>
+        {
+            tries_again(Some(at.as_str()), now)
+        }
         SendStage::Failed { reason, next_retry_at, .. } => {
             let plain = plain_send_error(reason);
             match plain.action {
@@ -420,15 +485,20 @@ impl BirApp {
         let db = self.db.lock().map_err(|_| AppError::Call("the database lock is poisoned".into()))?;
         let sending = sending_now(&db)?;
         let paused = QueueMode::from_setting(db.get_setting(bir_core::smart_queue::QUEUE_MODE_SETTING)?.as_deref()) == QueueMode::Paused;
-        let mut out = BTreeMap::new();
+        let mut stages = Vec::new();
         for (id, form_code) in rows {
             if let Some((status, json)) = db.draft_status_and_json(id)?
                 && let Ok(data) = serde_json::from_str::<Value>(&json)
                 && let Some(stage) = send_stage_for(&form_code, &status, &data)
             {
-                let stage = paused_stage(stage, paused);
-                out.insert(id, shown_stage(stage, sending.contains(&id)));
+                let attempts = data.get("submission_attempts").and_then(Value::as_u64).unwrap_or(0) as u32;
+                stages.push((id, shown_stage(stage, sending.contains(&id)), attempts));
             }
+        }
+        // Behind only where another return really goes first.
+        let mut out = settle_behind(stages);
+        for stage in out.values_mut() {
+            *stage = paused_stage(std::mem::replace(stage, SendStage::Paused), paused);
         }
         Ok(out)
     }
@@ -804,6 +874,67 @@ mod tests {
         assert!(matches!(send_stage("Queued", &claimed), Some(SendStage::NeedsAttention { .. })));
         // A row from before the smart queue reads as it did.
         assert_eq!(send_stage("Queued", &json!({"next_retry_at": later})), Some(SendStage::Queued { next_retry_at: Some(later.into()) }));
+    }
+
+    /// Rows as the worker leaves them: `own` is the return's own next try,
+    /// `stored` the time on its row (later when it waits behind another or
+    /// for the queue-wide back-off).
+    fn stage_of_row(id: i64, own: &str, stored: &str, error: Option<&str>) -> (i64, SendStage, u32) {
+        let mut data = json!({"next_retry_at": stored, "submission_attempts": 2, "smart_queue": {"next_try_at": own, "failures": 1}});
+        if let Some(error) = error {
+            data["submission_error"] = json!(error);
+        }
+        (id, send_stage("Queued", &data).unwrap(), 2)
+    }
+
+    #[test]
+    fn behind_needs_another_return_that_goes_first() {
+        let own = "2026-11-11T09:00:00+00:00";
+        let floor = "2026-11-11T09:30:00+00:00";
+        let reason = "Not sent (nothing reached BIR): the BIR could not be reached";
+        // Alone, waiting only for the queue-wide back-off: no one is ahead.
+        let alone = settle_behind(vec![stage_of_row(1, own, floor, Some(reason))]);
+        assert_eq!(
+            alone[&1],
+            SendStage::Failed { reason: reason.into(), attempts: 2, next_retry_at: Some(floor.into()) }
+        );
+        let fresh = settle_behind(vec![stage_of_row(1, own, floor, None)]);
+        assert_eq!(fresh[&1], SendStage::Queued { next_retry_at: Some(floor.into()) });
+        // Two waiting on the same back-off: the earlier stored time is the
+        // head and the other goes right after it.
+        let line_up = settle_behind(vec![
+            stage_of_row(1, own, floor, Some(reason)),
+            stage_of_row(2, own, "2026-11-11T09:31:00+00:00", Some(reason)),
+        ]);
+        assert!(matches!(line_up[&1], SendStage::Failed { .. }), "{:?}", line_up[&1]);
+        assert_eq!(
+            line_up[&2],
+            SendStage::Behind { reason: Some(reason.into()), next_retry_at: Some("2026-11-11T09:31:00+00:00".into()) }
+        );
+        // One being sent goes first.
+        let sending = settle_behind(vec![stage_of_row(1, own, floor, None), (2, SendStage::Sending, 0)]);
+        assert!(matches!(sending[&1], SendStage::Behind { .. }));
+        // One stopped, or that may be at the BIR, is not tried before it.
+        let stopped = settle_behind(vec![
+            stage_of_row(1, own, floor, None),
+            (2, SendStage::NeedsYou { reason: "x".into() }, 0),
+            (3, SendStage::NeedsAttention { reason: "x".into() }, 0),
+        ]);
+        assert!(matches!(stopped[&1], SendStage::Queued { .. }));
+    }
+
+    #[test]
+    fn a_return_waiting_for_the_queue_wide_wait_says_when() {
+        let now = chrono::DateTime::parse_from_rfc3339("2026-11-11T09:00:00Z").unwrap().with_timezone(&chrono::Utc);
+        let at = |minutes: i64| Some((now + chrono::Duration::minutes(minutes)).to_rfc3339());
+        assert_eq!(
+            queue_line(&SendStage::Failed { reason: "Not sent (nothing reached BIR): the BIR could not be reached".into(), attempts: 2, next_retry_at: at(30) }, now).unwrap(),
+            "The BIR could not be reached. Tries again in about 30 min."
+        );
+        assert_eq!(queue_line(&SendStage::Queued { next_retry_at: at(30) }, now).unwrap(), "Tries again in about 30 min.");
+        // Due now or within a minute: just waiting to send.
+        assert_eq!(queue_line(&SendStage::Queued { next_retry_at: at(0) }, now), None);
+        assert_eq!(queue_line(&SendStage::Queued { next_retry_at: None }, now), None);
     }
 
     #[test]

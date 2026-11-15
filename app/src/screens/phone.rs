@@ -101,6 +101,15 @@ fn row_line(r: &ReturnRow) -> String {
     match store().send_stage_of(r.id) {
         Some(SendStage::Failed { reason, .. }) => plain_send_error(&reason).text,
         Some(SendStage::Sending) => "Sending now…".to_owned(),
+        // Still queued: a stopped return reads as needing the person, the
+        // others as waiting, each in the queue's own words.
+        Some(
+            stage @ (SendStage::NeedsYou { .. }
+            | SendStage::Behind { .. }
+            | SendStage::SlowedDown { .. }
+            | SendStage::StillWaiting { .. }
+            | SendStage::Paused),
+        ) => bir_app_core::queue_line(&stage, chrono::Utc::now()).unwrap_or_else(|| "Waiting to send".to_owned()),
         Some(SendStage::NeedsAttention { .. }) => "Check BIR's confirmation email".to_owned(),
         Some(SendStage::GaveUp { .. }) => "Not sent after five tries".to_owned(),
         Some(SendStage::Sent { receipt: Some(rc), .. }) if rc.is_test() => format!("Test send {when}"),

@@ -42,7 +42,10 @@ pub(crate) fn shown_status(r: &ReturnRow) -> String {
 /// The line under a return in a send list: where it is, in plain words.
 pub(crate) fn stage_line(stage: Option<&SendStage>) -> String {
     match stage {
-        None | Some(SendStage::Queued { .. }) => "Waiting to send. It goes by itself when you're online and signed in.".to_owned(),
+        None => "Waiting to send. It goes by itself when you're online and signed in.".to_owned(),
+        // Waits a while for the queue-wide back-off: its time, else the plain words.
+        Some(stage @ SendStage::Queued { .. }) => bir_app_core::queue_line(stage, chrono::Utc::now())
+            .unwrap_or_else(|| "Waiting to send. It goes by itself when you're online and signed in.".to_owned()),
         Some(SendStage::Sending) => "Sending to BIR now…".to_owned(),
         // Still queued: the worker keeps trying, however long the outage.
         Some(stage @ (SendStage::Failed { .. } | SendStage::Behind { .. } | SendStage::NeedsYou { .. } | SendStage::SlowedDown { .. } | SendStage::StillWaiting { .. } | SendStage::Paused)) => {
