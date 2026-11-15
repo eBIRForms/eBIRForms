@@ -125,7 +125,9 @@ where
                                 opened = true;
                                 continue;
                             }
-                            Ok(Err((kind, error))) => refused(stream, error.to_string(), kind, port),
+                            Ok(Err((kind, error))) => {
+                                refused(stream, error.to_string(), kind, port)
+                            }
                             Err(_) => refused(
                                 stream,
                                 "connection timed out".into(),
@@ -254,13 +256,26 @@ struct RefusedFrame {
 }
 
 fn refused(stream: u8, reason: String, kind: Option<RefusedKind>, port: u16) -> Message {
-    let frame = RefusedFrame { frame: "refused", stream, reason, kind, port };
-    Message::Text(serde_json::to_string(&frame).expect("controls serialize").into())
+    let frame = RefusedFrame {
+        frame: "refused",
+        stream,
+        reason,
+        kind,
+        port,
+    };
+    Message::Text(
+        serde_json::to_string(&frame)
+            .expect("controls serialize")
+            .into(),
+    )
 }
 
 /// Resolve `host`, then connect to its addresses in turn, as
 /// `TcpStream::connect((host, port))` does, telling a failed lookup apart.
-async fn connect(host: &str, port: u16) -> Result<TcpStream, (Option<RefusedKind>, std::io::Error)> {
+async fn connect(
+    host: &str,
+    port: u16,
+) -> Result<TcpStream, (Option<RefusedKind>, std::io::Error)> {
     let addresses: Vec<std::net::SocketAddr> = tokio::net::lookup_host((host, port))
         .await
         .map_err(|error| (Some(RefusedKind::Dns), error))?
@@ -268,10 +283,15 @@ async fn connect(host: &str, port: u16) -> Result<TcpStream, (Option<RefusedKind
     if addresses.is_empty() {
         return Err((
             Some(RefusedKind::Dns),
-            std::io::Error::new(std::io::ErrorKind::NotFound, format!("no address for {host}")),
+            std::io::Error::new(
+                std::io::ErrorKind::NotFound,
+                format!("no address for {host}"),
+            ),
         ));
     }
-    TcpStream::connect(&addresses[..]).await.map_err(|error| (RefusedKind::of(&error), error))
+    TcpStream::connect(&addresses[..])
+        .await
+        .map_err(|error| (RefusedKind::of(&error), error))
 }
 
 fn control(control: &Control) -> Message {
@@ -326,7 +346,12 @@ mod tests {
     use tokio_tungstenite::tungstenite::protocol::Role;
 
     /// The app's end of a pipe over memory, and the server's end to drive.
-    async fn pipe(hosts: &[&str]) -> (tokio::task::JoinHandle<Ended>, WebSocketStream<tokio::io::DuplexStream>) {
+    async fn pipe(
+        hosts: &[&str],
+    ) -> (
+        tokio::task::JoinHandle<Ended>,
+        WebSocketStream<tokio::io::DuplexStream>,
+    ) {
         let (public, jws, _) = trust_documents(hosts);
         let list = crate::trust::verify(&[public], &jws, crate::device::now()).unwrap();
         let (app, server) = tokio::io::duplex(64 * 1024);
@@ -351,7 +376,15 @@ mod tests {
         let (app, mut server) = pipe(&[]).await;
         let frame = fixture("api-5.2-v1-relay-hold-result.json");
         server.send(Message::Text(frame.into())).await.unwrap();
-        let Ended::Result { status, error, receipt, class, hold, bir } = app.await.unwrap() else {
+        let Ended::Result {
+            status,
+            error,
+            receipt,
+            class,
+            hold,
+            bir,
+        } = app.await.unwrap()
+        else {
             panic!("a result")
         };
         assert_eq!(status, "failed");
@@ -360,7 +393,10 @@ mod tests {
         assert_eq!(class.as_deref(), Some("ours"));
         let hold = hold.unwrap();
         assert_eq!(hold.code.as_deref(), Some("bir_offline"));
-        assert_eq!(hold.wait_until, bir_core::smart_queue::parse_time("2026-11-11T09:13:41Z"));
+        assert_eq!(
+            hold.wait_until,
+            bir_core::smart_queue::parse_time("2026-11-11T09:13:41Z")
+        );
         assert_eq!(bir.unwrap()["seq"], 4183);
     }
 
@@ -386,7 +422,9 @@ mod tests {
         let (app, mut server) = pipe(&[]).await;
         let frame = fixture("api-10-relay-result-failed-bir.json");
         server.send(Message::Text(frame.into())).await.unwrap();
-        let Ended::Result { class, hold, .. } = app.await.unwrap() else { panic!() };
+        let Ended::Result { class, hold, .. } = app.await.unwrap() else {
+            panic!()
+        };
         assert_eq!((class.as_deref(), hold), (Some("bir"), None));
     }
 
@@ -400,7 +438,15 @@ mod tests {
         let listed = format!("127.0.0.1:{port}");
         let (app, mut server) = pipe(&[&listed]).await;
         let open = |stream: u8, port: u16| {
-            Message::Text(serde_json::to_string(&Control::Open { stream, host: "127.0.0.1".into(), port }).unwrap().into())
+            Message::Text(
+                serde_json::to_string(&Control::Open {
+                    stream,
+                    host: "127.0.0.1".into(),
+                    port,
+                })
+                .unwrap()
+                .into(),
+            )
         };
         server.send(open(1, port + 1)).await.unwrap();
         let answer = next_text(&mut server).await;
@@ -409,11 +455,18 @@ mod tests {
         assert_eq!(answer["port"], port + 1);
         assert_eq!(
             serde_json::from_value::<Control>(answer.clone()).unwrap(),
-            Control::Refused { stream: 1, reason: format!("127.0.0.1:{} is not on the signed trust list", port + 1) }
+            Control::Refused {
+                stream: 1,
+                reason: format!("127.0.0.1:{} is not on the signed trust list", port + 1)
+            }
         );
         server.send(open(2, port)).await.unwrap();
         let answer = next_text(&mut server).await;
-        assert_eq!((answer["stream"].clone(), answer["kind"].clone()), (json!(2), json!("refused")), "{answer}");
+        assert_eq!(
+            (answer["stream"].clone(), answer["kind"].clone()),
+            (json!(2), json!("refused")),
+            "{answer}"
+        );
         assert_eq!(answer["port"], port);
         server.close(None).await.unwrap();
         assert_eq!(app.await.unwrap(), Ended::Dropped { opened: false });
@@ -426,7 +479,10 @@ mod tests {
             (ErrorKind::ConnectionRefused, Some(RefusedKind::Refused)),
             (ErrorKind::HostUnreachable, Some(RefusedKind::Refused)),
             (ErrorKind::TimedOut, Some(RefusedKind::Timeout)),
-            (ErrorKind::NetworkUnreachable, Some(RefusedKind::Unreachable)),
+            (
+                ErrorKind::NetworkUnreachable,
+                Some(RefusedKind::Unreachable),
+            ),
             (ErrorKind::PermissionDenied, Some(RefusedKind::Denied)),
             (ErrorKind::ConnectionReset, None),
             (ErrorKind::Other, None),
@@ -445,13 +501,25 @@ mod tests {
         .into_iter()
         .map(|kind| serde_json::to_value(kind).unwrap())
         .collect();
-        assert_eq!(words, [json!("dns"), json!("refused"), json!("timeout"), json!("unreachable"), json!("denied"), json!("not_listed")]);
+        assert_eq!(
+            words,
+            [
+                json!("dns"),
+                json!("refused"),
+                json!("timeout"),
+                json!("unreachable"),
+                json!("denied"),
+                json!("not_listed")
+            ]
+        );
     }
 
     #[tokio::test]
     async fn a_name_that_does_not_resolve_is_dns() {
         // An empty name fails in the resolver before any query goes out.
-        let Err((kind, _)) = connect("", 443).await else { panic!("resolved an empty name") };
+        let Err((kind, _)) = connect("", 443).await else {
+            panic!("resolved an empty name")
+        };
         assert_eq!(kind, Some(RefusedKind::Dns));
     }
 }

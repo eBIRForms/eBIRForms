@@ -36,7 +36,11 @@ pub(crate) struct Answer {
 
 impl Answer {
     pub fn json(status: u16, body: &Value) -> Self {
-        Self { status, headers: Vec::new(), body: body.to_string() }
+        Self {
+            status,
+            headers: Vec::new(),
+            body: body.to_string(),
+        }
     }
 
     pub fn with(mut self, name: &'static str, value: impl Into<String>) -> Self {
@@ -80,7 +84,11 @@ pub(crate) fn serve(
             }
             let mut body = vec![0; length];
             let _ = reader.read_exact(&mut body);
-            let request = Seen { method, path, headers };
+            let request = Seen {
+                method,
+                path,
+                headers,
+            };
             let reply = answer(&request);
             log.lock().unwrap().push(request);
             let mut head = format!(
@@ -141,13 +149,18 @@ pub(crate) fn trust_documents(hosts: &[&str]) -> (String, String, String) {
         URL_SAFE_NO_PAD.encode(serde_json::to_vec(&header).unwrap()),
         URL_SAFE_NO_PAD.encode(serde_json::to_vec(&claims).unwrap())
     );
-    let jws = format!("{input}.{}", URL_SAFE_NO_PAD.encode(key.sign(input.as_bytes()).to_bytes()));
+    let jws = format!(
+        "{input}.{}",
+        URL_SAFE_NO_PAD.encode(key.sign(input.as_bytes()).to_bytes())
+    );
     (public, jws, json!({ "keys": [sealing] }).to_string())
 }
 
 /// A fixture from `tests/fixtures`, named after its `API.md` section.
 pub(crate) fn fixture(name: &str) -> String {
-    let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures").join(name);
+    let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("tests/fixtures")
+        .join(name);
     std::fs::read_to_string(&path).unwrap_or_else(|error| panic!("{}: {error}", path.display()))
 }
 
