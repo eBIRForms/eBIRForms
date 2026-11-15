@@ -1815,6 +1815,9 @@ struct QueuedRow {
     notices: u32,
 }
 
+/// A return's form and period, for its due date.
+type DueKey = (String, u16, Option<u8>, Option<u8>);
+
 /// Every queued return of a TIN this database has a profile for, with what
 /// [`smart_queue::line_up`] needs. Read from the stored JSON; nothing is
 /// written here.
@@ -1823,8 +1826,7 @@ fn queued_rows(db: &Database, profiles: &[TaxpayerProfile], now: DateTime<Utc>) 
         .iter()
         .map(|profile| (profile.tin.full(), profile))
         .collect();
-    let mut due_dates: HashMap<(String, u16, Option<u8>, Option<u8>), Option<chrono::NaiveDate>> =
-        HashMap::new();
+    let mut due_dates: HashMap<DueKey, Option<chrono::NaiveDate>> = HashMap::new();
     let mut rows = Vec::new();
     for summary in db.list_all_queued_submissions().unwrap_or_default() {
         if summary.status != FilingStatus::Queued
