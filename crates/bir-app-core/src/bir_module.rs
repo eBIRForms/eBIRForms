@@ -734,7 +734,7 @@ fn optional_text(arguments: &HostArguments, index: usize) -> Result<Option<Strin
 /// [`crate::sending::shown_stage`]: a claim this process is still sending
 /// reads `Sending`): `{ stage, reason, chip, line, next, step, claim,
 /// releasable }`. `stage` is named as its `SendStage` variant (`Queued`,
-/// `Sending`, `Failed`, `NeedsAttention`, `GaveUp`, `Refused`, `Sent`,
+/// `Sending`, `Failed`, `NeedsYou`, `NeedsAttention`, `GaveUp`, `Refused`, `Sent`,
 /// `Confirmed`, `Paid`), `reason` set for the four that carry one (both null
 /// for a plain draft). For a refusal for the TIN (`Refused`, or a `Failed`
 /// whose reason carries a code) `chip`, `line`, `next` and `step` (`add`,
@@ -759,7 +759,15 @@ fn queued_send_state(arguments: &HostArguments) -> HostResult {
             ReleaseGate::Releasable
         );
         let data: serde_json::Value = serde_json::from_str(&claim.json).map_err(db_error)?;
+        // Paused stops everything that still waits by itself, here as in
+        // the list of stages.
+        let paused = bir_core::smart_queue::QueueMode::from_setting(
+            db.get_setting(bir_core::smart_queue::QUEUE_MODE_SETTING)
+                .map_err(db_error)?
+                .as_deref(),
+        ) == bir_core::smart_queue::QueueMode::Paused;
         let stage = crate::sending::send_stage_for(&form_code, &claim.status, &data)
+            .map(|stage| crate::sending::paused_stage(stage, paused))
             .map(|stage| crate::sending::shown_stage(stage, claim.sending_now));
         let statement = stage
             .as_ref()
@@ -808,7 +816,8 @@ fn stage_name(stage: &crate::sending::SendStage) -> (&'static str, Option<String
     use crate::sending::SendStage;
     match stage {
         SendStage::Queued { .. } => ("Queued", None),
-        SendStage::Behind { .. } => ("Behind", None),
+        SendStage::Behind { reason, .. } => ("Behind", reason.clone()),
+        SendStage::NeedsYou { reason } => ("NeedsYou", Some(reason.clone())),
         SendStage::SlowedDown { reason, .. } => ("SlowedDown", Some(reason.clone())),
         SendStage::StillWaiting { reason, .. } => ("StillWaiting", reason.clone()),
         SendStage::Paused => ("Paused", None),

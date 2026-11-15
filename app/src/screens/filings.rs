@@ -45,7 +45,7 @@ pub(crate) fn stage_line(stage: Option<&SendStage>) -> String {
         None | Some(SendStage::Queued { .. }) => "Waiting to send. It goes by itself when you're online and signed in.".to_owned(),
         Some(SendStage::Sending) => "Sending to BIR now…".to_owned(),
         // Still queued: the worker keeps trying, however long the outage.
-        Some(stage @ (SendStage::Failed { .. } | SendStage::Behind { .. } | SendStage::SlowedDown { .. } | SendStage::StillWaiting { .. } | SendStage::Paused)) => {
+        Some(stage @ (SendStage::Failed { .. } | SendStage::Behind { .. } | SendStage::NeedsYou { .. } | SendStage::SlowedDown { .. } | SendStage::StillWaiting { .. } | SendStage::Paused)) => {
             bir_app_core::queue_line(stage, chrono::Utc::now()).unwrap_or_default()
         }
         Some(SendStage::NeedsAttention { .. }) => "BIR may already have this return. Check for BIR's confirmation email before you do anything else.".to_owned(),
@@ -228,7 +228,7 @@ fn queue_page() -> impl IntoElement {
         view()
             .gap(px(4.0))
             .child(page_title("Send queue"))
-            .child(text("Queued returns send by themselves, oldest first, when you're online and signed in. Every taxpayer's returns are here.").text_size(px(13.0)).text_color(theme::FG2))
+            .child(text("Queued returns send by themselves, one at a time: the one with the earliest BIR due date goes first, then the one queued first. They are listed here in the order they were queued, and every taxpayer's returns are here. When the BIR cannot be reached, every return waits together and one tries again at a time.").text_size(px(13.0)).text_color(theme::FG2))
             .child(sign_in_band())
             .child(view().h(px(12.0)))
             .child(section_title("Waiting to send", true))
@@ -278,8 +278,16 @@ fn queue_row(r: ReturnRow, index: ReadSignal<usize>) -> impl IntoElement {
     let stage = move || st.send_stage_of(id);
     let (open, cancel) = (r.clone(), r.clone());
     let line = move || stage_line(stage().as_ref());
-    let failed = move || matches!(stage(), Some(SendStage::Failed { .. }));
-    let alarm = move || matches!(stage(), Some(SendStage::Failed { .. } | SendStage::NeedsAttention { .. }));
+    // Retry is for a return that failed or stopped, within its limits (once
+    // per 30 minutes, three times a day); a return that is only behind
+    // another keeps the reason it failed, and Retry with it.
+    let failed = move || {
+        matches!(
+            stage(),
+            Some(SendStage::Failed { .. } | SendStage::NeedsYou { .. } | SendStage::Behind { reason: Some(_), .. } | SendStage::SlowedDown { .. } | SendStage::StillWaiting { reason: Some(_), .. })
+        )
+    };
+    let alarm = move || matches!(stage(), Some(SendStage::Failed { .. } | SendStage::NeedsYou { .. } | SendStage::NeedsAttention { .. }));
     let busy = move || matches!(stage(), Some(SendStage::Sending | SendStage::NeedsAttention { .. }));
     let action = move || match stage() {
         Some(SendStage::Failed { reason, .. }) => plain_send_error(&reason).action,
@@ -301,12 +309,13 @@ fn queue_row(r: ReturnRow, index: ReadSignal<usize>) -> impl IntoElement {
         )
         .child(each(move || vec![match stage() {
             Some(SendStage::Failed { .. }) => "Failed",
+            Some(SendStage::NeedsYou { .. }) => "Needs you",
             Some(SendStage::Sending) => "Sending",
             Some(SendStage::NeedsAttention { .. }) => "Needs attention",
             _ => "Queued",
         }], |s| *s, |s, _| {
             let label = s.get_untracked();
-            chip(label, if label == "Needs attention" { crate::widgets::Tone::Danger } else { status_tone(label) })
+            chip(label, if label == "Needs attention" || label == "Needs you" { crate::widgets::Tone::Danger } else { status_tone(label) })
         }))
         .child(when(move || action() == ErrorAction::SignIn || (signed_out() && !busy()), move || {
             button_sm("Sign in", Variant::Secondary, None, || false, move || {

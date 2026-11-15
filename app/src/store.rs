@@ -573,7 +573,7 @@ impl Store {
     /// few seconds so Sending, Sent and Failed show as the worker moves.
     fn start_sending(&'static self) {
         task(async move {
-            match call(|app| app.launch_sending()).await {
+            match call(|app| app.launch_sending_as("desktop", env!("CARGO_PKG_VERSION"))).await {
                 Ok(client) => {
                     let _ = SUBMISSION.set(client);
                     self.read_sign_in();
@@ -676,16 +676,24 @@ impl Store {
         });
     }
 
-    /// Send a failed return again now (not after its backoff).
+    /// Send a failed return again now (not after its backoff), within the
+    /// limits of a person's Retry: once per 30 minutes and three times a day
+    /// for each return, and never before the queue-wide wait after the BIR's
+    /// front desk could not be reached. A press that is too soon is answered
+    /// with when Retry may be pressed again.
     pub(crate) fn retry(&'static self, id: i64) {
         task(async move {
-            match call(move |app| app.retry_now(id)).await {
-                Ok(()) => {
+            match call(move |app| app.retry(id, false)).await {
+                Ok(bir_app_core::RetryAnswer::Going { not_before }) => {
                     if let Some(c) = submission() {
                         c.send_now();
                     }
-                    self.notify(NoticeTone::Success, "Sending again now.");
+                    let words = bir_app_core::retry_going_words(not_before, chrono::Utc::now());
+                    self.notify(NoticeTone::Success, words);
                     self.reload_send_stages();
+                }
+                Ok(bir_app_core::RetryAnswer::NotBefore(at)) => {
+                    self.notify(NoticeTone::Info, bir_app_core::retry_wait_words(at, chrono::Utc::now()));
                 }
                 Err(why) => self.notify(NoticeTone::Danger, why),
             }

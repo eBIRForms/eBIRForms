@@ -49,7 +49,7 @@ pub(crate) fn sign_in(app: &BirApp) -> Result<Option<Option<String>>, String> {
     if bir_app_core::bir_core::keychain_disabled() {
         return Err("BUWIZ_NO_KEYCHAIN is set, so the sign-in in the keychain is not read".into());
     }
-    let submission = app.submission().map_err(|error| error.to_string())?;
+    let submission = app.submission_as("ebirdesk-mcp", env!("CARGO_PKG_VERSION")).map_err(|error| error.to_string())?;
     Ok(match submission.sign_in_status() {
         SignInStatus::SignedIn { email } => Some(email),
         _ => None,
@@ -71,7 +71,7 @@ impl Sends {
         if bir_app_core::bir_core::keychain_disabled() {
             return Ok(Sending::SignedOut);
         }
-        let submission = app.submission().map_err(|error| error.to_string())?;
+        let submission = app.submission_as("ebirdesk-mcp", env!("CARGO_PKG_VERSION")).map_err(|error| error.to_string())?;
         if !matches!(submission.sign_in_status(), SignInStatus::SignedIn { .. }) {
             return Ok(Sending::SignedOut);
         }

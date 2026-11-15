@@ -3,7 +3,8 @@
 //! failures and the signed receipt on the return, and [`send_stage_for`] turns
 //! those fields into what the person sees. [`plain_send_error`] puts the
 //! worker's and the relay's reasons in plain words, and [`queue_line`] the
-//! smart queue's states (API.md section 10).
+//! smart queue's states (the public contract, `docs/bir-uptime.md` in
+//! `buwiz-com/buwiz-com`).
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -22,7 +23,7 @@ pub enum SendStage {
     /// Its own time has come, but one return goes at a time: it goes right
     /// after the one ahead of it (`next_retry_at`, the stored time it waits
     /// for).
-    Behind { next_retry_at: Option<String> },
+    Behind { reason: Option<String>, next_retry_at: Option<String> },
     /// Returns get in for others, but this device's last tries all failed:
     /// it waits at least 2 hours and the problem may be the person's own
     /// connection. Still queued; `reason` is the last failure.
@@ -30,6 +31,11 @@ pub enum SendStage {
     /// Still not sent a day (`notice_after_s`) after it was queued
     /// (`since`). Still queued and still trying by itself.
     StillWaiting { since: String, reason: Option<String>, next_retry_at: Option<String> },
+    /// It keeps being refused for the same reason about the return itself
+    /// (a refused login, no upload service for its TIN, the same
+    /// validation refusal), so its automatic tries stopped. Still queued,
+    /// and nothing else is affected; the person's Retry tries it again.
+    NeedsYou { reason: String },
     /// The person switched the queue to Paused: nothing goes until Auto.
     Paused,
     /// The worker holds it and is sending it now.
@@ -53,13 +59,14 @@ pub enum SendStage {
 
 impl SendStage {
     /// The stable word for the stage, for the mini app and tools:
-    /// `queued`, `behind`, `slowed_down`, `still_waiting`, `paused`,
+    /// `queued`, `behind`, `slowed_down`, `still_waiting`, `needs_you`, `paused`,
     /// `sending`, `failed`, `needs_attention`, `gave_up`, `refused`, `sent`,
     /// `confirmed`, `paid`.
     pub fn name(&self) -> &'static str {
         match self {
             SendStage::Queued { .. } => "queued",
             SendStage::Behind { .. } => "behind",
+            SendStage::NeedsYou { .. } => "needs_you",
             SendStage::SlowedDown { .. } => "slowed_down",
             SendStage::StillWaiting { .. } => "still_waiting",
             SendStage::Paused => "paused",
@@ -147,6 +154,13 @@ pub(crate) fn sending_now(db: &bir_core::db::Database) -> Result<BTreeSet<i64>, 
     Ok(queued.into_iter().filter(|summary| jobs.contains(&bir_core::background_cron::queue_job_key(summary))).map(|summary| summary.id).collect())
 }
 
+/// Paused stops everything that is still waiting by itself: such a stage
+/// reads [`SendStage::Paused`] while the queue is paused. A return that
+/// needs the person, or may already be at the BIR, keeps its own.
+pub(crate) fn paused_stage(stage: SendStage, paused: bool) -> SendStage {
+    if paused && stage.is_waiting() { SendStage::Paused } else { stage }
+}
+
 /// The stage to show. A claim writes its "outcome pending" note as it is
 /// taken, so a claimed return reads `NeedsAttention` from that instant;
 /// while this process is still sending it (`sending_now`) it is `Sending`.
@@ -171,6 +185,10 @@ fn stage_with_error(status: &str, data: &Value, error: Option<String>) -> Option
             None => SendStage::Sending,
         }),
         // The queue raised its "still waiting" notice for this queueing.
+        // Stopped: three refusals of the same kind about the return itself.
+        "Queued" if queue.is_stuck() => Some(SendStage::NeedsYou {
+            reason: error.or_else(|| queue.stuck.clone()).unwrap_or_default(),
+        }),
         "Queued" if queue.notices > 0 => Some(SendStage::StillWaiting {
             since: data
                 .get("queue_authorization")
@@ -189,7 +207,7 @@ fn stage_with_error(status: &str, data: &Value, error: Option<String>) -> Option
                 next_retry_at.as_deref().and_then(bir_core::smart_queue::parse_time).is_some_and(|stored| stored > own)
             }) =>
         {
-            Some(SendStage::Behind { next_retry_at })
+            Some(SendStage::Behind { reason: error, next_retry_at })
         }
         "Queued" => Some(match error {
             Some(reason) => SendStage::Failed { reason, attempts, next_retry_at },
@@ -328,12 +346,19 @@ fn tries_again(next_retry_at: Option<&str>, now: chrono::DateTime<chrono::Utc>) 
     }
 }
 
-/// The queue's words for a stage that is still waiting (API.md section
-/// 10), with the time left until its next try; `None` for every other
+/// The queue's words for a stage that is still waiting (the public contract,
+/// `docs/bir-uptime.md` in `buwiz-com/buwiz-com`), with the time left until its next try; `None` for every other
 /// stage, whose words the screens already have.
 pub fn queue_line(stage: &SendStage, now: chrono::DateTime<chrono::Utc>) -> Option<String> {
     Some(match stage {
+        SendStage::Behind { reason: Some(reason), .. } => {
+            format!("{} Goes right after the one above.", plain_send_error(reason).text)
+        }
         SendStage::Behind { .. } => "Goes right after the one above.".to_owned(),
+        SendStage::NeedsYou { reason } => format!(
+            "This return keeps being refused: {} It stopped trying by itself; fix the cause, then press Retry.",
+            plain_send_error(reason).text
+        ),
         SendStage::SlowedDown { next_retry_at, .. } => format!(
             "Returns are getting in for others. The problem may be your own connection. {}",
             tries_again(next_retry_at.as_deref(), now)
@@ -356,6 +381,34 @@ pub fn queue_line(stage: &SendStage, now: chrono::DateTime<chrono::Utc>) -> Opti
     })
 }
 
+/// What a person's Retry did ([`BirApp::retry`]).
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub enum RetryAnswer {
+    /// It goes as soon as the line lets it: after the queue-wide back-off
+    /// (`not_before`) when the way in to the BIR is waiting, else at once.
+    Going { not_before: Option<chrono::DateTime<chrono::Utc>> },
+    /// Too soon: Retry on this return may be pressed again at this time.
+    NotBefore(chrono::DateTime<chrono::Utc>),
+}
+
+/// "You can press Retry again in about 20 min", for a refused press.
+pub fn retry_wait_words(at: chrono::DateTime<chrono::Utc>, now: chrono::DateTime<chrono::Utc>) -> String {
+    match about(&at.to_rfc3339(), now) {
+        Some(wait) if wait != "a moment" => format!("Retry was pressed a while ago. You can press it again in {wait}."),
+        _ => "Retry was pressed a moment ago. You can press it again shortly.".to_owned(),
+    }
+}
+
+/// What to tell the person after [`RetryAnswer::Going`].
+pub fn retry_going_words(not_before: Option<chrono::DateTime<chrono::Utc>>, now: chrono::DateTime<chrono::Utc>) -> String {
+    match not_before.and_then(|at| about(&at.to_rfc3339(), now)) {
+        Some(wait) if wait != "a moment" => {
+            format!("Noted. The BIR could not be reached a moment ago, so every return waits; this one goes in {wait}.")
+        }
+        _ => "Sending again now.".to_owned(),
+    }
+}
+
 fn call_error(error: impl std::fmt::Display) -> AppError {
     AppError::Call(error.to_string())
 }
@@ -373,11 +426,7 @@ impl BirApp {
                 && let Ok(data) = serde_json::from_str::<Value>(&json)
                 && let Some(stage) = send_stage_for(&form_code, &status, &data)
             {
-                let stage = match stage {
-                    // Paused stops everything that is still waiting.
-                    stage if paused && stage.is_waiting() => SendStage::Paused,
-                    stage => stage,
-                };
+                let stage = paused_stage(stage, paused);
                 out.insert(id, shown_stage(stage, sending.contains(&id)));
             }
         }
@@ -421,10 +470,28 @@ impl BirApp {
         }
     }
 
-    /// Retry a failed send now instead of after its backoff (then wake the
-    /// queue with `Submission::send_now`). Only an unclaimed Queued return:
-    /// one that needs attention is never resent by itself.
-    pub fn retry_now(&self, id: i64) -> AppResult<()> {
+    /// A person's Retry on one return, at `now`. At most once per 30
+    /// minutes and three times in 24 hours for each return
+    /// ([`bir_core::smart_queue::QueueState::retry_allowed_at`]): a press
+    /// too soon changes nothing and answers when it may be pressed again.
+    /// The return then goes as soon as the line lets it, never before the
+    /// queue-wide back-off after a way in that is down, unless the person
+    /// confirmed `try_anyway`. Only an unclaimed Queued return: one that
+    /// needs attention is never resent by itself. Wake the queue after
+    /// [`RetryAnswer::Going`] (`Submission::send_now`).
+    ///
+    /// No tool an AI agent can call reaches this: it is the person's button.
+    pub fn retry(&self, id: i64, try_anyway: bool) -> AppResult<RetryAnswer> {
+        self.retry_at(id, try_anyway, chrono::Utc::now())
+    }
+
+    #[doc(hidden)]
+    pub fn retry_at(&self, id: i64, try_anyway: bool, now: chrono::DateTime<chrono::Utc>) -> AppResult<RetryAnswer> {
+        let path_floor = {
+            let db = self.db.lock().map_err(|_| AppError::Call("the database lock is poisoned".into()))?;
+            bir_core::smart_queue::PathBackoff::from_setting(db.get_setting(bir_core::smart_queue::PATH_SETTING)?.as_deref()).floor(now)
+        };
+        let mut answer = None;
         self.change_lifecycle(id, |status, map| {
             if status != "Queued" {
                 return Err(AppError::Call("Only a queued return can be sent again.".into()));
@@ -432,9 +499,29 @@ impl BirApp {
             if map.get("submission_claim_token").is_some_and(|v| !v.is_null()) {
                 return Err(AppError::Call("BIR may already have this return. Check for BIR's confirmation email before sending it again.".into()));
             }
-            map.insert("next_retry_at".into(), Value::String(chrono::Utc::now().to_rfc3339()));
+            let mut state: bir_core::smart_queue::QueueState =
+                map.get("smart_queue").and_then(|value| serde_json::from_value(value.clone()).ok()).unwrap_or_default();
+            if let Some(at) = state.retry_allowed_at(now) {
+                answer = Some(RetryAnswer::NotBefore(at));
+                return Ok(());
+            }
+            state.press_retry(now, try_anyway);
+            map.insert("next_retry_at".into(), Value::String(now.to_rfc3339()));
+            map.insert("smart_queue".into(), serde_json::to_value(&state).map_err(call_error)?);
+            answer = Some(RetryAnswer::Going { not_before: path_floor.filter(|_| !try_anyway) });
             Ok(())
-        })
+        })?;
+        answer.ok_or_else(|| AppError::Call("The return could not be read.".into()))
+    }
+
+    /// [`Self::retry`] without "try anyway", for callers that only need to
+    /// know it went: a press that is too soon is an error that says when it
+    /// may be pressed again.
+    pub fn retry_now(&self, id: i64) -> AppResult<()> {
+        match self.retry(id, false)? {
+            RetryAnswer::Going { .. } => Ok(()),
+            RetryAnswer::NotBefore(at) => Err(AppError::Call(retry_wait_words(at, chrono::Utc::now()))),
+        }
     }
 
     /// Demo and test data only: put the queued return `id` in `stage`
@@ -466,7 +553,7 @@ impl BirApp {
                     set("submission_attempts", Value::from(attempts.max(1)));
                     set("next_retry_at", next_retry_at.map_or(Value::Null, Value::String));
                 }
-                SendStage::Behind { next_retry_at } => {
+                SendStage::Behind { next_retry_at, .. } => {
                     let later = chrono::Utc::now() + chrono::Duration::minutes(1);
                     set("submission_error", Value::Null);
                     set("next_retry_at", Value::String(next_retry_at.unwrap_or_else(|| later.to_rfc3339())));
@@ -486,6 +573,11 @@ impl BirApp {
                     set("submission_error", reason.map_or(Value::Null, Value::String));
                     set("next_retry_at", Value::String(at.clone()));
                     set("smart_queue", serde_json::json!({ "failures": 5, "next_try_at": at, "notices": 1 }));
+                }
+                SendStage::NeedsYou { reason } => {
+                    set("submission_error", Value::String(reason.clone()));
+                    set("submission_attempts", Value::from(attempts.max(3)));
+                    set("smart_queue", serde_json::json!({ "failures": attempts.max(3), "stuck": reason, "kind": reason, "same_kind": 3 }));
                 }
                 SendStage::NeedsAttention { reason } => {
                     set("submission_claim_token", Value::String("demo-claim".into()));
@@ -693,7 +785,7 @@ mod tests {
         let own = "2026-11-11T09:00:00+00:00";
         let later = "2026-11-11T09:02:00+00:00";
         let behind = json!({"next_retry_at": later, "smart_queue": {"next_try_at": own}});
-        assert_eq!(send_stage("Queued", &behind), Some(SendStage::Behind { next_retry_at: Some(later.into()) }));
+        assert_eq!(send_stage("Queued", &behind), Some(SendStage::Behind { reason: None, next_retry_at: Some(later.into()) }));
         let on_time = json!({"next_retry_at": own, "smart_queue": {"next_try_at": own, "failures": 1}, "submission_error": "x"});
         assert!(matches!(send_stage("Queued", &on_time), Some(SendStage::Failed { .. })));
         let slowed = json!({"next_retry_at": later, "submission_error": "Not sent (nothing reached BIR): x", "smart_queue": {"next_try_at": later, "failures": 3, "slowed": true}});
@@ -718,7 +810,8 @@ mod tests {
     fn every_stage_has_a_stable_name() {
         let stages = [
             SendStage::Queued { next_retry_at: None },
-            SendStage::Behind { next_retry_at: None },
+            SendStage::Behind { reason: None, next_retry_at: None },
+            SendStage::NeedsYou { reason: String::new() },
             SendStage::SlowedDown { reason: String::new(), next_retry_at: None },
             SendStage::StillWaiting { since: String::new(), reason: None, next_retry_at: None },
             SendStage::Paused,
@@ -734,17 +827,17 @@ mod tests {
         let names: Vec<&str> = stages.iter().map(SendStage::name).collect();
         assert_eq!(
             names,
-            ["queued", "behind", "slowed_down", "still_waiting", "paused", "sending", "failed", "needs_attention", "gave_up", "refused", "sent", "confirmed", "paid"]
+            ["queued", "behind", "needs_you", "slowed_down", "still_waiting", "paused", "sending", "failed", "needs_attention", "gave_up", "refused", "sent", "confirmed", "paid"]
         );
         let waiting: Vec<bool> = stages.iter().map(SendStage::is_waiting).collect();
-        assert_eq!(waiting, [true, true, true, true, true, false, true, false, false, false, false, false, false]);
+        assert_eq!(waiting, [true, true, false, true, true, true, false, true, false, false, false, false, false, false]);
     }
 
     #[test]
     fn the_queue_lines_are_api_10s_words() {
         let now = chrono::DateTime::parse_from_rfc3339("2026-11-11T09:00:00Z").unwrap().with_timezone(&chrono::Utc);
         let at = |minutes: i64| Some((now + chrono::Duration::minutes(minutes)).to_rfc3339());
-        assert_eq!(queue_line(&SendStage::Behind { next_retry_at: at(1) }, now).unwrap(), "Goes right after the one above.");
+        assert_eq!(queue_line(&SendStage::Behind { reason: None, next_retry_at: at(1) }, now).unwrap(), "Goes right after the one above.");
         assert_eq!(
             queue_line(&SendStage::SlowedDown { reason: "x".into(), next_retry_at: at(118) }, now).unwrap(),
             "Returns are getting in for others. The problem may be your own connection. Tries again in about 2 h."

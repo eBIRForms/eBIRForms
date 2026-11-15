@@ -18,6 +18,19 @@ impl BirApp {
         ))
     }
 
+    /// [`Self::submission`], naming the calling app and its version in the
+    /// `buwiz-client` header of every request it makes
+    /// (`submission_as("ebirdesk-mcp", env!("CARGO_PKG_VERSION"))`). The
+    /// desktop app and `ebirdesk-mcp` say their own; the mini app, which
+    /// builds its own `Submission`, must call
+    /// `bir_submit::Submission::set_client("mini", <its version>)` at start.
+    /// A name or version with odd characters is cleaned, never an error.
+    pub fn submission_as(&self, app: &str, version: &str) -> AppResult<Submission> {
+        let submission = self.submission()?;
+        submission.set_client(app, version);
+        Ok(submission)
+    }
+
     /// Starts the queue worker, sending through `submission`.
     pub fn start_sending(
         &self,
@@ -34,7 +47,14 @@ impl BirApp {
     /// it does not ask Buwiz to send while signed out; signing in resumes
     /// it. (A signed-out send is not a try in any case.)
     pub fn launch_sending(&self) -> AppResult<Submission> {
-        let submission = self.submission()?;
+        self.launch_sending_as("desktop", env!("CARGO_PKG_VERSION"))
+    }
+
+    /// [`Self::launch_sending`] for the app `app` at `version`, which the
+    /// BIR sign's server sees in every request (`launch_sending_as("desktop",
+    /// env!("CARGO_PKG_VERSION"))` in the desktop app's own crate).
+    pub fn launch_sending_as(&self, app: &str, version: &str) -> AppResult<Submission> {
+        let submission = self.submission_as(app, version)?;
         if !matches!(submission.sign_in_status(), bir_submit::SignInStatus::SignedIn { .. }) {
             bir_core::background_cron::set_submission_paused(true);
         }
