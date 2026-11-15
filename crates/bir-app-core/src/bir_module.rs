@@ -624,8 +624,9 @@ fn cancel_queued(arguments: &HostArguments) -> HostResult {
 
 /// A person's Retry on a queued return that stopped ("Needs you"): the same
 /// rule as the desktop button (`BirApp::retry` without try-anyway, which
-/// this function cannot set). `form_code`, `year` and `quarter` find the
-/// row as `cancel_queued` does. Answers `{ pressed, going, goes_at,
+/// this function cannot set). `form_code`, `year` and the slot (argument 3:
+/// a 1601C's month, a 2551Q's quarter, a generic form's period, null for an
+/// annual return) find the row as `cancel_queued` does. Answers `{ pressed, going, goes_at,
 /// press_again_at, words }`: `pressed` true and `going` true when the
 /// return goes as soon as the line lets it (`goes_at` is the queue-wide
 /// wait's end, null for at once); `pressed` false when Retry was pressed
@@ -637,12 +638,15 @@ fn retry_queued(arguments: &HostArguments) -> HostResult {
     let tin = arguments.string(0)?.to_owned();
     let form_code = arguments.string(1)?.to_owned();
     let year = arguments.integer(2)? as u16;
-    let quarter = optional_quarter(arguments, 3)?;
+    let slot = optional_quarter(arguments, 3)?;
     let answer = with_database(|db| {
-        let claim = stored_claim(db, &tin, &form_code, year, quarter)?
+        // only the row's id: `retry_row` reads the row and is the one place
+        // the Queued and claimed rules are checked
+        let id = stored_row(db, &tin, &form_code, year, slot)?
+            .and_then(|(id, ..)| id)
             .ok_or_else(|| HostError::new(format!("No {form_code} return for that period")))?;
         let now = chrono::Utc::now();
-        let answer = crate::sending::retry_row(db, claim.id, false, now)
+        let answer = crate::sending::retry_row(db, id, false, now)
             .map_err(|error| HostError::new(error.to_string()))?;
         let at = |time: chrono::DateTime<chrono::Utc>| HostValue::from(time.to_rfc3339());
         Ok(match answer {
@@ -883,8 +887,6 @@ fn stage_name(stage: &crate::sending::SendStage) -> (&'static str, Option<String
 /// The claim fields of a stored return, read off its typed draft the way
 /// bir-core reads them for each kind, with its status column and JSON.
 struct StoredClaim {
-    /// The return's row id.
-    id: i64,
     /// The `status` column.
     status: String,
     json: String,
@@ -1039,8 +1041,43 @@ fn stored_claim(
     year: u16,
     quarter: Option<u8>,
 ) -> Result<Option<StoredClaim>, HostError> {
-    type Typed = (Option<i64>, bool, i64, [Option<String>; 3]);
-    let typed: Option<Typed> = match form_code {
+    let typed = stored_row(db, tin, form_code, year, quarter)?;
+    let Some((Some(id), queued, slot, [token, claimed_at, lease_until])) = typed else {
+        return Ok(None);
+    };
+    let Some((status, json)) = db.draft_status_and_json(id).map_err(db_error)? else {
+        return Ok(None);
+    };
+    let sending_now = crate::sending::sending_now(db)
+        .map_err(db_error)?
+        .contains(&id);
+    Ok(Some(StoredClaim {
+        status,
+        json,
+        queued,
+        token,
+        claimed_at,
+        lease_until,
+        slot,
+        sending_now,
+    }))
+}
+
+/// A stored return read off its typed draft: its row id, whether it is
+/// Queued, its slot, and its claim token, claim time and lease.
+type StoredRow = (Option<i64>, bool, i64, [Option<String>; 3]);
+
+/// The typed read behind [`stored_claim`], for a caller that needs only the
+/// row (`retry_queued` takes its id). A 1601C month must be 1-12 and a
+/// 2551Q quarter 1-4.
+fn stored_row(
+    db: &Database,
+    tin: &str,
+    form_code: &str,
+    year: u16,
+    quarter: Option<u8>,
+) -> Result<Option<StoredRow>, HostError> {
+    Ok(match form_code {
         "2551Q" => crate::screen_form_module::out_of_line(|| {
             let q = quarter
                 .ok_or_else(|| HostError::new("2551Q drafts are quarterly: pass quarter 1-4"))?;
@@ -1113,27 +1150,7 @@ fn stored_claim(
                     }))
             }))?
         }
-    };
-    let Some((Some(id), queued, slot, [token, claimed_at, lease_until])) = typed else {
-        return Ok(None);
-    };
-    let Some((status, json)) = db.draft_status_and_json(id).map_err(db_error)? else {
-        return Ok(None);
-    };
-    let sending_now = crate::sending::sending_now(db)
-        .map_err(db_error)?
-        .contains(&id);
-    Ok(Some(StoredClaim {
-        id,
-        status,
-        json,
-        queued,
-        token,
-        claimed_at,
-        lease_until,
-        slot,
-        sending_now,
-    }))
+    })
 }
 
 /// Today's rotated log (`ebirforms.YYYY-MM-DD.log`), tailed like the painted

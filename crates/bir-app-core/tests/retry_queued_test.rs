@@ -6,7 +6,7 @@
 //! refused.
 
 use std::collections::BTreeMap;
-use bir_app_core::bir_core::db::{Claim1601CSubmissionResult, ClaimQueueableResult, Database};
+use bir_app_core::bir_core::db::{Claim1601CSubmissionResult, Claim2551QSubmissionResult, ClaimQueueableResult, Database};
 use bir_app_core::bir_core::forms::form_0619e::Form0619EDraft;
 use bir_app_core::bir_core::forms::queueable::QueueableForm as _;
 use bir_app_core::bir_core::smart_queue::{PATH_SETTING, PathBackoff};
@@ -94,6 +94,17 @@ fn claim_1601c(worker: &Database, tin: &str) {
     assert!(worker.mark_claimed_1601c_put_started(tin, YEAR, 9, &token).unwrap());
 }
 
+fn claim_2551q(worker: &Database, tin: &str) {
+    let queued = worker.get_2551q_draft(tin, YEAR, 1).unwrap().unwrap();
+    let Claim2551QSubmissionResult::Claimed { token, .. } = worker
+        .claim_queued_2551q_submission(tin, YEAR, 1, &queued.queued_submission_fingerprint, &queued.next_retry_at, queued.submission_attempts)
+        .unwrap()
+    else {
+        panic!("the 2551Q should claim");
+    };
+    assert!(worker.mark_claimed_2551q_put_started(tin, YEAR, 1, &token).unwrap());
+}
+
 fn claim_0619e(worker: &Database, tin: &str) {
     let queued: Form0619EDraft = worker.get_queueable_draft(tin, YEAR, 1).unwrap().unwrap();
     let lifecycle = queued.lifecycle();
@@ -105,7 +116,6 @@ fn claim_0619e(worker: &Database, tin: &str) {
     };
     assert!(worker.mark_claimed_queueable_put_started::<Form0619EDraft>(tin, YEAR, 1, &token).unwrap());
 }
-
 
 /// `retry_queued`'s answer for the return in `slot`.
 fn press(app: &BirApp, tin: &str, code: &str, slot: i64) -> Result<Value, String> {
@@ -121,6 +131,26 @@ fn stage(app: &BirApp, tin: &str, code: &str, slot: i64) -> String {
 fn row(worker: &Database, id: i64) -> (String, Value) {
     let (status, json) = worker.draft_status_and_json(id).unwrap().expect("stored");
     (status, serde_json::from_str(&json).unwrap())
+}
+
+/// When the stored row was last written (the column has whole seconds).
+fn written_at(worker: &Database, tin: &str, id: i64) -> String {
+    let rows = worker.list_draft_summaries(tin, YEAR).unwrap();
+    rows.into_iter().find(|row| row.id == id).expect("stored").updated_at
+}
+
+/// Move every recorded press an hour back, so the 30-minute gap has passed.
+fn age_presses(worker: &Database, id: i64) {
+    let (status, json) = worker.draft_status_and_json(id).unwrap().unwrap();
+    let mut data: Value = serde_json::from_str(&json).unwrap();
+    let aged: Vec<Value> = data["smart_queue"]["retries"]
+        .as_array()
+        .expect("recorded presses")
+        .iter()
+        .map(|press| json!((chrono::DateTime::parse_from_rfc3339(press.as_str().unwrap()).unwrap() - Duration::hours(1)).to_rfc3339()))
+        .collect();
+    data["smart_queue"]["retries"] = aged.into();
+    assert!(worker.replace_draft_json_if_unchanged(id, &json, &status, &data.to_string()).unwrap());
 }
 
 /// Leave the return stopped, as three identical refusals leave it.
@@ -154,27 +184,42 @@ fn lift_and_limit(app: &BirApp, worker: &Database, tin: &str, code: &str, slot: 
     let waiting = stage(app, tin, code, slot);
     assert!(["Queued", "Behind", "Failed"].contains(&waiting.as_str()), "{waiting}");
 
+    // A press too soon writes nothing: the row and the second it was last
+    // written in stay, so the wait below spans a whole second of the column.
+    let written = written_at(worker, tin, id);
+    std::thread::sleep(std::time::Duration::from_millis(1100));
     let second = press(app, tin, code, slot).expect("answered");
     assert_eq!(second["pressed"], false, "{second}");
     assert_eq!(second["going"], false, "{second}");
     let again = chrono::DateTime::parse_from_rfc3339(second["press_again_at"].as_str().expect("a time")).unwrap();
     let wait = again.timestamp() - Utc::now().timestamp();
-    assert!((29 * 60..=30 * 60).contains(&wait), "{wait}");
+    assert!((29 * 60 - 2..=30 * 60).contains(&wait), "{wait}");
     let words = second["words"].as_str().unwrap();
     assert!(words.starts_with("Retry was pressed a while ago. You can press it again in "), "{words}");
     assert_eq!(row(worker, id), lifted, "a press too soon changes nothing");
+    assert_eq!(written_at(worker, tin, id), written, "and writes nothing");
 }
 
+/// One test, like this crate's other database tests: the database key is
+/// an environment variable, set once while the process has one thread. Each
+/// scenario's name is printed as it starts, so a failure names its own.
 #[test]
 fn retry_queued_lifts_a_stopped_return() {
     // SAFETY: set once, before any database opens.
     unsafe { std::env::set_var("BUWIZ_DB_KEY", TEST_KEY) };
-    a_stopped_1601c_is_lifted();
-    a_stopped_2551q_is_lifted();
-    a_stopped_generic_return_is_lifted();
-    the_queue_wide_wait_is_told_and_try_anyway_is_never_set();
-    a_draft_a_sent_a_claimed_and_a_missing_return_are_refused();
-    a_press_is_limited_to_three_a_day();
+    let scenarios: [(&str, fn()); 7] = [
+        ("a_stopped_1601c_is_lifted", a_stopped_1601c_is_lifted),
+        ("a_stopped_2551q_is_lifted", a_stopped_2551q_is_lifted),
+        ("a_stopped_generic_return_is_lifted", a_stopped_generic_return_is_lifted),
+        ("the_queue_wide_wait_is_told_and_try_anyway_is_never_set", the_queue_wide_wait_is_told_and_try_anyway_is_never_set),
+        ("a_draft_a_sent_a_claimed_and_a_missing_return_are_refused", a_draft_a_sent_a_claimed_and_a_missing_return_are_refused),
+        ("a_claimed_2551q_and_a_claim_time_alone_are_refused", a_claimed_2551q_and_a_claim_time_alone_are_refused),
+        ("a_press_is_limited_to_three_a_day", a_press_is_limited_to_three_a_day),
+    ];
+    for (name, scenario) in scenarios {
+        println!("scenario: {name}");
+        scenario();
+    }
 }
 
 fn a_stopped_1601c_is_lifted() {
@@ -260,27 +305,43 @@ fn a_draft_a_sent_a_claimed_and_a_missing_return_are_refused() {
     assert!(press(&app, &tin, "9999Z", 1).is_err());
 }
 
+/// A claimed 2551Q is refused like the other kinds, and so is a row that
+/// carries a claim time with no token (bir-core's worker reads either as a
+/// claim; no transition leaves that row today).
+fn a_claimed_2551q_and_a_claim_time_alone_are_refused() {
+    let claimed = "BIR may already have this return. Check for BIR's confirmation email before sending it again.";
+    let dir = tempfile::tempdir().unwrap();
+    let (app, worker, tin) = open(dir.path());
+    let id = queue_2551q(&app, &tin);
+    claim_2551q(&worker, &tin);
+    make_stuck(&worker, id);
+    let before = row(&worker, id);
+    assert_eq!(press(&app, &tin, "2551Q", 1), Err(claimed.to_owned()));
+    assert_eq!(row(&worker, id), before);
+
+    let id = queue_0619e(&app, &tin);
+    make_stuck(&worker, id);
+    let (status, json) = worker.draft_status_and_json(id).unwrap().unwrap();
+    let mut data: Value = serde_json::from_str(&json).unwrap();
+    data["submission_claimed_at"] = Utc::now().to_rfc3339().into();
+    assert!(data.get("submission_claim_token").is_none_or(Value::is_null));
+    assert!(worker.replace_draft_json_if_unchanged(id, &json, &status, &data.to_string()).unwrap());
+    let before = row(&worker, id);
+    assert_eq!(press(&app, &tin, "0619E", 1), Err(claimed.to_owned()));
+    assert_eq!(row(&worker, id), before);
+}
+
 fn a_press_is_limited_to_three_a_day() {
     let dir = tempfile::tempdir().unwrap();
     let (app, worker, tin) = open(dir.path());
     let id = queue_2551q(&app, &tin);
     make_stuck(&worker, id);
     assert_eq!(press(&app, &tin, "2551Q", 1).unwrap()["pressed"], true);
-    // Age the recorded presses, so the 30-minute gap has passed each time.
     for _ in 0..2 {
-        let (status, json) = worker.draft_status_and_json(id).unwrap().unwrap();
-        let mut data: Value = serde_json::from_str(&json).unwrap();
-        let presses = data["smart_queue"]["retries"].as_array().cloned().unwrap_or_default();
-        let aged: Vec<Value> = presses.iter().map(|p| json!((chrono::DateTime::parse_from_rfc3339(p.as_str().unwrap()).unwrap() - Duration::hours(1)).to_rfc3339())).collect();
-        data["smart_queue"]["retries"] = aged.into();
-        assert!(worker.replace_draft_json_if_unchanged(id, &json, &status, &data.to_string()).unwrap());
+        age_presses(&worker, id);
         assert_eq!(press(&app, &tin, "2551Q", 1).unwrap()["pressed"], true);
     }
-    let (status, json) = worker.draft_status_and_json(id).unwrap().unwrap();
-    let mut data: Value = serde_json::from_str(&json).unwrap();
-    let aged: Vec<Value> = data["smart_queue"]["retries"].as_array().unwrap().iter().map(|p| json!((chrono::DateTime::parse_from_rfc3339(p.as_str().unwrap()).unwrap() - Duration::hours(1)).to_rfc3339())).collect();
-    data["smart_queue"]["retries"] = aged.into();
-    assert!(worker.replace_draft_json_if_unchanged(id, &json, &status, &data.to_string()).unwrap());
+    age_presses(&worker, id);
     let fourth = press(&app, &tin, "2551Q", 1).unwrap();
     assert_eq!(fourth["pressed"], false, "{fourth}");
     assert!(fourth["press_again_at"].is_string());

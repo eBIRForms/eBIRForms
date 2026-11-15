@@ -119,6 +119,15 @@ fn text(data: &Value, key: &str) -> Option<String> {
     data.get(key).and_then(Value::as_str).filter(|s| !s.is_empty()).map(str::to_owned)
 }
 
+/// Whether the queue has claimed this stored return, so BIR may have it:
+/// a claim token or a claim time, as bir-core's worker reads a claim. The
+/// send stage and a person's Retry both go by this one rule.
+pub(crate) fn is_claimed(data: &serde_json::Map<String, Value>) -> bool {
+    ["submission_claim_token", "submission_claimed_at"]
+        .iter()
+        .any(|key| data.get(*key).and_then(Value::as_str).is_some_and(|value| !value.is_empty()))
+}
+
 /// The stage of a stored return from its `submission_error` only: it reads
 /// no 2551Q error (a 2551Q's is in `last_error`), so it is kept for this
 /// module's tests and callers use [`send_stage_for`].
@@ -232,7 +241,7 @@ pub(crate) fn shown_stage(stage: SendStage, sending_now: bool) -> SendStage {
 }
 
 fn stage_with_error(status: &str, data: &Value, error: Option<String>) -> Option<SendStage> {
-    let claimed = text(data, "submission_claim_token").is_some();
+    let claimed = data.as_object().is_some_and(is_claimed);
     let attempts = data.get("submission_attempts").and_then(Value::as_u64).unwrap_or(0) as u32;
     let next_retry_at = text(data, "next_retry_at");
     let queue: bir_core::smart_queue::QueueState =
@@ -484,7 +493,7 @@ pub(crate) fn retry_row(db: &bir_core::db::Database, id: i64, try_anyway: bool, 
         if status != "Queued" {
             return Err(AppError::Call("Only a queued return can be sent again.".into()));
         }
-        if map.get("submission_claim_token").is_some_and(|v| !v.is_null()) {
+        if is_claimed(map) {
             return Err(AppError::Call("BIR may already have this return. Check for BIR's confirmation email before sending it again.".into()));
         }
         let mut state: bir_core::smart_queue::QueueState =
@@ -502,12 +511,18 @@ pub(crate) fn retry_row(db: &bir_core::db::Database, id: i64, try_anyway: bool, 
     answer.ok_or_else(|| AppError::Call("The return could not be read.".into()))
 }
 
-/// [`BirApp::change_lifecycle`] on an open database.
+/// [`BirApp::change_lifecycle`] on an open database. A change that leaves
+/// the return as it was writes nothing: the row and its update time stay,
+/// and a worker's write in between is not this call's failure.
 fn change_lifecycle_in(db: &bir_core::db::Database, id: i64, change: impl FnOnce(&str, &mut serde_json::Map<String, Value>) -> AppResult<()>) -> AppResult<()> {
     let (status, json) = db.draft_status_and_json(id)?.ok_or_else(|| AppError::Call("That return is gone.".into()))?;
     let mut data: Value = serde_json::from_str(&json).map_err(call_error)?;
     let map = data.as_object_mut().ok_or_else(|| AppError::Call("The stored return is not an object.".into()))?;
+    let before = map.clone();
     change(&status, map)?;
+    if *map == before {
+        return Ok(());
+    }
     let new_status = map.get("status").and_then(Value::as_str).unwrap_or(&status).to_owned();
     let new_json = serde_json::to_string(&data).map_err(call_error)?;
     if db.replace_draft_json_if_unchanged(id, &json, &new_status, &new_json)? {
