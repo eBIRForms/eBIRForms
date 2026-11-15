@@ -808,6 +808,10 @@ fn stage_name(stage: &crate::sending::SendStage) -> (&'static str, Option<String
     use crate::sending::SendStage;
     match stage {
         SendStage::Queued { .. } => ("Queued", None),
+        SendStage::Behind { .. } => ("Behind", None),
+        SendStage::SlowedDown { reason, .. } => ("SlowedDown", Some(reason.clone())),
+        SendStage::StillWaiting { reason, .. } => ("StillWaiting", reason.clone()),
+        SendStage::Paused => ("Paused", None),
         SendStage::Sending => ("Sending", None),
         SendStage::Failed { reason, .. } => ("Failed", Some(reason.clone())),
         SendStage::NeedsAttention { reason } => ("NeedsAttention", Some(reason.clone())),

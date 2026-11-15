@@ -44,7 +44,10 @@ pub(crate) fn stage_line(stage: Option<&SendStage>) -> String {
     match stage {
         None | Some(SendStage::Queued { .. }) => "Waiting to send. It goes by itself when you're online and signed in.".to_owned(),
         Some(SendStage::Sending) => "Sending to BIR now…".to_owned(),
-        Some(SendStage::Failed { reason, .. }) => plain_send_error(reason).text,
+        // Still queued: the worker keeps trying, however long the outage.
+        Some(stage @ (SendStage::Failed { .. } | SendStage::Behind { .. } | SendStage::SlowedDown { .. } | SendStage::StillWaiting { .. } | SendStage::Paused)) => {
+            bir_app_core::queue_line(stage, chrono::Utc::now()).unwrap_or_default()
+        }
         Some(SendStage::NeedsAttention { .. }) => "BIR may already have this return. Check for BIR's confirmation email before you do anything else.".to_owned(),
         Some(SendStage::GaveUp { reason }) => format!("Not sent after five tries: {} Open it and queue it again.", plain_send_error(reason).text),
         Some(SendStage::Refused { reason, .. }) => format!("{} {}", plain_send_error(reason).text, bir_app_core::BirApp::DRAFT_NOTE),

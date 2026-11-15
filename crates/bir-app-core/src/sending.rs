@@ -2,26 +2,45 @@
 //! queue worker (`bir_core::background_cron`) records its claim, its
 //! failures and the signed receipt on the return, and [`send_stage_for`] turns
 //! those fields into what the person sees. [`plain_send_error`] puts the
-//! worker's and the relay's reasons in plain words.
+//! worker's and the relay's reasons in plain words, and [`queue_line`] the
+//! smart queue's states (API.md section 10).
 
 use std::collections::{BTreeMap, BTreeSet};
 
 use serde_json::Value;
 
+pub use bir_core::smart_queue::QueueMode;
+
 use crate::{AppError, AppResult, BirApp, TinRefusal, TinStep};
 
-/// A return's place on the way out.
+/// A return's place on the way out. [`SendStage::name`] is the stable word
+/// for each.
 #[derive(Clone, Debug, PartialEq)]
 pub enum SendStage {
     /// Waiting for its turn (`next_retry_at`, RFC 3339).
     Queued { next_retry_at: Option<String> },
+    /// Its own time has come, but one return goes at a time: it goes right
+    /// after the one ahead of it (`next_retry_at`, the stored time it waits
+    /// for).
+    Behind { next_retry_at: Option<String> },
+    /// Returns get in for others, but this device's last tries all failed:
+    /// it waits at least 2 hours and the problem may be the person's own
+    /// connection. Still queued; `reason` is the last failure.
+    SlowedDown { reason: String, next_retry_at: Option<String> },
+    /// Still not sent a day (`notice_after_s`) after it was queued
+    /// (`since`). Still queued and still trying by itself.
+    StillWaiting { since: String, reason: Option<String>, next_retry_at: Option<String> },
+    /// The person switched the queue to Paused: nothing goes until Auto.
+    Paused,
     /// The worker holds it and is sending it now.
     Sending,
     /// Nothing reached BIR; the queue tries again at `next_retry_at`.
     Failed { reason: String, attempts: u32, next_retry_at: Option<String> },
     /// BIR may have it: never sent again by itself.
     NeedsAttention { reason: String },
-    /// Five sends failed: back to Draft with the last reason.
+    /// Back to Draft with the last reason after five failed sends, under the
+    /// rules before the smart queue. No return goes back to Draft for
+    /// failed tries any more; rows left so before keep this stage.
     GaveUp { reason: String },
     /// Buwiz refused it for its TIN (`code`): back to Draft at once with
     /// the stored `reason`. Nothing reached BIR.
@@ -30,6 +49,43 @@ pub enum SendStage {
     Sent { at: Option<String>, receipt: Option<ReceiptInfo> },
     Confirmed { at: Option<String> },
     Paid,
+}
+
+impl SendStage {
+    /// The stable word for the stage, for the mini app and tools:
+    /// `queued`, `behind`, `slowed_down`, `still_waiting`, `paused`,
+    /// `sending`, `failed`, `needs_attention`, `gave_up`, `refused`, `sent`,
+    /// `confirmed`, `paid`.
+    pub fn name(&self) -> &'static str {
+        match self {
+            SendStage::Queued { .. } => "queued",
+            SendStage::Behind { .. } => "behind",
+            SendStage::SlowedDown { .. } => "slowed_down",
+            SendStage::StillWaiting { .. } => "still_waiting",
+            SendStage::Paused => "paused",
+            SendStage::Sending => "sending",
+            SendStage::Failed { .. } => "failed",
+            SendStage::NeedsAttention { .. } => "needs_attention",
+            SendStage::GaveUp { .. } => "gave_up",
+            SendStage::Refused { .. } => "refused",
+            SendStage::Sent { .. } => "sent",
+            SendStage::Confirmed { .. } => "confirmed",
+            SendStage::Paid => "paid",
+        }
+    }
+
+    /// Still queued and unclaimed: the queue will try it again by itself.
+    pub fn is_waiting(&self) -> bool {
+        matches!(
+            self,
+            SendStage::Queued { .. }
+                | SendStage::Behind { .. }
+                | SendStage::SlowedDown { .. }
+                | SendStage::StillWaiting { .. }
+                | SendStage::Paused
+                | SendStage::Failed { .. }
+        )
+    }
 }
 
 /// The readable claims of a send receipt (a compact JWS; bir-submit
@@ -107,11 +163,34 @@ fn stage_with_error(status: &str, data: &Value, error: Option<String>) -> Option
     let claimed = text(data, "submission_claim_token").is_some();
     let attempts = data.get("submission_attempts").and_then(Value::as_u64).unwrap_or(0) as u32;
     let next_retry_at = text(data, "next_retry_at");
+    let queue: bir_core::smart_queue::QueueState =
+        data.get("smart_queue").and_then(|value| serde_json::from_value(value.clone()).ok()).unwrap_or_default();
     match status {
         "Queued" if claimed => Some(match error {
             Some(reason) => SendStage::NeedsAttention { reason },
             None => SendStage::Sending,
         }),
+        // The queue raised its "still waiting" notice for this queueing.
+        "Queued" if queue.notices > 0 => Some(SendStage::StillWaiting {
+            since: data
+                .get("queue_authorization")
+                .and_then(|auth| text(auth, "authorized_at"))
+                .or_else(|| text(data, "created_at"))
+                .unwrap_or_default(),
+            reason: error,
+            next_retry_at,
+        }),
+        "Queued" if queue.slowed && error.is_some() => {
+            Some(SendStage::SlowedDown { reason: error.unwrap_or_default(), next_retry_at })
+        }
+        // The stored time is later than its own: it waits behind another.
+        "Queued"
+            if queue.next_try().is_some_and(|own| {
+                next_retry_at.as_deref().and_then(bir_core::smart_queue::parse_time).is_some_and(|stored| stored > own)
+            }) =>
+        {
+            Some(SendStage::Behind { next_retry_at })
+        }
         "Queued" => Some(match error {
             Some(reason) => SendStage::Failed { reason, attempts, next_retry_at },
             None => SendStage::Queued { next_retry_at },
@@ -225,6 +304,58 @@ pub fn plain_send_error(raw: &str) -> PlainError {
     PlainError { text, action: ErrorAction::None }
 }
 
+/// "about 6 min", "about 30 min", "about 2 h": the wait until `at`, for
+/// people. `None` when `at` is not a time; "a moment" when it has passed.
+pub fn about(at: &str, now: chrono::DateTime<chrono::Utc>) -> Option<String> {
+    let at = bir_core::smart_queue::parse_time(at)?;
+    let minutes = ((at - now).num_seconds() + 59) / 60;
+    Some(match minutes {
+        ..=0 => "a moment".to_owned(),
+        1..=9 => format!("about {minutes} min"),
+        10..=59 => format!("about {} min", ((minutes + 2) / 5 * 5).max(10)),
+        _ => {
+            let hours = (minutes + 30) / 60;
+            format!("about {hours} h")
+        }
+    })
+}
+
+fn tries_again(next_retry_at: Option<&str>, now: chrono::DateTime<chrono::Utc>) -> String {
+    match next_retry_at.and_then(|at| about(at, now)) {
+        Some(wait) if wait == "a moment" => "Tries again in a moment.".to_owned(),
+        Some(wait) => format!("Tries again in {wait}."),
+        None => "It tries again by itself.".to_owned(),
+    }
+}
+
+/// The queue's words for a stage that is still waiting (API.md section
+/// 10), with the time left until its next try; `None` for every other
+/// stage, whose words the screens already have.
+pub fn queue_line(stage: &SendStage, now: chrono::DateTime<chrono::Utc>) -> Option<String> {
+    Some(match stage {
+        SendStage::Behind { .. } => "Goes right after the one above.".to_owned(),
+        SendStage::SlowedDown { next_retry_at, .. } => format!(
+            "Returns are getting in for others. The problem may be your own connection. {}",
+            tries_again(next_retry_at.as_deref(), now)
+        ),
+        SendStage::StillWaiting { since, .. } => {
+            let hours = bir_core::smart_queue::parse_time(since)
+                .map(|since| ((now - since).num_hours() / 24).max(1) * 24)
+                .unwrap_or(24);
+            format!("Still waiting after {hours} hours. It keeps trying by itself; you can cancel it or file another way.")
+        }
+        SendStage::Paused => "Your queue is paused · press Auto to send".to_owned(),
+        SendStage::Failed { reason, next_retry_at, .. } => {
+            let plain = plain_send_error(reason);
+            match plain.action {
+                ErrorAction::None => format!("{} {}", plain.text, tries_again(next_retry_at.as_deref(), now)),
+                _ => plain.text,
+            }
+        }
+        _ => return None,
+    })
+}
+
 fn call_error(error: impl std::fmt::Display) -> AppError {
     AppError::Call(error.to_string())
 }
@@ -235,16 +366,41 @@ impl BirApp {
         let rows: Vec<(i64, String)> = self.list_returns(crate::ReturnFilter::All)?.into_iter().map(|r| (r.id, r.form_code)).collect();
         let db = self.db.lock().map_err(|_| AppError::Call("the database lock is poisoned".into()))?;
         let sending = sending_now(&db)?;
+        let paused = QueueMode::from_setting(db.get_setting(bir_core::smart_queue::QUEUE_MODE_SETTING)?.as_deref()) == QueueMode::Paused;
         let mut out = BTreeMap::new();
         for (id, form_code) in rows {
             if let Some((status, json)) = db.draft_status_and_json(id)?
                 && let Ok(data) = serde_json::from_str::<Value>(&json)
                 && let Some(stage) = send_stage_for(&form_code, &status, &data)
             {
+                let stage = match stage {
+                    // Paused stops everything that is still waiting.
+                    stage if paused && stage.is_waiting() => SendStage::Paused,
+                    stage => stage,
+                };
                 out.insert(id, shown_stage(stage, sending.contains(&id)));
             }
         }
         Ok(out)
+    }
+
+    /// The person's switch: the queue sends by itself (Auto) or not at all
+    /// (Paused). Separate from the pause while signed out.
+    pub fn queue_mode(&self) -> AppResult<QueueMode> {
+        Ok(QueueMode::from_setting(self.get_setting(bir_core::smart_queue::QUEUE_MODE_SETTING)?.as_deref()))
+    }
+
+    /// Switch the queue to `mode`. Auto wakes it, so a waiting return goes
+    /// when its own time has come.
+    pub fn set_queue_mode(&self, mode: QueueMode) -> AppResult<()> {
+        self.set_setting(bir_core::smart_queue::QUEUE_MODE_SETTING, mode.as_setting())?;
+        if mode == QueueMode::Auto {
+            if let Ok(db) = self.db.lock() {
+                let _ = db.resolve_alert(None, bir_core::db::alert_kinds::QUEUE_PAUSED);
+            }
+            bir_core::background_cron::wake_quietly();
+        }
+        Ok(())
     }
 
     /// Edit the lifecycle fields of a stored return with `change` (the
@@ -309,6 +465,27 @@ impl BirApp {
                     set("submission_error", Value::String(reason));
                     set("submission_attempts", Value::from(attempts.max(1)));
                     set("next_retry_at", next_retry_at.map_or(Value::Null, Value::String));
+                }
+                SendStage::Behind { next_retry_at } => {
+                    let later = chrono::Utc::now() + chrono::Duration::minutes(1);
+                    set("submission_error", Value::Null);
+                    set("next_retry_at", Value::String(next_retry_at.unwrap_or_else(|| later.to_rfc3339())));
+                    set("smart_queue", serde_json::json!({ "next_try_at": now }));
+                }
+                SendStage::SlowedDown { reason, next_retry_at } => {
+                    let later = (chrono::Utc::now() + chrono::Duration::hours(2)).to_rfc3339();
+                    let at = next_retry_at.unwrap_or(later);
+                    set("submission_error", Value::String(reason));
+                    set("submission_attempts", Value::from(attempts.max(3)));
+                    set("next_retry_at", Value::String(at.clone()));
+                    set("smart_queue", serde_json::json!({ "failures": attempts.max(3), "next_try_at": at, "slowed": true }));
+                }
+                SendStage::StillWaiting { reason, next_retry_at, .. } => {
+                    let later = (chrono::Utc::now() + chrono::Duration::hours(2)).to_rfc3339();
+                    let at = next_retry_at.unwrap_or(later);
+                    set("submission_error", reason.map_or(Value::Null, Value::String));
+                    set("next_retry_at", Value::String(at.clone()));
+                    set("smart_queue", serde_json::json!({ "failures": 5, "next_try_at": at, "notices": 1 }));
                 }
                 SendStage::NeedsAttention { reason } => {
                     set("submission_claim_token", Value::String("demo-claim".into()));
@@ -509,5 +686,90 @@ mod tests {
             send_stage("Draft", &json!({"submission_error": reason, "submission_attempts": 5})),
             Some(SendStage::GaveUp { reason: reason.into() })
         );
+    }
+
+    #[test]
+    fn the_smart_queue_states_read_from_the_row() {
+        let own = "2026-11-11T09:00:00+00:00";
+        let later = "2026-11-11T09:02:00+00:00";
+        let behind = json!({"next_retry_at": later, "smart_queue": {"next_try_at": own}});
+        assert_eq!(send_stage("Queued", &behind), Some(SendStage::Behind { next_retry_at: Some(later.into()) }));
+        let on_time = json!({"next_retry_at": own, "smart_queue": {"next_try_at": own, "failures": 1}, "submission_error": "x"});
+        assert!(matches!(send_stage("Queued", &on_time), Some(SendStage::Failed { .. })));
+        let slowed = json!({"next_retry_at": later, "submission_error": "Not sent (nothing reached BIR): x", "smart_queue": {"next_try_at": later, "failures": 3, "slowed": true}});
+        assert_eq!(
+            send_stage("Queued", &slowed),
+            Some(SendStage::SlowedDown { reason: "Not sent (nothing reached BIR): x".into(), next_retry_at: Some(later.into()) })
+        );
+        let waiting = json!({"next_retry_at": later, "submission_error": "e", "queue_authorization": {"authorized_at": "2026-11-10T08:00:00Z"}, "smart_queue": {"notices": 1, "slowed": true}});
+        assert_eq!(
+            send_stage("Queued", &waiting),
+            Some(SendStage::StillWaiting { since: "2026-11-10T08:00:00Z".into(), reason: Some("e".into()), next_retry_at: Some(later.into()) })
+        );
+        // A claim wins over all of them: BIR may have it.
+        let mut claimed = waiting.clone();
+        claimed["submission_claim_token"] = json!("t");
+        assert!(matches!(send_stage("Queued", &claimed), Some(SendStage::NeedsAttention { .. })));
+        // A row from before the smart queue reads as it did.
+        assert_eq!(send_stage("Queued", &json!({"next_retry_at": later})), Some(SendStage::Queued { next_retry_at: Some(later.into()) }));
+    }
+
+    #[test]
+    fn every_stage_has_a_stable_name() {
+        let stages = [
+            SendStage::Queued { next_retry_at: None },
+            SendStage::Behind { next_retry_at: None },
+            SendStage::SlowedDown { reason: String::new(), next_retry_at: None },
+            SendStage::StillWaiting { since: String::new(), reason: None, next_retry_at: None },
+            SendStage::Paused,
+            SendStage::Sending,
+            SendStage::Failed { reason: String::new(), attempts: 1, next_retry_at: None },
+            SendStage::NeedsAttention { reason: String::new() },
+            SendStage::GaveUp { reason: String::new() },
+            SendStage::Refused { code: TinRefusal::NotActive, reason: String::new() },
+            SendStage::Sent { at: None, receipt: None },
+            SendStage::Confirmed { at: None },
+            SendStage::Paid,
+        ];
+        let names: Vec<&str> = stages.iter().map(SendStage::name).collect();
+        assert_eq!(
+            names,
+            ["queued", "behind", "slowed_down", "still_waiting", "paused", "sending", "failed", "needs_attention", "gave_up", "refused", "sent", "confirmed", "paid"]
+        );
+        let waiting: Vec<bool> = stages.iter().map(SendStage::is_waiting).collect();
+        assert_eq!(waiting, [true, true, true, true, true, false, true, false, false, false, false, false, false]);
+    }
+
+    #[test]
+    fn the_queue_lines_are_api_10s_words() {
+        let now = chrono::DateTime::parse_from_rfc3339("2026-11-11T09:00:00Z").unwrap().with_timezone(&chrono::Utc);
+        let at = |minutes: i64| Some((now + chrono::Duration::minutes(minutes)).to_rfc3339());
+        assert_eq!(queue_line(&SendStage::Behind { next_retry_at: at(1) }, now).unwrap(), "Goes right after the one above.");
+        assert_eq!(
+            queue_line(&SendStage::SlowedDown { reason: "x".into(), next_retry_at: at(118) }, now).unwrap(),
+            "Returns are getting in for others. The problem may be your own connection. Tries again in about 2 h."
+        );
+        assert_eq!(
+            queue_line(&SendStage::StillWaiting { since: "2026-11-10T08:00:00Z".into(), reason: None, next_retry_at: None }, now).unwrap(),
+            "Still waiting after 24 hours. It keeps trying by itself; you can cancel it or file another way."
+        );
+        assert_eq!(
+            queue_line(&SendStage::StillWaiting { since: "2026-11-09T08:00:00Z".into(), reason: None, next_retry_at: None }, now).unwrap(),
+            "Still waiting after 48 hours. It keeps trying by itself; you can cancel it or file another way."
+        );
+        assert_eq!(queue_line(&SendStage::Paused, now).unwrap(), "Your queue is paused · press Auto to send");
+        assert_eq!(
+            queue_line(&SendStage::Failed { reason: "Not sent (nothing reached BIR): the relay closed early (relay_closed)".into(), attempts: 2, next_retry_at: at(29) }, now).unwrap(),
+            "The relay closed early. Tries again in about 30 min."
+        );
+        // A step for the person (sign in) is the whole line.
+        assert_eq!(
+            queue_line(&SendStage::Failed { reason: "Sign in to send returns.".into(), attempts: 0, next_retry_at: at(5) }, now).unwrap(),
+            "Sign in to send this return."
+        );
+        assert_eq!(queue_line(&SendStage::Sending, now), None);
+        assert_eq!(queue_line(&SendStage::Queued { next_retry_at: None }, now), None);
+        let about = |minutes: i64| about(&(now + chrono::Duration::seconds(minutes * 60 - 30)).to_rfc3339(), now).unwrap();
+        assert_eq!([about(0), about(6), about(12), about(30), about(61), about(150)], ["a moment", "about 6 min", "about 10 min", "about 30 min", "about 1 h", "about 3 h"]);
     }
 }

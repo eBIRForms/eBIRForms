@@ -100,6 +100,26 @@ fn a_2551q_send_reason_is_shown() {
     unsafe { std::env::set_var("BUWIZ_DB_KEY", TEST_KEY) };
     a_not_sent_2551q_reads_failed_and_stays_queued();
     a_claimed_2551q_reads_needs_attention();
+    pause_holds_every_waiting_return_and_auto_lets_them_go();
+}
+
+fn pause_holds_every_waiting_return_and_auto_lets_them_go() {
+    use bir_app_core::QueueMode;
+    let dir = tempfile::tempdir().unwrap();
+    let (app, worker, _tin, id) = queued_2551q(dir.path());
+    assert_eq!(app.queue_mode().unwrap(), QueueMode::Auto);
+    app.set_queue_mode(QueueMode::Paused).unwrap();
+    assert_eq!(app.queue_mode().unwrap(), QueueMode::Paused);
+    assert_eq!(app.send_states().unwrap().get(&id), Some(&SendStage::Paused));
+    let runtime = tokio::runtime::Runtime::new().unwrap();
+    runtime.block_on(run_queue_tick(worker.clone(), &Arc::new(NotSentTransport)));
+    let (status, data) = row(&worker, id);
+    assert_eq!(status, "Queued");
+    assert_eq!(data["submission_attempts"], 0, "a paused queue sends nothing");
+    app.set_queue_mode(QueueMode::Auto).unwrap();
+    assert!(matches!(app.send_states().unwrap().get(&id), Some(SendStage::Queued { .. })));
+    runtime.block_on(tick(&worker, id));
+    assert!(matches!(app.send_states().unwrap().get(&id), Some(SendStage::Failed { attempts: 1, .. })));
 }
 
 fn a_not_sent_2551q_reads_failed_and_stays_queued() {
