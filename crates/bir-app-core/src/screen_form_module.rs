@@ -2975,16 +2975,13 @@ fn status_name(status: &FilingStatus) -> String {
     format!("{status:?}")
 }
 
-/// Stack for form evaluation. The async halves run on the executor's worker
-/// threads (512 KB on macOS); a form's validators compile regexes on first
-/// use, and in debug builds that alone overflowed the worker stack (2551Q's
-/// phone check took the app down with SIGILL).
-const EVALUATE_STACK: usize = 16 * 1024 * 1024;
-
-/// Run `work` on a thread of its own with [`EVALUATE_STACK`]. The async
-/// halves call it for everything that reads the typed draft: deserializing a
-/// large form (1702MX) in a debug build overflows a 512 KB worker stack too,
-/// and GPUI Fast runs host futures on those workers.
+/// Run `work` on a thread of its own with [`crate::DEEP_STACK`]. The async
+/// halves run on the executor's worker threads (512 KB on macOS); a form's
+/// validators compile regexes on first use, and in debug builds that alone
+/// overflowed the worker stack (2551Q's phone check took the app down with
+/// SIGILL). They call this for everything that reads the typed draft:
+/// deserializing a large form (1702MX) in a debug build overflows a 512 KB
+/// worker stack too, and GPUI Fast runs host futures on those workers.
 fn on_large_stack<T: Send + 'static>(
     work: impl FnOnce() -> T + Send + 'static,
 ) -> Result<T, String> {
@@ -2993,7 +2990,7 @@ fn on_large_stack<T: Send + 'static>(
     let clock = bir_core::forms::penalty_items::capture_clock();
     std::thread::Builder::new()
         .name("screen-form-evaluate".into())
-        .stack_size(EVALUATE_STACK)
+        .stack_size(crate::DEEP_STACK)
         .spawn(move || clock.run(work))
         .map_err(|error| error.to_string())?
         .join()

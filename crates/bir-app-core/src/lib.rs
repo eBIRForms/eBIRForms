@@ -29,6 +29,11 @@ pub use tin_state::*;
 pub use submit::{QueueLease, SERVER_URL_SETTING, block_on, set_sending_paused};
 pub use {bir_core, bir_print, bir_submit};
 
+/// The stack of every thread this crate starts for deep work: evaluating a
+/// form, and running the send queue. An unoptimised build overflows a
+/// thread's default stack on either, which ends the process.
+pub(crate) const DEEP_STACK: usize = 16 * 1024 * 1024;
+
 /// Every file this crate packs (build.rs) inflates to its source bytes.
 #[cfg(test)]
 #[test]

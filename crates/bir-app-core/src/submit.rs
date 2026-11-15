@@ -79,15 +79,34 @@ impl BirApp {
         Ok(bir_core::db::WorkerLease::try_acquire(self.database_path())?.map(QueueLease))
     }
 
-    /// Run the sending queue once, now, on the calling thread, through
-    /// `submission`'s relay (the same transport as the queue worker). Only
+    /// Run the sending queue once, now, through `submission`'s relay (the
+    /// same transport as the queue worker), on a thread of its own with
+    /// [`crate::DEEP_STACK`] whatever thread calls: the tick's future holds a
+    /// whole send, which overflows a default stack in an unoptimised build. Only
     /// with the worker lease in hand, so two processes never run the queue
     /// at once. Like every tick it sends at most one return, the head of the
     /// line (due soonest, across every TIN), and only when its own time has
     /// come; it returns when that send ended.
     pub fn send_queue_once(&self, _lease: &QueueLease, submission: &Submission) {
         let transport = submission.transport();
-        block_on(bir_core::background_cron::run_queue_tick(self.db.clone(), &transport));
+        let db = self.db.clone();
+        std::thread::scope(|scope| {
+            let tick = std::thread::Builder::new()
+                .name("bir-send-once".into())
+                .stack_size(crate::DEEP_STACK)
+                .spawn_scoped(scope, move || {
+                    block_on(bir_core::background_cron::run_queue_tick(db, &transport));
+                });
+            match tick {
+                // A panic in the tick stays the caller's, as when it ran here.
+                Ok(tick) => {
+                    if let Err(panic) = tick.join() {
+                        std::panic::resume_unwind(panic);
+                    }
+                }
+                Err(error) => tracing::error!("the send did not start: {error}"),
+            }
+        });
     }
 }
 
