@@ -1,0 +1,7 @@
+{"error": {"code": "bir_offline",
+           "message": "The BIR is offline, so Buwiz held this return. Nothing reached the BIR. Wait until about 5:15 PM.",
+           "wait_until": "2026-11-11T09:13:41Z",
+           "retry_after": 841,
+           "try_anyway": {"allowed": true, "next_at": null}},
+ "bir": {"v": 1, "seq": 4182, "state": "offline", "relay": "ok", "admission": false, "note": null,
+         "wait_until": "2026-11-11T09:13:41Z", "scout_at": "2026-11-11T09:13:41Z"}}

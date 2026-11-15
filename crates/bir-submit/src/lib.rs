@@ -21,6 +21,8 @@ pub mod pipe;
 pub mod receipt;
 pub mod seal;
 pub mod secrets;
+#[cfg(test)]
+mod testkit;
 pub mod tins;
 pub mod transport;
 pub mod trust;
@@ -28,7 +30,7 @@ pub mod trust;
 use std::sync::Arc;
 
 pub use client::{
-    ClientError, DEFAULT_SERVER_URL, DeviceCode, PollOutcome, SendError, Sent, SignInStatus,
+    CLIENT_HEADER, ClientError, DEFAULT_SERVER_URL, DeviceCode, PollOutcome, SendError, Sent, SignInStatus,
     SubmitConfig, Submitter,
 };
 pub use tins::{AccountTin, AccountTins, TinStatus, TinsError, TinsRead};
@@ -65,6 +67,17 @@ impl Submission {
     /// `BirApp::start_queue_worker`).
     pub fn transport(&self) -> Arc<BuwizTransport> {
         Arc::new(BuwizTransport::new(self.submitter.clone()))
+    }
+
+    /// Name the app in the `buwiz-client` header of every request:
+    /// `set_client("desktop", env!("CARGO_PKG_VERSION"))` at start.
+    pub fn set_client(&self, app: &str, version: &str) {
+        self.submitter.set_client(app, version);
+    }
+
+    /// The newest BIR sign heard on any answer ([`Submitter::last_sign`]).
+    pub fn last_sign(&self) -> Option<bir_core::bir_sign::SeenSign> {
+        self.submitter.last_sign()
     }
 
     pub fn sign_in_status(&self) -> SignInStatus {

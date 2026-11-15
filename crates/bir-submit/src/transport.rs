@@ -75,7 +75,8 @@ impl SubmissionTransport for BuwizTransport {
                     dry_run: sent.receipt.is_test(),
                     receipt: Some(sent.receipt_jws),
                 }),
-                Err(SendError::NotSent(reason)) => {
+                // Until the queue tells a hold apart, it is a plain not-sent.
+                Err(SendError::NotSent(reason) | SendError::NotATry { reason, .. }) => {
                     Err(StoreFailure::NotSent(TransportError(reason)))
                 }
                 Err(SendError::MaybeSent(reason)) => {
