@@ -505,6 +505,7 @@ impl Form1601CDraft {
             submission_attempts: 0,
             submission_error: None,
             next_retry_at: None,
+            smart_queue: Default::default(),
             profile_edits: Vec::new(),
             profile_baseline: std::collections::BTreeMap::new(),
         };

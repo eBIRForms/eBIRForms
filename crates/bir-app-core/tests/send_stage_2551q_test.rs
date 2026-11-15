@@ -98,11 +98,11 @@ fn retry_due(worker: &Arc<Mutex<Database>>, id: i64) {
 fn a_2551q_send_reason_is_shown() {
     // SAFETY: set once, before any database opens.
     unsafe { std::env::set_var("BUWIZ_DB_KEY", TEST_KEY) };
-    a_not_sent_2551q_reads_failed_then_gave_up();
+    a_not_sent_2551q_reads_failed_and_stays_queued();
     a_claimed_2551q_reads_needs_attention();
 }
 
-fn a_not_sent_2551q_reads_failed_then_gave_up() {
+fn a_not_sent_2551q_reads_failed_and_stays_queued() {
     let dir = tempfile::tempdir().unwrap();
     let (app, worker, _tin, id) = queued_2551q(dir.path());
     let runtime = tokio::runtime::Runtime::new().unwrap();
@@ -115,14 +115,20 @@ fn a_not_sent_2551q_reads_failed_then_gave_up() {
         other => panic!("expected Failed after a not-sent 2551Q, got {other:?}"),
     }
 
-    for _ in 2..=5 {
+    for _ in 2..=6 {
         retry_due(&worker, id);
         runtime.block_on(tick(&worker, id));
     }
-    assert_eq!(row(&worker, id).0, "Draft");
+    // No number of failed tries sends it back to Draft: it stays queued,
+    // authorized, and reads as failed with its next try.
+    let (status, data) = row(&worker, id);
+    assert_eq!(status, "Queued");
+    assert!(data["queue_authorization"].is_object());
     match app.send_states().unwrap().get(&id) {
-        Some(SendStage::GaveUp { reason }) => assert!(reason.starts_with("Not sent (nothing reached BIR): "), "{reason}"),
-        other => panic!("expected GaveUp after the fifth not-sent 2551Q, got {other:?}"),
+        Some(SendStage::Failed { reason, attempts: 6, next_retry_at: Some(_) }) => {
+            assert!(reason.starts_with("Not sent (nothing reached BIR): "), "{reason}")
+        }
+        other => panic!("expected Failed after the sixth not-sent 2551Q, got {other:?}"),
     }
 }
 

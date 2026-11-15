@@ -131,6 +131,13 @@ pub mod kinds {
     /// The "test notification" heartbeat a profile can switch on. Recorded as
     /// a row so the painted app can surface it through its own delivery.
     pub const CRON_HEARTBEAT: &str = "cron_heartbeat";
+    /// A queued return still not sent after `notice_after_s` (24 hours) of
+    /// waiting: `queue_still_waiting:{form}:{period}`, raised again each
+    /// time that long passes. It stays queued; sending it resolves this.
+    pub const QUEUE_STILL_WAITING: &str = "queue_still_waiting";
+    /// The person paused the queue and returns are waiting: raised once a
+    /// (Manila) day; switching back to Auto resolves it.
+    pub const QUEUE_PAUSED: &str = "queue_paused";
 }
 
 impl Database {

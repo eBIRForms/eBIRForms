@@ -66,7 +66,11 @@ pub enum Relay {
 
 impl Relay {
     fn from_wire(word: &str) -> Self {
-        if word == "paused" { Self::Paused } else { Self::Ok }
+        if word == "paused" {
+            Self::Paused
+        } else {
+            Self::Ok
+        }
     }
 }
 
@@ -143,14 +147,18 @@ impl Sign {
         };
         Some(Self {
             seq,
-            state: word(value, "state").map_or(SignState::NoRecentNews, |s| SignState::from_wire(&s)),
+            state: word(value, "state")
+                .map_or(SignState::NoRecentNews, |s| SignState::from_wire(&s)),
             dispatcher: light("dispatcher"),
             upload: light("upload"),
             relay: word(value, "relay").map_or(Relay::Ok, |r| Relay::from_wire(&r)),
             since: time("since"),
             wait_until: time("wait_until"),
             scout_at: time("scout_at"),
-            admission: value.get("admission").and_then(Value::as_bool).unwrap_or(false),
+            admission: value
+                .get("admission")
+                .and_then(Value::as_bool)
+                .unwrap_or(false),
             note: value.get("note").is_some_and(|note| !note.is_null()),
             queue: value.get("queue").map(QueuePolicy::from_json),
         })
@@ -195,7 +203,8 @@ impl SignCell {
             None => true,
             Some(old) => {
                 sign.seq > old.sign.seq
-                    || (sign.seq == old.sign.seq && (sign.queue.is_some() || old.sign.queue.is_none()))
+                    || (sign.seq == old.sign.seq
+                        && (sign.queue.is_some() || old.sign.queue.is_none()))
             }
         };
         if newer {
@@ -378,7 +387,10 @@ mod tests {
         assert_eq!(sign.state, SignState::NoRecentNews);
         assert_eq!(sign.relay, Relay::Paused);
         assert!(sign.admission, "a bare member is true");
-        assert_eq!((sign.since, sign.wait_until, sign.scout_at), (None, None, None));
+        assert_eq!(
+            (sign.since, sign.wait_until, sign.scout_at),
+            (None, None, None)
+        );
         assert_eq!((sign.dispatcher, sign.upload), (None, None));
         let unknown_relay = Sign::from_header("v=1, seq=7, relay=maybe").unwrap();
         assert_eq!(unknown_relay.relay, Relay::Ok);
@@ -447,14 +459,22 @@ mod tests {
         assert_eq!(sign.state, SignState::Offline);
         assert_eq!(sign.dispatcher, Some(SignState::Online));
         assert_eq!(sign.upload, Some(SignState::Offline));
-        assert_eq!(sign.wait_until.unwrap().to_rfc3339(), "2026-11-11T09:13:41+00:00");
+        assert_eq!(
+            sign.wait_until.unwrap().to_rfc3339(),
+            "2026-11-11T09:13:41+00:00"
+        );
         assert_eq!(sign.scout_at, sign.wait_until);
         assert!(!sign.note);
         assert_eq!(sign.queue, Some(QueuePolicy::default()));
         let mut with_note = api_2_2_sign_object();
         with_note["note"] = json!({"kind": "outage", "text": "x"});
         assert!(Sign::from_json(&with_note).unwrap().note);
-        for broken in [json!({}), json!({"v": 2, "seq": 1}), json!({"v": 1}), json!("v=1")] {
+        for broken in [
+            json!({}),
+            json!({"v": 2, "seq": 1}),
+            json!({"v": 1}),
+            json!("v=1"),
+        ] {
             assert_eq!(Sign::from_json(&broken), None, "{broken}");
         }
     }
@@ -467,7 +487,10 @@ mod tests {
         let new = Sign::from_header("v=1, seq=10, state=online").unwrap();
         let old = Sign::from_header("v=1, seq=9, state=offline").unwrap();
         assert!(cell.observe(new.clone(), at));
-        assert!(!cell.observe(old, at + Duration::minutes(1)), "a cached, older sign");
+        assert!(
+            !cell.observe(old, at + Duration::minutes(1)),
+            "a cached, older sign"
+        );
         assert_eq!(cell.latest().unwrap().sign.state, SignState::Online);
         assert_eq!(cell.latest().unwrap().seen_at, at);
         // The same sign read in full replaces the header copy.
@@ -485,7 +508,10 @@ mod tests {
     #[test]
     fn freshness_is_wall_clock_age_and_a_future_sign_is_stale() {
         let at = Utc.with_ymd_and_hms(2026, 11, 11, 9, 0, 0).unwrap();
-        let seen = SeenSign { sign: Sign::from_header("v=1, seq=1").unwrap(), seen_at: at };
+        let seen = SeenSign {
+            sign: Sign::from_header("v=1, seq=1").unwrap(),
+            seen_at: at,
+        };
         let policy = QueuePolicy::default();
         assert!(seen.is_fresh(at, &policy));
         assert!(seen.is_fresh(at + Duration::seconds(599), &policy));

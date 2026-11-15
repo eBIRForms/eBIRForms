@@ -565,7 +565,12 @@ fn a_real_send_in_flight_blocks_the_release() {
         let worker = Arc::new(Mutex::new(Database::open(app.database_path()).expect("the worker's connection")));
         let transport = Arc::new(HeldTransport { finish: tokio::sync::Notify::new() });
         let runtime = tokio::runtime::Runtime::new().unwrap();
-        runtime.block_on(run_queue_tick(worker.clone(), &transport));
+        // The tick completes the send it starts, so it runs in the
+        // background here, as on the app's worker thread.
+        let tick = {
+            let (worker, transport) = (worker.clone(), transport.clone());
+            runtime.spawn(async move { run_queue_tick(worker, &transport).await })
+        };
 
         // The upload has started and is still pending.
         wait_until("the upload started", || {
@@ -585,6 +590,7 @@ fn a_real_send_in_flight_blocks_the_release() {
 
         // The send finishes: the worker files it as Submitted.
         transport.finish.notify_one();
+        runtime.block_on(tick).expect("the tick ends with its send");
         wait_until("the send finished", || get_active_jobs().lock().unwrap().is_empty());
         assert_eq!(row(&side, id).0, "Submitted", "{code}");
         let state = send_state(&app, &tin, code, slot);

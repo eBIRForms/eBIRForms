@@ -110,7 +110,9 @@ impl QueuePolicy {
         let waits_s = match object.get("waits_s").and_then(Value::as_array) {
             Some(waits) if waits.len() == DEFAULT_WAITS_S.len() => {
                 let mut out = DEFAULT_WAITS_S;
-                for (slot, (value, default)) in out.iter_mut().zip(waits.iter().zip(DEFAULT_WAITS_S)) {
+                for (slot, (value, default)) in
+                    out.iter_mut().zip(waits.iter().zip(DEFAULT_WAITS_S))
+                {
                     *slot = value
                         .as_u64()
                         .filter(|n| (u64::from(default)..=u64::from(MAX_WAIT_S)).contains(n))
@@ -157,7 +159,13 @@ impl QueuePolicy {
     /// The longest any one wait can be, spread included. A stored next try
     /// further away than this (the clock went back) is taken as this far.
     pub fn longest_wait(&self) -> Duration {
-        let longest = self.waits_s.iter().copied().chain([self.repeat_s]).max().unwrap_or(MAX_WAIT_S);
+        let longest = self
+            .waits_s
+            .iter()
+            .copied()
+            .chain([self.repeat_s])
+            .max()
+            .unwrap_or(MAX_WAIT_S);
         seconds_f64(f64::from(longest) * (1.0 + self.spread))
     }
 }
@@ -242,7 +250,11 @@ pub fn next_try_at(
     let base = match wait {
         Wait::Failed { failures, slowed } => {
             let wait = policy.wait_s(failures);
-            if slowed { wait.max(policy.repeat_s) } else { wait }
+            if slowed {
+                wait.max(policy.repeat_s)
+            } else {
+                wait
+            }
         }
         Wait::NotATry => policy.waits_s[0],
     };
@@ -369,6 +381,23 @@ pub fn plan_retry(
     })
 }
 
+/// A counted failure at `now` on the default numbers and the OS random
+/// source: what a caller without the worker's policy (a test, a tool)
+/// records.
+pub fn default_retry(failures_before: u32, now: DateTime<Utc>) -> Retry {
+    plan_retry(
+        failures_before,
+        TryClass::Counted,
+        false,
+        now,
+        None,
+        now,
+        &QueuePolicy::default(),
+        &mut OsRng,
+    )
+    .expect("a counted failure has a retry")
+}
+
 // ---------------------------------------------------------- device guard
 
 /// How many of this device's last counted tries the guard looks at.
@@ -393,7 +422,10 @@ impl DeviceTries {
     }
 
     pub fn to_setting(&self) -> String {
-        self.0.iter().map(|&got_in| if got_in { 'o' } else { 'x' }).collect()
+        self.0
+            .iter()
+            .map(|&got_in| if got_in { 'o' } else { 'x' })
+            .collect()
     }
 
     pub fn record(&mut self, got_in: bool) {
@@ -470,10 +502,18 @@ pub fn line_up(rows: &[Waiting], now: DateTime<Utc>, policy: &QueuePolicy) -> Li
         })
         .collect();
     let eligible = |i: usize| !rows[i].blocked && ready[i] <= now;
-    let by_due = |i: &usize| (rows[*i].due.unwrap_or(NaiveDate::MAX), rows[*i].queued_at, *i);
+    let by_due = |i: &usize| {
+        (
+            rows[*i].due.unwrap_or(NaiveDate::MAX),
+            rows[*i].queued_at,
+            *i,
+        )
+    };
     let mut first: Vec<usize> = (0..rows.len()).filter(|&i| eligible(i)).collect();
     first.sort_by_key(by_due);
-    let mut later: Vec<usize> = (0..rows.len()).filter(|&i| !rows[i].blocked && !eligible(i)).collect();
+    let mut later: Vec<usize> = (0..rows.len())
+        .filter(|&i| !rows[i].blocked && !eligible(i))
+        .collect();
     later.sort_by_key(|i| (ready[*i], by_due(i)));
     let head = first.first().copied();
 
@@ -493,7 +533,12 @@ pub fn line_up(rows: &[Waiting], now: DateTime<Utc>, policy: &QueuePolicy) -> Li
         stamps[i] = Some(stamp);
         previous = Some(stamp);
     }
-    LineUp { head, ready, stamps, behind }
+    LineUp {
+        head,
+        ready,
+        stamps,
+        behind,
+    }
 }
 
 /// The one return that may go now ([`line_up`]'s head).
@@ -530,7 +575,11 @@ pub const DEVICE_TRIES_SETTING: &str = "smart_queue_recent";
 impl QueueMode {
     /// Only `paused` pauses; anything else (or nothing) is Auto.
     pub fn from_setting(stored: Option<&str>) -> Self {
-        if stored.map(str::trim) == Some("paused") { Self::Paused } else { Self::Auto }
+        if stored.map(str::trim) == Some("paused") {
+            Self::Paused
+        } else {
+            Self::Auto
+        }
     }
 
     pub fn as_setting(self) -> &'static str {
@@ -584,7 +633,9 @@ impl QueueState {
 }
 
 pub fn parse_time(text: &str) -> Option<DateTime<Utc>> {
-    DateTime::parse_from_rfc3339(text).ok().map(|at| at.with_timezone(&Utc))
+    DateTime::parse_from_rfc3339(text)
+        .ok()
+        .map(|at| at.with_timezone(&Utc))
 }
 
 // --------------------------------------------------------------- the gate
@@ -615,7 +666,12 @@ pub enum Gate {
 /// older than `stale_after_s`, is Open: an app that cannot hear the sign
 /// sends as it would without one. A turn wins over `wait_until` and over
 /// admission, and a scout turn over Offline; nothing lifts `relay: paused`.
-pub fn gate(sign: Option<&SeenSign>, now: DateTime<Utc>, policy: &QueuePolicy, turn: Option<Turn>) -> Gate {
+pub fn gate(
+    sign: Option<&SeenSign>,
+    now: DateTime<Utc>,
+    policy: &QueuePolicy,
+    turn: Option<Turn>,
+) -> Gate {
     let Some(seen) = sign.filter(|seen| seen.is_fresh(now, policy)) else {
         return Gate::Open;
     };
@@ -624,7 +680,11 @@ pub fn gate(sign: Option<&SeenSign>, now: DateTime<Utc>, policy: &QueuePolicy, t
         return Gate::Sleep;
     }
     if sign.state == SignState::Offline {
-        return if turn == Some(Turn::Scout) { Gate::Open } else { Gate::Sleep };
+        return if turn == Some(Turn::Scout) {
+            Gate::Open
+        } else {
+            Gate::Sleep
+        };
     }
     if turn.is_some() {
         return Gate::Open;
@@ -682,7 +742,10 @@ mod tests {
         assert_eq!(policy.repeat_s, 21600);
         assert_eq!(policy.spread, 0.2);
         assert_eq!(policy.notice_after_s, 3600);
-        assert_eq!((policy.sign_read_s, policy.report_s, policy.stale_after_s), (600, 60, 1200));
+        assert_eq!(
+            (policy.sign_read_s, policy.report_s, policy.stale_after_s),
+            (600, 60, 1200)
+        );
     }
 
     #[test]
@@ -716,7 +779,14 @@ mod tests {
         ];
         for value in hostile {
             let policy = QueuePolicy::from_json(&value);
-            assert!(policy.waits_s.iter().zip(DEFAULT_WAITS_S).all(|(w, d)| *w >= d), "{value}");
+            assert!(
+                policy
+                    .waits_s
+                    .iter()
+                    .zip(DEFAULT_WAITS_S)
+                    .all(|(w, d)| *w >= d),
+                "{value}"
+            );
             assert_eq!(policy, defaults, "{value}");
         }
         // One bad entry falls back alone.
@@ -728,7 +798,10 @@ mod tests {
     fn stale_after_is_at_least_twice_the_sign_read() {
         let policy = QueuePolicy::from_json(&json!({ "sign_read_s": 400, "stale_after_s": 700 }));
         assert_eq!(policy.sign_read_s, 400);
-        assert_eq!(policy.stale_after_s, 800, "700 < 2 x 400, so the default, raised to 800");
+        assert_eq!(
+            policy.stale_after_s, 800,
+            "700 < 2 x 400, so the default, raised to 800"
+        );
         let policy = QueuePolicy::from_json(&json!({ "sign_read_s": 200, "stale_after_s": 500 }));
         assert_eq!(policy.stale_after_s, 500);
     }
@@ -750,26 +823,44 @@ mod tests {
         };
         for _ in 0..5_000 {
             let mut object = serde_json::Map::new();
-            for key in ["repeat_s", "spread", "notice_after_s", "sign_read_s", "report_s", "stale_after_s", "parallel"] {
+            for key in [
+                "repeat_s",
+                "spread",
+                "notice_after_s",
+                "sign_read_s",
+                "report_s",
+                "stale_after_s",
+                "parallel",
+            ] {
                 if !rng.next_u64().is_multiple_of(3) {
                     object.insert(key.into(), pick(&mut rng));
                 }
             }
             let n = (rng.next_u64() % 6) as usize;
-            object.insert("waits_s".into(), Value::Array((0..n).map(|_| pick(&mut rng)).collect()));
+            object.insert(
+                "waits_s".into(),
+                Value::Array((0..n).map(|_| pick(&mut rng)).collect()),
+            );
             let policy = QueuePolicy::from_json(&Value::Object(object.clone()));
             for (wait, default) in policy.waits_s.iter().zip(DEFAULT_WAITS_S) {
                 assert!((default..=MAX_WAIT_S).contains(wait), "{object:?}");
             }
-            assert!((DEFAULT_REPEAT_S..=MAX_WAIT_S).contains(&policy.repeat_s), "{object:?}");
-            assert!((SPREAD_RANGE.0..=SPREAD_RANGE.1).contains(&policy.spread), "{object:?}");
+            assert!(
+                (DEFAULT_REPEAT_S..=MAX_WAIT_S).contains(&policy.repeat_s),
+                "{object:?}"
+            );
+            assert!(
+                (SPREAD_RANGE.0..=SPREAD_RANGE.1).contains(&policy.spread),
+                "{object:?}"
+            );
             assert!((60..=300).contains(&policy.report_s));
             assert!((3600..=604_800).contains(&policy.notice_after_s));
             assert!(policy.stale_after_s >= 2 * policy.sign_read_s && policy.stale_after_s <= 3600);
             // Every wait, at its shortest, is no shorter than the default's.
             for failures in 1..=8 {
                 let shortest = f64::from(policy.wait_s(failures)) * (1.0 - policy.spread);
-                let default_shortest = f64::from(QueuePolicy::default().wait_s(failures)) * (1.0 - DEFAULT_SPREAD);
+                let default_shortest =
+                    f64::from(QueuePolicy::default().wait_s(failures)) * (1.0 - DEFAULT_SPREAD);
                 assert!(shortest >= default_shortest, "{object:?}");
             }
         }
@@ -779,8 +870,14 @@ mod tests {
 
     #[test]
     fn the_seeded_source_repeats_and_the_os_source_varies() {
-        let a: Vec<u64> = { let mut r = SeededRng::new(7); (0..4).map(|_| r.next_u64()).collect() };
-        let b: Vec<u64> = { let mut r = SeededRng::new(7); (0..4).map(|_| r.next_u64()).collect() };
+        let a: Vec<u64> = {
+            let mut r = SeededRng::new(7);
+            (0..4).map(|_| r.next_u64()).collect()
+        };
+        let b: Vec<u64> = {
+            let mut r = SeededRng::new(7);
+            (0..4).map(|_| r.next_u64()).collect()
+        };
         assert_eq!(a, b);
         let mut os = OsRng;
         assert_ne!((os.next_u64(), os.next_u64(), os.next_u64()), (0, 0, 0));
@@ -798,12 +895,29 @@ mod tests {
             let (mut low, mut high) = (0usize, 0usize);
             let draws = 10_000;
             for _ in 0..draws {
-                let at = next_try_at(Wait::Failed { failures, slowed: false }, t0(), None, t0(), &policy, &mut rng);
+                let at = next_try_at(
+                    Wait::Failed {
+                        failures,
+                        slowed: false,
+                    },
+                    t0(),
+                    None,
+                    t0(),
+                    &policy,
+                    &mut rng,
+                );
                 let factor = secs(at - t0()) / base;
-                assert!((0.5..=1.5).contains(&factor), "factor {factor} for failure {failures}");
+                assert!(
+                    (0.5..=1.5).contains(&factor),
+                    "factor {factor} for failure {failures}"
+                );
                 sum += factor;
-                if factor < 0.75 { low += 1 }
-                if factor > 1.25 { high += 1 }
+                if factor < 0.75 {
+                    low += 1
+                }
+                if factor > 1.25 {
+                    high += 1
+                }
             }
             let mean = sum / f64::from(draws);
             assert!((mean - 1.0).abs() < 0.02, "mean {mean}");
@@ -815,9 +929,25 @@ mod tests {
         // 5 minutes becomes anywhere from 2.5 to 7.5.
         let mut rng = SeededRng::new(1);
         let draws: Vec<f64> = (0..10_000)
-            .map(|_| secs(next_try_at(Wait::Failed { failures: 1, slowed: false }, t0(), None, t0(), &policy, &mut rng) - t0()))
+            .map(|_| {
+                secs(
+                    next_try_at(
+                        Wait::Failed {
+                            failures: 1,
+                            slowed: false,
+                        },
+                        t0(),
+                        None,
+                        t0(),
+                        &policy,
+                        &mut rng,
+                    ) - t0(),
+                )
+            })
             .collect();
-        let (min, max) = draws.iter().fold((f64::MAX, f64::MIN), |(lo, hi), &d| (lo.min(d), hi.max(d)));
+        let (min, max) = draws
+            .iter()
+            .fold((f64::MAX, f64::MIN), |(lo, hi), &d| (lo.min(d), hi.max(d)));
         assert!((150.0..160.0).contains(&min), "{min}");
         assert!(max <= 450.0 && max > 440.0, "{max}");
     }
@@ -827,7 +957,17 @@ mod tests {
         let policy = QueuePolicy::from_json(&json!({ "spread": 0.2 }));
         let mut rng = SeededRng::new(9);
         for _ in 0..2_000 {
-            let at = next_try_at(Wait::Failed { failures: 2, slowed: false }, t0(), None, t0(), &policy, &mut rng);
+            let at = next_try_at(
+                Wait::Failed {
+                    failures: 2,
+                    slowed: false,
+                },
+                t0(),
+                None,
+                t0(),
+                &policy,
+                &mut rng,
+            );
             let factor = secs(at - t0()) / 1800.0;
             assert!((0.8..=1.2).contains(&factor), "{factor}");
         }
@@ -844,7 +984,17 @@ mod tests {
             let ahead = Duration::seconds((rng.next_u64() % 20_000) as i64);
             let until = now + ahead;
             let failures = (rng.next_u64() % 7) as u32 + 1;
-            let at = next_try_at(Wait::Failed { failures, slowed: false }, now, Some(until), now, &policy, &mut rng);
+            let at = next_try_at(
+                Wait::Failed {
+                    failures,
+                    slowed: false,
+                },
+                now,
+                Some(until),
+                now,
+                &policy,
+                &mut rng,
+            );
             assert!(at >= until, "{at} before {until}");
             let own = f64::from(policy.wait_s(failures)) * 1.5;
             let latest = secs(ahead) * 1.5;
@@ -868,7 +1018,17 @@ mod tests {
         let ended = t0() + Duration::minutes(3);
         let mut rng = SeededRng::new(5);
         for _ in 0..1000 {
-            let at = next_try_at(Wait::Failed { failures: 1, slowed: false }, ended, None, t0(), &policy, &mut rng);
+            let at = next_try_at(
+                Wait::Failed {
+                    failures: 1,
+                    slowed: false,
+                },
+                ended,
+                None,
+                t0(),
+                &policy,
+                &mut rng,
+            );
             assert!(at >= ended + Duration::seconds(150) && at <= ended + Duration::seconds(450));
         }
     }
@@ -880,15 +1040,38 @@ mod tests {
         for code in ["bir_offline", "bir_busy", "relay_paused", "restarting"] {
             assert!(is_hold_code(code));
         }
-        for code in ["tin_not_active", "rate_limited", "internal", "try_anyway_limited", ""] {
+        for code in [
+            "tin_not_active",
+            "rate_limited",
+            "internal",
+            "try_anyway_limited",
+            "",
+        ] {
             assert!(!is_hold_code(code), "{code}");
         }
-        assert_eq!(FailureClass::from_wire("ours").try_class(), TryClass::NotATry);
-        assert_eq!(FailureClass::from_wire("bir").try_class(), TryClass::Counted);
-        assert_eq!(FailureClass::from_wire("user_network").try_class(), TryClass::Counted);
-        assert_eq!(FailureClass::from_wire("something_new"), FailureClass::Bir, "an unknown class is bir");
+        assert_eq!(
+            FailureClass::from_wire("ours").try_class(),
+            TryClass::NotATry
+        );
+        assert_eq!(
+            FailureClass::from_wire("bir").try_class(),
+            TryClass::Counted
+        );
+        assert_eq!(
+            FailureClass::from_wire("user_network").try_class(),
+            TryClass::Counted
+        );
+        assert_eq!(
+            FailureClass::from_wire("something_new"),
+            FailureClass::Bir,
+            "an unknown class is bir"
+        );
         assert!(TryClass::Counted.counts() && TryClass::NoService.counts());
-        assert!(!TryClass::NotATry.counts() && !TryClass::Refused.counts() && !TryClass::MaybeSent.counts());
+        assert!(
+            !TryClass::NotATry.counts()
+                && !TryClass::Refused.counts()
+                && !TryClass::MaybeSent.counts()
+        );
     }
 
     #[test]
@@ -896,7 +1079,10 @@ mod tests {
         let policy = QueuePolicy::default();
         let mut rng = SeededRng::new(1);
         for class in [TryClass::Refused, TryClass::MaybeSent] {
-            assert_eq!(plan_retry(2, class, true, t0(), None, t0(), &policy, &mut rng), None);
+            assert_eq!(
+                plan_retry(2, class, true, t0(), None, t0(), &policy, &mut rng),
+                None
+            );
         }
     }
 
@@ -904,16 +1090,65 @@ mod tests {
     fn only_a_counted_failure_moves_the_schedule() {
         let policy = QueuePolicy::default();
         let mut rng = SeededRng::new(11);
-        let not_a_try = plan_retry(3, TryClass::NotATry, true, t0(), None, t0(), &policy, &mut rng).unwrap();
-        assert_eq!((not_a_try.counted, not_a_try.failures, not_a_try.slowed), (false, 3, false));
-        assert!(not_a_try.at <= t0() + Duration::seconds(450), "the first wait, not the fourth");
-        let counted = plan_retry(3, TryClass::Counted, false, t0(), None, t0(), &policy, &mut rng).unwrap();
+        let not_a_try = plan_retry(
+            3,
+            TryClass::NotATry,
+            true,
+            t0(),
+            None,
+            t0(),
+            &policy,
+            &mut rng,
+        )
+        .unwrap();
+        assert_eq!(
+            (not_a_try.counted, not_a_try.failures, not_a_try.slowed),
+            (false, 3, false)
+        );
+        assert!(
+            not_a_try.at <= t0() + Duration::seconds(450),
+            "the first wait, not the fourth"
+        );
+        let counted = plan_retry(
+            3,
+            TryClass::Counted,
+            false,
+            t0(),
+            None,
+            t0(),
+            &policy,
+            &mut rng,
+        )
+        .unwrap();
         assert_eq!((counted.counted, counted.failures), (true, 4));
         assert!(counted.at >= t0() + Duration::seconds(3600));
-        let no_service = plan_retry(0, TryClass::NoService, true, t0(), None, t0(), &policy, &mut rng).unwrap();
-        assert_eq!((no_service.counted, no_service.failures, no_service.slowed), (true, 1, false));
+        let no_service = plan_retry(
+            0,
+            TryClass::NoService,
+            true,
+            t0(),
+            None,
+            t0(),
+            &policy,
+            &mut rng,
+        )
+        .unwrap();
+        assert_eq!(
+            (no_service.counted, no_service.failures, no_service.slowed),
+            (true, 1, false)
+        );
         let hold = t0() + Duration::hours(3);
-        let held = plan_retry(0, TryClass::NotATry, false, t0(), Some(hold), t0(), &policy, &mut rng).unwrap();
+        let held = plan_retry(
+            0,
+            TryClass::NotATry,
+            false,
+            t0(),
+            Some(hold),
+            t0(),
+            &policy,
+            &mut rng,
+        )
+        .unwrap();
         assert!(held.at >= hold && held.at <= hold + Duration::minutes(90));
         assert_eq!(held.failures, 0);
     }
@@ -927,15 +1162,26 @@ mod tests {
         tries.record(false);
         assert!(!guard_trips(Some(SignState::Online), &tries));
         tries.record(false);
-        assert!(guard_trips(Some(SignState::Online), &tries), "a third failure trips it");
-        for sign in [None, Some(SignState::Busy), Some(SignState::Offline), Some(SignState::NoRecentNews)] {
+        assert!(
+            guard_trips(Some(SignState::Online), &tries),
+            "a third failure trips it"
+        );
+        for sign in [
+            None,
+            Some(SignState::Busy),
+            Some(SignState::Offline),
+            Some(SignState::NoRecentNews),
+        ] {
             assert!(!guard_trips(sign, &tries), "{sign:?}");
         }
         tries.record(false);
         assert!(guard_on(Some(SignState::Online), &tries));
         assert_eq!(tries.to_setting(), "xxx");
         tries.record(true);
-        assert!(!guard_on(Some(SignState::Online), &tries), "a landing clears it");
+        assert!(
+            !guard_on(Some(SignState::Online), &tries),
+            "a landing clears it"
+        );
         assert_eq!(DeviceTries::from_setting(&tries.to_setting()), tries);
         assert_eq!(DeviceTries::from_setting("oooxxx?").to_setting(), "xxx");
     }
@@ -945,9 +1191,22 @@ mod tests {
         let policy = QueuePolicy::default();
         let mut rng = SeededRng::new(12);
         for failures in 0..3 {
-            let retry = plan_retry(failures, TryClass::Counted, true, t0(), None, t0(), &policy, &mut rng).unwrap();
+            let retry = plan_retry(
+                failures,
+                TryClass::Counted,
+                true,
+                t0(),
+                None,
+                t0(),
+                &policy,
+                &mut rng,
+            )
+            .unwrap();
             assert!(retry.slowed);
-            assert!(retry.at >= t0() + Duration::seconds(3600), "2 h x 0.5 at least");
+            assert!(
+                retry.at >= t0() + Duration::seconds(3600),
+                "2 h x 0.5 at least"
+            );
             assert!(retry.at <= t0() + Duration::seconds(10_800));
         }
     }
@@ -970,16 +1229,35 @@ mod tests {
     #[test]
     fn the_head_is_due_soonest_then_queued_first() {
         let policy = QueuePolicy::default();
-        let rows = [row(25, 0, None), row(10, 30, None), row(10, 5, None), row(5, 0, Some(10))];
+        let rows = [
+            row(25, 0, None),
+            row(10, 30, None),
+            row(10, 5, None),
+            row(5, 0, Some(10)),
+        ];
         let line = line_up(&rows, t0(), &policy);
         assert_eq!(line.head, Some(2), "due the 10th, queued before the other");
         assert_eq!(line.stamps[2], Some(t0()));
         assert_eq!(line.stamps[1], Some(t0() + Duration::minutes(1)));
         assert_eq!(line.stamps[0], Some(t0() + Duration::minutes(2)));
-        assert_eq!(line.stamps[3], Some(t0() + Duration::minutes(10)), "its own time is later still");
+        assert_eq!(
+            line.stamps[3],
+            Some(t0() + Duration::minutes(10)),
+            "its own time is later still"
+        );
         assert_eq!(line.behind, [true, true, false, false]);
-        let undated = [Waiting { due: None, ..row(1, 0, None) }, row(30, 10, None)];
-        assert_eq!(pick_head(&undated, t0(), &policy), Some(1), "a known due date goes first");
+        let undated = [
+            Waiting {
+                due: None,
+                ..row(1, 0, None)
+            },
+            row(30, 10, None),
+        ];
+        assert_eq!(
+            pick_head(&undated, t0(), &policy),
+            Some(1),
+            "a known due date goes first"
+        );
     }
 
     #[test]
@@ -992,7 +1270,17 @@ mod tests {
             let now = t0() + Duration::minutes(minute);
             let head = pick_head(&rows, now, &policy).expect("someone is due");
             sent.push(head);
-            let retry = plan_retry(0, TryClass::Counted, false, now, None, now, &policy, &mut rng).unwrap();
+            let retry = plan_retry(
+                0,
+                TryClass::Counted,
+                false,
+                now,
+                None,
+                now,
+                &policy,
+                &mut rng,
+            )
+            .unwrap();
             rows[head].ready_at = Some(retry.at);
         }
         assert_eq!(sent, [0, 1, 2], "each failure lets the next one go");
@@ -1023,7 +1311,8 @@ mod tests {
             let n = (rng.next_u64() % 8) as usize;
             let rows: Vec<Waiting> = (0..n)
                 .map(|_| Waiting {
-                    due: day((rng.next_u64() % 28) as u32 + 1).filter(|_| !rng.next_u64().is_multiple_of(5)),
+                    due: day((rng.next_u64() % 28) as u32 + 1)
+                        .filter(|_| !rng.next_u64().is_multiple_of(5)),
                     queued_at: t0() - Duration::minutes((rng.next_u64() % 10_000) as i64),
                     ready_at: match rng.next_u64() % 4 {
                         0 => None,
@@ -1041,7 +1330,10 @@ mod tests {
                     None => assert!(row.blocked),
                     Some(stamp) => {
                         assert!(!row.blocked);
-                        assert!(stamp >= line.ready[i].min(t0()), "never before its own time");
+                        assert!(
+                            stamp >= line.ready[i].min(t0()),
+                            "never before its own time"
+                        );
                         assert!(line.ready[i] <= t0() + policy.longest_wait());
                         stamps.push(stamp);
                     }
@@ -1049,10 +1341,16 @@ mod tests {
             }
             stamps.sort();
             for pair in stamps.windows(2) {
-                assert!(pair[1] - pair[0] >= Duration::seconds(BEHIND_GAP_S), "{pair:?}");
+                assert!(
+                    pair[1] - pair[0] >= Duration::seconds(BEHIND_GAP_S),
+                    "{pair:?}"
+                );
             }
             let due_now = stamps.iter().filter(|stamp| **stamp <= t0()).count();
-            assert!(due_now <= 1, "an older build would find at most one row due");
+            assert!(
+                due_now <= 1,
+                "an older build would find at most one row due"
+            );
             if let Some(head) = line.head {
                 assert!(!rows[head].blocked && line.ready[head] <= t0());
                 assert_eq!(line.stamps[head], Some(t0()));
@@ -1083,7 +1381,10 @@ mod tests {
     #[test]
     fn only_paused_pauses() {
         assert_eq!(QueueMode::from_setting(Some("paused")), QueueMode::Paused);
-        assert_eq!(QueueMode::from_setting(Some(" paused\n")), QueueMode::Paused);
+        assert_eq!(
+            QueueMode::from_setting(Some(" paused\n")),
+            QueueMode::Paused
+        );
         for other in [None, Some("auto"), Some(""), Some("PAUSED"), Some("off")] {
             assert_eq!(QueueMode::from_setting(other), QueueMode::Auto, "{other:?}");
         }
@@ -1099,7 +1400,12 @@ mod tests {
         let read: QueueState = serde_json::from_value(json!({})).unwrap();
         assert_eq!(read, state);
         let mut state = QueueState::default();
-        state.after(&Retry { at: t0(), counted: true, failures: 2, slowed: true });
+        state.after(&Retry {
+            at: t0(),
+            counted: true,
+            failures: 2,
+            slowed: true,
+        });
         assert_eq!(state.next_try(), Some(t0()));
         assert_eq!(
             serde_json::to_value(&state).unwrap(),
@@ -1110,35 +1416,68 @@ mod tests {
     // ------------------------------------------------------------ the gate
 
     fn seen(header: &str) -> SeenSign {
-        SeenSign { sign: Sign::from_header(header).unwrap(), seen_at: t0() }
+        SeenSign {
+            sign: Sign::from_header(header).unwrap(),
+            seen_at: t0(),
+        }
     }
 
     #[test]
     fn the_gate_follows_the_sign_and_turns() {
         let policy = QueuePolicy::default();
         let now = t0() + Duration::seconds(30);
-        assert_eq!(gate(None, now, &policy, None), Gate::Open, "no sign: as without one");
+        assert_eq!(
+            gate(None, now, &policy, None),
+            Gate::Open,
+            "no sign: as without one"
+        );
         let cases = [
             ("v=1, seq=1, state=online", None, Gate::Open),
             ("v=1, seq=1, state=no_recent_news", None, Gate::Open),
             ("v=1, seq=1, state=offline", None, Gate::Sleep),
             ("v=1, seq=1, state=offline", Some(Turn::Scout), Gate::Open),
             ("v=1, seq=1, state=offline", Some(Turn::Admit), Gate::Sleep),
-            ("v=1, seq=1, state=online, relay=paused", Some(Turn::Scout), Gate::Sleep),
+            (
+                "v=1, seq=1, state=online, relay=paused",
+                Some(Turn::Scout),
+                Gate::Sleep,
+            ),
             ("v=1, seq=1, state=busy", None, Gate::NeedTurn),
             ("v=1, seq=1, state=online, admit=?1", None, Gate::NeedTurn),
             ("v=1, seq=1, state=busy", Some(Turn::Admit), Gate::Open),
         ];
         for (header, turn, want) in cases {
-            assert_eq!(gate(Some(&seen(header)), now, &policy, turn), want, "{header} {turn:?}");
+            assert_eq!(
+                gate(Some(&seen(header)), now, &policy, turn),
+                want,
+                "{header} {turn:?}"
+            );
         }
         let until = t0() + Duration::minutes(10);
-        let waiting = seen(&format!("v=1, seq=2, state=online, until={}", until.timestamp()));
-        assert_eq!(gate(Some(&waiting), now, &policy, None), Gate::WaitUntil(until));
-        assert_eq!(gate(Some(&waiting), now, &policy, Some(Turn::Admit)), Gate::Open, "a turn wins");
+        let waiting = seen(&format!(
+            "v=1, seq=2, state=online, until={}",
+            until.timestamp()
+        ));
+        assert_eq!(
+            gate(Some(&waiting), now, &policy, None),
+            Gate::WaitUntil(until)
+        );
+        assert_eq!(
+            gate(Some(&waiting), now, &policy, Some(Turn::Admit)),
+            Gate::Open,
+            "a turn wins"
+        );
         assert_eq!(gate(Some(&waiting), until, &policy, None), Gate::Open);
         // A stale sign is no sign.
         let stale = t0() + Duration::seconds(i64::from(policy.stale_after_s));
-        assert_eq!(gate(Some(&seen("v=1, seq=1, state=offline")), stale, &policy, None), Gate::Open);
+        assert_eq!(
+            gate(
+                Some(&seen("v=1, seq=1, state=offline")),
+                stale,
+                &policy,
+                None
+            ),
+            Gate::Open
+        );
     }
 }

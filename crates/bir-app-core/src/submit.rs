@@ -30,9 +30,9 @@ impl BirApp {
 impl BirApp {
     /// What the app runs at launch, off the main thread: the submission
     /// client for this database's server setting, and the queue worker
-    /// sending through it. Until someone signs in the queue stays paused,
-    /// so a signed-out send is not counted as a failed try (five of those
-    /// would put the return back to Draft); signing in resumes it.
+    /// sending through it. Until someone signs in the queue stays paused, so
+    /// it does not ask Buwiz to send while signed out; signing in resumes
+    /// it. (A signed-out send is not a try in any case.)
     pub fn launch_sending(&self) -> AppResult<Submission> {
         let submission = self.submission()?;
         if !matches!(submission.sign_in_status(), bir_submit::SignInStatus::SignedIn { .. }) {
@@ -62,7 +62,9 @@ impl BirApp {
     /// Run the sending queue once, now, on the calling thread, through
     /// `submission`'s relay (the same transport as the queue worker). Only
     /// with the worker lease in hand, so two processes never run the queue
-    /// at once. Returns when every due return was tried.
+    /// at once. Like every tick it sends at most one return, the head of the
+    /// line (due soonest, across every TIN), and only when its own time has
+    /// come; it returns when that send ended.
     pub fn send_queue_once(&self, _lease: &QueueLease, submission: &Submission) {
         let transport = submission.transport();
         block_on(bir_core::background_cron::run_queue_tick(self.db.clone(), &transport));

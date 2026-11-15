@@ -58,7 +58,9 @@ impl SubmissionTransport for BuwizTransport {
                 .await
                 .map(drop)
                 .map_err(|failure| match failure {
-                    StoreFailure::NotSent(error) | StoreFailure::MaybeSent(error) => error,
+                    StoreFailure::NotSent(error)
+                | StoreFailure::MaybeSent(error)
+                | StoreFailure::NotATry { error, .. } => error,
                 })
         })
     }
