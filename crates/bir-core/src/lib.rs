@@ -20,6 +20,7 @@ use sqlcipher_tomcrypt as _;
 
 pub mod app_id;
 pub mod background_cron;
+pub mod bir_sign;
 pub mod bir_xml;
 pub mod calendar_events;
 pub mod calendar_ics;
@@ -60,6 +61,7 @@ pub mod platform;
 pub mod profile;
 pub mod receipt;
 pub mod reference;
+pub mod smart_queue;
 pub mod tax_profile;
 pub mod time_utils;
 pub mod tin_refusal;
