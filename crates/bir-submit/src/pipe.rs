@@ -729,7 +729,8 @@ mod tests {
     }
 
     /// With several addresses, the far end saying no (a refusal) is more
-    /// informative than the one that never answered.
+    /// informative than the one that never answered. The budget is the real
+    /// one: Windows takes about two seconds to report a refused port.
     #[tokio::test]
     async fn with_several_addresses_the_most_informative_error_is_reported() {
         let closed = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
@@ -737,7 +738,7 @@ mod tests {
         drop(closed);
         let ms = Duration::from_millis;
         let both = async move { Ok(vec![address, address]) };
-        let Err((kind, _)) = connect_after(both, "example.test", ms(50), ms(500)).await else {
+        let Err((kind, _)) = connect_after(both, "example.test", ms(50), Duration::from_secs(10)).await else {
             panic!("connected")
         };
         assert_eq!(kind, Some(RefusedKind::Refused));
