@@ -726,7 +726,8 @@ impl Form1601CDraft {
     /// A try that did not reach BIR (as
     /// [`crate::forms::queueable::SubmissionLifecycle::record_failed_try`]):
     /// it goes again at `retry.at`; a counted one adds to
-    /// `submission_attempts` and the queue's failure count; it stays queued
+    /// `submission_attempts` and the queue's failure count (not a try, nor a
+    /// failure on the way in, does); it stays queued
     /// and authorized however many tries fail.
     pub fn record_failed_try(&mut self, error_msg: String, retry: &crate::smart_queue::Retry) {
         assert!(
@@ -1613,6 +1614,19 @@ mod tests {
         assert!(errors.iter().any(|(field, _)| field == "tin"));
         assert_eq!(draft.status, FilingStatus::Draft);
         assert!(draft.queued_submission_fingerprint.is_none());
+    }
+
+    #[test]
+    fn ten_path_failures_leave_the_1601c_untouched_and_queued() {
+        let mut draft = Form1601CDraft::new_from_profile(&test_profile(), 2026, 6);
+        draft.any_taxes_withheld = false;
+        draft.transition_to_queued().expect("fixture must queue");
+        for retry in crate::forms::queueable::path_failure_retries(10) {
+            draft.record_failed_try("the way in is down".into(), &retry);
+            assert_eq!(draft.status, FilingStatus::Queued);
+        }
+        assert_eq!(draft.submission_attempts, 0);
+        assert_eq!(draft.smart_queue.failures, 0);
     }
 
     #[test]

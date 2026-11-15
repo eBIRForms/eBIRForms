@@ -209,6 +209,7 @@ fn session_ending(class: TryClass, reason: &str) -> Ending<'_> {
         TryClass::NotATry | TryClass::Refused | TryClass::MaybeSent => {
             Ending::NotATry { wait_until: None }
         }
+        TryClass::Answered => Ending::Answered { reason },
         TryClass::Counted => Ending::Failed {
             blame: Blame::Upload,
             reason,
@@ -707,7 +708,7 @@ async fn process_queued_1601c_in<T: SubmissionTransport>(
                     &loaded_draft.tin,
                     loaded_draft.taxable_year,
                     loaded_draft.month,
-                    Utc::now(),
+                    planner.now(),
                 )
                 .unwrap_or(false)
         };
@@ -1091,7 +1092,7 @@ fn log_not_sent(form_code: &str, period: &str, error: &TransportError, retry: &R
         "Cron: {} {} was not sent (nothing reached BIR{}): {}; it stays queued after {} counted failures, next try at {}",
         form_code,
         period,
-        if retry.counted { "" } else { ", not a try" },
+        if retry.was_a_try() { "" } else { ", not a try" },
         error,
         retry.failures,
         retry.at.to_rfc3339()
@@ -1164,7 +1165,7 @@ fn fail_queueable<F: QueueableForm>(
         "Cron: {} submission preparation failed for {}{}: {}; next try at {}",
         F::FORM_CODE,
         draft.period_code(),
-        if retry.counted { "" } else { " (not a try)" },
+        if retry.was_a_try() { "" } else { " (not a try)" },
         error_message,
         retry.at.to_rfc3339()
     );
@@ -1220,7 +1221,7 @@ async fn process_queued_queueable_in<F: QueueableForm, T: SubmissionTransport>(
                         &summary.tin,
                         summary.taxable_year,
                         period,
-                        Utc::now(),
+                        planner.now(),
                     )
                     .ok()
             })
@@ -1638,7 +1639,7 @@ async fn process_queued_2551q_in<T: SubmissionTransport>(
                     &loaded_draft.tin,
                     loaded_draft.taxable_year,
                     loaded_draft.quarter,
-                    Utc::now(),
+                    planner.now(),
                 )
                 .unwrap_or(false)
         };
@@ -2026,13 +2027,13 @@ fn queued_rows(
         };
         let claimed =
             text("submission_claim_token").is_some() || text("submission_claimed_at").is_some();
-        // Leases are real time, as the claim that wrote them.
+        // A lease is read against the tick's clock, like every other time.
         let recoverable = claimed
             && crate::filing_queue::claim_is_recoverable(
                 text("submission_claimed_at"),
                 text("submission_claim_lease_until"),
                 text("submission_put_started_at"),
-                Utc::now(),
+                now,
             );
         let error = text("submission_error").or_else(|| {
             (summary.form_code == "2551Q")
@@ -2902,7 +2903,7 @@ fn fail_draft_2551q(
     warn!(
         "Cron: Submission failed for {}{}: {}; it stays queued, next try at {}",
         draft.period_code(),
-        if retry.counted { "" } else { " (not a try)" },
+        if retry.was_a_try() { "" } else { " (not a try)" },
         error_msg,
         retry.at.to_rfc3339()
     );
@@ -2941,7 +2942,7 @@ fn fail_draft_1601c(
     warn!(
         "Cron: 1601C submission preparation failed for {}{}: {}; next try at {}",
         draft.period_code(),
-        if retry.counted { "" } else { " (not a try)" },
+        if retry.was_a_try() { "" } else { " (not a try)" },
         error_message,
         retry.at.to_rfc3339()
     );
@@ -5998,7 +5999,11 @@ mod tests {
         Unknown,
         /// The session fails before any ticket (signed out).
         SignedOut,
+        /// The server answers the session with a refusal (a revoked key).
+        SessionRefused,
     }
+
+    const SESSION_REFUSED: &str = "This device may not send returns. (device_not_allowed)";
 
     /// A transport that answers as `far` says, records each try's simulated
     /// time and file, and counts sends in flight.
@@ -6057,6 +6062,9 @@ mod tests {
                 if *self.far.lock().unwrap() == Far::SignedOut {
                     return Err(TransportError("Sign in to send returns.".into()));
                 }
+                if *self.far.lock().unwrap() == Far::SessionRefused {
+                    return Err(TransportError(SESSION_REFUSED.into()));
+                }
                 let now = self.in_flight.fetch_add(1, Ordering::SeqCst) + 1;
                 self.most_in_flight.fetch_max(now, Ordering::SeqCst);
                 Ok(())
@@ -6112,7 +6120,7 @@ mod tests {
                         error: TransportError("Buwiz had a problem on its side (internal)".into()),
                         wait_until: None,
                     }),
-                    Far::Hang => unreachable!("a hung send never answers"),
+                    Far::Hang | Far::SessionRefused => unreachable!("no send follows"),
                     Far::Hold(until) => Err(StoreFailure::NotATry {
                         error: TransportError(
                             "The BIR is offline, so Buwiz held this return. (bir_offline)".into(),
@@ -6126,8 +6134,10 @@ mod tests {
             })
         }
 
-        fn session_failure_class(&self, _error: &TransportError) -> TryClass {
-            if self.session_not_a_try {
+        fn session_failure_class(&self, error: &TransportError) -> TryClass {
+            if error.0 == SESSION_REFUSED {
+                TryClass::Answered
+            } else if self.session_not_a_try {
                 TryClass::NotATry
             } else {
                 TryClass::Counted
@@ -6848,6 +6858,65 @@ mod tests {
         assert_eq!(run_queue_tick_with(db.clone(), &transport, &env).await, None);
         assert_eq!(transport.tries().len(), tries, "stopped until the person presses Retry");
         // The person's Retry ends the stop: it goes.
+        let mut state = row.smart_queue.clone();
+        state.press_retry(now + chrono::Duration::days(30), false);
+        let mut pressed = row.clone();
+        pressed.smart_queue = state;
+        pressed.next_retry_at = Some((now + chrono::Duration::days(30)).to_rfc3339());
+        assert!(
+            db.lock()
+                .unwrap()
+                .replace_unclaimed_queued_1601c_submission(
+                    &pressed,
+                    &row.queued_submission_fingerprint,
+                    &row.next_retry_at,
+                    row.submission_attempts,
+                )
+                .unwrap()
+        );
+        assert_eq!(
+            run_queue_tick_with(db.clone(), &transport, &env).await,
+            Some(SendOutcome::Sent)
+        );
+    }
+
+    /// A session the server keeps refusing with a 4xx (a revoked device
+    /// key): not a try, so no count, no path back-off and no device guard;
+    /// but the same answer three times in a row stops that return with the
+    /// server's sentence, until the person presses Retry.
+    #[tokio::test]
+    async fn a_session_the_server_keeps_refusing_stops_the_return_and_retry_lifts_it() {
+        let (db, drafts) = queued_1601cs("936", &[5]);
+        let (clock, env) = sim_clock(37);
+        let transport = SimTransport::new(Far::SessionRefused, &clock);
+        let mut now = *clock.lock().unwrap();
+        for tick in 1..=3 {
+            set_clock(&clock, now);
+            assert_eq!(
+                run_queue_tick_with(db.clone(), &transport, &env).await,
+                Some(SendOutcome::Failed(TryClass::Answered))
+            );
+            let row = stored_1601c(&db, &drafts[0]);
+            assert_eq!(row.smart_queue.is_stuck(), tick == 3, "after {tick}");
+            now += chrono::Duration::hours(4);
+        }
+        let row = stored_1601c(&db, &drafts[0]);
+        assert_eq!(row.status, FilingStatus::Queued);
+        assert_eq!(
+            (row.submission_attempts, row.smart_queue.failures),
+            (0, 0),
+            "not a try"
+        );
+        assert!(row.smart_queue.stuck.as_deref().unwrap().contains("(device_not_allowed)"));
+        assert!(row.smart_queue.stuck.as_deref().unwrap().contains("This device may not send returns."));
+        assert!(path_setting(&db).is_clear(), "the way in is not blamed");
+        assert_eq!(device_tries(&db).to_setting(), "", "not the device's connection");
+        assert!(transport.tries().is_empty(), "nothing was sent");
+        // Stopped, however long we wait.
+        set_clock(&clock, now + chrono::Duration::days(30));
+        assert_eq!(run_queue_tick_with(db.clone(), &transport, &env).await, None);
+        // The person's Retry lifts it; the session works now.
+        transport.set(Far::Up);
         let mut state = row.smart_queue.clone();
         state.press_retry(now + chrono::Duration::days(30), false);
         let mut pressed = row.clone();

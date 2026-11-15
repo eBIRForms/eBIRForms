@@ -27,6 +27,9 @@
 //!   about the return itself (a refused login, no upload service for the
 //!   TIN, the same validation refusal) stop its automatic tries until the
 //!   person presses Retry ([`STUCK_AFTER`]).
+//!   The same stop follows a session that Buwiz keeps refusing with the same
+//!   4xx answer (a revoked device key): it is not a try ([`TryClass::Answered`]),
+//!   so it counts for nothing else.
 //! - **One at a time.** [`line_up_after`] picks the one return that may go
 //!   now (due soonest first, across every TIN) and gives every other a real
 //!   next-try time at least a minute apart and never before the queue-wide
@@ -334,6 +337,13 @@ pub enum TryClass {
     /// The outcome is unknown: BIR may have the return. Never sent again
     /// by itself.
     MaybeSent,
+    /// Buwiz ANSWERED a session open with a refusal that is not a hold, a
+    /// 429, being signed out or a TIN refusal (a 4xx, say a device key the
+    /// server revoked). Not a try, like [`Self::NotATry`]: no count, no
+    /// path back-off, no device guard. But the same refusal three times in
+    /// a row stops the return until the person presses Retry
+    /// ([`STUCK_AFTER`]).
+    Answered,
 }
 
 impl TryClass {
@@ -449,7 +459,10 @@ impl Blame {
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Retry {
     pub at: DateTime<Utc>,
-    /// The failure counted: the return's failure count is now `failures`.
+    /// The failure counts against the return: its failure count is now
+    /// `failures` and its stored `submission_attempts` goes up by one. Not
+    /// so for a try that was not one, nor for a [`Blame::Path`] failure,
+    /// which says nothing about the return (see [`Retry::was_a_try`]).
     pub counted: bool,
     pub failures: u32,
     /// The device guard set this wait.
@@ -462,9 +475,19 @@ pub struct Retry {
     pub not_tried: u32,
     /// Where it failed, for a counted try.
     pub blame: Option<Blame>,
-    /// For `Return` and `NoService`: what kind of failure (its reason), to
-    /// tell three of the same kind in a row.
+    /// For `Return` and `NoService`, and for an [`Ending::Answered`]: what
+    /// kind of failure (its reason), to tell three of the same kind in a
+    /// row.
     pub kind: Option<String>,
+}
+
+impl Retry {
+    /// Whether this was a try that reached for the BIR, counted against
+    /// the return or not: a path failure is one (the log says so, and the
+    /// way in is blamed), but it does not count against the return.
+    pub fn was_a_try(&self) -> bool {
+        self.counted || self.blame == Some(Blame::Path)
+    }
 }
 
 /// How a try that did not land ended, for [`plan`].
@@ -475,6 +498,9 @@ pub enum Ending<'a> {
     NotATry { wait_until: Option<DateTime<Utc>> },
     /// A counted try that failed, with where and why.
     Failed { blame: Blame, reason: &'a str },
+    /// Not a try, but Buwiz answered with a refusal ([`TryClass::Answered`]):
+    /// the same `reason` three times in a row stops the return.
+    Answered { reason: &'a str },
 }
 
 /// The retry of a return in `state` whose try ended at `ended_at` as
@@ -513,6 +539,20 @@ pub fn plan(
                 kind: None,
             }
         }
+        Ending::Answered { reason } => {
+            let mut retry = plan(
+                state,
+                Ending::NotATry { wait_until: None },
+                slowed_down,
+                ended_at,
+                now,
+                path,
+                policy,
+                rng,
+            );
+            retry.kind = Some(failure_kind(reason));
+            retry
+        }
         Ending::Failed {
             blame: Blame::Path,
             ..
@@ -520,7 +560,7 @@ pub fn plan(
             let at = path.record(ended_at, slowed_down, policy, rng);
             Retry {
                 at,
-                counted: true,
+                counted: false,
                 failures: state.failures,
                 slowed: slowed_down,
                 ended_at,
@@ -590,7 +630,7 @@ pub fn plan_retry(
 ) -> Option<Retry> {
     let ending = match class {
         TryClass::Refused | TryClass::MaybeSent => return None,
-        TryClass::NotATry => Ending::NotATry { wait_until },
+        TryClass::NotATry | TryClass::Answered => Ending::NotATry { wait_until },
         TryClass::Counted => Ending::Failed {
             blame: Blame::Upload,
             reason: "",
@@ -1130,18 +1170,25 @@ impl QueueState {
                 self.kind = None;
                 self.same_kind = 0;
             }
-            Some(Blame::Return | Blame::NoService) => {
-                if retry.kind.is_some() && retry.kind == self.kind {
-                    self.same_kind = self.same_kind.saturating_add(1);
-                } else {
-                    self.kind = retry.kind.clone();
-                    self.same_kind = 1;
-                }
-                if self.same_kind >= STUCK_AFTER {
-                    self.stuck = self.kind.clone();
-                }
-            }
+            Some(Blame::Return | Blame::NoService) => self.count_kind(retry),
+            // Not a try: a plain one leaves the run alone; a refusal Buwiz
+            // answered (it carries its kind) counts in it.
+            None if retry.kind.is_some() => self.count_kind(retry),
             None => {}
+        }
+    }
+
+    /// One more failure of `retry.kind`: three of the same kind in a row
+    /// stop the return.
+    fn count_kind(&mut self, retry: &Retry) {
+        if retry.kind.is_some() && retry.kind == self.kind {
+            self.same_kind = self.same_kind.saturating_add(1);
+        } else {
+            self.kind = retry.kind.clone();
+            self.same_kind = 1;
+        }
+        if self.same_kind >= STUCK_AFTER {
+            self.stuck = self.kind.clone();
         }
     }
 
@@ -2094,7 +2141,8 @@ mod tests {
         for _ in 0..6 {
             let retry = plan(&state, failed(Blame::Path), false, now, now, &mut path, &policy, &mut rng);
             assert_eq!(retry.failures, 0, "the return's own count does not move");
-            assert!(retry.counted);
+            assert!(!retry.counted, "it does not count against the return");
+            assert!(retry.was_a_try(), "but it was a try that reached for the BIR");
             assert_eq!(path.floor(now), Some(retry.at));
             waits.push((retry.at - now).num_seconds());
             now = retry.at;
@@ -2174,6 +2222,47 @@ mod tests {
         let retry = plan(&state, failed(Blame::Upload), false, now, now, &mut path, &policy, &mut rng);
         state.after(&retry);
         assert_eq!((state.not_tried, state.failures), (0, 1));
+    }
+
+    /// A refusal Buwiz answered to the session is not a try (no count, no
+    /// path back-off, nothing for the guard), but three of the same kind in
+    /// a row stop the return, and Retry lifts it.
+    #[test]
+    fn three_answered_session_refusals_stop_a_return_without_counting() {
+        let policy = QueuePolicy::default();
+        let mut rng = SeededRng::new(41);
+        let mut path = PathBackoff::default();
+        let mut state = QueueState::default();
+        let reason = "Submission session failed before upload (no PUT attempted): This device may not send returns. (device_not_allowed)";
+        let mut now = t0();
+        for n in 1..=3u32 {
+            let retry = plan(&state, Ending::Answered { reason }, true, now, now, &mut path, &policy, &mut rng);
+            assert!(!retry.counted && !retry.was_a_try() && retry.blame.is_none(), "{retry:?}");
+            assert!(!retry.slowed, "the guard is not heard");
+            assert_eq!((retry.failures, retry.not_tried), (0, n));
+            assert!(path.is_clear(), "the way in is not blamed");
+            state.after(&retry);
+            assert_eq!(state.is_stuck(), n == 3, "after {n}");
+            now = retry.at;
+        }
+        assert_eq!(
+            state.stuck.as_deref(),
+            Some("This device may not send returns. (device_not_allowed)")
+        );
+        assert_eq!(state.failures, 0);
+        // A different refusal starts the run again; a plain not-a-try in
+        // between leaves it alone.
+        let mut other = QueueState::default();
+        for reason in ["a (x)", "b (y)", "a (x)", "a (x)"] {
+            let retry = plan(&other, Ending::Answered { reason }, false, now, now, &mut path, &policy, &mut rng);
+            other.after(&retry);
+        }
+        assert!(!other.is_stuck() && other.same_kind == 2);
+        state.press_retry(now, false);
+        assert!(!state.is_stuck() && state.same_kind == 0);
+        // The plan_retry of the class is a plain not-a-try.
+        let plain = plan_retry(0, TryClass::Answered, false, now, None, now, &policy, &mut rng).unwrap();
+        assert!(!plain.counted && plain.kind.is_none());
     }
 
     #[test]

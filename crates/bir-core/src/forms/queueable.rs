@@ -290,7 +290,9 @@ impl SubmissionLifecycle {
     /// A try that did not reach BIR: it goes again at `retry.at`. A counted
     /// one adds to `submission_attempts` (history) and to the queue's own
     /// failure count; one that was not a try (a hold, signed out, Buwiz
-    /// unreachable, class `ours`) adds to neither. It stays queued and
+    /// unreachable, class `ours`) and one that failed on the way in (it
+    /// says nothing about the return: the whole queue waits, see
+    /// [`crate::smart_queue::Blame::Path`]) add to neither. It stays queued and
     /// authorized either way: no number of failed tries sends it back to
     /// Draft.
     pub fn record_failed_try(&mut self, error_msg: String, retry: &crate::smart_queue::Retry) {
@@ -1092,6 +1094,26 @@ pub(crate) mod test_support {
     }
 }
 
+/// Ten failures on the way in, one after another: what the queue records
+/// for them, one `Retry` each.
+#[cfg(test)]
+pub(crate) fn path_failure_retries(count: usize) -> Vec<crate::smart_queue::Retry> {
+    use crate::smart_queue::{Blame, Ending, PathBackoff, QueuePolicy, QueueState, SeededRng, plan};
+    let policy = QueuePolicy::default();
+    let mut rng = SeededRng::new(9);
+    let mut path = PathBackoff::default();
+    let state = QueueState::default();
+    let mut now = chrono::Utc::now();
+    (0..count)
+        .map(|_| {
+            let ending = Ending::Failed { blame: Blame::Path, reason: "the way in is down" };
+            let retry = plan(&state, ending, false, now, now, &mut path, &policy, &mut rng);
+            now = retry.at;
+            retry
+        })
+        .collect()
+}
+
 #[cfg(test)]
 mod tests {
     use super::test_support::TestForm;
@@ -1237,6 +1259,21 @@ mod tests {
         fresh.lifecycle.revert_to_draft();
         fresh.queue(QueueAuthSource::Gui).unwrap();
         assert!(fresh.lifecycle.smart_queue.is_empty());
+    }
+
+    /// A failure on the way in says nothing about the return: ten in a row
+    /// leave its attempts and its failures alone, and it stays queued.
+    #[test]
+    fn ten_path_failures_leave_the_return_untouched_and_queued() {
+        let mut form = TestForm::new(6, 10.0);
+        form.queue(QueueAuthSource::Gui).unwrap();
+        for retry in path_failure_retries(10) {
+            form.lifecycle.record_failed_try("the way in is down".into(), &retry);
+            assert_eq!(form.lifecycle.status, FilingStatus::Queued);
+        }
+        assert_eq!(form.lifecycle.submission_attempts, 0);
+        assert_eq!(form.lifecycle.smart_queue.failures, 0);
+        assert!(form.lifecycle.next_retry_at.is_some());
     }
 
     #[test]
